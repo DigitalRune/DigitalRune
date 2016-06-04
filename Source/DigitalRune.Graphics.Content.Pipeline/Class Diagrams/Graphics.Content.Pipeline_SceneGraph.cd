@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Scene Graph                                                                         Assembly: DigitalRune.Graphics.Content.Pipeline                    Namespace: DigitalRune.Graphics.Content.Pipeline">
+    <Position X="0.5" Y="0.5" Height="0.636" Width="3.099" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.Content.Pipeline.DRMeshNodeContent">
+    <Position X="0.5" Y="6.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAQAAAgAAAAA=</HashCode>
+      <FileName>SceneGraph\DRMeshNodeContent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.Pipeline.DRSceneNodeWriter">
+    <Position X="5" Y="3" Width="2.75" />
+    <Members>
+      <Method Name="GetRuntimeReader" Hidden="true" />
+      <Method Name="GetRuntimeType" Hidden="true" />
+      <Method Name="Write" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>SceneGraph\DRSceneNodeWriter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.Pipeline.DRModelProcessor">
+    <Position X="4.75" Y="0.5" Width="3.25" />
+    <Members>
+      <Field Name="_animations" Hidden="true" />
+      <Field Name="_context" Hidden="true" />
+      <Field Name="_createMissingMaterialDefinition" Hidden="true" />
+      <Field Name="_createMissingModelDescription" Hidden="true" />
+      <Field Name="_indices" Hidden="true" />
+      <Field Name="_input" Hidden="true" />
+      <Field Name="_materials" Hidden="true" />
+      <Field Name="_model" Hidden="true" />
+      <Field Name="_modelDescription" Hidden="true" />
+      <Field Name="_morphTargetVertexBuffer" Hidden="true" />
+      <Field Name="_rootBone" Hidden="true" />
+      <Field Name="_skeleton" Hidden="true" />
+      <Field Name="_tempIndices" Hidden="true" />
+      <Field Name="_tempWeights" Hidden="true" />
+      <Field Name="_vertexBuffers" Hidden="true" />
+      <Field Name="_vertexReorderMaps" Hidden="true" />
+      <Method Name="AddMorphTarget" Hidden="true" />
+      <Method Name="AddTangentFrames" Hidden="true" />
+      <Method Name="AddVertexReorderChannel" Hidden="true" />
+      <Method Name="BakeAllTransforms" Hidden="true" />
+      <Method Name="BakeTransforms" Hidden="true" />
+      <Method Name="BuildAnimation" Hidden="true" />
+      <Method Name="BuildAnimations" Hidden="true" />
+      <Method Name="BuildBoundingShape" Hidden="true" />
+      <Method Name="BuildMaterial" Hidden="true" />
+      <Method Name="BuildMesh" Hidden="true" />
+      <Method Name="BuildMeshes" Hidden="true" />
+      <Method Name="BuildMorphTargets" Hidden="true" />
+      <Method Name="BuildOccluder" Hidden="true" />
+      <Method Name="BuildOccluders" Hidden="true" />
+      <Method Name="BuildSceneGraph" Hidden="true" />
+      <Method Name="BuildSkeleton" Hidden="true" />
+      <Method Name="BuildSubmeshes" Hidden="true" />
+      <Method Name="BuildSubmeshInfos" Hidden="true" />
+      <Method Name="CalculateNormals" Hidden="true" />
+      <Method Name="CalculateTangentFrames" Hidden="true" />
+      <Method Name="CheckForCyclicReferences" Hidden="true" />
+      <Method Name="CombineLodGroups" Hidden="true" />
+      <Method Name="ComputeAxisAlignedBoundingShape" Hidden="true" />
+      <Method Name="ComputeBestFitBoundingShape" Hidden="true" />
+      <Method Name="ConvertBoneWeights" Hidden="true" />
+      <Method Name="CreateMaterialDefinition" Hidden="true" />
+      <Method Name="CreateMorphTargetVertexBuffer" Hidden="true" />
+      <Method Name="DecomposeTransform" Hidden="true" />
+      <Method Name="GetExternalMaterial" Hidden="true" />
+      <Method Name="GetTextureFileName" Hidden="true" />
+      <Method Name="GetVertexBufferIndex" Hidden="true" />
+      <Method Name="GetVertexReorderMaps" Hidden="true" />
+      <Method Name="MakeRelativeMorphTargets" Hidden="true" />
+      <Field Name="MaxBonesPerVertex" Hidden="true" />
+      <Method Name="MergeAnimationFiles" Hidden="true" />
+      <Method Name="MergeDuplicatePositions" Hidden="true" />
+      <Method Name="OptimizeForCache" Hidden="true" />
+      <Method Name="PrepareMaterial" Hidden="true" />
+      <Method Name="PrepareMaterials" Hidden="true" />
+      <Method Name="Process" Hidden="true" />
+      <Method Name="ProcessColorChannel" Hidden="true" />
+      <Method Name="ProcessVertexChannel" Hidden="true" />
+      <Method Name="ProcessVertexChannels" Hidden="true" />
+      <Method Name="ProcessWeightsChannel" Hidden="true" />
+      <Method Name="SetSkinnedMaterial" Hidden="true" />
+      <Method Name="SetVertexColorEnabled" Hidden="true" />
+      <Method Name="SplitAnimations" Hidden="true" />
+      <Method Name="TransformModel" Hidden="true" />
+      <Method Name="ValidateInput" Hidden="true" />
+      <Method Name="ValidateMesh" Hidden="true" />
+      <Method Name="ValidateMorphTarget" Hidden="true" />
+      <Method Name="ValidateOccluder" Hidden="true" />
+      <Method Name="ValidateOutput" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Graphics.Content.Pipeline.DRModelProcessor.LodComparer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SceneGraph\DRModelProcessor_Lod.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="DigitalRune.Graphics.Content.Pipeline.DRModelProcessor.SubmeshInfo" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SceneGraph\DRModelProcessor_Meshes.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Graphics.Content.Pipeline.DRModelProcessor.SubmeshInfoComparer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SceneGraph\DRModelProcessor_Meshes.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>gQgBlMGQiBJIFEghCoqHAwNBECFBQsAACshAAhhQJCk=</HashCode>
+      <FileName>SceneGraph\DRModelProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.Pipeline.DRSceneNodeContent">
+    <Position X="1.25" Y="1.5" Width="2.5" />
+    <Members>
+      <Method Name="DRSceneNodeContent" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AIACIAAAAAAIAgAAAAAEQAQAAAAAQBIABAQAAIAIAAE=</HashCode>
+      <FileName>SceneGraph\DRSceneNodeContent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.Pipeline.DRModelNodeContent">
+    <Position X="2.75" Y="6.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SceneGraph\DRModelNodeContent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.Pipeline.DRMeshNodeWriter">
+    <Position X="5" Y="4.25" Width="2.75" />
+    <Members>
+      <Method Name="GetRuntimeReader" Hidden="true" />
+      <Method Name="GetRuntimeType" Hidden="true" />
+      <Method Name="Write" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>SceneGraph\DRMeshNodeWriter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.Pipeline.DRModelNodeWriter">
+    <Position X="5" Y="5.5" Width="2.75" />
+    <Members>
+      <Method Name="GetRuntimeReader" Hidden="true" />
+      <Method Name="GetRuntimeType" Hidden="true" />
+      <Method Name="Write" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>SceneGraph\DRModelNodeWriter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

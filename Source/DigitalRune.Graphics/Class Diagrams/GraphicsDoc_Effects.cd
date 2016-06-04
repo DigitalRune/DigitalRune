@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DigitalRune.Graphics.Effects.EffectParameterBinding">
+    <Position X="4" Y="4.75" Width="2" />
+    <Members>
+      <Method Name="ContainsParameter" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="EffectParameterBinding" Hidden="true" />
+      <Method Name="GetEffectParameterInfo" Hidden="true" />
+      <Method Name="GetEffectParameterType" Hidden="true" />
+      <Field Name="SetValueArrayMethods" Hidden="true" />
+      <Field Name="SetValueMethods" Hidden="true" />
+      <Method Name="ThrowIfArray" Hidden="true" />
+      <Method Name="ThrowIfInvalidType" Hidden="true" />
+      <Method Name="ThrowIfNotArray" Hidden="true" />
+      <Method Name="ValidateBoolean" Hidden="true" />
+      <Method Name="ValidateInt32" Hidden="true" />
+      <Method Name="ValidateMatrix" Hidden="true" />
+      <Method Name="ValidateSingle" Hidden="true" />
+      <Method Name="ValidateString" Hidden="true" />
+      <Method Name="ValidateTexture" Hidden="true" />
+      <Method Name="ValidateTexture2D" Hidden="true" />
+      <Method Name="ValidateTexture3D" Hidden="true" />
+      <Method Name="ValidateTextureCube" Hidden="true" />
+      <Field Name="ValidateTypeMethods" Hidden="true" />
+      <Method Name="ValidateVector2" Hidden="true" />
+      <Method Name="ValidateVector3" Hidden="true" />
+      <Method Name="ValidateVector4" Hidden="true" />
+      <Method Name="VerifyEffectParameter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EEQAFACACFAgAAAAEAAgAAIAEAAYAgA0iAQAACEBAjQ=</HashCode>
+      <FileName>Effects\Bindings\EffectParameterBinding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.EffectTechniqueBinding">
+    <Position X="4" Y="1" Width="2" />
+    <Members>
+      <Method Name="CreateInstance" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgQCBAAAAAAAAAAIAAAAIAAAAAAIAAAAAAAAAAEAALQ=</HashCode>
+      <FileName>Effects\Bindings\EffectTechniqueBinding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.EffectBinding">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <Members>
+      <Field Name="_techniqueBinding" Hidden="true" />
+      <Method Name="CheckHint" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="CreateMaterialInstance" Hidden="true" />
+      <Method Name="EffectBinding" Hidden="true" />
+      <Property Name="EffectEx" Hidden="true" />
+      <Field Name="Id" Hidden="true" />
+      <Method Name="InitializeBindings" Hidden="true" />
+      <Property Name="MaterialBinding" Hidden="true" />
+      <Property Name="MorphWeights" Hidden="true" />
+      <Method Name="OnInitializeBindings" Hidden="true" />
+    </Members>
+    <AssociationLine Name="ParameterBindings" Type="DigitalRune.Graphics.Effects.EffectParameterBinding">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.058" Y="0.05" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>CAACBAAQAAgIBBAAAAAAAAABAQAYSoBAAAAAAAAIADA=</HashCode>
+      <FileName>Effects\EffectBinding.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TechniqueBinding" />
+      <Property Name="Effect" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="ParameterBindings" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Microsoft.Xna.Framework.Graphics.Effect">
+    <Position X="6.5" Y="0.5" Width="1.75" />
+    <Members>
+      <Method Name="Effect" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+    <ShowAsCollectionAssociation>
+      <Property Name="Parameters" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Microsoft.Xna.Framework.Graphics.EffectParameter" Collapsed="true">
+    <Position X="6.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Effects and Effect Bindings                                     Assembly: DigitalRune.Graphics                         Namespace: DigitalRune.Graphics.Effects">
+    <Position X="0.5" Y="0.5" Height="0.662" Width="2.49" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.Effects.EffectHelper">
+    <Position X="3.5" Y="0.5" Width="2.5" />
+    <Members>
+      <Method Name="CheckDirectionVector" Hidden="true" />
+      <Method Name="CheckPositionVector" Hidden="true" />
+      <Method Name="CreateTechniqueBinding" Hidden="true" />
+      <Method Name="GetEffectEx" Hidden="true" />
+      <Method Name="GetHintFromAnnotations" Hidden="true" />
+      <Method Name="GetParameterValues" Hidden="true" />
+      <Method Name="InitializeParameterBindings" Hidden="true" />
+      <Method Name="IsArray" Hidden="true" />
+      <Method Name="SetAutomaticBinding" Hidden="true" />
+      <Method Name="SetBinding" Hidden="true" />
+      <Method Name="SetDefaultBinding" Hidden="true" />
+      <Method Name="SetOpaqueDataBinding" Hidden="true" />
+      <Method Name="ToBooleanArray" Hidden="true" />
+      <Method Name="ToInt32Array" Hidden="true" />
+      <Method Name="ToSingleArray" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAgATNQAiIBAAAABAAMAASAAgBgARgCAARiAAAAAABA=</HashCode>
+      <FileName>Effects\EffectHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.EffectBinding">
+    <Position X="0.5" Y="1.75" Width="2" />
+    <Members>
+      <Field Name="_techniqueBinding" Hidden="true" />
+      <Method Name="CheckHint" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="CreateMaterialInstance" Hidden="true" />
+      <Method Name="EffectBinding" Hidden="true" />
+      <Property Name="EffectEx" Hidden="true" />
+      <Field Name="Id" Hidden="true" />
+      <Method Name="InitializeBindings" Hidden="true" />
+      <Property Name="MaterialBinding" Hidden="true" />
+      <Property Name="MorphWeights" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CAACBAAQAAgIBBAAAAAAAAABAQAYSoBAAAAAAAAIADA=</HashCode>
+      <FileName>Effects\EffectBinding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.AlphaTestEffectBinding">
+    <Position X="0.5" Y="6" Width="2" />
+    <Members>
+      <Method Name="AlphaTestEffectBinding" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="GetOpaqueDatum" Hidden="true" />
+      <Property Name="IStockEffectBinding.FogEnabled" Hidden="true" />
+      <Method Name="OnInitializeBindings" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAABBAACAAAAAAAAAAAAIAgAAAAAAAAAABCA=</HashCode>
+      <FileName>Effects\StockEffects\AlphaTestEffectBinding.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.BasicEffectBinding">
+    <Position X="2.75" Y="6" Width="2" />
+    <Members>
+      <Method Name="BasicEffectBinding" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="GetOpaqueDatum" Hidden="true" />
+      <Property Name="IStockEffectBinding.FogEnabled" Hidden="true" />
+      <Method Name="OnInitializeBindings" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAEAAAAIAABBQAAAAAAAAAAAAAAIAgAAABAAAAAAACA=</HashCode>
+      <FileName>Effects\StockEffects\BasicEffectBinding.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.DualTextureEffectBinding">
+    <Position X="5" Y="6" Width="2" />
+    <Members>
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="DualTextureEffectBinding" Hidden="true" />
+      <Method Name="GetOpaqueDatum" Hidden="true" />
+      <Property Name="IStockEffectBinding.FogEnabled" Hidden="true" />
+      <Method Name="OnInitializeBindings" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAABBAAAAAAAAAAAAAAAIAgAAAAAAAAAAACA=</HashCode>
+      <FileName>Effects\StockEffects\DualTextureEffectBinding.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.EnvironmentMapEffectBinding">
+    <Position X="7.25" Y="6" Width="2.5" />
+    <Members>
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="EnvironmentMapEffectBinding" Hidden="true" />
+      <Method Name="GetOpaqueDatum" Hidden="true" />
+      <Property Name="IStockEffectBinding.FogEnabled" Hidden="true" />
+      <Method Name="OnInitializeBindings" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABBAAAAAAAAAAAAAAAAAgAAAAAAAAAAACA=</HashCode>
+      <FileName>Effects\StockEffects\EnvironmentMapEffectBinding.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.SkinnedEffectBinding">
+    <Position X="10" Y="6" Width="2" />
+    <Members>
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="GetOpaqueDatum" Hidden="true" />
+      <Property Name="IStockEffectBinding.FogEnabled" Hidden="true" />
+      <Method Name="OnInitializeBindings" Hidden="true" />
+      <Method Name="SkinnedEffectBinding" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAABBAAAAAAAAAAAAAAAIAgAAAAAAAAAAACA=</HashCode>
+      <FileName>Effects\StockEffects\SkinnedEffectBinding.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.EffectBindingException">
+    <Position X="6.5" Y="1.5" Width="2" />
+    <Members>
+      <Method Name="EffectBindingException" Hidden="true" />
+      <Method Name="GetName" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgCAAAAAgAAAAAAAAABAA=</HashCode>
+      <FileName>Effects\EffectBindingException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.GraphicsException" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GraphicsException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

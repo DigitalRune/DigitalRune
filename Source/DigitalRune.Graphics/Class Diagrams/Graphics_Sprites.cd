@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Sprites (Scene Nodes)                                                                    Assembly: DigitalRune.Graphics                   Namespace: DigitalRune.Graphics.SceneGraph">
+    <Position X="0.5" Y="0.5" Height="0.615" Width="2.82" />
+  </Comment>
+  <Comment CommentText="Sprites (Data)                                                                   Assembly: DigitalRune.Graphics                   Namespace: DigitalRune.Graphics">
+    <Position X="3.71" Y="0.5" Height="0.615" Width="2.122" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.ImageSprite">
+    <Position X="3.25" Y="4.25" Width="1.5" />
+    <Members>
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="ImageSprite" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAIAAAAAADA=</HashCode>
+      <FileName>Data\Sprites\ImageSprite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.TextSprite">
+    <Position X="5" Y="4.25" Width="1.5" />
+    <Members>
+      <Field Name="_text" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="TextSprite" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAIAAAACAACADA=</HashCode>
+      <FileName>Data\Sprites\TextSprite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Sprite">
+    <Position X="4" Y="1.75" Width="1.75" />
+    <Members>
+      <Method Name="CreateInstance" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAIAAAAAAQAAAAIAAAAAAAAAAAAADA=</HashCode>
+      <FileName>Data\Sprites\Sprite.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.SpriteNode">
+    <Position X="0.5" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_animationTime" Hidden="true" />
+      <Field Name="_sprite" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="SpriteNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAIAAAAIAAAAAACAIABASAAEAgAgACDA=</HashCode>
+      <FileName>SceneGraph\SpriteNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Sprite" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

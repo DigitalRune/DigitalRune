@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F881B626-2C84-4B2C-AB32-A16273BCD408}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.Mathematics</RootNamespace>
+    <AssemblyName>DigitalRune.Mathematics</AssemblyName>
+    <FileUpgradeFlags></FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation></UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <BaseIntermediateOutputPath>obj\Unity\Debug\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\Unity\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;UNITY</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Unity\Debug\DigitalRune.Mathematics.xml</DocumentationFile>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <BaseIntermediateOutputPath>obj\Unity\Debug\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\Unity\Release\</OutputPath>
+    <DefineConstants>TRACE;UNITY</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Unity\Release\DigitalRune.Mathematics.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune\DigitalRune%28Unity%29.csproj">
+      <Project>{3CD3AB84-E372-4FFB-BCE4-EBE0BE3BD3D6}</Project>
+      <Name>DigitalRune%28Unity%29</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <Compile Include="Algebra\Design\NamespaceDoc.cs" />
+    <Compile Include="Algebra\Design\QuaternionDConverter.cs" />
+    <Compile Include="Algebra\Design\QuaternionFConverter.cs" />
+    <Compile Include="Algebra\Design\Vector2DConverter.cs" />
+    <Compile Include="Algebra\Design\Vector2FConverter.cs" />
+    <Compile Include="Algebra\Design\Vector3DConverter.cs" />
+    <Compile Include="Algebra\Design\Vector3FConverter.cs" />
+    <Compile Include="Algebra\Design\Vector4DConverter.cs" />
+    <Compile Include="Algebra\Design\Vector4FConverter.cs" />
+    <Compile Include="Algebra\GaussSeidelMethodD.cs" />
+    <Compile Include="Algebra\GaussSeidelMethodF.cs" />
+    <Compile Include="Algebra\IterativeLinearSystemSolverD.cs" />
+    <Compile Include="Algebra\IterativeLinearSystemSolverF.cs" />
+    <Compile Include="Algebra\JacobiMethodD.cs" />
+    <Compile Include="Algebra\JacobiMethodF.cs" />
+    <Compile Include="Algebra\Matrix22D.cs" />
+    <Compile Include="Algebra\Matrix22F.cs" />
+    <Compile Include="Algebra\Matrix33D.cs" />
+    <Compile Include="Algebra\Matrix33F.cs" />
+    <Compile Include="Algebra\Matrix44D.cs" />
+    <Compile Include="Algebra\Matrix44F.cs" />
+    <Compile Include="Algebra\MatrixD.cs" />
+    <Compile Include="Algebra\MatrixDecompositions\CholeskyDecompositionD.cs" />
+    <Compile Include="Algebra\MatrixDecompositions\CholeskyDecompositionF.cs" />
+    <Compile Include="Algebra\MatrixDecompositions\EigenvalueDecompositionD.cs" />
+    <Compile Include="Algebra\MatrixDecompositions\EigenvalueDecompositionF.cs" />
+    <Compile Include="Algebra\MatrixDecompositions\LUDecompositionD.cs" />
+    <Compile Include="Algebra\MatrixDecompositions\LUDecompositionF.cs" />
+    <Compile Include="Algebra\MatrixDecompositions\QRDecompositionD.cs" />
+    <Compile Include="Algebra\MatrixDecompositions\QRDecompositionF.cs" />
+    <Compile Include="Algebra\MatrixDecompositions\SingularValueDecompositionD.cs" />
+    <Compile Include="Algebra\MatrixDecompositions\SingularValueDecompositionF.cs" />
+    <Compile Include="Algebra\MatrixF.cs" />
+    <Compile Include="Algebra\MatrixOrder.cs" />
+    <Compile Include="Algebra\NamespaceDoc.cs" />
+    <Compile Include="Algebra\QuaternionD.cs" />
+    <Compile Include="Algebra\QuaternionF.cs" />
+    <Compile Include="Algebra\SorMethodD.cs" />
+    <Compile Include="Algebra\SorMethodF.cs" />
+    <Compile Include="Algebra\Vector2D.cs" />
+    <Compile Include="Algebra\Vector2F.cs" />
+    <Compile Include="Algebra\Vector3D.cs" />
+    <Compile Include="Algebra\Vector3F.cs" />
+    <Compile Include="Algebra\Vector4D.cs" />
+    <Compile Include="Algebra\Vector4F.cs" />
+    <Compile Include="Algebra\VectorD.cs" />
+    <Compile Include="Algebra\VectorF.cs" />
+    <Compile Include="Analysis\BisectionMethodD.cs" />
+    <Compile Include="Analysis\BisectionMethodF.cs" />
+    <Compile Include="Analysis\ExplicitEulerIntegratorD.cs" />
+    <Compile Include="Analysis\ExplicitEulerIntegratorF.cs" />
+    <Compile Include="Analysis\FastFourierTransformD.cs" />
+    <Compile Include="Analysis\FastFourierTransformF.cs" />
+    <Compile Include="Analysis\ImprovedNewtonRaphsonMethodD.cs" />
+    <Compile Include="Analysis\ImprovedNewtonRaphsonMethodF.cs" />
+    <Compile Include="Analysis\IntegratorD.cs" />
+    <Compile Include="Analysis\IntegratorF.cs" />
+    <Compile Include="Analysis\MidpointIntegratorD.cs" />
+    <Compile Include="Analysis\MidpointIntegratorF.cs" />
+    <Compile Include="Analysis\NamespaceDoc.cs" />
+    <Compile Include="Analysis\NewtonRaphsonMethodD.cs" />
+    <Compile Include="Analysis\NewtonRaphsonMethodF.cs" />
+    <Compile Include="Analysis\OdeIntegratorD.cs" />
+    <Compile Include="Analysis\OdeIntegratorF.cs" />
+    <Compile Include="Analysis\RegulaFalsiMethodD.cs" />
+    <Compile Include="Analysis\RegulaFalsiMethodF.cs" />
+    <Compile Include="Analysis\RombergIntegratorD.cs" />
+    <Compile Include="Analysis\RombergIntegratorF.cs" />
+    <Compile Include="Analysis\RootFinderD.cs" />
+    <Compile Include="Analysis\RootFinderF.cs" />
+    <Compile Include="Analysis\RungeKutta4IntegratorD.cs" />
+    <Compile Include="Analysis\RungeKutta4IntegratorF.cs" />
+    <Compile Include="Analysis\SimpsonIntegratorD.cs" />
+    <Compile Include="Analysis\SimpsonIntegratorF.cs" />
+    <Compile Include="Analysis\TrapezoidalIntegratorD.cs" />
+    <Compile Include="Analysis\TrapezoidalIntegratorF.cs" />
+    <Compile Include="ConstantsD.cs" />
+    <Compile Include="ConstantsF.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Interpolation\ArcSegment2F.cs" />
+    <Compile Include="Interpolation\BSplineSegment1F.cs" />
+    <Compile Include="Interpolation\BSplineSegment2F.cs" />
+    <Compile Include="Interpolation\BSplineSegment3F.cs" />
+    <Compile Include="Interpolation\BezierSegment1F.cs" />
+    <Compile Include="Interpolation\BezierSegment2F.cs" />
+    <Compile Include="Interpolation\BezierSegment3F.cs" />
+    <Compile Include="Interpolation\CardinalSegment1F.cs" />
+    <Compile Include="Interpolation\CardinalSegment2F.cs" />
+    <Compile Include="Interpolation\CardinalSegment3F.cs" />
+    <Compile Include="Interpolation\CatmullRomSegment1F.cs" />
+    <Compile Include="Interpolation\CatmullRomSegment2F.cs" />
+    <Compile Include="Interpolation\CatmullRomSegment3F.cs" />
+    <Compile Include="Interpolation\Curve2F.cs" />
+    <Compile Include="Interpolation\CurveHelper.cs" />
+    <Compile Include="Interpolation\CurveHelper_Flatten.cs" />
+    <Compile Include="Interpolation\CurveKey.cs" />
+    <Compile Include="Interpolation\CurveKey2F.cs" />
+    <Compile Include="Interpolation\CurveLoopType.cs" />
+    <Compile Include="Interpolation\HermiteSegment1F.cs" />
+    <Compile Include="Interpolation\HermiteSegment2F.cs" />
+    <Compile Include="Interpolation\HermiteSegment3F.cs" />
+    <Compile Include="Interpolation\ICurve.cs" />
+    <Compile Include="Interpolation\InterpolationHelper.cs" />
+    <Compile Include="Interpolation\LineSegment1F.cs" />
+    <Compile Include="Interpolation\LineSegment2F.cs" />
+    <Compile Include="Interpolation\LineSegment3F.cs" />
+    <Compile Include="Interpolation\NamespaceDoc.cs" />
+    <Compile Include="Interpolation\Path2F.cs" />
+    <Compile Include="Interpolation\Path3F.cs" />
+    <Compile Include="Interpolation\PathKey2F.cs" />
+    <Compile Include="Interpolation\PathKey3F.cs" />
+    <Compile Include="Interpolation\PiecewiseCurve.cs" />
+    <Compile Include="Interpolation\PiecewiseCurveF.cs" />
+    <Compile Include="Interpolation\RadialBasisRegressionF.cs" />
+    <Compile Include="Interpolation\ScatteredInterpolationF.cs" />
+    <Compile Include="Interpolation\ShepardInterpolationF.cs" />
+    <Compile Include="Interpolation\SplineInterpolation.cs" />
+    <Compile Include="Interpolation\StepInterpolation.cs" />
+    <Compile Include="Interpolation\StepSegment1F.cs" />
+    <Compile Include="Interpolation\StepSegment2F.cs" />
+    <Compile Include="Interpolation\StepSegment3F.cs" />
+    <Compile Include="MathHelper.cs" />
+    <Compile Include="MathematicsException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Properties\AssemblyInfo.template" />
+    <Compile Include="Statistics\BoxDistribution.cs" />
+    <Compile Include="Statistics\CircleDistribution.cs" />
+    <Compile Include="Statistics\ConstValueDistribution.cs" />
+    <Compile Include="Statistics\DirectionDistribution.cs" />
+    <Compile Include="Statistics\Distribution.cs" />
+    <Compile Include="Statistics\GaussianDistributionD.cs" />
+    <Compile Include="Statistics\GaussianDistributionF.cs" />
+    <Compile Include="Statistics\Int32UniformDistribution.cs" />
+    <Compile Include="Statistics\LineSegmentDistribution.cs" />
+    <Compile Include="Statistics\NamespaceDoc.cs" />
+    <Compile Include="Statistics\PerlinNoise.cs" />
+    <Compile Include="Statistics\PrincipalComponentAnalysisD.cs" />
+    <Compile Include="Statistics\PrincipalComponentAnalysisF.cs" />
+    <Compile Include="Statistics\RandomHelper.cs" />
+    <Compile Include="Statistics\SphereDistribution.cs" />
+    <Compile Include="Statistics\StatisticsHelper.cs" />
+    <Compile Include="Statistics\UniformDistributionD.cs" />
+    <Compile Include="Statistics\UniformDistributionF.cs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Graphics                       Namespace: DigitalRune.Graphics.Content">
+    <Position X="0.5" Y="0.5" Height="0.438" Width="2.559" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.Content.SubmeshReader">
+    <Position X="0.5" Y="2.5" Width="2.25" />
+    <Members>
+      <Property Name="CanDeserializeIntoExistingObject" Hidden="true" />
+      <Method Name="Read" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Content Pipeline\SubmeshReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.AssetLoadHelper">
+    <Position X="6" Y="4.5" Width="1.5" />
+    <Members>
+      <Field Name="_fixups" Hidden="true" />
+      <Field Name="_referenceCount" Hidden="true" />
+      <Method Name="AddReference" Hidden="true" />
+      <Method Name="AssetLoadHelper" Hidden="true" />
+      <Field Name="AssetLoadHelpers" Hidden="true" />
+      <Method Name="OnAssetLoaded" Hidden="true" />
+      <Method Name="OnFixupExecuted" Hidden="true" />
+      <Method Name="Release" Hidden="true" />
+      <Method Name="RemoveReference" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Graphics.Content.AssetLoadHelper.FixupWrapper&lt;T&gt;" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Content Pipeline\AssetLoadHelper.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAQEIRACAAAABAAAgAAAAAAAAAACQAAAAAABBAAAA=</HashCode>
+      <FileName>Content Pipeline\AssetLoadHelper.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.EffectBindingReader">
+    <Position X="0.5" Y="6" Width="2.25" />
+    <Members>
+      <Method Name="Read" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Enum Name="DigitalRune.Graphics.Content.EffectBindingReader.EffectType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Content Pipeline\EffectBindingReader.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content Pipeline\EffectBindingReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.MeshNodeReader">
+    <Position X="3.25" Y="3.75" Width="2.25" />
+    <Members>
+      <Property Name="CanDeserializeIntoExistingObject" Hidden="true" />
+      <Method Name="Read" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Content Pipeline\MeshNodeReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.MeshReader">
+    <Position X="0.5" Y="1.25" Width="2.25" />
+    <Members>
+      <Property Name="CanDeserializeIntoExistingObject" Hidden="true" />
+      <Method Name="Read" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Content Pipeline\MeshReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.ModelNodeReader">
+    <Position X="3.25" Y="2.5" Width="2.25" />
+    <Members>
+      <Property Name="CanDeserializeIntoExistingObject" Hidden="true" />
+      <Method Name="Read" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Content Pipeline\ModelNodeReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.SceneNodeReader">
+    <Position X="3.25" Y="1.25" Width="2.25" />
+    <Members>
+      <Property Name="CanDeserializeIntoExistingObject" Hidden="true" />
+      <Method Name="Read" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Content Pipeline\SceneNodeReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.MaterialReader">
+    <Position X="0.5" Y="4.75" Width="2.25" />
+    <Members>
+      <Property Name="CanDeserializeIntoExistingObject" Hidden="true" />
+      <Method Name="Read" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Content Pipeline\MaterialReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.LodGroupNodeReader" Collapsed="true">
+    <Position X="6" Y="1.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Content Pipeline\LodGroupNodeReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.OccluderNodeReader" Collapsed="true">
+    <Position X="6" Y="2.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Content Pipeline\OccluderNodeReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.OccluderReader" Collapsed="true">
+    <Position X="6" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Content Pipeline\OccluderReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.MorphTargetReader" Collapsed="true">
+    <Position X="0.5" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Content Pipeline\MorphTargetReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Shadows                                                                  Assembly: DigitalRune.Graphics                       Namespace: DigitalRune.Graphics">
+    <Position X="3.708" Y="0.5" Height="0.647" Width="2.642" />
+  </Comment>
+  <Comment CommentText="Lights (Scene Nodes)                                                                    Assembly: DigitalRune.Graphics                   Namespace: DigitalRune.Graphics.SceneGraph">
+    <Position X="0.5" Y="0.5" Height="0.615" Width="2.82" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.CascadedShadow">
+    <Position X="6" Y="5" Width="2" />
+    <Members>
+      <Field Name="_numberOfCascades" Hidden="true" />
+      <Method Name="CascadedShadow" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Property Name="DepthBiasOffset" Hidden="true" />
+      <Property Name="DepthBiasScale" Hidden="true" />
+      <Field Name="EffectiveDepthBias" Hidden="true" />
+      <Field Name="EffectiveNormalOffset" Hidden="true" />
+      <Property Name="FadeOutDistance" Hidden="true" />
+      <Property Name="MaxDistance" Hidden="true" />
+      <Property Name="SplitDistribution" Hidden="true" />
+      <Field Name="ViewProjections" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CAAEQAACgACAAgAgAAEAQAAAAABIQBBACEAEAAAKAGE=</HashCode>
+      <FileName>Data\Shadows\CascadedShadow.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CascadeSelection" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Shadow">
+    <Position X="3.75" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_shadowMaskChannel" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="Shadow" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAABAgAAAAAAAAAAACAAAAAAAAIIAAAAAAECAAAADQ=</HashCode>
+      <FileName>Data\Shadows\Shadow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.CubeMapShadow">
+    <Position X="4" Y="5" Width="1.75" />
+    <Members>
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="CubeMapShadow" Hidden="true" />
+      <Property Name="DepthBiasOffset" Hidden="true" />
+      <Property Name="DepthBiasScale" Hidden="true" />
+      <Field Name="EffectiveDepthBias" Hidden="true" />
+      <Field Name="EffectiveNormalOffset" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAAEAAACgAAAAgAAAAAAQAAAAABIQAAACAAEAAAAACA=</HashCode>
+      <FileName>Data\Shadows\CubeMapShadow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.StandardShadow">
+    <Position X="2" Y="5" Width="1.75" />
+    <Members>
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Property Name="DepthBiasOffset" Hidden="true" />
+      <Property Name="DepthBiasScale" Hidden="true" />
+      <Field Name="EffectiveDepthBias" Hidden="true" />
+      <Field Name="EffectiveNormalOffset" Hidden="true" />
+      <Field Name="Far" Hidden="true" />
+      <Field Name="Near" Hidden="true" />
+      <Field Name="Projection" Hidden="true" />
+      <Method Name="StandardShadow" Hidden="true" />
+      <Field Name="View" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAAEAAACgAAAAgAAAAAAQAAAAABJQAAACAAEAAAQACA=</HashCode>
+      <FileName>Data\Shadows\StandardShadow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.LightNode" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAgAAAAAAAAEEgAAAgAAAAAIAABAAAAAIAAAADA=</HashCode>
+      <FileName>SceneGraph\LightNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Shadow" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.CompositeShadow">
+    <Position X="8.25" Y="5" Width="1.75" />
+    <Members>
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CompositeShadow" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAgAAAAACA=</HashCode>
+      <FileName>Data\Shadows\CompositeShadow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="DigitalRune.Graphics.ShadowCascadeSelection">
+    <Position X="2.5" Y="7.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAoAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Shadows\ShadowCascadeSelection.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

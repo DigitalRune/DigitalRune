@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Integration                                                Assembly: DigitalRune.Mathematics            Namespace: DigitalRune.Mathematics.Analysis">
+    <Position X="0.5" Y="0.5" Height="0.614" Width="2.88" />
+  </Comment>
+  <Class Name="DigitalRune.Mathematics.Analysis.SimpsonIntegratorF">
+    <Position X="2.75" Y="4.25" Width="1.75" />
+    <Members>
+      <Method Name="Integrate" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Analysis\SimpsonIntegratorF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Analysis.IntegratorF">
+    <Position X="2.5" Y="1.5" Width="2.25" />
+    <Members>
+      <Field Name="_epsilon" Hidden="true" />
+      <Field Name="_maxNumberOfIterations" Hidden="true" />
+      <Field Name="_minNumberOfIterations" Hidden="true" />
+      <Method Name="IntegratorF" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AECAAAAAQAEAAAAAAAAAAAAAAAAQAACAAAACAAEAAAA=</HashCode>
+      <FileName>Analysis\IntegratorF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Analysis.TrapezoidalIntegratorF">
+    <Position X="0.5" Y="4.25" Width="2" />
+    <Members>
+      <Method Name="Integrate" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Analysis\TrapezoidalIntegratorF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Analysis.RombergIntegratorF">
+    <Position X="4.75" Y="4.25" Width="1.75" />
+    <Members>
+      <Method Name="Integrate" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Analysis\RombergIntegratorF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Analysis.IntegratorD" Collapsed="true">
+    <Position X="2.75" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AECAAAAAQAEAAAAAAAAAAAAAAAAQAACAAAACAAEAAAA=</HashCode>
+      <FileName>Analysis\IntegratorD.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Analysis.RombergIntegratorD" Collapsed="true">
+    <Position X="0.5" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Analysis\RombergIntegratorD.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Analysis.SimpsonIntegratorD" Collapsed="true">
+    <Position X="2.75" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Analysis\SimpsonIntegratorD.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Analysis.TrapezoidalIntegratorD" Collapsed="true">
+    <Position X="5" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Analysis\TrapezoidalIntegratorD.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

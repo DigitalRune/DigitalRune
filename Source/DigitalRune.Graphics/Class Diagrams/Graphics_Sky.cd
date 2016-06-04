@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Clouds (Scene Nodes)                                                                    Assembly: DigitalRune.Graphics                   Namespace: DigitalRune.Graphics.SceneGraph">
+    <Position X="0.5" Y="0.5" Height="0.615" Width="2.82" />
+  </Comment>
+  <Comment CommentText="Clouds (Data)                                                                   Assembly: DigitalRune.Graphics                   Namespace: DigitalRune.Graphics">
+    <Position X="3.71" Y="0.5" Height="0.615" Width="2.08" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.SceneGraph.CloudLayerNode">
+    <Position X="0.5" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_cloudMap" Hidden="true" />
+      <Field Name="_sunDirection" Hidden="true" />
+      <Field Name="_sunOcclusion" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CloudLayerNode" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="IsQueryPending" Hidden="true" />
+      <Field Name="OcclusionQuery" Hidden="true" />
+      <Field Name="QuerySize" Hidden="true" />
+      <Method Name="TryUpdateSunOcclusion" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQAAAoBAACAEAAAAAAgIEABACQBMZpQAAAAIAAAgADA=</HashCode>
+      <FileName>SceneGraph\Sky\CloudLayerNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CloudMap" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.CloudMapLayer">
+    <Position X="8.25" Y="3.25" Width="1.5" />
+    <Members>
+      <Method Name="CloudMapLayer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAQAAAAAAAAAAAIgAAABAAA=</HashCode>
+      <FileName>Data\Sky\CloudMapLayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.CloudMap">
+    <Position X="4.5" Y="1.5" Width="1.25" />
+    <Members>
+      <Method Name="Dispose" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Data\Sky\CloudMap.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.LayeredCloudMap">
+    <Position X="6" Y="3.25" Width="1.5" />
+    <Members>
+      <Field Name="AnimationTimes" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="LastFrame" Hidden="true" />
+      <Method Name="LayeredCloudMap" Hidden="true" />
+      <Field Name="LayerTextures" Hidden="true" />
+      <Field Name="NumberOfTextures" Hidden="true" />
+      <Field Name="Random" Hidden="true" />
+      <Method Name="SetTexture" Hidden="true" />
+      <Field Name="SourceLayers" Hidden="true" />
+      <Field Name="TargetLayers" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Layers" Type="DigitalRune.Graphics.CloudMapLayer">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.037" Y="0.07" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAACAQAGIAiAAAAEAAAAABACAABAAEAAACAAAAAAI=</HashCode>
+      <FileName>Data\Sky\LayeredCloudMap.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Layers" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.UserDefinedCloudMap">
+    <Position X="3.75" Y="3.25" Width="2" />
+    <Members>
+      <Property Name="Texture" Hidden="true" />
+      <Method Name="UserDefinedCloudMap" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Data\Sky\UserDefinedCloudMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

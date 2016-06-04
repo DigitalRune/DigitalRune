@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Graphics                 Namespace: DigitalRune.Graphics">
+    <Position X="0.52" Y="0.5" Height="0.438" Width="2.101" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.GraphicsException">
+    <Position X="0.5" Y="8.25" Width="1.75" />
+    <Members>
+      <Method Name="GraphicsException" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GraphicsException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.GraphicsManager">
+    <Position X="0.5" Y="5" Width="2.25" />
+    <Members>
+      <Field Name="_context" Hidden="true" />
+      <Field Name="_tempScreens" Hidden="true" />
+      <Property Name="Content" Hidden="true" />
+      <Method Name="CopyScreens" Hidden="true" />
+      <Property Name="Data" Hidden="true" />
+      <Property Name="EffectBinders" Hidden="true" />
+      <Property Name="EffectInterpreters" Hidden="true" />
+      <Property Name="GameForm" Hidden="true" />
+      <Method Name="GetIndexOfFirstVisibleScreen" Hidden="true" />
+      <Property Name="GraphicsDevice" Hidden="true" />
+      <Method Name="GraphicsManager" Hidden="true" />
+      <Method Name="OnGraphicsDeviceDisposing" Hidden="true" />
+      <Method Name="OnGraphicsDeviceResetting" Hidden="true" />
+      <Method Name="OnPresentationTargetsChanged" Hidden="true" />
+      <Property Name="PresentationTargets" Hidden="true" />
+      <Method Name="RenderScreens" Hidden="true" />
+      <Property Name="RenderTargetPool" Hidden="true" />
+      <Property Name="Screens" Hidden="true" />
+      <Property Name="ShapeMeshCache" Hidden="true" />
+      <Method Name="ThrowIfDisposed" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQgAAkAAiAAlBABJAAAABwgAIAABBQAANAEAAAAAQE=</HashCode>
+      <FileName>GraphicsManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.DelegateGraphicsScreen" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="5.25" Width="2.5" />
+    <Members>
+      <Method Name="DelegateGraphicsScreen" Hidden="true" />
+      <Method Name="OnRender" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAIAEAAAA=</HashCode>
+      <FileName>DelegateGraphicsScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.RenderContext">
+    <Position X="9.5" Y="0.5" Width="2" />
+    <Members>
+      <Field Name="_data" Hidden="true" />
+      <Field Name="_lodBias" Hidden="true" />
+      <Field Name="_lodHysteresis" Hidden="true" />
+      <Field Name="_renderPass" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="RenderContext" Hidden="true" />
+      <Field Name="RenderPassHash" Hidden="true" />
+      <Field Name="ScaledLodHysteresis" Hidden="true" />
+      <Property Name="ShadowNear" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EQAgFgBAhAAEBAgppAgKACBABBQMRBAAIAiBAACIATE=</HashCode>
+      <FileName>RenderContext.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="GraphicsService" />
+      <Property Name="Screen" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.GraphicsScreen">
+    <Position X="3.75" Y="2" Width="2.5" />
+    <Members>
+      <Field Name="_lastFrame" Hidden="true" />
+      <Method Name="GraphicsScreen" Hidden="true" />
+    </Members>
+    <AssociationLine Name="GraphicsService" Type="DigitalRune.Graphics.IGraphicsService">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.058" Y="0.07" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AgQAAAAAAAAAGAAAAAAAAARAQABAAAAAABAAIAEAAAA=</HashCode>
+      <FileName>GraphicsScreen.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="GraphicsService" />
+      <Property Name="Coverage" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.RenderContextKeys">
+    <Position X="7.25" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAgQAAAAAAAAAABAEAAAAAAAAAAAAEACAAAAAAAAAAA=</HashCode>
+      <FileName>RenderContextKeys.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DigitalRune.Graphics.IGraphicsService">
+    <Position X="0.5" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAEAAgAAEAABAAAAAAQgAAAAABAAAIAEAAAAAQE=</HashCode>
+      <FileName>IGraphicsService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Screens" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Enum Name="DigitalRune.Graphics.GraphicsScreenCoverage">
+    <Position X="7.25" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAEAAAAAAA=</HashCode>
+      <FileName>GraphicsScreenCoverage.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

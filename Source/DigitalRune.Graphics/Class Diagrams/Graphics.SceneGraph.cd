@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Graphics                        Namespace: DigitalRune.Graphics.SceneGraph">
+    <Position X="0.5" Y="0.5" Height="0.438" Width="2.913" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.SceneGraph.SceneChangedEventArgs">
+    <Position X="7.5" Y="0.75" Width="2" />
+    <Members>
+      <Field Name="Pool" Hidden="true" />
+      <Method Name="SceneChangedEventArgs" Hidden="true" />
+    </Members>
+    <AssociationLine Name="SceneNode" Type="DigitalRune.Graphics.SceneGraph.SceneNode">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.058" Y="0.081" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAgAAAAAAAAAAABACEAAAAAAAAAAAAA=</HashCode>
+      <FileName>SceneGraph\SceneChangedEventArgs.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SceneNode" />
+      <Property Name="Changes" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.SceneHelper">
+    <Position X="0.5" Y="1.5" Width="2.5" />
+    <Members>
+      <Field Name="_collisionDetection" Hidden="true" />
+      <Property Name="CollisionDetection" Hidden="true" />
+      <Field Name="GetChildrenCallback" Hidden="true" />
+      <Field Name="GetParentCallback" Hidden="true" />
+      <Method Name="GetSubtreeAabbInternal" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AIRCAAQAAJCJCAAAAAAAAAAAAAgAQRAEBAAAgAAQABM=</HashCode>
+      <FileName>SceneGraph\SceneHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.SceneNode" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="0.75" Width="2" />
+    <Members>
+      <Field Name="_aabb" Hidden="true" />
+      <Field Name="_children" Hidden="true" />
+      <Field Name="_flags" Hidden="true" />
+      <Field Name="_lastPoseWorld" Hidden="true" />
+      <Field Name="_lastScaleWorld" Hidden="true" />
+      <Field Name="_parent" Hidden="true" />
+      <Event Name="_poseChanged" Hidden="true" />
+      <Field Name="_poseLocal" Hidden="true" />
+      <Field Name="_poseWorld" Hidden="true" />
+      <Field Name="_scaleLocal" Hidden="true" />
+      <Field Name="_scaleWorld" Hidden="true" />
+      <Field Name="_shape" Hidden="true" />
+      <Method Name="ClearFlag" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="GetFlag" Hidden="true" />
+      <Method Name="GetFlags" Hidden="true" />
+      <Method Name="IDisposable.Dispose" Hidden="true" />
+      <Method Name="IGeometricObject.Clone" Hidden="true" />
+      <Property Name="IGeometricObject.Pose" Hidden="true" />
+      <Property Name="IGeometricObject.Scale" Hidden="true" />
+      <Method Name="InitializeGeometricObject" Hidden="true" />
+      <Method Name="InvalidateChildren" Hidden="true" />
+      <Property Name="IsDirty" Hidden="true" />
+      <Method Name="OnSceneChanged" Hidden="true" />
+      <Method Name="OnShapeChanged" Hidden="true" />
+      <Method Name="SceneNode" Hidden="true" />
+      <Method Name="SetFlag" Hidden="true" />
+      <Event Name="ShapeChanged" Hidden="true" />
+      <Method Name="UpdatePoseLocalFromWorld" Hidden="true" />
+      <Method Name="UpdatePoseWorldFromLocal" Hidden="true" />
+      <Method Name="UpdateScaleWorldFromLocal" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Children" Type="DigitalRune.Graphics.SceneGraph.SceneNode" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.5" Y="2.012" />
+        <Point X="4.25" Y="2.012" />
+        <Point X="4.25" Y="2.542" />
+        <Point X="4.5" Y="2.542" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.268" Y="0.235" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BDAdBgCeKCAAEkAEAAEOTDQ8kAQKAACAQURRAPAYgTM=</HashCode>
+      <FileName>SceneGraph\SceneNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Children" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.ModelNode">
+    <Position X="3.5" Y="15.25" Width="1.5" />
+    <Members>
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="OnAssetLoaded" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAADA=</HashCode>
+      <FileName>SceneGraph\ModelNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.MeshNode">
+    <Position X="1.25" Y="15.25" Width="2" />
+    <Members>
+      <Field Name="_materialInstances" Hidden="true" />
+      <Field Name="_mesh" Hidden="true" />
+      <Field Name="_morphWeights" Hidden="true" />
+      <Field Name="_passHashes" Hidden="true" />
+      <Field Name="_skeletonPose" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="IOcclusionProxy.GetOccluder" Hidden="true" />
+      <Property Name="IOcclusionProxy.HasOccluder" Hidden="true" />
+      <Method Name="IOcclusionProxy.UpdateOccluder" Hidden="true" />
+      <Method Name="IsPassSupported" Hidden="true" />
+      <Method Name="MeshNode" Hidden="true" />
+      <Method Name="OnAssetLoaded" Hidden="true" />
+      <Method Name="OnInitializeShape" Hidden="true" />
+      <Method Name="SetHasAlpha" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQCAAAQBQDAAAQAAAAAAAAAAoQAMABAAARAgAAAgADA=</HashCode>
+      <FileName>SceneGraph\MeshNode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.LightNode">
+    <Position X="6" Y="12.75" Width="1.5" />
+    <Members>
+      <Field Name="_clip" Hidden="true" />
+      <Field Name="_light" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="LightNode" Hidden="true" />
+      <Method Name="OnClipChanged" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAABAAgAAAAAAAAEEgAAAgAAAAAIAABAAAAAIAAAADA=</HashCode>
+      <FileName>SceneGraph\LightNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.CameraNode">
+    <Position X="2.5" Y="9" Width="2.5" />
+    <Members>
+      <Field Name="_camera" Hidden="true" />
+      <Field Name="_lodBias" Hidden="true" />
+      <Field Name="_view" Hidden="true" />
+      <Field Name="_viewDependentData" Hidden="true" />
+      <Field Name="_viewInverse" Hidden="true" />
+      <Method Name="CameraNode" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="Instances" Hidden="true" />
+      <Field Name="InstancesReadOnly" Hidden="true" />
+      <Method Name="RemoveViewDependentData" Hidden="true" />
+      <Method Name="UpdateView" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAwAAACAICAAAABAAAEAABgAJIAAAQCCAACAAADA=</HashCode>
+      <FileName>SceneGraph\CameraNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.ParticleSystemNode">
+    <Position X="7.75" Y="15.25" Width="1.75" />
+    <Members>
+      <Field Name="_particleSystem" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="ParticleSystemNode" Hidden="true" />
+      <Method Name="SynchronizeNested" Hidden="true" />
+      <Method Name="SynchronizeShape" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAEAAAIAAAAIABCAIAAAgAAAADA=</HashCode>
+      <FileName>SceneGraph\ParticleSystemNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.LensFlareNode">
+    <Position X="3.5" Y="12.75" Width="1.5" />
+    <Members>
+      <Field Name="_intensity" Hidden="true" />
+      <Field Name="_lensFlare" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="LensFlareNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAACAAAAAAAAIAAAYAAAAAAAAAAAAADA=</HashCode>
+      <FileName>SceneGraph\LensFlareNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.BillboardNode">
+    <Position X="0.5" Y="9" Width="1.75" />
+    <Members>
+      <Field Name="_animationTime" Hidden="true" />
+      <Field Name="_billboard" Hidden="true" />
+      <Method Name="BillboardNode" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQAAACAAAAAAQAAAAAAAAAAAAAIABACAAAAgAAACDA=</HashCode>
+      <FileName>SceneGraph\BillboardNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.FogNode">
+    <Position X="1.75" Y="12.75" Width="1.5" />
+    <Members>
+      <Field Name="_fog" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="FogNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAEAAAAAAAAIAAIABAAAAAAAAAAADA=</HashCode>
+      <FileName>SceneGraph\FogNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.SpriteNode">
+    <Position X="5.25" Y="20" Width="1.75" />
+    <Members>
+      <Field Name="_animationTime" Hidden="true" />
+      <Field Name="_sprite" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="SpriteNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAIAAAAIAAAAAACAIABASAAEAgAgACDA=</HashCode>
+      <FileName>SceneGraph\SpriteNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.DecalNode">
+    <Position X="6" Y="9" Width="1.75" />
+    <Members>
+      <Field Name="_material" Hidden="true" />
+      <Field Name="_normalThreshold" Hidden="true" />
+      <Field Name="_passHashes" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="DecalNode" Hidden="true" />
+      <Method Name="IsPassSupported" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Graphics.SceneGraph.DecalNode.DecalVolume" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SceneGraph\DecalNode.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AEAAAAAABBAAAAAAAAIEAEAAIAAIABAgCAAAEABAADA=</HashCode>
+      <FileName>SceneGraph\DecalNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.SkyNode">
+    <Position X="3.5" Y="20" Width="1.5" />
+    <Members>
+      <Field Name="_drawOrder" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="SkyNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAICAAgAAAAAAAAAAA=</HashCode>
+      <FileName>SceneGraph\Sky\SkyNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.FigureNode">
+    <Position X="8" Y="9" Width="1.75" />
+    <Members>
+      <Field Name="_dashInWorldSpace" Hidden="true" />
+      <Field Name="_drawOrder" Hidden="true" />
+      <Field Name="_figure" Hidden="true" />
+      <Field Name="_fillAlpha" Hidden="true" />
+      <Field Name="_fillColor" Hidden="true" />
+      <Field Name="_strokeAlpha" Hidden="true" />
+      <Field Name="_strokeColor" Hidden="true" />
+      <Field Name="_strokeDashPattern" Hidden="true" />
+      <Field Name="_strokeThickness" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="FigureNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AABBAgAAACEABEAEAAAABAAAAAAIOAAgAAEAAQgAADE=</HashCode>
+      <FileName>SceneGraph\Figures\FigureNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.LodGroupNode">
+    <Position X="7.75" Y="12.75" Width="1.5" />
+    <Members>
+      <Field Name="_suppressUpdates" Hidden="true" />
+      <Method Name="BeginUpdate" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Field Name="DefaultCapacity" Hidden="true" />
+      <Method Name="EndUpdate" Hidden="true" />
+      <Method Name="GetBoundingShape" Hidden="true" />
+      <Method Name="GetOcclusionProxy" Hidden="true" />
+      <Method Name="IOcclusionProxy.GetOccluder" Hidden="true" />
+      <Property Name="IOcclusionProxy.HasOccluder" Hidden="true" />
+      <Method Name="IOcclusionProxy.UpdateOccluder" Hidden="true" />
+      <Method Name="LodGroupNode" Hidden="true" />
+      <Method Name="OnPoseChanged" Hidden="true" />
+      <Method Name="OnShapeChanged" Hidden="true" />
+      <Method Name="UpdateBoundingShape" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAACEYAIAAAAAAAEAAEAEAAAAAMABCBAEAAIAAAADA=</HashCode>
+      <FileName>SceneGraph\LOD\LodGroupNode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.OccluderNode">
+    <Position X="6" Y="15.25" Width="1.5" />
+    <Members>
+      <Field Name="_occluder" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="IOcclusionProxy.GetOccluder" Hidden="true" />
+      <Property Name="IOcclusionProxy.HasOccluder" Hidden="true" />
+      <Method Name="IOcclusionProxy.UpdateOccluder" Hidden="true" />
+      <Method Name="OccluderNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAQAAEEABAAAAAAAAAAADA=</HashCode>
+      <FileName>SceneGraph\Occlusion\OccluderNode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.RenderToTextureNode">
+    <Position X="1.25" Y="20" Width="2" />
+    <Members>
+      <Field Name="_renderToTexture" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="RenderToTextureNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAABAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SceneGraph\RenderToTexture\RenderToTextureNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.PlanarReflectionNode">
+    <Position X="2.5" Y="22" Width="1.75" />
+    <Members>
+      <Field Name="_normalLocal" Hidden="true" />
+      <Property Name="CameraNode" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="PlanarReflectionNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAgAAgAAAQAAAAAAAAAQAAAAIAAAAIAAAAAAACDA=</HashCode>
+      <FileName>SceneGraph\RenderToTexture\PlanarReflectionNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.SceneCaptureNode">
+    <Position X="0.5" Y="22" Width="1.75" />
+    <Members>
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="SceneCaptureNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAIAAAAIAAAAAAAADA=</HashCode>
+      <FileName>SceneGraph\RenderToTexture\SceneCaptureNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.WaterNode">
+    <Position X="9" Y="20" Width="2" />
+    <Members>
+      <Field Name="_extraHeight" Hidden="true" />
+      <Field Name="_lastTestPosition" Hidden="true" />
+      <Field Name="_lastTestResult" Hidden="true" />
+      <Field Name="_rayShape" Hidden="true" />
+      <Field Name="_sphereShape" Hidden="true" />
+      <Field Name="_testCollisionObject" Hidden="true" />
+      <Field Name="_underwaterTestLock" Hidden="true" />
+      <Field Name="_volume" Hidden="true" />
+      <Field Name="_water" Hidden="true" />
+      <Field Name="_waterCollisionObject" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="OnVolumeChanged" Hidden="true" />
+      <Method Name="Update" Hidden="true" />
+      <Method Name="WaterNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACQABAAAADAAAAAEEAAAiAgAAEAoAAGAEkIAAACBQTA=</HashCode>
+      <FileName>SceneGraph\WaterNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.MeshInstancingNode&lt;T&gt;">
+    <Position X="1.25" Y="17.5" Width="2" />
+    <Members>
+      <Field Name="_instances" Hidden="true" />
+      <Field Name="_instanceVertexBuffer" Hidden="true" />
+      <Field Name="_isValid" Hidden="true" />
+      <Field Name="_useDynamicVertexBuffer" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Property Name="IMeshInstancingNode.InstanceVertexBuffer" Hidden="true" />
+      <Method Name="IMeshInstancingNode.UpdateInstanceVertexBuffer" Hidden="true" />
+      <Method Name="MeshInstancingNode" Hidden="true" />
+      <Method Name="OnInitializeShape" Hidden="true" />
+      <Method Name="SetInstanceVertexBufferData" Hidden="true" />
+      <Property Name="Shape" Hidden="true" />
+      <Field Name="SharedArray" Hidden="true" />
+      <Field Name="SharedArrayLock" Hidden="true" />
+      <Method Name="UpdateInstanceVertexBuffer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACAEAAAAQCAAIAAAAAgACAAAAAFIAQECQEAgAAAAADA=</HashCode>
+      <FileName>SceneGraph\MeshInstancingNode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.TerrainNode">
+    <Position X="7.25" Y="20" Width="1.5" />
+    <Members>
+      <Field Name="_baseClipmap" Hidden="true" />
+      <Field Name="_detailClipmap" Hidden="true" />
+      <Field Name="_material" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="TerrainNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEAgAAAAAGIAAAAAQAIAAAAAAAAIAAgACEAABAAAADA=</HashCode>
+      <FileName>SceneGraph\TerrainNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="DigitalRune.Graphics.InstanceData">
+    <Position X="3.5" Y="17.5" Width="1.5" />
+    <Members>
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="InstanceData" Hidden="true" />
+      <Property Name="IVertexType.VertexDeclaration" Hidden="true" />
+      <Method Name="operator !=" Hidden="true" />
+      <Method Name="operator ==" Hidden="true" />
+      <Property Name="SizeInBytes" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+      <Field Name="VertexDeclaration" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEgAAAgAAAAABBAIABAAAAAAAAAiA=</HashCode>
+      <FileName>Misc\InstanceData.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Enum Name="DigitalRune.Graphics.SceneGraph.SceneChanges">
+    <Position X="7.5" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAABAAAAAAAAAAABACEAAAA=</HashCode>
+      <FileName>SceneGraph\SceneChanges.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

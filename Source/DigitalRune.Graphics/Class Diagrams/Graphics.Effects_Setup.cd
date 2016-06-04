@@ -1,0 +1,576 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Effect Setup (Interpreters and Binders)                                                        Assembly: DigitalRune.Graphics                         Namespace: DigitalRune.Graphics.Effects">
+    <Position X="0.555" Y="0.555" Height="0.662" Width="2.49" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.Effects.Dxsas08EffectInterpreter" BaseTypeListCollapsed="true">
+    <Position X="1.75" Y="4" Width="2" />
+    <Members>
+      <Method Name="GetColorOrTexture" Hidden="true" />
+      <Method Name="GetDescription" Hidden="true" />
+      <Field Name="Semantics" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAIAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Effects\Setup\DXSAS\Dxsas08EffectInterpreter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.SceneEffectBinder" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="17.75" Width="2" />
+    <Members>
+      <Field Name="DefaultAmbientLightAttenuation" Hidden="true" />
+      <Field Name="DefaultDirectionalLightTextureOffset" Hidden="true" />
+      <Field Name="DefaultDirectionalLightTextureScale" Hidden="true" />
+      <Field Name="DefaultLightColor3" Hidden="true" />
+      <Field Name="DefaultLightColor4" Hidden="true" />
+      <Field Name="DefaultLightDirection3" Hidden="true" />
+      <Field Name="DefaultLightDirection4" Hidden="true" />
+      <Field Name="DefaultLightPosition3" Hidden="true" />
+      <Field Name="DefaultLightPosition4" Hidden="true" />
+      <Field Name="DefaultLightUp3" Hidden="true" />
+      <Field Name="DefaultLightUp4" Hidden="true" />
+      <Field Name="DefaultPointLightAttenuation" Hidden="true" />
+      <Field Name="DefaultPointLightRange" Hidden="true" />
+      <Field Name="DefaultProjectorLightAttenuation" Hidden="true" />
+      <Field Name="DefaultProjectorLightRange" Hidden="true" />
+      <Field Name="DefaultSpotlightAttenuation" Hidden="true" />
+      <Field Name="DefaultSpotlightCutoffAngle" Hidden="true" />
+      <Field Name="DefaultSpotlightFalloffAngle" Hidden="true" />
+      <Field Name="DefaultSpotlightRange" Hidden="true" />
+      <Field Name="EmptyLightQuery" Hidden="true" />
+      <Method Name="GetAmbientLight" Hidden="true" />
+      <Method Name="GetAmbientLightArray" Hidden="true" />
+      <Method Name="GetAmbientLightAttenuation" Hidden="true" />
+      <Method Name="GetAmbientLightAttenuationArray" Hidden="true" />
+      <Field Name="GetAmbientLightAttenuationF" Hidden="true" />
+      <Field Name="GetAmbientLightColorHdr3" Hidden="true" />
+      <Field Name="GetAmbientLightColorHdr4" Hidden="true" />
+      <Field Name="GetAmbientLightColorLdr3" Hidden="true" />
+      <Field Name="GetAmbientLightColorLdr4" Hidden="true" />
+      <Method Name="GetAmbientLightUp" Hidden="true" />
+      <Method Name="GetAmbientLightUpArray" Hidden="true" />
+      <Method Name="GetCameraDirection" Hidden="true" />
+      <Method Name="GetCameraFar" Hidden="true" />
+      <Method Name="GetCameraNear" Hidden="true" />
+      <Method Name="GetCameraPosition" Hidden="true" />
+      <Method Name="GetDecalAlpha" Hidden="true" />
+      <Method Name="GetDecalNormalThreshold" Hidden="true" />
+      <Method Name="GetDecalOptions" Hidden="true" />
+      <Method Name="GetDecalOrientation" Hidden="true" />
+      <Method Name="GetDiffuseIntensity" Hidden="true" />
+      <Method Name="GetDirectionalLightDiffuse" Hidden="true" />
+      <Method Name="GetDirectionalLightDiffuseArray" Hidden="true" />
+      <Field Name="GetDirectionalLightDiffuseHdr3" Hidden="true" />
+      <Field Name="GetDirectionalLightDiffuseHdr4" Hidden="true" />
+      <Field Name="GetDirectionalLightDiffuseLdr3" Hidden="true" />
+      <Field Name="GetDirectionalLightDiffuseLdr4" Hidden="true" />
+      <Method Name="GetDirectionalLightDirection" Hidden="true" />
+      <Method Name="GetDirectionalLightDirectionArray" Hidden="true" />
+      <Method Name="GetDirectionalLightShadowCascadeDistances" Hidden="true" />
+      <Field Name="GetDirectionalLightShadowCascadesDistances_" Hidden="true" />
+      <Method Name="GetDirectionalLightShadowDepthBias" Hidden="true" />
+      <Field Name="GetDirectionalLightShadowDepthBias_" Hidden="true" />
+      <Method Name="GetDirectionalLightShadowDepthBiasOffset" Hidden="true" />
+      <Field Name="GetDirectionalLightShadowDepthBiasOffset_" Hidden="true" />
+      <Method Name="GetDirectionalLightShadowDepthBiasScale" Hidden="true" />
+      <Field Name="GetDirectionalLightShadowDepthBiasScale_" Hidden="true" />
+      <Method Name="GetDirectionalLightShadowFadeOutDistance" Hidden="true" />
+      <Field Name="GetDirectionalLightShadowFadeOutDistance_" Hidden="true" />
+      <Method Name="GetDirectionalLightShadowFadeOutRange" Hidden="true" />
+      <Field Name="GetDirectionalLightShadowFadeOutRange_" Hidden="true" />
+      <Method Name="GetDirectionalLightShadowFilterRadius" Hidden="true" />
+      <Field Name="GetDirectionalLightShadowFilterRadius_" Hidden="true" />
+      <Field Name="GetDirectionalLightShadowFilterRadius4F_" Hidden="true" />
+      <Method Name="GetDirectionalLightShadowFog" Hidden="true" />
+      <Field Name="GetDirectionalLightShadowFog_" Hidden="true" />
+      <Method Name="GetDirectionalLightShadowJitterResolution" Hidden="true" />
+      <Field Name="GetDirectionalLightShadowJitterResolution_" Hidden="true" />
+      <Field Name="GetDirectionalLightShadowJitterResolution4F_" Hidden="true" />
+      <Method Name="GetDirectionalLightShadowMap" Hidden="true" />
+      <Method Name="GetDirectionalLightShadowMapSize" Hidden="true" />
+      <Field Name="GetDirectionalLightShadowMapSize_" Hidden="true" />
+      <Method Name="GetDirectionalLightShadowMaxDistance" Hidden="true" />
+      <Field Name="GetDirectionalLightShadowMaxDistance_" Hidden="true" />
+      <Method Name="GetDirectionalLightShadowNormalOffset" Hidden="true" />
+      <Field Name="GetDirectionalLightShadowNormalOffset_" Hidden="true" />
+      <Method Name="GetDirectionalLightShadowNumberOfCascades" Hidden="true" />
+      <Field Name="GetDirectionalLightShadowNumberOfCascades_" Hidden="true" />
+      <Method Name="GetDirectionalLightShadowViewProjections" Hidden="true" />
+      <Method Name="GetDirectionalLightSpecular" Hidden="true" />
+      <Method Name="GetDirectionalLightSpecularArray" Hidden="true" />
+      <Field Name="GetDirectionalLightSpecularHdr3" Hidden="true" />
+      <Field Name="GetDirectionalLightSpecularHdr4" Hidden="true" />
+      <Field Name="GetDirectionalLightSpecularLdr3" Hidden="true" />
+      <Field Name="GetDirectionalLightSpecularLdr4" Hidden="true" />
+      <Method Name="GetDirectionalLightTexture" Hidden="true" />
+      <Field Name="GetDirectionalLightTexture_" Hidden="true" />
+      <Field Name="GetDirectionalLightTexture2D" Hidden="true" />
+      <Method Name="GetDirectionalLightTextureMatrix" Hidden="true" />
+      <Field Name="GetDirectionalLightTextureMatrix_" Hidden="true" />
+      <Method Name="GetDirectionalLightTextureMatrixArray" Hidden="true" />
+      <Method Name="GetDirectionalLightTextureOffset" Hidden="true" />
+      <Field Name="GetDirectionalLightTextureOffset_" Hidden="true" />
+      <Method Name="GetDirectionalLightTextureOffsetArray" Hidden="true" />
+      <Method Name="GetDirectionalLightTextureScale" Hidden="true" />
+      <Field Name="GetDirectionalLightTextureScale_" Hidden="true" />
+      <Method Name="GetDirectionalLightTextureScaleArray" Hidden="true" />
+      <Method Name="GetFogColor" Hidden="true" />
+      <Method Name="GetFogDensity" Hidden="true" />
+      <Method Name="GetFogEnd" Hidden="true" />
+      <Method Name="GetFogParameters" Hidden="true" />
+      <Method Name="GetFogStart" Hidden="true" />
+      <Method Name="GetImageBasedLightDiffuse" Hidden="true" />
+      <Field Name="GetImageBasedLightDiffuseHdr3" Hidden="true" />
+      <Field Name="GetImageBasedLightDiffuseHdr4" Hidden="true" />
+      <Field Name="GetImageBasedLightDiffuseLdr3" Hidden="true" />
+      <Field Name="GetImageBasedLightDiffuseLdr4" Hidden="true" />
+      <Method Name="GetImageBasedLightRgbmMax" Hidden="true" />
+      <Field Name="GetImageBasedLightRgbmMax_" Hidden="true" />
+      <Method Name="GetImageBasedLightSpecular" Hidden="true" />
+      <Field Name="GetImageBasedLightSpecularHdr3" Hidden="true" />
+      <Field Name="GetImageBasedLightSpecularHdr4" Hidden="true" />
+      <Field Name="GetImageBasedLightSpecularLdr3" Hidden="true" />
+      <Field Name="GetImageBasedLightSpecularLdr4" Hidden="true" />
+      <Method Name="GetImageBasedLightTexture" Hidden="true" />
+      <Field Name="GetImageBasedLightTexture_" Hidden="true" />
+      <Field Name="GetImageBasedLightTextureCube" Hidden="true" />
+      <Method Name="GetImageBasedLightTextureMatrix" Hidden="true" />
+      <Field Name="GetImageBasedLightTextureMatrix_" Hidden="true" />
+      <Method Name="GetImageBasedLightTextureSize" Hidden="true" />
+      <Field Name="GetImageBasedLightTextureSize_" Hidden="true" />
+      <Method Name="GetLastCameraDirection" Hidden="true" />
+      <Method Name="GetLastCameraPosition" Hidden="true" />
+      <Method Name="GetLastProjection" Hidden="true" />
+      <Method Name="GetLastProjectionInverse" Hidden="true" />
+      <Method Name="GetLastProjectionInverseTranspose" Hidden="true" />
+      <Method Name="GetLastProjectionTranspose" Hidden="true" />
+      <Method Name="GetLastView" Hidden="true" />
+      <Method Name="GetLastViewInverse" Hidden="true" />
+      <Method Name="GetLastViewInverseTranspose" Hidden="true" />
+      <Method Name="GetLastViewProjection" Hidden="true" />
+      <Method Name="GetLastViewProjectionInverse" Hidden="true" />
+      <Method Name="GetLastViewProjectionInverseTranspose" Hidden="true" />
+      <Method Name="GetLastViewProjectionTranspose" Hidden="true" />
+      <Method Name="GetLastViewTranspose" Hidden="true" />
+      <Method Name="GetLastWorld" Hidden="true" />
+      <Method Name="GetLastWorldInverse" Hidden="true" />
+      <Method Name="GetLastWorldInverseTranspose" Hidden="true" />
+      <Method Name="GetLastWorldTranspose" Hidden="true" />
+      <Method Name="GetLastWorldView" Hidden="true" />
+      <Method Name="GetLastWorldViewInverse" Hidden="true" />
+      <Method Name="GetLastWorldViewInverseTranspose" Hidden="true" />
+      <Method Name="GetLastWorldViewProjection" Hidden="true" />
+      <Method Name="GetLastWorldViewProjectionInverse" Hidden="true" />
+      <Method Name="GetLastWorldViewProjectionInverseTranspose" Hidden="true" />
+      <Method Name="GetLastWorldViewProjectionTranspose" Hidden="true" />
+      <Method Name="GetLastWorldViewTranspose" Hidden="true" />
+      <Method Name="GetLight" Hidden="true" />
+      <Method Name="GetLightNode" Hidden="true" />
+      <Field Name="GetLightNodeForward3" Hidden="true" />
+      <Field Name="GetLightNodeForward4" Hidden="true" />
+      <Field Name="GetLightNodePosition3" Hidden="true" />
+      <Field Name="GetLightNodePosition4" Hidden="true" />
+      <Method Name="GetLightNodeProperty" Hidden="true" />
+      <Method Name="GetLightNodePropertyArray" Hidden="true" />
+      <Field Name="GetLightNodeUp3" Hidden="true" />
+      <Field Name="GetLightNodeUp4" Hidden="true" />
+      <Method Name="GetLightProperty" Hidden="true" />
+      <Method Name="GetLightPropertyArray" Hidden="true" />
+      <Method Name="GetLodCameraPosition" Hidden="true" />
+      <Method Name="GetPointLightAttenuation" Hidden="true" />
+      <Method Name="GetPointLightAttenuationArray" Hidden="true" />
+      <Field Name="GetPointLightAttenuationF" Hidden="true" />
+      <Method Name="GetPointLightDiffuse" Hidden="true" />
+      <Method Name="GetPointLightDiffuseArray" Hidden="true" />
+      <Field Name="GetPointLightDiffuseHdr3" Hidden="true" />
+      <Field Name="GetPointLightDiffuseHdr4" Hidden="true" />
+      <Field Name="GetPointLightDiffuseLdr3" Hidden="true" />
+      <Field Name="GetPointLightDiffuseLdr4" Hidden="true" />
+      <Method Name="GetPointLightPosition" Hidden="true" />
+      <Method Name="GetPointLightPositionArray" Hidden="true" />
+      <Method Name="GetPointLightRange" Hidden="true" />
+      <Method Name="GetPointLightRangeArray" Hidden="true" />
+      <Field Name="GetPointLightRangeF" Hidden="true" />
+      <Method Name="GetPointLightSpecular" Hidden="true" />
+      <Method Name="GetPointLightSpecularArray" Hidden="true" />
+      <Field Name="GetPointLightSpecularHdr3" Hidden="true" />
+      <Field Name="GetPointLightSpecularHdr4" Hidden="true" />
+      <Field Name="GetPointLightSpecularLdr3" Hidden="true" />
+      <Field Name="GetPointLightSpecularLdr4" Hidden="true" />
+      <Method Name="GetPointLightTexture" Hidden="true" />
+      <Field Name="GetPointLightTexture_" Hidden="true" />
+      <Field Name="GetPointLightTextureCube" Hidden="true" />
+      <Method Name="GetPointLightTextureMatrix" Hidden="true" />
+      <Field Name="GetPointLightTextureMatrix_" Hidden="true" />
+      <Method Name="GetPointLightTextureMatrixArray" Hidden="true" />
+      <Method Name="GetProjection" Hidden="true" />
+      <Method Name="GetProjectionInverse" Hidden="true" />
+      <Method Name="GetProjectionInverseTranspose" Hidden="true" />
+      <Method Name="GetProjectionTranspose" Hidden="true" />
+      <Method Name="GetProjectorLightAttenuation" Hidden="true" />
+      <Method Name="GetProjectorLightAttenuationArray" Hidden="true" />
+      <Field Name="GetProjectorLightAttenuationF" Hidden="true" />
+      <Method Name="GetProjectorLightDiffuse" Hidden="true" />
+      <Method Name="GetProjectorLightDiffuseArray" Hidden="true" />
+      <Field Name="GetProjectorLightDiffuseHdr3" Hidden="true" />
+      <Field Name="GetProjectorLightDiffuseHdr4" Hidden="true" />
+      <Field Name="GetProjectorLightDiffuseLdr3" Hidden="true" />
+      <Field Name="GetProjectorLightDiffuseLdr4" Hidden="true" />
+      <Method Name="GetProjectorLightDirection" Hidden="true" />
+      <Method Name="GetProjectorLightDirectionArray" Hidden="true" />
+      <Method Name="GetProjectorLightPosition" Hidden="true" />
+      <Method Name="GetProjectorLightPositionArray" Hidden="true" />
+      <Method Name="GetProjectorLightRange" Hidden="true" />
+      <Method Name="GetProjectorLightRangeArray" Hidden="true" />
+      <Field Name="GetProjectorLightRangeF" Hidden="true" />
+      <Method Name="GetProjectorLightSpecular" Hidden="true" />
+      <Method Name="GetProjectorLightSpecularArray" Hidden="true" />
+      <Field Name="GetProjectorLightSpecularHdr3" Hidden="true" />
+      <Field Name="GetProjectorLightSpecularHdr4" Hidden="true" />
+      <Field Name="GetProjectorLightSpecularLdr3" Hidden="true" />
+      <Field Name="GetProjectorLightSpecularLdr4" Hidden="true" />
+      <Method Name="GetProjectorLightTexture" Hidden="true" />
+      <Field Name="GetProjectorLightTexture_" Hidden="true" />
+      <Field Name="GetProjectorLightTexture2D" Hidden="true" />
+      <Method Name="GetProjectorLightTextureMatrix" Hidden="true" />
+      <Field Name="GetProjectorLightTextureMatrix_" Hidden="true" />
+      <Method Name="GetProjectorLightTextureMatrixArray" Hidden="true" />
+      <Method Name="GetProjectorLightViewProjection" Hidden="true" />
+      <Field Name="GetProjectorLightViewProjection_" Hidden="true" />
+      <Method Name="GetProjectorLightViewProjectionArray" Hidden="true" />
+      <Method Name="GetSceneNodeType" Hidden="true" />
+      <Method Name="GetShadowNear" Hidden="true" />
+      <Method Name="GetShadowProperty" Hidden="true" />
+      <Method Name="GetSpecularIntensity" Hidden="true" />
+      <Method Name="GetSpotlightAttenuation" Hidden="true" />
+      <Method Name="GetSpotlightAttenuationArray" Hidden="true" />
+      <Field Name="GetSpotlightAttenuationF" Hidden="true" />
+      <Method Name="GetSpotlightCutoffAngle" Hidden="true" />
+      <Method Name="GetSpotlightCutoffAngleArray" Hidden="true" />
+      <Field Name="GetSpotlightCutoffAngleF" Hidden="true" />
+      <Method Name="GetSpotlightDiffuse" Hidden="true" />
+      <Method Name="GetSpotlightDiffuseArray" Hidden="true" />
+      <Field Name="GetSpotlightDiffuseHdr3" Hidden="true" />
+      <Field Name="GetSpotlightDiffuseHdr4" Hidden="true" />
+      <Field Name="GetSpotlightDiffuseLdr3" Hidden="true" />
+      <Field Name="GetSpotlightDiffuseLdr4" Hidden="true" />
+      <Method Name="GetSpotlightDirection" Hidden="true" />
+      <Method Name="GetSpotlightDirectionArray" Hidden="true" />
+      <Method Name="GetSpotlightFalloffAngle" Hidden="true" />
+      <Method Name="GetSpotlightFalloffAngleArray" Hidden="true" />
+      <Field Name="GetSpotlightFalloffAngleF" Hidden="true" />
+      <Method Name="GetSpotlightPosition" Hidden="true" />
+      <Method Name="GetSpotlightPositionArray" Hidden="true" />
+      <Method Name="GetSpotlightRange" Hidden="true" />
+      <Method Name="GetSpotlightRangeArray" Hidden="true" />
+      <Field Name="GetSpotlightRangeF" Hidden="true" />
+      <Method Name="GetSpotlightSpecular" Hidden="true" />
+      <Method Name="GetSpotlightSpecularArray" Hidden="true" />
+      <Field Name="GetSpotlightSpecularHdr3" Hidden="true" />
+      <Field Name="GetSpotlightSpecularHdr4" Hidden="true" />
+      <Field Name="GetSpotlightSpecularLdr3" Hidden="true" />
+      <Field Name="GetSpotlightSpecularLdr4" Hidden="true" />
+      <Method Name="GetSpotlightTexture" Hidden="true" />
+      <Field Name="GetSpotlightTexture_" Hidden="true" />
+      <Field Name="GetSpotlightTexture2D" Hidden="true" />
+      <Method Name="GetSpotlightTextureMatrix" Hidden="true" />
+      <Field Name="GetSpotlightTextureMatrix_" Hidden="true" />
+      <Method Name="GetSpotlightTextureMatrixArray" Hidden="true" />
+      <Method Name="GetUnscaledWorld" Hidden="true" />
+      <Method Name="GetUnscaledWorldView" Hidden="true" />
+      <Method Name="GetView" Hidden="true" />
+      <Method Name="GetViewInverse" Hidden="true" />
+      <Method Name="GetViewInverseTranspose" Hidden="true" />
+      <Method Name="GetViewProjection" Hidden="true" />
+      <Method Name="GetViewProjectionInverse" Hidden="true" />
+      <Method Name="GetViewProjectionInverseTranspose" Hidden="true" />
+      <Method Name="GetViewProjectionTranspose" Hidden="true" />
+      <Method Name="GetViewTranspose" Hidden="true" />
+      <Method Name="GetWorld" Hidden="true" />
+      <Method Name="GetWorldInverse" Hidden="true" />
+      <Method Name="GetWorldInverseTranspose" Hidden="true" />
+      <Method Name="GetWorldTranspose" Hidden="true" />
+      <Method Name="GetWorldView" Hidden="true" />
+      <Method Name="GetWorldViewInverse" Hidden="true" />
+      <Method Name="GetWorldViewInverseTranspose" Hidden="true" />
+      <Method Name="GetWorldViewProjection" Hidden="true" />
+      <Method Name="GetWorldViewProjectionInverse" Hidden="true" />
+      <Method Name="GetWorldViewProjectionInverseTranspose" Hidden="true" />
+      <Method Name="GetWorldViewProjectionTranspose" Hidden="true" />
+      <Method Name="GetWorldViewTranspose" Hidden="true" />
+      <Method Name="QueryFogNodes" Hidden="true" />
+      <Method Name="QueryLightNodes" Hidden="true" />
+      <Method Name="SceneEffectBinder" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>8/t5rzS6+Zpv8xskz88debxPk+hmhqyn/+vf1nRckKM=</HashCode>
+      <FileName>Effects\Setup\Scene\SceneEffectBinder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.SceneEffectParameterSemantics">
+    <Position X="3.25" Y="19.5" Width="3" />
+    <Members>
+      <Field Name="Bones" Hidden="true" />
+      <Field Name="SceneNodeType" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EmNpAAGCiZUCJmMhdDo1PtSCMwMHgwDQ2aO4aWjRluM=</HashCode>
+      <FileName>Effects\Setup\Scene\SceneEffectParameterSemantics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.DefaultEffectParameterSemantics">
+    <Position X="0.5" Y="19.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAABECAAUIAQEIyAAAAQAIAgIQIOhBCAoAAAAAQAgQI=</HashCode>
+      <FileName>Effects\Setup\Default\DefaultEffectParameterSemantics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.DictionaryEffectBinder">
+    <Position X="3.75" Y="10.25" Width="3" />
+    <Members>
+      <Field Name="_boolArrayBindings" Hidden="true" />
+      <Field Name="_boolBindings" Hidden="true" />
+      <Field Name="_int32ArrayBindings" Hidden="true" />
+      <Field Name="_int32Bindings" Hidden="true" />
+      <Field Name="_matrixArrayBindings" Hidden="true" />
+      <Field Name="_matrixBindings" Hidden="true" />
+      <Field Name="_singleArrayBindings" Hidden="true" />
+      <Field Name="_singleBindings" Hidden="true" />
+      <Field Name="_structBindings" Hidden="true" />
+      <Field Name="_texture2DBindings" Hidden="true" />
+      <Field Name="_texture3DBindings" Hidden="true" />
+      <Field Name="_textureBindings" Hidden="true" />
+      <Field Name="_textureCubeBindings" Hidden="true" />
+      <Field Name="_vector2ArrayBindings" Hidden="true" />
+      <Field Name="_vector2Bindings" Hidden="true" />
+      <Field Name="_vector3ArrayBindings" Hidden="true" />
+      <Field Name="_vector3Bindings" Hidden="true" />
+      <Field Name="_vector4ArrayBindings" Hidden="true" />
+      <Field Name="_vector4Bindings" Hidden="true" />
+      <Method Name="GetBinding" Hidden="true" />
+      <Method Name="GetDictionary" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Delegate Name="DigitalRune.Graphics.Effects.DictionaryEffectBinder.CreateEffectParameterBinding" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Effect Parameter Binders\DictionaryEffectBinder.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>mUAAmAyEACaAGgAEAABiSAoQQAAAAAFAYAYMAgEAAIA=</HashCode>
+      <FileName>Effects\Setup\DictionaryEffectBinder.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.DefaultEffectBinder">
+    <Position X="2.25" Y="17.75" Width="1.75" />
+    <Members>
+      <Field Name="_graphicsService" Hidden="true" />
+      <Method Name="CreateDitherMapBinding" Hidden="true" />
+      <Method Name="CreateJitterMapBinding" Hidden="true" />
+      <Method Name="CreateJitterMapSizeBinding2F" Hidden="true" />
+      <Method Name="CreateJitterMapSizeBindingF" Hidden="true" />
+      <Method Name="CreateNoiseMapBinding" Hidden="true" />
+      <Method Name="CreateNormalsFittingTextureBinding" Hidden="true" />
+      <Method Name="CreateNormalTextureBinding" Hidden="true" />
+      <Method Name="CreateSpecularTextureBinding" Hidden="true" />
+      <Method Name="DefaultEffectBinder" Hidden="true" />
+      <Method Name="GetBinding" Hidden="true" />
+      <Method Name="GetDebug" Hidden="true" />
+      <Method Name="GetElapsedTime" Hidden="true" />
+      <Method Name="GetGBuffer" Hidden="true" />
+      <Method Name="GetLastTime" Hidden="true" />
+      <Method Name="GetLightBuffer" Hidden="true" />
+      <Method Name="GetPassIndexAsInt32" Hidden="true" />
+      <Method Name="GetPassIndexAsSingle" Hidden="true" />
+      <Method Name="GetSourceTexture" Hidden="true" />
+      <Method Name="GetSourceTexture2D" Hidden="true" />
+      <Method Name="GetTime" Hidden="true" />
+      <Method Name="GetViewportSize" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CSAAKAAAAAAEIIAAMAQgAgAAEAAIBAAgAQEEAAAAAAA=</HashCode>
+      <FileName>Effects\Setup\Default\DefaultEffectBinder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.DefaultEffectInterpreter">
+    <Position X="3" Y="6.25" Width="2" />
+    <Members>
+      <Method Name="DefaultEffectInterpreter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Effects\Setup\Default\DefaultEffectInterpreter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.SceneEffectInterpreter">
+    <Position X="5.25" Y="6.25" Width="2" />
+    <Members>
+      <Method Name="SceneEffectInterpreter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Effects\Setup\Scene\SceneEffectInterpreter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.StockEffectInterpreter">
+    <Position X="1" Y="6.25" Width="1.75" />
+    <Members>
+      <Method Name="GetDescription" Hidden="true" />
+      <Method Name="StockEffectInterpreter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Effects\Setup\XNA\StockEffectInterpreter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.DictionaryEffectInterpreter">
+    <Position X="4" Y="4" Width="2.25" />
+    <Members>
+      <Method Name="DictionaryEffectInterpreter" Hidden="true" />
+      <Method Name="GetDescription" Hidden="true" />
+      <Method Name="GetDescriptionFromString" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Delegate Name="DigitalRune.Graphics.Effects.DictionaryEffectInterpreter.CreateEffectTechniqueDescription" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Effects\Setup\DictionaryEffectInterpreter.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="DigitalRune.Graphics.Effects.DictionaryEffectInterpreter.CreateEffectParameterDescription" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Effects\Setup\DictionaryEffectInterpreter.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAEAAAAAAAAAAAAgAQAA=</HashCode>
+      <FileName>Effects\Setup\DictionaryEffectInterpreter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.StockEffectBinder" BaseTypeListCollapsed="true">
+    <Position X="1.75" Y="10.25" Width="1.5" />
+    <Members>
+      <Method Name="GetBinding" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Effects\Setup\XNA\StockEffectBinder.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.EffectInterpreterCollection" Collapsed="true">
+    <Position X="4" Y="1.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAABBAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Effects\Setup\EffectInterpreterCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.EffectBinderCollection" Collapsed="true">
+    <Position X="4" Y="7.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAABBAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Effects\Setup\EffectBinderCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.TerrainEffectBinder">
+    <Position X="6.5" Y="17.75" Width="1.75" />
+    <Members>
+      <Method Name="GetBaseClipmapCellSize" Hidden="true" />
+      <Method Name="GetBaseClipmapCellsPerLevel" Hidden="true" />
+      <Method Name="GetBaseClipmapLevelBias" Hidden="true" />
+      <Method Name="GetBaseClipmapNumberOfColumns" Hidden="true" />
+      <Method Name="GetBaseClipmapNumberOfLevels" Hidden="true" />
+      <Method Name="GetBaseClipmapOrigins" Hidden="true" />
+      <Method Name="GetBaseClipmapTexture" Hidden="true" />
+      <Method Name="GetDetailClipmapCellSizes" Hidden="true" />
+      <Method Name="GetDetailClipmapCellsPerLevel" Hidden="true" />
+      <Method Name="GetDetailClipmapLevelBias" Hidden="true" />
+      <Method Name="GetDetailClipmapNumberOfColumns" Hidden="true" />
+      <Method Name="GetDetailClipmapNumberOfLevels" Hidden="true" />
+      <Method Name="GetDetailClipmapOffsets" Hidden="true" />
+      <Method Name="GetDetailClipmapOrigins" Hidden="true" />
+      <Method Name="GetDetailClipmapTexture" Hidden="true" />
+      <Method Name="GetDetailEnableAnisotropicFiltering" Hidden="true" />
+      <Method Name="GetDetailFadeRange" Hidden="true" />
+      <Method Name="GetHoleThreshold" Hidden="true" />
+      <Method Name="GetTerrainClearValues" Hidden="true" />
+      <Method Name="GetTerrainHeightTexture" Hidden="true" />
+      <Method Name="GetTerrainHeightTextureSize" Hidden="true" />
+      <Method Name="GetTerrainHoleTexture" Hidden="true" />
+      <Method Name="GetTerrainHoleTextureSize" Hidden="true" />
+      <Method Name="GetTerrainNode" Hidden="true" />
+      <Method Name="GetTerrainNormalTexture" Hidden="true" />
+      <Method Name="GetTerrainNormalTextureSize" Hidden="true" />
+      <Method Name="GetTerrainOrigin" Hidden="true" />
+      <Method Name="GetTerrainSize" Hidden="true" />
+      <Method Name="GetTerrainTile" Hidden="true" />
+      <Method Name="TerrainEffectBinder" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAAABEhQgCAgAAAAAZACACAAEQEACZgAAEECACGAAA=</HashCode>
+      <FileName>Data\Terrain\TerrainEffectBinder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.TerrainEffectInterpreter">
+    <Position X="7.5" Y="6.25" Width="2" />
+    <Members>
+      <Method Name="TerrainEffectInterpreter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Terrain\TerrainEffectInterpreter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.TerrainEffectParameterSemantics">
+    <Position X="6.5" Y="19.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AQIBAGAEIQBAIAggCwAIAAEBAAIAAAAAJEAIBggAAAA=</HashCode>
+      <FileName>Data\Terrain\TerrainEffectParameterSemantics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DigitalRune.Graphics.Effects.IEffectInterpreter">
+    <Position X="4" Y="2.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Effects\Setup\IEffectInterpreter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Graphics.Effects.IEffectBinder">
+    <Position X="4" Y="8.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Effects\Setup\IEffectBinder.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Graphics.IGraphicsService" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <Members>
+      <Property Name="Content" Hidden="true" />
+      <Property Name="Data" Hidden="true" />
+      <Property Name="DeltaTime" Hidden="true" />
+      <Property Name="Frame" Hidden="true" />
+      <Property Name="GameForm" Hidden="true" />
+      <Property Name="GraphicsDevice" Hidden="true" />
+      <Property Name="PresentationTargets" Hidden="true" />
+      <Property Name="RenderTargetPool" Hidden="true" />
+      <Property Name="Screens" Hidden="true" />
+      <Property Name="Time" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAgAAEAAgAAEAABAAAAAAQgAAAAABAAAIAEAAAAAQE=</HashCode>
+      <FileName>IGraphicsService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="EffectInterpreters" />
+      <Property Name="EffectBinders" />
+    </ShowAsAssociation>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

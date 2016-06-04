@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectGuid>{B8E4B812-A541-416E-8F77-E78CF059CDD3}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.Graphics.Content.Pipeline</RootNamespace>
+    <AssemblyName>DigitalRune.Graphics.Content.Pipeline</AssemblyName>
+    <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags></FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <BaseIntermediateOutputPath>obj\XNA\Windows\Debug\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\XNA\Windows\Debug</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ANIMATION;PARTICLES;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <XnaPlatform>Windows</XnaPlatform>
+    <DocumentationFile>bin\XNA\Windows\Debug\DigitalRune.Graphics.Content.Pipeline.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <BaseIntermediateOutputPath>obj\XNA\Windows\Release\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\XNA\Windows\Release</OutputPath>
+    <DefineConstants>TRACE;ANIMATION;PARTICLES;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <XnaPlatform>Windows</XnaPlatform>
+    <DocumentationFile>bin\XNA\Windows\Release\DigitalRune.Graphics.Content.Pipeline.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.ContentPipelineExtensions.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+     Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.TextureImporter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune.Animation.Content.Pipeline\DigitalRune.Animation.Content.Pipeline%28XNA,Win%29.csproj">
+      <Project>{5A02E74E-EF4A-405A-89F2-77A76E9767DD}</Project>
+      <Name>DigitalRune.Animation.Content.Pipeline%28XNA,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Animation\DigitalRune.Animation%28XNA,Win%29.csproj">
+      <Project>{F9BE9DF7-F990-438E-A421-C0BDC48098F8}</Project>
+      <Name>DigitalRune.Animation%28XNA,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Geometry.Content.Pipeline\DigitalRune.Geometry.Content.Pipeline%28XNA,Win%29.csproj">
+      <Project>{3EBC3967-7562-463E-A636-78C5EDB94C06}</Project>
+      <Name>DigitalRune.Geometry.Content.Pipeline%28XNA,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Geometry\DigitalRune.Geometry%28XNA,Win%29.csproj">
+      <Project>{630154B1-627E-4890-94D7-6C7C6C0F9420}</Project>
+      <Name>DigitalRune.Geometry%28XNA,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Mathematics.Content.Pipeline\DigitalRune.Mathematics.Content.Pipeline%28XNA,Win%29.csproj">
+      <Project>{5289A325-E339-4E11-84BF-321ADA51E1DF}</Project>
+      <Name>DigitalRune.Mathematics.Content.Pipeline%28XNA,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Mathematics\DigitalRune.Mathematics%28XNA,Win%29.csproj">
+      <Project>{823EAE88-7125-4F9D-92BC-626BDE6B5533}</Project>
+      <Name>DigitalRune.Mathematics%28XNA,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune\DigitalRune.csproj">
+      <Project>{5A0E3C60-1CA9-49D5-84CA-308CB8E3A3B4}</Project>
+      <Name>DigitalRune</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <Compile Include="Animations\AnimationMerger.cs" />
+    <Compile Include="Animations\AnimationSplitDefinition.cs" />
+    <Compile Include="Animations\AnimationSplitter.cs" />
+    <None Include="Class Diagrams\Graphics.Content.Pipeline.cd" />
+    <None Include="Class Diagrams\Graphics.Content.Pipeline_Animations.cd" />
+    <None Include="Class Diagrams\Graphics.Content.Pipeline_Effects.cd" />
+    <None Include="Class Diagrams\Graphics.Content.Pipeline_Meshes.cd" />
+    <None Include="Class Diagrams\Graphics.Content.Pipeline_SceneGraph.cd" />
+    <None Include="Class Diagrams\Graphics.Content.Pipeline_Textures.cd" />
+    <Compile Include="ContentHelper.cs" />
+    <Compile Include="ContentPipelineContext.cs" />
+    <Compile Include="Effects\DREffectBindingContent.cs" />
+    <Compile Include="Effects\DREffectBindingWriter.cs" />
+    <Compile Include="Effects\DREffectType.cs" />
+    <Compile Include="Meshes\DRMaterialContent.cs" />
+    <Compile Include="Meshes\DRMaterialImporter.cs" />
+    <Compile Include="Meshes\DRMaterialProcessor.cs" />
+    <Compile Include="Meshes\DRMaterialWriter.cs" />
+    <Compile Include="Meshes\DRMeshContent.cs" />
+    <Compile Include="Meshes\DRMeshWriter.cs" />
+    <Compile Include="Meshes\DRMorphTargetContent.cs" />
+    <Compile Include="Meshes\DRMorphTargetWriter.cs" />
+    <Compile Include="Meshes\DRSubmeshContent.cs" />
+    <Compile Include="Meshes\DRSubmeshWriter.cs" />
+    <Compile Include="..\DigitalRune.Graphics\Content\DirectXMesh.cs">
+      <Link>Meshes\DirectXMesh.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\VertexBufferAccessor.cs">
+      <Link>Meshes\VertexBufferAccessor.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\VertexElement.cs">
+      <Link>Meshes\VertexElement.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\VertexElementSemantic.cs">
+      <Link>Meshes\VertexElementSemantic.cs</Link>
+    </Compile>
+    <Compile Include="NamespaceDoc.cs" />
+    <Compile Include="Occluder\DROccluderContent.cs" />
+    <Compile Include="Occluder\DROccluderWriter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Properties\AssemblyInfo.template" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="SceneGraph\AnimationDescription.cs" />
+    <Compile Include="SceneGraph\DRLodGroupNodeContent.cs" />
+    <Compile Include="SceneGraph\DRLodGroupNodeWriter.cs" />
+    <Compile Include="SceneGraph\DRMeshNodeContent.cs" />
+    <Compile Include="SceneGraph\DRMeshNodeWriter.cs" />
+    <Compile Include="SceneGraph\DRModelImporter.cs" />
+    <Compile Include="SceneGraph\DRModelNodeContent.cs" />
+    <Compile Include="SceneGraph\DRModelNodeWriter.cs" />
+    <Compile Include="SceneGraph\DRModelProcessor.cs" />
+    <Compile Include="SceneGraph\DRModelProcessor_Animation.cs" />
+    <Compile Include="SceneGraph\DRModelProcessor_DirectXMesh.cs" />
+    <Compile Include="SceneGraph\DRModelProcessor_Lod.cs" />
+    <Compile Include="SceneGraph\DRModelProcessor_Materials.cs" />
+    <Compile Include="SceneGraph\DRModelProcessor_Meshes.cs" />
+    <Compile Include="SceneGraph\DRModelProcessor_Morphing.cs" />
+    <Compile Include="SceneGraph\DRModelProcessor_Occluder.cs" />
+    <Compile Include="SceneGraph\DRModelProcessor_SceneNodes.cs" />
+    <Compile Include="SceneGraph\DRModelProcessor_Validation.cs" />
+    <Compile Include="SceneGraph\DRModelProcessor_VertexChannels.cs" />
+    <Compile Include="SceneGraph\DROccluderNodeContent.cs" />
+    <Compile Include="SceneGraph\DROccluderNodeWriter.cs" />
+    <Compile Include="SceneGraph\DRSceneNodeContent.cs" />
+    <Compile Include="SceneGraph\DRSceneNodeWriter.cs" />
+    <Compile Include="SceneGraph\DeferredNodeContent.cs" />
+    <Compile Include="SceneGraph\MeshDescription.cs" />
+    <Compile Include="SceneGraph\ModelDescription.cs" />
+    <Compile Include="SceneGraph\SubmeshDescription.cs" />
+    <Compile Include="SharedResourceCollectionSerializer.cs" />
+    <Compile Include="Textures\DRTextureFormat.cs" />
+    <Compile Include="Textures\DRTextureImporter.cs" />
+    <Compile Include="Textures\DRTextureProcessor.cs" />
+    <Compile Include="..\DigitalRune.Graphics\Content\DataFormat.cs">
+      <Link>Textures\DataFormat.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\DdsHelper.cs">
+      <Link>Textures\DdsHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\FourCC.cs">
+      <Link>Textures\FourCC.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\HalfHelper.cs">
+      <Link>Textures\HalfHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\Image.cs">
+      <Link>Textures\Image.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\ImageAccessor.cs">
+      <Link>Textures\ImageAccessor.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\ImageCollection.cs">
+      <Link>Textures\ImageCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\MarshalHelper.cs">
+      <Link>Textures\MarshalHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\Texture.cs">
+      <Link>Textures\Texture.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\TextureDescription.cs">
+      <Link>Textures\TextureDescription.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\TextureDimension.cs">
+      <Link>Textures\TextureDimension.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\TextureHelper.cs">
+      <Link>Textures\TextureHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\TextureHelper_ContentPipeline.cs">
+      <Link>Textures\TextureHelper_ContentPipeline.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\TextureHelper_DirectXTex.cs">
+      <Link>Textures\TextureHelper_DirectXTex.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\TextureHelper_Resize.cs">
+      <Link>Textures\TextureHelper_Resize.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\TextureHelper_Squish.cs">
+      <Link>Textures\TextureHelper_Squish.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\TgaHelper.cs">
+      <Link>Textures\TgaHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\XnaHelper.cs">
+      <Link>Textures\XnaHelper.cs</Link>
+    </Compile>
+    <Compile Include="XmlHelper.cs" />
+  </ItemGroup>
+</Project>

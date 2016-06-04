@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Piecewise Curves                                              Assembly: DigitalRune.Mathematics              Namespace: DigitalRune.Mathematics.Interpolation">
+    <Position X="0.5" Y="0.5" Height="0.614" Width="3.127" />
+  </Comment>
+  <Class Name="DigitalRune.Mathematics.Interpolation.PiecewiseCurve&lt;TParam, TPoint, TCurveKey&gt;">
+    <Position X="1.75" Y="3.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AACAIABAAACABBAABAAQEAACQAAAAgAAAgAAggAAABA=</HashCode>
+      <FileName>Interpolation\PiecewiseCurve.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PostLoop" />
+      <Property Name="PreLoop" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.Path3F" Collapsed="true">
+    <Position X="0.5" Y="13" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAABAABAAEAAEAQABAAAAAAAAIAgAQAAA=</HashCode>
+      <FileName>Interpolation\Path3F.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.PathKey3F" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.25" Y="11.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQgAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\PathKey3F.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.CurveKey2F">
+    <Position X="8.5" Y="10.25" Width="1.75" />
+    <Members>
+      <Method Name="GetParameter" Hidden="true" />
+      <Method Name="SetParameter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\CurveKey2F.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.Curve2F">
+    <Position X="3.5" Y="10.25" Width="2.5" />
+    <Members>
+      <Method Name="GetCycleOffset" Hidden="true" />
+      <Method Name="GetSplines" Hidden="true" />
+      <Method Name="IXmlSerializable.GetSchema" Hidden="true" />
+      <Method Name="IXmlSerializable.ReadXml" Hidden="true" />
+      <Method Name="IXmlSerializable.WriteXml" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAIAIAAACAABAABAAAAAEAQAAAAAAAAAAIAAAQAAA=</HashCode>
+      <FileName>Interpolation\Curve2F.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.CurveKey&lt;TParam, TPoint&gt;">
+    <Position X="7.25" Y="8" Width="2" />
+    <Members>
+      <Method Name="GetParameter" Hidden="true" />
+      <Method Name="SetParameter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAgAAAAAQAABAAAAARAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\CurveKey.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Interpolation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.PiecewiseCurveF&lt;TPoint, TCurveKey&gt;">
+    <Position X="2" Y="8" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Interpolation\PiecewiseCurveF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.Path2F">
+    <Position X="0.5" Y="10.25" Width="2.5" />
+    <Members>
+      <Method Name="GetCycleOffset" Hidden="true" />
+      <Method Name="GetSpline" Hidden="true" />
+      <Method Name="IXmlSerializable.GetSchema" Hidden="true" />
+      <Method Name="IXmlSerializable.ReadXml" Hidden="true" />
+      <Method Name="IXmlSerializable.WriteXml" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAABAABAAEAAEAQABAAAAAAAAIAgAQAAA=</HashCode>
+      <FileName>Interpolation\Path2F.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.PathKey2F">
+    <Position X="6.25" Y="10.25" Width="1.75" />
+    <Members>
+      <Field Name="_parameter" Hidden="true" />
+      <Method Name="GetParameter" Hidden="true" />
+      <Method Name="SetParameter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAQgAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\PathKey2F.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DigitalRune.Mathematics.Interpolation.ICurve&lt;TParam, TPoint&gt;">
+    <Position X="2.25" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAAAAABAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\ICurve.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DigitalRune.Mathematics.Interpolation.CurveLoopType">
+    <Position X="5.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAACAAAAAAAAAAAABAAAAAAgAAQAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\CurveLoopType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DigitalRune.Mathematics.Interpolation.SplineInterpolation">
+    <Position X="10.5" Y="8" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACAAAQAgAAAAAAAAAAAAAgAAgAAAAAAAgEAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\SplineInterpolation.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

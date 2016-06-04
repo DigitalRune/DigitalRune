@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Camera (Scene Nodes)                                  Assembly: DigitalRune.Graphics                 Namespace: DigitalRune.Graphics.SceneGraph">
+    <Position X="0.5" Y="0.5" Height="0.646" Width="2.809" />
+  </Comment>
+  <Comment CommentText="Camera (Data)                                         Assembly: DigitalRune.Graphics                 Namespace: DigitalRune.Graphics">
+    <Position X="4.01" Y="0.5" Height="0.646" Width="2.153" />
+  </Comment>
+  <Comment CommentText="View volume (Shape)                           Assembly: DigitalRune.Geometry                 Namespace: DigitalRune.Geometry.Shapes">
+    <Position X="9.146" Y="0.5" Height="0.646" Width="2.601" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.SceneGraph.CameraNode">
+    <Position X="0.5" Y="1.75" Width="2.5" />
+    <Members>
+      <Field Name="_camera" Hidden="true" />
+      <Field Name="_lodBias" Hidden="true" />
+      <Field Name="_view" Hidden="true" />
+      <Field Name="_viewDependentData" Hidden="true" />
+      <Field Name="_viewInverse" Hidden="true" />
+      <Method Name="CameraNode" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="Instances" Hidden="true" />
+      <Field Name="InstancesReadOnly" Hidden="true" />
+      <Method Name="RemoveViewDependentData" Hidden="true" />
+      <Method Name="UpdateView" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Camera" Type="DigitalRune.Graphics.Camera">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.089" Y="0.091" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAwAAACAICAAAABAAAEAABgAJIAAAQCCAACAAADA=</HashCode>
+      <FileName>SceneGraph\CameraNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Camera" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Camera">
+    <Position X="4" Y="1.75" Width="1.75" />
+    <Members>
+      <Method Name="Camera" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Projection" Type="DigitalRune.Graphics.Projection">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.068" Y="0.07" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAQAAAAIAAAAAAAAAABQADA=</HashCode>
+      <FileName>Data\Camera\Camera.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Projection" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Projection">
+    <Position X="6.75" Y="1.75" Width="2.25" />
+    <Members>
+      <Field Name="_projection" Hidden="true" />
+      <Field Name="_projectionInverse" Hidden="true" />
+      <Field Name="_projectionNeedsToBeUpdated" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="Update" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAwABCAEhAQAJAAAAgIQAEAAAAAIAAQiCAGAQIAAADA=</HashCode>
+      <FileName>Data\Camera\Projection.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ViewVolume" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.OrthographicProjection">
+    <Position X="4.75" Y="8" Width="3" />
+    <Members>
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="ComputeProjection" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Field Name="DefaultFar" Hidden="true" />
+      <Field Name="DefaultHeight" Hidden="true" />
+      <Field Name="DefaultNear" Hidden="true" />
+      <Field Name="DefaultWidth" Hidden="true" />
+      <Method Name="OrthographicProjection" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAEAABAAAAEAAQAAAAAgIABAAAAAAAAAIACA=</HashCode>
+      <FileName>Data\Camera\OrthographicProjection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PerspectiveProjection">
+    <Position X="8" Y="8" Width="2.75" />
+    <Members>
+      <Field Name="_nearClipPlane" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="ComputeProjection" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Field Name="DefaultAspectRatio" Hidden="true" />
+      <Field Name="DefaultFar" Hidden="true" />
+      <Field Name="DefaultFieldOfViewY" Hidden="true" />
+      <Field Name="DefaultNear" Hidden="true" />
+      <Method Name="PerspectiveProjection" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QAhAAAAAAAAABAAAAAAIQAAAAAgIIBAAAAAABAAAACA=</HashCode>
+      <FileName>Data\Camera\PerspectiveProjection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Shapes.ViewVolume" Collapsed="true">
+    <Position X="10.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

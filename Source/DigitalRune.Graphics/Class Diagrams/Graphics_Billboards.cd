@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Billboards (Scene Nodes)                                                                    Assembly: DigitalRune.Graphics                   Namespace: DigitalRune.Graphics.SceneGraph">
+    <Position X="0.5" Y="0.5" Height="0.615" Width="2.81" />
+  </Comment>
+  <Comment CommentText="Billboards (Data)                                                                   Assembly: DigitalRune.Graphics                   Namespace: DigitalRune.Graphics">
+    <Position X="3.75" Y="0.5" Height="0.615" Width="2.122" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.Billboard" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="1.75" Width="1.75" />
+    <Members>
+      <Method Name="Billboard" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Property Name="Shape" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Orientation" Type="DigitalRune.Graphics.BillboardOrientation">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.027" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAEBAAAAQAAAAAIAAAAAAQAAAAIABAAAAAAgAAAADA=</HashCode>
+      <FileName>Data\Billboards, Particles\Billboard.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Orientation" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.BillboardNode">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <Members>
+      <Field Name="_animationTime" Hidden="true" />
+      <Field Name="_billboard" Hidden="true" />
+      <Method Name="BillboardNode" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQAAACAAAAAAQAAAAAAAAAAAAAIABACAAAAgAAACDA=</HashCode>
+      <FileName>SceneGraph\BillboardNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Billboard" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PackedTexture">
+    <Position X="6.75" Y="5.25" Width="2.25" />
+    <Members>
+      <Field Name="_numberOfColumns" Hidden="true" />
+      <Field Name="_numberOfRows" Hidden="true" />
+      <Method Name="PackedTexture" Hidden="true" />
+      <Property Name="TextureAtlasEx" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AIAAAgAAAAgAABAACAIAAIQAAAAAAGAAAAAAAAAAgAA=</HashCode>
+      <FileName>Misc\TextureAtlas\PackedTexture.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.ImageBillboard">
+    <Position X="3" Y="4.75" Width="1.5" />
+    <Members>
+      <Field Name="_alphaTest" Hidden="true" />
+      <Field Name="_animationTime" Hidden="true" />
+      <Field Name="_blendMode" Hidden="true" />
+      <Field Name="_size" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="ImageBillboard" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Texture" Type="DigitalRune.Graphics.PackedTexture" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.875" Y="6.752" />
+        <Point X="3.875" Y="7.355" />
+        <Point X="6.75" Y="7.355" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAgAAAiAAAAAAAAAAgAAAIAAACAAIAAAIACTA=</HashCode>
+      <FileName>Data\Billboards, Particles\ImageBillboard.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Texture" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.TextBillboard">
+    <Position X="4.75" Y="4.75" Width="1.5" />
+    <Members>
+      <Field Name="_font" Hidden="true" />
+      <Field Name="_text" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="TextBillboard" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAACIAAAIAAAACAACADA=</HashCode>
+      <FileName>Data\Billboards, Particles\TextBillboard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="DigitalRune.Graphics.BillboardOrientation" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="1.75" Width="2" />
+    <Members>
+      <Field Name="_flags" Hidden="true" />
+      <Method Name="BillboardOrientation" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="operator !=" Hidden="true" />
+      <Method Name="operator ==" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Enum Name="DigitalRune.Graphics.BillboardOrientation.Flags" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Billboards, Particles\BillboardOrientation.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <AssociationLine Name="Normal" Type="DigitalRune.Graphics.BillboardNormal">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.016" Y="0.081" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAQAAAAgIAACAACEAgIBIAAAAAAAAAAAiA=</HashCode>
+      <FileName>Data\Billboards, Particles\BillboardOrientation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Normal" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Enum Name="DigitalRune.Graphics.BillboardNormal">
+    <Position X="9.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Billboards, Particles\BillboardNormal.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DigitalRune.Graphics.SceneGraph.MaterialInstance" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="4.5" Width="2" />
+    <Members>
+      <Field Name="_bindingsPerPass" Hidden="true" />
+      <Property Name="Count" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="GetEnumerator" Hidden="true" />
+      <Method Name="ICollection&lt;KeyValuePair&lt;string, EffectBinding&gt;&gt;.Add" Hidden="true" />
+      <Method Name="ICollection&lt;KeyValuePair&lt;string, EffectBinding&gt;&gt;.Clear" Hidden="true" />
+      <Method Name="ICollection&lt;KeyValuePair&lt;string, EffectBinding&gt;&gt;.Contains" Hidden="true" />
+      <Method Name="ICollection&lt;KeyValuePair&lt;string, EffectBinding&gt;&gt;.CopyTo" Hidden="true" />
+      <Property Name="ICollection&lt;KeyValuePair&lt;string, EffectBinding&gt;&gt;.IsReadOnly" Hidden="true" />
+      <Method Name="ICollection&lt;KeyValuePair&lt;string, EffectBinding&gt;&gt;.Remove" Hidden="true" />
+      <Method Name="IDictionary&lt;string, EffectBinding&gt;.Add" Hidden="true" />
+      <Method Name="IDictionary&lt;string, EffectBinding&gt;.ContainsKey" Hidden="true" />
+      <Property Name="IDictionary&lt;string, EffectBinding&gt;.Keys" Hidden="true" />
+      <Method Name="IDictionary&lt;string, EffectBinding&gt;.Remove" Hidden="true" />
+      <Method Name="IDictionary&lt;string, EffectBinding&gt;.TryGetValue" Hidden="true" />
+      <Property Name="IDictionary&lt;string, EffectBinding&gt;.Values" Hidden="true" />
+      <Method Name="IEnumerable.GetEnumerator" Hidden="true" />
+      <Method Name="IEnumerable&lt;KeyValuePair&lt;string, EffectBinding&gt;&gt;.GetEnumerator" Hidden="true" />
+      <Method Name="MaterialInstance" Hidden="true" />
+      <Property Name="this" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEggFAAAAAAAABAgCQAgAIQAAAgoAwgEDAABEgAQADA=</HashCode>
+      <FileName>SceneGraph\MaterialInstance.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Material" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="EffectBindings" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.MeshNode" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_materialInstances" Hidden="true" />
+      <Field Name="_mesh" Hidden="true" />
+      <Field Name="_morphWeights" Hidden="true" />
+      <Field Name="_passHashes" Hidden="true" />
+      <Field Name="_skeletonPose" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="IOcclusionProxy.GetOccluder" Hidden="true" />
+      <Property Name="IOcclusionProxy.HasOccluder" Hidden="true" />
+      <Method Name="IOcclusionProxy.UpdateOccluder" Hidden="true" />
+      <Method Name="IsPassSupported" Hidden="true" />
+      <Method Name="MeshNode" Hidden="true" />
+      <Method Name="OnAssetLoaded" Hidden="true" />
+      <Method Name="OnInitializeShape" Hidden="true" />
+      <Method Name="SetHasAlpha" Hidden="true" />
+    </Members>
+    <AssociationLine Name="MaterialInstances" Type="DigitalRune.Graphics.SceneGraph.MaterialInstance">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-1.336" Y="1.319" Height="0.182" Width="1.274" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AQCAAAQBQDAAAQAAAAAAAAAAoQAMABAAARAgAAAgADA=</HashCode>
+      <FileName>SceneGraph\MeshNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mesh" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="MaterialInstances" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Mesh" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="1" Width="2" />
+    <Members>
+      <Field Name="_boundingShape" Hidden="true" />
+      <Field Name="_cachedMorphTargetNames" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="GetMorphTargetNames" Hidden="true" />
+      <Method Name="HasMorphTargets" Hidden="true" />
+      <Method Name="InvalidateMorphTargetNames" Hidden="true" />
+      <Method Name="Mesh" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gEIAAABgACAAAAAAAAAAAAQQAAEAAAAgIAABAAAIAAA=</HashCode>
+      <FileName>Data\Meshes\Mesh.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Submeshes" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Submesh">
+    <Position X="6.75" Y="0.5" Width="2" />
+    <Members>
+      <Field Name="_materialIndex" Hidden="true" />
+      <Field Name="_morphTargets" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Property Name="HasMorphTargets" Hidden="true" />
+      <Field Name="Id" Hidden="true" />
+      <Method Name="InvalidateMorphTargetNames" Hidden="true" />
+      <Method Name="Submesh" Hidden="true" />
+      <Property Name="VertexBufferEx" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAACAAAgACCAEAAAAAAAEAEAAQAAAIIAASABCAAIEAA=</HashCode>
+      <FileName>Data\Meshes\Submesh.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Material">
+    <Position X="3.75" Y="4.5" Width="1.75" />
+    <Members>
+      <Field Name="_bindingsPerPass" Hidden="true" />
+      <Method Name="Add" Hidden="true" />
+      <Method Name="Clear" Hidden="true" />
+      <Property Name="Count" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="GetEnumerator" Hidden="true" />
+      <Method Name="ICollection&lt;KeyValuePair&lt;string, EffectBinding&gt;&gt;.Add" Hidden="true" />
+      <Method Name="ICollection&lt;KeyValuePair&lt;string, EffectBinding&gt;&gt;.Contains" Hidden="true" />
+      <Method Name="ICollection&lt;KeyValuePair&lt;string, EffectBinding&gt;&gt;.CopyTo" Hidden="true" />
+      <Property Name="ICollection&lt;KeyValuePair&lt;string, EffectBinding&gt;&gt;.IsReadOnly" Hidden="true" />
+      <Method Name="ICollection&lt;KeyValuePair&lt;string, EffectBinding&gt;&gt;.Remove" Hidden="true" />
+      <Method Name="IDictionary&lt;string, EffectBinding&gt;.ContainsKey" Hidden="true" />
+      <Property Name="IDictionary&lt;string, EffectBinding&gt;.Keys" Hidden="true" />
+      <Method Name="IDictionary&lt;string, EffectBinding&gt;.TryGetValue" Hidden="true" />
+      <Property Name="IDictionary&lt;string, EffectBinding&gt;.Values" Hidden="true" />
+      <Method Name="IEnumerable.GetEnumerator" Hidden="true" />
+      <Method Name="IEnumerable&lt;KeyValuePair&lt;string, EffectBinding&gt;&gt;.GetEnumerator" Hidden="true" />
+      <Method Name="Material" Hidden="true" />
+      <Method Name="Remove" Hidden="true" />
+      <Property Name="this" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAogFAAAAAAAABAgCQAgBIQAAAAoAggEDAABEABQADA=</HashCode>
+      <FileName>Data\Meshes\Material.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.EffectBinding">
+    <Position X="6.75" Y="4.5" Width="2" />
+    <Members>
+      <Field Name="_techniqueBinding" Hidden="true" />
+      <Method Name="CheckHint" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="CreateMaterialInstance" Hidden="true" />
+      <Method Name="EffectBinding" Hidden="true" />
+      <Property Name="EffectEx" Hidden="true" />
+      <Field Name="Id" Hidden="true" />
+      <Method Name="InitializeBindings" Hidden="true" />
+      <Property Name="MaterialBinding" Hidden="true" />
+      <Property Name="MorphWeights" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CAACBAAQAAgIBBAAAAAAAAABAQAYSoBAAAAAAAAIADA=</HashCode>
+      <FileName>Effects\EffectBinding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

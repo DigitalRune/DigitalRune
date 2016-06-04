@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Level of Detail (LOD)                                                                    Assembly: DigitalRune.Graphics                   Namespace: DigitalRune.Graphics.SceneGraph">
+    <Position X="0.5" Y="0.5" Height="0.615" Width="2.82" />
+  </Comment>
+  <Comment CommentText="LOD Settings                                                                 Assembly: DigitalRune.Graphics                   Namespace: DigitalRune.Graphics">
+    <Position X="5.75" Y="0.5" Height="0.615" Width="2.122" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.RenderContext">
+    <Position X="5.75" Y="1.5" Width="1.75" />
+    <Members>
+      <Field Name="_data" Hidden="true" />
+      <Field Name="_lodBias" Hidden="true" />
+      <Field Name="_lodHysteresis" Hidden="true" />
+      <Field Name="_renderPass" Hidden="true" />
+      <Property Name="CameraNode" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Property Name="Data" Hidden="true" />
+      <Property Name="DeltaTime" Hidden="true" />
+      <Property Name="Frame" Hidden="true" />
+      <Property Name="GBuffer0" Hidden="true" />
+      <Property Name="GBuffer1" Hidden="true" />
+      <Property Name="GBuffer2" Hidden="true" />
+      <Property Name="GBuffer3" Hidden="true" />
+      <Property Name="GraphicsService" Hidden="true" />
+      <Property Name="LightBuffer0" Hidden="true" />
+      <Property Name="LightBuffer1" Hidden="true" />
+      <Property Name="MaterialBinding" Hidden="true" />
+      <Property Name="MaterialInstanceBinding" Hidden="true" />
+      <Property Name="PassIndex" Hidden="true" />
+      <Property Name="PresentationTarget" Hidden="true" />
+      <Method Name="RenderContext" Hidden="true" />
+      <Property Name="RenderPass" Hidden="true" />
+      <Field Name="RenderPassHash" Hidden="true" />
+      <Property Name="RenderTarget" Hidden="true" />
+      <Method Name="Reset" Hidden="true" />
+      <Field Name="ScaledLodHysteresis" Hidden="true" />
+      <Property Name="Scene" Hidden="true" />
+      <Property Name="SceneNode" Hidden="true" />
+      <Property Name="Screen" Hidden="true" />
+      <Method Name="Set" Hidden="true" />
+      <Property Name="ShadowNear" Hidden="true" />
+      <Property Name="SourceTexture" Hidden="true" />
+      <Property Name="Technique" Hidden="true" />
+      <Property Name="Time" Hidden="true" />
+      <Property Name="UserData" Hidden="true" />
+      <Property Name="Viewport" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EQAgFgBAhAAEBAgppAgKACBABBQMRBAAIAiBAACIATE=</HashCode>
+      <FileName>RenderContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.CameraNode">
+    <Position X="5.75" Y="4" Width="1.5" />
+    <Members>
+      <Field Name="_camera" Hidden="true" />
+      <Field Name="_lodBias" Hidden="true" />
+      <Field Name="_view" Hidden="true" />
+      <Field Name="_viewDependentData" Hidden="true" />
+      <Field Name="_viewInverse" Hidden="true" />
+      <Property Name="Camera" Hidden="true" />
+      <Method Name="CameraNode" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="GetInstances" Hidden="true" />
+      <Field Name="Instances" Hidden="true" />
+      <Field Name="InstancesReadOnly" Hidden="true" />
+      <Method Name="InvalidateViewDependentData" Hidden="true" />
+      <Method Name="RemoveViewDependentData" Hidden="true" />
+      <Method Name="UpdateView" Hidden="true" />
+      <Property Name="View" Hidden="true" />
+      <Property Name="ViewDependentData" Hidden="true" />
+      <Property Name="ViewInverse" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAwAAACAICAAAABAAAEAABgAJIAAAQCCAACAAADA=</HashCode>
+      <FileName>SceneGraph\CameraNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.LodGroupNode">
+    <Position X="0.5" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_suppressUpdates" Hidden="true" />
+      <Method Name="BeginUpdate" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Field Name="DefaultCapacity" Hidden="true" />
+      <Method Name="EndUpdate" Hidden="true" />
+      <Method Name="GetBoundingShape" Hidden="true" />
+      <Method Name="GetOcclusionProxy" Hidden="true" />
+      <Method Name="IOcclusionProxy.GetOccluder" Hidden="true" />
+      <Property Name="IOcclusionProxy.HasOccluder" Hidden="true" />
+      <Method Name="IOcclusionProxy.UpdateOccluder" Hidden="true" />
+      <Method Name="LodGroupNode" Hidden="true" />
+      <Method Name="OnPoseChanged" Hidden="true" />
+      <Method Name="OnShapeChanged" Hidden="true" />
+      <Method Name="UpdateBoundingShape" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Levels" Type="DigitalRune.Graphics.SceneGraph.LodCollection">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.048" Y="0.07" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAACEYAIAAAAAAAEAAEAEAAAAAMABCBAEAAIAAAADA=</HashCode>
+      <FileName>SceneGraph\LOD\LodGroupNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Levels" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.169" Collapsed="true" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.LodCollection" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_array" Hidden="true" />
+      <Field Name="_ignoreChanges" Hidden="true" />
+      <Field Name="_owner" Hidden="true" />
+      <Field Name="_size" Hidden="true" />
+      <Method Name="AttachNode" Hidden="true" />
+      <Method Name="DetachNode" Hidden="true" />
+      <Method Name="GetCameraNode" Hidden="true" />
+      <Method Name="GetEnumerator" Hidden="true" />
+      <Method Name="GetLodData" Hidden="true" />
+      <Method Name="ICollection&lt;LodEntry&gt;.Add" Hidden="true" />
+      <Method Name="ICollection&lt;LodEntry&gt;.Contains" Hidden="true" />
+      <Method Name="ICollection&lt;LodEntry&gt;.CopyTo" Hidden="true" />
+      <Property Name="ICollection&lt;LodEntry&gt;.IsReadOnly" Hidden="true" />
+      <Method Name="ICollection&lt;LodEntry&gt;.Remove" Hidden="true" />
+      <Method Name="IEnumerable.GetEnumerator" Hidden="true" />
+      <Method Name="IEnumerable&lt;LodEntry&gt;.GetEnumerator" Hidden="true" />
+      <Method Name="LodCollection" Hidden="true" />
+      <Method Name="OnLodSceneChanged" Hidden="true" />
+      <Method Name="Resize" Hidden="true" />
+      <Method Name="SelectLod" Hidden="true" />
+      <Method Name="SetPose" Hidden="true" />
+      <Method Name="SetProxy" Hidden="true" />
+      <Method Name="SetScale" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Struct Name="DigitalRune.Graphics.SceneGraph.LodCollection.Enumerator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SceneGraph\LOD\LodCollection.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>IEIAjIAAACBCCBAACQBABASAQAAAIAIEAEAAAgNAAAA=</HashCode>
+      <FileName>SceneGraph\LOD\LodCollection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Struct Name="DigitalRune.Graphics.SceneGraph.LodSelection">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <Members>
+      <Method Name="LodSelection" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgIAAAAAAAAAAAAAgACAgAAAAABAAIAAAAAAAAAAAiA=</HashCode>
+      <FileName>SceneGraph\LOD\LodSelection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="DigitalRune.Graphics.SceneGraph.LodEntry">
+    <Position X="3.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAIBAAAAAAAEAAiA=</HashCode>
+      <FileName>SceneGraph\LOD\LodEntry.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

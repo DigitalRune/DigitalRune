@@ -1,0 +1,736 @@
+﻿
+#----------------------------- Global Properties ----------------------------#
+
+/outputDir:bin\Windows
+/intermediateDir:obj\Windows
+/platform:Windows
+/config:
+/profile:HiDef
+/compress:False
+
+#-------------------------------- References --------------------------------#
+
+/reference:..\DigitalRune.Animation.Content.Pipeline\bin\MonoGame\Windows\Release\DigitalRune.Animation.Content.Pipeline.dll
+/reference:..\DigitalRune.Mathematics.Content.Pipeline\bin\MonoGame\Windows\Release\DigitalRune.Mathematics.Content.Pipeline.dll
+/reference:..\DigitalRune.Geometry.Content.Pipeline\bin\MonoGame\Windows\Release\DigitalRune.Geometry.Content.Pipeline.dll
+/reference:..\DigitalRune.Graphics.Content.Pipeline\bin\MonoGame\Windows\Release\DigitalRune.Graphics.Content.Pipeline.dll
+/reference:..\DigitalRune.Game.UI.Content.Pipeline\bin\MonoGame\Windows\Release\DigitalRune.Game.UI.Content.Pipeline.dll
+
+#---------------------------------- Content ---------------------------------#
+
+#begin DigitalRune/Billboard.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Billboard.fx
+
+#begin DigitalRune/Decals/GBuffer.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Decals/GBuffer.fx
+
+#begin DigitalRune/Decals/GBufferAlphaTest.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Decals/GBufferAlphaTest.fx
+
+#begin DigitalRune/Decals/GBufferAlphaTestNormal.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Decals/GBufferAlphaTestNormal.fx
+
+#begin DigitalRune/Decals/GBufferNormal.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Decals/GBufferNormal.fx
+
+#begin DigitalRune/Decals/Material.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Decals/Material.fx
+
+#begin DigitalRune/Decals/MaterialAlphaTest.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Decals/MaterialAlphaTest.fx
+
+#begin DigitalRune/Decals/MaterialAlphaTestEmissive.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Decals/MaterialAlphaTestEmissive.fx
+
+#begin DigitalRune/Decals/MaterialEmissive.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Decals/MaterialEmissive.fx
+
+#begin DigitalRune/Deferred/AmbientLight.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Deferred/AmbientLight.fx
+
+#begin DigitalRune/Deferred/CascadedShadowMask.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Optimize
+/build:DigitalRune/Deferred/CascadedShadowMask.fx
+
+#begin DigitalRune/Deferred/ClearGBuffer.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Deferred/ClearGBuffer.fx
+
+#begin DigitalRune/Deferred/CubeMapShadowMask.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Deferred/CubeMapShadowMask.fx
+
+#begin DigitalRune/Deferred/DirectionalLight.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Deferred/DirectionalLight.fx
+
+#begin DigitalRune/Deferred/Fog.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Deferred/Fog.fx
+
+#begin DigitalRune/Deferred/ImageBasedLight.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Deferred/ImageBasedLight.fx
+
+#begin DigitalRune/Deferred/PointLight.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Deferred/PointLight.fx
+
+#begin DigitalRune/Deferred/ProjectorLight.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Deferred/ProjectorLight.fx
+
+#begin DigitalRune/Deferred/RebuildZBuffer.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Deferred/RebuildZBuffer.fx
+
+#begin DigitalRune/Deferred/Spotlight.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Deferred/Spotlight.fx
+
+#begin DigitalRune/Deferred/StandardShadowMask.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Deferred/StandardShadowMask.fx
+
+#begin DigitalRune/Line.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Line.fx
+
+#begin DigitalRune/Materials/Forward.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/Forward.fx
+
+#begin DigitalRune/Materials/ForwardEnv.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/ForwardEnv.fx
+
+#begin DigitalRune/Materials/ForwardMorphSkinned.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/ForwardMorphSkinned.fx
+
+#begin DigitalRune/Materials/ForwardTwoSided.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/ForwardTwoSided.fx
+
+#begin DigitalRune/Materials/GBuffer.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/GBuffer.fx
+
+#begin DigitalRune/Materials/GBufferAlphaTest.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/GBufferAlphaTest.fx
+
+#begin DigitalRune/Materials/GBufferAlphaTestNormal.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/GBufferAlphaTestNormal.fx
+
+#begin DigitalRune/Materials/GBufferMorphNormalSkinned.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/GBufferMorphNormalSkinned.fx
+
+#begin DigitalRune/Materials/GBufferMorphSkinned.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/GBufferMorphSkinned.fx
+
+#begin DigitalRune/Materials/GBufferNormal.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/GBufferNormal.fx
+
+#begin DigitalRune/Materials/GBufferNormalSkinned.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/GBufferNormalSkinned.fx
+
+#begin DigitalRune/Materials/GBufferNormalTransparent.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/GBufferNormalTransparent.fx
+
+#begin DigitalRune/Materials/GBufferSkinned.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/GBufferSkinned.fx
+
+#begin DigitalRune/Materials/GBufferTransparent.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/GBufferTransparent.fx
+
+#begin DigitalRune/Materials/Matcap.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/Matcap.fx
+
+#begin DigitalRune/Materials/MatcapNormal.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/MatcapNormal.fx
+
+#begin DigitalRune/Materials/MatcapNormalSkinned.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/MatcapNormalSkinned.fx
+
+#begin DigitalRune/Materials/MatcapSkinned.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/MatcapSkinned.fx
+
+#begin DigitalRune/Materials/Material.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/Material.fx
+
+#begin DigitalRune/Materials/MaterialAlphaTest.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/MaterialAlphaTest.fx
+
+#begin DigitalRune/Materials/MaterialAlphaTestEmissive.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/MaterialAlphaTestEmissive.fx
+
+#begin DigitalRune/Materials/MaterialEmissive.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/MaterialEmissive.fx
+
+#begin DigitalRune/Materials/MaterialEmissiveSkinned.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/MaterialEmissiveSkinned.fx
+
+#begin DigitalRune/Materials/MaterialMorphSkinned.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/MaterialMorphSkinned.fx
+
+#begin DigitalRune/Materials/MaterialSkinned.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/MaterialSkinned.fx
+
+#begin DigitalRune/Materials/MaterialTransparent.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/MaterialTransparent.fx
+
+#begin DigitalRune/Materials/Occluder.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/Occluder.fx
+
+#begin DigitalRune/Materials/OccluderSkinned.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/OccluderSkinned.fx
+
+#begin DigitalRune/Materials/ShadowMap.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/ShadowMap.fx
+
+#begin DigitalRune/Materials/ShadowMapAlphaTest.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/ShadowMapAlphaTest.fx
+
+#begin DigitalRune/Materials/ShadowMapAlphaTestSkinned.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/ShadowMapAlphaTestSkinned.fx
+
+#begin DigitalRune/Materials/ShadowMapMorphSkinned.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/ShadowMapMorphSkinned.fx
+
+#begin DigitalRune/Materials/ShadowMapSkinned.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Materials/ShadowMapSkinned.fx
+
+#begin DigitalRune/NormalsFittingTexture.dds
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=False
+/processorParam:InputGamma=1
+/processorParam:OutputGamma=1
+/processorParam:PremultiplyAlpha=False
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=NoChange
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:DigitalRune/NormalsFittingTexture.dds
+
+#begin DigitalRune/OcclusionCulling.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/OcclusionCulling.fx
+
+#begin DigitalRune/PostProcessing/BloomFilter.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/BloomFilter.fx
+
+#begin DigitalRune/PostProcessing/Blur.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/Blur.fx
+
+#begin DigitalRune/PostProcessing/CameraMotionBlur.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/CameraMotionBlur.fx
+
+#begin DigitalRune/PostProcessing/CieSkyFilter.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/CieSkyFilter.fx
+
+#begin DigitalRune/PostProcessing/ColorCorrectionFilter.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/ColorCorrectionFilter.fx
+
+#begin DigitalRune/PostProcessing/ColorEncoder.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/ColorEncoder.fx
+
+#begin DigitalRune/PostProcessing/CopyFilter.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/CopyFilter.fx
+
+#begin DigitalRune/PostProcessing/DepthOfFieldFilter.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/DepthOfFieldFilter.fx
+
+#begin DigitalRune/PostProcessing/DownsampleFilter.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/DownsampleFilter.fx
+
+#begin DigitalRune/PostProcessing/EdgeFilter.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/EdgeFilter.fx
+
+#begin DigitalRune/PostProcessing/FxaaFilter.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/FxaaFilter.fx
+
+#begin DigitalRune/PostProcessing/GodRayFilter.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/GodRayFilter.fx
+
+#begin DigitalRune/PostProcessing/GrainFilter.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/GrainFilter.fx
+
+#begin DigitalRune/PostProcessing/HdrFilter.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/HdrFilter.fx
+
+#begin DigitalRune/PostProcessing/HorizontalBlur.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/HorizontalBlur.fx
+
+#begin DigitalRune/PostProcessing/KawaseBlur.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/KawaseBlur.fx
+
+#begin DigitalRune/PostProcessing/LuminanceFilter.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/LuminanceFilter.fx
+
+#begin DigitalRune/PostProcessing/MadFilter.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/MadFilter.fx
+
+#begin DigitalRune/PostProcessing/NormalMapDistortionFilter.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/NormalMapDistortionFilter.fx
+
+#begin DigitalRune/PostProcessing/ObjectMotionBlur.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/ObjectMotionBlur.fx
+
+#begin DigitalRune/PostProcessing/RadialBlur.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/RadialBlur.fx
+
+#begin DigitalRune/PostProcessing/SaoFilter.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/SaoFilter.fx
+
+#begin DigitalRune/PostProcessing/SaturationFilter.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/SaturationFilter.fx
+
+#begin DigitalRune/PostProcessing/SepiaFilter.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/SepiaFilter.fx
+
+#begin DigitalRune/PostProcessing/SharpeningFilter.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/SharpeningFilter.fx
+
+#begin DigitalRune/PostProcessing/SimpleMotionBlur.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/SimpleMotionBlur.fx
+
+#begin DigitalRune/PostProcessing/SmaaAreaTexDX9.dds
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=False
+/processorParam:InputGamma=1
+/processorParam:OutputGamma=1
+/processorParam:PremultiplyAlpha=False
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=NoChange
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:DigitalRune/PostProcessing/SmaaAreaTexDX9.dds
+
+#begin DigitalRune/PostProcessing/SmaaFilter.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/SmaaFilter.fx
+
+#begin DigitalRune/PostProcessing/SmaaSearchTex.dds
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=False
+/processorParam:InputGamma=1
+/processorParam:OutputGamma=1
+/processorParam:PremultiplyAlpha=False
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=NoChange
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:DigitalRune/PostProcessing/SmaaSearchTex.dds
+
+#begin DigitalRune/PostProcessing/SsaoFilter.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/SsaoFilter.fx
+
+#begin DigitalRune/PostProcessing/UnsharpMaskingFilter.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/UnsharpMaskingFilter.fx
+
+#begin DigitalRune/PostProcessing/UpsampleFilter.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/PostProcessing/UpsampleFilter.fx
+
+#begin DigitalRune/Sky/CloudLayer.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Sky/CloudLayer.fx
+
+#begin DigitalRune/Sky/GradientSky.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Sky/GradientSky.fx
+
+#begin DigitalRune/Sky/GradientTextureSky.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Sky/GradientTextureSky.fx
+
+#begin DigitalRune/Sky/ScatteringSky.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Sky/ScatteringSky.fx
+
+#begin DigitalRune/Sky/Skybox.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Sky/Skybox.fx
+
+#begin DigitalRune/Sky/SkyObject.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Sky/SkyObject.fx
+
+#begin DigitalRune/Sky/Starfield.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Sky/Starfield.fx
+
+#begin DigitalRune/SpriteEffect.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/SpriteEffect.fx
+
+#begin DigitalRune/Terrain/TerrainClearLayer.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Terrain/TerrainClearLayer.fx
+
+#begin DigitalRune/Terrain/TerrainDecalLayer.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Terrain/TerrainDecalLayer.fx
+
+#begin DigitalRune/Terrain/TerrainGBuffer.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Terrain/TerrainGBuffer.fx
+
+#begin DigitalRune/Terrain/TerrainGBufferHoles.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Terrain/TerrainGBufferHoles.fx
+
+#begin DigitalRune/Terrain/TerrainGBufferHolesPom.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Terrain/TerrainGBufferHolesPom.fx
+
+#begin DigitalRune/Terrain/TerrainGBufferPom.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Terrain/TerrainGBufferPom.fx
+
+#begin DigitalRune/Terrain/TerrainGeometryLayer.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Terrain/TerrainGeometryLayer.fx
+
+#begin DigitalRune/Terrain/TerrainHoleLayer.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Terrain/TerrainHoleLayer.fx
+
+#begin DigitalRune/Terrain/TerrainMaterial.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Terrain/TerrainMaterial.fx
+
+#begin DigitalRune/Terrain/TerrainMaterialHoles.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Terrain/TerrainMaterialHoles.fx
+
+#begin DigitalRune/Terrain/TerrainMaterialHolesPom.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Terrain/TerrainMaterialHolesPom.fx
+
+#begin DigitalRune/Terrain/TerrainMaterialLayer.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Terrain/TerrainMaterialLayer.fx
+
+#begin DigitalRune/Terrain/TerrainMaterialPom.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Terrain/TerrainMaterialPom.fx
+
+#begin DigitalRune/Terrain/TerrainRoadLayer.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Terrain/TerrainRoadLayer.fx
+
+#begin DigitalRune/Terrain/TerrainShadowMap.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Terrain/TerrainShadowMap.fx
+
+#begin DigitalRune/Terrain/TerrainShadowMapHoles.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Terrain/TerrainShadowMapHoles.fx
+
+#begin DigitalRune/Water/Ocean.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune/Water/Ocean.fx
+
+#begin DigitalRune/Water/Water.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Optimize
+/build:DigitalRune/Water/Water.fx

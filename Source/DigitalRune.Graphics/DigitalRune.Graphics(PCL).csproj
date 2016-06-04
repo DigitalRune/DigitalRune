@@ -1,0 +1,514 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F387FA64-CF76-4B23-BD42-444DA0771F54}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.Graphics</RootNamespace>
+    <AssemblyName>DigitalRune.Graphics</AssemblyName>
+    <TargetFrameworkVersion Condition=" '$(OS)' == 'Windows_NT' ">v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition=" '$(OS)' == 'Unix' ">v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile Condition=" '$(OS)' == 'Windows_NT' ">Profile328</TargetFrameworkProfile>
+    <TargetFrameworkProfile Condition=" '$(OS)' == 'Unix' ">Profile78</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <BaseIntermediateOutputPath>obj\.NETPortable\Debug\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath Condition=" '$(OS)' == 'Windows_NT' ">bin\.NETPortable\Debug\</OutputPath>
+    <OutputPath Condition=" '$(OS)' == 'Unix' ">bin\.NETPortable_iOS\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;PORTABLE;MONOGAME;ANIMATION;PARTICLES</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\.NETPortable\Debug\DigitalRune.Graphics.xml</DocumentationFile>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <BaseIntermediateOutputPath>obj\.NETPortable\Release\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath Condition=" '$(OS)' == 'Windows_NT' ">bin\.NETPortable\Release\</OutputPath>
+    <OutputPath Condition=" '$(OS)' == 'Unix' ">bin\.NETPortable_iOS\Release\</OutputPath>
+    <DefineConstants>TRACE;PORTABLE;MONOGAME;ANIMATION;PARTICLES</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\.NETPortable\Release\DigitalRune.Graphics.xml</DocumentationFile>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties ProjectLinkReference="9508e261-5ac5-4eb7-97f9-bc4ff6717708" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune.Animation\DigitalRune.Animation%28PCL%29.csproj">
+      <Project>{FCA3D67B-A19A-4398-A126-171E5E1217F1}</Project>
+      <Name>DigitalRune.Animation(PCL)</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Geometry\DigitalRune.Geometry%28PCL%29.csproj">
+      <Project>{8A8FE6D4-0906-4FC3-847C-31387DFDCB2C}</Project>
+      <Name>DigitalRune.Geometry(PCL)</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Mathematics\DigitalRune.Mathematics%28PCL%29.csproj">
+      <Project>{A5833DE3-70A9-4258-966F-77456D6C7900}</Project>
+      <Name>DigitalRune.Mathematics(PCL)</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Particles\DigitalRune.Particles%28PCL%29.csproj">
+      <Project>{156169B7-AF63-478C-90CB-F6652B867E4F}</Project>
+      <Name>DigitalRune.Particles(PCL)</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune\DigitalRune%28PCL%29.csproj">
+      <Project>{05D82E85-901A-42CE-8D0A-DAF8B7F0168B}</Project>
+      <Name>DigitalRune(PCL)</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MonoGame\MonoGame.Framework\MonoGame.Framework.PCL.csproj">
+      <Project>{FFCCDE91-500E-47EF-8342-5CA5C85A67FE}</Project>
+      <Name>MonoGame.Framework.PCL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Content\AssetLoadHelper.cs" />
+    <Compile Include="Content\EffectBindingReader.cs" />
+    <Compile Include="Content\LodGroupNodeReader.cs" />
+    <Compile Include="Content\MaterialReader.cs" />
+    <Compile Include="Content\MeshNodeReader.cs" />
+    <Compile Include="Content\MeshReader.cs" />
+    <Compile Include="Content\ModelNodeReader.cs" />
+    <Compile Include="Content\MorphTargetReader.cs" />
+    <Compile Include="Content\NamespaceDoc.cs" />
+    <Compile Include="Content\OccluderNodeReader.cs" />
+    <Compile Include="Content\OccluderReader.cs" />
+    <Compile Include="Content\SceneNodeReader.cs" />
+    <Compile Include="Content\SubmeshReader.cs" />
+    <CodeAnalysisDictionary Include="..\DigitalRune\CustomDictionary.xml">
+      <Link>CustomDictionary.xml</Link>
+    </CodeAnalysisDictionary>
+    <Compile Include="Data\Billboards, Particles\Billboard.cs" />
+    <Compile Include="Data\Billboards, Particles\BillboardNormal.cs" />
+    <Compile Include="Data\Billboards, Particles\BillboardOrientation.cs" />
+    <Compile Include="Data\Billboards, Particles\ImageBillboard.cs" />
+    <Compile Include="Data\Billboards, Particles\ParticleType.cs" />
+    <Compile Include="Data\Billboards, Particles\TextBillboard.cs" />
+    <Compile Include="Data\Camera\Camera.cs" />
+    <Compile Include="Data\Camera\OrthographicProjection.cs" />
+    <Compile Include="Data\Camera\PerspectiveProjection.cs" />
+    <Compile Include="Data\Camera\Projection.cs" />
+    <Compile Include="Data\DecalOptions.cs" />
+    <Compile Include="Data\Figures\CompositeFigure.cs" />
+    <Compile Include="Data\Figures\EllipseFigure.cs" />
+    <Compile Include="Data\Figures\Figure.cs" />
+    <Compile Include="Data\Figures\FigureDataCollection.cs" />
+    <Compile Include="Data\Figures\FigureRenderData.cs" />
+    <Compile Include="Data\Figures\PathFigure2F.cs" />
+    <Compile Include="Data\Figures\PathFigure3F.cs" />
+    <Compile Include="Data\Figures\RectangleFigure.cs" />
+    <Compile Include="Data\Figures\StrokedSegment.cs" />
+    <Compile Include="Data\Figures\TransformedFigure.cs" />
+    <Compile Include="Data\Fog.cs" />
+    <Compile Include="Data\LensFlares\LensFlare.cs" />
+    <Compile Include="Data\LensFlares\LensFlareElement.cs" />
+    <Compile Include="Data\LensFlares\LensFlareElementCollection.cs" />
+    <Compile Include="Data\Lights\AmbientLight.cs" />
+    <Compile Include="Data\Lights\DirectionalLight.cs" />
+    <Compile Include="Data\Lights\ImageBasedLight.cs" />
+    <Compile Include="Data\Lights\Light.cs" />
+    <Compile Include="Data\Lights\PointLight.cs" />
+    <Compile Include="Data\Lights\ProjectorLight.cs" />
+    <Compile Include="Data\Lights\Spotlight.cs" />
+    <Compile Include="Data\Meshes\Material.cs" />
+    <Compile Include="Data\Meshes\MaterialCollection.cs" />
+    <Compile Include="Data\Meshes\Material_Cloning.cs" />
+    <Compile Include="Data\Meshes\Material_IDictionary.cs" />
+    <Compile Include="Data\Meshes\Mesh.cs" />
+    <Compile Include="Data\Meshes\MeshHelper.cs" />
+    <Compile Include="Data\Meshes\MeshHelper_Batching.cs" />
+    <Compile Include="Data\Meshes\Morphing\MorphTarget.cs" />
+    <Compile Include="Data\Meshes\Morphing\MorphTargetCollection.cs" />
+    <Compile Include="Data\Meshes\Morphing\MorphWeight.cs" />
+    <Compile Include="Data\Meshes\Morphing\MorphWeightCollection.cs" />
+    <Compile Include="Data\Meshes\Primitives\MeshHelper_Box.cs" />
+    <Compile Include="Data\Meshes\Primitives\MeshHelper_BoxLines.cs" />
+    <Compile Include="Data\Meshes\Primitives\MeshHelper_CircleLines.cs" />
+    <Compile Include="Data\Meshes\Primitives\MeshHelper_Cone.cs" />
+    <Compile Include="Data\Meshes\Primitives\MeshHelper_ConeLines.cs" />
+    <Compile Include="Data\Meshes\Primitives\MeshHelper_Cylinder.cs" />
+    <Compile Include="Data\Meshes\Primitives\MeshHelper_CylinderLines.cs" />
+    <Compile Include="Data\Meshes\Primitives\MeshHelper_Grid.cs" />
+    <Compile Include="Data\Meshes\Primitives\MeshHelper_Hemisphere.cs" />
+    <Compile Include="Data\Meshes\Primitives\MeshHelper_HemisphereLines.cs" />
+    <Compile Include="Data\Meshes\Primitives\MeshHelper_Icosphere.cs" />
+    <Compile Include="Data\Meshes\Primitives\MeshHelper_SpherePatch.cs" />
+    <Compile Include="Data\Meshes\Primitives\MeshHelper_Teapot.cs" />
+    <Compile Include="Data\Meshes\Primitives\MeshHelper_Torus.cs" />
+    <Compile Include="Data\Meshes\Primitives\MeshHelper_UVSphere.cs" />
+    <Compile Include="Data\Meshes\Primitives\MeshHelper_UncappedCylinder.cs" />
+    <Compile Include="Data\Meshes\Primitives\Teapot.cs" />
+    <Compile Include="Data\Meshes\Submesh.cs" />
+    <Compile Include="Data\Meshes\SubmeshCollection.cs" />
+    <Compile Include="Data\Meshes\VertexBufferEx.cs" />
+    <Compile Include="Data\Occluder.cs" />
+    <Compile Include="Data\RenderToTexture.cs" />
+    <Compile Include="Data\Shadows\CascadedShadow.cs" />
+    <Compile Include="Data\Shadows\CompositeShadow.cs" />
+    <Compile Include="Data\Shadows\CubeMapShadow.cs" />
+    <Compile Include="Data\Shadows\Shadow.cs" />
+    <Compile Include="Data\Shadows\ShadowCascadeSelection.cs" />
+    <Compile Include="Data\Shadows\ShadowCollection.cs" />
+    <Compile Include="Data\Shadows\StandardShadow.cs" />
+    <Compile Include="Data\Sky\CieSkyParameters.cs" />
+    <Compile Include="Data\Sky\CloudMap.cs" />
+    <Compile Include="Data\Sky\CloudMapLayer.cs" />
+    <Compile Include="Data\Sky\LayeredCloudMap.cs" />
+    <Compile Include="Data\Sky\UserDefinedCloudMap.cs" />
+    <Compile Include="Data\Sprites\ImageSprite.cs" />
+    <Compile Include="Data\Sprites\Sprite.cs" />
+    <Compile Include="Data\Sprites\TextSprite.cs" />
+    <Compile Include="Data\Star.cs" />
+    <Compile Include="Data\Terrain\IInternalTerrainLayer.cs" />
+    <Compile Include="Data\Terrain\Terrain.cs" />
+    <Compile Include="Data\Terrain\TerrainClearLayer.cs" />
+    <Compile Include="Data\Terrain\TerrainClipmap.cs" />
+    <Compile Include="Data\Terrain\TerrainDecalLayer.cs" />
+    <Compile Include="Data\Terrain\TerrainEffectBinder.cs" />
+    <Compile Include="Data\Terrain\TerrainEffectInterpreter.cs" />
+    <Compile Include="Data\Terrain\TerrainEffectParameterSemantics.cs" />
+    <Compile Include="Data\Terrain\TerrainHelper.cs" />
+    <Compile Include="Data\Terrain\TerrainLayer.cs" />
+    <Compile Include="Data\Terrain\TerrainLayerCollection.cs" />
+    <Compile Include="Data\Terrain\TerrainMaterialLayer.cs" />
+    <Compile Include="Data\Terrain\TerrainRoadLayer.cs" />
+    <Compile Include="Data\Terrain\TerrainRoadLayer_Helpers.cs" />
+    <Compile Include="Data\Terrain\TerrainRoadPoint.cs" />
+    <Compile Include="Data\Terrain\TerrainTile.cs" />
+    <Compile Include="Data\Terrain\TerrainTileCollection.cs" />
+    <Compile Include="Data\Water\ImpactWaves.cs" />
+    <Compile Include="Data\Water\OceanWaves.cs" />
+    <Compile Include="Data\Water\UserDefinedWaves.cs" />
+    <Compile Include="Data\Water\Water.cs" />
+    <Compile Include="Data\Water\WaterFlow.cs" />
+    <Compile Include="Data\Water\WaterWaves.cs" />
+    <Compile Include="DelegateGraphicsScreen.cs" />
+    <Compile Include="Effects\Bindings\ByNameTechniqueBinding.cs" />
+    <Compile Include="Effects\Bindings\ConstParameterArrayBinding.cs" />
+    <Compile Include="Effects\Bindings\ConstParameterBinding.cs" />
+    <Compile Include="Effects\Bindings\DelegateParameterArrayBinding.cs" />
+    <Compile Include="Effects\Bindings\DelegateParameterBinding.cs" />
+    <Compile Include="Effects\Bindings\DirectionalLightShadowParameterBinding.cs" />
+    <Compile Include="Effects\Bindings\EffectParameterArrayBinding{T}.cs" />
+    <Compile Include="Effects\Bindings\EffectParameterBinding.cs" />
+    <Compile Include="Effects\Bindings\EffectParameterBindingCollection.cs" />
+    <Compile Include="Effects\Bindings\EffectParameterBinding_Static.cs" />
+    <Compile Include="Effects\Bindings\EffectParameterBinding{T}.cs" />
+    <Compile Include="Effects\Bindings\EffectPassBinding.cs" />
+    <Compile Include="Effects\Bindings\EffectPassEnumerator.cs" />
+    <Compile Include="Effects\Bindings\EffectTechniqueBinding.cs" />
+    <Compile Include="Effects\Bindings\NullParameterArrayBinding.cs" />
+    <Compile Include="Effects\Bindings\NullParameterBinding.cs" />
+    <Compile Include="Effects\Bindings\SkeletonPoseParameterBinding.cs" />
+    <Compile Include="Effects\Descriptions\EffectParameterDescription.cs" />
+    <Compile Include="Effects\Descriptions\EffectParameterDescriptionCollection.cs" />
+    <Compile Include="Effects\Descriptions\EffectParameterHint.cs" />
+    <Compile Include="Effects\Descriptions\EffectTechniqueDescription.cs" />
+    <Compile Include="Effects\Descriptions\EffectTechniqueDescriptionCollection.cs" />
+    <Compile Include="Effects\EffectBinding.cs" />
+    <Compile Include="Effects\EffectBindingException.cs" />
+    <Compile Include="Effects\EffectBinding_Cloning.cs" />
+    <Compile Include="Effects\EffectBinding_ParameterBindings.cs" />
+    <Compile Include="Effects\EffectEx.cs" />
+    <Compile Include="Effects\EffectHelper.cs" />
+    <Compile Include="Effects\EffectHelper_Bindings.cs" />
+    <Compile Include="Effects\EffectHelper_EffectEx.cs" />
+    <Compile Include="Effects\NamespaceDoc.cs" />
+    <Compile Include="Effects\Setup\DXSAS\Dxsas08EffectInterpreter.cs" />
+    <Compile Include="Effects\Setup\DXSAS\Dxsas10EffectInterpreter.cs" />
+    <Compile Include="Effects\Setup\Default\DefaultEffectBinder.cs" />
+    <Compile Include="Effects\Setup\Default\DefaultEffectInterpreter.cs" />
+    <Compile Include="Effects\Setup\Default\DefaultEffectParameterSemantics.cs" />
+    <Compile Include="Effects\Setup\DictionaryEffectBinder.cs" />
+    <Compile Include="Effects\Setup\DictionaryEffectInterpreter.cs" />
+    <Compile Include="Effects\Setup\EffectBinderCollection.cs" />
+    <Compile Include="Effects\Setup\EffectInterpreterCollection.cs" />
+    <Compile Include="Effects\Setup\IEffectBinder.cs" />
+    <Compile Include="Effects\Setup\IEffectInterpreter.cs" />
+    <Compile Include="Effects\Setup\Scene\SceneEffectBinder.cs" />
+    <Compile Include="Effects\Setup\Scene\SceneEffectInterpreter.cs" />
+    <Compile Include="Effects\Setup\Scene\SceneEffectParameterSemantics.cs" />
+    <Compile Include="Effects\Setup\XNA\StockEffectBinder.cs" />
+    <Compile Include="Effects\Setup\XNA\StockEffectInterpreter.cs" />
+    <Compile Include="Effects\StockEffects\AlphaTestEffectBinding.cs" />
+    <Compile Include="Effects\StockEffects\AlphaTestEffectTechniqueBinding.cs" />
+    <Compile Include="Effects\StockEffects\AlphaTestParameterBinding.cs" />
+    <Compile Include="Effects\StockEffects\BasicEffectBinding.cs" />
+    <Compile Include="Effects\StockEffects\BasicEffectTechniqueBinding.cs" />
+    <Compile Include="Effects\StockEffects\DualTextureEffectBinding.cs" />
+    <Compile Include="Effects\StockEffects\DualTextureEffectTechniqueBinding.cs" />
+    <Compile Include="Effects\StockEffects\EnvironmentMapEffectBinding.cs" />
+    <Compile Include="Effects\StockEffects\EnvironmentMapEffectTechniqueBinding.cs" />
+    <Compile Include="Effects\StockEffects\FogVectorParameterBinding.cs" />
+    <Compile Include="Effects\StockEffects\IStockEffectBinding.cs" />
+    <Compile Include="Effects\StockEffects\SkinnedEffectBinding.cs" />
+    <Compile Include="Effects\StockEffects\SkinnedEffectTechniqueBinding.cs" />
+    <Compile Include="Effects\StockEffects\StockEffectWrapper.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="GraphicsException.cs" />
+    <Compile Include="GraphicsManager.cs" />
+    <Compile Include="GraphicsResourceEx.cs" />
+    <Compile Include="GraphicsScreen.cs" />
+    <Compile Include="GraphicsScreenCollection.cs" />
+    <Compile Include="GraphicsScreenCoverage.cs" />
+    <Compile Include="IGraphicsService.cs" />
+    <Compile Include="IRenderable.cs" />
+    <Compile Include="Interop\D3D11Helper.cs" />
+    <Compile Include="Interop\D3D11Image.cs" />
+    <Compile Include="Interop\D3D9.cs" />
+    <Compile Include="Interop\D3DImagePresentationTarget.cs" />
+    <Compile Include="Interop\ElementPresentationTarget.cs" />
+    <Compile Include="Interop\FormsPresentationTarget.cs" />
+    <Compile Include="Interop\IPresentationTarget.cs" />
+    <Compile Include="Interop\NamespaceDoc.cs" />
+    <Compile Include="Interop\NativeMethods.cs" />
+    <Compile Include="Interop\PresentationTargetCollection.cs" />
+    <Compile Include="Interop\SwapChainPresentationTarget.cs" />
+    <Compile Include="Interop\WindowMessages.cs" />
+    <Compile Include="Interop\WpfEnvironment.cs" />
+    <Compile Include="Misc\Encodings\ColorEncoding.cs" />
+    <Compile Include="Misc\Encodings\LogLuvEncoding.cs" />
+    <Compile Include="Misc\Encodings\RgbEncoding.cs" />
+    <Compile Include="Misc\Encodings\RgbeEncoding.cs" />
+    <Compile Include="Misc\Encodings\RgbmEncoding.cs" />
+    <Compile Include="Misc\Encodings\SRgbEncoding.cs" />
+    <Compile Include="Misc\Ephemeris\Ephemeris.cs" />
+    <Compile Include="Misc\Ephemeris\Ephemeris_Helpers.cs" />
+    <Compile Include="Misc\Ephemeris\Ephemeris_Lighting.cs" />
+    <Compile Include="Misc\Ephemeris\Ephemeris_Planets.cs" />
+    <Compile Include="Misc\Ephemeris\Spectrum.cs" />
+    <Compile Include="Misc\Ephemeris\Spectrum_Lunar.cs" />
+    <Compile Include="Misc\Ephemeris\Spectrum_Solar.cs" />
+    <Compile Include="Misc\GraphicsHelper.cs" />
+    <Compile Include="Misc\GraphicsHelper_CubeMaps.cs" />
+    <Compile Include="Misc\GraphicsHelper_Lights.cs" />
+    <Compile Include="Misc\GraphicsHelper_Quads.cs" />
+    <Compile Include="Misc\GraphicsHelper_RenderStates.cs" />
+    <Compile Include="Misc\GraphicsHelper_Viewports.cs" />
+    <Compile Include="Misc\InstanceData.cs" />
+    <Compile Include="Misc\NoiseHelper.cs" />
+    <Compile Include="Misc\RenderContextHelper.cs" />
+    <Compile Include="Misc\RenderStateSnapshot.cs" />
+    <Compile Include="Misc\RenderTargetFormat.cs" />
+    <Compile Include="Misc\RenderTargetPool.cs" />
+    <Compile Include="Misc\ShapeMeshCache.cs" />
+    <Compile Include="Misc\TextureAtlas\PackedTexture.cs" />
+    <Compile Include="Misc\TextureAtlas\Texture2DEx.cs" />
+    <Compile Include="Misc\TextureAtlas\TextureAtlas.cs" />
+    <Compile Include="Misc\TextureHelper.cs" />
+    <Compile Include="Misc\VertexPosition.cs" />
+    <Compile Include="Misc\VertexPositionNormal.cs" />
+    <Compile Include="Misc\VertexPositionNormalColor.cs" />
+    <Compile Include="Misc\VertexPositionNormalColorTexture.cs" />
+    <Compile Include="Misc\VertexTexture.cs" />
+    <Compile Include="NamespaceDoc.cs" />
+    <Compile Include="PostProcessing\NamespaceDoc.cs" />
+    <Compile Include="PostProcessing\PostProcessHelper.cs" />
+    <Compile Include="PostProcessing\PostProcessor.cs" />
+    <Compile Include="PostProcessing\PostProcessorChain.cs" />
+    <Compile Include="PostProcessing\Processors\BloomFilter.cs" />
+    <Compile Include="PostProcessing\Processors\Blur.cs" />
+    <Compile Include="PostProcessing\Processors\CameraMotionBlur.cs" />
+    <Compile Include="PostProcessing\Processors\CieSkyFilter.cs" />
+    <Compile Include="PostProcessing\Processors\ColorCorrectionFilter.cs" />
+    <Compile Include="PostProcessing\Processors\ColorEncoder.cs" />
+    <Compile Include="PostProcessing\Processors\CopyFilter.cs" />
+    <Compile Include="PostProcessing\Processors\DepthOfFieldFilter.cs" />
+    <Compile Include="PostProcessing\Processors\DownsampleFilter.cs" />
+    <Compile Include="PostProcessing\Processors\EdgeFilter.cs" />
+    <Compile Include="PostProcessing\Processors\EffectPostProcessor.cs" />
+    <Compile Include="PostProcessing\Processors\FxaaFilter.cs" />
+    <Compile Include="PostProcessing\Processors\GodRayFilter.cs" />
+    <Compile Include="PostProcessing\Processors\GrainFilter.cs" />
+    <Compile Include="PostProcessing\Processors\HdrFilter.cs" />
+    <Compile Include="PostProcessing\Processors\HorizontalBlur.cs" />
+    <Compile Include="PostProcessing\Processors\KawaseBlur.cs" />
+    <Compile Include="PostProcessing\Processors\LuminanceFilter.cs" />
+    <Compile Include="PostProcessing\Processors\MadFilter.cs" />
+    <Compile Include="PostProcessing\Processors\NormalMapDistortionFilter.cs" />
+    <Compile Include="PostProcessing\Processors\ObjectMotionBlur.cs" />
+    <Compile Include="PostProcessing\Processors\RadialBlur.cs" />
+    <Compile Include="PostProcessing\Processors\SaoFilter.cs" />
+    <Compile Include="PostProcessing\Processors\SaturationFilter.cs" />
+    <Compile Include="PostProcessing\Processors\SepiaFilter.cs" />
+    <Compile Include="PostProcessing\Processors\SharpeningFilter.cs" />
+    <Compile Include="PostProcessing\Processors\SimpleMotionBlur.cs" />
+    <Compile Include="PostProcessing\Processors\SmaaFilter.cs" />
+    <Compile Include="PostProcessing\Processors\SsaoFilter.cs" />
+    <Compile Include="PostProcessing\Processors\UnsharpMaskingFilter.cs" />
+    <Compile Include="PostProcessing\Processors\UpsampleFilter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Properties\AssemblyInfo.template" />
+    <Compile Include="RenderContext.cs" />
+    <Compile Include="RenderContextKeys.cs" />
+    <Compile Include="Rendering\Billboards, Particles\BillboardBatch.cs" />
+    <Compile Include="Rendering\Billboards, Particles\BillboardBatchHiDef.cs" />
+    <Compile Include="Rendering\Billboards, Particles\BillboardBatchReach.cs" />
+    <Compile Include="Rendering\Billboards, Particles\BillboardRenderer.cs" />
+    <Compile Include="Rendering\Billboards, Particles\BillboardRenderer_Billboards.cs" />
+    <Compile Include="Rendering\Billboards, Particles\BillboardRenderer_Text.cs" />
+    <Compile Include="Rendering\Billboards, Particles\BillboardVertex.cs" />
+    <Compile Include="Rendering\Billboards, Particles\IBillboardBatch.cs" />
+    <Compile Include="Rendering\Billboards, Particles\Particle.cs" />
+    <Compile Include="Rendering\Billboards, Particles\ParticleSystemData.cs" />
+    <Compile Include="Rendering\Billboards, Particles\UpsamplingFilter.cs" />
+    <Compile Include="Rendering\DebugRenderer\DebugRenderer.cs" />
+    <Compile Include="Rendering\DebugRenderer\LineBatch.cs" />
+    <Compile Include="Rendering\DebugRenderer\PointBatch.cs" />
+    <Compile Include="Rendering\DebugRenderer\PrimitiveBatch.cs" />
+    <Compile Include="Rendering\DebugRenderer\TextBatch.cs" />
+    <Compile Include="Rendering\DebugRenderer\TextureBatch.cs" />
+    <Compile Include="Rendering\DebugRenderer\TriangleBatch.cs" />
+    <Compile Include="Rendering\DecalRenderer.cs" />
+    <Compile Include="Rendering\Deferred\AmbientLightRenderer.cs" />
+    <Compile Include="Rendering\Deferred\CascadedShadowMaskRenderer.cs" />
+    <Compile Include="Rendering\Deferred\ClearGBufferRenderer.cs" />
+    <Compile Include="Rendering\Deferred\CompositeShadowMaskRenderer.cs" />
+    <Compile Include="Rendering\Deferred\CubeMapShadowMaskRenderer.cs" />
+    <Compile Include="Rendering\Deferred\DirectionalLightRenderer.cs" />
+    <Compile Include="Rendering\Deferred\FogRenderer.cs" />
+    <Compile Include="Rendering\Deferred\ImageBasedLightRenderer.cs" />
+    <Compile Include="Rendering\Deferred\LightRenderData.cs" />
+    <Compile Include="Rendering\Deferred\LightRenderer.cs" />
+    <Compile Include="Rendering\Deferred\PointLightRenderer.cs" />
+    <Compile Include="Rendering\Deferred\ProjectorLightRenderer.cs" />
+    <Compile Include="Rendering\Deferred\RebuildZBufferRenderer.cs" />
+    <Compile Include="Rendering\Deferred\ShadowMaskRenderer.cs" />
+    <Compile Include="Rendering\Deferred\SpotlightRenderer.cs" />
+    <Compile Include="Rendering\Deferred\StandardShadowMaskRenderer.cs" />
+    <Compile Include="Rendering\Figures\FigureRenderOptions.cs" />
+    <Compile Include="Rendering\Figures\FigureRenderer.cs" />
+    <Compile Include="Rendering\Figures\StrokeVertex.cs" />
+    <Compile Include="Rendering\InstanceRenderBatch.cs" />
+    <Compile Include="Rendering\LensFlareRenderer.cs" />
+    <Compile Include="Rendering\MeshRenderer.cs" />
+    <Compile Include="Rendering\NamespaceDoc.cs" />
+    <Compile Include="Rendering\Occlusion\OcclusionBuffer.cs" />
+    <Compile Include="Rendering\Occlusion\OcclusionCullingStatistics.cs" />
+    <Compile Include="Rendering\Occlusion\OcclusionVertex.cs" />
+    <Compile Include="Rendering\RenderBatch.cs" />
+    <Compile Include="Rendering\RenderOrder.cs" />
+    <Compile Include="Rendering\RenderToTexture\PlanarReflectionRenderer.cs" />
+    <Compile Include="Rendering\RenderToTexture\SceneCaptureRenderer.cs" />
+    <Compile Include="Rendering\RenderableSceneNodeRenderer.cs" />
+    <Compile Include="Rendering\SceneNodeRenderer.cs" />
+    <Compile Include="Rendering\SceneNodeRendererCollection.cs" />
+    <Compile Include="Rendering\SceneRenderer.cs" />
+    <Compile Include="Rendering\SceneRenderer_Accessor.cs" />
+    <Compile Include="Rendering\Shadows\CascadedShadowMapRenderer.cs" />
+    <Compile Include="Rendering\Shadows\CompositedShadowMapRenderer.cs" />
+    <Compile Include="Rendering\Shadows\CubeMapShadowMapRenderer.cs" />
+    <Compile Include="Rendering\Shadows\IShadowMapRenderer.cs" />
+    <Compile Include="Rendering\Shadows\ShadowMapRenderer.cs" />
+    <Compile Include="Rendering\Shadows\StandardShadowMapRenderer.cs" />
+    <Compile Include="Rendering\Sky\CloudLayerRenderer.cs" />
+    <Compile Include="Rendering\Sky\CloudMapRenderer.cs" />
+    <Compile Include="Rendering\Sky\GradientSkyRenderer.cs" />
+    <Compile Include="Rendering\Sky\GradientTextureSkyRenderer.cs" />
+    <Compile Include="Rendering\Sky\ScatteringSkyRenderer.cs" />
+    <Compile Include="Rendering\Sky\SkyObjectRenderer.cs" />
+    <Compile Include="Rendering\Sky\SkyRenderer.cs" />
+    <Compile Include="Rendering\Sky\SkyboxRenderer.cs" />
+    <Compile Include="Rendering\Sky\StarfieldRenderer.cs" />
+    <Compile Include="Rendering\SkyboxRenderer.cs" />
+    <Compile Include="Rendering\SpriteRenderer.cs" />
+    <Compile Include="Rendering\Terrain\TerrainClipmapRenderer.cs" />
+    <Compile Include="Rendering\Terrain\TerrainClipmapRenderer_Helpers.cs" />
+    <Compile Include="Rendering\Terrain\TerrainLayerVertex.cs" />
+    <Compile Include="Rendering\Terrain\TerrainRenderer.cs" />
+    <Compile Include="Rendering\Terrain\TerrainRendererMesh.cs" />
+    <Compile Include="Rendering\Terrain\TerrainVertex.cs" />
+    <Compile Include="Rendering\Water\OceanFft.cs" />
+    <Compile Include="Rendering\Water\ProjectedGridParameters.cs" />
+    <Compile Include="Rendering\Water\WaterRenderData.cs" />
+    <Compile Include="Rendering\Water\WaterRenderer.cs" />
+    <Compile Include="Rendering\Water\WaterWavesRenderer.cs" />
+    <Compile Include="SceneGraph\BillboardNode.cs" />
+    <Compile Include="SceneGraph\CameraNode.cs" />
+    <Compile Include="SceneGraph\Comparer\AscendingFogNodeComparer.cs" />
+    <Compile Include="SceneGraph\Comparer\AscendingLightNodeComparer.cs" />
+    <Compile Include="SceneGraph\Comparer\AscendingNodeComparer.cs" />
+    <Compile Include="SceneGraph\Comparer\DescendingFogNodeComparer.cs" />
+    <Compile Include="SceneGraph\Comparer\DescendingLightNodeComparer.cs" />
+    <Compile Include="SceneGraph\Comparer\DescendingNodeComparer.cs" />
+    <Compile Include="SceneGraph\DecalNode.cs" />
+    <Compile Include="SceneGraph\Figures\FigureNode.cs" />
+    <Compile Include="SceneGraph\Figures\FigureNodeRenderData.cs" />
+    <Compile Include="SceneGraph\FogNode.cs" />
+    <Compile Include="SceneGraph\LOD\LodCollection.cs" />
+    <Compile Include="SceneGraph\LOD\LodData.cs" />
+    <Compile Include="SceneGraph\LOD\LodEntry.cs" />
+    <Compile Include="SceneGraph\LOD\LodGroupNode.cs" />
+    <Compile Include="SceneGraph\LOD\LodSelection.cs" />
+    <Compile Include="SceneGraph\LensFlareNode.cs" />
+    <Compile Include="SceneGraph\LightNode.cs" />
+    <Compile Include="SceneGraph\MaterialInstance.cs" />
+    <Compile Include="SceneGraph\MaterialInstanceCollection.cs" />
+    <Compile Include="SceneGraph\MaterialInstance_Cloning.cs" />
+    <Compile Include="SceneGraph\MaterialInstance_IDictionary.cs" />
+    <Compile Include="SceneGraph\MeshInstancingNode.cs" />
+    <Compile Include="SceneGraph\MeshNode.cs" />
+    <Compile Include="SceneGraph\ModelNode.cs" />
+    <Compile Include="SceneGraph\NamespaceDoc.cs" />
+    <Compile Include="SceneGraph\Occlusion\IOcclusionProxy.cs" />
+    <Compile Include="SceneGraph\Occlusion\OccluderData.cs" />
+    <Compile Include="SceneGraph\Occlusion\OccluderNode.cs" />
+    <Compile Include="SceneGraph\ParticleSystemNode.cs" />
+    <Compile Include="SceneGraph\Queries\CameraFrustumQuery.cs" />
+    <Compile Include="SceneGraph\Queries\FogQuery.cs" />
+    <Compile Include="SceneGraph\Queries\GlobalLightQuery.cs" />
+    <Compile Include="SceneGraph\Queries\ISceneQuery.cs" />
+    <Compile Include="SceneGraph\Queries\LightQuery.cs" />
+    <Compile Include="SceneGraph\Queries\ShadowCasterQuery.cs" />
+    <Compile Include="SceneGraph\RenderToTexture\PlanarReflectionNode.cs" />
+    <Compile Include="SceneGraph\RenderToTexture\RenderToTextureNode.cs" />
+    <Compile Include="SceneGraph\RenderToTexture\SceneCaptureNode.cs" />
+    <Compile Include="SceneGraph\SceneChangedEventArgs.cs" />
+    <Compile Include="SceneGraph\SceneChanges.cs" />
+    <Compile Include="SceneGraph\SceneHelper.cs" />
+    <Compile Include="SceneGraph\SceneNode.cs" />
+    <Compile Include="SceneGraph\SceneNodeCollection.cs" />
+    <Compile Include="SceneGraph\SceneNodeFlags.cs" />
+    <Compile Include="SceneGraph\SceneNode_Cloning.cs" />
+    <Compile Include="SceneGraph\SceneNode_GeometricObject.cs" />
+    <Compile Include="SceneGraph\Scene\IScene.cs" />
+    <Compile Include="SceneGraph\Scene\Scene.cs" />
+    <Compile Include="SceneGraph\Scene\SceneCollisionObjectFilter.cs" />
+    <Compile Include="SceneGraph\Scene\SceneNodeCollisionFilter.cs" />
+    <Compile Include="SceneGraph\Sky\CloudLayerNode.cs" />
+    <Compile Include="SceneGraph\Sky\GradientSkyNode.cs" />
+    <Compile Include="SceneGraph\Sky\GradientTextureSkyNode.cs" />
+    <Compile Include="SceneGraph\Sky\ScatteringSkyNode.cs" />
+    <Compile Include="SceneGraph\Sky\SkyNode.cs" />
+    <Compile Include="SceneGraph\Sky\SkyObjectNode.cs" />
+    <Compile Include="SceneGraph\Sky\SkyboxNode.cs" />
+    <Compile Include="SceneGraph\Sky\StarfieldNode.cs" />
+    <Compile Include="SceneGraph\SpriteNode.cs" />
+    <Compile Include="SceneGraph\TerrainNode.cs" />
+    <Compile Include="SceneGraph\WaterNode.cs" />
+    <Compile Include="Storage\StorageContentManager.cs" />
+    <Compile Include="Storage\TitleStorage.cs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,828 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Graphics                  Namespace: DigitalRune.Graphics.Rendering">
+    <Position X="0.5" Y="0.5" Height="0.48" Width="2.705" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.Rendering.DebugRenderer">
+    <Position X="0.5" Y="16.25" Width="2.5" />
+    <Members>
+      <Field Name="_arrowHeadSize" Hidden="true" />
+      <Field Name="_autoRenderStates" Hidden="true" />
+      <Field Name="_defaultTextPosition" Hidden="true" />
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_graphicsService" Hidden="true" />
+      <Field Name="_inSceneLineBatch" Hidden="true" />
+      <Field Name="_inScenePointBatch" Hidden="true" />
+      <Field Name="_inSceneTextBatch" Hidden="true" />
+      <Field Name="_inSceneWireFramePrimitiveBatch" Hidden="true" />
+      <Field Name="_inSceneWireFrameTriangleBatch" Hidden="true" />
+      <Field Name="_opaquePrimitiveBatch" Hidden="true" />
+      <Field Name="_opaqueTriangleBatch" Hidden="true" />
+      <Field Name="_overScene2DTextBatch" Hidden="true" />
+      <Field Name="_overScene3DTextBatch" Hidden="true" />
+      <Field Name="_overSceneLineBatch" Hidden="true" />
+      <Field Name="_overScenePointBatch" Hidden="true" />
+      <Field Name="_overSceneWireFramePrimitiveBatch" Hidden="true" />
+      <Field Name="_overSceneWireFrameTriangleBatch" Hidden="true" />
+      <Field Name="_pointSize" Hidden="true" />
+      <Field Name="_spriteBatch" Hidden="true" />
+      <Field Name="_spriteFont" Hidden="true" />
+      <Field Name="_stringBuilder" Hidden="true" />
+      <Field Name="_textureBatch" Hidden="true" />
+      <Field Name="_transparentPrimitiveBatch" Hidden="true" />
+      <Field Name="_transparentTriangleBatch" Hidden="true" />
+      <Method Name="DebugRenderer" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Property Name="InSceneLineBatch" Hidden="true" />
+      <Property Name="InScenePointBatch" Hidden="true" />
+      <Property Name="InSceneTextBatch" Hidden="true" />
+      <Property Name="InSceneWireFramePrimitiveBatch" Hidden="true" />
+      <Property Name="InSceneWireframeTriangleBatch" Hidden="true" />
+      <Property Name="OpaquePrimitiveBatch" Hidden="true" />
+      <Property Name="OpaqueTriangleBatch" Hidden="true" />
+      <Property Name="OverScene2DTextBatch" Hidden="true" />
+      <Property Name="OverScene3DTextBatch" Hidden="true" />
+      <Property Name="OverSceneLineBatch" Hidden="true" />
+      <Property Name="OverScenePointBatch" Hidden="true" />
+      <Property Name="OverSceneWireFramePrimitiveBatch" Hidden="true" />
+      <Property Name="OverSceneWireframeTriangleBatch" Hidden="true" />
+      <Property Name="SpriteBatch" Hidden="true" />
+      <Property Name="StringBuilder" Hidden="true" />
+      <Property Name="TextureBatch" Hidden="true" />
+      <Method Name="ThrowIfDisposed" Hidden="true" />
+      <Property Name="TransparentPrimitiveBatch" Hidden="true" />
+      <Property Name="TransparentTriangleBatch" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>Ax8CoBQSQCkAiIAAA0BEhRaGQiIMUZEwavAAQQtADYQ=</HashCode>
+      <FileName>Rendering\DebugRenderer\DebugRenderer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.MeshRenderer">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <Members>
+      <Field Name="_effectCount" Hidden="true" />
+      <Field Name="_instanceRenderBatch" Hidden="true" />
+      <Field Name="_jobs" Hidden="true" />
+      <Field Name="_morphIndicesAndWeights" Hidden="true" />
+      <Field Name="_morphingVertexBufferBinding" Hidden="true" />
+      <Field Name="_perPassBindings" Hidden="true" />
+      <Field Name="_vertexBufferCount" Hidden="true" />
+      <Field Name="_vertexBuffers" Hidden="true" />
+      <Method Name="BatchJobs" Hidden="true" />
+      <Method Name="CanRender" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="Draw" Hidden="true" />
+      <Method Name="DrawInstanced" Hidden="true" />
+      <Method Name="DrawMorphing" Hidden="true" />
+      <Method Name="GetDistanceKey" Hidden="true" />
+      <Method Name="GetEffectId" Hidden="true" />
+      <Method Name="GetMaterialId" Hidden="true" />
+      <Method Name="GetMaterialKey" Hidden="true" />
+      <Method Name="GetSubmeshId" Hidden="true" />
+      <Method Name="GetSubmeshKey" Hidden="true" />
+      <Method Name="GetVertexBufferId" Hidden="true" />
+      <Property Name="InstancingThreshold" Hidden="true" />
+      <Method Name="MeshRenderer" Hidden="true" />
+      <Method Name="ProcessJobs" Hidden="true" />
+      <Method Name="Render" Hidden="true" />
+      <Method Name="ResetEffectId" Hidden="true" />
+      <Method Name="ResetMaterialId" Hidden="true" />
+      <Method Name="ResetSubmeshId" Hidden="true" />
+      <Method Name="ResetVertexBufferId" Hidden="true" />
+      <Method Name="ValidateNodes" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Struct Name="DigitalRune.Graphics.Rendering.MeshRenderer.Job" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\MeshRenderer.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Class Name="DigitalRune.Graphics.Rendering.MeshRenderer.DefaultComparer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\MeshRenderer.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="DigitalRune.Graphics.Rendering.MeshRenderer.DistanceComparer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\MeshRenderer.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Struct Name="DigitalRune.Graphics.Rendering.MeshRenderer.MorphIndexAndWeight" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\MeshRenderer.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Class Name="DigitalRune.Graphics.Rendering.MeshRenderer.MorphComparer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\MeshRenderer.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>FAAAABCQACARAkEBAIKgEAAQAAACAQEAADBICAAAEgA=</HashCode>
+      <FileName>Rendering\MeshRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.SceneNodeRenderer">
+    <Position X="3.5" Y="0.5" Width="2" />
+    <Members>
+      <Field Name="_oneNodeArray" Hidden="true" />
+      <Field Name="_order" Hidden="true" />
+      <Field Name="Id" Hidden="true" />
+      <Method Name="ThrowIfDisposed" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAECAACCACAQgAAAAAAAABAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Rendering\SceneNodeRenderer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.SceneRenderer">
+    <Position X="0.5" Y="3.25" Width="1.75" />
+    <Members>
+      <Method Name="BatchJobs" Hidden="true" />
+      <Method Name="CanRender" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="FilterSceneNode" Hidden="true" />
+      <Method Name="GetSortKey" Hidden="true" />
+      <Field Name="Jobs" Hidden="true" />
+      <Field Name="JobsAccessor" Hidden="true" />
+      <Method Name="ProcessJobs" Hidden="true" />
+      <Method Name="Render" Hidden="true" />
+      <Method Name="SceneRenderer" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Struct Name="DigitalRune.Graphics.Rendering.SceneRenderer.Job" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\SceneRenderer.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Class Name="DigitalRune.Graphics.Rendering.SceneRenderer.Comparer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\SceneRenderer.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="DigitalRune.Graphics.Rendering.SceneRenderer.Accessor" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\SceneRenderer_Accessor.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAACAQAAAAAMAAAAAAAAAQAAEAABCAAACAAAA=</HashCode>
+      <FileName>Rendering\SceneRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.BillboardRenderer">
+    <Position X="6.5" Y="3.25" Width="2.25" />
+    <Members>
+      <Field Name="_billboardBatch" Hidden="true" />
+      <Field Name="_billboardEffect" Hidden="true" />
+      <Field Name="_billboardMode" Hidden="true" />
+      <Field Name="_cameraForward" Hidden="true" />
+      <Field Name="_cameraPose" Hidden="true" />
+      <Field Name="_debugTexture" Hidden="true" />
+      <Field Name="_defaultFont" Hidden="true" />
+      <Field Name="_defaultNormal" Hidden="true" />
+      <Field Name="_depthBufferHalf" Hidden="true" />
+      <Field Name="_hiDef" Hidden="true" />
+      <Field Name="_jobs" Hidden="true" />
+      <Field Name="_offscreenBuffer" Hidden="true" />
+      <Field Name="_parameterCameraFar" Hidden="true" />
+      <Field Name="_parameterCameraNear" Hidden="true" />
+      <Field Name="_parameterCameraPosition" Hidden="true" />
+      <Field Name="_parameterDepthBuffer" Hidden="true" />
+      <Field Name="_parameterProjection" Hidden="true" />
+      <Field Name="_parameterTexture" Hidden="true" />
+      <Field Name="_parameterView" Hidden="true" />
+      <Field Name="_parameterViewInverse" Hidden="true" />
+      <Field Name="_parameterViewportSize" Hidden="true" />
+      <Field Name="_parameterViewProjection" Hidden="true" />
+      <Field Name="_particleIndices" Hidden="true" />
+      <Field Name="_spriteBatch" Hidden="true" />
+      <Field Name="_techniqueHardGamma" Hidden="true" />
+      <Field Name="_techniqueHardLinear" Hidden="true" />
+      <Field Name="_techniqueSoftGamma" Hidden="true" />
+      <Field Name="_techniqueSoftLinear" Hidden="true" />
+      <Field Name="_textEffect" Hidden="true" />
+      <Field Name="_textureCount" Hidden="true" />
+      <Field Name="_upsampleFilter" Hidden="true" />
+      <Method Name="AddJob" Hidden="true" />
+      <Method Name="BatchJobs" Hidden="true" />
+      <Method Name="BeginBillboards" Hidden="true" />
+      <Method Name="BillboardRenderer" Hidden="true" />
+      <Field Name="BlendStateOffscreen" Hidden="true" />
+      <Method Name="CanRender" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="DisposeBillboards" Hidden="true" />
+      <Method Name="DisposeText" Hidden="true" />
+      <Method Name="Draw" Hidden="true" />
+      <Method Name="DrawBillboards" Hidden="true" />
+      <Method Name="DrawParticleRibbonsAuto" Hidden="true" />
+      <Method Name="DrawParticleRibbonsFixed" Hidden="true" />
+      <Method Name="DrawParticlesBackToFront" Hidden="true" />
+      <Method Name="DrawParticlesOldToNew" Hidden="true" />
+      <Method Name="DrawText" Hidden="true" />
+      <Method Name="EndBillboards" Hidden="true" />
+      <Field Name="FontTextureId" Hidden="true" />
+      <Method Name="GetSortKey" Hidden="true" />
+      <Method Name="GetTextureCoordinateU0" Hidden="true" />
+      <Method Name="GetTextureCoordinateU1" Hidden="true" />
+      <Method Name="GetTextureId" Hidden="true" />
+      <Property Name="GraphicsService" Hidden="true" />
+      <Method Name="InitializeBillboards" Hidden="true" />
+      <Method Name="InitializeText" Hidden="true" />
+      <Method Name="PrepareBillboards" Hidden="true" />
+      <Method Name="ProcessJobs" Hidden="true" />
+      <Method Name="Render" Hidden="true" />
+      <Method Name="ResetTextureId" Hidden="true" />
+      <Method Name="SetTexture" Hidden="true" />
+      <Method Name="ValidateNodes" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Struct Name="DigitalRune.Graphics.Rendering.BillboardRenderer.Job" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\Billboards, Particles\BillboardRenderer.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Class Name="DigitalRune.Graphics.Rendering.BillboardRenderer.Comparer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\Billboards, Particles\BillboardRenderer.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Struct Name="DigitalRune.Graphics.Rendering.BillboardRenderer.ParticleIndex" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\Billboards, Particles\BillboardRenderer_Particles.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Class Name="DigitalRune.Graphics.Rendering.BillboardRenderer.ParticleIndexComparer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\Billboards, Particles\BillboardRenderer_Particles.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <AssociationLine Name="UpsamplingFilter" Type="DigitalRune.Graphics.Rendering.UpsamplingFilter">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.006" Y="-0.294" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>JDAYohQAACAQUwCWiYIIIEBIIjBLhg0IgJGglAA0Abg=</HashCode>
+      <FileName>Rendering\Billboards, Particles\BillboardRenderer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="UpsamplingFilter" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.LensFlareRenderer">
+    <Position X="4.75" Y="7" Width="2.5" />
+    <Members>
+      <Field Name="_basicEffect" Hidden="true" />
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_oneNodeArray" Hidden="true" />
+      <Field Name="_queryGeometry" Hidden="true" />
+      <Field Name="_spriteBatch" Hidden="true" />
+      <Field Name="_techniqueGamma" Hidden="true" />
+      <Field Name="_techniqueLinear" Hidden="true" />
+      <Field Name="_transformParameter" Hidden="true" />
+      <Method Name="CanRender" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="LensFlareRenderer" Hidden="true" />
+      <Field Name="MinIntensity" Hidden="true" />
+      <Field Name="MinPixelSize" Hidden="true" />
+      <Method Name="Render" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Graphics.Rendering.LensFlareRenderer.OcclusionData" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\LensFlareRenderer.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAIAACAACAUAAAAAAAAAAAAAAAFAAgAApAACABAAAA=</HashCode>
+      <FileName>Rendering\LensFlareRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.SpriteRenderer">
+    <Position X="7.5" Y="7" Width="1.5" />
+    <Members>
+      <Field Name="_spriteBatch" Hidden="true" />
+      <Field Name="_spriteFont" Hidden="true" />
+      <Method Name="CanRender" Hidden="true" />
+      <Method Name="Render" Hidden="true" />
+      <Method Name="SpriteRenderer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAABAAAAAAAAAAAJAAAAAAAAA=</HashCode>
+      <FileName>Rendering\SpriteRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.DecalRenderer">
+    <Position X="4.75" Y="3.25" Width="1.5" />
+    <Members>
+      <Field Name="_cameraNearPlaneAabbWorld" Hidden="true" />
+      <Field Name="_effectCount" Hidden="true" />
+      <Field Name="_indexBuffer" Hidden="true" />
+      <Field Name="_jobs" Hidden="true" />
+      <Field Name="_quadVertices" Hidden="true" />
+      <Field Name="_vertexBuffer" Hidden="true" />
+      <Method Name="BatchJobs" Hidden="true" />
+      <Method Name="CanRender" Hidden="true" />
+      <Method Name="DecalRenderer" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="Draw" Hidden="true" />
+      <Field Name="GBufferBlendState" Hidden="true" />
+      <Method Name="GetEffectId" Hidden="true" />
+      <Method Name="GetMaterialId" Hidden="true" />
+      <Method Name="GetMaterialKey" Hidden="true" />
+      <Field Name="NumberOfPrimitives" Hidden="true" />
+      <Field Name="NumberOfVertices" Hidden="true" />
+      <Method Name="ProcessJobs" Hidden="true" />
+      <Method Name="Render" Hidden="true" />
+      <Method Name="ResetEffectId" Hidden="true" />
+      <Method Name="ResetMaterialId" Hidden="true" />
+      <Method Name="ValidateNodes" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Struct Name="DigitalRune.Graphics.Rendering.DecalRenderer.Job" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\DecalRenderer.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Class Name="DigitalRune.Graphics.Rendering.DecalRenderer.Comparer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\DecalRenderer.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>BAAAQBAAACAQAgAAAYIAAAgggAAAAgEABDBACAAAEgA=</HashCode>
+      <FileName>Rendering\DecalRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.SkyRenderer">
+    <Position X="2.75" Y="5.25" Width="1.5" />
+    <Members>
+      <Method Name="BatchJobs" Hidden="true" />
+      <Method Name="CanRender" Hidden="true" />
+      <Method Name="GetSortKey" Hidden="true" />
+      <Method Name="SkyRenderer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAIAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Rendering\Sky\SkyRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.ShadowMapRenderer">
+    <Position X="0.5" Y="5.25" Width="1.75" />
+    <Members>
+      <Field Name="_renderCallback" Hidden="true" />
+      <Method Name="AddDefaultRenderers" Hidden="true" />
+      <Method Name="CanRender" Hidden="true" />
+      <Method Name="FilterSceneNode" Hidden="true" />
+      <Method Name="ShadowMapRenderer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQQAAAAAQAAAAAAAAAQAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Rendering\Shadows\ShadowMapRenderer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.FigureRenderer">
+    <Position X="2.5" Y="7" Width="1.5" />
+    <Members>
+      <Field Name="_cameraNear" Hidden="true" />
+      <Field Name="_fillBatch" Hidden="true" />
+      <Field Name="_fillEffect" Hidden="true" />
+      <Field Name="_graphicsService" Hidden="true" />
+      <Field Name="_jobs" Hidden="true" />
+      <Field Name="_mode" Hidden="true" />
+      <Field Name="_parameterCameraNear" Hidden="true" />
+      <Field Name="_parameterProjection" Hidden="true" />
+      <Field Name="_parameterView" Hidden="true" />
+      <Field Name="_parameterViewInverse" Hidden="true" />
+      <Field Name="_parameterViewport" Hidden="true" />
+      <Field Name="_projection" Hidden="true" />
+      <Field Name="_strokeBatch" Hidden="true" />
+      <Field Name="_strokeEffect" Hidden="true" />
+      <Field Name="_view" Hidden="true" />
+      <Field Name="_viewInverse" Hidden="true" />
+      <Field Name="_viewport" Hidden="true" />
+      <Method Name="BatchJobs" Hidden="true" />
+      <Method Name="CacheVertexBuffer" Hidden="true" />
+      <Method Name="CanRender" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="FigureRenderer" Hidden="true" />
+      <Method Name="Fill" Hidden="true" />
+      <Method Name="Flush" Hidden="true" />
+      <Method Name="GetSortKey" Hidden="true" />
+      <Method Name="ProcessJobs" Hidden="true" />
+      <Method Name="Render" Hidden="true" />
+      <Method Name="SetupFill" Hidden="true" />
+      <Method Name="SetupStroke" Hidden="true" />
+      <Method Name="Stroke" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Struct Name="DigitalRune.Graphics.Rendering.FigureRenderer.Job" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\Figures\FigureRenderer.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Class Name="DigitalRune.Graphics.Rendering.FigureRenderer.Comparer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\Figures\FigureRenderer.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Enum Name="DigitalRune.Graphics.Rendering.FigureRenderer.RenderMode" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\Figures\FigureRenderer.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <AssociationLine Name="Options" Type="DigitalRune.Graphics.Rendering.FigureRenderOptions">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.143" Y="-0.221" Height="0.182" Width="0.847" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BIBQIRAAACAQAAGACoAEAFAIAAgACAUAADAAFARIAII=</HashCode>
+      <FileName>Rendering\Figures\FigureRenderer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Options" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.CloudMapRenderer">
+    <Position X="0.5" Y="7" Width="1.75" />
+    <Members>
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_noiseTexture" Hidden="true" />
+      <Field Name="_parameterCoverage" Hidden="true" />
+      <Field Name="_parameterDensities" Hidden="true" />
+      <Field Name="_parameterDensity" Hidden="true" />
+      <Field Name="_parameterLerp" Hidden="true" />
+      <Field Name="_parameterMatrices" Hidden="true" />
+      <Field Name="_parameterTexture0Parameters" Hidden="true" />
+      <Field Name="_parameterTexture1Parameters" Hidden="true" />
+      <Field Name="_parameterTextures" Hidden="true" />
+      <Field Name="_parameterViewportSize" Hidden="true" />
+      <Field Name="_passDensity" Hidden="true" />
+      <Field Name="_passLerp" Hidden="true" />
+      <Method Name="CanRender" Hidden="true" />
+      <Method Name="CloudMapRenderer" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="EmptyLayer" Hidden="true" />
+      <Method Name="Render" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IiABAAAIACIUQAAAAAAQAAAAAAAAgEIAAhAAAAAAAAA=</HashCode>
+      <FileName>Rendering\Sky\CloudMapRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.OcclusionBuffer">
+    <Position X="3.5" Y="16.25" Width="2.5" />
+    <Members>
+      <Field Name="_cameraAabb" Hidden="true" />
+      <Field Name="_cameraHzb" Hidden="true" />
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_frustumCorners" Hidden="true" />
+      <Field Name="_hzbLevels" Hidden="true" />
+      <Field Name="_lightAabb" Hidden="true" />
+      <Field Name="_lightHzb" Hidden="true" />
+      <Field Name="_lightHzbAvailable" Hidden="true" />
+      <Field Name="_occlusionProxies" Hidden="true" />
+      <Field Name="_orthographicCameraNode" Hidden="true" />
+      <Field Name="_parameterAtlasSize" Hidden="true" />
+      <Field Name="_parameterCameraFar" Hidden="true" />
+      <Field Name="_parameterCameraNear" Hidden="true" />
+      <Field Name="_parameterCameraPosition" Hidden="true" />
+      <Field Name="_parameterCameraViewProj" Hidden="true" />
+      <Field Name="_parameterClampAabbMaximum" Hidden="true" />
+      <Field Name="_parameterClampAabbMinimum" Hidden="true" />
+      <Field Name="_parameterDebugLevel" Hidden="true" />
+      <Field Name="_parameterDebugMaximum" Hidden="true" />
+      <Field Name="_parameterDebugMinimum" Hidden="true" />
+      <Field Name="_parameterHalfTexelOffset" Hidden="true" />
+      <Field Name="_parameterHzbSize" Hidden="true" />
+      <Field Name="_parameterHzbTexture" Hidden="true" />
+      <Field Name="_parameterLightHzbTexture" Hidden="true" />
+      <Field Name="_parameterLightToCamera" Hidden="true" />
+      <Field Name="_parameterLightViewProj" Hidden="true" />
+      <Field Name="_parameterMaxLevel" Hidden="true" />
+      <Field Name="_parameterNormalizationFactor" Hidden="true" />
+      <Field Name="_parameterTargetSize" Hidden="true" />
+      <Field Name="_parameterTexelOffset" Hidden="true" />
+      <Field Name="_queryData" Hidden="true" />
+      <Field Name="_renderBatch" Hidden="true" />
+      <Field Name="_results" Hidden="true" />
+      <Field Name="_resultsBuffer" Hidden="true" />
+      <Field Name="_sceneNodes" Hidden="true" />
+      <Field Name="_shadowCasters" Hidden="true" />
+      <Field Name="_splitVolume" Hidden="true" />
+      <Field Name="_techniqueCopy" Hidden="true" />
+      <Field Name="_techniqueDownsample" Hidden="true" />
+      <Field Name="_techniqueOccluder" Hidden="true" />
+      <Field Name="_techniqueQuery" Hidden="true" />
+      <Field Name="_techniqueVisualize" Hidden="true" />
+      <Field Name="_updateOcclusionProxies" Hidden="true" />
+      <Field Name="_updateOcclusionProxy" Hidden="true" />
+      <Field Name="_updateTask" Hidden="true" />
+      <Field Name="AabbCoverage" Hidden="true" />
+      <Method Name="CreateDepthHierarchy" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="GetBoundingSphere" Hidden="true" />
+      <Method Name="GetNumberOfLevels" Hidden="true" />
+      <Method Name="InitializeBuffers" Hidden="true" />
+      <Method Name="OcclusionBuffer" Hidden="true" />
+      <Method Name="RenderOccluders" Hidden="true" />
+      <Field Name="ResultsBufferWidth" Hidden="true" />
+      <Method Name="SortOccluders" Hidden="true" />
+      <Method Name="ToPixelAddress" Hidden="true" />
+      <Method Name="ToResultsBufferIndex" Hidden="true" />
+      <Method Name="UpdateOcclusionProxies" Hidden="true" />
+      <Method Name="UpdateOcclusionProxy" Hidden="true" />
+      <Method Name="VisualizeBuffer" Hidden="true" />
+      <Method Name="VisualizeQuery" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>KMAwEtEDAKDIQAAEQBIcCzCQJACOYA4AwhgCIUTECIk=</HashCode>
+      <FileName>Rendering\Occlusion\OcclusionBuffer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Statistics" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.OcclusionCullingStatistics">
+    <Position X="3.5" Y="20.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAECCCAACAAAAIAAAAA=</HashCode>
+      <FileName>Rendering\Occlusion\OcclusionCullingStatistics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.PlanarReflectionRenderer">
+    <Position X="7" Y="9.25" Width="2" />
+    <Members>
+      <Field Name="_renderCallback" Hidden="true" />
+      <Method Name="CanRender" Hidden="true" />
+      <Method Name="PlanarReflectionRenderer" Hidden="true" />
+      <Method Name="Reflect" Hidden="true" />
+      <Method Name="Render" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQQAAAAAQAAAAABAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Rendering\RenderToTexture\PlanarReflectionRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.SceneCaptureRenderer">
+    <Position X="4.75" Y="9.25" Width="2" />
+    <Members>
+      <Field Name="_renderCallback" Hidden="true" />
+      <Field Name="_spriteBatch" Hidden="true" />
+      <Method Name="CanRender" Hidden="true" />
+      <Method Name="Render" Hidden="true" />
+      <Method Name="SceneCaptureRenderer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQQAAAAAQAAAAAAAAAAAAAAAJAAAAAAAAA=</HashCode>
+      <FileName>Rendering\RenderToTexture\SceneCaptureRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.WaterWavesRenderer">
+    <Position X="4.75" Y="11.25" Width="1.75" />
+    <Members>
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_fft" Hidden="true" />
+      <Field Name="_graphicsService" Hidden="true" />
+      <Field Name="_parameterSize" Hidden="true" />
+      <Field Name="_parameterSourceTexture" Hidden="true" />
+      <Field Name="_parameterSpectrumParameters" Hidden="true" />
+      <Field Name="_passSpectrum" Hidden="true" />
+      <Field Name="_renderTargetBindings" Hidden="true" />
+      <Method Name="CanRender" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="Render" Hidden="true" />
+      <Method Name="WaterWavesRenderer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAKgAAACAQAAAAAAAIAAAAAABAAAAAChAAAAAIAAA=</HashCode>
+      <FileName>Rendering\Water\WaterWavesRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.ProjectedGridParameters">
+    <Position X="6.25" Y="12.75" Width="2" />
+    <Members>
+      <Field Name="_graphicsDevice" Hidden="true" />
+      <Field Name="_height" Hidden="true" />
+      <Field Name="_submesh" Hidden="true" />
+      <Field Name="_width" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="ProjectedGridParameters" Hidden="true" />
+      <Property Name="Submesh" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAABAABCCQBAAAAAAAAEBAABAQAAAAAAAgAAAAgAA=</HashCode>
+      <FileName>Rendering\Water\ProjectedGridParameters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.WaterRenderer">
+    <Position X="6.75" Y="11.25" Width="1.5" />
+    <Members>
+      <Field Name="_boxSubmesh" Hidden="true" />
+      <Field Name="_defaultRebuildZBufferRenderer" Hidden="true" />
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_graphicsService" Hidden="true" />
+      <Field Name="_noiseMap" Hidden="true" />
+      <Field Name="_parameterAmbientLight" Hidden="true" />
+      <Field Name="_parameterCameraMisc" Hidden="true" />
+      <Field Name="_parameterCameraParameters" Hidden="true" />
+      <Field Name="_parameterCausticsParameters" Hidden="true" />
+      <Field Name="_parameterCausticsSampleCount" Hidden="true" />
+      <Field Name="_parameterCubeReflectionMap" Hidden="true" />
+      <Field Name="_parameterDirectionalLightDirection" Hidden="true" />
+      <Field Name="_parameterDirectionalLightIntensity" Hidden="true" />
+      <Field Name="_parameterDisplacementTexture" Hidden="true" />
+      <Field Name="_parameterFlowMap" Hidden="true" />
+      <Field Name="_parameterFlowMapTextureMatrix" Hidden="true" />
+      <Field Name="_parameterFlowMapWorldMatrix" Hidden="true" />
+      <Field Name="_parameterFlowParameters0" Hidden="true" />
+      <Field Name="_parameterFlowParameters1" Hidden="true" />
+      <Field Name="_parameterFoamMap" Hidden="true" />
+      <Field Name="_parameterFoamParameters0" Hidden="true" />
+      <Field Name="_parameterFoamParameters1" Hidden="true" />
+      <Field Name="_parameterFogColor0" Hidden="true" />
+      <Field Name="_parameterFogColor1" Hidden="true" />
+      <Field Name="_parameterFogHeights" Hidden="true" />
+      <Field Name="_parameterFogParameters" Hidden="true" />
+      <Field Name="_parameterFogScatteringSymmetry" Hidden="true" />
+      <Field Name="_parameterFresnelParameters" Hidden="true" />
+      <Field Name="_parameterGBuffer0" Hidden="true" />
+      <Field Name="_parameterIntersectionSoftness" Hidden="true" />
+      <Field Name="_parameterNearCorners" Hidden="true" />
+      <Field Name="_parameterNoiseMap" Hidden="true" />
+      <Field Name="_parameterNormalMap0" Hidden="true" />
+      <Field Name="_parameterNormalMap0Parameters" Hidden="true" />
+      <Field Name="_parameterNormalMap1" Hidden="true" />
+      <Field Name="_parameterNormalMap1Parameters" Hidden="true" />
+      <Field Name="_parameterPlanarReflectionMap" Hidden="true" />
+      <Field Name="_parameterProjectedGridParameters" Hidden="true" />
+      <Field Name="_parameterProjection" Hidden="true" />
+      <Field Name="_parameterPushedBackCameraPosition" Hidden="true" />
+      <Field Name="_parameterReflectionMatrix" Hidden="true" />
+      <Field Name="_parameterReflectionParameters" Hidden="true" />
+      <Field Name="_parameterReflectionTextureSize" Hidden="true" />
+      <Field Name="_parameterReflectionTypeParameters" Hidden="true" />
+      <Field Name="_parameterRefractionParameters" Hidden="true" />
+      <Field Name="_parameterRefractionTexture" Hidden="true" />
+      <Field Name="_parameterScatterColor" Hidden="true" />
+      <Field Name="_parameterSpecularParameters" Hidden="true" />
+      <Field Name="_parameterSurfaceLevel" Hidden="true" />
+      <Field Name="_parameterTime" Hidden="true" />
+      <Field Name="_parameterUnderwaterFogParameters" Hidden="true" />
+      <Field Name="_parameterView" Hidden="true" />
+      <Field Name="_parameterViewportSize" Hidden="true" />
+      <Field Name="_parameterWaterColor" Hidden="true" />
+      <Field Name="_parameterWaveMapParameters" Hidden="true" />
+      <Field Name="_parameterWaveMapSize" Hidden="true" />
+      <Field Name="_parameterWaveNormalMap" Hidden="true" />
+      <Field Name="_parameterWorld" Hidden="true" />
+      <Field Name="_passMesh" Hidden="true" />
+      <Field Name="_passMeshDisplaced" Hidden="true" />
+      <Field Name="_passMeshDisplacedFoam" Hidden="true" />
+      <Field Name="_passMeshDisplacedFoamCaustics" Hidden="true" />
+      <Field Name="_passMeshFlow" Hidden="true" />
+      <Field Name="_passMeshFoam" Hidden="true" />
+      <Field Name="_passMeshFoamFlow" Hidden="true" />
+      <Field Name="_passProjectedGrid" Hidden="true" />
+      <Field Name="_passProjectedGridFoam" Hidden="true" />
+      <Field Name="_passProjectedGridFoamCaustics" Hidden="true" />
+      <Field Name="_passUnderwater" Hidden="true" />
+      <Field Name="_passUnderwaterCaustics" Hidden="true" />
+      <Field Name="_projectedGridNearCorners" Hidden="true" />
+      <Field Name="_quadSubmesh" Hidden="true" />
+      <Method Name="ApplySurfacePass" Hidden="true" />
+      <Method Name="CanRender" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="Render" Hidden="true" />
+      <Method Name="RenderSurface" Hidden="true" />
+      <Method Name="RenderUnderwaterGeometry" Hidden="true" />
+      <Method Name="SetFogParameters" Hidden="true" />
+      <Method Name="SetProjectedGridParameters" Hidden="true" />
+      <Method Name="WaterRenderer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>4DEAMgMAwSIQIGWaAAEQAWAJMkgNsKQEgpaGEgBQAIw=</HashCode>
+      <FileName>Rendering\Water\WaterRenderer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ProjectedGridParameters" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.TerrainClipmapRenderer">
+    <Position X="0.5" Y="11.25" Width="2" />
+    <Members>
+      <Field Name="_aabbList" Hidden="true" />
+      <Field Name="_aabbStack" Hidden="true" />
+      <Field Name="_clearLayer" Hidden="true" />
+      <Field Name="_previousMaterialBinding" Hidden="true" />
+      <Field Name="_renderTargetBindings" Hidden="true" />
+      <Method Name="AddAabbWithClipping" Hidden="true" />
+      <Field Name="BlendStateAlphaBlendRgb" Hidden="true" />
+      <Field Name="Border" Hidden="true" />
+      <Method Name="CanRender" Hidden="true" />
+      <Method Name="ClearFlags" Hidden="true" />
+      <Method Name="ComputeInvalidRegions" Hidden="true" />
+      <Method Name="GetClipmapSize" Hidden="true" />
+      <Method Name="GetScissorRectangle" Hidden="true" />
+      <Method Name="GetScreenSpaceRectangle" Hidden="true" />
+      <Method Name="HaveContactXZ" Hidden="true" />
+      <Method Name="InitializeClipmapTextures" Hidden="true" />
+      <Method Name="ProcessClipmap" Hidden="true" />
+      <Method Name="ProcessLayer" Hidden="true" />
+      <Field Name="RasterizerStateCullNoneWithScissorTest" Hidden="true" />
+      <Method Name="Render" Hidden="true" />
+      <Field Name="RenderPassBase" Hidden="true" />
+      <Field Name="RenderPassDetail" Hidden="true" />
+      <Method Name="RoundToGrid" Hidden="true" />
+      <Method Name="TerrainClipmapRenderer" Hidden="true" />
+      <Method Name="UpdateAndApplyParameter" Hidden="true" />
+      <Method Name="UpdateClipmapData" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QEAASAIACCAQIAAAAUAAAAgABAQIQAAAAFAIAFAAQAE=</HashCode>
+      <FileName>Rendering\Terrain\TerrainClipmapRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.TerrainRenderer">
+    <Position X="2.75" Y="11.25" Width="1.5" />
+    <Members>
+      <Field Name="_meshes" Hidden="true" />
+      <Method Name="CanRender" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="Render" Hidden="true" />
+      <Method Name="ResetParameter" Hidden="true" />
+      <Method Name="TerrainRenderer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAABAgAAACAQEAAAAAAAAAAABAAAAAAAQBAAAAAAAAA=</HashCode>
+      <FileName>Rendering\Terrain\TerrainRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.TerrainRendererMesh" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="13.5" Width="1.75" />
+    <Members>
+      <Method Name="CreateGeoClipmapMesh" Hidden="true" />
+      <Method Name="CreateSubmesh" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Property Name="Submesh" Hidden="true" />
+      <Method Name="TerrainRendererMesh" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAgIAAACAQAAEAAAAAAlgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Rendering\Terrain\TerrainRendererMesh.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="DigitalRune.Graphics.Rendering.IShadowMapRenderer">
+    <Position X="9.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Rendering\Shadows\IShadowMapRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DigitalRune.Graphics.Rendering.RenderOrder">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAEAAAIAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Rendering\RenderOrder.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DigitalRune.Graphics.Rendering.FigureRenderOptions">
+    <Position X="0.5" Y="9.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAIAAAAAAAAAAAACAIAA=</HashCode>
+      <FileName>Rendering\Figures\FigureRenderOptions.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DigitalRune.Graphics.Rendering.UpsamplingFilter">
+    <Position X="10" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAgAAgAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Rendering\Billboards, Particles\UpsamplingFilter.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

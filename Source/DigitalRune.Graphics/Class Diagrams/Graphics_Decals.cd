@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Decals (Scene Nodes)                                    Assembly: DigitalRune.Graphics                    Namespace: DigitalRune.Graphics.SceneGraph">
+    <Position X="0.5" Y="0.5" Height="0.605" Width="2.871" />
+  </Comment>
+  <Comment CommentText="Materials                                    Assembly: DigitalRune.Graphics                    Namespace: DigitalRune.Graphics">
+    <Position X="3.75" Y="0.5" Height="0.605" Width="2.204" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.SceneGraph.MaterialInstance" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="4.75" Width="2" />
+    <Members>
+      <Field Name="_bindingsPerPass" Hidden="true" />
+      <Property Name="Count" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="GetEnumerator" Hidden="true" />
+      <Method Name="ICollection&lt;KeyValuePair&lt;string, EffectBinding&gt;&gt;.Add" Hidden="true" />
+      <Method Name="ICollection&lt;KeyValuePair&lt;string, EffectBinding&gt;&gt;.Clear" Hidden="true" />
+      <Method Name="ICollection&lt;KeyValuePair&lt;string, EffectBinding&gt;&gt;.Contains" Hidden="true" />
+      <Method Name="ICollection&lt;KeyValuePair&lt;string, EffectBinding&gt;&gt;.CopyTo" Hidden="true" />
+      <Property Name="ICollection&lt;KeyValuePair&lt;string, EffectBinding&gt;&gt;.IsReadOnly" Hidden="true" />
+      <Method Name="ICollection&lt;KeyValuePair&lt;string, EffectBinding&gt;&gt;.Remove" Hidden="true" />
+      <Method Name="IDictionary&lt;string, EffectBinding&gt;.Add" Hidden="true" />
+      <Method Name="IDictionary&lt;string, EffectBinding&gt;.ContainsKey" Hidden="true" />
+      <Property Name="IDictionary&lt;string, EffectBinding&gt;.Keys" Hidden="true" />
+      <Method Name="IDictionary&lt;string, EffectBinding&gt;.Remove" Hidden="true" />
+      <Method Name="IDictionary&lt;string, EffectBinding&gt;.TryGetValue" Hidden="true" />
+      <Property Name="IDictionary&lt;string, EffectBinding&gt;.Values" Hidden="true" />
+      <Method Name="IEnumerable.GetEnumerator" Hidden="true" />
+      <Method Name="IEnumerable&lt;KeyValuePair&lt;string, EffectBinding&gt;&gt;.GetEnumerator" Hidden="true" />
+      <Method Name="MaterialInstance" Hidden="true" />
+      <Property Name="this" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEggFAAAAAAAABAoCQAgAIQAAAgoAwgEDAABEgAQADA=</HashCode>
+      <FileName>SceneGraph\MaterialInstance.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Material" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Material" Collapsed="true">
+    <Position X="3.75" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAogFAAAAAAAABAoCQAgBIQAAAAoAggEDAABEABQADA=</HashCode>
+      <FileName>Data\Meshes\Material.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.DecalNode">
+    <Position X="0.5" Y="1.5" Width="1.75" />
+    <Members>
+      <Field Name="_material" Hidden="true" />
+      <Field Name="_normalThreshold" Hidden="true" />
+      <Field Name="_passHashes" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="DecalNode" Hidden="true" />
+      <Method Name="IsPassSupported" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Graphics.SceneGraph.DecalNode.DecalVolume" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SceneGraph\DecalNode.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <AssociationLine Name="MaterialInstance" Type="DigitalRune.Graphics.SceneGraph.MaterialInstance" FixedToPoint="true">
+      <Path>
+        <Point X="1.562" Y="3.954" />
+        <Point X="1.562" Y="4.75" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.265" Y="0.539" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AEAAAAAABBAAAAAAAAIEAEAAIAAIABAgCAAAEABAADA=</HashCode>
+      <FileName>SceneGraph\DecalNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Options" />
+      <Property Name="Material" />
+      <Property Name="MaterialInstance" />
+    </ShowAsAssociation>
+  </Class>
+  <Enum Name="DigitalRune.Graphics.DecalOptions">
+    <Position X="3.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Data\DecalOptions.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

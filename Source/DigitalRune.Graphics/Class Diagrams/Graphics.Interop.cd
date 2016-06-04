@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Graphics Namespace: DigitalRune.Graphics.Interop">
+    <Position X="0.5" Y="0.5" Height="0.438" Width="2.575" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.Interop.ElementPresentationTarget" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="4" Width="2.25" />
+    <Members>
+      <Field Name="_formsPresentationTarget" Hidden="true" />
+      <Method Name="ElementPresentationTarget" Hidden="true" />
+      <Property Name="GraphicsService" Hidden="true" />
+      <Method Name="IPresentationTarget.BeginRender" Hidden="true" />
+      <Method Name="IPresentationTarget.EndRender" Hidden="true" />
+      <Property Name="IPresentationTarget.GraphicsService" Hidden="true" />
+      <Property Name="IPresentationTarget.Handle" Hidden="true" />
+      <Property Name="IPresentationTarget.Height" Hidden="true" />
+      <Property Name="IPresentationTarget.Width" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAgAAACAAAAAAAEABAAAAAAAAAAAAAAAIAgBA=</HashCode>
+      <FileName>Interop\ElementPresentationTarget.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Interop.WpfEnvironment">
+    <Position X="6" Y="1.25" Width="1.75" />
+    <Members>
+      <Field Name="_applicationStarted" Hidden="true" />
+      <Property Name="Handle" Hidden="true" />
+      <Method Name="OnThreadFilterMessage" Hidden="true" />
+      <Method Name="WpfMainMethod" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAABAAAAAAAAAAAQAAAACAIAIgAABAAAEAAAA=</HashCode>
+      <FileName>Interop\WpfEnvironment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Interop.FormsPresentationTarget" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="4" Width="2" />
+    <Members>
+      <Field Name="_graphicsService" Hidden="true" />
+      <Field Name="_rendering" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="FormsPresentationTarget" Hidden="true" />
+      <Property Name="GraphicsService" Hidden="true" />
+      <Method Name="IPresentationTarget.BeginRender" Hidden="true" />
+      <Method Name="IPresentationTarget.EndRender" Hidden="true" />
+      <Property Name="IPresentationTarget.GraphicsService" Hidden="true" />
+      <Property Name="IPresentationTarget.Height" Hidden="true" />
+      <Property Name="IPresentationTarget.IsVisible" Hidden="true" />
+      <Property Name="IPresentationTarget.Width" Hidden="true" />
+      <Method Name="OnClick" Hidden="true" />
+      <Method Name="OnGraphicsServiceChanged" Hidden="true" />
+      <Method Name="OnPaint" Hidden="true" />
+      <Method Name="WndProc" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AACAIAgAACABCAAAAAAAAAhCAAAAAAAACAAAQAIAgBA=</HashCode>
+      <FileName>Interop\FormsPresentationTarget.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.283" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Interop.PresentationTargetCollection">
+    <Position X="1.5" Y="5.5" Width="2.5" />
+    <Members>
+      <Method Name="PresentationTargetCollection" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interop\PresentationTargetCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Interop.D3DImagePresentationTarget">
+    <Position X="5.25" Y="4" Width="2.5" />
+    <Members>
+      <Method Name="D3DImagePresentationTarget" Hidden="true" />
+      <Field Name="EnableAlphaProperty" Hidden="true" />
+      <Property Name="GraphicsService" Hidden="true" />
+      <Method Name="IPresentationTarget.BeginRender" Hidden="true" />
+      <Method Name="IPresentationTarget.EndRender" Hidden="true" />
+      <Property Name="IPresentationTarget.GraphicsService" Hidden="true" />
+      <Property Name="IPresentationTarget.Handle" Hidden="true" />
+      <Property Name="IPresentationTarget.Height" Hidden="true" />
+      <Property Name="IPresentationTarget.IsVisible" Hidden="true" />
+      <Property Name="IPresentationTarget.Width" Hidden="true" />
+      <Field Name="IsFrontBufferAvailableProperty" Hidden="true" />
+      <Field Name="IsFrontBufferAvailablePropertyKey" Hidden="true" />
+      <Field Name="IsSynchronizedProperty" Hidden="true" />
+      <Method Name="OnEnableAlphaChanged" Hidden="true" />
+      <Method Name="OnIsFrontBufferAvailableChanged" Hidden="true" />
+      <Method Name="OnIsSynchronizedChanged" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAgQgIgACACAAAQAgkAAhAAAAAAAAACAAAgAKAgBA=</HashCode>
+      <FileName>Interop\D3DImagePresentationTarget.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Interop.SwapChainPresentationTarget">
+    <Position X="8" Y="4" Width="2.25" />
+    <Members>
+      <Method Name="IPresentationTarget.BeginRender" Hidden="true" />
+      <Method Name="IPresentationTarget.EndRender" Hidden="true" />
+      <Property Name="IPresentationTarget.GraphicsService" Hidden="true" />
+      <Property Name="IPresentationTarget.Handle" Hidden="true" />
+      <Property Name="IPresentationTarget.Height" Hidden="true" />
+      <Property Name="IPresentationTarget.IsVisible" Hidden="true" />
+      <Property Name="IPresentationTarget.Width" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAQAAgAgAAACAAAAAAAAABAAAAAAAAACAAAAAIAgBA=</HashCode>
+      <FileName>Interop\SwapChainPresentationTarget.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="DigitalRune.Graphics.Interop.IPresentationTarget">
+    <Position X="3" Y="1.25" Width="1.75" />
+    <Members>
+      <Property Name="Handle" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAADAAAEAAAAAAAAEBAAAAAAAIAAAAAAAAAAAE=</HashCode>
+      <FileName>Interop\IPresentationTarget.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

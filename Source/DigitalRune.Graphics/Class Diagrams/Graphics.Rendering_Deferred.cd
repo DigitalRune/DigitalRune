@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Deferred Rendering                                                                Assembly: DigitalRune.Graphics                       Namespace: DigitalRune.Graphics.Rendering">
+    <Position X="0.5" Y="0.5" Height="0.647" Width="2.694" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.Rendering.ClearGBufferRenderer">
+    <Position X="0.5" Y="1.5" Width="1.75" />
+    <Members>
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_parameterDepth" Hidden="true" />
+      <Field Name="_parameterNormal" Hidden="true" />
+      <Field Name="_parameterSpecularPower" Hidden="true" />
+      <Method Name="ClearGBufferRenderer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAhAAAAAAAQA=</HashCode>
+      <FileName>Rendering\Deferred\ClearGBufferRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.RebuildZBufferRenderer">
+    <Position X="0.5" Y="3" Width="2" />
+    <Members>
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_parameterCameraFar" Hidden="true" />
+      <Field Name="_parameterColor" Hidden="true" />
+      <Field Name="_parameterGBuffer0" Hidden="true" />
+      <Field Name="_parameterProjection" Hidden="true" />
+      <Field Name="_parameterSourceTexture" Hidden="true" />
+      <Field Name="_parameterViewportSize" Hidden="true" />
+      <Field Name="_techniqueOrthographic" Hidden="true" />
+      <Field Name="_techniquePerspective" Hidden="true" />
+      <Method Name="RebuildZBufferRenderer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ICAAAgIAAAAAAAQAAAACQAAAAAACAAAAAhAAEAAgAAA=</HashCode>
+      <FileName>Rendering\Deferred\RebuildZBufferRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.FogRenderer">
+    <Position X="3" Y="3.25" Width="1.5" />
+    <Members>
+      <Field Name="_cameraFrustumFarCorners" Hidden="true" />
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_fogNodes" Hidden="true" />
+      <Field Name="_parameterColor0" Hidden="true" />
+      <Field Name="_parameterColor1" Hidden="true" />
+      <Field Name="_parameterFogParameters" Hidden="true" />
+      <Field Name="_parameterFrustumCorners" Hidden="true" />
+      <Field Name="_parameterGBuffer0" Hidden="true" />
+      <Field Name="_parameterHeights" Hidden="true" />
+      <Field Name="_parameterLightDirection" Hidden="true" />
+      <Field Name="_parameterScatteringSymmetry" Hidden="true" />
+      <Field Name="_parameterViewportSize" Hidden="true" />
+      <Field Name="_passFog" Hidden="true" />
+      <Field Name="_passFogWithHeightFalloff" Hidden="true" />
+      <Field Name="_passFogWithHeightFalloffWithPhase" Hidden="true" />
+      <Field Name="_passFogWithPhase" Hidden="true" />
+      <Method Name="CanRender" Hidden="true" />
+      <Method Name="FogRenderer" Hidden="true" />
+      <Method Name="Render" Hidden="true" />
+      <Method Name="SetDirectionalLightParameter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAhAAAAAAGCQIASEAAAAAABIABAAAAAAAhAIAAAAAMA=</HashCode>
+      <FileName>Rendering\Deferred\FogRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.LightRenderer">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <Members>
+      <Method Name="CanRender" Hidden="true" />
+      <Method Name="FilterSceneNode" Hidden="true" />
+      <Method Name="LightRenderer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Rendering\Deferred\LightRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.ShadowMaskRenderer">
+    <Position X="5" Y="1.75" Width="2.25" />
+    <Members>
+      <Field Name="_graphicsService" Hidden="true" />
+      <Field Name="_lightNodes" Hidden="true" />
+      <Field Name="_maxNumberOfShadowsMasks" Hidden="true" />
+      <Field Name="_shadowMaskBins" Hidden="true" />
+      <Field Name="_shadowMasks" Hidden="true" />
+      <Field Name="_upsampleFilter" Hidden="true" />
+      <Method Name="AssignShadowMask" Hidden="true" />
+      <Method Name="BatchJobs" Hidden="true" />
+      <Method Name="CanRender" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="GetSortKey" Hidden="true" />
+      <Method Name="PostProcess" Hidden="true" />
+      <Method Name="ProcessJobs" Hidden="true" />
+      <Method Name="Render" Hidden="true" />
+      <Method Name="ShadowMaskRenderer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>FAAAIACAACCQAAAAAIAAAQABABCRIQEACBACAAAAAAA=</HashCode>
+      <FileName>Rendering\Deferred\ShadowMaskRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Rendering.SceneRenderer" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAACAQAAAAAMAAAAAAAAAQAAEAABCAAACAAAA=</HashCode>
+      <FileName>Rendering\SceneRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

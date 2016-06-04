@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Sky Rendering                                                Assembly: DigitalRune.Graphics                       Namespace: DigitalRune.Graphics.SceneGraph">
+    <Position X="2.432" Y="0.5" Height="0.623" Width="2.837" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.SceneGraph.SkyNode">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="_drawOrder" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="SkyNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAICAAgAAAAAAAAAAA=</HashCode>
+      <FileName>SceneGraph\Sky\SkyNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.SkyObjectNode">
+    <Position X="5.5" Y="2.5" Width="1.75" />
+    <Members>
+      <Field Name="_sunDirection" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="SkyObjectNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BgABAIAACAAAAAAAAAgAAgEACAAIwBQAAAIAAAAAADA=</HashCode>
+      <FileName>SceneGraph\Sky\SkyObjectNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.GradientSkyNode">
+    <Position X="1.5" Y="8" Width="2" />
+    <Members>
+      <Field Name="_sunDirection" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="GradientSkyNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAAAAIEAggAwAAAAAAAAAAAAAAAIIAQACAAAAABBADA=</HashCode>
+      <FileName>SceneGraph\Sky\GradientSkyNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="CieSkyParameters" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.StarfieldNode">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <Members>
+      <Field Name="_stars" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="StarfieldNode" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Stars" Type="DigitalRune.Graphics.Star">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.598" Y="0.352" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAgAAAAAAAAAAAAAAIAAAAAAAAgAAAADA=</HashCode>
+      <FileName>SceneGraph\Sky\StarfieldNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Stars" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.GradientTextureSkyNode">
+    <Position X="3.75" Y="8" Width="2" />
+    <Members>
+      <Field Name="_sunDirection" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="GradientTextureSkyNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAIEEgAAAAAAAAAAgAEAAAAAIAAQAAAAAgAAAADA=</HashCode>
+      <FileName>SceneGraph\Sky\GradientTextureSkyNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="CieSkyParameters" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.ScatteringSkyNode">
+    <Position X="3.5" Y="2.5" Width="1.75" />
+    <Members>
+      <Field Name="_sunDirection" Hidden="true" />
+      <Method Name="ChapmanApproximation" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="ComputeScattering" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="Exp" Hidden="true" />
+      <Method Name="GetBaseColor" Hidden="true" />
+      <Method Name="GetOpticalDepthSchueler" Hidden="true" />
+      <Method Name="HitSphere" Hidden="true" />
+      <Method Name="PhaseFunction" Hidden="true" />
+      <Method Name="PhaseFunctionRayleigh" Hidden="true" />
+      <Method Name="ScatteringSkyNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>kCACAKgBAoAAACBQAAEQQiAoAAAIQASAAIAABAgAQDA=</HashCode>
+      <FileName>SceneGraph\Sky\ScatteringSkyNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.SkyboxNode">
+    <Position X="1.5" Y="2.5" Width="1.75" />
+    <Members>
+      <Field Name="_encoding" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="SkyboxNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAgAAIABAAAAIggAAAADA=</HashCode>
+      <FileName>SceneGraph\Sky\SkyboxNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.CloudLayerNode">
+    <Position X="9.5" Y="2.5" Width="2" />
+    <Members>
+      <Field Name="_cloudMap" Hidden="true" />
+      <Field Name="_sunDirection" Hidden="true" />
+      <Field Name="_sunOcclusion" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CloudLayerNode" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="IsQueryPending" Hidden="true" />
+      <Field Name="OcclusionQuery" Hidden="true" />
+      <Field Name="QuerySize" Hidden="true" />
+      <Method Name="TryUpdateSunOcclusion" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQAAAoBAACAEAAAAAAgIEABACQBMZpQAAAAIAAAgADA=</HashCode>
+      <FileName>SceneGraph\Sky\CloudLayerNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="DigitalRune.Graphics.CieSkyParameters">
+    <Position X="7.25" Y="6.5" Width="1.5" />
+    <Members>
+      <Method Name="CieSkyParameters" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="operator !=" Hidden="true" />
+      <Method Name="operator ==" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAgEAAAIBAICAAgAAgEAAAAAAAAIAAAAAApgEBAiA=</HashCode>
+      <FileName>Data\Sky\CieSkyParameters.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="DigitalRune.Graphics.Star">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <Members>
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="operator !=" Hidden="true" />
+      <Method Name="operator ==" Hidden="true" />
+      <Method Name="Star" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAggAAAAAAAAAAAAIAAAAAAgAAAAiA=</HashCode>
+      <FileName>Data\Star.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Occluder Nodes (Scene Nodes)                                    Assembly: DigitalRune.Graphics                    Namespace: DigitalRune.Graphics.SceneGraph">
+    <Position X="0.5" Y="0.5" Height="0.605" Width="2.871" />
+  </Comment>
+  <Comment CommentText="Occluders (Data)                                    Assembly: DigitalRune.Graphics                    Namespace: DigitalRune.Graphics">
+    <Position X="4" Y="0.5" Height="0.605" Width="2.204" />
+  </Comment>
+  <Comment CommentText="A LodGroupNode is treated as an occluder if LOD0 is an occluder.">
+    <Position X="1.25" Y="5.573" Height="0.479" Width="2.377" />
+  </Comment>
+  <Comment CommentText="A MeshNode is treated as an occluder if the Mesh has an occluder geometry.">
+    <Position X="1.219" Y="3.854" Height="0.479" Width="2.388" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.SceneGraph.MeshNode" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="3" Width="2" />
+    <Members>
+      <Field Name="_materialInstances" Hidden="true" />
+      <Field Name="_mesh" Hidden="true" />
+      <Field Name="_morphWeights" Hidden="true" />
+      <Field Name="_passHashes" Hidden="true" />
+      <Field Name="_skeletonPose" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="IOcclusionProxy.GetOccluder" Hidden="true" />
+      <Property Name="IOcclusionProxy.HasOccluder" Hidden="true" />
+      <Method Name="IOcclusionProxy.UpdateOccluder" Hidden="true" />
+      <Method Name="IsPassSupported" Hidden="true" />
+      <Property Name="MaterialInstances" Hidden="true" />
+      <Method Name="MeshNode" Hidden="true" />
+      <Property Name="MorphWeights" Hidden="true" />
+      <Method Name="OnAssetLoaded" Hidden="true" />
+      <Method Name="OnInitializeShape" Hidden="true" />
+      <Method Name="SetHasAlpha" Hidden="true" />
+      <Property Name="SkeletonPose" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQCAAAQBQDAAAQAAAAAAAAAAoQAMABAAARAgAAAgADA=</HashCode>
+      <FileName>SceneGraph\MeshNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mesh" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Mesh" BaseTypeListCollapsed="true">
+    <Position X="4" Y="3" Width="1.25" />
+    <Members>
+      <Field Name="_boundingShape" Hidden="true" />
+      <Field Name="_cachedMorphTargetNames" Hidden="true" />
+      <Property Name="Animations" Hidden="true" />
+      <Property Name="BoundingShape" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="GetMorphTargetNames" Hidden="true" />
+      <Method Name="HasMorphTargets" Hidden="true" />
+      <Method Name="InvalidateMorphTargetNames" Hidden="true" />
+      <Property Name="Materials" Hidden="true" />
+      <Method Name="Mesh" Hidden="true" />
+      <Property Name="Name" Hidden="true" />
+      <Property Name="Skeleton" Hidden="true" />
+      <Property Name="Submeshes" Hidden="true" />
+      <Property Name="UserData" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Occluder" Type="DigitalRune.Graphics.Occluder" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.25" Y="3.096" />
+        <Point X="5.625" Y="3.096" />
+        <Point X="5.625" Y="2.041" />
+        <Point X="6.5" Y="2.041" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.068" Y="0.05" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>gEIAAABgACAAAAAAAAAAAAQQAAEAAAAgIAABAAAIAAA=</HashCode>
+      <FileName>Data\Meshes\Mesh.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Occluder" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Occluder">
+    <Position X="6.5" Y="1.5" Width="1.5" />
+    <Members>
+      <Field Name="_shape" Hidden="true" />
+      <Property Name="Indices" Hidden="true" />
+      <Method Name="ITriangleMesh.GetTriangle" Hidden="true" />
+      <Property Name="ITriangleMesh.NumberOfTriangles" Hidden="true" />
+      <Method Name="Occluder" Hidden="true" />
+      <Property Name="Shape" Hidden="true" />
+      <Method Name="ToUInt16" Hidden="true" />
+      <Property Name="Vertices" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAhAAAEAAAAAAAAAAAAAAAIAAAAAgEAAAAAAAAAA=</HashCode>
+      <FileName>Data\Occluder.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.OccluderNode">
+    <Position X="1" Y="1.5" Width="1.5" />
+    <Members>
+      <Field Name="_occluder" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="IOcclusionProxy.GetOccluder" Hidden="true" />
+      <Property Name="IOcclusionProxy.HasOccluder" Hidden="true" />
+      <Method Name="IOcclusionProxy.UpdateOccluder" Hidden="true" />
+      <Method Name="OccluderNode" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Occluder" Type="DigitalRune.Graphics.Occluder" FixedToPoint="true">
+      <Path>
+        <Point X="2.5" Y="1.795" />
+        <Point X="6.5" Y="1.795" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAQAAEEABAAAAAAAAAAADA=</HashCode>
+      <FileName>SceneGraph\Occlusion\OccluderNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Occluder" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.LodGroupNode">
+    <Position X="1" Y="4.75" Width="1.5" />
+    <Members>
+      <Field Name="_suppressUpdates" Hidden="true" />
+      <Method Name="BeginUpdate" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Field Name="DefaultCapacity" Hidden="true" />
+      <Method Name="EndUpdate" Hidden="true" />
+      <Method Name="GetBoundingShape" Hidden="true" />
+      <Method Name="GetOcclusionProxy" Hidden="true" />
+      <Method Name="IOcclusionProxy.GetOccluder" Hidden="true" />
+      <Property Name="IOcclusionProxy.HasOccluder" Hidden="true" />
+      <Method Name="IOcclusionProxy.UpdateOccluder" Hidden="true" />
+      <Property Name="Levels" Hidden="true" />
+      <Method Name="LodGroupNode" Hidden="true" />
+      <Method Name="OnPoseChanged" Hidden="true" />
+      <Method Name="OnShapeChanged" Hidden="true" />
+      <Method Name="SelectLod" Hidden="true" />
+      <Method Name="UpdateBoundingShape" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAACEYAIAAAAAAAEAAEAEAAAAAMABCBAEAAIAAAADA=</HashCode>
+      <FileName>SceneGraph\LOD\LodGroupNode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

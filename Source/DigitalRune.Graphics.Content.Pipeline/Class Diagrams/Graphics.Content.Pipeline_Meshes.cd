@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Meshes                                                                         Assembly: DigitalRune.Graphics.Content.Pipeline                    Namespace: DigitalRune.Graphics.Content.Pipeline">
+    <Position X="0.5" Y="0.5" Height="0.636" Width="3.099" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.Content.Pipeline.DRSubmeshWriter">
+    <Position X="7.75" Y="4.25" Width="2.5" />
+    <Members>
+      <Method Name="GetRuntimeReader" Hidden="true" />
+      <Method Name="GetRuntimeType" Hidden="true" />
+      <Method Name="Write" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Meshes\DRSubmeshWriter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.Pipeline.DRMaterialContent">
+    <Position X="4" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Meshes\DRMaterialContent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.Pipeline.DRMaterialImporter">
+    <Position X="7.75" Y="0.5" Width="2.5" />
+    <Members>
+      <Method Name="Import" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Meshes\DRMaterialImporter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.Pipeline.DRMaterialProcessor">
+    <Position X="4" Y="0.5" Width="3.25" />
+    <Members>
+      <Field Name="_colorKeyColor" Hidden="true" />
+      <Field Name="_colorKeyEnabled" Hidden="true" />
+      <Field Name="_defaultEffectFile" Hidden="true" />
+      <Field Name="_defaultEffectType" Hidden="true" />
+      <Field Name="_generateMipmaps" Hidden="true" />
+      <Field Name="_inputTextureGamma" Hidden="true" />
+      <Field Name="_outputTextureGamma" Hidden="true" />
+      <Field Name="_premultiplyTextureAlpha" Hidden="true" />
+      <Field Name="_referenceAlpha" Hidden="true" />
+      <Field Name="_resizeTexturesToPowerOfTwo" Hidden="true" />
+      <Field Name="_scaleTextureAlphaToCoverage" Hidden="true" />
+      <Field Name="_textureFormat" Hidden="true" />
+      <Method Name="Process" Hidden="true" />
+      <Method Name="ProcessEffect" Hidden="true" />
+      <Method Name="ProcessInternal" Hidden="true" />
+      <Method Name="ProcessTextures" Hidden="true" />
+      <Method Name="ValidateOpaqueData" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EGQEAAAhAABAMCDAAkACEACACAIEEJgABAgQEEAAAAQ=</HashCode>
+      <FileName>Meshes\DRMaterialProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.Pipeline.DRMeshContent">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAABAAAAAAAAAAAAAAAQQAAEAAAAgAAAAAAAIAAA=</HashCode>
+      <FileName>Meshes\DRMeshContent.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Submeshes" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.Pipeline.DRMeshWriter">
+    <Position X="7.75" Y="3" Width="2.5" />
+    <Members>
+      <Method Name="GetRuntimeReader" Hidden="true" />
+      <Method Name="GetRuntimeType" Hidden="true" />
+      <Method Name="Write" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Meshes\DRMeshWriter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.Pipeline.DRSubmeshContent">
+    <Position X="0.5" Y="4" Width="1.75" />
+    <AssociationLine Name="MorphTargets" Type="DigitalRune.Graphics.Content.Pipeline.DRMorphTargetContent">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.058" Y="0.258" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAEAEAAAAAAIIAAAABSAAIEAA=</HashCode>
+      <FileName>Meshes\DRSubmeshContent.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="LocalMaterial" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="MorphTargets" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.Pipeline.DRMaterialWriter">
+    <Position X="7.75" Y="1.75" Width="2.5" />
+    <Members>
+      <Method Name="GetRuntimeReader" Hidden="true" />
+      <Method Name="GetRuntimeType" Hidden="true" />
+      <Method Name="Write" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Meshes\DRMaterialWriter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.Pipeline.DREffectBindingWriter">
+    <Position X="7.75" Y="6.75" Width="2.5" />
+    <Members>
+      <Method Name="GetRuntimeReader" Hidden="true" />
+      <Method Name="GetRuntimeType" Hidden="true" />
+      <Method Name="Write" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Effects\DREffectBindingWriter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.Pipeline.DRMorphTargetContent">
+    <Position X="0.5" Y="7" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAIAAAAAAAAAEAA=</HashCode>
+      <FileName>Meshes\DRMorphTargetContent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.Pipeline.DRMorphTargetWriter">
+    <Position X="7.75" Y="5.5" Width="2.5" />
+    <Members>
+      <Method Name="GetRuntimeReader" Hidden="true" />
+      <Method Name="GetRuntimeType" Hidden="true" />
+      <Method Name="Write" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Meshes\DRMorphTargetWriter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

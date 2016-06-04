@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Terrain (Scene Nodes)                                                                    Assembly: DigitalRune.Graphics                   Namespace: DigitalRune.Graphics.SceneGraph">
+    <Position X="0.5" Y="0.5" Height="0.615" Width="2.82" />
+  </Comment>
+  <Comment CommentText="Terrain (Data)                                                                   Assembly: DigitalRune.Graphics                   Namespace: DigitalRune.Graphics">
+    <Position X="3.71" Y="0.5" Height="0.615" Width="2.08" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.SceneGraph.TerrainNode">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <Members>
+      <Field Name="_baseClipmap" Hidden="true" />
+      <Field Name="_detailClipmap" Hidden="true" />
+      <Field Name="_material" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="TerrainNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEAgAAAAAGIAAAAAQAIAAAAAAAAIAAgACEAABAAAADA=</HashCode>
+      <FileName>SceneGraph\TerrainNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Terrain" />
+      <Property Name="BaseClipmap" />
+      <Property Name="DetailClipmap" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Terrain">
+    <Position X="3.75" Y="1.75" Width="2" />
+    <Members>
+      <Property Name="AreInvalidBaseRegionsClipped" Hidden="true" />
+      <Property Name="AreInvalidDetailRegionsClipped" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Property Name="InvalidBaseRegions" Hidden="true" />
+      <Property Name="InvalidDetailRegions" Hidden="true" />
+      <Method Name="RegionsContain" Hidden="true" />
+      <Property Name="Shape" Hidden="true" />
+      <Method Name="Terrain" Hidden="true" />
+      <Field Name="TerrainLimit" Hidden="true" />
+      <Method Name="UpdateAabb" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CEAEAAAGACAAAIAEAAAAABAAAAAAAAIAAEFEAAAAEAA=</HashCode>
+      <FileName>Data\Terrain\Terrain.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Tiles" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.TerrainLayer">
+    <Position X="9" Y="3.75" Width="1.75" />
+    <Members>
+      <Field Name="_fadeInEnd" Hidden="true" />
+      <Field Name="_fadeInStart" Hidden="true" />
+      <Field Name="_fadeOutEnd" Hidden="true" />
+      <Field Name="_fadeOutStart" Hidden="true" />
+      <Field Name="_material" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="GetParameter" Hidden="true" />
+      <Method Name="GetParameterBinding" Hidden="true" />
+      <Method Name="IInternalTerrainLayer.OnDraw" Hidden="true" />
+      <Property Name="MaterialInstance" Hidden="true" />
+      <Method Name="OnDraw" Hidden="true" />
+      <Method Name="SetParameter" Hidden="true" />
+      <Method Name="TerrainLayer" Hidden="true" />
+      <Method Name="TryGetParameter" Hidden="true" />
+      <Method Name="TryGetParameterBinding" Hidden="true" />
+      <Method Name="TrySetParameter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEAYAEAAACEAAAgEAAJAIBAABAIBEAQACABAECAAAAA=</HashCode>
+      <FileName>Data\Terrain\TerrainLayer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.TerrainMaterialLayer">
+    <Position X="6.75" Y="6.5" Width="2" />
+    <Members>
+      <Method Name="TerrainMaterialLayer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QAAAAAwAQgAVEAkCEAYBABAAAAoIABCAEABAQAQAgAA=</HashCode>
+      <FileName>Data\Terrain\TerrainMaterialLayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.TerrainDecalLayer">
+    <Position X="9" Y="6.5" Width="1.75" />
+    <Members>
+      <Field Name="_height" Hidden="true" />
+      <Field Name="_pose" Hidden="true" />
+      <Field Name="_width" Hidden="true" />
+      <Method Name="OnDraw" Hidden="true" />
+      <Field Name="QuadVertices" Hidden="true" />
+      <Method Name="TerrainDecalLayer" Hidden="true" />
+      <Method Name="UpdateAabb" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQRgCQEAAAAABAAEAAABoEABCAAAAEAAQAgAA=</HashCode>
+      <FileName>Data\Terrain\TerrainDecalLayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.TerrainRoadLayer">
+    <Position X="11" Y="6.5" Width="1.75" />
+    <Members>
+      <Field Name="_disposeMesh" Hidden="true" />
+      <Method Name="ClampHeightsToLineSegments" Hidden="true" />
+      <Method Name="ClampHeightsToQuad" Hidden="true" />
+      <Method Name="ClampHeightsToTriangle" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="GetLineParameter" Hidden="true" />
+      <Method Name="Max" Hidden="true" />
+      <Method Name="Min" Hidden="true" />
+      <Method Name="OnDraw" Hidden="true" />
+      <Method Name="TerrainRoadLayer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAABQzAQFAFAEABAAgAAAAoCABCEAAAAABUAgQA=</HashCode>
+      <FileName>Data\Terrain\TerrainRoadLayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.TerrainHelper">
+    <Position X="9" Y="0.5" Width="2.25" />
+    <Members>
+      <Method Name="CreateTerrainGeometryMipLevels" Hidden="true" />
+      <Method Name="FilterRowLinear" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAAAAADgAAAAAAAAQAAAAAAAAAAAAAAAAEAAAAAIACE=</HashCode>
+      <FileName>Data\Terrain\TerrainHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.TerrainClipmap">
+    <Position X="3.75" Y="5" Width="2" />
+    <Members>
+      <Field Name="_cellsPerLevel" Hidden="true" />
+      <Field Name="_numberOfLevels" Hidden="true" />
+      <Field Name="Aabb" Hidden="true" />
+      <Field Name="ActualCellSizes" Hidden="true" />
+      <Field Name="CombinedInvalidRegionsAabbs" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Property Name="Format" Hidden="true" />
+      <Field Name="InvalidRegions" Hidden="true" />
+      <Field Name="LevelSizes" Hidden="true" />
+      <Property Name="NumberOfTextureAtlasColumns" Hidden="true" />
+      <Property Name="Offsets" Hidden="true" />
+      <Field Name="OldOffsets" Hidden="true" />
+      <Field Name="OldOrigins" Hidden="true" />
+      <Method Name="TerrainClipmap" Hidden="true" />
+      <Field Name="UseIncrementalUpdate" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAgIAAAMkCAAAAhEAgkgAgkAAEgAAQAQAAAAREADAAA=</HashCode>
+      <FileName>Data\Terrain\TerrainClipmap.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.TerrainRoadPathKey">
+    <Position X="11" Y="11.5" Width="1.75" />
+    <Members>
+      <Method Name="TerrainRoadPathKey" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Terrain\TerrainRoadPoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.TerrainTile" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="0.5" Width="2" />
+    <Members>
+      <Field Name="_cellSize" Hidden="true" />
+      <Field Name="_heightTexture" Hidden="true" />
+      <Field Name="_holeTexture" Hidden="true" />
+      <Field Name="_material" Hidden="true" />
+      <Field Name="_normalTexture" Hidden="true" />
+      <Field Name="_originX" Hidden="true" />
+      <Field Name="_originZ" Hidden="true" />
+      <Field Name="DefaultMaterialKey" Hidden="true" />
+      <Property Name="IInternalTerrainLayer.Aabb" Hidden="true" />
+      <Property Name="IInternalTerrainLayer.FadeInStart" Hidden="true" />
+      <Property Name="IInternalTerrainLayer.FadeOutEnd" Hidden="true" />
+      <Method Name="IInternalTerrainLayer.OnDraw" Hidden="true" />
+      <Method Name="TerrainTile" Hidden="true" />
+      <Method Name="UpdateAabb" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EMAAAAAEQKAAKAAEQAIBAFAgAEICAAAECEEFCAgCAAA=</HashCode>
+      <FileName>Data\Terrain\TerrainTile.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

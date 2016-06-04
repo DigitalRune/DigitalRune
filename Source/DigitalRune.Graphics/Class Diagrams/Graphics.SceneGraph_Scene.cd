@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Scene                                                                Assembly: DigitalRune.Graphics                       Namespace: DigitalRune.Graphics.SceneGraph">
+    <Position X="0.5" Y="0.5" Height="0.647" Width="2.861" />
+  </Comment>
+  <Comment CommentText="Scene Queries                                                            Assembly: DigitalRune.Graphics                       Namespace: DigitalRune.Graphics.SceneGraph">
+    <Position X="7.219" Y="0.5" Height="0.647" Width="2.861" />
+  </Comment>
+  <Comment CommentText="Scene Node Comparer                                                         Assembly: DigitalRune.Graphics                       Namespace: DigitalRune.Graphics.SceneGraph">
+    <Position X="0.5" Y="6.365" Height="0.647" Width="2.861" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.SceneGraph.Scene" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="3" Width="1.75" />
+    <Members>
+      <Field Name="_collisionDomain" Hidden="true" />
+      <Field Name="_collisionObjectFilter" Hidden="true" />
+      <Field Name="_filter" Hidden="true" />
+      <Field Name="_infiniteNodes" Hidden="true" />
+      <Field Name="_queries" Hidden="true" />
+      <Field Name="_tempNodes" Hidden="true" />
+      <Field Name="_tempPlanes" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="GetAttachedSceneData" Hidden="true" />
+      <Method Name="GetCollisionObject" Hidden="true" />
+      <Method Name="GetSceneNodes" Hidden="true" />
+      <Method Name="GetShapeType" Hidden="true" />
+      <Method Name="HandleIsEnabledChanged" Hidden="true" />
+      <Method Name="HandleShapeChange" Hidden="true" />
+      <Method Name="HaveContact" Hidden="true" />
+      <Method Name="OnParentChanged" Hidden="true" />
+      <Method Name="OnSceneChanged" Hidden="true" />
+      <Method Name="OnSceneChangedValidation" Hidden="true" />
+      <Method Name="Query" Hidden="true" />
+      <Method Name="Register" Hidden="true" />
+      <Method Name="Scene" Hidden="true" />
+      <Method Name="Unregister" Hidden="true" />
+      <Method Name="ValidatePose" Hidden="true" />
+      <Method Name="ValidateShape" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Graphics.SceneGraph.Scene.NullFilter" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SceneGraph\Scene\Scene.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Enum Name="DigitalRune.Graphics.SceneGraph.Scene.ShapeType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SceneGraph\Scene\Scene.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Class Name="DigitalRune.Graphics.SceneGraph.Scene.AttachedSceneData" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SceneGraph\Scene\Scene.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>IAQAAAgYCqAAAAAACAQAIEBEABEJQIwEAAAAABACkCA=</HashCode>
+      <FileName>SceneGraph\Scene\Scene.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.LightQuery" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="3.25" Width="1.75" />
+    <Members>
+      <Field Name="_cameraPosition" Hidden="true" />
+      <Field Name="_clipCollisionObject" Hidden="true" />
+      <Field Name="_lodBiasOverYScale" Hidden="true" />
+      <Field Name="_referencePosition" Hidden="true" />
+      <Field Name="_sphereCollisionObject" Hidden="true" />
+      <Method Name="AddNode" Hidden="true" />
+      <Method Name="AddNodeWithLod" Hidden="true" />
+      <Method Name="AddSubtree" Hidden="true" />
+      <Method Name="GetLights" Hidden="true" />
+      <Method Name="HaveContact" Hidden="true" />
+      <Method Name="LightQuery" Hidden="true" />
+      <Property Name="ReferenceNode" Hidden="true" />
+      <Method Name="Reset" Hidden="true" />
+      <Method Name="Set" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QAAAEAACAAAABggAIAAIAQAAIBEACAABAIAAIAAIAAk=</HashCode>
+      <FileName>SceneGraph\Queries\LightQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.SceneNode" Collapsed="true">
+    <Position X="2.25" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>BDAdBgCeKCAAEkAEAAEObBQ8kAQKAACAQURRAPAYgTM=</HashCode>
+      <FileName>SceneGraph\SceneNode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.SceneNodeCollisionFilter" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="3.25" Width="2" />
+    <Members>
+      <Field Name="_groupPairFlags" Hidden="true" />
+      <Event Name="Changed" Hidden="true" />
+      <Method Name="ResetInternal" Hidden="true" />
+      <Method Name="SceneNodeCollisionFilter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAABgBAhIAAAAAAABEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SceneGraph\Scene\SceneNodeCollisionFilter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Scene" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.CameraFrustumQuery" BaseTypeListCollapsed="true">
+    <Position X="7.25" Y="3.25" Width="1.75" />
+    <Members>
+      <Method Name="CameraFrustumQuery" Hidden="true" />
+      <Property Name="ReferenceNode" Hidden="true" />
+      <Method Name="Reset" Hidden="true" />
+      <Method Name="Set" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACABAAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SceneGraph\Queries\CameraFrustumQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.FogQuery">
+    <Position X="7.25" Y="4.75" Width="1.75" />
+    <Members>
+      <Method Name="FogQuery" Hidden="true" />
+      <Property Name="ReferenceNode" Hidden="true" />
+      <Method Name="Reset" Hidden="true" />
+      <Method Name="Set" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAIAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SceneGraph\Queries\FogQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.ShadowCasterQuery" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="6" Width="1.75" />
+    <Members>
+      <Field Name="_cameraPosition" Hidden="true" />
+      <Field Name="_checkShadowCusterCulling" Hidden="true" />
+      <Field Name="_lodBiasOverYScale" Hidden="true" />
+      <Method Name="AddNodeWithLod" Hidden="true" />
+      <Method Name="AddSubtree" Hidden="true" />
+      <Method Name="IsShadowCaster" Hidden="true" />
+      <Property Name="ReferenceNode" Hidden="true" />
+      <Method Name="Reset" Hidden="true" />
+      <Method Name="Set" Hidden="true" />
+      <Method Name="ShadowCasterQuery" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAFAAACAAIAAAAEAAACAAAAAAAIAAAAAg=</HashCode>
+      <FileName>SceneGraph\Queries\ShadowCasterQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.AscendingNodeComparer">
+    <Position X="0.5" Y="7.5" Width="2.75" />
+    <Members>
+      <Method Name="Compare" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>SceneGraph\Comparer\AscendingNodeComparer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.DescendingNodeComparer">
+    <Position X="3.75" Y="7.5" Width="2.5" />
+    <Members>
+      <Method Name="Compare" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>SceneGraph\Comparer\DescendingNodeComparer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="DigitalRune.Graphics.SceneGraph.IScene">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAEAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>SceneGraph\Scene\IScene.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Graphics.SceneGraph.ISceneQuery">
+    <Position X="7.25" Y="1.5" Width="1.5" />
+    <AssociationLine Name="ReferenceNode" Type="DigitalRune.Graphics.SceneGraph.SceneNode" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.25" Y="2.312" />
+        <Point X="4" Y="2.312" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SceneGraph\Queries\ISceneQuery.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ReferenceNode" />
+    </ShowAsAssociation>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Figures (Scene Nodes)                                                                    Assembly: DigitalRune.Graphics                   Namespace: DigitalRune.Graphics.SceneGraph">
+    <Position X="0.5" Y="0.5" Height="0.615" Width="2.82" />
+  </Comment>
+  <Comment CommentText="Figures (Data)                                                                   Assembly: DigitalRune.Graphics                   Namespace: DigitalRune.Graphics">
+    <Position X="3.75" Y="0.5" Height="0.615" Width="2.122" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.PathFigure3F">
+    <Position X="5.5" Y="6.75" Width="1.5" />
+    <Members>
+      <Method Name="CommitVertices" Hidden="true" />
+      <Method Name="Flatten" Hidden="true" />
+      <Property Name="HasFill" Hidden="true" />
+      <Method Name="IsStroked" Hidden="true" />
+      <Method Name="PathFigure3F" Hidden="true" />
+      <Method Name="Stroke" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAQCgAAAAAAAAAAQAAAAE=</HashCode>
+      <FileName>Data\Figures\PathFigure3F.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Segments" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.CompositeFigure">
+    <Position X="9.25" Y="4.5" Width="1.5" />
+    <Members>
+      <Method Name="CompositeFigure" Hidden="true" />
+      <Method Name="Flatten" Hidden="true" />
+      <Property Name="HasFill" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Children" Type="DigitalRune.Graphics.Figure" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.25" Y="4.5" />
+        <Point X="10.25" Y="2.569" />
+        <Point X="8" Y="2.569" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Data\Figures\CompositeFigure.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Children" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.TransformedFigure">
+    <Position X="7.25" Y="4.5" Width="1.75" />
+    <Members>
+      <Field Name="_child" Hidden="true" />
+      <Field Name="_pose" Hidden="true" />
+      <Field Name="_scale" Hidden="true" />
+      <Method Name="Flatten" Hidden="true" />
+      <Property Name="HasFill" Hidden="true" />
+      <Method Name="TransformedFigure" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Child" Type="DigitalRune.Graphics.Figure" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9" Y="5.688" />
+        <Point X="10.984" Y="5.688" />
+        <Point X="10.984" Y="2.27" />
+        <Point X="8" Y="2.27" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAIAAIAAAAAQAIEAAAAAAAAAAAAACE=</HashCode>
+      <FileName>Data\Figures\TransformedFigure.cs</FileName>
+      <NewMemberFileName>Data\Drawings\CompositeFigure.cs</NewMemberFileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Child" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Figure">
+    <Position X="6" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_isDirty" Hidden="true" />
+      <Field Name="_maxNumberOfIterations" Hidden="true" />
+      <Field Name="_renderData" Hidden="true" />
+      <Field Name="_tolerance" Hidden="true" />
+      <Method Name="Flatten" Hidden="true" />
+      <Property Name="HasFill" Hidden="true" />
+      <Property Name="RenderData" Hidden="true" />
+      <Method Name="UpdateRenderData" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEAAAABEAAACAAAAAABAAAAEQAABEAAAAAACAAQgAAE=</HashCode>
+      <FileName>Data\Figures\Figure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.StrokedSegment&lt;TParam, TPoint&gt;">
+    <Position X="4.75" Y="8.75" Width="2.75" />
+    <Members>
+      <Field Name="_curve" Hidden="true" />
+      <Method Name="Flatten" Hidden="true" />
+      <Method Name="GetLength" Hidden="true" />
+      <Method Name="GetPoint" Hidden="true" />
+      <Method Name="GetTangent" Hidden="true" />
+      <Method Name="StrokedSegment" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAAAAABAAAAAAAQAAAAAAAgAAAAQAAAAE=</HashCode>
+      <FileName>Data\Figures\StrokedSegment.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Curve" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.PathFigure2F">
+    <Position X="3.75" Y="6.75" Width="1.5" />
+    <Members>
+      <Field Name="_isFilled" Hidden="true" />
+      <Method Name="CommitVertices" Hidden="true" />
+      <Method Name="Fill" Hidden="true" />
+      <Method Name="Flatten" Hidden="true" />
+      <Property Name="HasFill" Hidden="true" />
+      <Method Name="IsStroked" Hidden="true" />
+      <Method Name="PathFigure2F" Hidden="true" />
+      <Method Name="Stroke" Hidden="true" />
+    </Members>
+    <InheritanceLine Type="DigitalRune.Graphics.Figure" FixedToPoint="true">
+      <Path>
+        <Point X="7" Y="3.632" />
+        <Point X="7" Y="6.375" />
+        <Point X="4.5" Y="6.375" />
+        <Point X="4.5" Y="6.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAEAAAAAAQAAQCgACAAAAAAAAQAAAAE=</HashCode>
+      <FileName>Data\Figures\PathFigure2F.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Segments" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.EllipseFigure">
+    <Position X="3.75" Y="4.5" Width="1.25" />
+    <Members>
+      <Field Name="_arcSegment" Hidden="true" />
+      <Field Name="_isFilled" Hidden="true" />
+      <Method Name="Flatten" Hidden="true" />
+      <Property Name="HasFill" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAEEAAAAAGAAAQAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Data\Figures\EllipseFigure.cs</FileName>
+      <NewMemberFileName>Data\Drawings\RectangleFigure.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.FigureNode">
+    <Position X="0.5" Y="1.5" Width="1.75" />
+    <Members>
+      <Field Name="_dashInWorldSpace" Hidden="true" />
+      <Field Name="_drawOrder" Hidden="true" />
+      <Field Name="_figure" Hidden="true" />
+      <Field Name="_fillAlpha" Hidden="true" />
+      <Field Name="_fillColor" Hidden="true" />
+      <Field Name="_strokeAlpha" Hidden="true" />
+      <Field Name="_strokeColor" Hidden="true" />
+      <Field Name="_strokeDashPattern" Hidden="true" />
+      <Field Name="_strokeThickness" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="FigureNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AABBAgAAACEABEAEAAAABAAAAAAIOAAgAAEAAQgAADE=</HashCode>
+      <FileName>SceneGraph\Figures\FigureNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Figure" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.RectangleFigure">
+    <Position X="5.25" Y="4.5" Width="1.5" />
+    <Members>
+      <Field Name="_isFilled" Hidden="true" />
+      <Field Name="_widthX" Hidden="true" />
+      <Field Name="_widthY" Hidden="true" />
+      <Method Name="Flatten" Hidden="true" />
+      <Property Name="HasFill" Hidden="true" />
+      <Method Name="RectangleFigure" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAEAAAAAAHAAQAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Data\Figures\RectangleFigure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.StrokedSegment2F">
+    <Position X="3.75" Y="10.5" Width="2.25" />
+    <Members>
+      <Method Name="StrokedSegment2F" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Figures\StrokedSegment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.StrokedSegment3F">
+    <Position X="6.25" Y="10.5" Width="2.25" />
+    <Members>
+      <Method Name="StrokedSegment3F" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Figures\StrokedSegment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DigitalRune.Mathematics.Interpolation.ICurve&lt;TParam, TPoint&gt;">
+    <Position X="8" Y="6.75" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

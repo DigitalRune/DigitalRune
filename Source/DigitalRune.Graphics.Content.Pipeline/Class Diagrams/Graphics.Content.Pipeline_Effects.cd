@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Effects                                                                         Assembly: DigitalRune.Graphics.Content.Pipeline                    Namespace: DigitalRune.Graphics.Content.Pipeline">
+    <Position X="0.5" Y="0.5" Height="0.636" Width="3.099" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.Content.Pipeline.DREffectBindingContent">
+    <Position X="0.5" Y="1.5" Width="2" />
+    <Members>
+      <Property Name="CompiledEffect" Hidden="true" />
+      <Property Name="Effect" Hidden="true" />
+      <Property Name="EffectAsset" Hidden="true" />
+      <Property Name="EnvironmentMap" Hidden="true" />
+      <Property Name="Texture" Hidden="true" />
+      <Property Name="Texture2" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAgAAAAAAAAAAACAAAAQAQAAAAIAAAAAACA=</HashCode>
+      <FileName>Effects\DREffectBindingContent.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="EffectType" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Content.Pipeline.DREffectBindingWriter">
+    <Position X="0.5" Y="3" Width="2.75" />
+    <Members>
+      <Method Name="GetRuntimeReader" Hidden="true" />
+      <Method Name="GetRuntimeType" Hidden="true" />
+      <Method Name="Write" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Effects\DREffectBindingWriter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="DigitalRune.Graphics.Content.Pipeline.DREffectType">
+    <Position X="3.75" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAgAAAABQAAAAAgAAAAAACAAAAAA=</HashCode>
+      <FileName>Effects\DREffectType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

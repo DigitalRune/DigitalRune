@@ -1,0 +1,745 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Graphics                  Namespace: DigitalRune.Graphics.PostProcessing">
+    <Position X="3.006" Y="0.5" Height="0.438" Width="3.077" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.PostProcessing.Blur">
+    <Position X="1.75" Y="14.5" Width="2" />
+    <Members>
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_frustumFarCorners" Hidden="true" />
+      <Field Name="_horizontalOffsets" Hidden="true" />
+      <Field Name="_numberOfPasses" Hidden="true" />
+      <Field Name="_numberOfSamples" Hidden="true" />
+      <Field Name="_parameterBlurParameters0" Hidden="true" />
+      <Field Name="_parameterFrustumCorners" Hidden="true" />
+      <Field Name="_parameterGBuffer0" Hidden="true" />
+      <Field Name="_parameterOffsets" Hidden="true" />
+      <Field Name="_parameterSourceTexture" Hidden="true" />
+      <Field Name="_parameterViewportSize" Hidden="true" />
+      <Field Name="_parameterWeights" Hidden="true" />
+      <Field Name="_verticalOffsets" Hidden="true" />
+      <Method Name="Blur" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+      <Field Name="PoissonDiskKernel" Hidden="true" />
+      <Method Name="SetCurrentTechnique" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAMBEgAAgABAAAwAggICAAAAAQAMwQIACkEIAAIAEBA=</HashCode>
+      <FileName>PostProcessing\Processors\Blur.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.SimpleMotionBlur">
+    <Position X="1.75" Y="19.25" Width="1.5" />
+    <Members>
+      <Field Name="_copyFilter" Hidden="true" />
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_lastSourceTextureParameter" Hidden="true" />
+      <Field Name="_sourceTextureParameter" Hidden="true" />
+      <Field Name="_strengthParameter" Hidden="true" />
+      <Field Name="_viewportSizeParameter" Hidden="true" />
+      <Method Name="OnDisable" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+      <Method Name="Reset" Hidden="true" />
+      <Method Name="SimpleMotionBlur" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Graphics.PostProcessing.SimpleMotionBlur.ViewDependentData" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>PostProcessing\Processors\SimpleMotionBlur.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAABAAACAgAAAAAAQBAAAEIAgAAAAAEAAA=</HashCode>
+      <FileName>PostProcessing\Processors\SimpleMotionBlur.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.CameraMotionBlur">
+    <Position X="3.5" Y="19.25" Width="1.75" />
+    <Members>
+      <Field Name="_cameraFrustumFarCorners" Hidden="true" />
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_gBuffer0Parameter" Hidden="true" />
+      <Field Name="_numberOfSamplesParameter" Hidden="true" />
+      <Field Name="_parameterFrustumCorners" Hidden="true" />
+      <Field Name="_sourceTextureParameter" Hidden="true" />
+      <Field Name="_strengthParameter" Hidden="true" />
+      <Field Name="_viewInverseParameter" Hidden="true" />
+      <Field Name="_viewportSizeParameter" Hidden="true" />
+      <Field Name="_viewProjOldParameter" Hidden="true" />
+      <Method Name="CameraMotionBlur" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IEBAAAAAAAAAAAAACAQAAAAgAQBARAEAAgAIAAAAAAA=</HashCode>
+      <FileName>PostProcessing\Processors\CameraMotionBlur.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.DepthOfFieldFilter">
+    <Position X="7.5" Y="19.25" Width="1.75" />
+    <Members>
+      <Field Name="_blurPass" Hidden="true" />
+      <Field Name="_blurStrength" Hidden="true" />
+      <Field Name="_blurTextureParameter" Hidden="true" />
+      <Field Name="_circleOfConfusionPass" Hidden="true" />
+      <Field Name="_cocBlur" Hidden="true" />
+      <Field Name="_depthOfFieldPass" Hidden="true" />
+      <Field Name="_depthTextureParameter" Hidden="true" />
+      <Field Name="_downsampledCocTextureParameter" Hidden="true" />
+      <Field Name="_downsampledDepthTextureParameter" Hidden="true" />
+      <Field Name="_downsampleFactor" Hidden="true" />
+      <Field Name="_downsampleFilter" Hidden="true" />
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_farBlurDistanceParameter" Hidden="true" />
+      <Field Name="_farFocusDistanceParameter" Hidden="true" />
+      <Field Name="_farParameter" Hidden="true" />
+      <Field Name="_horizontalOffsets" Hidden="true" />
+      <Field Name="_lastViewportSize" Hidden="true" />
+      <Field Name="_nearBlurDistanceParameter" Hidden="true" />
+      <Field Name="_nearFocusDistanceParameter" Hidden="true" />
+      <Field Name="_offsetsParameter" Hidden="true" />
+      <Field Name="_sceneTextureParameter" Hidden="true" />
+      <Field Name="_screenSizeParameter" Hidden="true" />
+      <Field Name="_verticalOffsets" Hidden="true" />
+      <Field Name="_weights" Hidden="true" />
+      <Field Name="_weightsParameter" Hidden="true" />
+      <Method Name="DepthOfFieldFilter" Hidden="true" />
+      <Method Name="InitializeGaussianBlur" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAMEgAAAgIABEgAECAiAIRgAEQAIFCBQAgAAgAAYQAA=</HashCode>
+      <FileName>PostProcessing\Processors\DepthOfFieldFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.DownsampleFilter">
+    <Position X="5.25" Y="6.25" Width="1.5" />
+    <Members>
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_linear2Pass" Hidden="true" />
+      <Field Name="_linear4Pass" Hidden="true" />
+      <Field Name="_linear6Pass" Hidden="true" />
+      <Field Name="_linear8Pass" Hidden="true" />
+      <Field Name="_point2DepthPass" Hidden="true" />
+      <Field Name="_point2Pass" Hidden="true" />
+      <Field Name="_point3DepthPass" Hidden="true" />
+      <Field Name="_point3Pass" Hidden="true" />
+      <Field Name="_point4DepthPass" Hidden="true" />
+      <Field Name="_point4Pass" Hidden="true" />
+      <Field Name="_sourceSizeParameter" Hidden="true" />
+      <Field Name="_sourceTextureParameter" Hidden="true" />
+      <Field Name="_targetSizeParameter" Hidden="true" />
+      <Method Name="DownsampleFilter" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAQCAAAABAAAAABDBBAAAABAQAABAAAAggAAAAQAAQ=</HashCode>
+      <FileName>PostProcessing\Processors\DownsampleFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.HdrFilter">
+    <Position X="1.75" Y="22.25" Width="1.75" />
+    <Members>
+      <Field Name="_bloomIntensityParameter" Hidden="true" />
+      <Field Name="_bloomTextureParameter" Hidden="true" />
+      <Field Name="_bloomThresholdParameter" Hidden="true" />
+      <Field Name="_blueShiftColorParameter" Hidden="true" />
+      <Field Name="_blueShiftParameter" Hidden="true" />
+      <Field Name="_blur" Hidden="true" />
+      <Field Name="_brightnessPass" Hidden="true" />
+      <Field Name="_combinePass" Hidden="true" />
+      <Field Name="_combineWithBlueShiftPass" Hidden="true" />
+      <Field Name="_downsampleFactor" Hidden="true" />
+      <Field Name="_downsampleFilter" Hidden="true" />
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_luminance" Hidden="true" />
+      <Field Name="_luminanceTarget" Hidden="true" />
+      <Field Name="_luminanceTextureParameter" Hidden="true" />
+      <Field Name="_maxExposureParameter" Hidden="true" />
+      <Field Name="_middleGrayParameter" Hidden="true" />
+      <Field Name="_minExposureParameter" Hidden="true" />
+      <Field Name="_sceneTextureParameter" Hidden="true" />
+      <Field Name="_viewportSizeParameter" Hidden="true" />
+      <Method Name="HdrFilter" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+      <Method Name="Reset" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IiBAQASAAAAFBwCFQQAEADAAAQSIABAABgAQUBAEAAA=</HashCode>
+      <FileName>PostProcessing\Processors\HdrFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.KawaseBlur">
+    <Position X="4" Y="14.5" Width="1.5" />
+    <Members>
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_iterationParameter" Hidden="true" />
+      <Field Name="_numberOfPasses" Hidden="true" />
+      <Field Name="_sourceTextureParameter" Hidden="true" />
+      <Field Name="_useHalfPixelOffsetParameter" Hidden="true" />
+      <Field Name="_viewportSizeParameter" Hidden="true" />
+      <Method Name="KawaseBlur" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAABAAAAABAAAAAACAAAAAAAAQAAAAAAAgAAAAIAAAQ=</HashCode>
+      <FileName>PostProcessing\Processors\KawaseBlur.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.LuminanceFilter">
+    <Position X="3.75" Y="22.25" Width="1.75" />
+    <Members>
+      <Field Name="_adaptionSpeedParameter" Hidden="true" />
+      <Field Name="_copyFilter" Hidden="true" />
+      <Field Name="_createPass" Hidden="true" />
+      <Field Name="_deltaTimeParameter" Hidden="true" />
+      <Field Name="_downsampleFilter" Hidden="true" />
+      <Field Name="_downsamplePass" Hidden="true" />
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_finalPass" Hidden="true" />
+      <Field Name="_lastLuminanceTextureParameter" Hidden="true" />
+      <Field Name="_sourceSizeParameter" Hidden="true" />
+      <Field Name="_targetSizeParameter" Hidden="true" />
+      <Field Name="_textureParameter" Hidden="true" />
+      <Field Name="_useAdaptionParameter" Hidden="true" />
+      <Field Name="_useGeometricMeanParameter" Hidden="true" />
+      <Method Name="LuminanceFilter" Hidden="true" />
+      <Method Name="OnDisable" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+      <Method Name="Reset" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Graphics.PostProcessing.LuminanceFilter.ViewDependentData" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>PostProcessing\Processors\LuminanceFilter.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ACAQAAAAAAgATgAAAAgAACgBAQACCAAIAgAAAAACAIQ=</HashCode>
+      <FileName>PostProcessing\Processors\LuminanceFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.CopyFilter">
+    <Position X="3.5" Y="6.25" Width="1.5" />
+    <Members>
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_sourceTextureParameter" Hidden="true" />
+      <Field Name="_viewportSizeParameter" Hidden="true" />
+      <Method Name="CopyFilter" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAACAAAAAAAAQAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>PostProcessing\Processors\CopyFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.PostProcessor">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <Members>
+      <Field Name="_enabled" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="PostProcessor" Hidden="true" />
+      <Method Name="ProcessInternal" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIACAAAIAAAgAAABRAAQAAAAAYAAAAAAAACAQ=</HashCode>
+      <FileName>PostProcessing\PostProcessor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.RadialBlur">
+    <Position X="7.75" Y="14.5" Width="1.75" />
+    <Members>
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_maxBlurAmountParameter" Hidden="true" />
+      <Field Name="_maxBlurRadiusParameter" Hidden="true" />
+      <Field Name="_numberOfSamplesParameter" Hidden="true" />
+      <Field Name="_sourceTextureParameter" Hidden="true" />
+      <Field Name="_viewportSizeParameter" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+      <Method Name="RadialBlur" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAQAAQCAQAAAAAAQAAQAAAAgAACAAAAgA=</HashCode>
+      <FileName>PostProcessing\Processors\RadialBlur.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.SaturationFilter">
+    <Position X="4.75" Y="8.5" Width="1.5" />
+    <Members>
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_saturationParameter" Hidden="true" />
+      <Field Name="_sourceTextureParameter" Hidden="true" />
+      <Field Name="_viewportSizeParameter" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+      <Method Name="SaturationFilter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAAQAAAAAAAAAAAACAAgAAAAAQAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>PostProcessing\Processors\SaturationFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.SepiaFilter">
+    <Position X="6.5" Y="8.5" Width="1.5" />
+    <Members>
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_fullSepiaPass" Hidden="true" />
+      <Field Name="_partialSepiaPass" Hidden="true" />
+      <Field Name="_sourceTextureParameter" Hidden="true" />
+      <Field Name="_strengthParameter" Hidden="true" />
+      <Field Name="_viewportSizeParameter" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+      <Method Name="SepiaFilter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAACAAAAAAAAQBAAAEAAgAYAAAAAAA=</HashCode>
+      <FileName>PostProcessing\Processors\SepiaFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.HorizontalBlur">
+    <Position X="5.75" Y="14.5" Width="1.75" />
+    <Members>
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_iterationParameter" Hidden="true" />
+      <Field Name="_numberOfSamplesParameter" Hidden="true" />
+      <Field Name="_sourceTextureParameter" Hidden="true" />
+      <Field Name="_viewportSizeParameter" Hidden="true" />
+      <Method Name="HorizontalBlur" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAACAQAAAAAAQAAQAAAAgAAAAIAAAQ=</HashCode>
+      <FileName>PostProcessing\Processors\HorizontalBlur.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.FxaaFilter">
+    <Position X="3.75" Y="30.25" Width="1.75" />
+    <Members>
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_fxaaPass" Hidden="true" />
+      <Field Name="_luminanceToAlphaPass" Hidden="true" />
+      <Field Name="_sourceTextureParameter" Hidden="true" />
+      <Field Name="_viewportSizeParameter" Hidden="true" />
+      <Method Name="FxaaFilter" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAgAAAAAACAAAAAAAAUAAAAAAAgAAAACAAAA=</HashCode>
+      <FileName>PostProcessing\Processors\FxaaFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.GodRayFilter">
+    <Position X="7.75" Y="22.25" Width="1.75" />
+    <Members>
+      <Field Name="_blurPass" Hidden="true" />
+      <Field Name="_combinePass" Hidden="true" />
+      <Field Name="_createMaskPass" Hidden="true" />
+      <Field Name="_downsampleFactor" Hidden="true" />
+      <Field Name="_downsampleFilter" Hidden="true" />
+      <Field Name="_gBuffer0Parameter" Hidden="true" />
+      <Field Name="_intensityParameter" Hidden="true" />
+      <Field Name="_numberOfPasses" Hidden="true" />
+      <Field Name="_numberOfSamples" Hidden="true" />
+      <Field Name="_numberOfSamplesParameter" Hidden="true" />
+      <Field Name="_parameters0Parameter" Hidden="true" />
+      <Field Name="_parameters1Parameter" Hidden="true" />
+      <Field Name="_rayTextureParameter" Hidden="true" />
+      <Field Name="_sourceTextureParameter" Hidden="true" />
+      <Field Name="_viewportSizeParameter" Hidden="true" />
+      <Method Name="GodRayFilter" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>MAAJAAAAAAAAAgBAGRYEABAIASAIVAAAAAAAAEIAEAA=</HashCode>
+      <FileName>PostProcessing\Processors\GodRayFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.GrainFilter">
+    <Position X="1.75" Y="11.75" Width="1.75" />
+    <Members>
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_equalNoisePass" Hidden="true" />
+      <Field Name="_grainScaleParameter" Hidden="true" />
+      <Field Name="_luminanceThresholdParameter" Hidden="true" />
+      <Field Name="_random" Hidden="true" />
+      <Field Name="_scaledNoisePass" Hidden="true" />
+      <Field Name="_sourceTextureParameter" Hidden="true" />
+      <Field Name="_strengthParameter" Hidden="true" />
+      <Field Name="_timeParameter" Hidden="true" />
+      <Field Name="_viewportSizeParameter" Hidden="true" />
+      <Method Name="GrainFilter" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>JAAAAAAACAAIAABICAAAAACAAQBAKAEAAggAAAAAAAE=</HashCode>
+      <FileName>PostProcessing\Processors\GrainFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.SharpeningFilter">
+    <Position X="3.75" Y="11.75" Width="1.5" />
+    <Members>
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_sharpnessParameter" Hidden="true" />
+      <Field Name="_sourceTextureParameter" Hidden="true" />
+      <Field Name="_viewportSizeParameter" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+      <Method Name="SharpeningFilter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IACAAAAAAAAAAAAAiAAAAAAAAQAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>PostProcessing\Processors\SharpeningFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.SmaaFilter">
+    <Position X="5.75" Y="30.25" Width="1.5" />
+    <Members>
+      <Field Name="_areaLookupTexture" Hidden="true" />
+      <Field Name="_areaLookupTextureParameter" Hidden="true" />
+      <Field Name="_blendTextureParameter" Hidden="true" />
+      <Field Name="_blendWeightCalculationPass" Hidden="true" />
+      <Field Name="_edgesTextureParameter" Hidden="true" />
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_lumaEdgeDetectionPass" Hidden="true" />
+      <Field Name="_neighborhoodBlendingPass" Hidden="true" />
+      <Field Name="_pixelSizeParameter" Hidden="true" />
+      <Field Name="_searchLookupTexture" Hidden="true" />
+      <Field Name="_searchLookupTextureParameter" Hidden="true" />
+      <Field Name="_sourceTextureParameter" Hidden="true" />
+      <Field Name="_viewportSizeParameter" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+      <Method Name="SmaaFilter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAAAAAAICAAAAAAAKAAAAAAAASAgIAAgCgAAABAAAEA=</HashCode>
+      <FileName>PostProcessing\Processors\SmaaFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.UnsharpMaskingFilter">
+    <Position X="5.5" Y="11.75" Width="1.75" />
+    <Members>
+      <Field Name="_blurredTextureParameter" Hidden="true" />
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_sharpnessParameter" Hidden="true" />
+      <Field Name="_sourceTextureParameter" Hidden="true" />
+      <Field Name="_viewportSizeParameter" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+      <Method Name="UnsharpMaskingFilter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IACAAAAAAAAAAAAAiAAAAAAAAQAAAAAAAgAAAAAAAEA=</HashCode>
+      <FileName>PostProcessing\Processors\UnsharpMaskingFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.BloomFilter">
+    <Position X="5.75" Y="22.25" Width="1.75" />
+    <Members>
+      <Field Name="_bloomIntensityParameter" Hidden="true" />
+      <Field Name="_bloomSaturationParameter" Hidden="true" />
+      <Field Name="_bloomTextureParameter" Hidden="true" />
+      <Field Name="_bloomThresholdParameter" Hidden="true" />
+      <Field Name="_blur" Hidden="true" />
+      <Field Name="_brightnessPass" Hidden="true" />
+      <Field Name="_combinePass" Hidden="true" />
+      <Field Name="_downsampleFactor" Hidden="true" />
+      <Field Name="_downsampleFilter" Hidden="true" />
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_sceneTextureParameter" Hidden="true" />
+      <Field Name="_viewportSizeParameter" Hidden="true" />
+      <Method Name="BloomFilter" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAAQQAAAAAABAgABQAAEADAIAQAIAAAAAgAgEAAAAAA=</HashCode>
+      <FileName>PostProcessing\Processors\BloomFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.ColorCorrectionFilter">
+    <Position X="1.75" Y="8.5" Width="2.75" />
+    <Members>
+      <Field Name="_defaultLookupTexture" Hidden="true" />
+      <Field Name="_fullColorLookupPass" Hidden="true" />
+      <Field Name="_lerpColorLookupPass" Hidden="true" />
+      <Field Name="_lookupTableSizeParameter" Hidden="true" />
+      <Field Name="_lookupTexture0Parameter" Hidden="true" />
+      <Field Name="_lookupTexture1Parameter" Hidden="true" />
+      <Field Name="_partialColorLookupPass" Hidden="true" />
+      <Field Name="_sourceTextureParameter" Hidden="true" />
+      <Field Name="_strengthParameter" Hidden="true" />
+      <Field Name="_viewportSizeParameter" Hidden="true" />
+      <Method Name="ApplyPassWithOneLookupTexture" Hidden="true" />
+      <Method Name="ColorCorrectionFilter" Hidden="true" />
+      <Method Name="CopyData" Hidden="true" />
+      <Method Name="CreateLookupTexture2D" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+      <Method Name="SetLookupTexture" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAAAAABEAiAAAAQADAAIAAAAQYBAAQUAABABAEAACAA=</HashCode>
+      <FileName>PostProcessing\Processors\ColorCorrectionFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.MadFilter">
+    <Position X="8.25" Y="8.5" Width="1.5" />
+    <Members>
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_offsetParameter" Hidden="true" />
+      <Field Name="_scaleParameter" Hidden="true" />
+      <Field Name="_textureParameter" Hidden="true" />
+      <Field Name="_viewportSizeParameter" Hidden="true" />
+      <Method Name="MadFilter" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>KAAAAAAAAAAAQAAAAAIAAAAAAQIAAAAAAgAAAAAAgAA=</HashCode>
+      <FileName>PostProcessing\Processors\MadFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.ObjectMotionBlur">
+    <Position X="5.5" Y="19.25" Width="1.75" />
+    <Members>
+      <Field Name="_downsampleMaxFromFloatBufferParameter" Hidden="true" />
+      <Field Name="_downsampleMaxParameter" Hidden="true" />
+      <Field Name="_dualPass" Hidden="true" />
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_gBuffer0Parameter" Hidden="true" />
+      <Field Name="_jitterTexture" Hidden="true" />
+      <Field Name="_jitterTextureParameter" Hidden="true" />
+      <Field Name="_maxBlurRadiusParameter" Hidden="true" />
+      <Field Name="_neighborMaxPass" Hidden="true" />
+      <Field Name="_numberOfSamplesParameter" Hidden="true" />
+      <Field Name="_singlePass" Hidden="true" />
+      <Field Name="_softEdgePass" Hidden="true" />
+      <Field Name="_softZExtentParameter" Hidden="true" />
+      <Field Name="_sourceSizeParameter" Hidden="true" />
+      <Field Name="_sourceTextureParameter" Hidden="true" />
+      <Field Name="_velocityTexture2Parameter" Hidden="true" />
+      <Field Name="_velocityTextureParameter" Hidden="true" />
+      <Field Name="_viewportSizeParameter" Hidden="true" />
+      <Method Name="ObjectMotionBlur" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAARRAAAAQAAQBAQKARAAABAAQAAxAAUAgAAAAAAQAA=</HashCode>
+      <FileName>PostProcessing\Processors\ObjectMotionBlur.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.SsaoFilter">
+    <Position X="3.5" Y="26.5" Width="1.75" />
+    <Members>
+      <Field Name="_blur" Hidden="true" />
+      <Field Name="_blurHorizontalPass" Hidden="true" />
+      <Field Name="_blurVerticalPass" Hidden="true" />
+      <Field Name="_combinePass" Hidden="true" />
+      <Field Name="_copyFilter" Hidden="true" />
+      <Field Name="_copyPass" Hidden="true" />
+      <Field Name="_createLinesAPass" Hidden="true" />
+      <Field Name="_createLinesBPass" Hidden="true" />
+      <Field Name="_downsampleFactor" Hidden="true" />
+      <Field Name="_downsampleFilter" Hidden="true" />
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_farParameter" Hidden="true" />
+      <Field Name="_gBuffer0Parameter" Hidden="true" />
+      <Field Name="_maxDistancesParameter" Hidden="true" />
+      <Field Name="_occlusionTextureParameter" Hidden="true" />
+      <Field Name="_quality" Hidden="true" />
+      <Field Name="_radiusParameter" Hidden="true" />
+      <Field Name="_sourceTextureParameter" Hidden="true" />
+      <Field Name="_strengthParameter" Hidden="true" />
+      <Field Name="_viewportSizeParameter" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+      <Method Name="SsaoFilter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAAAAAQAIgIAAgDBCAoEABIQAQBIBAEAQkAAAIAoAAE=</HashCode>
+      <FileName>PostProcessing\Processors\SsaoFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.PostProcessHelper">
+    <Position X="3" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAJAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PostProcessing\PostProcessHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.PostProcessorChain">
+    <Position X="1.75" Y="4.25" Width="1.75" />
+    <Members>
+      <Field Name="_processors" Hidden="true" />
+      <Field Name="_processorsCopy" Hidden="true" />
+      <Field Name="_processorsCopyDirty" Hidden="true" />
+      <Method Name="Add" Hidden="true" />
+      <Method Name="Clear" Hidden="true" />
+      <Method Name="Contains" Hidden="true" />
+      <Property Name="Count" Hidden="true" />
+      <Method Name="GetEnumerator" Hidden="true" />
+      <Method Name="ICollection&lt;PostProcessor&gt;.CopyTo" Hidden="true" />
+      <Property Name="ICollection&lt;PostProcessor&gt;.IsReadOnly" Hidden="true" />
+      <Method Name="IEnumerable.GetEnumerator" Hidden="true" />
+      <Method Name="IEnumerable&lt;PostProcessor&gt;.GetEnumerator" Hidden="true" />
+      <Method Name="IndexOf" Hidden="true" />
+      <Method Name="Insert" Hidden="true" />
+      <Method Name="IsLastOutputProcessor" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+      <Method Name="PostProcessorChain" Hidden="true" />
+      <Method Name="Process" Hidden="true" />
+      <Method Name="Remove" Hidden="true" />
+      <Method Name="RemoveAt" Hidden="true" />
+      <Property Name="this" Hidden="true" />
+      <Method Name="UpdateProcessorsCopy" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Graphics.PostProcessing.PostProcessorChain.PostProcessorCollectionView" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>PostProcessing\PostProcessorChain.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AGIAAEAAAACCABAACgAATAQAAQAAAAAGCAAAAABQAAA=</HashCode>
+      <FileName>PostProcessing\PostProcessorChain.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.EffectPostProcessor">
+    <Position X="3.75" Y="4.25" Width="1.75" />
+    <Members>
+      <Method Name="EffectPostProcessor" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PostProcessing\Processors\EffectPostProcessor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.CieSkyFilter">
+    <Position X="1.75" Y="26.5" Width="1.5" />
+    <Members>
+      <Field Name="_cameraFrustumFarCorners" Hidden="true" />
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_parameterAbcd" Hidden="true" />
+      <Field Name="_parameterEAndStrength" Hidden="true" />
+      <Field Name="_parameterExposure" Hidden="true" />
+      <Field Name="_parameterFrustumCorners" Hidden="true" />
+      <Field Name="_parameterSourceTexture" Hidden="true" />
+      <Field Name="_parameterSunDirection" Hidden="true" />
+      <Field Name="_parameterViewportSize" Hidden="true" />
+      <Field Name="_sunDirection" Hidden="true" />
+      <Method Name="CieSkyFilter" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IQBgAoAAAAAAAAAAABAAAAAAAQBAAAQAAsAIAAAAAAA=</HashCode>
+      <FileName>PostProcessing\Processors\CieSkyFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.ColorEncoder">
+    <Position X="1.75" Y="6.25" Width="1.5" />
+    <Members>
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_sourceEncoding" Hidden="true" />
+      <Field Name="_sourceEncodingParameter" Hidden="true" />
+      <Field Name="_sourceTextureParameter" Hidden="true" />
+      <Field Name="_targetEncoding" Hidden="true" />
+      <Field Name="_targetEncodingParameter" Hidden="true" />
+      <Field Name="_viewportSizeParameter" Hidden="true" />
+      <Method Name="ColorEncoder" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+      <Method Name="SetEncoding" Hidden="true" />
+      <Method Name="VerifyEncoding" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAAAAAAQAAAAAAEACCAAAAAAAQAAAAAEAgAEAAFAIAA=</HashCode>
+      <FileName>PostProcessing\Processors\ColorEncoder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.EdgeFilter">
+    <Position X="1.75" Y="30.25" Width="1.75" />
+    <Members>
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_halfEdgeWidth" Hidden="true" />
+      <Field Name="_parameterCameraBackward" Hidden="true" />
+      <Field Name="_parameterCreaseColor" Hidden="true" />
+      <Field Name="_parameterDepthSensitivity" Hidden="true" />
+      <Field Name="_parameterDepthThreshold" Hidden="true" />
+      <Field Name="_parameterGBuffer0" Hidden="true" />
+      <Field Name="_parameterGBuffer1" Hidden="true" />
+      <Field Name="_parameterHalfEdgeWidth" Hidden="true" />
+      <Field Name="_parameterNormalSensitivity" Hidden="true" />
+      <Field Name="_parameterNormalThreshold" Hidden="true" />
+      <Field Name="_parameterSilhouetteColor" Hidden="true" />
+      <Field Name="_parameterSourceTexture" Hidden="true" />
+      <Field Name="_parameterViewportSize" Hidden="true" />
+      <Field Name="_passEdge" Hidden="true" />
+      <Field Name="_passOnePixelEdge" Hidden="true" />
+      <Method Name="EdgeFilter" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>KAgAAgQAAAAAEAQRAAACAABABQAAABFDCgAAEAAAAAA=</HashCode>
+      <FileName>PostProcessing\Processors\EdgeFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.SaoFilter">
+    <Position X="5.5" Y="26.5" Width="1.75" />
+    <Members>
+      <Field Name="_aoParameters0" Hidden="true" />
+      <Field Name="_aoParameters1" Hidden="true" />
+      <Field Name="_aoParameters2" Hidden="true" />
+      <Field Name="_blurHorizontalPass" Hidden="true" />
+      <Field Name="_blurVerticalAndCombinePass" Hidden="true" />
+      <Field Name="_blurVerticalPass" Hidden="true" />
+      <Field Name="_createAOPass" Hidden="true" />
+      <Field Name="_frustumInfoParameter" Hidden="true" />
+      <Field Name="_gBuffer0Parameter" Hidden="true" />
+      <Field Name="_numberOfAOSamplesParameter" Hidden="true" />
+      <Field Name="_numberOfSamples" Hidden="true" />
+      <Field Name="_occlusionTextureParameter" Hidden="true" />
+      <Field Name="_sampleDistribution" Hidden="true" />
+      <Field Name="_sourceTextureParameter" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+      <Method Name="SaoFilter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CEAIIAAAJQIAAAiADAUAAAAAASBAxAAAAEAAEAAYEAA=</HashCode>
+      <FileName>PostProcessing\Processors\SaoFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PostProcessing.UpsampleFilter">
+    <Position X="7" Y="6.25" Width="1.5" />
+    <Members>
+      <Field Name="_effect" Hidden="true" />
+      <Field Name="_parameterCameraFar" Hidden="true" />
+      <Field Name="_parameterDepthBuffer" Hidden="true" />
+      <Field Name="_parameterDepthBufferLow" Hidden="true" />
+      <Field Name="_parameterDepthSensitivity" Hidden="true" />
+      <Field Name="_parameterDepthThreshold" Hidden="true" />
+      <Field Name="_parameterProjection" Hidden="true" />
+      <Field Name="_parameterSceneTexture" Hidden="true" />
+      <Field Name="_parameterSourceSize" Hidden="true" />
+      <Field Name="_parameterSourceTexture" Hidden="true" />
+      <Field Name="_parameterTargetSize" Hidden="true" />
+      <Method Name="OnProcess" Hidden="true" />
+      <Method Name="UpsampleFilter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAAAAhEAAIAAEQAAAAACAAAAJQACAAEACgAAEAAAAAA=</HashCode>
+      <FileName>PostProcessing\Processors\UpsampleFilter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mode" />
+    </ShowAsAssociation>
+  </Class>
+  <Enum Name="DigitalRune.Graphics.PostProcessing.UpsamplingMode">
+    <Position X="9.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAgAAgAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>PostProcessing\Processors\UpsampleFilter.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

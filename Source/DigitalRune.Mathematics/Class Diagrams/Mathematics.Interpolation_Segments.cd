@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Curve Segments                                                                  Assembly: DigitalRune.Mathematics                                                Namespace: DigitalRune.Mathematics.Interpolation">
+    <Position X="0.5" Y="0.5" Height="0.643" Width="3.134" />
+  </Comment>
+  <Class Name="DigitalRune.Mathematics.Interpolation.BezierSegment3F" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAgAAABAAAAAAAQABYCEAAAAAAAAAAAIE=</HashCode>
+      <FileName>Interpolation\BezierSegment3F.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.StepSegment2F" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="13" Width="1.5" />
+    <AssociationLine Name="StepType" Type="DigitalRune.Mathematics.Interpolation.StepInterpolation" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.25" Y="13.281" />
+        <Point X="6.625" Y="13.281" />
+        <Point X="6.625" Y="11.063" />
+        <Point X="7.75" Y="11.063" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAgAAABAAAAAAAQABACEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\StepSegment2F.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="StepType" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.BezierSegment1F" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <Members>
+      <Field Name="Pool" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAgAAABAAAAAAAQABYCEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\BezierSegment1F.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.BSplineSegment3F" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="7.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAgAAABAAAAAAAQABACEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\BSplineSegment3F.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.LineSegment1F" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="9.25" Width="1.5" />
+    <Members>
+      <Field Name="Pool" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAgAAABAAAAAAAQABACEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\LineSegment1F.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.CardinalSegment3F" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="7.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAgAAABAAAAIAAQABACEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\CardinalSegment3F.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.CatmullRomSegment1F" BaseTypeListCollapsed="true">
+    <Position X="7" Y="2.75" Width="2" />
+    <Members>
+      <Field Name="Pool" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAgAAABAAAAAAAQABACEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\CatmullRomSegment1F.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.CatmullRomSegment3F" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7" Y="7.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAgAAABAAAAAAAQABACEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\CatmullRomSegment3F.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.LineSegment3F" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAgAAABAAAAAAAQABACEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\LineSegment3F.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.BSplineSegment2F" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAgAAABAAAAAAAQABACEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\BSplineSegment2F.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.StepSegment3F" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="14" Width="1.5" />
+    <AssociationLine Name="StepType" Type="DigitalRune.Mathematics.Interpolation.StepInterpolation" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.25" Y="14.281" />
+        <Point X="6.625" Y="14.281" />
+        <Point X="6.625" Y="11.063" />
+        <Point X="7.75" Y="11.063" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAgAAABAAAAAAAQABACEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\StepSegment3F.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="StepType" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.StepSegment1F" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="9.25" Width="1.5" />
+    <Members>
+      <Field Name="Pool" Hidden="true" />
+    </Members>
+    <AssociationLine Name="StepType" Type="DigitalRune.Mathematics.Interpolation.StepInterpolation" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.25" Y="9.966" />
+        <Point X="6.625" Y="9.966" />
+        <Point X="6.625" Y="11.063" />
+        <Point X="7.75" Y="11.063" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAgAAABAAAAAAAQABACEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\StepSegment1F.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="StepType" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.HermiteSegment3F" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="14" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAgAAABAAEAAAAQABCCEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\HermiteSegment3F.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.231" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.HermiteSegment2F" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="13" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAgAAABAAEAAAAQABCCEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\HermiteSegment2F.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.BezierSegment2F" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAgAAABAAAAAAAQABYCEAAAAAAAAAAAIE=</HashCode>
+      <FileName>Interpolation\BezierSegment2F.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.243" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.BSplineSegment1F" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="2.75" Width="1.75" />
+    <Members>
+      <Field Name="Pool" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAgAAABAAAAAAAQABACEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\BSplineSegment1F.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.CardinalSegment1F" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="2.75" Width="1.75" />
+    <Members>
+      <Field Name="Pool" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAgAAABAAAAIAAQABACEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\CardinalSegment1F.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.CardinalSegment2F" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAgAAABAAAAIAAQABACEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\CardinalSegment2F.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.CatmullRomSegment2F" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAgAAABAAAAAAAQABACEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\CatmullRomSegment2F.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.HermiteSegment1F" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="9.25" Width="1.75" />
+    <Members>
+      <Field Name="Pool" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAgAAABAAEAAAAQABCCEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\HermiteSegment1F.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.ArcSegment2F" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="15.5" Width="1.75" />
+    <Members>
+      <Field Name="_angle1" Hidden="true" />
+      <Field Name="_angleDelta" Hidden="true" />
+      <Field Name="_center" Hidden="true" />
+      <Field Name="_cosTheta" Hidden="true" />
+      <Field Name="_isDirty" Hidden="true" />
+      <Field Name="_isLargeArc" Hidden="true" />
+      <Field Name="_point1" Hidden="true" />
+      <Field Name="_point2" Hidden="true" />
+      <Field Name="_pool" Hidden="true" />
+      <Field Name="_radius" Hidden="true" />
+      <Field Name="_rotationAngle" Hidden="true" />
+      <Field Name="_rX" Hidden="true" />
+      <Field Name="_rY" Hidden="true" />
+      <Field Name="_sinTheta" Hidden="true" />
+      <Field Name="_sweepClockwise" Hidden="true" />
+      <Method Name="ComputeParameters" Hidden="true" />
+      <Method Name="GetAngle" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>SACIIAADBICAhAAGBABAQAAAUDBAAEAQACAAAEEAAAg=</HashCode>
+      <FileName>Interpolation\ArcSegment2F.cs</FileName>
+      <NewMemberFileName>Interpolation\LineSegment2F.cs</NewMemberFileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Interpolation.LineSegment2F" Collapsed="true">
+    <Position X="2.75" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAgAAABAAAAAAAQABACEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\LineSegment2F.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="DigitalRune.Mathematics.Interpolation.ICurve&lt;TParam, TPoint&gt;">
+    <Position X="4" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAAAAABAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interpolation\ICurve.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DigitalRune.Mathematics.Interpolation.StepInterpolation">
+    <Position X="7.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAAAAAAAACACAAAAAAAA=</HashCode>
+      <FileName>Interpolation\StepInterpolation.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

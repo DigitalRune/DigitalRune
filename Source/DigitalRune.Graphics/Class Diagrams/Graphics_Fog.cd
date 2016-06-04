@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Fog (Scene Nodes)                                                                    Assembly: DigitalRune.Graphics                   Namespace: DigitalRune.Graphics.SceneGraph">
+    <Position X="0.5" Y="0.5" Height="0.615" Width="2.82" />
+  </Comment>
+  <Comment CommentText="Fog (Data)                                                                   Assembly: DigitalRune.Graphics                   Namespace: DigitalRune.Graphics">
+    <Position X="3.71" Y="0.5" Height="0.615" Width="2.122" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.SceneGraph.FogNode">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <Members>
+      <Field Name="_fog" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="FogNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAEAAAAAAAAIAAIABAAAAAAAAAAADA=</HashCode>
+      <FileName>SceneGraph\FogNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Fog" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Fog">
+    <Position X="3.75" Y="1.75" Width="1.75" />
+    <Members>
+      <Field Name="_density" Hidden="true" />
+      <Field Name="_density0" Hidden="true" />
+      <Field Name="_density1" Hidden="true" />
+      <Field Name="_heightFalloff" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="Fog" Hidden="true" />
+      <Method Name="GetOpticalLengthInHeightFog" Hidden="true" />
+      <Method Name="OnGetIntensity" Hidden="true" />
+      <Method Name="UpdateDensities" Hidden="true" />
+      <Method Name="UpdateDensityAndHeightFalloff" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAMABAEIADAAAAAADAIAAAQBgAAIAAAAAAgAhAACALA=</HashCode>
+      <FileName>Data\Fog.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

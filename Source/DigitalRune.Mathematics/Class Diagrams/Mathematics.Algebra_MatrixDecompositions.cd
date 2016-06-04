@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Matrix Decompositions                            Assembly: DigitalRune.Mathematics          Namespace: DigitalRune.Mathematics.Algebra">
+    <Position X="0.5" Y="0.5" Height="0.614" Width="2.9" />
+  </Comment>
+  <Class Name="DigitalRune.Mathematics.Algebra.CholeskyDecompositionF">
+    <Position X="0.5" Y="1.5" Width="2.25" />
+    <Members>
+      <Field Name="_isSymmetricPositiveDefinite" Hidden="true" />
+      <Field Name="_l" Hidden="true" />
+      <Method Name="CholeskyDecompositionF" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAgCAAAAAAQAAgA=</HashCode>
+      <FileName>Algebra\MatrixDecompositions\CholeskyDecompositionF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Algebra.EigenvalueDecompositionF">
+    <Position X="7.5" Y="1.5" Width="2.25" />
+    <Members>
+      <Field Name="_d" Hidden="true" />
+      <Field Name="_e" Hidden="true" />
+      <Field Name="_isSymmetric" Hidden="true" />
+      <Field Name="_matrixD" Hidden="true" />
+      <Field Name="_n" Hidden="true" />
+      <Field Name="_v" Hidden="true" />
+      <Method Name="cdiv" Hidden="true" />
+      <Method Name="EigenvalueDecompositionF" Hidden="true" />
+      <Method Name="HessenbergToRealSchur" Hidden="true" />
+      <Method Name="ReduceToHessenberg" Hidden="true" />
+      <Method Name="ReduceToTridiagonal" Hidden="true" />
+      <Method Name="TridiagonalToQL" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ICAggAQAAABAAAAAARAAAAAAAAAAAQgAgAAABACQAAA=</HashCode>
+      <FileName>Algebra\MatrixDecompositions\EigenvalueDecompositionF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Algebra.LUDecompositionF">
+    <Position X="5.25" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_determinant" Hidden="true" />
+      <Field Name="_lu" Hidden="true" />
+      <Field Name="_m" Hidden="true" />
+      <Field Name="_matrixL" Hidden="true" />
+      <Field Name="_matrixU" Hidden="true" />
+      <Field Name="_n" Hidden="true" />
+      <Field Name="_pivotSign" Hidden="true" />
+      <Field Name="_pivotVector" Hidden="true" />
+      <Method Name="LUDecompositionF" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAQQQAAAAQgAAAAABAgAAAAAAAACACAAABAASCAgA=</HashCode>
+      <FileName>Algebra\MatrixDecompositions\LUDecompositionF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Algebra.QRDecompositionF">
+    <Position X="3" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_m" Hidden="true" />
+      <Field Name="_matrixH" Hidden="true" />
+      <Field Name="_matrixQ" Hidden="true" />
+      <Field Name="_matrixR" Hidden="true" />
+      <Field Name="_n" Hidden="true" />
+      <Field Name="_qr" Hidden="true" />
+      <Field Name="_rDiagonal" Hidden="true" />
+      <Method Name="QRDecompositionF" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAEABAAAAAAAAAAAAABAAAAAAECgCwE=</HashCode>
+      <FileName>Algebra\MatrixDecompositions\QRDecompositionF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Algebra.SingularValueDecompositionF">
+    <Position X="10" Y="1.5" Width="2.25" />
+    <Members>
+      <Field Name="_m" Hidden="true" />
+      <Field Name="_matrixS" Hidden="true" />
+      <Field Name="_n" Hidden="true" />
+      <Field Name="_numericalRank" Hidden="true" />
+      <Field Name="_s" Hidden="true" />
+      <Field Name="_u" Hidden="true" />
+      <Field Name="_v" Hidden="true" />
+      <Method Name="SingularValueDecompositionF" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQAAQAgAAEAAAAgAAAAAAAQBAAEAAAAAgAAAAACSQAA=</HashCode>
+      <FileName>Algebra\MatrixDecompositions\SingularValueDecompositionF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Algebra.CholeskyDecompositionD" Collapsed="true">
+    <Position X="0.5" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAgCAAAAAAQAAgA=</HashCode>
+      <FileName>Algebra\MatrixDecompositions\CholeskyDecompositionD.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Algebra.EigenvalueDecompositionD" Collapsed="true">
+    <Position X="7.5" Y="4" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ICAggAQAAABAAAAAARAAAAAAAAAAAQgAgAAABACQAAA=</HashCode>
+      <FileName>Algebra\MatrixDecompositions\EigenvalueDecompositionD.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Algebra.LUDecompositionD" Collapsed="true">
+    <Position X="5.25" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAQQQAAAAQgAAAAABAgAAAAAAAACACAAABAASCAgA=</HashCode>
+      <FileName>Algebra\MatrixDecompositions\LUDecompositionD.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Algebra.QRDecompositionD" Collapsed="true">
+    <Position X="3" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAEABAAAAAAAAAAAAABAAAAAAECgCwE=</HashCode>
+      <FileName>Algebra\MatrixDecompositions\QRDecompositionD.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Algebra.SingularValueDecompositionD" Collapsed="true">
+    <Position X="10" Y="4" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AQAAQAgAAEAAAAgAAAAAAAQBAAEAAAAAgAAAAACSQAA=</HashCode>
+      <FileName>Algebra\MatrixDecompositions\SingularValueDecompositionD.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

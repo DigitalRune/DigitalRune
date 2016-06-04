@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Water (Scene Nodes)                                                                    Assembly: DigitalRune.Graphics                   Namespace: DigitalRune.Graphics.SceneGraph">
+    <Position X="0.5" Y="0.5" Height="0.615" Width="2.82" />
+  </Comment>
+  <Comment CommentText="Water (Data)                                                                   Assembly: DigitalRune.Graphics                   Namespace: DigitalRune.Graphics">
+    <Position X="3.71" Y="0.5" Height="0.615" Width="2.08" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.Water" BaseTypeListCollapsed="true">
+    <Position X="7.25" Y="0.5" Width="2" />
+    <Members>
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="Water" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ACAABAEAkAgGOACAAQAAGIAAACmIQAKAYCTAAAQwADA=</HashCode>
+      <FileName>Data\Water\Water.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.WaterNode">
+    <Position X="0.5" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_extraHeight" Hidden="true" />
+      <Field Name="_lastTestPosition" Hidden="true" />
+      <Field Name="_lastTestResult" Hidden="true" />
+      <Field Name="_rayShape" Hidden="true" />
+      <Field Name="_sphereShape" Hidden="true" />
+      <Field Name="_testCollisionObject" Hidden="true" />
+      <Field Name="_underwaterTestLock" Hidden="true" />
+      <Field Name="_volume" Hidden="true" />
+      <Field Name="_water" Hidden="true" />
+      <Field Name="_waterCollisionObject" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="OnVolumeChanged" Hidden="true" />
+      <Method Name="Update" Hidden="true" />
+      <Method Name="WaterNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACQABAAAADAAAAAEEAAAiAgAAEAoAAGAEkIAAACBQTA=</HashCode>
+      <FileName>SceneGraph\WaterNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Water" />
+      <Property Name="Flow" />
+      <Property Name="Waves" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.WaterFlow">
+    <Position X="3.75" Y="2" Width="1.75" />
+    <Members>
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="WaterFlow" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AYAAICAAACAAAAAAAAAEAQAAAAAABAAAAAAQAAAAIAA=</HashCode>
+      <FileName>Data\Water\WaterFlow.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.WaterWaves">
+    <Position X="3.75" Y="5.25" Width="2" />
+    <Members>
+      <Field Name="_tileSize" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="WaterWaves" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAQCAAAAiAIAAEAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Water\WaterWaves.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.OceanWaves">
+    <Position X="5" Y="7.75" Width="2" />
+    <Members>
+      <Field Name="_choppiness" Hidden="true" />
+      <Field Name="_cpuSize" Hidden="true" />
+      <Field Name="_D" Hidden="true" />
+      <Field Name="_directionality" Hidden="true" />
+      <Field Name="_enableCpuQueries" Hidden="true" />
+      <Field Name="_fft" Hidden="true" />
+      <Field Name="_gravity" Hidden="true" />
+      <Field Name="_h" Hidden="true" />
+      <Field Name="_h0" Hidden="true" />
+      <Field Name="_isDirty" Hidden="true" />
+      <Field Name="_N" Hidden="true" />
+      <Field Name="_omega" Hidden="true" />
+      <Field Name="_oneOverKLength" Hidden="true" />
+      <Field Name="_seed" Hidden="true" />
+      <Field Name="_smallWaveSuppression" Hidden="true" />
+      <Field Name="_texureSize" Hidden="true" />
+      <Field Name="_wind" Hidden="true" />
+      <Field Name="DisplacementSpectrum" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="GetIndex" Hidden="true" />
+      <Method Name="GetKx" Hidden="true" />
+      <Method Name="GetKy" Hidden="true" />
+      <Method Name="GetOmega" Hidden="true" />
+      <Method Name="GetPhillipsSpectrum" Hidden="true" />
+      <Field Name="H0Spectrum" Hidden="true" />
+      <Method Name="InitializeCpuFft" Hidden="true" />
+      <Method Name="InitializeH0Spectrum" Hidden="true" />
+      <Field Name="LastFrame" Hidden="true" />
+      <Field Name="NormalSpectrum" Hidden="true" />
+      <Method Name="OceanWaves" Hidden="true" />
+      <Method Name="PerformCpuFft" Hidden="true" />
+      <Method Name="Update" Hidden="true" />
+      <Method Name="Wrap" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgQgABACRCAKAAEYAkBBBAEgggUBAAIISAAUCkSiQBI=</HashCode>
+      <FileName>Data\Water\OceanWaves.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.UserDefinedWaves">
+    <Position X="3" Y="7.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAgAIAAEAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Water\UserDefinedWaves.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

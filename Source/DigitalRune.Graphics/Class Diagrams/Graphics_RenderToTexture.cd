@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Render-To-Texture (Scene Nodes)                                  Assembly: DigitalRune.Graphics                 Namespace: DigitalRune.Graphics.SceneGraph">
+    <Position X="0.5" Y="0.5" Height="0.646" Width="2.809" />
+  </Comment>
+  <Comment CommentText="Render-To-Texture (Data)                                         Assembly: DigitalRune.Graphics                 Namespace: DigitalRune.Graphics">
+    <Position X="5" Y="0.5" Height="0.646" Width="2.153" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.RenderToTexture">
+    <Position X="5" Y="1.5" Width="1.5" />
+    <Members>
+      <Method Name="RenderToTexture" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAI=</HashCode>
+      <FileName>Data\RenderToTexture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.RenderToTextureNode">
+    <Position X="1.25" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_renderToTexture" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="RenderToTextureNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAABAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SceneGraph\RenderToTexture\RenderToTextureNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="RenderToTexture" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.PlanarReflectionNode">
+    <Position X="2.5" Y="3.25" Width="1.75" />
+    <Members>
+      <Field Name="_normalLocal" Hidden="true" />
+      <Property Name="CameraNode" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="PlanarReflectionNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAgAAgAAAQAAAAAAAAAQAAAAIAAAAIAAAAAAACDA=</HashCode>
+      <FileName>SceneGraph\RenderToTexture\PlanarReflectionNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.SceneCaptureNode">
+    <Position X="0.5" Y="3.25" Width="1.75" />
+    <Members>
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="SceneCaptureNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAIAAAAIAAAAAAAADA=</HashCode>
+      <FileName>SceneGraph\RenderToTexture\SceneCaptureNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

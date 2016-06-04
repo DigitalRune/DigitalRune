@@ -1,0 +1,743 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{9BA5031C-BF5F-42A4-8083-F2CCF317AE12}</ProjectGuid>
+    <ProjectTypeGuids>{96E2B04D-8817-42c6-938A-82C39BA4D311};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
+    <OutputPath>bin\$(Platform)\$(Configuration)</OutputPath>
+    <ContentRootDirectory>Content</ContentRootDirectory>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.EffectImporter" />
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.FBXImporter" />
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.TextureImporter" />
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.XImporter" />
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.AudioImporters" />
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.VideoImporters" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune.Geometry.Content.Pipeline\DigitalRune.Geometry.Content.Pipeline%28XNA,Win%29.csproj">
+      <Project>{3EBC3967-7562-463E-A636-78C5EDB94C06}</Project>
+      <Name>DigitalRune.Geometry.Content.Pipeline%28XNA,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Graphics.Content.Pipeline\DigitalRune.Graphics.Content.Pipeline%28XNA,Win%29.csproj">
+      <Project>{B8E4B812-A541-416E-8F77-E78CF059CDD3}</Project>
+      <Name>DigitalRune.Graphics.Content.Pipeline%28XNA,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Mathematics.Content.Pipeline\DigitalRune.Mathematics.Content.Pipeline%28XNA,Win%29.csproj">
+      <Project>{5289A325-E339-4E11-84BF-321ADA51E1DF}</Project>
+      <Name>DigitalRune.Mathematics.Content.Pipeline%28XNA,Win%29</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DigitalRune\Materials\GBuffer.fx">
+      <Name>GBuffer</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Deferred\RebuildZBuffer.fx">
+      <Name>RebuildZBuffer</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Deferred\Spotlight.fx">
+      <Name>Spotlight</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\Material.fx">
+      <Name>Material</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\NormalsFittingTexture.dds">
+      <Name>NormalsFittingTexture</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_GenerateMipmaps>False</ProcessorParameters_GenerateMipmaps>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+    </Compile>
+    <None Include="DigitalRune\Atmosphere.fxh">
+      <Name>Atmosphere</Name>
+    </None>
+    <None Include="DigitalRune\Common.fxh">
+      <Name>Common</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </None>
+    <Compile Include="DigitalRune\Deferred\ClearGBuffer.fx">
+      <Name>ClearGBuffer</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\GBufferAlphaTest.fx">
+      <Name>GBufferAlphaTest</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Deferred\AmbientLight.fx">
+      <Name>AmbientLight</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Deferred\DirectionalLight.fx">
+      <Name>DirectionalLight</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Deferred\PointLight.fx">
+      <Name>PointLight</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Deferred\ProjectorLight.fx">
+      <Name>ProjectorLight</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\ShadowMapSkinned.fx">
+      <Name>ShadowMapSkinned</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\ShadowMapAlphaTestSkinned.fx">
+      <Name>ShadowMapAlphaTestSkinned</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\ShadowMapAlphaTest.fx">
+      <Name>ShadowMapAlphaTest</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Deferred\StandardShadowMask.fx">
+      <Name>StandardShadowMask</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <ProcessorParameters_DebugMode>Optimize</ProcessorParameters_DebugMode>
+    </Compile>
+    <Compile Include="DigitalRune\Deferred\CubeMapShadowMask.fx">
+      <Name>CubeMapShadowMask</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <ProcessorParameters_DebugMode>Optimize</ProcessorParameters_DebugMode>
+    </Compile>
+    <None Include="DigitalRune\Decal.fxh">
+      <Name>Decal</Name>
+    </None>
+    <None Include="DigitalRune\PerlinNoise.fxh">
+      <Name>PerlinNoise</Name>
+    </None>
+    <None Include="DigitalRune\Material.fxh">
+      <Name>Material</Name>
+    </None>
+    <Compile Include="DigitalRune\Materials\GBufferNormal.fx">
+      <Name>GBufferNormal</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\GBufferNormalSkinned.fx">
+      <Name>GBufferNormalSkinned</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\GBufferSkinned.fx">
+      <Name>GBufferSkinned</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\MaterialAlphaTest.fx">
+      <Name>MaterialAlphaTest</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\MaterialSkinned.fx">
+      <Name>MaterialSkinned</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\Forward.fx">
+      <Name>Forward</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\ForwardTwoSided.fx">
+      <Name>ForwardTwoSided</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <None Include="DigitalRune\Optimization.fxh">
+      <Name>Optimization</Name>
+    </None>
+    <Compile Include="DigitalRune\Materials\ShadowMap.fx">
+      <Name>ShadowMap</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <None Include="DigitalRune\Color.fxh">
+      <Name>Color</Name>
+    </None>
+    <Compile Include="DigitalRune\Deferred\CascadedShadowMask.fx">
+      <Name>CascadedShadowMask</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <ProcessorParameters_DebugMode>Optimize</ProcessorParameters_DebugMode>
+    </Compile>
+    <None Include="DigitalRune\Deferred.fxh">
+      <Name>Deferred</Name>
+    </None>
+    <None Include="DigitalRune\Encoding.fxh">
+      <Name>Encoding</Name>
+    </None>
+    <None Include="DigitalRune\ShadowMap.fxh">
+      <Name>ShadowMap</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </None>
+    <None Include="DigitalRune\Tonemapping.fxh">
+      <Name>Tonemapping</Name>
+    </None>
+    <None Include="DigitalRune\Fog.fxh">
+      <Name>Fog</Name>
+    </None>
+    <None Include="DigitalRune\Lighting.fxh">
+      <Name>Lighting</Name>
+    </None>
+    <None Include="DigitalRune\Noise.fxh">
+      <Name>Noise</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </None>
+    <Compile Include="DigitalRune\PostProcessing\GrainFilter.fx">
+      <Name>GrainFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\SharpeningFilter.fx">
+      <Name>SharpeningFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\UnsharpMaskingFilter.fx">
+      <Name>UnsharpMaskingFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\ObjectMotionBlur.fx">
+      <Name>ObjectMotionBlur</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\GodRayFilter.fx">
+      <Name>GodRayFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\LuminanceFilter.fx">
+      <Name>LuminanceFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\KawaseBlur.fx">
+      <Name>KawaseBlur</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\SimpleMotionBlur.fx">
+      <Name>SimpleMotionBlur</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\SepiaFilter.fx">
+      <Name>SepiaFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\SaturationFilter.fx">
+      <Name>SaturationFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\RadialBlur.fx">
+      <Name>RadialBlur</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\CopyFilter.fx">
+      <Name>CopyFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\NormalMapDistortionFilter.fx">
+      <Name>NormalMapDistortionFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\DepthOfFieldFilter.fx">
+      <Name>DepthOfFieldFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\CameraMotionBlur.fx">
+      <Name>CameraMotionBlur</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\Blur.fx">
+      <Name>Blur</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <ProcessorParameters_DebugMode>Optimize</ProcessorParameters_DebugMode>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\HdrFilter.fx">
+      <Name>HdrFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Sky\Skybox.fx">
+      <Name>Skybox</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\DownsampleFilter.fx">
+      <Name>DownsampleFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\FxaaFilter.fx">
+      <Name>FxaaFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <None Include="DigitalRune\Fxaa3_11.fxh">
+      <Name>Fxaa3_11</Name>
+    </None>
+    <Compile Include="DigitalRune\PostProcessing\SmaaFilter.fx">
+      <Name>SmaaFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\SmaaAreaTexDX9.dds">
+      <Name>SmaaAreaTexDX9</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_GenerateMipmaps>False</ProcessorParameters_GenerateMipmaps>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\SmaaSearchTex.dds">
+      <Name>SmaaSearchTex</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_GenerateMipmaps>False</ProcessorParameters_GenerateMipmaps>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\HorizontalBlur.fx">
+      <Name>HorizontalBlur</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\ColorCorrectionFilter.fx">
+      <Name>ColorCorrectionFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\BloomFilter.fx">
+      <Name>BloomFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\MadFilter.fx">
+      <Name>MadFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <None Include="DigitalRune\SMAA.fxh">
+      <Name>SMAA</Name>
+    </None>
+    <Compile Include="DigitalRune\Materials\GBufferAlphaTestNormal.fx">
+      <Name>GBufferAlphaTestNormal</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\MaterialAlphaTestEmissive.fx">
+      <Name>MaterialAlphaTestEmissive</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\MaterialEmissive.fx">
+      <Name>MaterialEmissive</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\MaterialEmissiveSkinned.fx">
+      <Name>MaterialEmissiveSkinned</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Billboard.fx">
+      <Name>Billboard</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\SsaoFilter.fx">
+      <Name>SsaoFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\SpriteEffect.fx">
+      <Name>SpriteEffect</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Deferred\Fog.fx">
+      <Name>Fog</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\Matcap.fx">
+      <Name>Matcap</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\MatcapNormal.fx">
+      <Name>MatcapNormal</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\MatcapNormalSkinned.fx">
+      <Name>MatcapNormalSkinned</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\MatcapSkinned.fx">
+      <Name>MatcapSkinned</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Line.fx">
+      <Name>Line</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\EdgeFilter.fx">
+      <Name>EdgeFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\CieSkyFilter.fx">
+      <Name>CieSkyFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Decals\GBuffer.fx">
+      <Name>GBuffer</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Decals\GBufferAlphaTest.fx">
+      <Name>GBufferAlphaTest</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Decals\GBufferAlphaTestNormal.fx">
+      <Name>GBufferAlphaTestNormal</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Decals\GBufferNormal.fx">
+      <Name>GBufferNormal</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Decals\Material.fx">
+      <Name>Material</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Decals\MaterialAlphaTest.fx">
+      <Name>MaterialAlphaTest</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Decals\MaterialAlphaTestEmissive.fx">
+      <Name>MaterialAlphaTestEmissive</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Decals\MaterialEmissive.fx">
+      <Name>MaterialEmissive</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Sky\GradientSky.fx">
+      <Name>GradientSky</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Sky\Starfield.fx">
+      <Name>Starfield</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Sky\SkyObject.fx">
+      <Name>SkyObject</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Sky\GradientTextureSky.fx">
+      <Name>GradientTextureSky</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\MaterialTransparent.fx">
+      <Name>MaterialTransparent</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\GBufferTransparent.fx">
+      <Name>GBufferTransparent</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\GBufferNormalTransparent.fx">
+      <Name>GBufferNormalTransparent</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Sky\ScatteringSky.fx">
+      <Name>ScatteringSky</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Sky\CloudLayer.fx">
+      <Name>CloudLayer</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\PostProcessing\ColorEncoder.fx">
+      <Name>ColorEncoder</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DigitalRune\OcclusionCulling.fx">
+      <Name>OcclusionCulling</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <ProcessorParameters_DebugMode>Optimize</ProcessorParameters_DebugMode>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DigitalRune\Materials\Occluder.fx">
+      <Name>Occluder</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\OccluderSkinned.fx">
+      <Name>OccluderSkinned</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DigitalRune\Water\Ocean.fx">
+      <Name>Ocean</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Water\Water.fx">
+      <Name>Water</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <ProcessorParameters_DebugMode>Optimize</ProcessorParameters_DebugMode>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DigitalRune\PostProcessing\SaoFilter.fx">
+      <Name>SaoFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DigitalRune\PostProcessing\UpsampleFilter.fx">
+      <Name>UpsampleFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DigitalRune\Materials\ForwardMorphSkinned.fx">
+      <Name>ForwardMorphSkinned</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\GBufferMorphNormalSkinned.fx">
+      <Name>GBufferMorphNormalSkinned</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\MaterialMorphSkinned.fx">
+      <Name>MaterialMorphSkinned</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="DigitalRune\Materials\ShadowMapMorphSkinned.fx">
+      <Name>ShadowMapMorphSkinned</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DigitalRune\Materials\GBufferMorphSkinned.fx">
+      <Name>GBufferMorphSkinned</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DigitalRune\Deferred\ImageBasedLight.fx">
+      <Name>ImageBasedLight</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DigitalRune\Materials\ForwardEnv.fx">
+      <Name>ForwardEnv</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DigitalRune\Terrain\TerrainGBuffer.fx">
+      <Name>TerrainGBuffer</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <ProcessorParameters_DebugMode>Optimize</ProcessorParameters_DebugMode>
+    </Compile>
+    <Compile Include="DigitalRune\Terrain\TerrainMaterial.fx">
+      <Name>TerrainMaterial</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <ProcessorParameters_DebugMode>Optimize</ProcessorParameters_DebugMode>
+    </Compile>
+    <Compile Include="DigitalRune\Terrain\TerrainShadowMap.fx">
+      <Name>TerrainShadowMap</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <ProcessorParameters_DebugMode>Optimize</ProcessorParameters_DebugMode>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DigitalRune\Terrain\TerrainGeometryLayer.fx">
+      <Name>TerrainGeometryLayer</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DigitalRune\Terrain\TerrainMaterialLayer.fx">
+      <Name>TerrainMaterialLayer</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <ProcessorParameters_DebugMode>Optimize</ProcessorParameters_DebugMode>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DigitalRune\Terrain\TerrainClearLayer.fx">
+      <Name>TerrainClearLayer</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DigitalRune\Terrain\TerrainDecalLayer.fx">
+      <Name>TerrainDecalLayer</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DigitalRune\Terrain\TerrainRoadLayer.fx">
+      <Name>TerrainRoadLayer</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DigitalRune\Terrain\TerrainHoleLayer.fx">
+      <Name>TerrainHoleLayer</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DigitalRune\Terrain\TerrainGBufferHoles.fx">
+      <Name>TerrainGBufferHoles</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <ProcessorParameters_DebugMode>Optimize</ProcessorParameters_DebugMode>
+    </Compile>
+    <Compile Include="DigitalRune\Terrain\TerrainMaterialHoles.fx">
+      <Name>TerrainMaterialHoles</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <ProcessorParameters_DebugMode>Optimize</ProcessorParameters_DebugMode>
+    </Compile>
+    <Compile Include="DigitalRune\Terrain\TerrainShadowMapHoles.fx">
+      <Name>TerrainShadowMapHoles</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <ProcessorParameters_DebugMode>Optimize</ProcessorParameters_DebugMode>
+    </Compile>    
+    <Compile Include="DigitalRune\Terrain\TerrainGBufferPom.fx">
+      <Name>TerrainGBufferPom</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <ProcessorParameters_DebugMode>Optimize</ProcessorParameters_DebugMode>
+    </Compile>
+    <Compile Include="DigitalRune\Terrain\TerrainGBufferHolesPom.fx">
+      <Name>TerrainGBufferHolesPom</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <ProcessorParameters_DebugMode>Optimize</ProcessorParameters_DebugMode>
+    </Compile>
+    <Compile Include="DigitalRune\Terrain\TerrainMaterialPom.fx">
+      <Name>TerrainMaterialPom</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <ProcessorParameters_DebugMode>Optimize</ProcessorParameters_DebugMode>
+    </Compile>
+    <Compile Include="DigitalRune\Terrain\TerrainMaterialHolesPom.fx">
+      <Name>TerrainMaterialHolesPom</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <ProcessorParameters_DebugMode>Optimize</ProcessorParameters_DebugMode>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

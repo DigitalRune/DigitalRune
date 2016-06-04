@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DigitalRune.Graphics.SceneGraph.MeshNode" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <Members>
+      <Field Name="_materialInstances" Hidden="true" />
+      <Field Name="_mesh" Hidden="true" />
+      <Field Name="_morphWeights" Hidden="true" />
+      <Field Name="_passHashes" Hidden="true" />
+      <Field Name="_skeletonPose" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="IOcclusionProxy.GetOccluder" Hidden="true" />
+      <Property Name="IOcclusionProxy.HasOccluder" Hidden="true" />
+      <Method Name="IOcclusionProxy.UpdateOccluder" Hidden="true" />
+      <Method Name="IsPassSupported" Hidden="true" />
+      <Property Name="MaterialInstances" Hidden="true" />
+      <Method Name="MeshNode" Hidden="true" />
+      <Method Name="OnAssetLoaded" Hidden="true" />
+      <Method Name="OnInitializeShape" Hidden="true" />
+      <Method Name="SetHasAlpha" Hidden="true" />
+      <Property Name="SkeletonPose" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQCAAAQBQDAAAQAAAAAAAAAAoQAMABAAARAgAAAgADA=</HashCode>
+      <FileName>SceneGraph\MeshNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mesh" />
+      <Property Name="MorphWeights" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Mesh" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="0.5" Width="2" />
+    <Members>
+      <Field Name="_boundingShape" Hidden="true" />
+      <Field Name="_cachedMorphTargetNames" Hidden="true" />
+      <Property Name="Animations" Hidden="true" />
+      <Property Name="BoundingShape" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="GetMorphTargetNames" Hidden="true" />
+      <Method Name="HasMorphTargets" Hidden="true" />
+      <Method Name="InvalidateMorphTargetNames" Hidden="true" />
+      <Property Name="Materials" Hidden="true" />
+      <Method Name="Mesh" Hidden="true" />
+      <Property Name="Name" Hidden="true" />
+      <Property Name="Occluder" Hidden="true" />
+      <Property Name="Skeleton" Hidden="true" />
+      <Property Name="UserData" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Submeshes" Type="DigitalRune.Graphics.Submesh" FixedFromPoint="true">
+      <Path>
+        <Point X="5.75" Y="0.749" />
+        <Point X="6.75" Y="0.749" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.016" Y="0.081" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>gEIAAABgACAAAAAAAAAAAAQQAAEAAAAgIAABAAAIAAA=</HashCode>
+      <FileName>Data\Meshes\Mesh.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Submeshes" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Submesh">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="_materialIndex" Hidden="true" />
+      <Field Name="_morphTargets" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Property Name="HasMorphTargets" Hidden="true" />
+      <Field Name="Id" Hidden="true" />
+      <Property Name="IndexBuffer" Hidden="true" />
+      <Method Name="InvalidateMorphTargetNames" Hidden="true" />
+      <Property Name="MaterialIndex" Hidden="true" />
+      <Property Name="Mesh" Hidden="true" />
+      <Property Name="PrimitiveCount" Hidden="true" />
+      <Property Name="PrimitiveType" Hidden="true" />
+      <Property Name="StartIndex" Hidden="true" />
+      <Property Name="StartVertex" Hidden="true" />
+      <Method Name="Submesh" Hidden="true" />
+      <Property Name="UserData" Hidden="true" />
+      <Property Name="VertexBuffer" Hidden="true" />
+      <Property Name="VertexBufferEx" Hidden="true" />
+      <Property Name="VertexCount" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAACAAAgACCAEAAAAAAAEAEAAQAAAIIAASABCAAIEAA=</HashCode>
+      <FileName>Data\Meshes\Submesh.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.MorphTarget">
+    <Position X="6.75" Y="2.25" Width="1.5" />
+    <Members>
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="MorphTarget" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAQAAAAAAAIAAAAAAAAAEAA=</HashCode>
+      <FileName>Data\Meshes\Morphing\MorphTarget.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.MorphWeightCollection">
+    <Position X="3.75" Y="2.25" Width="2" />
+    <Members>
+      <Field Name="_names" Hidden="true" />
+      <Field Name="_weights" Hidden="true" />
+      <Method Name="GetEnumerator" Hidden="true" />
+      <Method Name="GetIndex" Hidden="true" />
+      <Method Name="GetIndexOrThrow" Hidden="true" />
+      <Method Name="GetMorphTargetNames" Hidden="true" />
+      <Method Name="IAnimatableObject.GetAnimatableProperty" Hidden="true" />
+      <Method Name="IAnimatableObject.GetAnimatedProperties" Hidden="true" />
+      <Method Name="IEnumerable.GetEnumerator" Hidden="true" />
+      <Method Name="IEnumerable&lt;KeyValuePair&lt;string, float&gt;&gt;.GetEnumerator" Hidden="true" />
+      <Method Name="MorphWeightCollection" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Graphics.MorphWeightCollection.MorphWeightCollectionView" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Data\Meshes\Morphing\MorphWeightCollection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Struct Name="DigitalRune.Graphics.MorphWeightCollection.Enumerator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Data\Meshes\Morphing\MorphWeightCollection.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>KAAAIAAAAAAABBAQCAAAAAQAAAAgAAAEIAgCAAAQABI=</HashCode>
+      <FileName>Data\Meshes\Morphing\MorphWeightCollection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

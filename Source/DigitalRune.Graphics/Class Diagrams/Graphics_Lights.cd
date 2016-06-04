@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Lights (Scene Nodes)                                                                    Assembly: DigitalRune.Graphics                   Namespace: DigitalRune.Graphics.SceneGraph">
+    <Position X="0.5" Y="0.5" Height="0.615" Width="2.82" />
+  </Comment>
+  <Comment CommentText="Lights (Data)                                                                   Assembly: DigitalRune.Graphics                   Namespace: DigitalRune.Graphics">
+    <Position X="3.71" Y="0.5" Height="0.615" Width="2.122" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.SceneGraph.LightNode">
+    <Position X="0.5" Y="1.5" Width="1.75" />
+    <Members>
+      <Field Name="_clip" Hidden="true" />
+      <Field Name="_light" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="LightNode" Hidden="true" />
+      <Method Name="OnClipChanged" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAABAAgAAAAAAAAEEgAAAgAAAAAIAABAAAAAIAAAADA=</HashCode>
+      <FileName>SceneGraph\LightNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Light" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.AmbientLight">
+    <Position X="2.5" Y="4.5" Width="2" />
+    <Members>
+      <Method Name="AmbientLight" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="GetIntensity" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQEAAAIAAAAAAAAAAAAAAAIAAAIAAAAAAgAgAAAACA=</HashCode>
+      <FileName>Data\Lights\AmbientLight.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Spotlight">
+    <Position X="10.5" Y="4.5" Width="1.75" />
+    <Members>
+      <Field Name="_falloffAngle" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Property Name="ConeShape" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="GetIntensity" Hidden="true" />
+      <Method Name="Spotlight" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAIAAASCAAAAAAAAAAAAAAIAAAAAIoQgQAAACA=</HashCode>
+      <FileName>Data\Lights\Spotlight.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.DirectionalLight">
+    <Position X="4.75" Y="4.5" Width="1.5" />
+    <Members>
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="DirectionalLight" Hidden="true" />
+      <Method Name="GetIntensity" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAMAAIIAAAQAAAAAAAAAAAAAAAIAAAAAAoAgQAAACA=</HashCode>
+      <FileName>Data\Lights\DirectionalLight.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Light">
+    <Position X="6.5" Y="1.5" Width="1.75" />
+    <Members>
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="Light" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEBAAAAAAAAAAAAAAAAAQAAAAIAAAAAAgAAAAAADA=</HashCode>
+      <FileName>Data\Lights\Light.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.PointLight">
+    <Position X="6.5" Y="4.5" Width="1.75" />
+    <Members>
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="GetIntensity" Hidden="true" />
+      <Method Name="PointLight" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAQCAAAAAAAAAAAAAAIAAAAAAoAgQAAACA=</HashCode>
+      <FileName>Data\Lights\PointLight.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.ProjectorLight">
+    <Position X="8.5" Y="4.5" Width="1.75" />
+    <Members>
+      <Field Name="_projection" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="GetDefaultProjection" Hidden="true" />
+      <Method Name="GetIntensity" Hidden="true" />
+      <Method Name="ProjectorLight" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Projection" Type="DigitalRune.Graphics.Projection">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.017" Y="0.3" Height="0.182" Width="0.837" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAARAAAAAAAAAAAAAAAIAAQAAAoAgQAQACA=</HashCode>
+      <FileName>Data\Lights\ProjectorLight.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Projection" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Projection" Collapsed="true">
+    <Position X="8.5" Y="7.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>gAwABCAEhAQAJAAAAgIQAEAAAAAIAAQiCAGAQIAAADA=</HashCode>
+      <FileName>Data\Camera\Projection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.ImageBasedLight">
+    <Position X="12.5" Y="4.5" Width="2" />
+    <Members>
+      <Field Name="_blendMode" Hidden="true" />
+      <Field Name="_encoding" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="GetIntensity" Hidden="true" />
+      <Method Name="ImageBasedLight" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAGAAAIAAAQGAACAAAAAAAgwAAIAAAACAoggQAAACA=</HashCode>
+      <FileName>Data\Lights\ImageBasedLight.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

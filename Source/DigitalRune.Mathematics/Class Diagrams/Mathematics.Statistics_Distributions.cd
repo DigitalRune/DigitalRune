@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Distributions                                                 Assembly: DigitalRune.Mathematics          Namespace: DigitalRune.Mathematics.Statistics">
+    <Position X="0.5" Y="0.5" Height="0.666" Width="2.907" />
+  </Comment>
+  <Class Name="DigitalRune.Mathematics.Statistics.ConstValueDistribution&lt;T&gt;">
+    <Position X="0.5" Y="3" Width="2.25" />
+    <Members>
+      <Method Name="ConstValueDistribution" Hidden="true" />
+      <Method Name="Next" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Statistics\ConstValueDistribution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Statistics.Distribution&lt;T&gt;">
+    <Position X="4.5" Y="1.25" Width="1.75" />
+    <Members>
+      <Field Name="_random" Hidden="true" />
+      <Property Name="NextValue" Hidden="true" />
+      <Property Name="Random" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAABABAAAAAAAAAAAE=</HashCode>
+      <FileName>Statistics\Distribution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Statistics.UniformDistributionF">
+    <Position X="5.75" Y="3" Width="1.75" />
+    <Members>
+      <Method Name="Next" Hidden="true" />
+      <Method Name="UniformDistributionF" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Statistics\UniformDistributionF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Statistics.UniformDistributionD">
+    <Position X="5.75" Y="5" Width="1.75" />
+    <Members>
+      <Method Name="Next" Hidden="true" />
+      <Method Name="UniformDistributionD" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Statistics\UniformDistributionD.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Statistics.FastGaussianDistributionD">
+    <Position X="7.75" Y="5" Width="2" />
+    <Members>
+      <Method Name="FastGaussianDistributionD" Hidden="true" />
+      <Method Name="Next" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAABAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Statistics\GaussianDistributionD.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Statistics.FastGaussianDistributionF">
+    <Position X="7.75" Y="3" Width="2" />
+    <Members>
+      <Method Name="FastGaussianDistributionF" Hidden="true" />
+      <Method Name="Next" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAABAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Statistics\GaussianDistributionF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Statistics.BoxDistribution">
+    <Position X="3" Y="5" Width="1.5" />
+    <Members>
+      <Field Name="_maxValue" Hidden="true" />
+      <Field Name="_minValue" Hidden="true" />
+      <Method Name="Next" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAgAAAAAAAAAAAAAgAAAAAAgACAAAAA=</HashCode>
+      <FileName>Statistics\BoxDistribution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Statistics.CircleDistribution">
+    <Position X="0.5" Y="7" Width="1.5" />
+    <Members>
+      <Field Name="_center" Hidden="true" />
+      <Field Name="_innerArea" Hidden="true" />
+      <Field Name="_innerRadius" Hidden="true" />
+      <Field Name="_outerArea" Hidden="true" />
+      <Field Name="_outerRadius" Hidden="true" />
+      <Field Name="_scale" Hidden="true" />
+      <Method Name="Next" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAAAAEAAAAAAAAAIAIAIAAAABACAAAAAAAAEAEIACA=</HashCode>
+      <FileName>Statistics\CircleDistribution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Statistics.DirectionDistribution">
+    <Position X="5.75" Y="7" Width="1.75" />
+    <Members>
+      <Field Name="_deviation" Hidden="true" />
+      <Field Name="_direction" Hidden="true" />
+      <Field Name="_isUniform" Hidden="true" />
+      <Field Name="_normalizedDirection" Hidden="true" />
+      <Field Name="_orthonormal" Hidden="true" />
+      <Method Name="Next" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAiAAAAAACICAAAAAABAAAAAAIAAAIAAAAAAA=</HashCode>
+      <FileName>Statistics\DirectionDistribution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Statistics.Int32UniformDistribution">
+    <Position X="3" Y="3" Width="2" />
+    <Members>
+      <Method Name="Int32UniformDistribution" Hidden="true" />
+      <Method Name="Next" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Statistics\Int32UniformDistribution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Statistics.LineSegmentDistribution">
+    <Position X="0.5" Y="5" Width="2" />
+    <Members>
+      <Field Name="_end" Hidden="true" />
+      <Field Name="_start" Hidden="true" />
+      <Method Name="Next" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgIAAAAAACAAgAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Statistics\LineSegmentDistribution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Mathematics.Statistics.SphereDistribution">
+    <Position X="3" Y="7" Width="1.75" />
+    <Members>
+      <Field Name="_center" Hidden="true" />
+      <Field Name="_innerRadius" Hidden="true" />
+      <Field Name="_innerVolume" Hidden="true" />
+      <Field Name="_outerRadius" Hidden="true" />
+      <Field Name="_outerVolume" Hidden="true" />
+      <Field Name="_scale" Hidden="true" />
+      <Method Name="Next" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAAAAEAAAAAAAAAAAIAIABAABAAAAAAAAAAEAEIACA=</HashCode>
+      <FileName>Statistics\SphereDistribution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

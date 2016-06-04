@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Effect Technique and Parameter Bindings                               Assembly: DigitalRune.Graphics                     Namespace: DigitalRune.Graphics.Effects">
+    <Position X="0.5" Y="0.5" Height="0.626" Width="2.559" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.Effects.ConstParameterBinding&lt;T&gt;">
+    <Position X="2.75" Y="7.5" Width="2.25" />
+    <Members>
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="ConstParameterBinding" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Property Name="Value" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAgAAAAACA=</HashCode>
+      <FileName>Effects\Bindings\ConstParameterBinding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.DelegateParameterBinding&lt;T&gt;">
+    <Position X="5.25" Y="7.5" Width="2.5" />
+    <Members>
+      <Field Name="_computeParameter" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="DelegateParameterBinding" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAABAAEAAAEAACA=</HashCode>
+      <FileName>Effects\Bindings\DelegateParameterBinding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.EffectParameterBinding">
+    <Position X="8" Y="1.5" Width="1.75" />
+    <Members>
+      <Method Name="ContainsParameter" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="EffectParameterBinding" Hidden="true" />
+      <Method Name="GetEffectParameterInfo" Hidden="true" />
+      <Method Name="GetEffectParameterType" Hidden="true" />
+      <Field Name="SetValueArrayMethods" Hidden="true" />
+      <Field Name="SetValueMethods" Hidden="true" />
+      <Method Name="ThrowIfArray" Hidden="true" />
+      <Method Name="ThrowIfInvalidType" Hidden="true" />
+      <Method Name="ThrowIfNotArray" Hidden="true" />
+      <Method Name="ValidateBoolean" Hidden="true" />
+      <Method Name="ValidateInt32" Hidden="true" />
+      <Method Name="ValidateMatrix" Hidden="true" />
+      <Method Name="ValidateSingle" Hidden="true" />
+      <Method Name="ValidateString" Hidden="true" />
+      <Method Name="ValidateTexture" Hidden="true" />
+      <Method Name="ValidateTexture2D" Hidden="true" />
+      <Method Name="ValidateTexture3D" Hidden="true" />
+      <Method Name="ValidateTextureCube" Hidden="true" />
+      <Field Name="ValidateTypeMethods" Hidden="true" />
+      <Method Name="ValidateVector2" Hidden="true" />
+      <Method Name="ValidateVector3" Hidden="true" />
+      <Method Name="ValidateVector4" Hidden="true" />
+      <Method Name="VerifyEffectParameter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EEQAFACACFAgAAAAEAAgAAIAEAAYAgA0iAQAACEBAjQ=</HashCode>
+      <FileName>Effects\Bindings\EffectParameterBinding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.EffectParameterBinding&lt;T&gt;">
+    <Position X="5.5" Y="5.5" Width="2" />
+    <Members>
+      <Field Name="_value" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Field Name="Comparer" Hidden="true" />
+      <Method Name="EffectParameterBinding" Hidden="true" />
+      <Method Name="OnApply" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Field Name="SetValue" Hidden="true" />
+      <Field Name="ValidateType" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAgAAAAAAAAEAAAAIAAAAAAQgAAEAAQA=</HashCode>
+      <FileName>Effects\Bindings\EffectParameterBinding{T}.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.DelegateParameterArrayBinding&lt;T&gt;">
+    <Position X="13.5" Y="7.5" Width="2.75" />
+    <Members>
+      <Field Name="_computeParameter" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="DelegateParameterArrayBinding" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAABAAEAAAEAACA=</HashCode>
+      <FileName>Effects\Bindings\DelegateParameterArrayBinding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.EffectParameterArrayBinding&lt;T&gt;">
+    <Position X="7.75" Y="5.5" Width="2.25" />
+    <Members>
+      <Field Name="_values" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="EffectParameterArrayBinding" Hidden="true" />
+      <Method Name="OnApply" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Field Name="SetValue" Hidden="true" />
+      <Method Name="ToArray" Hidden="true" />
+      <Field Name="ValidateType" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAEAAAAIAAAAAAQgAAFAACA=</HashCode>
+      <FileName>Effects\Bindings\EffectParameterArrayBinding{T}.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.ConstParameterArrayBinding&lt;T&gt;">
+    <Position X="10.75" Y="7.5" Width="2.5" />
+    <Members>
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="ConstParameterArrayBinding" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Property Name="Values" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAgAAAAACA=</HashCode>
+      <FileName>Effects\Bindings\ConstParameterArrayBinding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.SkeletonPoseParameterBinding">
+    <Position X="10.25" Y="5.5" Width="2.5" />
+    <Members>
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="OnApply" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Method Name="SkeletonPoseParameterBinding" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAQgAAEAACA=</HashCode>
+      <FileName>Effects\Bindings\SkeletonPoseParameterBinding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.EffectTechniqueBinding">
+    <Position X="0.5" Y="1.5" Width="2" />
+    <Members>
+      <Method Name="CreateInstance" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgQCBAAAAAAAAAAIAAAAIAAAAAAIAAAAAAAAAAEAALQ=</HashCode>
+      <FileName>Effects\Bindings\EffectTechniqueBinding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.EffectBinding">
+    <Position X="4.25" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_techniqueBinding" Hidden="true" />
+      <Method Name="CheckHint" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="CreateMaterialInstance" Hidden="true" />
+      <Method Name="EffectBinding" Hidden="true" />
+      <Property Name="EffectEx" Hidden="true" />
+      <Field Name="Id" Hidden="true" />
+      <Method Name="InitializeBindings" Hidden="true" />
+      <Property Name="MaterialBinding" Hidden="true" />
+      <Property Name="MorphWeights" Hidden="true" />
+      <Method Name="OnInitializeBindings" Hidden="true" />
+    </Members>
+    <AssociationLine Name="ParameterBindings" Type="DigitalRune.Graphics.Effects.EffectParameterBinding">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.058" Y="0.05" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>CAACBAAQAAgIBBAAAAAAAAABAQAYSoBAAAAAAAAIADA=</HashCode>
+      <FileName>Effects\EffectBinding.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TechniqueBinding" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="ParameterBindings" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.NullParameterBinding&lt;T&gt;">
+    <Position X="0.5" Y="7.5" Width="2" />
+    <Members>
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="NullParameterBinding" Hidden="true" />
+      <Method Name="OnApply" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAACA=</HashCode>
+      <FileName>Effects\Bindings\NullParameterBinding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.NullParameterArrayBinding&lt;T&gt;">
+    <Position X="8" Y="7.5" Width="2.5" />
+    <Members>
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="NullParameterArrayBinding" Hidden="true" />
+      <Method Name="OnApply" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAACA=</HashCode>
+      <FileName>Effects\Bindings\NullParameterArrayBinding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.ByNameTechniqueBinding">
+    <Position X="0.5" Y="5.5" Width="2" />
+    <Members>
+      <Field Name="_techniques" Hidden="true" />
+      <Method Name="ByNameTechniqueBinding" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAEAACA=</HashCode>
+      <FileName>Effects\Bindings\ByNameTechniqueBinding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.EffectParameterBindingCollection">
+    <Position X="10.25" Y="1.5" Width="2.5" />
+    <Members>
+      <Method Name="CheckHint" Hidden="true" />
+      <Method Name="EffectParameterBindingCollection" Hidden="true" />
+      <Method Name="GetEnumerator" Hidden="true" />
+      <Method Name="InsertItem" Hidden="true" />
+      <Method Name="SetItem" Hidden="true" />
+      <Property Name="this" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEAAAABQAAAABBAACAAABAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Effects\Bindings\EffectParameterBindingCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.DirectionalLightShadowParameterBinding">
+    <Position X="13" Y="5.5" Width="3" />
+    <Members>
+      <Field Name="_cascadedShadowParameters" Hidden="true" />
+      <Field Name="_standardShadowParameters" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="DirectionalLightShadowParameterBinding" Hidden="true" />
+      <Method Name="Initialize" Hidden="true" />
+      <Method Name="OnApply" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Graphics.Effects.DirectionalLightShadowParameterBinding.StandardShadowParameters" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Effects\Bindings\DirectionalLightShadowParameterBinding.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Graphics.Effects.DirectionalLightShadowParameterBinding.CascadedShadowParameters" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Effects\Bindings\DirectionalLightShadowParameterBinding.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAIAAAAAAQCAAEABCA=</HashCode>
+      <FileName>Effects\Bindings\DirectionalLightShadowParameterBinding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="DigitalRune.Graphics.Effects.EffectPassBinding" Collapsed="true">
+    <Position X="2.75" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAABBAggAAAAAAAAAAAAIBEAAAAAAAAAiA=</HashCode>
+      <FileName>Effects\Bindings\EffectPassBinding.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="DigitalRune.Graphics.Effects.EffectPassEnumerator" Collapsed="true">
+    <Position X="2.75" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAABAAgAACgAAAAAAAAAABAoAAABAAAAAA=</HashCode>
+      <FileName>Effects\Bindings\EffectPassEnumerator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

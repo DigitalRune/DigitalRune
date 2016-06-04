@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Miscellaneous Classes    Assembly: DigitalRune.Graphics                 Namespace: DigitalRune.Graphics">
+    <Position X="0.52" Y="0.5" Height="0.605" Width="2.101" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.TextureHelper">
+    <Position X="3.75" Y="4.25" Width="2.75" />
+    <Members>
+      <Method Name="GetDefaultTexture2DBlack4F" Hidden="true" />
+      <Method Name="GetDefaultTextures" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Graphics.TextureHelper.DefaultTextures" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Misc\TextureHelper.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AIAAIAQAAAAEIAAAAQAAAAAAAAAAAAAAAAACAAAIAEA=</HashCode>
+      <FileName>Misc\TextureHelper.cs</FileName>
+      <NewMemberFileName>Misc\GraphicsHelper.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.RenderTargetPool">
+    <Position X="3" Y="9.75" Width="2.25" />
+    <Members>
+      <Field Name="_enabled" Hidden="true" />
+      <Field Name="Counters2D" Hidden="true" />
+      <Field Name="CountersCube" Hidden="true" />
+      <Method Name="RenderTargetPool" Hidden="true" />
+      <Field Name="RenderTargets2D" Hidden="true" />
+      <Field Name="RenderTargetsCube" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAECAACIAAABAAAABAAABAAAAQAAAEAABAAAQ=</HashCode>
+      <FileName>Misc\RenderTargetPool.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.GraphicsHelper">
+    <Position X="0.5" Y="1.5" Width="2.75" />
+    <Members>
+      <Field Name="_maxSimultaneousTextures" Hidden="true" />
+      <Field Name="BlendStateWriteSingleChannel" Hidden="true" />
+      <Method Name="ConvertXYZToYxy" Hidden="true" />
+      <Method Name="ConvertYxyToXYZ" Hidden="true" />
+      <Field Name="CubeMapForwardDirections" Hidden="true" />
+      <Field Name="CubeMapUpDirections" Hidden="true" />
+      <Field Name="DepthStencilStateOnePassStencilFail" Hidden="true" />
+      <Field Name="DepthStencilStateStencilEqual0" Hidden="true" />
+      <Field Name="DepthStencilStateStencilNotEqual0" Hidden="true" />
+      <Method Name="FromGamma" Hidden="true" />
+      <Field Name="Gamma" Hidden="true" />
+      <Method Name="GetBounds" Hidden="true" />
+      <Method Name="GetMaxPrimitivesPerCall" Hidden="true" />
+      <Method Name="GetScreenSize" Hidden="true" />
+      <Method Name="GetViewportRectangle" Hidden="true" />
+      <Method Name="Project" Hidden="true" />
+      <Field Name="ProjectorBiasMatrix" Hidden="true" />
+      <Method Name="ProjectToViewport" Hidden="true" />
+      <Field Name="QuadVertices" Hidden="true" />
+      <Method Name="ToGamma" Hidden="true" />
+      <Method Name="Unproject" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>GKTmAIBQGEgEACAAAwBymKEkAAAIABEBBALQTgIhgCA=</HashCode>
+      <FileName>Misc\GraphicsHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.NoiseHelper">
+    <Position X="3.75" Y="1.5" Width="2" />
+    <Members>
+      <Method Name="CreateDitherMap" Hidden="true" />
+      <Field Name="DefaultJitterMapWidth" Hidden="true" />
+      <Method Name="GetNoiseTextures" Hidden="true" />
+      <Field Name="Gradients3D" Hidden="true" />
+      <Field Name="Gradients4D" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Graphics.NoiseHelper.NoiseTextures" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Misc\NoiseHelper.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AARAAAACAMAAAACAABACAAAACAAAAAAAAAAAEAIAAAA=</HashCode>
+      <FileName>Misc\NoiseHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.PackedTexture">
+    <Position X="0.5" Y="9.75" Width="2" />
+    <Members>
+      <Field Name="_numberOfColumns" Hidden="true" />
+      <Field Name="_numberOfRows" Hidden="true" />
+      <Method Name="PackedTexture" Hidden="true" />
+      <Property Name="TextureAtlasEx" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AIAAAgAAAAgAABAACAIAAIQAAAAAAGAAAAAAAAAAgAA=</HashCode>
+      <FileName>Misc\TextureAtlas\PackedTexture.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.Ephemeris">
+    <Position X="7" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_e" Hidden="true" />
+      <Field Name="_earthEclipticLongitude" Hidden="true" />
+      <Field Name="_epoch1990Days" Hidden="true" />
+      <Field Name="_epoch2000Centuries" Hidden="true" />
+      <Field Name="_equatorialToWorldNoPrecession" Hidden="true" />
+      <Field Name="_extraterrestrialSunlight" Hidden="true" />
+      <Field Name="_latitude" Hidden="true" />
+      <Field Name="_longitude" Hidden="true" />
+      <Field Name="_planetElements" Hidden="true" />
+      <Field Name="_spectrum" Hidden="true" />
+      <Field Name="_spectrumDirect" Hidden="true" />
+      <Field Name="_spectrumIndirect" Hidden="true" />
+      <Field Name="_sunEclipticLongitude" Hidden="true" />
+      <Field Name="_twilightLuminance" Hidden="true" />
+      <Method Name="ComputeEarthPosition" Hidden="true" />
+      <Method Name="ComputeMoonPosition" Hidden="true" />
+      <Method Name="ComputeSunPosition" Hidden="true" />
+      <Method Name="Ephemeris" Hidden="true" />
+      <Method Name="GetMoonLuminance" Hidden="true" />
+      <Method Name="InRange" Hidden="true" />
+      <Method Name="Refract" Hidden="true" />
+      <Method Name="ToCartesian" Hidden="true" />
+      <Method Name="ToEpoch1990Days" Hidden="true" />
+      <Method Name="ToEpoch2000Centuries" Hidden="true" />
+      <Method Name="ToJulianDate" Hidden="true" />
+      <Property Name="TwilightLuminance" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Struct Name="DigitalRune.Graphics.Ephemeris.OrbitalElements" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Ephemeris\Ephemeris_Planets.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>EgQBAghUDEJABABCAIEMgEAEgAKEMAAAACgQQAlAEQA=</HashCode>
+      <FileName>Misc\Ephemeris\Ephemeris.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="DigitalRune.Graphics.VertexPositionNormalColor" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="13" Width="2.25" />
+    <Members>
+      <Property Name="IVertexType.VertexDeclaration" Hidden="true" />
+      <Method Name="VertexPositionNormalColor" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAkgAAAgAAAAABIAIABAAAAgAAAAiA=</HashCode>
+      <FileName>Misc\VertexPositionNormalColor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="DigitalRune.Graphics.VertexPosition" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="13" Width="1.75" />
+    <Members>
+      <Property Name="IVertexType.VertexDeclaration" Hidden="true" />
+      <Method Name="VertexPosition" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAkgAAAgAAAAABAAIABAAAAAAAAAiA=</HashCode>
+      <FileName>Misc\VertexPosition.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="DigitalRune.Graphics.VertexPositionNormal">
+    <Position X="2.5" Y="13" Width="1.75" />
+    <Members>
+      <Property Name="IVertexType.VertexDeclaration" Hidden="true" />
+      <Method Name="VertexPositionNormal" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAkgAAAgAAAAABIAIABAAAAAAAAAiA=</HashCode>
+      <FileName>Misc\VertexPositionNormal.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="DigitalRune.Graphics.VertexTexture">
+    <Position X="10" Y="13" Width="1.75" />
+    <Members>
+      <Property Name="IVertexType.VertexDeclaration" Hidden="true" />
+      <Method Name="VertexTexture" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEgAAAoAAAAABAAIABAAAAAAAAAiA=</HashCode>
+      <FileName>Misc\VertexTexture.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="DigitalRune.Graphics.RenderTargetFormat">
+    <Position X="5.5" Y="9.75" Width="1.75" />
+    <Members>
+      <Field Name="_depthStencilFormat" Hidden="true" />
+      <Field Name="_height" Hidden="true" />
+      <Field Name="_mipmap" Hidden="true" />
+      <Field Name="_multiSampleCount" Hidden="true" />
+      <Field Name="_renderTargetUsage" Hidden="true" />
+      <Field Name="_surfaceFormat" Hidden="true" />
+      <Field Name="_width" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="IsCompatibleWith" Hidden="true" />
+      <Method Name="RenderTargetFormat" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABADACAAAgAAACEAAABAEhMAAEAAAACAgAig=</HashCode>
+      <FileName>Misc\RenderTargetFormat.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="DigitalRune.Graphics.InstanceData">
+    <Position X="12" Y="13" Width="1.75" />
+    <Members>
+      <Method Name="InstanceData" Hidden="true" />
+      <Property Name="IVertexType.VertexDeclaration" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEgAAAgAAAAABBAIABAAAAAAAAAiA=</HashCode>
+      <FileName>Misc\InstanceData.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="DigitalRune.Graphics.VertexPositionNormalColorTexture">
+    <Position X="7" Y="13" Width="2.75" />
+    <Members>
+      <Property Name="IVertexType.VertexDeclaration" Hidden="true" />
+      <Method Name="VertexPositionNormalColorTexture" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAkgAAAoAAAAABIAIABAAAAgAAAAiA=</HashCode>
+      <FileName>Misc\VertexPositionNormalColorTexture.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Graphics                 Namespace: DigitalRune.Storages">
+    <Position X="0.5" Y="0.5" Height="0.438" Width="2.57" />
+  </Comment>
+  <Class Name="DigitalRune.Storages.StorageContentManager">
+    <Position X="0.5" Y="1.25" Width="2" />
+    <Members>
+      <Method Name="OpenStream" Hidden="true" />
+      <Method Name="StorageContentManager" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAgA=</HashCode>
+      <FileName>Storage\StorageContentManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Storage" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Storages.TitleStorage">
+    <Position X="3.5" Y="2.25" Width="1.5" />
+    <Members>
+      <Property Name="DirectorySeparator" Hidden="true" />
+      <Method Name="GetRealPath" Hidden="true" />
+      <Method Name="OpenFile" Hidden="true" />
+      <Property Name="RootDirectory" Hidden="true" />
+      <Method Name="TitleStorage" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEEAAAAABIAAAAA=</HashCode>
+      <FileName>Storage\TitleStorage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DigitalRune.Storages.IStorage" Collapsed="true">
+    <Position X="3.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Lens Flares (Scene Nodes)                                                                    Assembly: DigitalRune.Graphics                   Namespace: DigitalRune.Graphics.SceneGraph">
+    <Position X="0.5" Y="0.5" Height="0.615" Width="2.82" />
+  </Comment>
+  <Comment CommentText="Lens Flares (Data)                                                                   Assembly: DigitalRune.Graphics                   Namespace: DigitalRune.Graphics">
+    <Position X="3.71" Y="0.5" Height="0.615" Width="2.122" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.LensFlare">
+    <Position X="3.75" Y="1.75" Width="2" />
+    <Members>
+      <Field Name="_intensity" Hidden="true" />
+      <Field Name="_querySize" Hidden="true" />
+      <Field Name="_size" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="LensFlare" Hidden="true" />
+      <Property Name="Shape" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EBAEDAAAAAAIgAAIAAAQAAQIAAAIAAQAAAAAAAIAADA=</HashCode>
+      <FileName>Data\LensFlares\LensFlare.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Graphics.SceneGraph.LensFlareNode">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <Members>
+      <Field Name="_intensity" Hidden="true" />
+      <Field Name="_lensFlare" Hidden="true" />
+      <Method Name="Clone" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="LensFlareNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAACAAAAAAAAIAAAYAAAAAAAAAAAAADA=</HashCode>
+      <FileName>SceneGraph\LensFlareNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="LensFlare" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.LensFlareElement">
+    <Position X="6.25" Y="1.75" Width="1.75" />
+    <Members>
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="LensFlareElement" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAIAIAAIAAAAAAAAIAABAAAIAgAgAADA=</HashCode>
+      <FileName>Data\LensFlares\LensFlareElement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

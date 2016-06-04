@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Effect Descriptions                        Assembly: DigitalRune.Graphics                     Namespace: DigitalRune.Graphics.Effects">
+    <Position X="0.5" Y="0.5" Height="0.626" Width="2.559" />
+  </Comment>
+  <Class Name="DigitalRune.Graphics.Effects.EffectParameterDescription">
+    <Position X="3.5" Y="1.5" Width="2.25" />
+    <Members>
+      <Field Name="_index" Hidden="true" />
+      <Method Name="EffectParameterDescription" Hidden="true" />
+      <Method Name="ValidateHint" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAgAAQAAAAQAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Effects\Descriptions\EffectParameterDescription.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Hint" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.EffectTechniqueDescriptionCollection">
+    <Position X="0.5" Y="3.75" Width="2.75" />
+    <Members>
+      <Field Name="_isReadOnly" Hidden="true" />
+      <Method Name="ClearItems" Hidden="true" />
+      <Method Name="EffectTechniqueDescriptionCollection" Hidden="true" />
+      <Method Name="GetEnumerator" Hidden="true" />
+      <Method Name="Initialize" Hidden="true" />
+      <Method Name="InsertItem" Hidden="true" />
+      <Method Name="InterpretTechnique" Hidden="true" />
+      <Method Name="RemoveItem" Hidden="true" />
+      <Method Name="SetItem" Hidden="true" />
+      <Property Name="this" Hidden="true" />
+      <Method Name="ThrowIfReadOnly" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAABxAACAAAAAAAQAABAAAEIAAAAAAAAAA=</HashCode>
+      <FileName>Effects\Descriptions\EffectTechniqueDescriptionCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.EffectTechniqueDescription">
+    <Position X="0.5" Y="1.5" Width="2.25" />
+    <Members>
+      <Method Name="EffectTechniqueDescription" Hidden="true" />
+      <Method Name="GetIndex" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAACAAAAAAAAAAAAAAEAAAAAAAI=</HashCode>
+      <FileName>Effects\Descriptions\EffectTechniqueDescription.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Graphics.Effects.EffectParameterDescriptionCollection">
+    <Position X="3.5" Y="3.75" Width="3.5" />
+    <Members>
+      <Field Name="_isReadOnly" Hidden="true" />
+      <Method Name="ClearItems" Hidden="true" />
+      <Method Name="EffectParameterDescriptionCollection" Hidden="true" />
+      <Method Name="GetEnumerator" Hidden="true" />
+      <Method Name="GetKeyForItem" Hidden="true" />
+      <Method Name="GetNextIndex" Hidden="true" />
+      <Method Name="Initialize" Hidden="true" />
+      <Method Name="InsertItem" Hidden="true" />
+      <Method Name="InterpretParameter" Hidden="true" />
+      <Method Name="IsIndexAlreadyUsed" Hidden="true" />
+      <Property Name="Items" Hidden="true" />
+      <Method Name="RemoveItem" Hidden="true" />
+      <Method Name="SetItem" Hidden="true" />
+      <Method Name="ThrowIfReadOnly" Hidden="true" />
+      <Method Name="ValidateIndices" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AACAAgBAAAAADxCAAAAAAAAAQAAAAAAEIAABAACCAAA=</HashCode>
+      <FileName>Effects\Descriptions\EffectParameterDescriptionCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="DigitalRune.Graphics.Effects.EffectParameterHint">
+    <Position X="6.5" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IEAAAAAAAAAIAAAAIAAAAAAAAABAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Effects\Descriptions\EffectParameterHint.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
