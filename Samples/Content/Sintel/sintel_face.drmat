@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Material>
+  <Pass Name="ShadowMap" Effect="DigitalRune/Materials/ShadowMapMorphSkinned" Profile="HiDef" />
+  <Pass Name="GBuffer" Effect="DigitalRune/Materials/GBufferMorphSkinned" Profile="HiDef">
+    <Parameter Name="SpecularPower" Value="75" />
+  </Pass>
+  <Pass Name="Material" Effect="DigitalRune/Materials/MaterialMorphSkinned" Profile="HiDef">
+    <Parameter Name="DiffuseColor" Value="1,0.9,0.8,1" />
+    <Parameter Name="SpecularColor" Value="1,0.81,0.64,1" />
+    <Texture Name="DiffuseTexture" File="sintel_face_diff.png" />
+  </Pass>
+</Material>

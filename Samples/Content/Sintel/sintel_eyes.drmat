@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Material>
+  <Pass Name="Default" Effect="SkinnedEffect" Profile="Any">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="SpecularColor" Value="0.1,0.1,0.1" />
+    <Parameter Name="SpecularPower" Value="100" />
+    <Texture Name="Texture" File="sintel_eyeball_diff.png" />
+  </Pass>
+  <Pass Name="ShadowMap" Effect="DigitalRune/Materials/ShadowMapMorphSkinned" Profile="HiDef" />
+  <Pass Name="GBuffer" Effect="DigitalRune/Materials/GBufferMorphSkinned" Profile="HiDef">
+    <Parameter Name="SpecularPower" Value="1000" />
+  </Pass>
+  <Pass Name="Material" Effect="DigitalRune/Materials/MaterialMorphSkinned" Profile="HiDef">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="SpecularColor" Value="1,1,1" />
+    <Texture Name="DiffuseTexture" File="sintel_eyeball_diff.png" />
+  </Pass>
+</Material>

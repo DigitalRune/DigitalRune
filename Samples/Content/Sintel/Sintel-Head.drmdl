@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Model File="Sintel-Head.fbx"
+       GenerateTangentFrames="False"
+       PremultiplyVertexColors="True"
+       RotationX="0" RotationY="0" RotationZ="0"
+       Scale="1"
+       SwapWindingOrder="False">
+  <Mesh Name="Sintel" GenerateTangentFrames="True">
+    <Submesh Material="sintel_eyes.drmat" />
+    <Submesh Material="sintel_mouth.drmat" />
+    <Submesh Material="sintel_hair.drmat" />
+    <Submesh Material="sintel_face.drmat" />
+  </Mesh>
+  <Animations Framerate="24"
+              ScaleCompression="0.01"
+              RotationCompression="0.1"
+              TranslationCompression="0.01">
+    <Animation Name="MOUTH-open" StartFrame="0" EndFrame="1"/>
+    <Animation Name="Test" StartFrame="1" EndFrame="252"/>
+  </Animations>
+</Model>

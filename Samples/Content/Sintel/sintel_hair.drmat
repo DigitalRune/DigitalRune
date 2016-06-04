@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Material>
+  <Pass Name="Default" Effect="SkinnedEffect" Profile="Any">
+    <Parameter Name="DiffuseColor" Value="0.36,0.1,0.055,1" />
+    <Parameter Name="SpecularColor" Value="0.4,0.22,0.122" />
+    <Parameter Name="SpecularPower" Value="100" />
+  </Pass>
+  <Pass Name="ShadowMap" Effect="DigitalRune/Materials/ShadowMapSkinned" Profile="HiDef" />
+  <Pass Name="GBuffer" Effect="DigitalRune/Materials/GBufferSkinned" Profile="HiDef">
+    <Parameter Name="SpecularPower" Value="100" />
+  </Pass>
+  <Pass Name="Material" Effect="DigitalRune/Materials/MaterialSkinned" Profile="HiDef">
+    <Parameter Name="DiffuseColor" Value="0.06,0.01,0.003,1" />
+    <Parameter Name="SpecularColor" Value="0.2,0.05,0.015,1" />
+  </Pass>
+</Material>
