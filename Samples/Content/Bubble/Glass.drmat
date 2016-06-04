@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Material>
+  <Pass Name="AlphaBlend" Effect="Glass.fx" Profile="HiDef">
+    <Parameter Name="ReflectionStrength" Value="2" />
+    <Parameter Name="RefractionStrength" Value="0.3" />
+    <Parameter Name="FresnelBias" Value="0.01" />
+    <Parameter Name="Alpha" Value="0.5" />
+    <Parameter Name="AdditiveBlendFactor" Value="0.3" />
+    <Texture Name="CustomEnvironmentMap" File="../Sky2.dds" />
+  </Pass>
+</Material>

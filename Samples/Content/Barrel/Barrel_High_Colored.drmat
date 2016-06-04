@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Material>
+  <Pass Name="Default" Effect="BasicEffect" Profile="Any">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="EmissiveColor" Value="0,0,0" />
+    <Parameter Name="SpecularColor" Value="1,1,1" />
+    <Parameter Name="SpecularPower" Value="1000" />
+    <Texture Name="Texture" File="diffus.png" />
+  </Pass>
+  <Pass Name="ShadowMap" Effect="DigitalRune/Materials/ShadowMap" Profile="HiDef" />
+  <Pass Name="GBuffer" Effect="DigitalRune/Materials/GBufferNormalTransparent" Profile="HiDef">
+    <Parameter Name="SpecularPower" Value="1000" />
+    <Texture Name="NormalTexture" Format="Normal" File="normal.png"/>
+  </Pass>
+  <Pass Name="Material" Effect="DigitalRune/Materials/MaterialTransparent" Profile="HiDef">
+    <Parameter Name="DiffuseColor" Value="0,0.25,0" />
+    <Parameter Name="SpecularColor" Value="1,1,1" />
+    <Texture Name="SpecularTexture" File="specular.png" />
+  </Pass>
+</Material>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Material>
+  <Pass Name="Default" Effect="BasicEffect" Profile="Any">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="SpecularColor" Value="0.1,0.1,0.1" />
+    <Parameter Name="SpecularPower" Value="48" />
+    <Texture Name="Texture" ReferenceAlpha="0.95" ScaleAlphaToCoverage="True" File="diffuse.png" />
+  </Pass>
+  <Pass Name="ShadowMap" Effect="DigitalRune/Materials/ShadowMapAlphaTest" Profile="HiDef">
+    <Parameter Name="ReferenceAlpha" Value="0.95" />
+    <Texture Name="DiffuseTexture" ReferenceAlpha="0.95" ScaleAlphaToCoverage="True" File="diffuse.png" />
+  </Pass>
+  <Pass Name="GBuffer" Effect="DigitalRune/Materials/GBufferAlphaTestNormal" Profile="HiDef">
+    <Parameter Name="SpecularPower" Value="48" />
+    <Parameter Name="ReferenceAlpha" Value="0.95" />
+    <Texture Name="DiffuseTexture" ReferenceAlpha="0.95" ScaleAlphaToCoverage="True" File="diffuse.png" />
+    <Texture Name="NormalTexture" Format="Normal" File="normal.png"/>
+  </Pass>
+  <Pass Name="Material" Effect="DigitalRune/Materials/MaterialAlphaTest" Profile="HiDef">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="SpecularColor" Value="0.1,0.1,0.1" />
+    <Parameter Name="ReferenceAlpha" Value="0.95" />
+    <Texture Name="DiffuseTexture" ReferenceAlpha="0.95" ScaleAlphaToCoverage="True" File="diffuse.png" />
+    <Texture Name="SpecularTexture" File="specular.png" />
+  </Pass>
+</Material>

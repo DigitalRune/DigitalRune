@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Model File="Barrel_Colored.fbx"
+       PremultiplyVertexColors="True"
+       RotationX="-90" RotationY="0" RotationZ="0"
+       Scale="1"
+       MaxDistance="20">
+  <Mesh Name="Barrel_LOD0" LodDistance="0" GenerateTangentFrames="True">
+    <Submesh Material="Barrel_High_Colored.drmat" />
+  </Mesh>
+  <Mesh Name="Barrel_LOD1" LodDistance="3" GenerateTangentFrames="True">
+    <Submesh Material="Barrel_Mid_Colored.drmat" />
+  </Mesh>
+  <Mesh Name="Barrel_LOD2" LodDistance="8" GenerateTangentFrames="True">
+    <Submesh Material="Barrel_Low_Colored.drmat" />
+  </Mesh>
+</Model>
