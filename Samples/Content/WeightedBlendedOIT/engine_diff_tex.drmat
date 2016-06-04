@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Material>
+  <Pass Name="Default" Effect="BasicEffect" Profile="HiDef">
+    <Parameter Name="Alpha" Value="1" />
+    <Parameter Name="DiffuseColor" Value="0.8,0.8,0.8" />
+    <Parameter Name="EmissiveColor" Value="0,0,0" />
+    <Parameter Name="SpecularColor" Value="0.252222,0.381,0.3341677" />
+    <Parameter Name="SpecularPower" Value="20" />
+    <Parameter Name="VertexColorEnabled" Value="False" />
+    <Texture Name="Texture" File="../Tank/engine_diff_tex.tga" />
+  </Pass>
+  <Pass Name="AlphaBlend" Effect="BasicEffect" Profile="HiDef">
+    <Parameter Name="Alpha" Value="0.8" />
+    <Parameter Name="DiffuseColor" Value="0.8,0.8,0.8" />
+    <Parameter Name="EmissiveColor" Value="0,0,0" />
+    <Parameter Name="SpecularColor" Value="0.252222,0.381,0.3341677" />
+    <Parameter Name="SpecularPower" Value="20" />
+    <Parameter Name="VertexColorEnabled" Value="False" />
+    <Texture Name="Texture" File="../Tank/engine_diff_tex.tga" />
+  </Pass>
+  <Pass Name="ZOnly" Effect="ZOnly.fx" Profile="HiDef" />
+  <Pass Name="WeightedBlendedOIT" Effect="ForwardWBOIT.fx" Profile="HiDef">
+    <Parameter Name="Alpha" Value="0.8" />
+    <Parameter Name="DiffuseColor" Value="0.604,0.604,0.604" />
+    <Parameter Name="EmissiveColor" Value="0,0,0" />
+    <Parameter Name="SpecularColor" Value="0.052,0.12,0.091" />
+    <Parameter Name="SpecularPower" Value="20" />
+    <Texture Name="Texture" File="../Tank/engine_diff_tex.tga" />
+  </Pass>
+</Material>

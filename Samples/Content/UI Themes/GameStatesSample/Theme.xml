@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Theme>
+  <Fonts>
+    <Font Name="Default" File="Default.spritefont" IsDefault="true"/>
+  </Fonts>
+
+  <Textures>
+    <!-- The styles below don't use any images. The UITexture is just a 1 x 1 pixels, 
+         white dummy texture. -->
+    <Texture Name="UITexture" File="UITexture.png"/>
+  </Textures>
+
+  <Styles>
+    <!-- The sample uses the UIScreen, Windows, StackPanels, Buttons and TextBlocks.
+         UIScreen, Windows, StackPanels do not require a special style. The default
+         values are fine. But Buttons and TextBlocks should be rendered using special
+         templates. -->
+    
+    <!-- The TextBlocks are white. -->
+    <Style Name="TextBlock">
+      <Foreground>255,255,255,255</Foreground>
+    </Style>
+    
+    <!-- Buttons containing TextBlocks are used in the main menu of the game. Only the 
+         contained TextBlocks shall be rendered - no chrome. So we don't need to define 
+         any states with images. To indicate the different states (Default, MouseOver, 
+         Pressed, etc.) we use different opacities. -->
+    <Style Name="Button">
+      <Opacity>0.4</Opacity>
+      <State Name="Default">
+      </State>
+      <State Name="MouseOver">
+        <Opacity>1.0</Opacity>
+      </State>
+      <State Name="Pressed">
+        <Opacity>1.0</Opacity>
+      </State>
+      <State Name="Focused">
+        <Opacity>0.8</Opacity>
+      </State>
+    </Style>
+  </Styles>
+</Theme>

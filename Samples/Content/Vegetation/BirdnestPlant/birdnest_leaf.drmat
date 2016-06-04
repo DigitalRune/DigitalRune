@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Material>
+  <Pass Name="Default" Effect="BasicEffect" Profile="Any">
+    <Parameter Name="Alpha" Value="1" />
+    <Parameter Name="ReferenceAlpha" Value="0.9" />
+    <Parameter Name="DiffuseColor" Value="0.8,0.8,0.8" />
+    <Parameter Name="SpecularColor" Value="0.9,0.9,0.9" />
+    <Parameter Name="SpecularPower" Value="10" />
+    <Texture Name="DiffuseTexture" ScaleAlphaToCoverage="True" File="birdnest_leaf_diffuse.dds" />
+  </Pass>
+  <Pass Name="ShadowMap" Effect="../ShadowMapVegetation.fx" Profile="HiDef">
+    <Texture Name="DiffuseTexture" ScaleAlphaToCoverage="True" File="birdnest_leaf_diffuse.dds" />
+    <Parameter Name="ReferenceAlpha" Value="0.99" />
+    <Parameter Name="WindWaveParameters" Value="0.2,0.3" />
+    <Parameter Name="SwayFrequencies" Value="0.3,2,2" />
+    <Parameter Name="SwayScales" Value="0.005,0.0025,0.0005" />
+  </Pass>
+  <Pass Name="GBuffer" Effect="../GBufferVegetation.fx" Profile="HiDef">
+    <Parameter Name="SpecularPower" Value="10" />
+    <Parameter Name="ReferenceAlpha" Value="0.99" />
+    <Texture Name="DiffuseTexture" ScaleAlphaToCoverage="True" File="birdnest_leaf_diffuse.dds" />
+    <Texture Name="NormalTexture" Format="Normal" ScaleAlphaToCoverage="True" File="birdnest_leaf_normal.dds" />
+    <Parameter Name="WindWaveParameters" Value="0.2,0.3" />
+    <Parameter Name="SwayFrequencies" Value="0.3,2,2" />
+    <Parameter Name="SwayScales" Value="0.005,0.0025,0.0005" />
+  </Pass>
+  <Pass Name="Material" Effect="../MaterialVegetation.fx" Profile="HiDef">
+    <Parameter Name="DiffuseColor" Value="0.8,0.8,0.8" />
+    <Parameter Name="SpecularColor" Value="0.9,0.9,0.9" />
+    <Parameter Name="TranslucencyColor" Value="0.8,1,0" />
+    <Parameter Name="ReferenceAlpha" Value="0.99" />
+    <Texture Name="DiffuseTexture" ScaleAlphaToCoverage="True" File="birdnest_leaf_diffuse.dds" />
+    <Texture Name="SpecularTexture" File="birdnest_leaf_specular.dds" />
+    <Parameter Name="WindWaveParameters" Value="0.2,0.3" />
+    <Parameter Name="SwayFrequencies" Value="0.3,2,2" />
+    <Parameter Name="SwayScales" Value="0.005,0.0025,0.0005" />
+  </Pass>
+</Material>

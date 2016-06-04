@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Theme>
+
+  <Cursors>
+    <Cursor Name="Arrow" File="Cursors/Arrow.cur" IsDefault="True"/>
+    <Cursor Name="SizeAll" File="Cursors/SizeAll.cur"/>
+    <Cursor Name="SizeNESW" File="Cursors/SizeNESW.cur"/>
+    <Cursor Name="SizeNS" File="Cursors/SizeNS.cur"/>
+    <Cursor Name="SizeNWSE" File="Cursors/SizeNWSE.cur"/>
+    <Cursor Name="SizeWE" File="Cursors/SizeWE.cur"/>
+  </Cursors>
+
+  
+  <Fonts>
+    <Font Name="Default" File="DefaultFont.spritefont" IsDefault="True"/>
+  </Fonts>
+
+  <Textures>
+    <Texture Name="UITexture" File="UITexture.png" IsDefault="True"/>
+  </Textures>
+
+  <Styles>
+    <Style Name="UIControl">
+      <Foreground>0,0,0,255</Foreground>
+    </Style>
+
+    <Style Name="UIScreen" Inherits="UIControl">
+      <Background>61,61,61,255</Background>
+    </Style>
+
+    <Style Name="ContentControl" Inherits="UIControl">
+    </Style>
+
+    <!-- Window Style using Image Stretching -->
+    <Style Name="Window" Inherits="ContentControl">
+      <Padding>68,68,68,68</Padding>
+      <CanDrag>true</CanDrag>
+      <ResizeBorder>24,24,24,24</ResizeBorder>
+      <MinWidth>150</MinWidth>
+      <MinHeight>150</MinHeight>
+      <State Name="Default">
+        <!-- Canvas -->
+        <Image Source="0,0,170,170" Border="0,0,0,0" Margin="16,16,16,16" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <!-- Left border -->
+        <Image Source="572,0,74,210" Border="0,0,0,0" Margin="-7,40,0,40" HorizontalAlignment="Left" VerticalAlignment="Stretch"/>
+        <!-- Right border -->
+        <Image Source="647,0,74,210" Border="0,0,0,0" Margin="0,40,-7,40" HorizontalAlignment="Right" VerticalAlignment="Stretch"/>
+        <!-- Top border -->
+        <Image Source="361,0,211,74" Border="0,0,0,0" Margin="40,-7,40,0" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+        <!-- Bottom border -->
+        <Image Source="361,75,211,74" Border="0,0,0,0" Margin="40,0,40,-7" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
+        <!-- Left/top ornament -->
+        <Image Source="171,0,94,94" Border="0,0,0,0" Margin="-17,-17,-18,-17" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <!-- Right/top ornament -->
+        <Image Source="266,0,94,94" Border="0,0,0,0" Margin="-18,-17,-17,-17" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <!-- Left/bottom ornament -->
+        <Image Source="171,96,94,94" Border="0,0,0,0" Margin="-16,-18,-17,-18" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+        <!-- Right/bottom ornament -->
+        <Image Source="266,96,94,94" Border="0,0,0,0" Margin="-17,-18,-17,-18" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+      </State>
+    </Style>
+
+    <!-- Window Style using Image Tiling -->
+    <Style Name="TiledWindow" Inherits="ContentControl">
+      <Padding>68,68,68,68</Padding>
+      <CanDrag>true</CanDrag>
+      <ResizeBorder>24,24,24,24</ResizeBorder>
+      <MinWidth>150</MinWidth>
+      <MinHeight>150</MinHeight>
+      <State Name="Default">
+        <!-- Canvas -->
+        <Image Source="1,1,168,168" Border="0,0,0,0" Margin="16,16,16,16" HorizontalAlignment="Left" VerticalAlignment="Top" TileMode="TileXY"/>
+        <!-- Left border -->
+        <Image Source="573,1,72,208" Border="0,0,0,0" Margin="-7,40,0,40" HorizontalAlignment="Left" VerticalAlignment="Center" TileMode="TileY"/>
+        <!-- Right border -->
+        <Image Source="648,1,72,208" Border="0,0,0,0" Margin="0,40,-7,40" HorizontalAlignment="Right" VerticalAlignment="Center" TileMode="TileY"/>
+        <!-- Top border -->
+        <Image Source="362,1,209,72" Border="0,0,0,0" Margin="40,-7,40,0" HorizontalAlignment="Center" VerticalAlignment="Top" TileMode="TileX"/>
+        <!-- Bottom border -->
+        <Image Source="363,76,209,72" Border="0,0,0,0" Margin="40,0,40,-7" HorizontalAlignment="Center" VerticalAlignment="Bottom" TileMode="TileX"/>
+        <!-- Left/top ornament -->
+        <Image Source="172,1,92,92" Border="0,0,0,0" Margin="-17,-17,-18,-17" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <!-- Right/top ornament -->
+        <Image Source="267,1,92,92" Border="0,0,0,0" Margin="-18,-17,-17,-17" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <!-- Left/bottom ornament -->
+        <Image Source="172,97,92,92" Border="0,0,0,0" Margin="-16,-18,-17,-18" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+        <!-- Right/bottom ornament -->
+        <Image Source="267,97,92,92" Border="0,0,0,0" Margin="-17,-18,-17,-18" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+      </State>
+    </Style>
+  </Styles>
+</Theme>

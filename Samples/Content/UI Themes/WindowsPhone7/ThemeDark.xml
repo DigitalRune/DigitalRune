@@ -1,0 +1,450 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Theme>
+
+  <Fonts>
+    <Font Name="Segoe15" File="Segoe15.spritefont" IsDefault="True"/>
+    <Font Name="Segoe17" File="Segoe17.spritefont"/>
+    <Font Name="Segoe19" File="Segoe19.spritefont"/>
+    <Font Name="Segoe24" File="Segoe24.spritefont"/>
+    <Font Name="Segoe32" File="Segoe32.spritefont"/>
+    <Font Name="Segoe54" File="Segoe54.spritefont"/>
+  </Fonts>
+
+
+  <Textures>
+    <Texture Name="UITextureDark" File="UITextureDark.png" IsDefault="True"/>
+  </Textures>
+
+
+  <Styles>
+
+    <Style Name="UIControl">
+      <Foreground>255,255,255,255</Foreground>
+      <Focusable>false</Focusable>
+    </Style>
+
+
+    <Style Name="UIScreen" Inherits="UIControl">
+      <Background>64,64,64,255</Background>
+    </Style>
+
+
+    <Style Name="Image" Inherits="UIControl">
+    </Style>
+
+
+    <Style Name="TextBlock" Inherits="UIControl">
+      <State Name="Default" />
+      <State Name="Disabled">
+        <Foreground>255,255,255,102</Foreground>
+      </State>
+    </Style>
+
+
+    <Style Name="TextBlockLarge" Inherits="TextBlock">
+      <Font>Segoe24</Font>
+      <State Name="Default" />
+      <State Name="Disabled">
+        <Foreground>255,255,255,102</Foreground>
+      </State>
+    </Style>
+    
+    
+    <Style Name="TextBlockExtraLarge" Inherits="TextBlock">
+      <Font>Segoe32</Font>
+      <State Name="Default" />
+      <State Name="Disabled">
+        <Foreground>255,255,255,102</Foreground>
+      </State>
+    </Style>
+    
+
+    <Style Name="TextBlockTitle" Inherits="TextBlock">
+      <Font>Segoe54</Font>
+      <State Name="Default" />
+      <State Name="Disabled">
+        <Foreground>255,255,255,102</Foreground>
+      </State>
+    </Style>
+
+    
+    <Style Name="TextBlockSubtle" Inherits="TextBlock">
+      <Foreground>255,255,255,153</Foreground>
+      <State Name="Default" />
+      <State Name="Disabled">
+        <Foreground>255,255,255,102</Foreground>
+      </State>
+    </Style>
+
+
+    <Style Name="TextBox" Inherits="UIControl">
+      <Padding>8,5,5,8</Padding>
+      <VerticalScrollBarVisibility>Auto</VerticalScrollBarVisibility>
+      <VerticalScrollBarStyle>ScrollBarVertical</VerticalScrollBarStyle>
+      <Font>Segoe19</Font>
+      <Foreground>0,0,0,255</Foreground>
+      <State Name="Default">
+        <Image Source="2,2,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Color="255,255,255,191"/>
+      </State>
+      <State Name="Disabled">
+        <Image Source="6,1,9,9" Border="4,4,4,4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Color="255,255,255,102"/>
+        <Foreground>255,255,255,102</Foreground>
+      </State>
+    </Style>
+
+
+    <Style Name="Panel" Inherits="UIControl">
+    </Style>
+
+
+    <Style Name="StackPanel" Inherits="Panel">
+    </Style>
+
+
+    <Style Name="Canvas" Inherits="Panel">
+    </Style>
+
+
+    <Style Name="Thumb" Inherits="UIControl">
+    </Style>
+
+
+    <Style Name="RangeBase" Inherits="UIControl">
+    </Style>
+
+
+    <Style Name="ProgressBar" Inherits="RangeBase">
+      <Height>4</Height>
+      <State Name="Default">
+        <Image Name="Track" Source="2,2,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Color="27,161,226,61"/>
+        <Image Name="Indicator" Source="2,2,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Color="27,161,226,255"/>
+      </State>
+    </Style>
+
+
+    <Style Name="Slider" Inherits="RangeBase">
+      <ThumbStyle>SliderThumb</ThumbStyle>
+      <Height>84</Height>
+      <State Name="Default">
+        <Image Name="Track" Source="2,2,1,1" Margin="0,22,0,50" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Color="255,255,255,61"/>
+        <Image Name="Indicator" Source="2,2,1,1" Margin="0,22,0,50" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Color="27,161,226,255"/>
+      </State>
+      <State Name="Disabled">
+        <Image Name="Track" Source="2,2,1,1" Margin="0,22,0,50" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Color="255,255,255,61"/>
+        <Image Name="Indicator" Source="2,2,1,1" Margin="0,22,0,50" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Color="27,161,226,255"/>
+      </State>
+    </Style>
+
+
+    <Style Name="SliderThumb" Inherits="Thumb">
+      <Width>12</Width>
+      <VerticalAlignment>Stretch</VerticalAlignment>
+      <State Name="Default">
+        <Image Source="2,2,1,1" Margin="0,22,0,50" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+      </State>
+    </Style>
+
+
+    <Style Name="ScrollBar" Inherits="RangeBase">
+    </Style>
+
+
+    <Style Name="ScrollBarHorizontal" Inherits="ScrollBar">
+      <Orientation>Horizontal</Orientation>
+      <DecrementButtonStyle></DecrementButtonStyle>
+      <IncrementButtonStyle></IncrementButtonStyle>
+      <ThumbStyle>ScrollBarHorizontalThumb</ThumbStyle>
+      <SmallChange>10</SmallChange>
+      <LargeChange>100</LargeChange>
+      <Height>3</Height>
+    </Style>
+
+
+    <Style Name="ScrollBarHorizontalThumb" Inherits="Thumb">
+      <Height>3</Height>
+      <VerticalAlignment>Center</VerticalAlignment>
+      <State Name="Default">
+        <Image Source="2,2,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Color="255,255,255,102"/>
+      </State>
+    </Style>
+
+    
+    <Style Name="ScrollBarVertical" Inherits="ScrollBar">
+      <Orientation>Vertical</Orientation>
+      <DecrementButtonStyle></DecrementButtonStyle>
+      <IncrementButtonStyle></IncrementButtonStyle>
+      <ThumbStyle>ScrollBarVerticalThumb</ThumbStyle>
+      <SmallChange>10</SmallChange>
+      <LargeChange>100</LargeChange>
+      <Width>3</Width>
+    </Style>
+
+
+    <Style Name="ScrollBarVerticalThumb" Inherits="Thumb">
+      <Width>3</Width>
+      <HorizontalAlignment>Center</HorizontalAlignment>
+      <State Name="Default">
+        <Image Source="2,2,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Color="255,255,255,102"/>
+      </State>
+    </Style>
+
+
+    <Style Name="ContextMenu" Inherits="UIControl">
+      <ContentStyle>MenuItemPanel</ContentStyle>
+      <Background>255,255,255,255</Background>
+      <HorizontalAlignment>Stretch</HorizontalAlignment>
+      <State Name="Default" />
+    </Style>
+
+
+    <Style Name="MenuItemPanel" Inherits="UIControl">
+      <Margin>24,24,0,24</Margin>
+      <Orientation>Vertical</Orientation>
+      <HorizontalAlignment>Stretch</HorizontalAlignment>
+      <VerticalAlignment>Center</VerticalAlignment>
+    </Style>
+
+
+    <Style Name="MenuItem" Inherits="ContentControl">
+      <ContentStyle>MenuItemTextBlock</ContentStyle>
+      <Height>64</Height>
+      <HorizontalAlignment>Stretch</HorizontalAlignment>
+      <State Name="Default">
+      </State>
+      <State Name="MouseOver">
+      </State>
+      <State Name="Pressed">
+      </State>
+      <State Name="Focused">
+      </State>
+      <State Name="Disabled">
+      </State>
+    </Style>
+
+
+    <Style Name="MenuItemTextBlock" Inherits="TextBlockLarge">
+      <Foreground>0,0,0,255</Foreground>
+      <State Name="Pressed" IsInherited="True">
+        <Foreground>27,161,226,255</Foreground>
+      </State>
+      <State Name="Default" />
+      <State Name="Disabled">
+        <Foreground>255,255,255,102</Foreground>
+      </State>
+    </Style>
+
+
+    <Style Name="ContentControl" Inherits="UIControl">
+    </Style>
+
+
+    <Style Name="ButtonBase" Inherits="ContentControl">
+      <ContentStyle>ButtonText</ContentStyle>
+    </Style>
+
+
+    <Style Name="ToggleButton" Inherits="ButtonBase">
+      <ContentStyle>ToggleButtonText</ContentStyle>
+    </Style>
+
+
+    <Style Name="Button" Inherits="ButtonBase">
+      <Padding>8,4,8,4</Padding>
+      <MinWidth>16</MinWidth>
+      <MinHeight>16</MinHeight>
+      <ContentStyle>ButtonText</ContentStyle>
+      <State Name="Default">
+        <Image Source="6,1,9,9" Border="4,4,4,4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+      </State>
+      <State Name="Pressed">
+        <Image Source="2,2,2,2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+      </State>
+      <State Name="Disabled">
+        <Image Source="6,1,9,9" Border="4,4,4,4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Color="255,255,255,102"/>
+      </State>
+    </Style>
+
+
+    <Style Name="ButtonText" Inherits="TextBlock">
+      <HorizontalAlignment>Center</HorizontalAlignment>
+      <VerticalAlignment>Center</VerticalAlignment>
+      <UseEllipsis>true</UseEllipsis>
+      <Font>Segoe19</Font>
+      <State Name="Pressed" IsInherited="True">
+        <Foreground>0,0,0,255</Foreground>
+      </State>
+      <State Name="Default">
+      </State>
+      <State Name="Disabled">
+        <Foreground>255,255,255,102</Foreground>
+      </State>
+    </Style>
+
+
+    <Style Name="ToggleButtonText" Inherits="TextBlock">
+      <UseEllipsis>true</UseEllipsis>
+      <WrapText>true</WrapText>
+      <Font>Segoe17</Font>
+      <State Name="Unchecked-Default" IsInherited="True">
+        <Foreground>255,255,255,191</Foreground>
+      </State>
+      <State Name="Unchecked-Pressed" IsInherited="True">
+      </State>
+      <State Name="Unchecked-Disabled" IsInherited="True">
+        <Foreground>255,255,255,102</Foreground>
+      </State>
+      <State Name="Checked-Default" IsInherited="True">
+        <Foreground>255,255,255,191</Foreground>
+      </State>
+      <State Name="Checked-Pressed" IsInherited="True">
+      </State>
+      <State Name="Checked-Disabled" IsInherited="True">
+        <Foreground>255,255,255,102</Foreground>
+      </State>
+    </Style>
+
+
+    <Style Name="CheckBox" Inherits="ToggleButton">
+      <Padding>46,0,0,0</Padding>
+      <State Name="Unchecked-Default">
+        <Image Source="16,1,32,32" Color="255,255,255,191"/>
+      </State>
+      <State Name="Unchecked-Pressed">
+        <Image Source="16,1,32,32" />
+      </State>
+      <State Name="Unchecked-Disabled">
+        <Image Source="16,1,32,32" Color="255,255,255,102"/>
+      </State>
+      <State Name="Checked-Default">
+        <Image Source="16,1,32,32" Color="255,255,255,191"/>
+        <Image Source="50,1,22,21" Margin="5,7,0,0" Color="0,0,0,255" />
+      </State>
+      <State Name="Checked-MouseOver">
+        <Image Source="16,1,32,32" Color="255,255,255,191"/>
+        <Image Source="50,1,22,21" Margin="5,7,0,0" Color="0,0,0,255" />
+      </State>
+      <State Name="Checked-Pressed">
+        <Image Source="16,1,32,32"/>
+        <Image Source="50,1,22,21" Margin="5,7,0,0" Color="0,0,0,255" />
+      </State>
+      <State Name="Checked-Disabled">
+        <Image Source="16,1,32,32" Color="255,255,255,102"/>
+        <Image Source="50,1,22,21" Margin="5,7,0,0" Color="0,0,0,61" />
+      </State>
+    </Style>
+
+
+    <Style Name="RadioButton" Inherits="ToggleButton">
+      <Padding>46,0,0,0</Padding>
+      <State Name="Unchecked-Default">
+        <Image Source="74,1,32,32" Color="255,255,255,191"/>
+      </State>
+      <State Name="Unchecked-Pressed">
+        <Image Source="74,1,32,32" />
+      </State>
+      <State Name="Unchecked-Disabled">
+        <Image Source="74,1,32,32" Color="255,255,255,102"/>
+      </State>
+      <State Name="Checked-Default">
+        <Image Source="74,1,32,32" Color="255,255,255,191"/>
+        <Image Source="50,22,16,16" Margin="8,8,0,0" Color="0,0,0,255" />
+      </State>
+      <State Name="Checked-Pressed">
+        <Image Source="74,1,32,32"/>
+        <Image Source="50,22,16,16" Margin="8,8,0,0" Color="0,0,0,255" />
+      </State>
+      <State Name="Checked-MouseOver">
+        <Image Source="74,1,32,32" Color="255,255,255,191"/>
+        <Image Source="50,22,16,16" Margin="8,8,0,0" Color="0,0,0,255" />
+      </State>
+      <State Name="Checked-Disabled">
+        <Image Source="74,1,32,32" Color="255,255,255,102"/>
+        <Image Source="50,22,16,16" Margin="8,8,0,0" Color="0,0,0,61" />
+      </State>
+    </Style>
+
+
+    <Style Name="ScrollViewer" Inherits="ContentControl">
+      <HorizontalScrollBarVisiblity>Visible</HorizontalScrollBarVisiblity>
+      <VerticalScrollBarVisibility>Visible</VerticalScrollBarVisibility>
+      <HorizontalScrollBarStyle>ScrollBarHorizontal</HorizontalScrollBarStyle>
+      <VerticalScrollBarStyle>ScrollBarVertical</VerticalScrollBarStyle>
+    </Style>
+    
+    
+    <Style Name="DropDownButton" Inherits="ButtonBase">
+      <Padding>8,5,5,8</Padding>
+      <ContentStyle>DropDownTextBlock</ContentStyle>
+      <ClickMode>Release</ClickMode>
+      <State Name="Default">
+        <Image Source="2,2,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Color="255,255,255,191"/>
+      </State>
+      <State Name="Pressed">
+        <Image Source="2,2,1,1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+      </State>
+      <State Name="Disabled">
+        <Image Source="6,1,9,9" Border="4,4,4,4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Color="255,255,255,102"/>
+      </State>
+    </Style>
+
+
+    <Style Name="DropDownTextBlock" Inherits="TextBlock">
+      <Foreground>0,0,0,255</Foreground>
+      <Font>Segoe19</Font>
+      <State Name="Default" />
+      <State Name="Disabled">
+        <Foreground>255,255,255,102</Foreground>
+      </State>
+    </Style>
+
+
+    <Style Name="DropDown" Inherits="UIControl">
+      <ContentStyle>DropDownScrollViewer</ContentStyle>
+      <TitleTextBlockStyle>TextBlock</TitleTextBlockStyle>
+      <Background>31,31,31,255</Background>
+      <Padding>24,24,0,0</Padding>
+      <State Name="Default" />
+    </Style>
+
+
+    <Style Name="DropDownScrollViewer" Inherits="ScrollViewer">
+      <Margin>0,24,0,0</Margin>
+    </Style>
+
+
+    <Style Name="DropDownItem" Inherits="ButtonBase">
+      <ContentStyle>DropDownItemTextBlock</ContentStyle>
+      <Padding>0,32,0,0</Padding>
+      <Height>95</Height>
+      <HorizontalAlignment>Stretch</HorizontalAlignment>
+      <State Name="Default" />
+      <State Name="Disabled" />
+    </Style>
+
+
+    <Style Name="DropDownItemTextBlock" Inherits="TextBlockLarge">
+      <State Name="Pressed" IsInherited="True">
+        <Foreground>27,161,226,255</Foreground>
+      </State>
+      <State Name="Default" />
+      <State Name="Disabled">
+        <Foreground>255,255,255,102</Foreground>
+      </State>
+    </Style>
+
+    
+    <Style Name="Window" Inherits="ContentControl">
+      <CloseButtonStyle></CloseButtonStyle>
+      <TitleTextBlockStyle></TitleTextBlockStyle>
+      <IconStyle></IconStyle>
+      <HorizontalAlignment>Stretch</HorizontalAlignment>
+      <VerticalAlignment>Stretch</VerticalAlignment>
+      <Background>0,0,0,255</Background>
+      <State Name="Default" />
+      <State Name="Active" />
+      <State Name="Disabled" />
+    </Style>
+
+  </Styles>
+</Theme>

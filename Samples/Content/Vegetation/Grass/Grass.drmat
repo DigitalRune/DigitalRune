@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Material>
+  <Pass Name="Default" Effect="AlphaTestEffect" Profile="Any">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="ReferenceAlpha" Value="0.9" />
+    <Texture Name="Texture" ReferenceAlpha="0.9" ScaleAlphaToCoverage="True" File="../../Grass/diffus.tga" />
+  </Pass>
+  <Pass Name="ShadowMap" Effect="../ShadowMapGrass.fx" Profile="HiDef">
+    <Parameter Name="ReferenceAlpha" Value="0.9" />
+    <Texture Name="DiffuseTexture" ReferenceAlpha="0.9" ScaleAlphaToCoverage="True" File="../../Grass/diffus.tga" />
+    <Parameter Name="WindWaveParameters" Value="0.2,0.3" />
+    <Parameter Name="SwayFrequencies" Value="1,1,1" />
+    <Parameter Name="SwayScales" Value="0.002,0,0.00005" />
+  </Pass>
+  <Pass Name="GBuffer" Effect="../GBufferGrass.fx" Profile="HiDef">
+    <Parameter Name="SpecularPower" Value="10" />
+    <Parameter Name="ReferenceAlpha" Value="0.9" />
+    <Texture Name="DiffuseTexture" ReferenceAlpha="0.9" ScaleAlphaToCoverage="True" File="../../Grass/diffus.tga" />
+    <Parameter Name="WindWaveParameters" Value="0.2,0.3" />
+    <Parameter Name="SwayFrequencies" Value="1,1,1" />
+    <Parameter Name="SwayScales" Value="0.002,0,0.00005" />
+  </Pass>
+  <Pass Name="Material" Effect="../MaterialGrass.fx" Profile="HiDef">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="SpecularColor" Value="0.2,0.25,0" />
+    <Parameter Name="TranslucencyColor" Value="0.8,1,0" />
+    <Parameter Name="ReferenceAlpha" Value="0.9" />
+    <Texture Name="DiffuseTexture" ReferenceAlpha="0.9" ScaleAlphaToCoverage="True" File="../../Grass/diffus.tga" />
+    <Parameter Name="WindWaveParameters" Value="0.2,0.3" />
+    <Parameter Name="SwayFrequencies" Value="1,1,1" />
+    <Parameter Name="SwayScales" Value="0.002,0,0.00005" />
+  </Pass>
+</Material>

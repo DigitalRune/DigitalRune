@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Material>
+  <Pass Name="Default" Effect="BasicEffect" Profile="Any">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="SpecularColor" Value="1,1,1" />
+    <Parameter Name="SpecularPower" Value="10" />
+    <Texture Name="Texture" File="banana_bark_diffuse.dds" />
+  </Pass>
+  <Pass Name="ShadowMap" Effect="../ShadowMapVegetation.fx" Profile="HiDef">
+    <Parameter Name="WindWaveParameters" Value="0.2,0.3" />
+    <Parameter Name="SwayFrequencies" Value="0.3,2,2" />
+    <Parameter Name="SwayScales" Value="0.005,0.0025,0.0005" />
+  </Pass>
+  <Pass Name="GBuffer" Effect="../GBufferVegetation.fx" Profile="HiDef">
+    <Parameter Name="SpecularPower" Value="10" />
+    <Texture Name="DiffuseTexture" File="banana_bark_diffuse.dds" />
+    <Parameter Name="WindWaveParameters" Value="0.2,0.3" />
+    <Parameter Name="SwayFrequencies" Value="0.3,2,2" />
+    <Parameter Name="SwayScales" Value="0.005,0.0025,0.0005" />
+  </Pass>
+  <Pass Name="Material" Effect="../MaterialVegetation.fx" Profile="HiDef">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="SpecularColor" Value="1,1,1" />
+    <Parameter Name="TranslucencyColor" Value="0,0,0" />
+    <Texture Name="DiffuseTexture" File="banana_bark_diffuse.dds" />
+    <Parameter Name="WindWaveParameters" Value="0.2,0.3" />
+    <Parameter Name="SwayFrequencies" Value="0.3,2,2" />
+    <Parameter Name="SwayScales" Value="0.005,0.0025,0.0005" />
+  </Pass>
+</Material>
