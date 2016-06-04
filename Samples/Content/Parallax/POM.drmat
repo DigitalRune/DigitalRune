@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!-- HiDef uses Parallax Occlusion Mapping -->
+<Material>
+  <Pass Name="Default" Effect="BasicEffect" Profile="Any">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="SpecularColor" Value="1,1,1" />
+    <Parameter Name="SpecularPower" Value="100" />
+    <Texture Name="Texture" File="AgedPavement_diffuse.png" />
+  </Pass>
+  <Pass Name="ShadowMap" Effect="DigitalRune/Materials/ShadowMap" Profile="HiDef" />
+  <Pass Name="GBuffer" Effect="GBufferPom.fx" Profile="HiDef">
+    <Parameter Name="SpecularPower" Value="100" />
+    <Texture Name="NormalTexture" Format="NormalInvertY" File="AgedPavement_normal.png"/>
+    <Parameter Name="HeightScale" Value="0.02" />
+    <Parameter Name="HeightBias" Value="0.0" />
+    <Texture Name="HeightTexture" File="AgedPavement_height.png" />
+    <Parameter Name="HeightTextureSize" Value="512,512" />
+    <Parameter Name="LodThreshold" Value="4" />
+    <Parameter Name="MinSamples" Value="4" />
+    <Parameter Name="MaxSamples" Value="9" />
+  </Pass>
+  <Pass Name="Material" Effect="MaterialPom.fx" Profile="HiDef">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="SpecularColor" Value="1,1,1" />
+    <Texture Name="DiffuseTexture" File="AgedPavement_diffuse.png" />
+    <Texture Name="SpecularTexture" File="AgedPavement_specular.png" />
+    <Parameter Name="HeightScale" Value="0.02" />
+    <Parameter Name="HeightBias" Value="0.0" />
+    <Texture Name="HeightTexture" File="AgedPavement_height.png" />
+    <Parameter Name="HeightTextureSize" Value="512,512" />
+    <Parameter Name="LodThreshold" Value="4" />
+    <Parameter Name="MinSamples" Value="4" />
+    <Parameter Name="MaxSamples" Value="9" />
+    <Parameter Name="ShadowScale" Value="0.03" />
+    <Parameter Name="ShadowSamples" Value="4" />
+    <Parameter Name="ShadowFalloff" Value="0.5" />
+    <Parameter Name="ShadowStrength" Value="100" />
+  </Pass>
+</Material>

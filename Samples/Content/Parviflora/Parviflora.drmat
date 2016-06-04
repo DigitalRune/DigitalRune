@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Material>
+  <Pass Name="Default" Effect="AlphaTestEffect" Profile="Any">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="ReferenceAlpha" Value="0.9" />
+    <Texture Name="Texture" ReferenceAlpha="0.9" ScaleAlphaToCoverage="True" File="diffus.tga" />
+  </Pass>
+  <Pass Name="ShadowMap" Effect="DigitalRune/Materials/ShadowMapAlphaTest" Profile="HiDef">
+    <Parameter Name="ReferenceAlpha" Value="0.9" />
+    <Texture Name="DiffuseTexture" ReferenceAlpha="0.9" ScaleAlphaToCoverage="True" File="diffus.tga" />
+  </Pass>
+  <Pass Name="GBuffer" Effect="DigitalRune/Materials/GBufferAlphaTestNormal" Profile="HiDef">
+    <Parameter Name="SpecularPower" Value="100" />
+    <Parameter Name="ReferenceAlpha" Value="0.9" />
+    <Texture Name="DiffuseTexture" ReferenceAlpha="0.9" ScaleAlphaToCoverage="True" File="diffus.tga" />
+    <Texture Name="NormalTexture" Format="NormalInvertY" File="normal.tga" />
+  </Pass>
+  <Pass Name="Material" Effect="DigitalRune/Materials/MaterialAlphaTest" Profile="HiDef">
+    <Parameter Name="DiffuseColor" Value="2,2,2" />
+    <Parameter Name="SpecularColor" Value="2,2,2" />
+    <Parameter Name="ReferenceAlpha" Value="0.9" />
+    <Texture Name="DiffuseTexture" ReferenceAlpha="0.9" ScaleAlphaToCoverage="True" File="diffus.tga" />
+    <Texture Name="SpecularTexture" File="specular.tga" />
+  </Pass>
+</Material>
