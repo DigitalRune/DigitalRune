@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="09d89582-ed82-465f-a65e-34f8cd55e1f6" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="WhatIs">
+            <title>What is a character controller?</title>
+            <content>
+                <para>
+                    A character controller, as understood in this context, is a game engine module
+                    that computes the movement of an avatar in a game. The input for the character
+                    controller is the desired movement (e.g. "move forward with 5 m/s speed", or "jump")
+                    and the output is the new, corrected avatar position in the 3D game world. The
+                    character controller has to apply gravity, avoid penetrations with walls and other
+                    solid objects, handle stepping up/down slopes and stairs, and more.
+                    The character is often modeled as an upright capsule.
+                </para>
+                <mediaLink>
+                    <caption placement="after" lead="Screenshot">Screenshot of the Character Controller Sample</caption>
+                    <image xlink:href="SampleCharacter"/>
+                </mediaLink>
+                <para>
+                    Here is a video of a character controller:
+                </para>
+                <list class="nobullet">
+                    <listItem>
+                        <para>
+                            <externalLink>
+                                <linkText>Video: Character Controller Sample</linkText>
+                                <linkUri>https://www.youtube.com/watch?v=LJp2NnKj1X4</linkUri>
+                            </externalLink>
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Subtopics">
+            <title>Subtopics</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        <link xlink:href="eae2c109-980c-43e4-aaaf-0448e8f388a4" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="7cc27ced-9a65-4ddd-8b8e-fa817b7fe6b7" />
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="FurtherReading">
+            <title>Further Reading</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        <para>
+                            <externalLink>
+                                <linkText>
+                                    Kinematic vs. Dynamic Character Controllers (DigitalRune Blog)
+                                </linkText>
+                                <linkUri>
+                                    http://www.digitalrune.com/Blog/Post/1675/Kinematic-vs-Dynamic-Character-Controllers
+                                </linkUri>
+                            </externalLink>
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <externalLink>
+                                <linkText>
+                                    Jumping is hard (DigitalRune Blog)
+                                </linkText>
+                                <linkUri>
+                                    http://www.digitalrune.com/Blog/Post/1714/Jumping-is-hard
+                                </linkUri>
+                            </externalLink>
+                            <markup>
+                                <br/>
+                            </markup>
+                            This article describes a problem in our old jumping code.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <externalLink>
+                                <linkText>
+                                    Avatar Speeds (DigitalRune Blog)
+                                </linkText>
+                                <linkUri>
+                                    http://www.digitalrune.com/Blog/Post/1679/How-Fast-Is-Your-Avatar
+                                </linkUri>
+                            </externalLink>
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="53ee55e3-b4a5-42cc-b47d-88d18b9de2f5" revisionNumber="1">
+    <developerConceptualDocument
+      xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                Next, we will add some graphics models.
+            </para>
+        </introduction>
+
+
+        <section address="Content">
+            <title>Add models to the content project</title>
+            <content>
+                <list class="ordered">
+                    <listItem>
+                        Download following ZIP file:
+                        <list class="nobullet">
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Tutorial01-Content01.zip</linkText>
+                                    <linkUri>http://1drv.ms/1tLcYlj</linkUri>
+                                </externalLink>
+                            </listItem>
+                        </list>
+                    </listItem>
+                    <listItem>
+                        Extract the content into the folder of your content project:
+                        <list class="nobullet">
+                            <listItem>
+                                <localUri>MyGame\MyGame\MyGameContent</localUri>
+                            </listItem>
+                        </list>
+                        <mediaLink>
+                            <image xlink:href="Tutorial-01-07"/>
+                        </mediaLink>
+                    </listItem>
+                    <listItem>
+                        In the VS <ui>Solution Explorer</ui> select the <localUri>MyGameContent</localUri>
+                        content project and click the <ui>Show All Files</ui> button.
+                        <mediaLink>
+                            <image xlink:href="Tutorial-01-08"/>
+                        </mediaLink>
+                        <para>
+                            This will show all the files in the content project folder.
+                            Select <localUri>Dude.fbx</localUri>, <localUri>Ground.x</localUri> and
+                            <localUri>MetalGrateBox.fbx</localUri> by left-clicking these items while
+                            pressing CTRL.
+                        </para>
+                        <mediaLink>
+                            <image xlink:href="Tutorial-01-09"/>
+                        </mediaLink>
+                    </listItem>
+                    <listItem>
+                        Right-click the selected items and select <ui>Include In Project</ui>.
+                        <mediaLink>
+                            <image xlink:href="Tutorial-01-10"/>
+                        </mediaLink>
+                    </listItem>
+                    <listItem>
+                        Click the <ui>Show All Files</ui> button again to disable it.
+                    </listItem>
+                </list>
+                <para>
+                    Your content project should look like this:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Tutorial-01-11"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="ContentPipeline">
+            <title>Add DigitalRune content pipeline assemblies</title>
+            <content>
+                <para>
+                    DigitalRune provides several content pipeline assemblies which contain new content
+                    processors. We have to add these to the the content project:
+                </para>
+                <list class="ordered">
+                    <listItem>
+                        In the VS <ui>Solution Explorer</ui>, right-click the <localUri>References</localUri> folder
+                        of the <localUri>MyGameContent</localUri> content project and select <ui>Add Reference…</ui>
+                    </listItem>
+                    <listItem>
+                        Browse to folder:
+                        <list class="nobullet">
+                            <listItem>
+                                <localUri>
+                                    <![CDATA[<DigitalRune Engine Folder>\References\XNA\Windows]]>
+                                </localUri>
+                            </listItem>
+                        </list>
+                    </listItem>
+                    <listItem>
+                        Select all <localUri>*.Content.Pipeline.dll</localUri> files and press <ui>OK</ui>.
+                    </listItem>
+                </list>
+                <para>
+                    Your solution should look like this:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Tutorial-01-12"/>
+                </mediaLink>
+                <para>
+                    It is important to note that all XNA content projects use the
+                    <localUri>*.Content.Pipeline.dll</localUri> files from the folder
+                </para>
+                <list class="nobullet">
+                    <listItem>
+                        <localUri>
+                            <![CDATA[<DigitalRune Engine Folder>\References\XNA\Windows]]>
+                        </localUri>
+                    </listItem>
+                </list>
+                <para>
+                    Even if you are building an Xbox 360 game, the content project uses the content
+                    pipeline DLLs from this folder because the content is built on your Windows PC and
+                    not on the Xbox. Therefore, you will not find any
+                    <localUri>*.Content.Pipeline.dll</localUri> files in
+                </para>
+                <list class="nobullet">
+                    <listItem>
+                        <localUri>
+                            <![CDATA[<DigitalRune Engine Folder>\References\XNA\Xbox]]>
+                        </localUri>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="ContentProcessor">
+            <title>Select the content processor</title>
+            <content>
+                <para>
+                    Per default, all content of the content project uses the XNA content processors.
+                    However, DigitalRune Graphics uses a more advanced model processor:
+                </para>
+                <list class="ordered">
+                    <listItem>
+                        In the <ui>Solution Explorer</ui> select <localUri>Dude.fbx</localUri> and press F4 to see
+                        the <ui>Properties</ui> window.
+                    </listItem>
+                    <listItem>
+                        Set the content processor to <localUri>Model - DigitalRune Graphics</localUri>.
+                        (If you cannot find this content processor, build the solution in its current state and try again.)
+                        <mediaLink>
+                            <image xlink:href="Tutorial-01-13"/>
+                        </mediaLink>
+                    </listItem>
+                    <listItem>
+                        Do the same for <localUri>Ground.x</localUri> and <localUri>MetalGrate.fbx</localUri>.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Next">
+            <title>Next</title>
+            <content>
+                <para>
+                    <link xlink:href="253857cc-d401-4788-ae6e-4ca12a94a21e" />
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

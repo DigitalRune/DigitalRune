@@ -1,0 +1,495 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="7fffe522-a53c-4944-979f-8646dc41ac9a" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This section discusses particle systems, particle parameters and particle effectors.</para>
+            <para>
+                Note: Have a look at the <link xlink:href="ab3315a0-7863-4311-abb5-b0ae31198a06" />
+                to get an overview of the provided types. Check out the section
+                <link xlink:href="2deefa98-6d2a-4ada-a51d-95a2625849df" /> and the included
+                <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" /> to see how particle
+                systems are used in code.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="pss">
+            <title>The particle system service</title>
+            <content>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleSystemManager</codeEntityReference>
+                    implements the interface
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.IParticleSystemService</codeEntityReference>.
+                    A particle system service manages a collection of particle systems. Usually
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Particles.ParticleSystemManager.Update(System.TimeSpan)</codeEntityReference>
+                    is called in the game loop once per frame. In this method all particle systems
+                    are updated.
+                </para>
+                <para>
+                    The use of the <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleSystemManager</codeEntityReference>
+                    is optional. Individual particle systems can also be updated manually.
+                </para>
+            </content>
+        </section>
+
+        <section address="ps">
+            <title>Particle systems</title>
+            <content>
+                <para>
+                    The class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleSystem</codeEntityReference>
+                    provides the base class for a particle system. It acts like a configurable container
+                    for particle parameters, particle effectors and other particle systems. To create
+                    a new particle effect a new type can be derived from
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleSystem</codeEntityReference>,
+                    but usually the class is used directly.
+                </para>
+                <para>
+                    Each particle system can have child particle systems
+                    (see property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Particles.ParticleSystem.Children</codeEntityReference>)
+                    to create complex effects. For example, an explosion particle system
+                    can consist of a glow particle system, a smoke particle system and
+                    a debris particle system.
+                </para>
+                <para>
+                    The particle system updates its simulation state when the method
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleSystem.Update(System.TimeSpan)</codeEntityReference>
+                    is called. This method is called automatically if the particle system
+                    is added to a particle system service or a another particle system.
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleSystem.Reset</codeEntityReference>
+                    can be called to remove all particles and set a particle system back to
+                    its initial state.
+                </para>
+                <para>
+                    A particle system starts without any particles. To add ("emit") new particles the method
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleSystem.AddParticles(System.Int32)</codeEntityReference>
+                    needs to be called. There are special particle effectors (called "emitters" such as the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.Effectors.StreamEmitter</codeEntityReference>)
+                    that automatically call this method.
+                </para>
+            </content>
+            <sections>
+
+                <section address="geoobj">
+                    <title>Geometric object</title>
+                    <content>
+                        <para>
+                            The particle system implements
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.IGeometricObject</codeEntityReference>,
+                            which means that it has a
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Particles.ParticleSystem.Pose</codeEntityReference>
+                            (= position and orientation)
+                            and a
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Particles.ParticleSystem.Shape</codeEntityReference>.
+                            The shape can be used as a bounding volume for view frustum culling. A suitable
+                            shape must be set manually (the default shape is an infinitely large shape).
+                        </para>
+                    </content>
+                </section>
+
+                <section address="frame">
+                    <title>Reference frame</title>
+                    <content>
+                        <para>
+                            Normally, all 3D positions and directions of particle parameters are given in
+                            world space. The particle system has a property
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Particles.ParticleSystem.ReferenceFrame</codeEntityReference>
+                            where the coordinate space for particle parameters can be changed. If the
+                            reference frame is changed to
+                            <codeEntityReference qualifyHint="false">F:DigitalRune.Particles.ParticleReferenceFrame.Local</codeEntityReference>,
+                            all 3D positions and directions are relative to the local space of the
+                            particle system. That means, when the particle system moves (by changing
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Particles.ParticleSystem.Pose</codeEntityReference>),
+                            all particles move and rotate with the particle system as if they were attached to it.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="timing">
+                    <title>Timing</title>
+                    <content>
+                        <para>
+                            The simulation time (see
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Particles.ParticleSystem.Time</codeEntityReference>)
+                            of the particle system can be scaled using
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Particles.ParticleSystem.TimeScaling</codeEntityReference>
+                            to achieve slow motion or high speed effects.
+                        </para>
+                        <para>
+                            Additionally, a delay can be defined (see
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Particles.ParticleSystem.InitialDelay</codeEntityReference>
+                            and <codeEntityReference qualifyHint="true">P:DigitalRune.Particles.ParticleSystem.CurrentDelay</codeEntityReference>).
+                            This can be used to time effects (e.g. for staggered explosions).
+                        </para>
+                        <para>
+                            Some particle systems should not start without any particles. Instead, they should
+                            start "in the middle" of the effect. For example: When a player encounters
+                            a waterfall, the water should already be flowing. The properties
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Particles.ParticleSystem.PreloadDuration</codeEntityReference>
+                            and <codeEntityReference qualifyHint="true">P:DigitalRune.Particles.ParticleSystem.PreloadDeltaTime</codeEntityReference>
+                            can be used to define a pre-load phase, which is executed when the particle system
+                            is updated for the first time. In this phase particles can be created and simulated
+                            to ensure that the particle system is not empty when it is shown.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="parameters">
+            <title>Particle parameters</title>
+            <content>
+                <para>
+                    Each particle system owns a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleParameterCollection</codeEntityReference>
+                    which manages particle parameters.
+                    Particle parameters have a name and define properties of the particle system or of individual
+                    particles. Typical particle parameters are <legacyItalic>Position</legacyItalic>,
+                    <legacyItalic>Speed</legacyItalic>, <legacyItalic>Direction</legacyItalic>,
+                    <legacyItalic>Size</legacyItalic>, <legacyItalic>Color</legacyItalic>,
+                    <legacyItalic>Alpha</legacyItalic>, etc.
+                </para>
+                <para>
+                    A particle parameter is called "uniform" if it provides a single
+                    value that is shared by the particle system and all particles. For example,
+                    most particle systems will have a uniform parameter "Texture" that defines
+                    which texture a particle renderer should use for the particles. All particles
+                    use the same texture.
+                </para>
+                <para>
+                    A particle parameter is called "varying" if each particle has its own value.
+                    For example, most particle systems will have a varying parameter "Position"
+                    that stores the positions of the individual particles. (Each particle can have
+                    a unique position.)
+                </para>
+                <para>
+                    New particle parameters are added to a particle system using the methods
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Particles.ParticleParameterCollection.AddUniform``1(System.String)</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Particles.ParticleParameterCollection.AddVarying``1(System.String)</codeEntityReference>.
+                    Existing parameters can be retrieved using the <legacyBold>Get</legacyBold>
+                    methods (for example
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Particles.ParticleParameterCollection.Get``1(System.String)</codeEntityReference>).
+                </para>
+                <para>
+                    Particle parameters implement the interface
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.IParticleParameter`1</codeEntityReference>,
+                    which has a property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Particles.IParticleParameter`1.DefaultValue</codeEntityReference>
+                    and a property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Particles.IParticleParameter`1.Values</codeEntityReference>.
+                    Uniform particle parameters store their value in
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Particles.IParticleParameter`1.DefaultValue</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Particles.IParticleParameter`1.Values</codeEntityReference>
+                    is <legacyItalic>null</legacyItalic>.
+                    Varying particle parameters store the values in the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Particles.IParticleParameter`1.Values</codeEntityReference>
+                    array and
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Particles.IParticleParameter`1.DefaultValue</codeEntityReference>
+                    is not used.
+                    The
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Particles.IParticleParameter`1.Values</codeEntityReference>
+                    array is preallocated when the particle parameter is added to the
+                    particle system. The length of the array is defined by
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Particles.ParticleSystem.MaxNumberOfParticles</codeEntityReference>.
+                    It is used as a circular buffer for the current particle values.
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Particles.ParticleSystem.ParticleStartIndex</codeEntityReference>
+                    determines the index of the oldest active particle in the array.
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Particles.ParticleSystem.NumberOfActiveParticles</codeEntityReference>
+                    defines how many array elements are currently in used. When old particles
+                    die,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Particles.ParticleSystem.ParticleStartIndex</codeEntityReference>
+                    is increased by the particle system.
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Particles.ParticleSystem.NumberOfActiveParticles</codeEntityReference>
+                    is increased when new particles are added.
+                </para>
+                <para>
+                    The class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleParameterNames</codeEntityReference>
+                    provides names for commonly used particle parameters. These names are only suggestions.
+                    (The only parameter name which is fixed is "NormalizedAge" - see below.)
+                </para>
+            </content>
+            <sections>
+
+                <section address="defaultparameters">
+                    <title>Default parameters</title>
+                    <content>
+                        <para>
+                            The particle system defines and manages only one particle parameter: "NormalizedAge"
+                            is a varying particle parameter (type: single-precision floating point). The
+                            parameter is 0 for new particles and increases linearly until the particle dies.
+                            Particles with a normalized age of 1 are removed.
+                        </para>
+                        <para>
+                            By default, the lifetime of particles (= the time it takes for a particle to reach
+                            the normalized age of 1) is 3 seconds. A different lifetime can be set by adding
+                            a uniform or varying particle parameter called "Lifetime" to the particle system.
+                            The particle parameter needs to specify the particle lifetime in seconds (type:
+                            single-precision floating point). If "Lifetime" is a uniform parameter then
+                            all particles are simulated for the same time span. If "Lifetime" is a varying
+                            parameter then the lifetimes can be set per particle.
+                        </para>
+                        <para>
+                            The particle system itself does not read or manipulate any other parameters.
+                            All particle parameters (except "NormalizedAge")
+                            must be added by the user. The designer of the particle system can decide which
+                            particle parameters are needed, which parameters should be uniform or varying,
+                            and which types the parameters should use!
+                        </para>
+                    </content>
+                </section>
+
+                <section address="inheritingparameters">
+                    <title>Inheriting uniform parameters</title>
+                    <content>
+                        <para>
+                            Uniform particle parameters can be <legacyItalic>inherited</legacyItalic> from
+                            parent particle systems (but not varying parameters). That means, a parent
+                            particle system can define a uniform parameter "Alpha" and if a child particle
+                            system does not define an "Alpha" parameter itself, it will use the value of the
+                            parent. (The <legacyBold>Get</legacyBold> methods of the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleParameterCollection</codeEntityReference>
+                            first check whether a uniform parameter is defined locally. If it is missing they
+                            check the parent particle system.)
+                        </para>
+                        <para>
+                            Inherited parameters are useful to control multiple particle systems at once.
+                            For example, the "teleport effect" (included in the samples)
+                            owns several child particle systems (one particle systems for glowing points and other particle
+                            systems for energy beams). The parent particle system defines a parameter "GlobalAlpha".
+                            The child particle systems multiply the "GlobalAlpha" with their local "Alpha" value.
+                            Thus the whole particle effect can be faded in/out by changing a single parameter.
+                        </para>
+                        <para>
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="effectors">
+            <title>Particle effectors</title>
+            <content>
+                <para>
+                    Each particle system owns a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleEffectorCollection</codeEntityReference>
+                    that manages objects derived from the base class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleEffector</codeEntityReference>.
+                    In each update the particle system calls the particle effectors to do the actual work.
+                    Particle effectors can be used to create, initialize, and manipulate particles. Effectors define
+                    the behavior of a particle system.
+                </para>
+                <para>
+                    DigitalRune Particles provides several predefined effectors: See namespace
+                    <codeEntityReference qualifyHint="true">N:DigitalRune.Particles.Effectors</codeEntityReference>
+                    and included samples.
+                </para>
+                <para>
+                    The base class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleEffector</codeEntityReference>
+                    provides several virtual methods, which can be overridden in derived class.
+                    See the class description of
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleEffector</codeEntityReference>
+                    for more information.
+                </para>
+            </content>
+            <sections>
+                <section address="effectortypes">
+                    <title>Common particle effector types</title>
+                    <content>
+                        <para>
+                            Most particle effectors modify particle parameters. Thus, they define the behavior
+                            of the particles. Effectors should be designed to work with uniform and varying particle parameters.
+                            Usually, particle effectors override
+                            <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.OnBeginUpdate(System.TimeSpan)</codeEntityReference>
+                            or
+                            <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.OnEndUpdate(System.TimeSpan)</codeEntityReference>
+                            to modify uniform particle parameters, and
+                            <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.OnUpdateParticles(System.TimeSpan,System.Int32,System.Int32)</codeEntityReference>
+                            to handle varying particle parameters.
+                            The section <link xlink:href="2e27afb1-6482-4f56-9497-ca903aef3c9f" />
+                            shows how to implement a particle effector.
+                        </para>
+                        <para>
+                            A particle effector that creates particles (by calling
+                            <codeEntityReference qualifyHint="true">M:DigitalRune.Particles.ParticleSystem.AddParticles(System.Int32)</codeEntityReference>)
+                            is called an <legacyItalic>emitter</legacyItalic>. For example, see class <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.Effectors.StreamEmitter</codeEntityReference>.
+                            Usually, emitters override the method
+                            <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.OnBeginUpdate(System.TimeSpan)</codeEntityReference>
+                            to add new particles.
+                            The section <link xlink:href="5b005b7b-e103-4da2-8d18-cddce0a5bea7" />
+                            shows how to implement an emitter.
+                        </para>
+                        <para>
+                            Particle effectors that set the initial values of varying parameters are called
+                            <legacyItalic>start value effectors</legacyItalic>. For example, see classes
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.Effectors.StartValueEffector`1</codeEntityReference>,
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.Effectors.StartPositionEffector</codeEntityReference>
+                            and
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.Effectors.StartDirectionEffector</codeEntityReference>.
+                            Start value effectors usually override the methods
+                            <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.OnInitialize</codeEntityReference>
+                            to initialize uniform parameters and
+                            <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.OnInitializeParticles(System.Int32,System.Int32,System.Object)</codeEntityReference>
+                            to initialize varying parameters.
+                            The section <link xlink:href="95a33167-7650-4006-8cf1-3e011c42bf54" />
+                            shows how to implement a generic start value effector.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="distribution">
+                    <title>Distributions</title>
+                    <content>
+                        <para>
+                            Many start value effectors use
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Statistics.Distribution`1</codeEntityReference>
+                            objects to define the start values of particle parameters.
+                            A <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Statistics.Distribution`1</codeEntityReference>
+                            usually returns random values that follow a certain probability distribution. For example, the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.Effectors.StartPositionEffector</codeEntityReference>
+                            can use a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Statistics.SphereDistribution</codeEntityReference>
+                            to return random start positions uniformly distributed within a sphere volume.
+                            See <link xlink:href="8c6f4ed6-3d35-4c23-9f64-aa823200e78b">Statistics and Distributions in DigitalRune Mathematics</link>
+                            for more information.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="tips">
+            <title>Miscellaneous tips</title>
+            <content>
+                <para>
+                    Here are some tips for designing particles effects:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            For good performance try to decrease the number of particles. Use particles with
+                            high opacity (high alpha values) and textures that contain more structure.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            Some particle effects look a lot better if particles have a random "Lifetime".
+                        </para>
+                        <para>
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            If several start value effectors initialize the same particle parameter,
+                            the last effector in the
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Particles.ParticleSystem.Effectors</codeEntityReference>
+                            collection overrides the other start value effectors.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            Uniform parameters can be directly initialized by setting their
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Particles.IParticleParameter`1.DefaultValue</codeEntityReference>
+                            when they are created. For example:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+	   particleSystem.Parameters.AddUniform<float>(ParticleParameterNames.Lifetime).DefaultValue = 5;
+	   ]]>
+                        </code>
+                        <para>
+                            But they can also be initialized using start value effectors. For example:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+particleSystem.Effectors.Add(new StartValueEffector<float>
+{
+  Parameter = ParticleParameterNames.Lifetime,
+  DefaultValue = 5,
+});
+	   ]]>
+                        </code>
+                        <para>
+                            The advantage of using start value effectors is that when the particle system is
+                            reset (using the method
+                            <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleSystem.Reset</codeEntityReference>)
+                            the start value effector will reset the uniform parameter. Without a start value effector,
+                            the uniform parameter keeps its last value and this might not be the same as the original
+                            value if the user or a particle effector has modified the parameter.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            Have a look at the <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" /> to see several particle effects
+                            in action.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            The class
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleSystem</codeEntityReference>
+                            implements the interface
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableObject</codeEntityReference>.
+                            All <legacyItalic>uniform</legacyItalic> particle parameters implement
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableProperty`1</codeEntityReference>.
+                            That means, all uniform parameters can be animated using
+                            <link xlink:href="c2892dfd-491e-4e78-83d1-737e38f1acc9">DigitalRune Animation</link>.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            Particle systems and particle effectors can be cloned (see method
+                            <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleSystem.Clone</codeEntityReference>).
+                            That means, a particle system can be configured once and then replicated as needed.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            Particle systems and particle effectors can be serialized/deserialized using
+                            the
+                            <externalLink>
+                                <linkText>XNA IntermediateSerializer</linkText>
+                                <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.content.pipeline.serialization.intermediate.intermediateserializer.aspx</linkUri>
+                            </externalLink>.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            The class
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleHelper</codeEntityReference>
+                            provides the extension methods
+                            <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleHelper.GetValue``1(DigitalRune.Particles.IParticleParameter{``0},System.Int32)</codeEntityReference>
+                            and
+                            <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleHelper.SetValue``1(DigitalRune.Particles.IParticleParameter{``0},System.Int32,``0)</codeEntityReference>
+                            which can be used to retrieve values from particle parameters without differentiating
+                            between uniform or varying parameters.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            Particle effectors can read uniform particle parameters to create a time-dependent
+                            behavior. For example, a <legacyItalic>wind force effector</legacyItalic> could
+                            use a uniform parameter "WindStrength" to determine its wind force. A
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.Effectors.SingleFadeEffector</codeEntityReference>
+                            could be used to animate the "WindStrength" from 0 to its maximum and back to 0.
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="47e63a0f-e347-43fa-802e-bff707e804b6" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                DigitalRune Animation provides comprehensive support for 3D character animation:
+                Skeletal animation, inverse kinematics, ragdoll physics, and more.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="SkeletalAnimation">
+            <title>Skeletal animation</title>
+            <content>
+                <para>
+                    Skeletal animation is the prevalent technique for 3D character animation.
+                    The mesh of a character model is deformed based on an underlying skeleton.
+                    The technique is known under a variety of names: <newTerm>mesh skinning</newTerm>,
+                    <newTerm>enveloping</newTerm>, <newTerm>matrix deformation</newTerm>,
+                    <newTerm>linear blend skinning</newTerm>, <newTerm>smooth skinning</newTerm> or
+                    <newTerm>skeleton-subspace deformation</newTerm>.
+                </para>
+            </content>
+            <sections>
+                <section address="Skeleton">
+                    <title>Skeleton and skeleton pose</title>
+                    <content>
+                        <para>
+                            A <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.Skeleton</codeEntityReference>
+                            defines the structure of a skeleton. It defines the hierarchy of bones
+                            and their position and orientation in <newTerm>bind pose</newTerm>
+                            (also called <newTerm>rest pose</newTerm>). The bind pose is usually the
+                            pose in which the character mesh is modeled. The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.Skeleton</codeEntityReference>
+                            is immutable, that means once a skeleton is created it cannot be modified.
+                            Multiple characters can share the same instance of the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.Skeleton</codeEntityReference>
+                            class.
+                        </para>
+                        <para>
+                            A <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.SkeletonPose</codeEntityReference>
+                            defines a new pose for an existing skeleton. A new skeleton pose is
+                            defined by a set of bone transforms. A bone transform defines the transformation
+                            of a bone relative to its bind pose.
+                            Bone transforms can be set manually at runtime or, for example, by using a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.SkeletonKeyFrameAnimation</codeEntityReference>.
+                            The <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.SkeletonPose</codeEntityReference>
+                            returns the matrices required for mesh skinning: See properties
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.Character.SkeletonPose.SkinningMatrices</codeEntityReference>
+                            and <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.Character.SkeletonPose.SkinningMatricesXna</codeEntityReference>.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="SRT">
+                    <title>SRT transforms</title>
+                    <content>
+                        <para>
+                            DigitalRune Animation uses the value type
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.SrtTransform</codeEntityReference>
+                            to represent bone transforms.
+                            An SRT transform describes a scale transformation, followed by a rotation,
+                            followed by a translation. (SRT transforms are particularly well suited for
+                            character animation.)
+                            See the <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.SrtTransform</codeEntityReference>
+                            for more information.
+                        </para>
+                        <alert class="note">
+                            <para>
+                                DigitalRune Animation and the SrtTransform type uses LERP (linear interpolation) operations instead of a SLERP
+                                (spherical linear interpolation) operation to interpolate quaternions. Using LERP
+                                is faster, and the difference to SLERP is negligible in most cases.
+                            </para>
+                        </alert>
+                    </content>
+                </section>
+
+                <section address="Spaces">
+                    <title>Skeleton coordinate spaces and bone transforms</title>
+                    <content>
+                        <para>
+                            DigitalRune Animations uses following terms to refer to different coordinate spaces and
+                            bone transformations:
+                        </para>
+                        <para>
+                            <legacyBold>Bind Pose Space</legacyBold>: The bind pose is the pose in
+                            which the character mesh is modeled (usually a T pose).
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.Skeleton</codeEntityReference>
+                            class manages the bind pose transformations of all bones.
+                        </para>
+                        <para>
+                            <legacyBold>Bind Pose Transformation</legacyBold>:
+                            A bind pose transformation defines the position, orientation and scale
+                            of a bone relative to its parent bone or relative to model space.
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.Skeleton</codeEntityReference>
+                            class manages the bind pose transformations of all bones.
+                        </para>
+                        <para>
+                            <legacyBold>Bone Space</legacyBold>: The bone space is the
+                            local coordinate space that is fixed on a bone. The origin of this
+                            space is the origin of the bone. Sometimes, one coordinate axis
+                            points into the direction of the bone.
+                            <newTerm>Bone Transforms</newTerm> are always
+                            relative to bone space.
+                        </para>
+                        <para>
+                            <legacyBold>Parent Bone Space</legacyBold>:
+                            Each bone except the root bone of the model has a unique parent
+                            bone. The parent bone space is the bone space of the parent bone.
+                            The parent bone space of the root bone is the <newTerm>model space</newTerm>.
+                            Transformations that are relative to the parent bone space
+                            have the term <newTerm>Relative</newTerm> in their name,
+                            for example:
+                            <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.Character.SkeletonPose.GetBonePoseRelative(System.Int32)</codeEntityReference>
+                        </para>
+                        <para>
+                            <legacyBold>Model Space</legacyBold>: The model space is the
+                            local coordinate space of the whole model. The origin of this
+                            space is usually at the feet of the character.
+                            Transformations that are relative to the model space
+                            have the term <newTerm>Absolute</newTerm> in their name,
+                            for example:
+                            <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.Character.SkeletonPose.GetBonePoseAbsolute(System.Int32)</codeEntityReference>
+                        </para>
+                        <para>
+                            <legacyBold>World Space</legacyBold>: The world space is the
+                            coordinate space that contains all game objects. The origin of this
+                            space is usually the center of a game level.
+                        </para>
+                        <para>
+                            <legacyBold>Bone Transform</legacyBold>:
+                            A bone transform is a local transformation in bone space that is applied to a bone. Bones are
+                            animated by changing the bone transforms of a skeleton pose. If a bone transform is the identity transformation
+                            (scale is 1, no rotation, no translation), then the bone is not animated.
+                            If all bone transforms of a skeleton pose are identity transformations, then
+                            the character is displayed in its bind pose.
+                        </para>
+                        <para>
+                            <legacyBold>Bone Pose</legacyBold>:
+                            A <newTerm>bone pose transformation matrix</newTerm>
+                            (or short: <newTerm>bone pose</newTerm>) defines the resulting pose of bone
+                            after the bone transforms are applied. A bone pose describes the bone's position, orientation
+                            and scale relative to another coordinate space. A <newTerm>relative bone pose</newTerm> describes the pose
+                            of a bone relative to the parent bone. An
+                            <newTerm>absolute bone pose</newTerm> describes the pose of a bone relative to model space.
+                            Bone poses are computed automatically (when needed) from the current bone transforms by the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.SkeletonPose</codeEntityReference>
+                            class.
+                        </para>
+                        <para>
+                            <legacyBold>Skinning Matrix</legacyBold>:
+                            Skinning matrices are used to transform the vertices of the character mesh.
+                            A skinning matrix transform a vertex position (in model space)
+                            of the bind pose mesh to a vertex position (in model space) of the deformed mesh.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Computation">
+                    <title>Computing bone poses and skinning matrices</title>
+                    <content>
+                        <para>
+                            Understanding how all matrices and coordinate spaces fit together is far from trivial.
+                            Here is some code that explains how the bone poses and skinning matrices are computed
+                            by the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.SkeletonPose</codeEntityReference>.
+                            (Please note: This is pseudo-code. And don't forget: The multiplication
+                            order of the transformations is from right to left.)
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+// Apply current animation (bone transform) to the rest pose (= bind pose) to get the final bone pose.
+for (int i = 0; i < numberOfBones; i++)
+  bonePoseRelative[i] = bindPosesRelative[i] * boneTransforms[i];
+  
+// bonePoseRelative is the bonePose relative to the parent bone.
+// Compute bonePoseAbsolute, which is the bonePose relative to the model space.
+bonePoseAbsolute[0] = bonePoseRelative[0];
+for (int i = 1; i < numberOfBones; i++)
+{
+  int parentIndex = skeleton.GetParent(i);
+  bonePoseAbsolute[i] = bonePoseAbsolute[parentIndex] * bonePoseRelative[i];
+}
+  
+// Compute the skinning matrices needed in a skinning shader.
+for (int i = 0; i < numberOfBones; i++)
+  skinningMatrices[i] = bonePoseAbsolute[i] * bindPosesAbsoluteInverse[i];
+]]>
+                        </code>
+                    </content>
+                </section>
+
+                <section address="Animation">
+                    <title>Animating a SkeletonPose</title>
+                    <content>
+                        <para>
+                            The type <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.SkeletonPose</codeEntityReference>
+                            can be animated. It implements the interface
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableProperty</codeEntityReference>
+                            of type
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.SkeletonPose</codeEntityReference>,
+                            as well as the interface
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableObject</codeEntityReference>.
+                            That means the whole skeleton pose can be animated using a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.SkeletonKeyFrameAnimation</codeEntityReference>.
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.SkeletonKeyFrameAnimation</codeEntityReference>
+                            controls all bones of the skeleton (but it supports per-bone weights).
+                            But it is also possible to animate only individual bones using
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.SrtKeyFrameAnimation</codeEntityReference>
+                            animations.
+                            See
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.SkeletonPose</codeEntityReference>
+                            for more information.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="ClassDiagram">
+                    <title>Class diagram</title>
+                    <content>
+                        <mediaLink>
+                            <image xlink:href="ClassDiagramAnimationCharacter"/>
+                        </mediaLink>
+                    </content>
+                </section>
+
+                <section address="Sample">
+                    <title>Sample</title>
+                    <content>
+                        <para>
+                            The CharacterAnimationSample (see <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />)
+                            shows how to animate 3D characters.
+                        </para>
+                        <mediaLink>
+                            <caption placement="after">CharacterAnimationSample: Character skeletons are displayed for debugging</caption>
+                            <image xlink:href="CharacterAnimationSample-SkeletonInfo"/>
+                        </mediaLink>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Morphing">
+            <title>Morphing animation</title>
+            <content>
+                <para>
+                    Besides skeletal animation, <newTerm>morphing</newTerm> is another important
+                    technique used for 3D character animation: A mesh of a character model is
+                    changed by blending between various <newTerm>morph targets</newTerm>
+                    (<newTerm>blend shapes</newTerm>). The technique is hence also known as
+                    <newTerm>morph target animation</newTerm> or <newTerm>blend shape interpolation</newTerm>.
+                </para>
+                <para>
+                    Morph target animation is typically used for facial animation where different
+                    facial poses are modeled and stored as morph targets. Weights (usually floating-point
+                    values) are assigned to each morph target. The weights are animated at runtime
+                    and the morph targets are blended together based on their weights.
+                </para>
+                <para>
+                    Morph target weights can be animated using the basic animation types. Hence,
+                    DigitalRune Animation does not provide special support for morph target
+                    animation.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="82aae839-9dee-4d18-b87b-85da2b547f7f" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                <legacyItalic>
+                    Microsoft(R) DirectX 11 Texture Assembler (DirectXTex version).
+                    Copyright (C) Microsoft Corp. All rights reserved.
+                </legacyItalic>
+            </para>
+            <para>
+                The <token>DirectXTex</token> command-line tool <command>texassemble</command> can
+                be used to create DDS files containing cube maps, volume maps, or texture arrays
+                from individual images.
+            </para>
+            <para>
+                <command>texassemble</command> does not support mipmap generation or texture
+                compression. The resulting DDS file needs to be processed using
+                <link xlink:href="2225f642-6f72-4a1a-adc7-ad1be8bbd543" />.
+            </para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Usage">
+            <title>Usage</title>
+            <content>
+                <para>
+
+                </para>
+                <code language="none">
+                    <![CDATA[
+texassemble [-cube | - volume | -array | -cubearray] [-w <width>] [-h <height>] [-f <format>] [-if <filter>] [-sepalpha] [-o <outputfile>] [-dx10]  [-nologo] <files>]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Arguments">
+            <title>Arguments</title>
+            <content>
+                <para>
+                    The following arguments can be specified on the command-line:
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Argument</para>
+                            </entry>
+                            <entry>
+                                <para>Description</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>
+                                <legacyItalic>files</legacyItalic>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The image files that should be assembled into the DDS file.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <command>-cube</command>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Create a cube map. Requires 6 image files (+X, -X, +Y, -Y, +Z, -Z).
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <command>-volume</command>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Create a volume texture. Requires 2 or more images. The number of
+                                images defines the depth of the volume.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <command>-array</command>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Create a 1D or 2D texture array. Requires 2 or more images.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <command>-cubearray</command>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Create a cube map array. Requires multiple of 6 images.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <command>-w</command>&#0160;<legacyItalic>width</legacyItalic>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The width of the output texture in pixels.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <command>-h</command>&#0160;<legacyItalic>height</legacyItalic>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The height of the output texture in pixels. If no size is given, the
+                                size is taken from the first input image.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <command>-f</command>&#0160;<legacyItalic>format</legacyItalic>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The texture format of the output texture. If no format is given, the
+                                format of the first image file is used.
+                            </para>
+                            <para>
+                                Allowed values are all
+                                <externalLink>
+                                    <linkText>DXGI formats</linkText>
+                                    <linkUri>http://msdn.microsoft.com/en-us/library/windows/desktop/bb173059.aspx</linkUri>
+                                </externalLink>
+                                (without the "DXGI_FORMAT_" prefix).
+                            </para>
+                            <para>
+                                Example: -f R10G10B10A2_UNORM
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <command>-if</command>&#0160;<legacyItalic>filter</legacyItalic>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The image filter used for resizing.
+                            </para>
+                            <para>
+                                Allowed values: POINT, LINEAR, CUBIC, FANT, BOX, TRIANGLE,
+                                POINT_DITHER, LINEAR_DITHER, CUBIC_DITHER, FANT_DITHER, BOX_DITHER,
+                                TRIANGLE_DITHER, POINT_DITHER_DIFFUSION, LINEAR_DITHER_DIFFUSION,
+                                CUBIC_DITHER_DIFFUSION, FANT_DITHER_DIFFUSION, BOX_DITHER_DIFFUSION,
+                                TRIANGLE_DITHER_DIFFUSION
+                            </para>
+                            <para>
+                                Filters with DITHER in their name indicate that the 4x4 ordered
+                                dither algorithm, while "DITHER_DIFFUSION" is error diffusion
+                                dithering.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <command>-sepalpha</command>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Resize alpha channel separately from color channels. This implies an
+                                alpha mode setting of DDS_ALPHA_MODE_CUSTOM as this is typically
+                                only used if the alpha channel doesn't contain transparency
+                                information.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <command>-o</command>&#0160;<legacyItalic>outputfile</legacyItalic>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The output file. The default name is a .DDS file based on the first
+                                input image file.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <command>-dx10</command>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Force DDS file output to always use the "DX10" header extension. The
+                                resulting file may not be compatible with the legacy D3DX10 or
+                                D3DX11 libraries.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <command>-nologo</command>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Suppress copyright message.
+                            </para>
+                        </entry>
+                    </row>
+                </table>
+            </content>
+        </section>
+
+
+        <section address="Examples">
+            <title>Examples</title>
+            <content>
+                <para>
+                    Assemble 3 images into a 256x256x3 volume texture:
+                </para>
+                <code language="none">
+                    texassemble -volume -w 256 -h 256 -f R8G8B8A8_UNORM -o volume.dds lena.jpg fishingboat.jpg peppers.tiff
+                </code>
+                <para>
+                    Assemble a 256x256 cube map from 6 images:
+                </para>
+                <code language="none">
+                    texassemble -cube -w 256 -h 256 -f R8G8B8A8_UNORM -o cubemap.dds lobbyxposjpg lobbyxneg.jpg lobbyypos.jpg lobbyyneg.jpg lobbyzpos.jpg lobbyzneg.jpg
+                </code>
+                <para>
+                    Assemble 2 images into a texture array ('lena.jpg' defines the DXGI format and
+                    size of the resulting texture):
+                </para>
+                <code language="none">
+                    texassemble -array -o array.dds lena.jpg peppers.tiff
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <!-- Texconv -->
+            <link xlink:href="2225f642-6f72-4a1a-adc7-ad1be8bbd543" />
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

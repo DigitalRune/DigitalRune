@@ -1,0 +1,461 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="d94d3673-de15-47f9-a122-70b4d97b5920" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                The DigitalRune Engine is game engine which empowers professional .NET developers,
+                indie developers, and hobbyists to create 3D games and simulations. The complete game
+                engine is written in managed code and supports the Microsoft XNA Game Studio and MonoGame.
+            </para>
+            <autoOutline>2</autoOutline>
+        </introduction>
+
+        <section address="Libraries">
+            <title>Libraries</title>
+            <content>
+                <para>
+                    The DigitalRune Engine consists of several independent libraries:
+                </para>
+                <para>
+                    <mediaLinkInline>
+                        <image xlink:href="Engine"/>
+                    </mediaLinkInline>
+                    &#160;    <!-- Necessary, otherwise this page does not compile!? -->
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Name</para>
+                            </entry>
+                            <entry>
+                                <para>Description</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>
+                                <link xlink:href="dc44c3a5-8545-4253-9da1-62258a00607c">DigitalRune Base Library</link>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>A base library which provides commonly used types.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <link xlink:href="2ac58586-0d4f-4625-bf4c-fc32591a5304">DigitalRune Mathematics</link>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>A mathematics library.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <link xlink:href="335dc86a-c68d-4d7b-8641-81dd80de5e76" />
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>A geometry and collision detection library.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <link xlink:href="79a8677d-9460-4118-b27b-cef353dfbd92" />
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>A 3D game physics library.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <link xlink:href="5044112e-c86d-4d85-87d0-b567a0361c21" />
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>A 3D particle system library.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <link xlink:href="c2892dfd-491e-4e78-83d1-737e38f1acc9"/>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>An animation system for UI animation and 3D character animation.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <link xlink:href="0a8eb9ca-74ae-4746-9289-93d909b07e22" />
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>A 3D graphics engine.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <link xlink:href="fe8ccefb-7bce-4290-be56-81bd38ba86fe">DigitalRune Game</link>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>A base library which provides common functionality for games.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <link xlink:href="a5a463da-de2e-432f-bf7d-07206aaca634"/>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>A game input and GUI library.</para>
+                        </entry>
+                    </row>
+                    <!--<row>
+            <entry><link xlink:href="56104e89-47c3-436f-9ed0-b66f646a57a2"/></entry>
+            <entry>
+              Documentation of the DigitalRune Windows helper library (<localUri>DigitalRune.Windows.dll</localUri>).
+              This library is included in the DigitalRune libraries for WPF.
+            </entry>
+          </row>-->
+                </table>
+            </content>
+            <!--    </section>
+         <section address="Windows">
+            <title>WPF and Silverlight libraries</title>
+            <content>
+            <table>
+              <tableHeader>
+                <row>
+                  <entry>Name</entry>
+                  <entry>Description</entry>
+                  <entry>Namespaces</entry>
+                  <entry>Supported Platforms</entry>
+                </row>
+              </tableHeader>
+              <row>
+                <entry><link xlink:href="c829d353-ff2c-48ba-847d-5a78b8f5a403">DigitalRune Docking Windows</link></entry>
+                <entry>A WPF docking window library.</entry>
+                <entry><para>.NET Framework 4.0</para></entry>
+              </row>
+            </table>
+            </content>
+          </section>
+      </sections>-->
+        </section>
+
+        <section address="Platforms">
+            <title>Supported platforms and requirements</title>
+            <content>
+                <para>
+                    The DigitalRune Engine is a set of .NET libraries. The libraries
+                    can be used on the following platforms:
+                    <legacyItalic>
+                        Portable Class Library (PCL), Windows (desktop), Windows Store, Windows Phone, Universal Windows Platform, Xbox 360,
+                        Linux, Mac OS X, Android, iOS, Silverlight, Unity Game Engine
+                    </legacyItalic>
+                </para>
+                <para>
+                    The libraries require the Microsoft .NET Framework 4.0 (Client Profile), or a comparable
+                    .NET/Mono implementation depending on the target platform.
+                </para>
+                <para>
+                    The libraries DigitalRune.Game.UI and DigitalRune.Graphics require the Microsoft XNA
+                    Framework 4.0 or <link xlink:href="73ecd962-4ff5-4988-bb0c-bffa66f933b9"/>.
+                    For all other libraries (DigitalRune Mathematics, Geometry, Physics, etc.), XNA/MonoGame
+                    is supported but not required.
+                </para>
+                <para>
+                    See <link xlink:href="6963e574-3596-4e24-bbe5-1ec8b2eb7114" /> for more details.
+                </para>
+            </content>
+        </section>
+
+        <section address="GettingStarted">
+            <title>Getting started</title>
+            <content>
+            </content>
+            <sections>
+                <section address="Install">
+                    <title>Installation</title>
+                    <content>
+                        <para>
+                            See <link xlink:href="46419cff-2a6e-4d81-84e4-051800b9727b"/> for info about
+                            prerequisites and installation steps.
+                        </para>
+                    </content>
+                </section>
+                <section address="Required">
+                    <title>Required knowledge</title>
+                    <content>
+                        <para>
+                            Before using the DigitalRune Engine you should be familiar with .NET development and
+                            C#. If you are new to .NET, have a look at the
+                            <externalLink>
+                                <linkText>MSDN Library</linkText>
+                                <linkUri>http://msdn.microsoft.com/library/</linkUri>
+                            </externalLink>.
+                        </para>
+                        <para>
+                            You should also know how to create normal apps for your target platform. For example,
+                            if you are targeting iOS, it helps if you are familiar with developing Xamarin.iOS apps.
+                        </para>
+                        <para>
+                            If you plan to create XNA or MonoGame applications, you should be familiar with
+                            XNA or MonoGame game development. Helpful links:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                <link xlink:href="d193b4e7-58fd-4578-9019-e6ecf46ebcc0">
+                                    Microsoft XNA documentation and education catalog
+                                </link>
+                            </listItem>
+                            <listItem>
+                                <token>MGDoc</token>
+                            </listItem>
+                            <listItem>
+                                <token>MGWiki</token>
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Tutorials">
+                    <title>Tutorials</title>
+                    <content>
+                        <para>
+                            The <link xlink:href="4d7ccf95-54e8-4b4c-950f-9420947b4e24" /> provide a hands-on
+                            introduction to the DigitalRune Engine and selected features.
+                        </para>
+                    </content>
+                </section>
+                <section address="Sample">
+                    <title>Samples</title>
+                    <content>
+                        <para>
+                            To start the
+                            <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />
+                            project, go to the <localUri>Samples</localUri> folder and
+                            open the XNA Windows samples solution. Compile and run the project. Have a look at the
+                            included Readme.txt file.
+                        </para>
+                    </content>
+                </section>
+                <section address="Learn">
+                    <title>Learning how to use the DigitalRune Engine</title>
+                    <content>
+                        <para>Please check out following sources to learn how to use the DigitalRune Engine:</para>
+                        <list class="bullet">
+                            <listItem>
+                                Read this documentation, which is included in the download as .chm file and
+                                also available online:
+                                <externalLink>
+                                    <linkText>http://digitalrune.github.io/DigitalRune-Documentation/</linkText>
+                                    <linkUri>http://digitalrune.github.io/DigitalRune-Documentation/</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                Check out the
+                                <link xlink:href="4d7ccf95-54e8-4b4c-950f-9420947b4e24" /> and
+                                <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />.
+                            </listItem>
+                            <listItem>
+                                If you need code samples for a specific API (e.g. a property, method, class,
+                                etc.). Open the
+                                <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" /> solution
+                                in Visual Studio and search the whole solution using the Visual Studio Find
+                                functionality. You can also use an external search tool, like
+                                <externalLink>
+                                    <linkText>Agent Ransack</linkText>
+                                    <linkUri>http://www.mythicsoft.com/agentransack</linkUri>
+                                </externalLink>,
+                                and search the whole <localUri>Samples</localUri> folder.
+                            </listItem>
+                        </list>
+                        <alert class="tip">
+                            <para>
+                                Tips for beginners: Start simple! Go through the <link xlink:href="4d7ccf95-54e8-4b4c-950f-9420947b4e24" />.
+                                Then get familiar with the <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />
+                                solution for XNA Windows (desktop). Once you are familiar with XNA Windows development,
+                                you can check out the Samples solution for MonoGame Windows (desktop). After you are
+                                familiar with MonoGame desktop development, you can move on to more challenging platforms
+                                (e.g. Windows Phone, iOS, etc.).
+                            </para>
+                        </alert>
+                    </content>
+                </section>
+
+
+                <section address="News">
+                    <title>Staying up-to-date</title>
+                    <content>
+                        <para>
+                            To get news about the DigitalRune Engine:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                Follow us on Twitter:
+                                <externalLink>
+                                    <linkText>@DigitalRune</linkText>
+                                    <linkUri>https://twitter.com/DigitalRune</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                To watch the latest videos, subscribe to our
+                                <externalLink>
+                                    <linkText>YouTube channel</linkText>
+                                    <linkUri>http://www.youtube.com/DigitalRuneSoftware</linkUri>
+                                </externalLink>.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Subtopics">
+            <title>Subtopics</title>
+            <content>
+                <para>Other topics in this section:</para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Topic</para>
+                            </entry>
+                            <entry>
+                                <para>Description</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>
+                                <link xlink:href="1a8e6419-68b2-4e09-9578-a430703e8d5a" />
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The change history and release notes.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <link xlink:href="46419cff-2a6e-4d81-84e4-051800b9727b"/>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Prerequisites and installation instructions.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <link xlink:href="6963e574-3596-4e24-bbe5-1ec8b2eb7114" />
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Information about supported platforms, limitations, MonoGame, etc.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <link xlink:href="972bde71-5d0c-46be-8a81-ad0d2cea770a"/>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Summary of the files that are distributed with the DigitalRune libraries
+                                and dependencies between DigitalRune Assemblies and third-party assemblies.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <link xlink:href="4d7ccf95-54e8-4b4c-950f-9420947b4e24" />
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Tutorials that show how to use the DigitalRune Engine.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Information about the sample projects.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <link xlink:href="217d4dfb-9ec6-4250-abc0-aaa22140da56" />
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Summary of common problems and solutions.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <link xlink:href="0628de0a-7540-4ada-afe1-b1b2e58a9992" />
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Miscellaneous information concerning the whole DigitalRune Engine.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <link xlink:href="a84f32c0-ea2c-473e-9b5c-4afa4fcecb58"/>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contact and support information.
+                            </para>
+                        </entry>
+                    </row>
+                </table>
+            </content>
+        </section>
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

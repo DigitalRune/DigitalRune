@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="ba1be841-af9c-41a4-8348-0b6bd92efdd9" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                DigitalRune Graphics uses DirectX Effects for managing render pipeline states.
+                At runtime effects are managed using so called "effect bindings".
+            </para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="Effects">
+            <title>Effects</title>
+            <content>
+                <para>
+                    A <newTerm>DirectX effect</newTerm> (see XNA class
+                    <externalLink>
+                        <linkText>Effect</linkText>
+                        <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.effect.aspx</linkUri>
+                    </externalLink>)
+                    describes the render pipeline states that are required to produce certain render conditions.
+                    These render pipeline states include:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Shader states: vertex shader, pixel shader, shader constants
+                    </listItem>
+                    <listItem>
+                        Sampler states
+                    </listItem>
+                    <listItem>
+                        Other pipeline states: blend states, cull mode, fill mode, stencil mode, depth mode
+                    </listItem>
+                </list>
+                <para>
+                    An effect usually requires several <newTerm>effect parameters</newTerm>, such as
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Shader constants: transformation matrices, material settings, light properties, etc.
+                    </listItem>
+                    <listItem>
+                        Textures: material textures, environment textures, shadow maps, lookup textures, etc.
+                    </listItem>
+                </list>
+                <para>
+                    Some of these effect parameters can be set directly by the user, some need to be
+                    resolved automatically by the graphics engine.
+                </para>
+                <para>
+                    In addition, an effect may define multiple versions of shaders (called
+                    <newTerm>effect techniques</newTerm>) to support different hardware. At runtime the
+                    graphics engine needs to select the technique which is appropriate for the current
+                    hardware.
+                </para>
+                <para>
+                    Effects are defined using effect files (.FX). See
+                    <externalLink>
+                        <linkText>Writing an Effect (Direct3D 9)</linkText>
+                        <linkUri>http://msdn.microsoft.com/en-us/library/windows/desktop/bb206368.aspx</linkUri>
+                    </externalLink>
+                    for more information.
+                </para>
+                <alert class="caution">
+                    <para>
+                        DigitalRune Graphics internally uses the
+                        <externalLink>
+                            <linkText>Tag</linkText>
+                            <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.graphicsresource.tag.aspx</linkUri>
+                        </externalLink>
+                        property of the
+                        <externalLink>
+                            <linkText>Effect</linkText>
+                            <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.effect.aspx</linkUri>
+                        </externalLink> class. This property must not be modified by the game.
+                    </para>
+                </alert>
+            </content>
+        </section>
+
+        <section address="EffectBindings">
+            <title>Effect bindings</title>
+            <content>
+                <para>
+                    DigitalRune Graphics introduces the concept of <newTerm>effect bindings</newTerm> (see
+                    class <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.EffectBinding</codeEntityReference>).
+                    An effect binding implements the logic that is required for using an effect at runtime.
+                    The effect binding includes
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.EffectTechniqueBinding</codeEntityReference>s
+                        which select the appropriate effect technique for rendering a certain object,
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.EffectPassBinding</codeEntityReference>s
+                        which select the effect passes and determine the order in which they need to be applied, and
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.EffectParameterBinding</codeEntityReference>s
+                        which automatically resolve and apply effect parameters.
+                    </listItem>
+                </list>
+                <para>
+                    Effect bindings are usually created automatically when loading a model or a material.
+                    The mechanism for initializing effect bindings is described below (see "Initialization").
+                </para>
+                <mediaLink>
+                    <caption placement="after">Class Diagram: Effect Bindings</caption>
+                    <image xlink:href="GraphicsDoc_Effects"/>
+                </mediaLink>
+            </content>
+            <sections>
+
+                <section address="EffectTechniqueBindings">
+                    <title>Effect technique bindings</title>
+                    <content>
+                        <para>
+                            An effect may define several effect techniques for rendering objects. The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.EffectTechniqueBinding</codeEntityReference>
+                            provides the logic to select the appropriate technique when rendering a specific object.
+                            For example, when the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.MeshRenderer</codeEntityReference>
+                            renders a mesh it calls the effect technique binding to select the appropriate
+                            technique.
+                        </para>
+                        <para>
+                            Effect technique bindings are created automatically when an effect is loaded. Effect
+                            technique bindings cannot be replaced at runtime. By default, if no special effect technique
+                            binding is created, a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.ByNameTechniqueBinding</codeEntityReference>
+                            is set.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="EffectPassBindings">
+                    <title>Effect pass bindings</title>
+                    <content>
+                        <para>
+                            Once an effect technique is selected <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Graphics.Effects.EffectTechniqueBinding.GetPassBinding(Microsoft.Xna.Framework.Graphics.EffectTechnique,DigitalRune.Graphics.RenderContext)</codeEntityReference>
+                            needs to be called to get the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.EffectPassBinding</codeEntityReference>.
+                            The effect pass binding provides an enumerator that iterates over all effect passes
+                            that need to be applied for rendering the current object.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="EffectParameterBindings">
+                    <title>Effect parameter bindings</title>
+                    <content>
+                        <para>
+                            An <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.EffectParameterBinding</codeEntityReference>
+                            binds an effect parameter to a certain value. When an effect is selected for rendering,
+                            the effect parameter bindings are evaluated and the resulting values are set in the shader.
+                        </para>
+                        <para>
+                            DigitalRune Graphics provides several types of parameter bindings:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.ConstParameterBinding`1</codeEntityReference>
+                                and <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.ConstParameterArrayBinding`1</codeEntityReference>
+                                bind an effect parameter to a fixed value (or array of values). The value is constant,
+                                unless it is changed explicitly by the game logic.
+                                <markup>
+                                    <br/>
+                                </markup>
+                                These parameter bindings
+                                are typically used for parameters that do not change from one frame to the next. Examples:
+                                material constants, material colors, textures, etc.
+                            </listItem>
+                            <listItem>
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.DelegateParameterBinding`1</codeEntityReference>
+                                and <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.DelegateParameterArrayBinding`1</codeEntityReference>
+                                bind an effect parameter to a dynamically calculated value. The effect binding calls
+                                a callback method that computes the value in each frame.
+                                <markup>
+                                    <br/>
+                                </markup>
+                                These parameter bindings
+                                are typically used for parameters that may change from one frame to the next. Examples:
+                                world/view/projection matrices, light properties, etc.
+                            </listItem>
+                            <listItem>
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.NullParameterBinding`1</codeEntityReference>
+                                and <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.NullParameterArrayBinding`1</codeEntityReference>
+                                are special bindings that have no effect. These bindings can be set if the graphics
+                                engine should ignore a certain effect parameter.
+                            </listItem>
+                            <listItem>
+                                New effect parameter bindings can be created by deriving new classes from
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.EffectParameterBinding`1</codeEntityReference>
+                                or <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.EffectParameterArrayBinding`1</codeEntityReference>.
+                            </listItem>
+                        </list>
+                        <para>
+                            Effect parameter bindings are created automatically when an effect is loaded. Parameter
+                            bindings can be replaced at runtime.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Initialization">
+                    <title>Initialization</title>
+                    <content>
+                        <para>
+                            Effect bindings can be created manually in code, but in most cases effect bindings are
+                            set up automatically when models and materials are loaded. The effect technique and
+                            parameters bindings are initialized in two steps:
+                        </para>
+                        <list class="ordered">
+                            <listItem>
+                                <legacyBold>Interpretation</legacyBold> - The effect is interpreted by
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.IEffectInterpreter</codeEntityReference>s.
+                                The interpreters create <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.EffectTechniqueDescription</codeEntityReference>s
+                                and <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.EffectParameterDescription</codeEntityReference>s.
+                                <markup>
+                                    <br/>
+                                </markup>
+                                (The descriptions are stored by the graphics service and can be accessed using the
+                                methods <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Graphics.Effects.EffectHelper.GetTechniqueDescriptions(Microsoft.Xna.Framework.Graphics.Effect)</codeEntityReference>
+                                and <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Graphics.Effects.EffectHelper.GetParameterDescriptions(Microsoft.Xna.Framework.Graphics.Effect)</codeEntityReference>.)
+                            </listItem>
+                            <listItem>
+                                <legacyBold>Binding</legacyBold> -
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.IEffectBinder</codeEntityReference>s
+                                read the descriptions and create
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.EffectTechniqueBinding</codeEntityReference>s
+                                and <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.EffectParameterBinding</codeEntityReference>s.
+                            </listItem>
+                        </list>
+                        <para>
+                            The effect binding system is extensible: The effect interpreters and binders are
+                            stored in the graphics service (see properties
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.IGraphicsService.EffectInterpreters</codeEntityReference>
+                            and <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.IGraphicsService.EffectBinders</codeEntityReference>).
+                            New effect interpreters and binders can be added to support new types of effects or
+                            add new binding mechanisms. See <link xlink:href="c2b20686-df99-4d21-b5b6-fd7d58a5f407" />
+                        </para>
+                    </content>
+                </section>
+            </sections>
+
+        </section>
+
+        <section address="StockEffects">
+            <title>XNA stock effects</title>
+            <content>
+                <para>
+                    The XNA stock effects
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <externalLink>
+                            <linkText>AlphaTestEffect</linkText>
+                            <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.alphatesteffect.aspx</linkUri>
+                        </externalLink>
+                    </listItem>
+                    <listItem>
+                        <externalLink>
+                            <linkText>BasicEffect</linkText>
+                            <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.basiceffect.aspx</linkUri>
+                        </externalLink>
+                    </listItem>
+                    <listItem>
+                        <externalLink>
+                            <linkText>DualTextureEffect</linkText>
+                            <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.dualtextureeffect.aspx</linkUri>
+                        </externalLink>
+                    </listItem>
+                    <listItem>
+                        <externalLink>
+                            <linkText>EnvironmentMapEffect</linkText>
+                            <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.environmentmapeffect.aspx</linkUri>
+                        </externalLink>
+                    </listItem>
+                    <listItem>
+                        <externalLink>
+                            <linkText>SkinnedEffect</linkText>
+                            <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.skinnedeffect.aspx</linkUri>
+                        </externalLink>
+                    </listItem>
+                </list>
+                <para>
+                    are automatically wrapped using special effect bindings:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.AlphaTestEffectBinding</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.BasicEffectBinding</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.DualTextureEffectBinding</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.EnvironmentMapEffectBinding</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.SkinnedEffectBinding</codeEntityReference>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <link xlink:href="c2b20686-df99-4d21-b5b6-fd7d58a5f407" />
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,640 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="6963e574-3596-4e24-bbe5-1ec8b2eb7114" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>Here is an overview of platforms supported by the DigitalRune Engine.</para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Overview">
+            <title>Overview</title>
+            <content>
+                <para>
+                    The DigitalRune Engine can be used on most platforms which support .NET or Mono.
+                </para>
+                <para>
+                    At the moment there might be some limitations on the newer platforms. However, we are
+                    working hard to make the full set of features available on all platforms and to add
+                    new platforms. You can also contact us if you need builds for a different platform.
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para></para>
+                            </entry>
+                            <entry>
+                                <para>Windows (desktop)</para>
+                            </entry>
+                            <entry>
+                                <para>Windows Store</para>
+                            </entry>
+                            <entry>
+                                <para>Windows Phone</para>
+                            </entry>
+                            <entry>
+                                <para>Universal Windows Platform (UWP)</para>
+                            </entry>
+                            <entry>
+                                <para>Xbox 360***</para>
+                            </entry>
+                            <entry>
+                                <para>Linux</para>
+                            </entry>
+                            <entry>
+                                <para>Mac OS X</para>
+                            </entry>
+                            <entry>
+                                <para>Android</para>
+                            </entry>
+                            <entry>
+                                <para>iOS</para>
+                            </entry>
+                            <entry>
+                                <para>Portable Class Libraries (PCL)</para>
+                            </entry>
+                            <entry>
+                                <para>Silverlight</para>
+                            </entry>
+                            <entry>
+                                <para>Unity</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>
+                                <legacyBold>Mathematics</legacyBold>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <legacyBold>Geometry</legacyBold>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <legacyBold>Physics</legacyBold>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <legacyBold>Particles</legacyBold>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <legacyBold>Animation</legacyBold>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <legacyBold>Graphics</legacyBold>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>Only stub DLL*</para>
+                        </entry>
+                        <entry>
+                            <para>-</para>
+                        </entry>
+                        <entry>
+                            <para>-</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <legacyBold>Game</legacyBold>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <legacyBold>Game UI</legacyBold>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>&#10003;</para>
+                        </entry>
+                        <entry>
+                            <para>Only stub DLL*</para>
+                        </entry>
+                        <entry>
+                            <para>-</para>
+                        </entry>
+                        <entry>
+                            <para>-</para>
+                        </entry>
+                    </row>
+                    <!--<row>
+                        <entry>
+                            <para>
+                                <legacyBold>State</legacyBold>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>Stable</para>
+                        </entry>
+                        <entry>
+                            <para>Beta</para>
+                        </entry>
+                        <entry>
+                            <para>Stable (XNA), Beta (MonoGame)</para>
+                        </entry>
+                        <entry>
+                            <para>Stable</para>
+                        </entry>
+                        <entry>
+                            <para>Beta</para>
+                        </entry>
+                        <entry>
+                            <para>Beta</para>
+                        </entry>
+                        <entry>
+                            <para>Beta</para>
+                        </entry>
+                        <entry>
+                            <para>Beta</para>
+                        </entry>
+                        <entry>
+                            <para>Stable</para>
+                        </entry>
+                        <entry>
+                            <para>Beta</para>
+                        </entry>
+                        <entry>
+                            <para>Experimental</para>
+                        </entry>
+                    </row>-->
+                    <row>
+                        <entry>
+                            <para>
+                                <legacyBold>.NET Version</legacyBold>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>.NET 4.0+ or Mono</para>
+                        </entry>
+                        <entry>
+                            <para>.NET</para>
+                        </entry>
+                        <entry>
+                            <para>.NET</para>
+                        </entry>
+                        <entry>
+                            <para>.NET Core</para>
+                        </entry>
+                        <entry>
+                            <para>.NET</para>
+                        </entry>
+                        <entry>
+                            <para>Mono</para>
+                        </entry>
+                        <entry>
+                            <para>Mono</para>
+                        </entry>
+                        <entry>
+                            <para>Xamarin.Android**</para>
+                        </entry>
+                        <entry>
+                            <para>Xamarin.iOS**</para>
+                        </entry>
+                        <entry>
+                            <para>.NET 4.0+ or Mono</para>
+                        </entry>
+                        <entry>
+                            <para>Silverlight 5</para>
+                        </entry>
+                        <entry>
+                            <para>Unity's Mono</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <legacyBold>XNA or MonoGame</legacyBold>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>XNA and MonoGame</para>
+                        </entry>
+                        <entry>
+                            <para>MonoGame</para>
+                        </entry>
+                        <entry>
+                            <para>XNA (WP7), MonoGame (WP8.1)</para>
+                        </entry>
+                        <entry>
+                            <para>MonoGame</para>
+                        </entry>
+                        <entry>
+                            <para>XNA</para>
+                        </entry>
+                        <entry>
+                            <para>MonoGame</para>
+                        </entry>
+                        <entry>
+                            <para>MonoGame</para>
+                        </entry>
+                        <entry>
+                            <para>MonoGame</para>
+                        </entry>
+                        <entry>
+                            <para>MonoGame</para>
+                        </entry>
+                        <entry>
+                            <para>MonoGame (stub*)</para>
+                        </entry>
+                        <entry>
+                            <para>-</para>
+                        </entry>
+                        <entry>
+                            <para>-</para>
+                        </entry>
+                    </row>
+                    <!--<row>
+            <entry>
+              <para>
+                <legacyBold></legacyBold>
+              </para>
+            </entry>
+            <entry>
+              <para></para>
+            </entry>
+            <entry>
+              <para></para>
+            </entry>
+            <entry>
+              <para></para>
+            </entry>
+            <entry>
+              <para></para>
+            </entry>
+            <entry>
+              <para></para>
+            </entry>
+            <entry>
+              <para></para>
+            </entry>
+            <entry>
+              <para></para>
+            </entry>
+            <entry>
+              <para></para>
+            </entry>
+            <entry>
+              <para></para>
+            </entry>
+            <entry>
+              <para></para>
+            </entry>
+            <entry>
+              <para></para>
+            </entry>
+          </row>-->
+                </table>
+                <para>
+                    * The library is available as a portable class library. Some features are
+                    only implemented in the native version of the library. The portable class
+                    library might throw a <legacyBold>NotImplementedException</legacyBold> when
+                    such a feature is used at runtime.
+                </para>
+                <para>
+                    ** Xamarin license required.
+                </para>
+                <para>
+                    *** As of 2015-09-28: Xbox 360 version no longer actively developed ("maintenance mode").
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Limitations">
+            <title>Limitations</title>
+            <content>
+                <para>
+                    The original versions of the DigitalRune Engine used XNA. The XNA builds are the most
+                    mature builds. Here are some important limitations on other platforms:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <legacyBold>[MonoGame]</legacyBold>
+                        Effects (.fx files) do not yet support <legacyItalic>struct</legacyItalic> parameters,
+                        effect parameter semantics or annotations.
+                    </listItem>
+                    <listItem>
+                        <legacyBold>
+                            [Windows Store] [Windows Phone] [Linux] [Mac] [Android] [iOS]
+                        </legacyBold>
+                        Advanced graphics (XNA HiDef profile, deferred rendering, post-processing)
+                        are not yet implemented.
+                    </listItem>
+                    <listItem>
+                        <legacyBold>[iOS] [Android]</legacyBold>
+                        OpenGL/ES does not support wireframe rendering. Wireframe rendering is
+                        not available in the
+                        <codeEntityReference qualifyHint="true">T:DigitalRune.Graphics.Rendering.DebugRenderer</codeEntityReference>.
+                    </listItem>
+                    <listItem>
+                        <legacyBold>[iOS] [Android]</legacyBold>
+                        Cannot read vertex buffers on CPU at runtime in OpenGL/ES.
+                        (This is used in some older samples to get mesh data.)
+                    </listItem>
+                    <listItem>
+                        <legacyBold>[Windows Store]</legacyBold>
+                        Keyboard <legacyItalic>Alt</legacyItalic> key is not supported (OS limitation).
+                    </listItem>
+                </list>
+                <para>
+                    We will try to remove these limitations in future releases.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

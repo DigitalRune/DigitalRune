@@ -1,0 +1,429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="be2efc8b-79a6-4be2-bd5e-f0a17579b02b" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This article discusses how to manually create ragdoll in code without a physics editor.
+                It contains several tips for creating stable ragdolls.
+            </para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="Prerequisites">
+            <title>Prerequisites</title>
+            <content>
+                <para>
+                    To create stable ragdolls and to use ragdolls efficiently, we recommend that you have
+                    good understanding of skeletal animation and game physics. Before creating a custom
+                    ragdoll, play with the existing ragdoll samples and check out the sample source code.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Environment">
+            <title>Test environment</title>
+            <content>
+                <para>
+                    Before you start to create a ragdoll, make sure to have a good test environment.
+                    The test environment should provide the following features
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Visualize rigid bodies.
+                    </listItem>
+                    <listItem>
+                        Visualize joints.
+                    </listItem>
+                    <listItem>
+                        Grab rigid bodies and move them with the mouse.
+                    </listItem>
+                    <listItem>
+                        Shoot rigid bodies with a mouse click.
+                    </listItem>
+                </list>
+                <para>
+                    In this article we assume that you use the ragdoll samples (see
+                    <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />) as a starting point.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Bodies">
+            <title>Rigid bodies</title>
+            <content>
+                <para>
+                    Start with the
+                    <legacyItalic>CollisionDetectionOnlyRagdollSample</legacyItalic>.
+                    In this sample, a ragdoll is created for collision detection. Joints, limits, or
+                    motors are not used.
+                </para>
+                <para>
+                    As a first step we only define the rigid bodies and the offsets (see properties
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Specialized.Ragdoll.Bodies</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Specialized.Ragdoll.BodyOffsets</codeEntityReference>):
+                </para>
+                <para>
+                    First, replace the dude model with your own model. Comment out the dude-ragdoll
+                    specific code until you can run the sample.
+                </para>
+                <para>
+                    Then add the debug rendering of the skeleton from the
+                    <legacyItalic>BindPoseSample</legacyItalic>. 
+                    Run the sample and get familiar with the bone structure of the model.
+                    (While the sample is running, you can press <legacyBold>Space</legacyBold> to see the
+                    model in its bind pose.)
+                </para>
+                <para>
+                    The dude ragdoll is created in
+                    <legacyItalic>DudeRagdollCreator.cs</legacyItalic>. We suggest that you also
+                    encapsulate the creation of your ragdoll in a separate class (or replace the code in
+                    this class).
+                </para>
+                <para>
+                    Next, define the rigid bodies and the body offsets (similar to the code in the
+                    <legacyItalic>DudeRagdollCreator</legacyItalic>). Run the sample to control the shapes
+                    and the offsets of the rigid bodies. (Choosing the right mass is discussed below.)
+                </para>
+                <para>
+                    Tweak the rigid bodies and offsets until you are satisfied with the result. At the end
+                    of this step you should have defined all rigid bodies of the ragdoll and they should
+                    move correctly with the animated model.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Mass">
+            <title>Rigid body mass</title>
+            <content>
+                <para>
+                    So far, the rigid body mass properties are not relevant – because the ragdoll is not yet
+                    used in a dynamic simulation. The mass will take effect when we use the ragdoll in the
+                    <legacyItalic>PassiveRagdollSample</legacyItalic>.
+                </para>
+                <para>
+                    Choosing the right mass properties is important because: Game physics engines have
+                    difficulties with large mass differences. Ideally, the mass of the heaviest dynamic
+                    object in a game is no more than 10 times the mass of the lightest dynamic object
+                    in the game.
+                </para>
+                <para>
+                    If we do not explicitly specify the mass of a rigid body, then the physics engine
+                    computes the mass properties automatically based on the shape. This is not optimal:
+                    A small box for a hand will be much lighter than a box from the ragdoll torso.
+                </para>
+                <para>
+                    And game physics engines also have troubles with long thin objects, like capsules.
+                    Capsules have a low rotational inertia about the capsule axis and a much higher
+                    rotational inertia about all axes normal to the capsule axis. (Rotational inertia
+                    is the analog of mass for rotational movement.) This is again a problem of mass
+                    differences.
+                </para>
+                <para>
+                    To start with mass properties that are better for the simulation, we suggest to treat
+                    each body of the ragdoll as if they are all spheres of equal size. The
+                    <legacyItalic>DudeRagdollCreator.cs</legacyItalic>
+                    uses code like this:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+float totalMass = 80; 
+int numberOfBodies = 17;
+ 
+int head = skeleton.GetIndex("Head");
+int footLeft = skeleton.GetIndex("L_Ankle1");
+var headPosition = skeletonPose.GetBonePoseAbsolute(head).Translation;
+var footPosition = skeletonPose.GetBonePoseAbsolute(footLeft).Translation;
+var headToFootDistance = (headPosition - footPosition).Length;
+ 
+var massFrame = MassFrame.FromShapeAndMass(new SphereShape(headToFootDistance / 8), 
+Vector3F.One, totalMass / numberOfBodies, 0.1f, 1);
+]]>
+
+                </code>
+                <para>
+                    The height of the model is estimated using the distance between the head and the
+                    ankle. Then a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.MassFrame</codeEntityReference>
+                    is computed that is used for each body in the ragdoll. The total mass of 80 kg is
+                    evenly distributed over all bodies.
+                    This is not realistic, but this trick helps to prevent problems caused by large
+                    mass ratios. Later we can still tweak the masses and try more realistic values.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="VelocityMotors">
+            <title>Velocity motors</title>
+            <content>
+                <para>
+                    For the next step, use the
+                    <legacyItalic>KinematicRagdollSample</legacyItalic>. Replace the dude
+                    model/ragdoll with your own model/ragdoll and start the sample. The bodies should be
+                    in place, but they are not moving because the ragdoll motors are missing.
+                    The
+                    <legacyItalic>CollisionDetectionOnlyRagdollSample</legacyItalic>
+                    moves the bodies manually in each frame, whereas the
+                    <legacyItalic>KinematicRagdollSample</legacyItalic>
+                    uses motors to move the bodies.
+                </para>
+                <alert class="note">
+                    <para>
+                        Note: When a ragdoll should interact with other rigid bodies, it is important to use
+                        motors. Motors move the rigid bodies by setting a velocity and let the physics simulation
+                        compute the movement.
+                    </para>
+                </alert>
+                <para>
+                    Adding motors is easy, as you can see in
+                    <legacyItalic>DudeRagdollCreator.cs</legacyItalic>.
+                    After you have added motors, run the sample. The rigid bodies should now move together
+                    with the animated model.
+                </para>
+            </content>
+        </section>
+
+        <section address="Joints">
+            <title>Joints</title>
+            <content>
+                <para>
+                    Now, switch to
+                    <legacyItalic>PassiveRagdollSample</legacyItalic>.
+                    Replace the dude model/ragdoll with your own model/ragdoll and start the sample:
+                    The ragdoll will fall apart because the bodies are not connect.
+                </para>
+                <para>
+                    In this step, the joints will be added. First, set the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.MotionType</codeEntityReference>
+                    of all rigid bodies to
+                    <codeEntityReference qualifyHint="false">F:DigitalRune.Physics.MotionType.Kinematic</codeEntityReference>.
+                    For example:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+foreach (var body in _ragdoll.Bodies)  
+  if (body != null)    
+    body.MotionType = MotionType.Kinematic;
+]]>
+                </code>
+                <para>
+                    Also disable all ragdoll motors.
+                </para>
+                <para>
+                    Run the sample: All bodies will stay in place.
+                </para>
+                <para>
+                    Next, make the hand body
+                    <codeEntityReference qualifyHint="false">F:DigitalRune.Physics.MotionType.Dynamic</codeEntityReference>
+                    again. For example:
+                </para>
+                <code language="cs">
+                    _ragdoll.Bodies[skeleton.GetIndex("L_Hand")].MotionType = MotionType.Dynamic;
+                </code>
+                <para>
+                    Run the sample again: The hand body will fall to the floor.
+                </para>
+                <para>
+                    Add a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Constraints.BallJoint</codeEntityReference>
+                    between the lower arm and the hand (as in the
+                    <legacyItalic>DudeRagdollCreator.cs</legacyItalic>).
+                </para>
+                <para>
+                    Run the sample again: Now, the hand is connected to the lower arm. While the sample is
+                    running, you can grab the hand body or shoot a ball at the hand body to test the joint.
+                    The hand rotation is not limited yet – we will take care of that later.
+                </para>
+                <para>
+                    After that, add joints for all other bodies. Make the lower arm body dynamic, add a
+                    joint between lower arm and upper arm and test it. And so on. Work from the
+                    extremities (hand, feet, head) to the pelvis.
+                </para>
+                <para>
+                    Finally, set all bodies to dynamic again and test the ragdoll. The limbs will rotate
+                    like crazy, but otherwise the ragdoll should be stable before you start to add joint
+                    limits.
+                    (<legacyItalic>Stable</legacyItalic> means that the ragdoll does not jitter or shake
+                    a lot and all bodies come to rest when the ragdoll lies on the floor.)
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Filtering">
+            <title>Additional collision filtering</title>
+            <content>
+                <para>
+                    In this phase of your ragdoll, instability could be caused by bodies that constantly
+                    collide with other bodies.
+                </para>
+                <para>
+                    When two limbs are connected by a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Constraints.BallJoint</codeEntityReference>,
+                    the collisions between the connected bodies are disabled (if
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.Constraints.IConstraint.CollisionEnabled</codeEntityReference>
+                    is set to false). But often you need to disable additional collisions between limbs that
+                    are too close to each other. For example: In the dude ragdoll, the head is too close to
+                    the upper back body, the arms are too close to the torso and the upper legs are too
+                    close to each other. Therefore, collisions between these body pairs should
+                    be disabled in the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.CollisionFilter</codeEntityReference>
+                    of the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Simulation</codeEntityReference>:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+var filter = (CollisionFilter)simulation.CollisionDomain.CollisionDetection.CollisionFilter;
+filter.Set(ragdoll.Bodies[backUpper].CollisionObject, ragdoll.Bodies[head].CollisionObject, false);
+filter.Set(ragdoll.Bodies[armUpperRight].CollisionObject, ragdoll.Bodies[backLower].CollisionObject, false);
+filter.Set(ragdoll.Bodies[armUpperLeft].CollisionObject, ragdoll.Bodies[backLower].CollisionObject, false);
+filter.Set(ragdoll.Bodies[legUpperLeft].CollisionObject, ragdoll.Bodies[legUpperRight].CollisionObject, false);
+]]>
+                </code>
+                <para>
+                    In general: If two bodies penetrate each other during normal animations or in the bind
+                    pose, then it is best to disable collision between them.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Softness">
+            <title>Constraint softness and error reduction</title>
+            <content>
+                <para>
+                    Constraints
+                    have two parameter called
+                    <newTerm>ErrorReduction</newTerm>
+                    and
+                    <newTerm>Softness</newTerm>.
+                    Choosing the right values for these properties must be done by experimentation:
+                    Tweak the values
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Constraints.BallJoint.ErrorReduction</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Constraints.BallJoint.Softness</codeEntityReference>
+                    and see what happens.
+                </para>
+                <para>
+                    If you set the error reduction to 0, then the joints do not recover from errors. If
+                    you set the error reduction to 1, the error correction is very aggressive and can
+                    cause instability. Values like 0.2 - 0.4 are usually fine.
+                </para>
+                <para>
+                    If you set the softness to 0, the ragdoll can become unstable because the joints are
+                    hard constraints that do not allow any constraint violation. If you set a higher value
+                    like 0.1, the joints become very soft and act like rubber bands. Use a small positive
+                    value for the softness, e.g. 0.0001.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="ConstraintMotors">
+            <title>Constraint motors</title>
+            <content>
+                <para>
+                    After the joints are added, enable the motors again:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+foreach (RagdollMotor motor in _ragdoll.Motors)
+{   
+  if (motor != null)   
+  {     
+    motor.Mode = RagdollMotorMode.Constraint;     
+    motor.ConstraintDamping = 5;     
+    motor.ConstraintSpring = 0;   
+  }
+}
+_ragdoll.EnableMotors();
+]]>
+                </code>
+                <para>
+                    This time we use
+                    <newTerm>constraint motors</newTerm> instead of
+                    <newTerm>velocity motors</newTerm>. This type of motor adds a damping to
+                    the joint movement.
+                </para>
+                <para>
+                    Next, try to set higher damping and spring values, like
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.Specialized.RagdollMotor.ConstraintSpring</codeEntityReference> = 1000 and
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.Specialized.RagdollMotor.ConstraintDamping</codeEntityReference> = 100.
+                    After the ragdoll was added to the simulation with
+                    <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Physics.Specialized.Ragdoll.AddToSimulation(DigitalRune.Physics.Simulation)</codeEntityReference>,
+                    call
+                </para>
+                <code language="cs">
+                    _ragdoll.DriveToPose(_skeletonPose, 0);
+                </code>
+                <para>
+                    once to set the target orientation of the motors. Now, you should have a springy ragdoll
+                    that tries to stay in its bind pose.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Limits">
+            <title>Limits</title>
+            <content>
+                <para>
+                    Disable the motors again. Make all bodies kinematic again – except one hand. Add the
+                    debug visualization of the skeleton and add constraint limit visualization.
+                </para>
+                <para>
+                    Like in the
+                    <legacyItalic>DudeRagdollCreator</legacyItalic>
+                    class, add a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Constraints.TwistSwingLimit</codeEntityReference>
+                    between the hand and the lower arm. (Use
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Constraints.AngularLimit</codeEntityReference>s
+                    if you need hinge joints.)
+                </para>
+                <para>
+                    Choosing the correct constraint anchor orientation is the most difficult part. You
+                    need to understand what the constraint anchor orientation means. Therefore, take
+                    a good look at the articles <link xlink:href="a91cc376-dcbf-4b86-af7b-869fae861146" />
+                    and the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Constraints.TwistSwingLimit</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Constraints.AngularLimit</codeEntityReference>
+                    descriptions.
+                </para>
+                <para>
+                    The debug rendering of the bones (and bone coordinate spaces) and the constraints should
+                    help you on your way. Choosing the correct constraint anchor orientation matrices might
+                    require some experimentation and patience.
+                </para>
+                <para>
+                    It helps a lot to make only those bodies dynamic that you are currently testing. Another
+                    tip is to set the minimum and maximum angles of a limit to 0. This will show the relative
+                    limb orientation at which the constraint angle is 0.
+                </para>
+                <para>
+                    Add one limit after the other. Test each limit and only add the next limit if you are
+                    satisfied with the current limits, and only if the ragdoll is stable.
+                </para>
+                <para>
+                    Also experiment with the softness and error reduction of the limits. Giving limits
+                    a higher softness is okay because it makes the ragdoll appear more natural. (Joint
+                    limits in real humans are also soft.)
+                </para>
+                <para>
+                    At the end make all bodies dynamic again and test your final ragdoll.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

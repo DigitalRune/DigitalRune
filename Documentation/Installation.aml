@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="46419cff-2a6e-4d81-84e4-051800b9727b" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <alert class="warning">
+                <para>
+                    The information on this page is outdated. It does not apply to the open source project.
+                </para>
+            </alert>
+
+            <para>This section describes prerequisites and contains additional installation instructions.</para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Prerequisites">
+            <title>Prerequisites</title>
+            <content>
+                <para>
+                    For developing .NET applications you need to install:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <externalLink>
+                                <linkText>Microsoft Visual Studio 2010 (or newer)</linkText>
+                                <linkUri>http://msdn.microsoft.com/en-us/vstudio/default.aspx</linkUri>
+                                <linkTarget>_blank</linkTarget>
+                            </externalLink>
+                        </para>
+                    </listItem>
+                </list>
+                <para>
+                    To develop XNA-based games or applications you need to install:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <externalLink>
+                            <linkText>Microsoft XNA Game Studio 4.0 Refresh</linkText>
+                            <linkUri>http://www.microsoft.com/en-us/download/details.aspx?id=27599</linkUri>
+                            <linkTarget>_blank</linkTarget>
+                        </externalLink>
+                        <markup>
+                            <br/>
+                        </markup>
+                        (If you do not intend to build Xbox 360 projects, then you can skip this package because
+                        newer versions of XNA are also contained in the Windows Phone 7 SDK.)
+                    </listItem>
+                    <listItem>
+                        <externalLink>
+                            <linkText>Windows Phone SDK 7.1</linkText>
+                            <linkUri>http://www.microsoft.com/en-us/download/details.aspx?id=27570</linkUri>
+                            <linkTarget>_blank</linkTarget>
+                        </externalLink>
+                    </listItem>
+                    <listItem>
+                        <externalLink>
+                            <linkText>Windows Phone SDK 7.1.1 Update</linkText>
+                            <linkUri>http://www.microsoft.com/en-us/download/details.aspx?id=29233</linkUri>
+                            <linkTarget>_blank</linkTarget>
+                        </externalLink>
+                    </listItem>
+                </list>
+                <alert class="important">
+                    <para>
+                        Windows Phone SDK packages contains important XNA updates. Even if you do not intend to
+                        develop for Windows Phone 7, you need to install these packages.
+                    </para>
+                    <para>
+                        The installation of XNA Game Studio or Windows Phone SDK might fail on Windows 8.
+                        For a workaround see:
+                    </para>
+                    <list class="bullet">
+                        <listItem>
+                            <externalLink>
+                                <linkText>How to work around a possible XNA Game Studio or Windows Phone SDK install failure on Windows 8 by Aaron Stebner</linkText>
+                                <linkUri>http://blogs.msdn.com/b/astebner/archive/2012/02/29/10274694.aspx</linkUri>
+                            </externalLink>
+                        </listItem>
+                    </list>
+                    <para>
+                        The setup of the Windows Phone SDK 7.1.1 may fail if a newer version of the Microsoft Advertising SDK
+                        for Windows Phone is already installed on the system. In this case please follow these steps:
+                    </para>
+                    <list class="ordered">
+                        <listItem>
+                            Download the latest version of the
+                            <externalLink>
+                                <linkText>Microsoft Advertising SDK for Windows Phone 8</linkText>
+                                <linkUri>http://www.microsoft.com/en-us/download/details.aspx?id=8729</linkUri>
+                            </externalLink>.
+                        </listItem>
+                        <listItem>
+                            Remove the previous installation by running the setup. (If the Ad SDK on the PC is older,
+                            then install latest version first, and then run the setup again to uninstall it.)
+                        </listItem>
+                        <listItem>
+                            Install the Windows Phone SDK 7.1.1.
+                        </listItem>
+                        <listItem>
+                            Re-install the latest version of Microsoft Advertising SDK for Windows Phone.
+                        </listItem>
+                    </list>
+                </alert>
+                <para>
+                    For developing Windows Phone applications you need to install:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <externalLink>
+                            <linkText>Windows Phone SDK</linkText>
+                            <linkUri>http://dev.windows.com/en-us/develop/download-phone-sdk</linkUri>
+                            <linkTarget>_blank</linkTarget>
+                        </externalLink>
+                    </listItem>
+                </list>
+                <para>
+                    For developing iOS or Android applications using Xamarin.iOS or Xamarin.Android, you will
+                    find the necessary information and tools here:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <externalLink>
+                            <linkText>Xamarin Website</linkText>
+                            <linkUri>http://xamarin.com/</linkUri>
+                            <linkTarget>_blank</linkTarget>
+                        </externalLink>
+                    </listItem>
+                </list>
+                <para>
+                    For developing MonoGame-based applications (e.g. for Windows Store, Windows Phone,
+                    Linux, iOS, etc.), you need to install:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <externalLink>
+                            <linkText>Latest DirectX Runtime</linkText>
+                            <linkUri>http://www.microsoft.com/en-us/download/details.aspx?id=35</linkUri>
+                            <linkTarget>_blank</linkTarget>
+                        </externalLink>
+                    </listItem>
+                </list>
+                <para>
+                    For more information about developing MonoGame-based applications, please a look at the
+                    MonoGame documentation:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <token>MGDoc</token>
+                    </listItem>
+                    <listItem>
+                        <token>MGWiki</token>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Download">
+            <title>Download the package</title>
+            <content>
+                <para>
+                    When downloading a trial version or purchasing a DigitalRune product you receive a
+                    ZIP package containing all necessary files (see <link xlink:href="972bde71-5d0c-46be-8a81-ad0d2cea770a" />).
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Unblocking">
+            <title>Important: Unblock ZIP file</title>
+            <content>
+                <para>
+                    When a ZIP file is downloaded in Windows, it is marked as unsafe by the file system.
+                </para>
+                <para>
+                    <legacyBold>Important:</legacyBold> You must unblock the ZIP file before unpacking it.
+                    After downloading the file, perform the following steps:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Locate the downloaded ZIP file.
+                    </listItem>
+                    <listItem>
+                        Right-click the file and select <ui>Properties</ui> from the context menu.
+                    </listItem>
+                    <listItem>
+                        In the <ui>Properties</ui> dialog select the <ui>General</ui> tab and
+                        click the <ui>Unblock</ui> button.
+                        <mediaLink>
+                            <caption placement="after" lead="Screenshot">Unblocking a ZIP file.</caption>
+                            <image xlink:href="Unblock-Zip"/>
+                        </mediaLink>
+                    </listItem>
+                    <listItem>
+                        Close the <ui>Properties</ui> dialog by clicking <ui>OK</ui>.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Installation">
+            <title>Installation</title>
+            <content>
+                <para>
+                    After unblocking the ZIP file, simply extract the files to any folder:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Right-click the ZIP file and select <ui>Extract All...</ui> from the context menu.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <link xlink:href="972bde71-5d0c-46be-8a81-ad0d2cea770a" />
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

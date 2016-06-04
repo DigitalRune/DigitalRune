@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="8c6f4ed6-3d35-4c23-9f64-aa823200e78b" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                The namespace
+                <codeEntityReference qualifyHint="true">N:DigitalRune.Mathematics.Statistics</codeEntityReference>
+                contains types for working with random numbers, statistics and probability distributions.
+                (See also <link xlink:href="e865e15d-ac62-49e9-b67c-1f64d45c76d5"/>.)
+            </para>
+        </introduction>
+
+
+        <section address="Distributions">
+            <title>Distributions</title>
+            <content>
+                <para>
+                    The namespace
+                    <codeEntityReference qualifyHint="true">N:DigitalRune.Mathematics.Statistics</codeEntityReference>
+                    contains the base class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Statistics.Distribution`1</codeEntityReference>
+                    and several derived classes. A distribution object is an object that provides random
+                    values with certain qualities.
+                    For instance, a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Statistics.UniformDistributionF</codeEntityReference>
+                    provides random floating-point values from a configurable interval.
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Statistics.FastGaussianDistributionF</codeEntityReference>
+                    provides random floating-point numbers following an approximated Gaussian distribution.
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Statistics.SphereDistribution</codeEntityReference>
+                    provides random 3D positions that lie within a spherical volume.
+                </para>
+                <para>
+                    One major use of <legacyBold>Distribution</legacyBold> objects is in configurable
+                    particle systems: See <link xlink:href="5044112e-c86d-4d85-87d0-b567a0361c21" />.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="ThreadSafety">
+            <title>Thread-safety</title>
+            <content>
+                <para>
+                    Important: The .NET class <legacyBold>Random</legacyBold> is not thread-safe!
+                    In multi-threaded applications, when using the .NET <legacyBold>Random</legacyBold>
+                    class or a type of the
+                    <codeEntityReference qualifyHint="true">N:DigitalRune.Mathematics.Statistics</codeEntityReference>
+                    namespace that makes use of <legacyBold>Random</legacyBold>, please make sure
+                    that the usage is thread-safe or that each thread uses a separate instance
+                    of <legacyBold>Random</legacyBold>.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

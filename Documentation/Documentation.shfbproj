@@ -1,0 +1,2128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <!-- The configuration and platform will be used to determine which
+         assemblies to include from solution and project documentation
+         sources -->
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{377bf528-4373-451c-8d31-59e95bfae85c}</ProjectGuid>
+    <SHFBSchemaVersion>1.9.9.0</SHFBSchemaVersion>
+    <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual
+         Studio adds them anyway -->
+    <AssemblyName>Documentation</AssemblyName>
+    <RootNamespace>Documentation</RootNamespace>
+    <Name>Documentation</Name>
+    <!-- SHFB properties -->
+    <OutputPath>..\_help\</OutputPath>
+    <HtmlHelpName>Documentation</HtmlHelpName>
+    <DocumentationSources>
+      <DocumentationSource sourceFile="..\Source\DigitalRune\bin\.NETFramework\Release\DigitalRune.dll" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune\bin\.NETFramework\Release\DigitalRune.xml" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Animation\bin\XNA\Windows\Release\DigitalRune.Animation.dll" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Animation\bin\XNA\Windows\Release\DigitalRune.Animation.xml" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Animation.Content.Pipeline\bin\XNA\Windows\Release\DigitalRune.Animation.Content.Pipeline.xml" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Animation.Content.Pipeline\bin\XNA\Windows\Release\DigitalRune.Animation.Content.Pipeline.dll" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Game\bin\.NETPortable\Release\DigitalRune.Game.dll" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Game\bin\.NETPortable\Release\DigitalRune.Game.xml" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Game.Input\bin\XNA\Windows\Release\DigitalRune.Game.Input.dll" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Game.Input\bin\XNA\Windows\Release\DigitalRune.Game.Input.xml" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Game.UI\bin\XNA\Windows\Release\DigitalRune.Game.UI.dll" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Game.UI\bin\XNA\Windows\Release\DigitalRune.Game.UI.xml" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Game.UI.Content.Pipeline\bin\XNA\Windows\Release\DigitalRune.Game.UI.Content.Pipeline.dll" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Game.UI.Content.Pipeline\bin\XNA\Windows\Release\DigitalRune.Game.UI.Content.Pipeline.xml" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Geometry\bin\XNA\Windows\Release\DigitalRune.Geometry.dll" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Geometry\bin\XNA\Windows\Release\DigitalRune.Geometry.xml" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Geometry.Content.Pipeline\bin\XNA\Windows\Release\DigitalRune.Geometry.Content.Pipeline.dll" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Geometry.Content.Pipeline\bin\XNA\Windows\Release\DigitalRune.Geometry.Content.Pipeline.xml" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Graphics\bin\XNA\Windows\Release\DigitalRune.Graphics.dll" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Graphics\bin\XNA\Windows\Release\DigitalRune.Graphics.xml" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Graphics.Content.Pipeline\bin\XNA\Windows\Release\DigitalRune.Graphics.Content.Pipeline.dll" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Graphics.Content.Pipeline\bin\XNA\Windows\Release\DigitalRune.Graphics.Content.Pipeline.xml" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Mathematics\bin\XNA\Windows\Release\DigitalRune.Mathematics.dll" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Mathematics\bin\XNA\Windows\Release\DigitalRune.Mathematics.xml" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Mathematics.Content.Pipeline\bin\XNA\Windows\Release\DigitalRune.Mathematics.Content.Pipeline.dll" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Mathematics.Content.Pipeline\bin\XNA\Windows\Release\DigitalRune.Mathematics.Content.Pipeline.xml" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Particles\bin\XNA\Windows\Release\DigitalRune.Particles.dll" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Particles\bin\XNA\Windows\Release\DigitalRune.Particles.xml" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Physics\bin\XNA\Windows\Release\DigitalRune.Physics.dll" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Physics\bin\XNA\Windows\Release\DigitalRune.Physics.xml" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Physics.Specialized\bin\XNA\Windows\Release\DigitalRune.Physics.Specialized.dll" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.Physics.Specialized\bin\XNA\Windows\Release\DigitalRune.Physics.Specialized.xml" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.ServiceLocation\bin\.NETPortable\Release\DigitalRune.ServiceLocation.dll" />
+      <DocumentationSource sourceFile="..\Source\DigitalRune.ServiceLocation\bin\.NETPortable\Release\DigitalRune.ServiceLocation.xml" />
+      <DocumentationSource sourceFile="..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll" />
+      <DocumentationSource sourceFile="..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.xml" />
+    </DocumentationSources>
+    <FrameworkVersion>.NET Portable Library 4.0 (Legacy)</FrameworkVersion>
+    <CopyrightHref>http://www.digitalrune.com/</CopyrightHref>
+    <CopyrightText>http://www.digitalrune.com/</CopyrightText>
+    <FeedbackEMailAddress>office%40digitalrune.com</FeedbackEMailAddress>
+    <HelpTitle>DigitalRune Documentation</HelpTitle>
+    <RootNamespaceTitle>Class Library Reference</RootNamespaceTitle>
+    <BinaryTOC>True</BinaryTOC>
+    <ComponentConfigurations>
+      <ComponentConfig id="Code Block Component" enabled="True">
+        <component id="Code Block Component">
+          <basePath value="{@HtmlEncProjectFolder}" />
+          <outputPaths>{@HelpFormatOutputPaths}</outputPaths>
+          <allowMissingSource value="false" />
+          <removeRegionMarkers value="false" />
+          <colorizer syntaxFile="{@SHFBFolder}PresentationStyles\Colorizer\highlight.xml" styleFile="{@SHFBFolder}PresentationStyles\Colorizer\highlight.xsl" stylesheet="{@SHFBFolder}PresentationStyles\Colorizer\highlight.css" scriptFile="{@SHFBFolder}PresentationStyles\Colorizer\highlight.js" disabled="{@DisableCodeBlockComponent}" language="cs" tabSize="0" numberLines="false" outlining="false" keepSeeTags="false" defaultTitle="true" />
+        </component>
+      </ComponentConfig>
+      <ComponentConfig id="IntelliSense Component" enabled="True">
+        <component id="IntelliSense Component">
+          <!-- Output options (optional)
+					 Attributes:
+							Include Namespaces (false by default)
+							Namespaces filename ("Namespaces" if not specified or empty)
+							Directory (current folder if not specified or empty) -->
+          <output includeNamespaces="false" namespacesFile="Namespaces" folder="{@OutputFolder}\..\_xml" />
+        </component>
+      </ComponentConfig>
+    </ComponentConfigurations>
+    <NamespaceSummaries>
+      <NamespaceSummaryItem name="(global)" isDocumented="False" />
+      <NamespaceSummaryItem name="DigitalRune.Windows.Controls" isDocumented="True">Provides general controls for Windows Presentation Foundation (WPF) and Silverlight.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Microsoft.Practices.ServiceLocation" isDocumented="True">The Common Service Locator library contains a shared interface for service location which application and framework developers can reference.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="XamlGeneratedNamespace" isDocumented="False" />
+      <NamespaceSummaryItem name="DigitalRune.Collections.ObjectModel" isDocumented="False" />
+    </NamespaceSummaries>
+    <VisibleItems>Attributes, ExplicitInterfaceImplementations, InheritedMembers, InheritedFrameworkMembers, Protected, ProtectedInternalAsProtected</VisibleItems>
+    <RootNamespaceContainer>True</RootNamespaceContainer>
+    <PlugInConfigurations>
+    </PlugInConfigurations>
+    <HelpFileFormat>HtmlHelp1, Website</HelpFileFormat>
+    <WebsiteSdkLinkType>Msdn</WebsiteSdkLinkType>
+    <HtmlSdkLinkType>Msdn</HtmlSdkLinkType>
+    <IncludeFavorites>False</IncludeFavorites>
+    <SyntaxFilters>Standard</SyntaxFilters>
+    <SdkLinkTarget>Blank</SdkLinkTarget>
+    <PresentationStyle>VS2013</PresentationStyle>
+    <Preliminary>False</Preliminary>
+    <NamingMethod>Guid</NamingMethod>
+    <Language>en-US</Language>
+    <ContentPlacement>AboveNamespaces</ContentPlacement>
+    <BuildAssemblerVerbosity>OnlyWarningsAndErrors</BuildAssemblerVerbosity>
+    <IndentHtml>False</IndentHtml>
+    <KeepLogFile>True</KeepLogFile>
+    <DisableCodeBlockComponent>False</DisableCodeBlockComponent>
+    <CppCommentsFixup>False</CppCommentsFixup>
+    <CleanIntermediates>True</CleanIntermediates>
+    <ApiFilter />
+    <HelpAttributes />
+    <BuildLogFile />
+    <HtmlHelp1xCompilerPath />
+    <HtmlHelp2xCompilerPath />
+    <SandcastlePath />
+    <WorkingPath />
+    <TransformComponentArguments>
+      <Argument Key="logoFile" Value="DigitalRune-Logo.png" xmlns="" />
+      <Argument Key="logoHeight" Value="" xmlns="" />
+      <Argument Key="logoWidth" Value="" xmlns="" />
+      <Argument Key="logoAltText" Value="DigitalRune" xmlns="" />
+      <Argument Key="logoPlacement" Value="left" xmlns="" />
+      <Argument Key="logoAlignment" Value="left" xmlns="" />
+    </TransformComponentArguments>
+    <ComponentPath />
+    <ProjectSummary>The DigitalRune namespaces are listed in the following table and documented in detail in this reference.</ProjectSummary>
+    <MaximumGroupParts>2</MaximumGroupParts>
+    <NamespaceGrouping>False</NamespaceGrouping>
+    <FooterText>Copyright %28c%29 2006-2016 DigitalRune GmbH. All rights reserved. %28Last updated: 2016-03-10%29</FooterText>
+    <HeaderText>
+    </HeaderText>
+  </PropertyGroup>
+  <!-- There are no properties for these two groups but they need to appear in
+       order for Visual Studio to perform the build. -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="ChangeLog\" />
+    <Folder Include="Images\Class Diagrams\XNA\" />
+    <Folder Include="Tutorials\" />
+    <Folder Include="Tutorials\Tutorial01" />
+    <Folder Include="Tutorials\Tutorial01\Images" />
+    <Folder Include="XNA\Class Diagrams\" />
+    <Folder Include="XNA\" />
+    <Folder Include="Articles\" />
+    <Folder Include="DigitalRune\" />
+    <Folder Include="DigitalRune\Class Diagrams\" />
+    <Folder Include="DigitalRune.Animation\" />
+    <Folder Include="DigitalRune.Animation\Images\" />
+    <Folder Include="DigitalRune.Animation\Class Diagrams\" />
+    <Folder Include="DigitalRune.Game\" />
+    <Folder Include="DigitalRune.Game\Class Diagrams\" />
+    <Folder Include="DigitalRune.Game.UI\" />
+    <Folder Include="DigitalRune.Game.UI\Class Diagrams\" />
+    <Folder Include="DigitalRune.Game.UI\Images\" />
+    <Folder Include="DigitalRune.Geometry\" />
+    <Folder Include="DigitalRune.Geometry\Class Diagrams\" />
+    <Folder Include="DigitalRune.Geometry\Images\" />
+    <Folder Include="DigitalRune.Graphics" />
+    <Folder Include="DigitalRune.Graphics\Class Diagrams" />
+    <Folder Include="DigitalRune.Graphics\Images" />
+    <Folder Include="DigitalRune.Mathematics\" />
+    <Folder Include="DigitalRune.Mathematics\Images\" />
+    <Folder Include="DigitalRune.Mathematics\Class Diagrams\" />
+    <Folder Include="DigitalRune.Particles\" />
+    <Folder Include="DigitalRune.Particles\Images\" />
+    <Folder Include="DigitalRune.Particles\Class Diagrams\" />
+    <Folder Include="DigitalRune.Physics\" />
+    <Folder Include="DigitalRune.Physics\Class Diagrams\" />
+    <Folder Include="DigitalRune.Physics\Images\" />
+    <Folder Include="DigitalRune.Windows\" />
+    <Folder Include="DigitalRune.Windows\Class Diagrams" />
+    <Folder Include="DigitalRune.Windows.Docking\" />
+    <Folder Include="DigitalRune.Windows.Docking\Class Diagrams\" />
+    <Folder Include="DigitalRune.Windows.Docking\Images\" />
+    <Folder Include="Images\" />
+    <Folder Include="Images\Class Diagrams\" />
+    <Folder Include="Tools\" />
+    <Folder Include="Icons" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Articles\ExternalArticles.aml" />
+    <None Include="ChangeLog\Release-2015-05-09.aml" />
+    <None Include="ChangeLog\Release-2015-03-10.aml" />
+    <None Include="ChangeLog\ChangeLogArchive.aml" />
+    <None Include="ChangeLog\Release-2015-12-19.aml" />
+    <None Include="ChangeLog\Release-2016-03-10.aml" />
+    <None Include="ChangeLog\WhatsNew.aml" />
+    <None Include="DigitalRune.Animation\ExternalArticles.aml" />
+    <None Include="DigitalRune.Game.UI\Articles.aml" />
+    <None Include="DigitalRune.Game.UI\ExternalArticles.aml" />
+    <None Include="DigitalRune.Game.UI\UIInput.aml" />
+    <None Include="DigitalRune.Game.UI\Rendering.aml" />
+    <None Include="DigitalRune.Game.UI\Properties.aml" />
+    <None Include="DigitalRune.Game.UI\Layout.aml" />
+    <None Include="DigitalRune.Geometry\ExternalArticles.aml" />
+    <None Include="DigitalRune.Graphics\3dsMax.aml" />
+    <None Include="DigitalRune.Graphics\Blender.aml" />
+    <None Include="DigitalRune.Graphics\FBX.aml" />
+    <None Include="DigitalRune.Mathematics\ScatteredInterpolation.aml" />
+    <None Include="DigitalRune.Physics\CharacterImplementation.aml" />
+    <None Include="DigitalRune.Physics\CharacterRequirements.aml" />
+    <None Include="DigitalRune.Physics\ExternalArticles.aml" />
+    <None Include="DigitalRune.Physics\HowToRagdoll.aml" />
+    <None Include="DigitalRune.Physics\Vehicles.aml" />
+    <None Include="DigitalRune.Physics\Ragdolls.aml" />
+    <None Include="DigitalRune.Physics\Character.aml" />
+    <None Include="DigitalRune.Physics\VisualizeJoints.aml" />
+    <None Include="DigitalRune.Geometry\CollisionModelContent.aml" />
+    <None Include="Articles\Kinect.aml" />
+    <None Include="DigitalRune.Physics\TriangleMeshMovement.aml" />
+    <None Include="Root.aml" />
+    <None Include="DigitalRune.Graphics\ShadowMasks.aml" />
+    <None Include="DigitalRune.Graphics\ShadowMaps.aml" />
+    <None Include="DigitalRune.Graphics\ShadowAcne.aml" />
+    <None Include="DigitalRune.Graphics\ShadowFiltering.aml" />
+    <None Include="DigitalRune.Graphics\ShadowTypes.aml" />
+    <None Include="DigitalRune.Graphics\Clouds.aml" />
+    <None Include="DigitalRune.Graphics\Ephemeris.aml" />
+    <None Include="DigitalRune.Graphics\Parallax.aml" />
+    <None Include="DigitalRune.Graphics\CloudQuad.aml" />
+    <None Include="DigitalRune.Graphics\EnvironmentLight.aml" />
+    <None Include="DigitalRune.Graphics\Refraction.aml" />
+    <None Include="DigitalRune.Graphics\ScreenDoorTransparency.aml" />
+    <None Include="Articles\MatCaps.aml" />
+    <None Include="DigitalRune.Graphics\MorphTargets.aml" />
+    <None Include="DigitalRune.Graphics\OcclusionStatistics.aml" />
+    <None Include="DigitalRune.Graphics\ShadowCasterCulling.aml" />
+    <None Include="DigitalRune.Graphics\OcclusionBuffer.aml" />
+    <None Include="DigitalRune.Graphics\Occluders.aml" />
+    <None Include="DigitalRune.Graphics\WhatIsOcclusionCulling.aml" />
+    <None Include="DigitalRune.Graphics\LensFlares.aml" />
+    <None Include="DigitalRune.Graphics\SceneGraph.aml" />
+    <None Include="DigitalRune.Graphics\Programming.aml" />
+    <None Include="DigitalRune.Graphics\ContentEffects.aml" />
+    <None Include="Articles\CCD.aml" />
+    <None Include="DigitalRune.Animation\IKFoot.aml" />
+    <None Include="DigitalRune.Animation\IKLookAt.aml" />
+    <None Include="Articles\ServiceProviderGameClass.aml" />
+    <None Include="Articles\ServiceProviderImplementation.aml" />
+    <None Include="Articles\ServiceProviderInGames.aml" />
+    <None Include="Articles\ServiceProvider.aml" />
+    <None Include="Articles\MultiThreadingXNA.aml" />
+    <None Include="DigitalRune\HierarchicalProfiler.aml" />
+    <None Include="DigitalRune\Profiler.aml" />
+    <None Include="DigitalRune\Profiling.aml" />
+    <None Include="Tutorials\Tutorial01\Step01.aml" />
+    <None Include="Tutorials\Tutorial01\Step02.aml" />
+    <None Include="Tutorials\Tutorial01\Step03.aml" />
+    <None Include="Tutorials\Tutorial01\Step04.aml" />
+    <None Include="Tutorials\Tutorial01\Step05.aml" />
+    <None Include="Tutorials\Tutorial01\Step06.aml" />
+    <None Include="Tutorials\Tutorial01\Step07.aml" />
+    <None Include="Tutorials\Tutorial01\Step08.aml" />
+    <None Include="Tutorials\Tutorial01\Step09.aml" />
+    <None Include="Tutorials\Tutorial01\Step10.aml" />
+    <None Include="Tutorials\Tutorial01\Step11.aml" />
+    <None Include="Tutorials\Tutorial01\Step12.aml" />
+    <None Include="Tutorials\Tutorial01\Step13.aml" />
+    <None Include="Tutorials\Tutorial01\Step14.aml" />
+    <None Include="Tutorials\Tutorial01\Step15.aml" />
+    <None Include="Tutorials\Tutorial01\Step16.aml" />
+    <None Include="Tutorials\Tutorial01\Step17.aml" />
+    <None Include="Tutorials\Tutorials.aml" />
+    <None Include="Welcome.aml" />
+    <None Include="DigitalRune.Mathematics\Articles.aml" />
+    <None Include="DigitalRune.Mathematics\ExponentialSmoothing.aml" />
+    <None Include="DigitalRune.Animation\Articles.aml" />
+    <None Include="DigitalRune.Physics\Articles.aml" />
+    <None Include="DigitalRune.Geometry\Articles.aml" />
+    <None Include="DigitalRune.Graphics\Articles.aml" />
+    <None Include="Tutorials\Tutorial01\Overview.aml" />
+    <None Include="XNA\Class Diagrams\ContentPipeline.aml" />
+    <None Include="XNA\Class Diagrams\GamerServices.aml" />
+    <None Include="XNA\Class Diagrams\Graphics.aml" />
+    <None Include="XNA\Class Diagrams\General.aml" />
+    <None Include="XNA\MonoGame.aml" />
+    <None Include="XNA\Class Diagrams\Overview.aml" />
+    <None Include="XNA\Introduction.aml" />
+    <None Include="Articles\MathConventions.aml" />
+    <None Include="Articles\Articles.aml" />
+    <None Include="DigitalRune.Game.UI\FAQ.aml" />
+    <None Include="DigitalRune.Graphics\FAQ.aml" />
+    <None Include="DigitalRune.Geometry\FAQ.aml" />
+    <None Include="DigitalRune.Animation\FAQ.aml" />
+    <None Include="DigitalRune.Particles\HowToClamp.aml" />
+    <None Include="DigitalRune.Particles\FAQ.aml" />
+    <None Include="Platforms.aml" />
+    <None Include="Misc.aml" />
+    <None Include="DigitalRune.Physics\FAQ.aml" />
+    <None Include="DigitalRune.Physics\Units.aml" />
+    <None Include="DigitalRune.Graphics\Class Diagrams\Storages.aml" />
+    <None Include="DigitalRune.Graphics\ContentMorphing.aml" />
+    <None Include="DigitalRune\Class Diagrams\Storages.aml" />
+    <None Include="Tools\PackExe.aml" />
+    <None Include="Tools\texassemble.aml" />
+    <None Include="Tools\texconv.aml" />
+    <None Include="Tools\Tools.aml" />
+    <None Include="DigitalRune.Animation\HowToBlendAnimations.aml" />
+    <None Include="DigitalRune.Graphics\Antialiasing.aml" />
+    <None Include="DigitalRune.Graphics\Billboards.aml" />
+    <None Include="DigitalRune.Graphics\Cameras.aml" />
+    <None Include="DigitalRune.Graphics\Class Diagrams\Rendering.aml" />
+    <None Include="DigitalRune.Graphics\ContentLOD.aml" />
+    <None Include="DigitalRune.Graphics\ContentPipeline.aml" />
+    <None Include="DigitalRune.Graphics\ContentUser.aml" />
+    <None Include="DigitalRune.Graphics\Decals.aml" />
+    <None Include="DigitalRune.Graphics\Fog.aml" />
+    <None Include="DigitalRune.Graphics\HowToEffectParameter.aml" />
+    <None Include="DigitalRune.Graphics\Figures.aml" />
+    <None Include="DigitalRune.Graphics\ContentOccluders.aml" />
+    <None Include="DigitalRune.Graphics\Lights.aml" />
+    <None Include="DigitalRune.Graphics\LOD.aml" />
+    <None Include="DigitalRune.Graphics\Meshes.aml" />
+    <None Include="DigitalRune.Graphics\OcclusionCulling.aml" />
+    <None Include="DigitalRune.Graphics\RenderContext.aml" />
+    <None Include="DigitalRune.Graphics\Class Diagrams\Graphics.aml" />
+    <None Include="DigitalRune.Graphics\Class Diagrams\Effects.aml" />
+    <None Include="DigitalRune.Graphics\Class Diagrams\Interop.aml" />
+    <None Include="DigitalRune.Graphics\Class Diagrams\Overview.aml" />
+    <None Include="DigitalRune.Graphics\Class Diagrams\PostProcessing.aml" />
+    <None Include="DigitalRune.Graphics\Class Diagrams\SceneGraph.aml" />
+    <None Include="DigitalRune.Graphics\ContentPreBuilt.aml" />
+    <None Include="DigitalRune.Graphics\ContentModels.aml" />
+    <None Include="DigitalRune.Graphics\RenderingDebug.aml" />
+    <None Include="DigitalRune.Graphics\EffectBindings.aml" />
+    <None Include="DigitalRune.Graphics\EffectGuidelines.aml" />
+    <None Include="DigitalRune.Graphics\GraphicsScreens.aml" />
+    <None Include="DigitalRune.Graphics\GraphicsService.aml" />
+    <None Include="DigitalRune.Graphics\HowToAddToProject.aml" />
+    <None Include="DigitalRune.Graphics\HowToAutomaticEffectBinding.aml" />
+    <None Include="DigitalRune.Graphics\HowToCustomSceneNode.aml" />
+    <None Include="DigitalRune.Graphics\Interoperability.aml" />
+    <None Include="DigitalRune.Graphics\Introduction.aml" />
+    <None Include="DigitalRune.Graphics\MaterialDefinition.aml" />
+    <None Include="DigitalRune.Graphics\Materials.aml" />
+    <None Include="DigitalRune.Graphics\PostProcessing.aml" />
+    <None Include="DigitalRune.Graphics\PredefinedEffects.aml" />
+    <None Include="DigitalRune.Graphics\Misc.aml" />
+    <None Include="DigitalRune.Graphics\ModelDescription.aml" />
+    <None Include="DigitalRune.Graphics\Rendering.aml" />
+    <None Include="DigitalRune.Graphics\RenderingSceneNodes.aml" />
+    <None Include="DigitalRune.Graphics\SceneManagement.aml" />
+    <None Include="DigitalRune.Graphics\SceneQueries.aml" />
+    <None Include="DigitalRune.Graphics\Shadows.aml" />
+    <None Include="DigitalRune.Graphics\Sky.aml" />
+    <None Include="DigitalRune.Graphics\Sprites.aml" />
+    <None Include="DigitalRune.Graphics\Water.aml" />
+    <None Include="DigitalRune.Particles\ParticleSystems.aml" />
+    <None Include="DigitalRune.Particles\HowToParticleSystem.aml" />
+    <None Include="DigitalRune.Particles\ParticleSystems.aml" />
+    <None Include="DigitalRune.Particles\ParticleSystems.aml" />
+    <None Include="DigitalRune.Particles\Design.aml" />
+    <None Include="DigitalRune.Particles\Multithreading.aml" />
+    <None Include="DigitalRune.Particles\HowToEffector.aml" />
+    <None Include="DigitalRune.Particles\HowToStartValueEffector.aml" />
+    <None Include="DigitalRune.Particles\HowToEmitter.aml" />
+    <None Include="DigitalRune.Particles\HowToEmitter.aml" />
+    <None Include="DigitalRune.Particles\HowToAddToProject.aml" />
+    <None Include="DigitalRune.Particles\HowTo.aml" />
+    <None Include="DigitalRune.Particles\Class Diagrams\Effectors.aml" />
+    <None Include="DigitalRune.Particles\Class Diagrams\Particles.aml" />
+    <None Include="DigitalRune.Particles\Class Diagrams\Overview.aml" />
+    <None Include="DigitalRune.Mathematics\Statistics.aml" />
+    <None Include="DigitalRune.Particles\Introduction.aml" />
+    <None Include="DigitalRune\ParallelTasks.aml" />
+    <None Include="DigitalRune\Storage.aml" />
+    <None Include="Unity.aml" />
+    <None Include="DigitalRune\ServiceLocation.aml" />
+    <None Include="DigitalRune.Animation\SkeletonMapping.aml" />
+    <None Include="DigitalRune.Animation\Ragdolls.aml" />
+    <None Include="DigitalRune.Animation\IK.aml" />
+    <None Include="DigitalRune.Animation\CharacterBasics.aml" />
+    <None Include="DigitalRune.Animation\XboxAvatars.aml" />
+    <None Include="DigitalRune.Animation\CharacterBasics.aml" />
+    <None Include="DigitalRune.Animation\HowToCycleAnimations.aml" />
+    <None Include="DigitalRune.Animation\HowToUpdateAndApply.aml" />
+    <None Include="DigitalRune.Animation\Control.aml" />
+    <None Include="DigitalRune.Animation\Animating.aml" />
+    <None Include="DigitalRune.Animation\Animatables.aml" />
+    <None Include="DigitalRune.Animation\AnimationManager.aml" />
+    <None Include="DigitalRune.Animation\Animations.aml" />
+    <None Include="DigitalRune.Animation\HowToAddToProject.aml" />
+    <None Include="DigitalRune.Animation\CharacterAnimation.aml" />
+    <None Include="DigitalRune.Animation\Class Diagrams\Transitions.aml" />
+    <None Include="DigitalRune.Animation\Class Diagrams\Traits.aml" />
+    <None Include="DigitalRune.Animation\Class Diagrams\Easing.aml" />
+    <None Include="DigitalRune.Animation\Class Diagrams\Character.aml" />
+    <None Include="DigitalRune.Animation\Class Diagrams\Overview.aml" />
+    <None Include="DigitalRune.Animation\Class Diagrams\Animation.aml" />
+    <None Include="DigitalRune.Animation\Class Diagrams\Animation.aml" />
+    <None Include="DigitalRune.Animation\Class Diagrams\Overview.aml" />
+    <None Include="DigitalRune.Animation\Introduction.aml" />
+    <None Include="DigitalRune.Game\Game Object System.aml" />
+    <None Include="DigitalRune.Game\Game Object Service.aml" />
+    <None Include="DigitalRune.Game\Templates.aml" />
+    <None Include="DigitalRune.Game\Game Object Events.aml" />
+    <None Include="DigitalRune.Game\Game Object Properties.aml" />
+    <None Include="DigitalRune.Game.UI\UI Overview.aml" />
+    <None Include="DigitalRune.Game.UI\Theme.aml" />
+    <None Include="DigitalRune.Game.UI\Class Diagrams\UI.Rendering.aml" />
+    <None Include="DigitalRune.Game.UI\Class Diagrams\UI.Controls.aml" />
+    <None Include="DigitalRune.Game.UI\Class Diagrams\UI.Consoles.aml" />
+    <None Include="DigitalRune.Game.UI\Class Diagrams\UI.aml" />
+    <None Include="DigitalRune.Game.UI\HowToAddToProject.aml" />
+    <None Include="DigitalRune.Game\Game Objects.aml" />
+    <None Include="DigitalRune.Game\Class Diagrams\States.aml" />
+    <None Include="DigitalRune.Game\Class Diagrams\Timing.aml" />
+    <None Include="DigitalRune.Game\Class Diagrams\Game.aml" />
+    <None Include="DigitalRune.Game\Class Diagrams\Overview.aml" />
+    <None Include="DigitalRune.Game\Introduction.aml" />
+    <None Include="DigitalRune.Game.UI\Input.aml" />
+    <None Include="DigitalRune.Game.UI\Class Diagrams\Input.aml" />
+    <None Include="DigitalRune.Game.UI\Class Diagrams\Overview.aml" />
+    <None Include="DigitalRune.Game.UI\Introduction.aml" />
+    <None Include="DigitalRune.Physics\HowToSimulation.aml" />
+    <None Include="DigitalRune\ResourcePooling.aml" />
+    <None Include="DigitalRune\HowToResourcePooling.aml" />
+    <None Include="DigitalRune\ResourcePooling.aml" />
+    <None Include="DigitalRune\HowToResourcePooling.aml" />
+    <None Include="DigitalRune\HowToAddToProject.aml" />
+    <None Include="DigitalRune\HowTo.aml" />
+    <None Include="DigitalRune\Class Diagrams\Diagnostics.aml" />
+    <None Include="DigitalRune\Class Diagrams\Animation.aml" />
+    <None Include="DigitalRune.Geometry\HowToWorldAndViewMatricesUsingPose.aml" />
+    <None Include="DigitalRune.Geometry\Pose.aml" />
+    <None Include="DigitalRune.Geometry\Resource Pooling.aml" />
+    <None Include="DigitalRune.Physics\Resource Pooling.aml" />
+    <None Include="DigitalRune.Physics\Multithreading.aml" />
+    <None Include="DigitalRune.Geometry\Multithreading.aml" />
+    <None Include="DigitalRune\Class Diagrams\Threading.aml" />
+    <None Include="Installation.aml" />
+    <None Include="DigitalRune.Physics\Definitions.aml" />
+    <None Include="DigitalRune.Physics\Simulation.aml" />
+    <None Include="DigitalRune.Physics\HowToCompositeMass.aml" />
+    <None Include="DigitalRune.Physics\Timing.aml" />
+    <None Include="DigitalRune.Physics\HowToAddToProject.aml" />
+    <None Include="DigitalRune.Physics\ResponseFilter.aml" />
+    <None Include="DigitalRune.Physics\CCD.aml" />
+    <None Include="DigitalRune.Physics\Simulation Islands.aml" />
+    <None Include="DigitalRune.Physics\Advanced.aml" />
+    <None Include="DigitalRune.Physics\Constraints.aml" />
+    <None Include="DigitalRune.Physics\Introduction.aml" />
+    <None Include="DigitalRune.Physics\Tips.aml" />
+    <None Include="DigitalRune.Physics\Sleeping.aml" />
+    <None Include="DigitalRune.Physics\Material.aml" />
+    <None Include="DigitalRune.Physics\ForceEffects.aml" />
+    <None Include="DigitalRune.Physics\Specialized.aml" />
+    <None Include="DigitalRune.Geometry\CCD.aml" />
+    <None Include="DigitalRune.Physics\Class Diagrams\Settings.aml" />
+    <None Include="DigitalRune.Physics\Class Diagrams\ForceEffects.aml" />
+    <None Include="DigitalRune.Physics\Class Diagrams\Physics.aml" />
+    <None Include="DigitalRune.Physics\Class Diagrams\Material.aml" />
+    <None Include="DigitalRune.Physics\Class Diagrams\Constraints.aml" />
+    <None Include="DigitalRune.Physics\Class Diagrams\Specialized.aml" />
+    <None Include="DigitalRune.Physics\Class Diagrams\Overview.aml" />
+    <None Include="DigitalRune.Physics\RigidBodies.aml" />
+    <None Include="DigitalRune.Geometry\Filtering.aml" />
+    <None Include="DigitalRune.Geometry\GeometricObjects.aml" />
+    <None Include="DigitalRune.Geometry\Definitions.aml" />
+    <None Include="DigitalRune.Geometry\HowToAddToProject.aml" />
+    <None Include="DigitalRune.Mathematics\Class Diagrams\Content.aml" />
+    <None Include="Samples.aml" />
+    <None Include="DigitalRune.Mathematics\HowToNumeric.aml" />
+    <None Include="DigitalRune\Class Diagrams\Mathematics.aml" />
+    <None Include="Documentation.aml" />
+    <None Include="DigitalRune.Mathematics\Class Diagrams\Mathematics.aml" />
+    <None Include="DigitalRune.Mathematics\Class Diagrams\Statistics.aml" />
+    <None Include="DigitalRune.Mathematics\Class Diagrams\Overview.aml" />
+    <None Include="DigitalRune.Mathematics\Class Diagrams\Interpolation.aml" />
+    <None Include="DigitalRune.Mathematics\Class Diagrams\Analysis.aml" />
+    <None Include="DigitalRune.Mathematics\Class Diagrams\AlgebraDesign.aml" />
+    <None Include="DigitalRune.Mathematics\Class Diagrams\Algebra.aml" />
+    <None Include="DigitalRune.Mathematics\Xna.aml" />
+    <None Include="DigitalRune.Mathematics\Introduction.aml" />
+    <None Include="DigitalRune.Mathematics\HowToVectors.aml" />
+    <None Include="DigitalRune.Mathematics\HowToPath.aml" />
+    <None Include="DigitalRune.Mathematics\HowToFindRoot.aml" />
+    <None Include="DigitalRune.Mathematics\HowToAddToProject.aml" />
+    <None Include="DigitalRune.Mathematics\Definitions.aml" />
+    <None Include="DigitalRune.Geometry\Class Diagrams\Shapes.aml" />
+    <None Include="DigitalRune.Geometry\Class Diagrams\Meshes.aml" />
+    <None Include="DigitalRune.Geometry\Class Diagrams\Partitioning.aml" />
+    <None Include="DigitalRune.Geometry\Class Diagrams\Geometry.aml" />
+    <None Include="DigitalRune.Geometry\Class Diagrams\CollisionsAlgorithms.aml" />
+    <None Include="DigitalRune.Geometry\Class Diagrams\Collisions.aml" />
+    <None Include="DigitalRune.Geometry\Class Diagrams\Overview.aml" />
+    <None Include="DigitalRune.Geometry\XNA.aml" />
+    <None Include="DigitalRune.Geometry\Overview.aml" />
+    <None Include="DigitalRune.Geometry\Introduction.aml" />
+    <None Include="DigitalRune.Geometry\HowToMeshOfConvexHull.aml" />
+    <None Include="DigitalRune.Geometry\HowToContacts.aml" />
+    <None Include="DigitalRune.Geometry\HowToClosestPoints.aml" />
+    <None Include="DigitalRune.Geometry\CollisionDetection.aml" />
+    <None Include="DigitalRune.Windows.Docking\HowToXamlLayout.aml" />
+    <None Include="DigitalRune.Windows.Docking\HowToPersistence.aml" />
+    <None Include="DigitalRune.Windows.Docking\HowToOverview.aml" />
+    <None Include="DigitalRune.Windows.Docking\ProgrammingGuideOverview.aml" />
+    <None Include="DigitalRune.Windows.Docking\ProgrammingGuide.aml" />
+    <None Include="DigitalRune.Windows.Docking\UserGuideMouseInteraction.aml" />
+    <None Include="DigitalRune.Windows.Docking\UserGuideOverview.aml" />
+    <None Include="DigitalRune.Windows.Docking\UserGuide.aml" />
+    <None Include="DigitalRune.Windows.Docking\Class Diagrams\IDockable.aml" />
+    <None Include="DigitalRune.Windows.Docking\Class Diagrams\Elements.aml" />
+    <None Include="DigitalRune.Windows.Docking\Class Diagrams\Overview.aml" />
+    <None Include="DigitalRune.Windows.Docking\Introduction.aml" />
+    <None Include="DigitalRune\Class Diagrams\Undo.aml" />
+    <None Include="DigitalRune\Class Diagrams\Text.aml" />
+    <None Include="DigitalRune\Class Diagrams\Linq.aml" />
+    <None Include="DigitalRune\Class Diagrams\Collections.aml" />
+    <None Include="DigitalRune\Class Diagrams\DigitalRune.aml" />
+    <None Include="DigitalRune\Class Diagrams\Overview.aml" />
+    <None Include="Files.aml" />
+    <None Include="DigitalRune.Windows\Introduction.aml" />
+    <None Include="DigitalRune\Introduction.aml" />
+    <None Include="Contact.aml" />
+    <None Include="Troubleshooting.aml" />
+    <None Include="XnaAndVS2012.aml" />
+    <None Include="DigitalRune.Graphics\Terrain.aml" />
+    <None Include="ChangeLog\Release-2015-09-28.aml" />
+    <None Include="XNA\XnaEducationCatalog.aml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ContentLayout Include="Content Layout.content" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DigitalRune.Graphics\Images\Blender-FBX-Export-01.png">
+      <ImageId>Blender-FBX-Export-01</ImageId>
+      <AlternateText>Blender-FBX-Export-01</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Blender-FBX-Export-02.png">
+      <ImageId>Blender-FBX-Export-02</ImageId>
+      <AlternateText>Blender-FBX-Export-02</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Blender-FBX-Export-03.png">
+      <ImageId>Blender-FBX-Export-03</ImageId>
+      <AlternateText>Blender-FBX-Export-03</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Blender-FBX-Export-04.png">
+      <ImageId>Blender-FBX-Export-04</ImageId>
+      <AlternateText>Blender-FBX-Export-04</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Blender-FBX-Import-01.png">
+      <ImageId>Blender-FBX-Import-01</ImageId>
+      <AlternateText>Blender-FBX-Import-01</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Blender-FBX-Import-02.png">
+      <ImageId>Blender-FBX-Import-02</ImageId>
+      <AlternateText>Blender-FBX-Import-02</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Blender-Transform.png">
+      <ImageId>Blender-Transform</ImageId>
+      <AlternateText>Blender-Transform</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Blender-Units.png">
+      <ImageId>Blender-Units</ImageId>
+      <AlternateText>Blender-Units</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\UwpInteropSample.jpg">
+      <ImageId>UwpInteropSample</ImageId>
+      <AlternateText>Uwp Interop Sample</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Vegetation-Sample.jpg">
+      <ImageId>Vegetation-Sample</ImageId>
+      <AlternateText>Vegetation-Sample</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\IBL-02.jpg">
+      <ImageId>IBL-02</ImageId>
+      <AlternateText>IBL-02</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\IBL-01.jpg">
+      <ImageId>IBL-01</ImageId>
+      <AlternateText>IBL-01</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\3ds-Subframe-Keys.png">
+      <ImageId>3ds-Subframe-Keys</ImageId>
+      <AlternateText>3ds-Subframe-Keys</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\3ds-Relative-File-Paths.png">
+      <ImageId>3ds-Relative-File-Paths</ImageId>
+      <AlternateText>3ds-Relative-File-Paths</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\3ds-Collapse-Transforms.png">
+      <ImageId>3ds-Collapse-Transforms</ImageId>
+      <AlternateText>3ds-Collapse-Transforms</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\3ds-Animation-Keys.png">
+      <ImageId>3ds-Animation-Keys</ImageId>
+      <AlternateText>3ds-Animation-Keys</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\WeightedBlendedOITSample.jpg">
+      <ImageId>WeightedBlendedOITSample</ImageId>
+      <AlternateText>Weighted Blended Order-Independent Transparency</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Physics\Images\Character-Stuck.jpg">
+      <ImageId>Character-Stuck</ImageId>
+      <AlternateText>Character-Stuck</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Physics\Images\Ragdoll-Joints-03.jpg">
+      <ImageId>Ragdoll-Joints-03</ImageId>
+      <AlternateText>Ragdoll-Joints-03</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Physics\Images\Ragdoll-Joints-02.jpg">
+      <ImageId>Ragdoll-Joints-02</ImageId>
+      <AlternateText>Ragdoll-Joints-02</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Physics\Images\Ragdoll-Joints-01.jpg">
+      <ImageId>Ragdoll-Joints-01</ImageId>
+      <AlternateText>Ragdoll-Joints-01</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Animation\Images\Skeletons.jpg">
+      <ImageId>Skeletons</ImageId>
+      <AlternateText>Skeletons</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Geometry\Images\Collision-Model-04.jpg">
+      <ImageId>Collision-Model-04</ImageId>
+      <AlternateText>Collision-Model-04</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Geometry\Images\Collision-Model-03.jpg">
+      <ImageId>Collision-Model-03</ImageId>
+      <AlternateText>Collision-Model-03</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Geometry\Images\Collision-Model-02.jpg">
+      <ImageId>Collision-Model-02</ImageId>
+      <AlternateText>Collision-Model-02</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Geometry\Images\Collision-Model-01.jpg">
+      <ImageId>Collision-Model-01</ImageId>
+      <AlternateText>Collision-Model-01</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Sky-Sun.jpg">
+      <ImageId>Sky-Sun</ImageId>
+      <AlternateText>Sky-Sun</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Sky-Moon.jpg">
+      <ImageId>Sky-Moon</ImageId>
+      <AlternateText>Sky-Moon</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Sky-Gradient-Front.jpg">
+      <ImageId>Sky-Gradient-Front</ImageId>
+      <AlternateText>Sky-Gradient-Front</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Sky-Gradient-Back.jpg">
+      <ImageId>Sky-Gradient-Back</ImageId>
+      <AlternateText>Sky-Gradient-Back</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Shadow-Resolution.jpg">
+      <ImageId>Shadow-Resolution</ImageId>
+      <AlternateText>Shadow-Resolution</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Shadow-Reference.jpg">
+      <ImageId>Shadow-Reference</ImageId>
+      <AlternateText>Shadow-Reference</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Shadow-Peter-Panning.jpg">
+      <ImageId>Shadow-Peter-Panning</ImageId>
+      <AlternateText>Shadow-Peter-Panning</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Shadow-Number-Of-Samples.jpg">
+      <ImageId>Shadow-Number-Of-Samples</ImageId>
+      <AlternateText>Shadow-Number-Of-Samples</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Shadow-Normal-Offset.jpg">
+      <ImageId>Shadow-Normal-Offset</ImageId>
+      <AlternateText>Shadow-Normal-Offset</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Shadow-Mask-Half-Res.jpg">
+      <ImageId>Shadow-Mask-Half-Res</ImageId>
+      <AlternateText>Shadow-Mask-Half-Res</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Shadow-Mask-Blur2.jpg">
+      <ImageId>Shadow-Mask-Blur2</ImageId>
+      <AlternateText>Shadow-Mask-Blur 2</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Shadow-Mask-Blur.jpg">
+      <ImageId>Shadow-Mask-Blur</ImageId>
+      <AlternateText>Shadow-Mask-Blur</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Shadow-Mask.jpg">
+      <ImageId>Shadow-Mask</ImageId>
+      <AlternateText>Shadow-Mask</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Shadow-Filter-Radius.jpg">
+      <ImageId>Shadow-Filter-Radius</ImageId>
+      <AlternateText>Shadow-Filter-Radius</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Shadow-Depth-Bias.jpg">
+      <ImageId>Shadow-Depth-Bias</ImageId>
+      <AlternateText>Shadow-Depth-Bias</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Shadow-Cascade-Selection-Fast.jpg">
+      <ImageId>Shadow-Cascade-Selection-Fast</ImageId>
+      <AlternateText>Shadow-Cascade-Selection-Fast</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Shadow-Cascade-Selection-Best-Dithered.jpg">
+      <ImageId>Shadow-Cascade-Selection-Best-Dithered</ImageId>
+      <AlternateText>Shadow-Cascade-Selection-Best-Dithered</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Shadow-Cascade-Selection-Best.jpg">
+      <ImageId>Shadow-Cascade-Selection-Best</ImageId>
+      <AlternateText>Shadow-Cascade-Selection-Best</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Shadow-Acne-Reference.jpg">
+      <ImageId>Shadow-Acne-Reference</ImageId>
+      <AlternateText>Shadow-Acne-Reference</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Shadow-Acne-Increased-Resolution.jpg">
+      <ImageId>Shadow-Acne-Increased-Resolution</ImageId>
+      <AlternateText>Shadow-Acne-Increased-Resolution</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Shadow-Acne-Filtering.jpg">
+      <ImageId>Shadow-Acne-Filtering</ImageId>
+      <AlternateText>Shadow-Acne-Filtering</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Shadow-Acne.jpg">
+      <ImageId>Shadow-Acne</ImageId>
+      <AlternateText>Shadow-Acne</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Ground-Specular.jpg">
+      <ImageId>Ground-Specular</ImageId>
+      <AlternateText>Ground-Specular</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Ground-Normal.jpg">
+      <ImageId>Ground-Normal</ImageId>
+      <AlternateText>Ground-Normal</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Ground-Height.jpg">
+      <ImageId>Ground-Height</ImageId>
+      <AlternateText>Ground-Height</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Ground-Diffuse.jpg">
+      <ImageId>Ground-Diffuse</ImageId>
+      <AlternateText>Ground-Diffuse</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Parallax.jpg">
+      <ImageId>Parallax</ImageId>
+      <AlternateText>Parallax</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Cloud-Quad-Texture.jpg">
+      <ImageId>Cloud-Quad-Texture</ImageId>
+      <AlternateText>Cloud-Quad-Texture</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Cloud-Quad-04.jpg">
+      <ImageId>Cloud-Quad-04</ImageId>
+      <AlternateText>Cloud-Quad-04</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Cloud-Quad-03.jpg">
+      <ImageId>Cloud-Quad-03</ImageId>
+      <AlternateText>Cloud-Quad-03</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Cloud-Quad-02.jpg">
+      <ImageId>Cloud-Quad-02</ImageId>
+      <AlternateText>Cloud-Quad-02</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Cloud-Quad-01.jpg">
+      <ImageId>Cloud-Quad-01</ImageId>
+      <AlternateText>Cloud-Quad-01</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Refraction.jpg">
+      <ImageId>Refraction</ImageId>
+      <AlternateText>Refraction</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\EnvironmentLight.jpg">
+      <ImageId>EnvironmentLight</ImageId>
+      <AlternateText>Environment Light</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Screen-Door-Transparency.gif">
+      <ImageId>Screen-Door-Transparency</ImageId>
+      <AlternateText>Screen-Door Transparency</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Distance-Fog.jpg">
+      <ImageId>Distance-Fog</ImageId>
+      <AlternateText>Distance Fog</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Figures.jpg">
+      <ImageId>Figures</ImageId>
+      <AlternateText>Figures</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Height-Fog.jpg">
+      <ImageId>Height-Fog</ImageId>
+      <AlternateText>Height Fog</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Lines.jpg">
+      <ImageId>Lines</ImageId>
+      <AlternateText>Lines</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\MatCaps1.jpg">
+      <ImageId>MatCaps1</ImageId>
+      <AlternateText>MatCaps</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\MatCaps2.jpg">
+      <ImageId>MatCaps2</ImageId>
+      <AlternateText>MatCaps</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Soft-Particles.jpg">
+      <ImageId>Soft-Particles</ImageId>
+      <AlternateText>Soft-Particles</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Sprite.jpg">
+      <ImageId>Sprite</ImageId>
+      <AlternateText>Sprite</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\DigitalRune.Diagnostics_Profiler.png">
+      <ImageId>ClassDiagramDiagnosticsProfiler</ImageId>
+      <AlternateText>Digital Rune.Diagnostics Profiler</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\DigitalRune.Diagnostics_Hierarchical.png">
+      <ImageId>ClassDiagramDiagnosticsHierarchical</ImageId>
+      <AlternateText>Digital Rune.Diagnostics Hierarchical</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\TheMakingOfXNAClassDiagrams.png">
+      <ImageId>TheMakingOfXNAClassDiagrams</ImageId>
+      <AlternateText>The Making Of XNA Class Diagrams</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Storage.png">
+      <ImageId>ClassDiagramXNAStorage</ImageId>
+      <AlternateText>Storage</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Net.png">
+      <ImageId>ClassDiagramXNANet</ImageId>
+      <AlternateText>Net</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Media.png">
+      <ImageId>ClassDiagramXNAMedia</ImageId>
+      <AlternateText>Media</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Input.Touch.png">
+      <ImageId>ClassDiagramXNAInputTouch</ImageId>
+      <AlternateText>Input.Touch</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Input.png">
+      <ImageId>ClassDiagramXNAInput</ImageId>
+      <AlternateText>Input</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Graphics_Vertices.png">
+      <ImageId>ClassDiagramXNAGraphicsVertices</ImageId>
+      <AlternateText>Graphics Vertices</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Graphics_Textures.png">
+      <ImageId>ClassDiagramXNAGraphicsTextures</ImageId>
+      <AlternateText>Graphics Textures</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Graphics_Models_Sprites.png">
+      <ImageId>ClassDiagramXNAGraphicsModelsSprites</ImageId>
+      <AlternateText>Graphics Models Sprites</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Graphics_Effects.png">
+      <ImageId>ClassDiagramXNAGraphicsEffects</ImageId>
+      <AlternateText>Graphics Effects</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Graphics.png">
+      <ImageId>ClassDiagramXNAGraphics</ImageId>
+      <AlternateText>Graphics</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Graphics.PackedVector.png">
+      <ImageId>ClassDiagramXNAGraphicsPackedVector</ImageId>
+      <AlternateText>Graphics.Packed Vector</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-General_Math.png">
+      <ImageId>ClassDiagramXNAGeneralMath</ImageId>
+      <AlternateText>General Math</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-General_Geometry.png">
+      <ImageId>ClassDiagramXNAGeneralGeometry</ImageId>
+      <AlternateText>General Geometry</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-General_Curves.png">
+      <ImageId>ClassDiagramXNAGeneralCurves</ImageId>
+      <AlternateText>General Curves</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-General.png">
+      <ImageId>ClassDiagramXNAGeneral</ImageId>
+      <AlternateText>General</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-GamerServices_Leaderboards_Achievements.png">
+      <ImageId>ClassDiagramXNAGamerServicesLeaderboardsAchievements</ImageId>
+      <AlternateText>Gamer Services Leaderboards Achievements</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-GamerServices_Avatar.png">
+      <ImageId>ClassDiagramXNAGamerServicesAvatar</ImageId>
+      <AlternateText>Gamer Services Avatar</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-GamerServices.png">
+      <ImageId>ClassDiagramXNAGamerServices</ImageId>
+      <AlternateText>Gamer Services</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Design.png">
+      <ImageId>ClassDiagramXNADesign</ImageId>
+      <AlternateText>Design</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Content.png">
+      <ImageId>ClassDiagramXNAContent</ImageId>
+      <AlternateText>Content</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Content.Pipeline_Processors.png">
+      <ImageId>ClassDiagramXNAContentPipelineProcessors</ImageId>
+      <AlternateText>Content.Pipeline Processors</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Content.Pipeline_Importers.png">
+      <ImageId>ClassDiagramXNAContentPipelineImporters</ImageId>
+      <AlternateText>Content.Pipeline Importers</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Content.Pipeline_Content_Textures_Fonts.png">
+      <ImageId>ClassDiagramXNAContentPipelineContentTexturesFonts</ImageId>
+      <AlternateText>Content.Pipeline Content Textures Fonts</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Content.Pipeline_Content_Models.png">
+      <ImageId>ClassDiagramXNAContentPipelineContentModels</ImageId>
+      <AlternateText>Content.Pipeline Content Models</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Content.Pipeline_Content_Effects.png">
+      <ImageId>ClassDiagramXNAContentPipelineContentEffects</ImageId>
+      <AlternateText>Content.Pipeline Content Effects</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Content.Pipeline_Content.png">
+      <ImageId>ClassDiagramXNAContentPipelineContent</ImageId>
+      <AlternateText>Content.Pipeline Content</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Content.Pipeline.Tasks.png">
+      <ImageId>ClassDiagramXNAContentPipelineTasks</ImageId>
+      <AlternateText>Content.Pipeline.Tasks</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Content.Pipeline.Serialization.Intermediate.png">
+      <ImageId>ClassDiagramXNAContentPipelineSerializationIntermediate</ImageId>
+      <AlternateText>Content.Pipeline.Serialization.Intermediate</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Content.Pipeline.Serialization.Compiler.png">
+      <ImageId>ClassDiagramXNAContentPipelineSerializationCompiler</ImageId>
+      <AlternateText>Content.Pipeline.Serialization.Compiler</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Content.Pipeline.png">
+      <ImageId>ClassDiagramXNAContentPipeline</ImageId>
+      <AlternateText>Content.Pipeline</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Content.Pipeline.Graphics.png">
+      <ImageId>ClassDiagramXNAContentPipelineGraphics</ImageId>
+      <AlternateText>Content.Pipeline.Graphics</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\XNA\XNA-Audio.png">
+      <ImageId>ClassDiagramXNAAudio</ImageId>
+      <AlternateText>Audio</AlternateText>
+    </Image>
+    <Image Include="Images\Engine.jpg">
+      <ImageId>Engine</ImageId>
+      <AlternateText>DigitalRune Engine</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\EdgeFilter.jpg">
+      <ImageId>EdgeFilter</ImageId>
+      <AlternateText>Edge Filter</AlternateText>
+      <CopyToMedia>True</CopyToMedia>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\SintelMorphTargets.jpg">
+      <ImageId>SintelMorphTargets</ImageId>
+      <AlternateText>Model with morph targets</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics.Storages.png">
+      <ImageId>ClassDiagramGraphicsStorages</ImageId>
+      <AlternateText>DigitalRune.Graphics.Storages</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\DigitalRune.Storages.png">
+      <ImageId>ClassDiagramStorages</ImageId>
+      <AlternateText>DigitalRune.Storages</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Barrel-LOD.jpg">
+      <ImageId>Barrel-LOD</ImageId>
+      <AlternateText>Barrel-LOD</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Blood-Decal.jpg">
+      <ImageId>Blood-Decal</ImageId>
+      <AlternateText>Blood-Decal</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Decal-Example-01.jpg">
+      <ImageId>Decal-Example-01</ImageId>
+      <AlternateText>Decal-Example-01</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Decal-Example-02.jpg">
+      <ImageId>Decal-Example-02</ImageId>
+      <AlternateText>Decal-Example-02</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Decal-Example-03.jpg">
+      <ImageId>Decal-Example-03</ImageId>
+      <AlternateText>Decal-Example-03</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Decal-Example-04.jpg">
+      <ImageId>Decal-Example-04</ImageId>
+      <AlternateText>Decal-Example-04</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\DecalModes.jpg">
+      <ImageId>DecalModes</ImageId>
+      <AlternateText>Decal Modes</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\ColorGradingSample.jpg">
+      <ImageId>ColorGradingSample</ImageId>
+      <AlternateText>Color Grading Sample</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\DebugRendererSample.jpg">
+      <ImageId>DebugRendererSample</ImageId>
+      <AlternateText>Debug Renderer Sample</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\DeferredLightingSample.jpg">
+      <ImageId>DeferredLightingSample</ImageId>
+      <AlternateText>Deferred Lighting Sample</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\DepthOfFieldSample.jpg">
+      <ImageId>DepthOfFieldSample</ImageId>
+      <AlternateText>Depth Of Field Sample</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Occluders.jpg">
+      <ImageId>Occluders</ImageId>
+      <AlternateText>Occluders</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\OcclusionBuffer-Camera.jpg">
+      <ImageId>OcclusionBuffer-Camera</ImageId>
+      <AlternateText>Visualization: HZB (level 0 - 7)</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\OcclusionBuffer-Light.jpg">
+      <ImageId>OcclusionBuffer-Light</ImageId>
+      <AlternateText>Visualization: HZB of light source</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\OcclusionBuffer-Object.jpg">
+      <ImageId>OcclusionBuffer-Object</ImageId>
+      <AlternateText>Visualization: Object vs. HZB</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\OcclusionBuffer-ShadowCaster.jpg">
+      <ImageId>OcclusionBuffer-ShadowCaster</ImageId>
+      <AlternateText>Visualization: Shadow caster vs. light HZB</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\OcclusionBuffer-ShadowVolume.jpg">
+      <ImageId>OcclusionBuffer-ShadowVolume</ImageId>
+      <AlternateText>Visualization: Shadow volume vs. camera HZB</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\OcclusionCulling-Camera.jpg">
+      <ImageId>OcclusionCulling-Camera</ImageId>
+      <AlternateText>Camera view</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\OcclusionCulling-Models.jpg">
+      <ImageId>OcclusionCulling-Models</ImageId>
+      <AlternateText>Models for rendering</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\OcclusionCulling-Occluders.jpg">
+      <ImageId>OcclusionCulling-Occluders</ImageId>
+      <AlternateText>Occluders for occlusion culling</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\OcclusionBuffer-Sample.jpg">
+      <ImageId>OcclusionBuffer-Sample</ImageId>
+      <AlternateText>Camera view</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\OcclusionCulling-Scene.jpg">
+      <ImageId>OcclusionCulling-Scene</ImageId>
+      <AlternateText>Test scene  (OcclusionCullingSample)</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\OcclusionCulling-Top.jpg">
+      <ImageId>OcclusionCulling-Top</ImageId>
+      <AlternateText>Top view of scene</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\GraphicsDoc_Effects.png">
+      <ImageId>GraphicsDoc_Effects</ImageId>
+      <AlternateText>Effect Bindings</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\InteropSample.jpg">
+      <ImageId>InteropSample</ImageId>
+      <AlternateText>Interop Sample</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\GraphicsDoc_Materials.png">
+      <ImageId>GraphicsDoc_Materials</ImageId>
+      <AlternateText>Meshes and Materials</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\MeshNodeSample.jpg">
+      <ImageId>MeshNodeSample</ImageId>
+      <AlternateText>Mesh Node Sample</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\MotionBlurSample.jpg">
+      <ImageId>MotionBlurSample</ImageId>
+      <AlternateText>Motion Blur Sample</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Normal.jpg">
+      <ImageId>FormatNormal</ImageId>
+      <AlternateText>Normal</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\NormalInvertY.jpg">
+      <ImageId>FormatNormalInvertY</ImageId>
+      <AlternateText>Normal InvertY</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\StockEffectsSample.jpg">
+      <ImageId>StockEffectsSample</ImageId>
+      <AlternateText>Stock Effects Sample</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\DigitalRune.Undo.png">
+      <ImageId>ClassDiagramUndo</ImageId>
+      <AlternateText>DigitalRune.Undo</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\DigitalRune.Text.png">
+      <ImageId>ClassDiagramText</ImageId>
+      <AlternateText>DigitalRune.Text</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\DigitalRune.png">
+      <ImageId>ClassDiagramDigitalRune</ImageId>
+      <AlternateText>DigitalRune</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\DigitalRune.Linq.png">
+      <ImageId>ClassDiagramLinq</ImageId>
+      <AlternateText>DigitalRune.Linq</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\DigitalRune.Collections.png">
+      <ImageId>ClassDiagramCollections</ImageId>
+      <AlternateText>DigitalRune.Collections</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics_Terrain.png">
+      <ImageId>ClassDiagramGraphicsTerrain</ImageId>
+      <AlternateText>DigitalRune.Graphics (Terrain)</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Terrain.jpg">
+      <ImageId>Terrain</ImageId>
+      <AlternateText>Terrain sample consisting of 2 x 2 tiles with 1024 m x 1024 m each</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Terrain-Decal.jpg">
+      <ImageId>Terrain-Decal</ImageId>
+      <AlternateText>Blood decal on terrain</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Graphics\Images\Terrain-Road.jpg">
+      <ImageId>Terrain-Road</ImageId>
+      <AlternateText>Road carved into terrain</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-01.jpg">
+      <ImageId>Tutorial-01-01</ImageId>
+      <AlternateText>Tutorial-01-01</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-02.png">
+      <ImageId>Tutorial-01-02</ImageId>
+      <AlternateText>Tutorial-01-02</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-03.png">
+      <ImageId>Tutorial-01-03</ImageId>
+      <AlternateText>Tutorial-01-03</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-04.png">
+      <ImageId>Tutorial-01-04</ImageId>
+      <AlternateText>Tutorial-01-04</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-05.png">
+      <ImageId>Tutorial-01-05</ImageId>
+      <AlternateText>Tutorial-01-05</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-06.png">
+      <ImageId>Tutorial-01-06</ImageId>
+      <AlternateText>Tutorial-01-06</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-07.png">
+      <ImageId>Tutorial-01-07</ImageId>
+      <AlternateText>Tutorial-01-07</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-08.png">
+      <ImageId>Tutorial-01-08</ImageId>
+      <AlternateText>Tutorial-01-08</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-09.png">
+      <ImageId>Tutorial-01-09</ImageId>
+      <AlternateText>Tutorial-01-09</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-10.png">
+      <ImageId>Tutorial-01-10</ImageId>
+      <AlternateText>Tutorial-01-10</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-11.png">
+      <ImageId>Tutorial-01-11</ImageId>
+      <AlternateText>Tutorial-01-11</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-12.png">
+      <ImageId>Tutorial-01-12</ImageId>
+      <AlternateText>Tutorial-01-12</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-13.png">
+      <ImageId>Tutorial-01-13</ImageId>
+      <AlternateText>Tutorial-01-13</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-14.png">
+      <ImageId>Tutorial-01-14</ImageId>
+      <AlternateText>Tutorial-01-14</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-15.jpg">
+      <ImageId>Tutorial-01-15</ImageId>
+      <AlternateText>Tutorial-01-15</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-16.png">
+      <ImageId>Tutorial-01-16</ImageId>
+      <AlternateText>Tutorial-01-16</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-17.jpg">
+      <ImageId>Tutorial-01-17</ImageId>
+      <AlternateText>Tutorial-01-17</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-18.jpg">
+      <ImageId>Tutorial-01-18</ImageId>
+      <AlternateText>Tutorial-01-18</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-19.jpg">
+      <ImageId>Tutorial-01-19</ImageId>
+      <AlternateText>Tutorial-01-19</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-20.jpg">
+      <ImageId>Tutorial-01-20</ImageId>
+      <AlternateText>Tutorial-01-20</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-21.jpg">
+      <ImageId>Tutorial-01-21</ImageId>
+      <AlternateText>Tutorial-01-21</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-22.png">
+      <ImageId>Tutorial-01-22</ImageId>
+      <AlternateText>Tutorial-01-22</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-23.png">
+      <ImageId>Tutorial-01-23</ImageId>
+      <AlternateText>Tutorial-01-23</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-24.png">
+      <ImageId>Tutorial-01-24</ImageId>
+      <AlternateText>Tutorial-01-24</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-25.jpg">
+      <ImageId>Tutorial-01-25</ImageId>
+      <AlternateText>Tutorial-01-25</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-26.png">
+      <ImageId>Tutorial-01-26</ImageId>
+      <AlternateText>Tutorial-01-26</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-27.png">
+      <ImageId>Tutorial-01-27</ImageId>
+      <AlternateText>Tutorial-01-27</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-28.png">
+      <ImageId>Tutorial-01-28</ImageId>
+      <AlternateText>Tutorial-01-28</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-29.png">
+      <ImageId>Tutorial-01-29</ImageId>
+      <AlternateText>Tutorial-01-29</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-30.jpg">
+      <ImageId>Tutorial-01-30</ImageId>
+      <AlternateText>Tutorial-01-30</AlternateText>
+    </Image>
+    <Image Include="Tutorials\Tutorial01\Images\Tutorial-01-31.png">
+      <ImageId>Tutorial-01-31</ImageId>
+      <AlternateText>Tutorial-01-31</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DigitalRune.Windows.Docking\Images\XamlLayout.png">
+      <ImageId>ImageXamlLayout</ImageId>
+    </Image>
+    <Image Include="DigitalRune.Windows.Docking\Images\Splitter.jpg">
+      <ImageId>Splitter</ImageId>
+      <AlternateText>Resizing DockPanes.</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Windows.Docking\Images\DockingSample.jpg">
+      <ImageId>DockingSampleApplication</ImageId>
+      <AlternateText>A screenshot of the sample application.</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Windows.Docking\Images\FloatingWindow.jpg">
+      <ImageId>FloatingWindow</ImageId>
+      <AlternateText>A FloatingWindow.</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Windows.Docking\Images\DockWindow.jpg">
+      <ImageId>DockWindow</ImageId>
+      <AlternateText>A DockWindow.</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Windows.Docking\Images\DockPanes.jpg">
+      <ImageId>DockPanes</ImageId>
+      <AlternateText>Multiple DockPanes.</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Windows.Docking\Images\DockPaneDrag.jpg">
+      <ImageId>DockPaneDrag</ImageId>
+      <AlternateText>Dragging a DockPane.</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Windows.Docking\Images\DockPaneButtons.png">
+      <ImageId>DockPaneButtons</ImageId>
+      <AlternateText>DockPane buttons</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Windows.Docking\Images\DockIndicators.jpg">
+      <AlternateText>Dock indicators</AlternateText>
+      <ImageId>DockIndicators</ImageId>
+    </Image>
+    <Image Include="DigitalRune.Windows.Docking\Images\DockControl.jpg">
+      <ImageId>DockControl</ImageId>
+      <AlternateText>An empty application workspace.</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Windows.Docking\Images\CustomStylesSample.png">
+      <ImageId>CustomStylesSample</ImageId>
+    </Image>
+    <Image Include="DigitalRune.Windows.Docking\Images\AutoHidePanes.jpg">
+      <ImageId>AutoHidePanes</ImageId>
+      <AlternateText>A DockWindow in an auto-hide pane.</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics.Effects.png">
+      <ImageId>ClassDiagramGraphicsEffects</ImageId>
+      <AlternateText>DigitalRune.Graphics.Effects</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics.Effects_Bindings.png">
+      <ImageId>ClassDiagramGraphicsEffectBindings</ImageId>
+      <AlternateText>DigitalRune.Graphics.Effects (Technique and Parameter Bindings)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics.Effects_Descriptions.png">
+      <ImageId>ClassDiagramGraphicsEffectsDescriptions</ImageId>
+      <AlternateText>DigitalRune.Graphics.Effects (Descriptions)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics.Effects_Setup.png">
+      <ImageId>ClassDiagramGraphicsEffectsSetup</ImageId>
+      <AlternateText>DigitalRune.Graphics.Effects (Setup)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics.Interop.png">
+      <ImageId>ClassDiagramGraphicsInterop</ImageId>
+      <AlternateText>DigitalRune.Graphics.Interop</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics.png">
+      <ImageId>ClassDiagramGraphics</ImageId>
+      <AlternateText>DigitalRune.Graphics</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics.PostProcessing.png">
+      <ImageId>ClassDiagramGraphicsPostProcessing</ImageId>
+      <AlternateText>DigitalRune.Graphics.PostProcessing</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics.Rendering.png">
+      <ImageId>ClassDiagramGraphicsRendering</ImageId>
+      <AlternateText>DigitalRune.Graphics (Rendering)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics.Rendering_Deferred.png">
+      <ImageId>ClassDiagramGraphicsRenderingDeferred</ImageId>
+      <AlternateText>DigitalRune.Graphics.Rendering (Deferred Lighting)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics.SceneGraph.png">
+      <ImageId>ClassDiagramGraphicsSceneGraph</ImageId>
+      <AlternateText>DigitalRune.Graphics.SceneGraph</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics.SceneGraph_Scene.png">
+      <ImageId>ClassDiagramGraphicsSceneGraphScene</ImageId>
+      <AlternateText>DigitalRune.Graphics.SceneGraph (Scene)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics_Decals.png">
+      <ImageId>ClassDiagramGraphicsDecals</ImageId>
+      <AlternateText>DigitalRune.Graphics (Decals)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics.SceneGraph_Sky.png">
+      <ImageId>ClassDiagramGraphicsSceneGraphSky</ImageId>
+      <AlternateText>DigitalRune.Graphics.SceneGraph (Sky)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics_Encodings.png">
+      <ImageId>ClassDiagramGraphicsEncodings</ImageId>
+      <AlternateText>DigitalRune.Graphics (Color Encodings)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics_Figures.png">
+      <ImageId>ClassDiagramGraphicsFigures</ImageId>
+      <AlternateText>DigitalRune.Graphics (Figures)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics_LOD.png">
+      <ImageId>ClassDiagramGraphicsLOD</ImageId>
+      <AlternateText>DigitalRune.Graphics (Level of Detail)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics_Occlusion.png">
+      <ImageId>ClassDiagramGraphicsOccluders</ImageId>
+      <AlternateText>DigitalRune.Graphics (Occluders)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics_RenderToTexture.png">
+      <ImageId>ClassDiagramGraphicsRenderToTexture</ImageId>
+      <AlternateText>DigitalRune.Graphics (Render-To-Texture)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics_Shadows.png">
+      <ImageId>ClassDiagramGraphicsShadows</ImageId>
+      <AlternateText>DigitalRune.Graphics (Shadows)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics_Billboards.png">
+      <ImageId>ClassDiagramGraphicsBillboards</ImageId>
+      <AlternateText>DigitalRune.Graphics (Billboards)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics_Camera.png">
+      <ImageId>ClassDiagramGraphicsCameras</ImageId>
+      <AlternateText>DigitalRune.Graphics (Cameras)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics_Fog.png">
+      <ImageId>ClassDiagramGraphicsFog</ImageId>
+      <AlternateText>DigitalRune.Graphics (Fog)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics_LensFlares.png">
+      <ImageId>ClassDiagramGraphicsLensFlares</ImageId>
+      <AlternateText>DigitalRune.Graphics (Lens Flares)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics_Lights.png">
+      <ImageId>ClassDiagramGraphicsLights</ImageId>
+      <AlternateText>DigitalRune.Graphics (Lights)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics_Meshes.png">
+      <ImageId>ClassDiagramGraphicsMeshes</ImageId>
+      <AlternateText>DigitalRune.Graphics (Meshes and Materials)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics_Misc.png">
+      <ImageId>ClassDiagramGraphicsMisc</ImageId>
+      <AlternateText>DigitalRune.Graphics (Miscellaneous)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics_Particles.png">
+      <ImageId>ClassDiagramGraphicsParticles</ImageId>
+      <AlternateText>DigitalRune.Graphics (Particles)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics_Sky.png">
+      <ImageId>ClassDiagramGraphicsClouds</ImageId>
+      <AlternateText>DigitalRune.Graphics (Clouds)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics_Sprites.png">
+      <ImageId>ClassDiagramGraphicsSprites</ImageId>
+      <AlternateText>DigitalRune.Graphics (Sprites)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Graphics_Water.png">
+      <ImageId>ClassDiagramGraphicsWater</ImageId>
+      <AlternateText>DigitalRune.Graphics (Water)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\IDockable.png">
+      <ImageId>ClassDiagramIDockable</ImageId>
+      <AlternateText>Interface IDockable</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Elements.png">
+      <ImageId>ClassDiagramDockElements</ImageId>
+      <AlternateText>DockControl, DockSplitPanel, DockZone, DockPane, FloatingWindow and DockWindow</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Class Diagrams\Mathematics.Analysis_Transforms.png">
+      <ImageId>ClassDiagramAnalysisTransforms</ImageId>
+      <AlternateText>DigitalRune.Mathematics.Analysis (Transforms)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Physics.Specialized_Ragdolls.png">
+      <ImageId>ClassDiagramPhysicsSpecializedRagdolls</ImageId>
+      <AlternateText>DigitalRune.Physics.Specialized (Ragdolls)</AlternateText>
+    </Image>
+    <Image Include="Images\Dependency-Graph.png">
+      <ImageId>DependencyGraph</ImageId>
+      <AlternateText>Dependency Graph</AlternateText>
+    </Image>
+    <Content Include="Images\DigitalRune-Logo.png">
+      <ImageId>DigitalRune-Logo</ImageId>
+      <AlternateText>Digital Rune-Logo</AlternateText>
+      <Link>Icons\DigitalRune-Logo.png</Link>
+    </Content>
+    <Image Include="Images\LicenseDialog.png">
+      <ImageId>LicenseDialog</ImageId>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Class Diagrams\Geometry.png">
+      <ImageId>ClassDiagramGeometry</ImageId>
+      <AlternateText>DigitalRune.Geometry</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Class Diagrams\DigitalRune.Mathematics.png">
+      <ImageId>ClassDiagramNumeric</ImageId>
+      <AlternateText>DigitalRune.Mathematics</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DigitalRune.Mathematics\Images\ScatteredInterpolationExample.jpg">
+      <ImageId>ScatteredInterpolationExample</ImageId>
+      <AlternateText>Scattered Interpolation</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Mathematics\Images\PcaExample.jpg">
+      <ImageId>PcaExample</ImageId>
+      <AlternateText>PCA Example</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Mathematics\Images\PathExample.jpg">
+      <ImageId>PathExample</ImageId>
+      <AlternateText>3D Path</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Mathematics\Images\OdeIntegratorExample.jpg">
+      <ImageId>OdeIntegratorExample</ImageId>
+      <AlternateText>ODE Integration</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Mathematics\Images\DistributionsExample.jpg">
+      <ImageId>DistributionsExample</ImageId>
+      <AlternateText>Statistical Distribution</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Mathematics\Images\CurveExample.jpg">
+      <ImageId>CurveExample</ImageId>
+      <AlternateText>2D Curve</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Class Diagrams\DigitalRune_WeakEvents.png">
+      <ImageId>ClassDiagramWeakEvents</ImageId>
+      <AlternateText>DigitalRune (Weak Events Types)</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Class Diagrams\Mathematics.Statistics.png">
+      <ImageId>ClassDiagramStatistics</ImageId>
+      <AlternateText>DigitalRune.Mathematics.Statistics</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Mathematics.png">
+      <ImageId>ClassDiagramMathematics</ImageId>
+      <AlternateText>DigitalRune.Mathematics</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Mathematics.Interpolation_Segments.png">
+      <ImageId>ClassDiagramInterpolationSegments</ImageId>
+      <AlternateText>DigitalRune.Mathematics.Interpolation (Curve Segments)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Mathematics.Interpolation_PiecewiseCurves.png">
+      <ImageId>ClassDiagramPiecewiseCurves</ImageId>
+      <AlternateText>DigitalRune.Mathematics.Interpolation (Piecewise Curves)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Mathematics.Interpolation.png">
+      <ImageId>ClassDiagramInterpolation</ImageId>
+      <AlternateText>DigitalRune.Mathematics.Interpolation</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Mathematics.Analysis_RootFinding.png">
+      <ImageId>ClassDiagramAnalysisRootFinding</ImageId>
+      <AlternateText>DigitalRune.Mathematics.Analysis (Root Finding)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Mathematics.Analysis_OdeIntegration.png">
+      <ImageId>ClassDiagramAnalysisOdeIntegration</ImageId>
+      <AlternateText>DigitalRune.Mathematics.Analysis (Integration of Ordinary Differential Equations)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Mathematics.Analysis_Integration.png">
+      <ImageId>ClassDiagramAnalysisIntegration</ImageId>
+      <AlternateText>DigitalRune.Mathematics.Analysis (Integration)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Mathematics.Algebra_Vectors.png">
+      <ImageId>ClassDiagramAlgebraVectors</ImageId>
+      <AlternateText>DigitalRune.Mathematics.Algebra (Vectors)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Mathematics.Algebra_Quaternions.png">
+      <ImageId>ClassDiagramAlgebraQuaternions</ImageId>
+      <AlternateText>DigitalRune.Mathematics.Algebra (Quaternions)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Mathematics.Algebra_MatrixDecompositions.png">
+      <ImageId>ClassDiagramAlgebraMatrixDecompositions</ImageId>
+      <AlternateText>DigitalRune.Mathematics.Algebra (Matrix Decompositions)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Mathematics.Algebra_Matrices.png">
+      <ImageId>ClassDiagramAlgebraMatrices</ImageId>
+      <AlternateText>DigitalRune.Mathematics.Algebra (Matrices)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Mathematics.Algebra_LinearSystems.png">
+      <ImageId>ClassDiagramAlgebraLinearSystems</ImageId>
+      <AlternateText>DigitalRune.Mathematics.Algebra (Linear Systems)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Mathematics.Algebra.Design.png">
+      <ImageId>ClassDiagramAlgebraDesign</ImageId>
+      <AlternateText>DigitalRune.Mathematics.Design</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Mathematics-Small.gif">
+      <AlternateText>DigitalRune Mathematics</AlternateText>
+      <ImageId>LogoMathematicsSmall</ImageId>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Mathematics.gif">
+      <AlternateText>DigitalRune Mathematics</AlternateText>
+      <ImageId>LogoMathematics</ImageId>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Class Diagrams\Mathematics.Content.png">
+      <ImageId>ClassDiagramMathematicsContent</ImageId>
+      <AlternateText>DigitalRune.Mathematics.Content</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Geometry-Small.gif">
+      <AlternateText>DigitalRune Geometry</AlternateText>
+      <ImageId>LogoGeometrySmall</ImageId>
+    </Image>
+    <Image Include="Images\Geometry.gif">
+      <AlternateText>DigitalRune Geometry</AlternateText>
+      <ImageId>LogoGeometry</ImageId>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Class Diagrams\Geometry.Shapes_Structures.png">
+      <ImageId>ClassDiagramShapesStructures</ImageId>
+      <AlternateText>DigitalRune.Geometry.Shapes (Structures)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Geometry.Shapes_Shapes.png">
+      <ImageId>ClassDiagramShapes</ImageId>
+      <AlternateText>DigitalRune.Geometry.Shapes</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Geometry.Shapes_Convex.png">
+      <ImageId>ClassDiagramShapesConvex</ImageId>
+      <AlternateText>DigitalRune.Geometry.Shapes (Convex Shapes)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Geometry.Partitioning.png">
+      <ImageId>ClassDiagramGeometryPartitioning</ImageId>
+      <AlternateText>Geometry.Partitioning</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Geometry.Meshes.png">
+      <ImageId>ClassDiagramGeometryMeshes</ImageId>
+      <AlternateText>Geometry.Meshes</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Geometry.Collisions.png">
+      <ImageId>ClassDiagramCollisions</ImageId>
+      <AlternateText>Geometry.Collisions</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Geometry.Collisions.Algorithms.png">
+      <ImageId>ClassDiagramCollisionAlgorithms</ImageId>
+      <AlternateText>Geometry.Collisions.Algorithms</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DigitalRune.Geometry\Images\PickingSample.jpg">
+      <ImageId>PickingSample</ImageId>
+      <AlternateText>Picking Sample</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Geometry\Images\MassCollisionsSample.jpg">
+      <ImageId>MassCollisionsSample</ImageId>
+      <AlternateText>MassCollisionsSample</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Geometry\Images\FrustumCullingSampleTop.jpg">
+      <ImageId>FrustumCullingSampleTop</ImageId>
+      <AlternateText>FrustumCullingSample (Top View)</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Geometry\Images\FrustumCullingSampleCamera.jpg">
+      <ImageId>FrustumCullingSampleCamera</ImageId>
+      <AlternateText>FrustumCullingSample (Camera)</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Geometry\Images\ConvexHullSample.jpg">
+      <ImageId>ConvexHullSample</ImageId>
+      <AlternateText>Convex Hull and Oriented Bounding Box</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Geometry\Images\CollisionDetectionSample.jpg">
+      <ImageId>CollisionDetectionSample</ImageId>
+      <AlternateText>Collision Detection Sample</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Geometry\Images\CharacterControllerSample.jpg">
+      <ImageId>CharacterControllerSample</ImageId>
+      <AlternateText>Character Controller Sample</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DigitalRune.Geometry\Images\TouchingContact.png">
+      <ImageId>TouchingContact</ImageId>
+      <AlternateText>Touching Contact</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Geometry\Images\SeparatedContact.png">
+      <ImageId>SeparatedContact</ImageId>
+      <AlternateText>Separated Objects</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Geometry\Images\RayHit.png">
+      <ImageId>RayHit</ImageId>
+      <AlternateText>Ray Hit</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Geometry\Images\PenetratingContact.png">
+      <ImageId>PenetratingContact</ImageId>
+      <AlternateText>Penetrating Contact</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DigitalRune.Geometry\Images\ContactSet.png">
+      <ImageId>ContactSet</ImageId>
+      <AlternateText>Contact Set</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Physics-Small.gif">
+      <ImageId>LogoPhysicsSmall</ImageId>
+      <AlternateText>DigitalRune Physics</AlternateText>
+    </Image>
+    <Image Include="Images\Physics.gif">
+      <ImageId>LogoPhysics</ImageId>
+      <AlternateText>DigitalRune Physics</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Class Diagrams\Physics.png">
+      <ImageId>ClassDiagramPhysics</ImageId>
+      <AlternateText>DigitalRune.Physics</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Physics.ForceEffects.png">
+      <ImageId>ClassDiagramPhysicsForceEffects</ImageId>
+      <AlternateText>DigitalRune.Physics.ForceEffects</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Physics.Constraints_Motors.png">
+      <ImageId>ClassDiagramPhysicsConstraintsMotors</ImageId>
+      <AlternateText>DigitalRune.Physics.Constraints (Motors)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Physics.Constraints_Limits.png">
+      <ImageId>ClassDiagramPhysicsConstraintsLimits</ImageId>
+      <AlternateText>DigitalRune.Physics.Constraints (Limits)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Physics.Constraints_Joints.png">
+      <ImageId>ClassDiagramPhysicsConstraintsJoints</ImageId>
+      <AlternateText>DigitalRune.Physics.Constraints (Joints)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Physics.Constraints.png">
+      <ImageId>ClassDiagramPhysicsConstraints</ImageId>
+      <AlternateText>DigitalRune.Physics.Constraints</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Class Diagrams\Physics.Materials_Combiner.png">
+      <ImageId>ClassDiagramPhysicsMaterialsCombiner</ImageId>
+      <AlternateText>DigitalRune.Physics.Materials (Combiner)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Physics.Materials.png">
+      <ImageId>ClassDiagramPhysicsMaterials</ImageId>
+      <AlternateText>DigitalRune.Physics.Materials</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Class Diagrams\Physics.Settings.png">
+      <ImageId>ClassDiagramPhysicsSettings</ImageId>
+      <AlternateText>DigitalRune.Physics.Settings</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DigitalRune.Geometry\Images\DiscreteCD.jpg">
+      <ImageId>DiscreteCD</ImageId>
+      <AlternateText>Discrete Collision Detection</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Geometry\Images\ContinuousCollisionDetectionSample.jpg">
+      <ImageId>CCDSample</ImageId>
+      <AlternateText>Continuous Collision Detection Sample</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Geometry\Images\CCD.jpg">
+      <ImageId>ContinuousCD</ImageId>
+      <AlternateText>Continuous Collision Detection</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DigitalRune.Physics\Images\ConstraintAnchors.jpg">
+      <ImageId>ConstraintAnchors</ImageId>
+      <AlternateText>Constraint Anchors</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DigitalRune.Physics\Images\Sample-Wall.jpg">
+      <ImageId>SampleWall</ImageId>
+      <AlternateText>A Wall of Boxes</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Physics\Images\Sample-Shapes.jpg">
+      <ImageId>SampleShapes</ImageId>
+      <AlternateText>Different Shapes</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Physics\Images\Sample-Rope.jpg">
+      <ImageId>SampleRope</ImageId>
+      <AlternateText>Rope</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Physics\Images\Sample-Materials.jpg">
+      <ImageId>SampleMaterials</ImageId>
+      <AlternateText>Different Materials</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Physics\Images\Sample-Gravity.jpg">
+      <ImageId>SampleGravity</ImageId>
+      <AlternateText>A Custom Gravity Effect</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Physics\Images\Sample-Character.jpg">
+      <ImageId>SampleCharacter</ImageId>
+      <AlternateText>Character Controller</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Physics\Images\Sample-Bridge.jpg">
+      <ImageId>SampleBridge</ImageId>
+      <AlternateText>A Suspension Bridge</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Unblock-Zip.png">
+      <ImageId>Unblock-Zip</ImageId>
+      <AlternateText>Unblock-Zip</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Class Diagrams\DigitalRune_ResourcePooling.png">
+      <ImageId>ClassDiagramResourcePooling</ImageId>
+      <AlternateText>DigitalRune (Resource Pooling)</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Class Diagrams\DigitalRune.Threading.png">
+      <ImageId>ClassDiagramThreading</ImageId>
+      <AlternateText>DigitalRune.Threading</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DigitalRune.Geometry\Images\XNAContentPipelineSample.jpg">
+      <ImageId>XNAContentPipelineSample</ImageId>
+      <AlternateText>XNA Content Pipeline Samples</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DigitalRune.Physics\Images\Sample-WP7-Ragdoll.jpg">
+      <ImageId>Sample-WP7-Ragdoll</ImageId>
+      <AlternateText>Ragdoll on Windows Phone 7</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Physics\Images\Sample-WP7.jpg">
+      <ImageId>Sample-WP7</ImageId>
+      <AlternateText>Physics on Windows Phone 7</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DigitalRune.Physics\Images\Sample-Performance.jpg">
+      <ImageId>Sample-Performance</ImageId>
+      <AlternateText>Performance Test</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Physics\Images\Sample-HeightField.jpg">
+      <ImageId>Sample-HeightField</ImageId>
+      <AlternateText>A Height Field</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Class Diagrams\DigitalRune.Animation.png">
+      <ImageId>ClassDiagramAnimationInterfaces</ImageId>
+      <AlternateText>DigitalRune.Animation</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Physics\Images\Sample-LargeTriangleMesh.jpg">
+      <ImageId>Sample-LargeTriangleMesh</ImageId>
+      <AlternateText>A Complex Triangle Mesh</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Class Diagrams\Physics.Specialized_Vehicles.png">
+      <ImageId>ClassDiagramPhysicsSpecializedVehicles</ImageId>
+      <AlternateText>DigitalRune.Physics.Specialized (Vehicles)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Physics.Specialized_CharacterControllers.png">
+      <ImageId>ClassDiagramPhysicsSpecializedCharacterControllers</ImageId>
+      <AlternateText>DigitalRune.Physics.Specialized (Character Controllers)</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DigitalRune.Physics\Images\Sample-Avatar-Ragdoll.jpg">
+      <ImageId>SampleAvatarRagdoll</ImageId>
+      <AlternateText>Sample-Avatar-Ragdoll</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DigitalRune.Physics\Images\Sample-Vehicle.jpg">
+      <ImageId>SampleVehicle</ImageId>
+      <AlternateText>Sample-Vehicle</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Class Diagrams\Game.Input.png">
+      <ImageId>ClassDiagramGameInput</ImageId>
+      <AlternateText>DigitalRune.Game.Input</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Class Diagrams\Game.Timing.png">
+      <ImageId>ClassDiagramGameTiming</ImageId>
+      <AlternateText>DigitalRune.Game.Timing</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Game.States.png">
+      <ImageId>ClassDiagramGameStates</ImageId>
+      <AlternateText>DigitalRune.Game.States</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Game (GameObjects).png">
+      <ImageId>ClassDiagramGameObjects</ImageId>
+      <AlternateText>DigitalRune.Game (Game Objects)</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DigitalRune.Game.UI\Images\ControlsSample-Aero.jpg">
+      <ImageId>ControlsSample-Aero</ImageId>
+      <AlternateText>Controls sample using the Aero theme</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Game.UI\Images\ControlsSample-Neoforce.jpg">
+      <ImageId>ControlsSample-Neoforce</ImageId>
+      <AlternateText>Controls sample using the Neoforce theme</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Game.UI\Images\GameMenuSample.jpg">
+      <ImageId>GameMenuSample</ImageId>
+      <AlternateText>Game menu in Xbox 360 game</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Game.UI\Images\InGameUISample.jpg">
+      <ImageId>InGameUISample</ImageId>
+      <AlternateText>Rendering an interactive GUI in a 3D scene</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Game.UI\Images\WindowsPhoneSample.jpg">
+      <ImageId>WindowsPhoneSample</ImageId>
+      <AlternateText>GUI controls running on Windows Phone 7</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Animation_Timelines.png">
+      <ImageId>ClassDiagramAnimationTimelines</ImageId>
+      <AlternateText>Animation Timelines</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Animation_Key-Frame.png">
+      <ImageId>ClassDiagramKeyFrameAnimations</ImageId>
+      <AlternateText>Animation Key-Frame</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Animation_From-To-By.png">
+      <ImageId>ClassDiagramFromToByAnimations</ImageId>
+      <AlternateText>Animation From-To-By</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Animation_Curve-based.png">
+      <ImageId>ClassDiagramAnimationCurves</ImageId>
+      <AlternateText>Animation Curve-based</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Animation_Composite.png">
+      <ImageId>ClassDiagramCompositeAnimations</ImageId>
+      <AlternateText>Animation Composite</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Animation_Animatable.png">
+      <ImageId>ClassDiagramAnimatables</ImageId>
+      <AlternateText>Animation Animatable</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Animation.Transitions.png">
+      <ImageId>ClassDiagramAnimationTransitions</ImageId>
+      <AlternateText>Animation.Transitions</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Animation.Traits.png">
+      <ImageId>ClassDiagramAnimationTraits</ImageId>
+      <AlternateText>Animation.Traits</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Animation.png">
+      <ImageId>ClassDiagramAnimation</ImageId>
+      <AlternateText>Animation</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Animation.Easing.png">
+      <ImageId>ClassDiagramAnimationEasing</ImageId>
+      <AlternateText>Animation.Easing</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Animation.Character_Mapping.png">
+      <ImageId>ClassDiagramAnimationCharacterMapping</ImageId>
+      <AlternateText>Animation.Character Mapping</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Animation.Character_IK.png">
+      <ImageId>ClassDiagramAnimationCharacterIK</ImageId>
+      <AlternateText>Animation.Character IK</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Animation.Character_Avatars.png">
+      <ImageId>ClassDiagramAnimationCharacterAvatars</ImageId>
+      <AlternateText>Animation.Character Avatars</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Animation.Character.png">
+      <ImageId>ClassDiagramAnimationCharacter</ImageId>
+      <AlternateText>Animation.Character</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Game.UI\Images\UIAnimationSample.jpg">
+      <ImageId>UIAnimationSample</ImageId>
+      <AlternateText>Animated GUI using DigitalRune Game UI and Animation</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Animation\Images\AnimationSample.jpg">
+      <ImageId>AnimationSample</ImageId>
+      <AlternateText>Basic Animations using DigitalRune Animation</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Game.Input_Commands.png">
+      <ImageId>ClassDiagramGameInputCommands</ImageId>
+      <AlternateText>DigitalRune.Game.Input (Input Commands)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Game.UI.Controls_RangeControls.png">
+      <ImageId>ClassDiagramGameUIControlsRangeControls</ImageId>
+      <AlternateText>DigitalRune.Game.UI.Controls (Range Controls)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Game.UI.Controls_General.png">
+      <ImageId>ClassDiagramGameUIControlsGeneral</ImageId>
+      <AlternateText>DigitalRune.Game.UI.Controls (General)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Game.UI.Controls_ContentControls.png">
+      <ImageId>ClassDiagramGameUIControlsContentControls</ImageId>
+      <AlternateText>DigitalRune.Game.UI.Controls (Content Controls)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Game.UI.Controls_Buttons.png">
+      <ImageId>ClassDiagramGameUIControlsButtons</ImageId>
+      <AlternateText>DigitalRune.Game.UI.Controls (Buttons)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Game.UI.Rendering.png">
+      <ImageId>ClassDiagramGameUIRendering</ImageId>
+      <AlternateText>DigitalRune.Game.UI.Rendering</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Game.UI.png">
+      <ImageId>ClassDiagramGameUI</ImageId>
+      <AlternateText>DigitalRune.Game.UI</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Game.UI.Controls.png">
+      <ImageId>ClassDiagramGameUIControls</ImageId>
+      <AlternateText>DigitalRune.Game.UI.Controls</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Game.UI.Consoles.png">
+      <ImageId>ClassDiagramGameUIConsoles</ImageId>
+      <AlternateText>Game.UI.Consoles</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DigitalRune.Animation\Images\AvatarSample.jpg">
+      <ImageId>AvatarSample</ImageId>
+      <AlternateText>Animating Xbox LIVE Avatars</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DigitalRune.Animation\Images\CharacterAnimationSample-SkeletonMappping.jpg">
+      <ImageId>CharacterAnimationSample-SkeletonMappping</ImageId>
+      <AlternateText>Motion retargeting using the SkeletonMapper class</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Animation\Images\CharacterAnimationSample-SkeletonInfo.jpg">
+      <ImageId>CharacterAnimationSample-SkeletonInfo</ImageId>
+      <AlternateText>Character skeletons are displayed for debugging</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Animation\Images\CharacterAnimationSample-LookAt.jpg">
+      <ImageId>CharacterAnimationSample-LookAt</ImageId>
+      <AlternateText>A character looking at a target using Inverse Kinematics</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Class Diagrams\ServiceLocation.png">
+      <ImageId>ClassDiagramServiceLocation</ImageId>
+      <AlternateText>Service Location</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Graphics.gif">
+      <ImageId>LogoGraphics</ImageId>
+      <AlternateText>DigitalRune Graphics</AlternateText>
+    </Image>
+    <Image Include="Images\Graphics-Small.gif">
+      <ImageId>LogoGraphicsSmall</ImageId>
+      <AlternateText>DigitalRune Graphics</AlternateText>
+    </Image>
+    <Image Include="Images\Game-UI-Small.gif">
+      <ImageId>LogoGameUISmall</ImageId>
+      <AlternateText>DigitalRune Game UI</AlternateText>
+    </Image>
+    <Image Include="Images\Game-UI.gif">
+      <ImageId>LogoGameUI</ImageId>
+      <AlternateText>DigitalRune Game UI</AlternateText>
+    </Image>
+    <Image Include="Images\Game-Small.gif">
+      <ImageId>LogoGameSmall</ImageId>
+      <AlternateText>DigitalRune Game</AlternateText>
+    </Image>
+    <Image Include="Images\Game.gif">
+      <ImageId>LogoGame</ImageId>
+      <AlternateText>DigitalRune Game</AlternateText>
+    </Image>
+    <Image Include="Images\Base-Small.gif">
+      <ImageId>LogoBaseSmall</ImageId>
+      <AlternateText>DigitalRune Base</AlternateText>
+    </Image>
+    <Image Include="Images\Base.gif">
+      <ImageId>LogoBase</ImageId>
+      <AlternateText>DigitalRune Base</AlternateText>
+    </Image>
+    <Image Include="Images\Animation-Small.gif">
+      <ImageId>LogoAnimationSmall</ImageId>
+      <AlternateText>DigitalRune Animation</AlternateText>
+    </Image>
+    <Image Include="Images\Animation.gif">
+      <ImageId>LogoAnimation</ImageId>
+      <AlternateText>DigitalRune Animation</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Particles-Small.gif">
+      <ImageId>LogoParticlesSmall</ImageId>
+      <AlternateText>DigitalRune Particles</AlternateText>
+    </Image>
+    <Image Include="Images\Particles.gif">
+      <ImageId>LogoParticles</ImageId>
+      <AlternateText>DigitalRune Particles</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DigitalRune.Game.UI\Images\TilingSample.jpg">
+      <ImageId>TilingSample</ImageId>
+      <AlternateText>Tiling Sample</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Game.UI\Images\GameStateSample.jpg">
+      <ImageId>GameStateSample</ImageId>
+      <AlternateText>Game State Sample</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Game.UI\Images\CustomControlSample.jpg">
+      <ImageId>CustomControlSample</ImageId>
+      <AlternateText>Custom Control Sample</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Class Diagrams\Particles.png">
+      <ImageId>ClassDiagramParticles</ImageId>
+      <AlternateText>DigitalRune.Particles</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Mathematics.Statistics_Distributions.png">
+      <ImageId>ClassDiagramStatisticsDistributions</ImageId>
+      <AlternateText>DigitalRune.Mathematics.Statistics (Distributions)</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\Class Diagrams\Particles_Misc.png">
+      <ImageId>ClassDiagramParticlesMisc</ImageId>
+      <AlternateText>DigitalRune.Particles (Misc)</AlternateText>
+    </Image>
+    <Image Include="Images\Class Diagrams\Particles.Effectors.png">
+      <ImageId>ClassDiagramParticlesEffectors</ImageId>
+      <AlternateText>DigitalRune.Particles.Effectors</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DigitalRune.Particles\Images\Waterfall.jpg">
+      <ImageId>ParticlesSampleWaterfall</ImageId>
+      <AlternateText>Waterfall</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Particles\Images\Ribbon.jpg">
+      <ImageId>ParticlesSampleRibbon</ImageId>
+      <AlternateText>Ribbon</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Particles\Images\Flamejet.jpg">
+      <ImageId>ParticlesSampleFlamejet</ImageId>
+      <AlternateText>Flamejet</AlternateText>
+    </Image>
+    <Image Include="DigitalRune.Particles\Images\Fire-and-Smoke.jpg">
+      <ImageId>ParticlesSampleCampfire</ImageId>
+      <AlternateText>Fire-and-Smoke</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DigitalRune.Particles\Images\BasicSample.jpg">
+      <ImageId>ParticlesSampleBasic</ImageId>
+      <AlternateText>A basic particle effect</AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Tokens Include="Links.tokens" />
+  </ItemGroup>
+  <!-- Import the SHFB build targets -->
+  <Import Project="$(SHFBROOT)\SandcastleHelpFileBuilder.targets" />
+</Project>

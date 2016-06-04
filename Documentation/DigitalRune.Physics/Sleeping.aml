@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="059ddf90-e473-470c-a59c-ee26feff7d12" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This section explains the simulation concept of sleeping.</para>
+        </introduction>
+
+
+        <section address="Sleeping">
+            <title>Sleeping</title>
+            <content>
+                <para>
+                    Sleeping is also known as deactivation: Rigid bodies that do not move for
+                    a certain amount of time are deactivated ("put to sleep"). The simulation will
+                    do less work for sleeping bodies which results in a performance gain. Bodies
+                    are also put to sleep if they have a very low velocity for a certain duration.
+                    The velocity of sleeping bodies is clamped to zero, which means that sleeping
+                    also improves the simulation stability by removing small (possible erroneous) velocities.
+                </para>
+                <para>
+                    Rigid bodies will start to sleep if their linear velocity is below a threshold for
+                    a certain time. The exact settings can be configured in
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Settings.SleepingSettings</codeEntityReference>
+                    (see <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Simulation.Settings</codeEntityReference>).
+                </para>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.RigidBody</codeEntityReference>
+                    class also has several sleep related methods and properties, see
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.CanSleep</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.IsSleeping</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Physics.RigidBody.Sleep</codeEntityReference> and
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Physics.RigidBody.WakeUp</codeEntityReference>.
+                    Rigid bodies wake up automatically when important properties, such as the shape or mass, are changed.
+                </para>
+                <para>
+                    <link xlink:href="fae52e31-ede2-451e-b107-e42db486d69c" />
+                    can only sleep as a whole. It is not possible that some bodies in
+                    an island are sleeping and others are awake. If one object is awake, all
+                    objects are awake because the movement of the active body can propagate to
+                    the other bodies. In unfortunate configurations a jittering body can
+                    keep a whole island awake.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <codeEntityReference qualifyHint="true">T:DigitalRune.Physics.RigidBody</codeEntityReference>
+            <codeEntityReference qualifyHint="true">T:DigitalRune.Physics.Settings.SleepingSettings</codeEntityReference>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

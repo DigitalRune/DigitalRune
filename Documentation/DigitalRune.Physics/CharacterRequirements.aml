@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="eae2c109-980c-43e4-aaaf-0448e8f388a4" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This article discusses the requirements of a 3D character controller for games.
+            </para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+        <section address="Functional">
+            <title>Functional requirements</title>
+            <content>
+                <para>
+                    A character controller should support following functions:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <legacyBold>Teleport:</legacyBold>
+                            The first requirement is teleport because the character controller must be
+                            set to its initial position. A teleport sets the character to a new position. It
+                            doesn't matter where it was previously and if there are obstacles between the old
+                            and new position.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Recover from penetrations:</legacyBold>
+                            Trusting
+                            <externalLink>
+                                <linkText>Murphy's Law</linkText>
+                                <linkUri>http://en.wikipedia.org/wiki/Murphy's_law</linkUri>
+                            </externalLink>
+                            we can safely assume that each teleport brings the character into a position
+                            where it penetrates other objects. So it is good if the character controller has the
+                            ability to find a valid, non-penetrating position near the desired position.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Move:</legacyBold>
+                            This is the basic operation that moves the character from its current position to
+                            its new position with a method that is often called "collide and slide" or "bump and
+                            slide". The character should stop before obstacles and slide along the obstacles to
+                            get as near to the desired position as possible without penetrating other solid objects.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Jump, Gravity:</legacyBold>
+                            The player should be able to jump. There should be a restricted maneuverability
+                            (jump height and direction) while in the air. When the character does not touch the
+                            ground it should fall due to gravity.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Slope Limit:</legacyBold>
+                            The character should slide up and down inclined planes. There should be an inclination
+                            limit. Steep planes cannot be climbed. If slope limits are not supported, the level
+                            designer must place invisible walls to stop the player. (Even if slope limits are supported
+                            invisible walls are probably a good idea. Players will find all glitches.)
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Step Up and Step Height Limit:</legacyBold>
+                            The character should automatically step onto/over small obstacles. Stairs should
+                            also be no problem. There must be a limit for the maximal step height. If stepping
+                            up is not supported, the collision objects of stairs must be inclined planes.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Step Down:</legacyBold>
+                            Stepping down sounds superfluous because the character will fall automatically -
+                            but stepping down is essential. In real life humans walking down stairs do not
+                            step into the air and let themselves fall down, they bend their knees and actively
+                            step down to touch the ground. If stepping down is not supported, a character
+                            moving down stairs or inclined planes will not move down smoothly. Instead it
+                            will bounce down on short ballistic curves and look very silly.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Modes:</legacyBold>
+                            The character controller should support different operation modes, depending on
+                            whether collisions and gravity are enabled:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                Collisions disabled, gravity disabled => Ghost mode. The character can fly
+                                and move through objects. Very useful for debugging.
+                            </listItem>
+                            <listItem>
+                                Collision enabled, gravity disabled => Fly mode. The character can fly
+                                and slides along obstacles.
+                            </listItem>
+                            <listItem>
+                                Collision enabled, gravity enabled => Walk mode. This is the normal
+                                mode where the character walks on the ground.
+                            </listItem>
+                        </list>
+                        <para>
+                            Theoretically there is a fourth mode:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                Collisions disabled, gravity enabled => Falling mode. The character falls due to
+                                gravity and nothing stops him because collisions are disabled - not very useful.
+                            </listItem>
+                        </list>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Collision Filtering:</legacyBold>
+                            It must be possible to define with which objects the character will collide and
+                            which are ignored.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Advanced Functions:</legacyBold>
+                            The above functions cover the basics. A lot of other functions are desirable:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                Changing the height of the character controller, crouching
+                                Before a character stands up, it must be checked if there is enough room to
+                                stand up.
+                            </listItem>
+                            <listItem>
+                                Swimming
+                            </listItem>
+                            <listItem>
+                                Climbing
+                            </listItem>
+                            <listItem>
+                                IK for hands and feet
+                            </listItem>
+                            <listItem>
+                                Pushing dynamic objects and being pushed
+                            </listItem>
+                            <listItem>
+                                Moving with elevators or conveyor belts
+                            </listItem>
+                            <listItem>
+                                Additional movement smoothing
+                            </listItem>
+                            <listItem>
+                                Etc.
+                            </listItem>
+                        </list>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Qualitative">
+            <title>Non-functional/qualitative requirements</title>
+            <content>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <legacyBold>Avoid penetrations:</legacyBold>
+                            The character should not penetrate solid objects. But: A small amount
+                            of penetration should be allowed for stability reasons.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Avoid tunneling:</legacyBold>
+                            Fast moving characters should not "tunnel" through thin or fast moving objects.
+                            That means, all collisions must be detected.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Avoid jitter:</legacyBold>
+                            The character controller should not jitter when running into a limit, e.g.
+                            when running against a steep plane or into a sharp corner.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Avoid getting stuck:</legacyBold>
+                            The character should not get into situations where it cannot move anymore. A
+                            situation where a character controller might get stuck, looks like this:
+                        </para>
+                        <mediaLink>
+                            <image xlink:href="Character-Stuck"/>
+                        </mediaLink>
+                        <para>
+                            Many games have auto-unstuck features to
+                            move the character to a safe position once he gets stuck.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Limit the maximal velocity:</legacyBold>
+                            The maximal velocity or movement per frame must be limited to avoid glitches.
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Course">
+            <title>Test obstacle course</title>
+            <content>
+                <para>
+                    To test our character controller implementations we have use an obstacle course.
+                    In the course we test the following:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Movement over small obstacles on the floor.
+                    </listItem>
+                    <listItem>
+                        Moving up/down stairs with steps of different height.
+                    </listItem>
+                    <listItem>
+                        Moving up/down inclined planes with different angles.
+                    </listItem>
+                    <listItem>
+                        Sliding down planes above the slope limit.
+                    </listItem>
+                    <listItem>
+                        Sliding along a wall and other objects.
+                    </listItem>
+                    <listItem>
+                        Running full speed into paper-thin objects.
+                    </listItem>
+                    <listItem>
+                        Movement over height fields and meshes.
+                    </listItem>
+                    <listItem>
+                        Running into corners.
+                    </listItem>
+                    <listItem>
+                        Obstacles where the character controller could get stuck.
+                    </listItem>
+                    <listItem>
+                        Crouching and trying to stand up in places where there is not enough
+                        room to stand up.
+                    </listItem>
+                    <listItem>
+                        Running and jumping with inclined obstacles above the character.
+                    </listItem>
+                    <listItem>
+                        Sliding down planes/stairs while sliding against a wall.
+                    </listItem>
+                    <listItem>
+                        Moving/jumping diagonal. (Diagonal movement should not be
+                        faster than straight movement.)
+                    </listItem>
+                    <listItem>
+                        Etc.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

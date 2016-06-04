@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="6268b551-b34f-47a4-9513-d7ba700f08fe" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This article discusses how you can define collision shapes for a 3D model. This sample can
+                be found in the <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />.
+            </para>
+            <para>
+                In almost all 3D games collisions between complex shaped objects must be detected. For
+                collision detection the triangle meshes can be used directly but this is a lot slower than
+                using boxes, spheres or convex shapes. Therefore, for each model a collision model should
+                be created that consists only of simple primitives. This collection of shapes approximates
+                the shape of the detailed 3D graphics model. This article discusses how we can use the XNA
+                content pipeline to load shapes from a collision model created in a 3D modeling tool.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="GraphicsModel">
+            <title>The graphics model</title>
+            <content>
+                <para>
+                    Here is a space ship model from the opened in
+                    <externalLink>
+                        <linkText>Blender</linkText>
+                        <linkUri>http://www.blender.org/</linkUri>
+                    </externalLink>:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Collision-Model-01"/>
+                </mediaLink>
+                <para>
+                    The model consists of several thousand faces – not ideal for collision detection.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="CollisionModel">
+            <title>The collision model</title>
+            <content>
+                <para>
+                    For practical collision detection we have created a collision model that consists only
+                    of a few boxes, spheres and convex shapes. It is a crude approximation of the detailed
+                    graphics model – but sufficiently detailed for most cases.
+                </para>
+                <mediaLink>
+                    <image xlink:href="Collision-Model-02"/>
+                </mediaLink>
+                <para>
+                    Using a 3D modeling tool for placing the approximated collision shapes is a lot more
+                    practical than defining the collision shapes in source code.
+                </para>
+                <para>
+                    Next, we need a way to load this data in our XNA game. With the standard XNA model
+                    processor we can load the model but at runtime this leaves us only with the triangle mesh
+                    data. What we really need are boxes, spheres, etc. Therefore, we need a custom content
+                    processor for the XNA content pipeline.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Naming">
+            <title>Naming scheme</title>
+            <content>
+                <para>
+                    When a collision model is imported in the content pipeline, triangle mesh data is
+                    imported. That means, instead of a box the content processor sees a triangle mesh with
+                    8 vertices. To make the work easier for our content processor we apply a naming scheme to
+                    the collision model that is created in Blender. The name of each box collision shape ends
+                    with "Box"; for example "LeftFin_Box". Similarly, each sphere is named "XxxSphere" and
+                    each convex shape is named "XxxConvex". This naming scheme allows the content processor to
+                    know which shape it must create for each mesh in the model.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Sample">
+            <title>Sample</title>
+            <content>
+                <para>
+                    For source code examples, please have a look a the
+                    <legacyItalic>ContentPipelineSample</legacyItalic> of the
+                    <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />.
+                </para>
+                <para>
+                    Here is screenshot of the example. The model that is used for the fancy graphics.
+                </para>
+                <mediaLink>
+                    <image xlink:href="Collision-Model-03"/>
+                </mediaLink>
+                <para>
+                    The collision model that is used for collision detection:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Collision-Model-04"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="b035aaae-87fb-48c6-86de-e30024ec9a89" revisionNumber="1">
+    <developerConceptualDocument
+      xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                Advanced graphics and HiDef effects, like post-processing, require special shaders
+                and lookup textures. These assets come pre-built for each platform and can be found
+                in this folder:
+            </para>
+            <list class="nobullet">
+                <listItem>
+                    <localUri>
+                        <![CDATA[<DigitalRune Engine Folder>\Content\]]>
+                    </localUri>
+                </listItem>
+            </list>
+        </introduction>
+
+
+        <section address="Include">
+            <title>Add DigitalRune Graphics content</title>
+            <content>
+                <list class="ordered">
+                    <listItem>
+                        In the <ui>Solution Explorer</ui> right-click the <localUri>MyGame</localUri> solution.
+                    </listItem>
+                    <listItem>
+                        Select <ui>Add | Existing Project…</ui>
+                    </listItem>
+                    <listItem>
+                        Browse to
+                        <list class="nobullet">
+                            <listItem>
+                                <localUri>
+                                    <![CDATA[<DigitalRune Engine Folder>\Content\XNA\Windows]]>
+                                </localUri>
+                            </listItem>
+                        </list>
+                    </listItem>
+                    <listItem>
+                        Select <localUri>DigitalRune.Graphics (Windows).contentproj</localUri> and click
+                        <ui>Open</ui>.
+                    </listItem>
+                    <listItem>
+                        In the <ui>Solution Explorer</ui> right-click the <localUri>MyGame</localUri> project.
+                    </listItem>
+                    <listItem>
+                        Select <ui>Add Content Reference…</ui>
+                    </listItem>
+                    <listItem>
+                        Select DigitalRune.Graphics (Windows).contentproj and click OK.
+                    </listItem>
+                </list>
+                <para>
+                    A content project is added to the solution which contains several pre-build assets
+                    (effects and lookup textures) in XNB format. The content project does not build
+                    anything, it only copies the *.xnb files to the output folder of your project.
+                </para>
+                <mediaLink>
+                    <image xlink:href="Tutorial-01-24"/>
+                </mediaLink>
+                <para>
+                    Let's run the project and check if the post-processing is working:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Tutorial-01-25"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Next">
+            <title>Next</title>
+            <content>
+                <para>
+                    <link xlink:href="77f82858-2022-41f9-9325-9a4d97b5450d" />
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

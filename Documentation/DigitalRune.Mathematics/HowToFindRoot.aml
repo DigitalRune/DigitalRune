@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="f2ee69ec-0e54-4acd-a9e7-bd645644a05d" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This section shows how to solve a non-linear equation.</para>
+        </introduction>
+
+
+        <section address="Namespaces">
+            <title>Add DigitalRune.Mathematics namespaces</title>
+            <content>
+                <para>
+                    This example will use the class
+                    <codeEntityReference>T:DigitalRune.Mathematics.Analysis.ImprovedNewtonRaphsonMethodF</codeEntityReference>
+                    of the namespace
+                    <codeEntityReference>N:DigitalRune.Mathematics.Analysis</codeEntityReference>
+                    to find a solution for a linear equation.
+                    The samples will also use the type
+                    <codeEntityReference>T:DigitalRune.Mathematics.Numeric</codeEntityReference>
+                    of the namespace
+                    <codeEntityReference>N:DigitalRune.Mathematics</codeEntityReference>.
+                    These namespace must be imported at the beginning of the source code file:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+using DigitalRune.Mathematics;
+using DigitalRune.Mathematics.Analysis;
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section>
+            <title>Solve a non-linear equation</title>
+            <content>
+                <para>
+                    We want to find an <math>x</math> that satisfies this non-linear equation:
+                </para>
+                <para>
+                    <math>4x³ - 5x² + 3x - 4 = 7</math>, or
+                </para>
+                <para>
+                    <math>Foo(x) = 7</math> with <math>Foo(x) = 4x³ - 5x² + 3x - 4</math>
+                </para>
+                <para>
+                    Therefore, we use the class
+                    <codeEntityReference>T:DigitalRune.Mathematics.Analysis.ImprovedNewtonRaphsonMethodF</codeEntityReference>.
+                    This class can solve the problem if the first order derivative of <math>Foo(x)</math>
+                    is known. In our case, the first order derivative is easy to compute as:
+                </para>
+                <para>
+                    <math>Foo'(x) = 12x² - 10x + 3</math>
+                </para>
+                <para>
+                    If the first derivative is not known, other classes of
+                    <codeEntityReference>N:DigitalRune.Mathematics.Analysis</codeEntityReference>
+                    can be used which implement root finding algorithms that do not
+                    require the first order derivative.
+                </para>
+                <para>
+                    In our code we define methods for <math>Foo(x)</math> and <math>Foo'(x)</math>:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+private static float Foo(float x)
+{
+  return 4 * x * x * x - 5 * x * x + 3 * x - 4;
+}
+
+private static float FooDerived(float x)
+{
+  return 12 * x * x  - 10 * x  + 3;
+}
+]]>
+                </code>
+                <para>
+                    Then, we create an instance of the root finding algorithm:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+ImprovedNewtonRaphsonMethodF rootFinder = new ImprovedNewtonRaphsonMethodF(Foo, FooDerived);
+]]>
+                </code>
+                <para>
+                    Next, we need to define an interval
+                    <math>
+                        [x<subscript>0</subscript>, x<subscript>1</subscript>]
+                    </math>
+                    that contains the desired solution. Several solutions could exist for
+                    the linear equation and the interval defines in which solutions we are
+                    interested. We are looking for a solution near <math>x = 0</math>. The root finder can
+                    estimate an interval for us that contains the solution:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+float x0 = 0;
+float x1 = 0;
+rootFinder.ExpandBracket(ref x0, ref x1, 7);
+]]>
+                </code>
+                <para>
+                    The solution is then computed with
+                </para>
+                <code language="c#">
+                    <![CDATA[
+float x = rootFinder.FindRoot(x0, x1, 7);
+]]>
+                </code>
+                <para>
+                    Finally, we check if the solution is correct. We use the class
+                    <codeEntityReference>T:DigitalRune.Mathematics.Numeric</codeEntityReference>
+                    to test if <math>Foo(x) = 7</math> as it should be. We could directly
+                    make the comparison with <codeInline>Foo(x) == 7</codeInline> (in C#).
+                    But directly comparing floating-point numbers is not recommended because
+                    tiny numerical errors will cause <codeInline>Foo(x)</codeInline> to be,
+                    for example, <codeInline>7.000007</codeInline> - which is unequal to <codeInline>7</codeInline>
+                    but still within a reasonable tolerance.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+if (Numeric.AreEqual(Foo(x), 7))
+  Console.WriteLine("Solution is correct.");
+else
+  Console.WriteLine("Solution is wrong.");
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="f9750444-b26b-4da9-93a1-ec2a31f2ad48" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                Users can interact with charts using mouse and keyboard.
+            </para>
+            <!-- <autoOutline /> -->
+        </introduction>
+        
+        
+        <section address="Behaviors">
+            <title>Behaviors</title>
+            <content>
+                <para>
+                    Mouse and keyboard input is handled by special behaviors. These behaviors are based
+                    on the <legacyBold>Behavior</legacyBold> class in the Expression Blend SDK. The following
+                    behaviors are included in the library:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.Interactivity.AxisPanBehavior</codeEntityReference>
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.Interactivity.AxisZoomBehavior</codeEntityReference>
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.Interactivity.ChartPanBehavior</codeEntityReference>
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.Interactivity.ChartZoomBehavior</codeEntityReference>
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.Interactivity.ChartSelectionBehavior</codeEntityReference>
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.Interactivity.MouseGuidesBehavior</codeEntityReference>
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="HitTesting">
+            <title>Hit testing</title>
+            <content>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.ChartPanel</codeEntityReference>
+                    implements hit testing, for example, for checking whether the mouse cursor hits a 
+                    chart element.
+                </para>
+                <para>
+                    To perform an explicit hit test call <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Windows.Charts.ChartPanel.HitTest(System.Windows.Point)</codeEntityReference>
+                    or one of its overloads. These methods return
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            an <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.AxisHitTestResult</codeEntityReference>
+                            if an element of an axis was hit,
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            a <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.ChartHitTestResult</codeEntityReference>
+                            if an element of a chart was hit,
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            a <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.ChartPanelHitTestResult</codeEntityReference>
+                            if only the chart panel was hit,
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            or <codeInline>null</codeInline> if no part of a chart was hit.
+                        </para>
+                    </listItem>
+                </list>
+                <para>
+                    The methods <codeEntityReference qualifyHint="false" autoUpgrade="false">M:DigitalRune.Windows.Charts.ChartPanel.HitTest(System.Windows.Input.MouseEventArgs)</codeEntityReference>
+                    and <codeEntityReference qualifyHint="false" autoUpgrade="false">M:DigitalRune.Windows.Charts.ChartPanel.HitTest(System.Windows.DragEventArgs)</codeEntityReference>
+                    can be used to convert existing <legacyBold>MouseEventArgs</legacyBold> or
+                    <legacyBold>DragEventArgs</legacyBold> to a hit test result. Converting existing
+                    <legacyBold>EventArgs</legacyBold> to a hit test result is faster than performing a manual hit test!
+                </para>
+                <para>
+                    
+                </para>
+            </content>
+        </section>
+        
+        <relatedTopics></relatedTopics>
+        
+        
+    </developerConceptualDocument>
+</topic>

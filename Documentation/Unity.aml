@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="c819578d-7773-475c-a627-23b4c8b39c0d" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Unity">
+            <title>About Unity</title>
+            <content>
+                <para>
+                    <externalLink>
+                        <linkText>Unity</linkText>
+                        <linkUri>http://unity3d.com/</linkUri>
+                    </externalLink>
+                    is a game development system which supports Mono (with limitations).
+                    Special builds of the DigitalRune assemblies for use with Unity are available.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Limitations">
+            <title>Limitations</title>
+            <content>
+                <para>
+                    The DigitalRune Engine for Unity has the following limitations:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        The XNA-dependent libraries are not available for Unity. These are:
+                        <list class="bullet">
+                            <listItem>
+                                DigitalRune Game UI (<localUri>DigitalRune.Game.Input.dll</localUri>
+                                and <localUri>DigitalRune.Game.UI.dll</localUri>) and
+                            </listItem>
+                            <listItem>
+                                DigitalRune Graphics (<localUri>DigitalRune.Graphics.dll</localUri>).
+                            </listItem>
+                        </list>
+                    </listItem>
+                    <listItem>
+                        The assembly <localUri>DigitalRune.ServiceLocation.dll</localUri> is not available.
+                        If you need a Unity build of this DLL, let us know.
+                    </listItem>
+                    <listItem>
+                        Multithreading is disabled.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Mono">
+            <title>Unity and Mono</title>
+            <content>
+                <para>
+                    The Mono implementation in Unity (v4.x) has some limitations and odd behaviors. Here are a few
+                    things which we have observed:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        .NET assemblies must be built for .NET 3.5, not .NET 4.0.
+                    </listItem>
+                    <listItem>
+                        Mono in the Unity player for the desktop is more powerful than in the Unity web player. This means, everything can work fine in the Unity editor, but crash in the browser.
+                    </listItem>
+                    <listItem>
+                        The web player may crash with an access violation exception if a .NET library uses a standard
+                        .NET construct which is not supported. For example, if a .NET class has a
+                        <legacyBold>SerializableAttribute</legacyBold>, the web player crashes.
+                        <codeInline></codeInline>
+                    </listItem>
+                    <listItem>
+                        Some standard .NET classes are not implemented properly. For example, the classes
+                        <legacyBold>Collection</legacyBold> and <legacyBold>KeyedCollection</legacyBold> are
+                        not properly implemented, and we had to re-implement
+                        them ourselves (or rather get the correct implementation from the Mono project).
+                    </listItem>
+                    <listItem>
+                        Some exceptions which occurred in a <legacyBold>MonoBehavior.Update()</legacyBold> method can be silently
+                        caught. This left the code in an invalid state or caused misleading exceptions in other
+                        parts of the code. We had to move the same code to <legacyBold>MonoBehavior.Start()</legacyBold> to get a helpful exception message.
+                    </listItem>
+                </list>
+                <para>
+                    Apart from the above mentioned limitations, the Unity build of the DigitalRune Engine is a
+                    normal .NET 3.5 build which can be used in .NET/Mono applications. For example, you can
+                    use the same assembly in your Unity game client and in a .NET/Mono game server.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="6df1c8c2-edd1-4334-b830-70111c175aac" revisionNumber="1">
+    <developerConceptualDocument
+      xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                The content pipeline supports occluders for <link xlink:href="cc20d61e-83cb-46c7-a2e2-0841a35043ba" />.
+            </para>
+            <!--<autoOutline>1</autoOutline>-->
+        </introduction>
+
+        <section address="Occluders">
+            <title>Creating occluders in 3D modeling tool</title>
+            <content>
+                <para>
+                    Occluders ("occlusion proxies") are lightweight triangle meshes that are only used during
+                    occlusion culling (see <link xlink:href="cc20d61e-83cb-46c7-a2e2-0841a35043ba" />).
+                    Occluders can be authored in any 3D modeling tool.
+                    Occluders are simply meshes without any special properties (no material required). These
+                    meshes need to have the string <codeInline>"occluder"</codeInline> or
+                    <codeInline>"occlusion"</codeInline> in the name. This tells the content processor that
+                    the geometry is not meant to be rendered at runtime. It will only be used during occlusion
+                    culling.
+                </para>
+                <para>
+                    Large static objects, such as walls, pillars, buildings, hills, mountains, etc., are obvious candidates for occluders.
+                </para>
+                <para>
+                    Example: The following screenshots show two models and the corresponding occluders.
+                </para>
+                <mediaLink>
+                    <caption placement="after" lead="Figure">Meshes for rendering</caption>
+                    <image xlink:href="OcclusionCulling-Models"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after" lead="Figure">Occluders for occlusion culling</caption>
+                    <image xlink:href="OcclusionCulling-Occluders"/>
+                </mediaLink>
+                <para>
+                    Occluders can be stored as part of a model or in a separate model file (e.g. FBX file). The
+                    model processor will automatically recognize occluders by their name.
+                </para>
+                <para>
+                    In general, it is recommended to store occluders as part of a model (mesh + occluder).
+                    This reduces the number of files and reduces the number of scene nodes created at runtime.
+                    When an occluder directly corresponds to a model, as in the screenshots above, it should be
+                    linked ("parented") to that model in the 3D modeling tool.
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <externalLink>
+                            <linkText>Linking/Parenting in Blender</linkText>
+                            <linkUri>http://wiki.blender.org/index.php/Doc:2.6/Manual/Modeling/Objects/Groups_and_Parenting</linkUri>
+                        </externalLink>
+                    </listItem>
+                    <listItem>
+                        <externalLink>
+                            <linkText>Linking/Parenting in 3ds Max</linkText>
+                            <linkUri>http://docs.autodesk.com/3DSMAX/16/ENU/3ds-Max-Help/files/GUID-D5446135-7734-4F9A-A1A1-3564FB89147B.htm</linkUri>
+                        </externalLink>
+                    </listItem>
+                </list>
+                <para>
+                    The content processor will recognize this link when importing the model: When an occluder
+                    (child) is linked to a mesh (parent), the occluder will be stored as a part of the mesh (property
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.Mesh.Occluder</codeEntityReference>).
+                    Otherwise, if the occluder is not linked to any mesh, a separate
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.OccluderNode</codeEntityReference>
+                    will be added to the scene.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

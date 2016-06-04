@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="8710717f-74c1-449a-aae7-c7c22c53b159" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This section explains the steps necessary to add the library to a C#
+                project in Visual Studio.
+            </para>
+        </introduction>
+
+
+        <section address="References">
+            <title>Add references to DigitalRune</title>
+            <content>
+                <para>
+                    Before types of this library can be used in a .NET project, references
+                    to the required assemblies must be added to the project. These are:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <localUri>DigitalRune.dll</localUri>
+                    </listItem>
+                </list>
+                <para>
+                    See <link xlink:href="972bde71-5d0c-46be-8a81-ad0d2cea770a" /> to learn
+                    where these files are located.
+                </para>
+                <para>
+                    To add an assembly reference in Visual Studio in a C# project, follow
+                    these steps:
+                </para>
+                <list class="ordererd">
+                    <listItem>
+                        Open the <ui>Solution Explorer</ui> in Visual Studio.
+                    </listItem>
+                    <listItem>
+                        Right-click the project (or right-click the folder <localUri>References</localUri>
+                        within the project) and choose <ui>Add Reference...</ui>
+                    </listItem>
+                    <listItem>
+                        Select the tab <ui>Browse</ui> and find the folder containing the required
+                        assemblies.
+                    </listItem>
+                    <listItem>
+                        Select the required assembly and click <ui>OK</ui>.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="2e27afb1-6482-4f56-9497-ca903aef3c9f" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This article shows how to implement a particle effector that modifies
+                particle parameters using linear interpolation. (Please note: DigitalRune Particles
+                contains a <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.Effectors.SingleLerpEffector</codeEntityReference>
+                that provides the same functionality.)
+            </para>
+        </introduction>
+
+
+        <section>
+            <title>Creating a custom particle effector</title>
+            <content>
+                <para>
+                    First, we create a new class that inherits from
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleEffector</codeEntityReference>.
+                    Particle effectors can be added to a particle system, and they are
+                    called whenever the particle system is initialized or updated.
+                    Here is the empty class and the namespaces that we will need:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+using System;
+using DigitalRune.Particles;
+
+namespace MyNamespace
+{
+  public class MyLerpEffector : ParticleEffector
+  {
+    // TODO: Add code.
+  }
+}
+]]>
+                </code>
+                <para>
+                    The particle effector in this example should perform a linear interpolation (LERP)
+                    between a start and an end value depending on an interpolation factor.
+                    The start values, end values, and interpolation factors are read from particle
+                    parameters. The interpolation results are written to another particle parameter.
+                </para>
+                <para>
+                    Particle parameters are identified by their name - a string that must be
+                    unique within a particle system. Let's add properties to the particle effector
+                    that let the user configure the particle parameters to use:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+[ParticleParameter(ParticleParameterUsage.In)]
+public string StartParameter { get; set; }
+
+[ParticleParameter(ParticleParameterUsage.In)]
+public string EndParameter { get; set; }
+
+[ParticleParameter(ParticleParameterUsage.In)]
+public string FactorParameter { get; set; }
+
+[ParticleParameter(ParticleParameterUsage.Out)]
+public string ValueParameter { get; set; }
+]]>
+                </code>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleParameterAttribute</codeEntityReference>
+                    provides meta-information for particle editors and validation. The attributes indicate
+                    which parameters are used as input and which are used as output.
+                </para>
+                <para>
+                    Particle effectors should be cloneable. The following two methods must be
+                    overridden to support cloning:
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.CreateInstanceCore</codeEntityReference>
+                    must return a new instance of the particle effector and
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.CloneCore(DigitalRune.Particles.ParticleEffector)</codeEntityReference>
+                    must copy all important properties:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+protected override ParticleEffector CreateInstanceCore()
+{
+  return new MyLerpEffector();
+}
+
+protected override void CloneCore(ParticleEffector source)
+{
+  base.CloneCore(source);
+
+  var sourceTyped = (MyLerpEffector)source;
+  ValueParameter = sourceTyped.ValueParameter;
+  StartParameter = sourceTyped.StartParameter;
+  EndParameter = sourceTyped.EndParameter;
+  FactorParameter = sourceTyped.FactorParameter;
+}
+]]>
+                </code>
+                <para>
+                    The base class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleEffector</codeEntityReference>
+                    provides several virtual methods, which are automatically called by the
+                    particle system. Derived classes can override these methods to change
+                    particle parameters, manipulate the particle system, etc.
+                </para>
+                <para>
+                    The particle effector can query the required parameters and cache the
+                    references in
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.OnRequeryParameters</codeEntityReference>.
+                    This method is called when the particle system is updated for the first
+                    time, and then every time the particle parameters change and need
+                    to be requeried.
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.OnUninitialize</codeEntityReference>
+                    is called when the particle effector is removed from a particle system. In this method
+                    all resources and references to external objects should be released.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+private IParticleParameter<float> _startParameter;
+private IParticleParameter<float> _endParameter;
+private IParticleParameter<float> _valueParameter;
+private IParticleParameter<float> _factorParameter;          
+
+protected override void OnRequeryParameters()
+{
+  _valueParameter = ParticleSystem.Parameters.Get<float>(ValueParameter);
+  _startParameter = ParticleSystem.Parameters.Get<float>(StartParameter);
+  _endParameter = ParticleSystem.Parameters.Get<float>(EndParameter);
+  _factorParameter = ParticleSystem.Parameters.Get<float>(FactorParameter);
+}
+
+protected override void OnUninitialize()
+{
+  _valueParameter = null;
+  _startParameter = null;
+  _endParameter = null;
+  _factorParameter = null;
+}
+]]>
+                </code>
+                <para>
+                    The following virtual methods are called whenever the particle system is updated
+                    (usually once per frame):
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.OnBeginUpdate(System.TimeSpan)</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.OnUpdateParticles(System.TimeSpan,System.Int32,System.Int32)</codeEntityReference> and
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.OnEndUpdate(System.TimeSpan)</codeEntityReference>.
+                </para>
+                <para>
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.OnBeginUpdate(System.TimeSpan)</codeEntityReference>
+                    is called whenever the particle system starts its update. The method can be used to
+                    update any uniform particle parameters. In our example, the output parameter can be uniform:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+protected override void OnBeginUpdate(TimeSpan deltaTime)
+{
+  if (_valueParameter == null || _startParameter == null || _endParameter == null || _factorParameter == null)
+    return;
+
+  if (_valueParameter.IsUniform)
+  {
+    // Value is a uniform parameter.
+    var f = _factorParameter.DefaultValue;
+    _valueParameter.DefaultValue = (1 - f) * _startParameter.DefaultValue + f * _endParameter.DefaultValue;
+  }
+}
+]]>
+                </code>
+                <para>
+                    Please note that the method above aborts if any of the required particle parameters is missing.
+                </para>
+                <para>
+                    Varying parameters are particle parameters that store one value per particle.
+                    These types of parameters need to be updated in
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.OnUpdateParticles(System.TimeSpan,System.Int32,System.Int32)</codeEntityReference>.
+                    The method arguments identify the range of particles that needs to be updated.
+                    In our example the output parameter can be a varying parameter, so this
+                    case needs to be handled here:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+protected override void OnUpdateParticles(TimeSpan deltaTime, int startIndex, int count)
+{
+  if (_valueParameter == null || _startParameter == null || _endParameter == null || _factorParameter == null)
+    return;
+
+  float[] values = _valueParameter.Values;
+  if (values == null)
+  {
+    // Value is a uniform parameter. Uniform parameters are handled in OnBeginUpdate().
+    return;
+  }
+
+  // Value is a varying parameter.
+  for (int i = startIndex; i < startIndex + count; i++)
+  {
+    float f = _factorParameter.GetValue(i);
+    values[i] = (1 - f) * _startParameter.GetValue(i) + f * _endParameter.GetValue(i);
+  }      
+}
+]]>
+                </code>
+                <para>
+                    Please note, that this method aborts if any of the required particle parameters
+                    is missing. It uses the extension method
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Particles.ParticleHelper.GetValue``1(DigitalRune.Particles.IParticleParameter{``0},System.Int32)</codeEntityReference>
+                    to read the particle parameter values because the input parameters can be
+                    either uniform or varying parameters.
+                </para>
+                <para>
+                    The code above is all that is needed for our LERP effector. It is important to note
+                    that the particle effector can be used to update both, uniform and varying, particle parameters.
+                    Uniform particle parameters are updated in
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.OnBeginUpdate(System.TimeSpan)</codeEntityReference>.
+                    Varying particle parameters are updated in
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.OnUpdateParticles(System.TimeSpan,System.Int32,System.Int32)</codeEntityReference>.
+                </para>
+                <para>
+                    To make the particle effector faster, the code in
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.OnUpdateParticles(System.TimeSpan,System.Int32,System.Int32)</codeEntityReference>
+                    can be extended to use different code paths depending on the particle parameter
+                    types (uniform vs. varying) for the most common usages. This additional optimization
+                    is implemented in the code below.
+                </para>
+            </content>
+        </section>
+
+
+        <section>
+            <title>The final particle effector code</title>
+            <content>
+                <para>
+                    Here is the full source code of the LERP effector (including optimizations).
+                </para>
+                <code language="c#">
+                    <![CDATA[
+using System;
+using DigitalRune.Particles;
+
+
+namespace MyNamespace
+{
+  public class MyLerpEffector : ParticleEffector
+  {
+    private IParticleParameter<float> _startParameter;
+    private IParticleParameter<float> _endParameter;
+    private IParticleParameter<float> _valueParameter;
+    private IParticleParameter<float> _factorParameter;
+
+
+    [ParticleParameter(ParticleParameterUsage.In)]
+    public string StartParameter { get; set; }
+
+    [ParticleParameter(ParticleParameterUsage.In)]
+    public string EndParameter { get; set; }
+
+    [ParticleParameter(ParticleParameterUsage.In)]
+    public string FactorParameter { get; set; }
+    
+    [ParticleParameter(ParticleParameterUsage.Out)]
+    public string ValueParameter { get; set; }
+
+
+    protected override ParticleEffector CreateInstanceCore()
+    {
+      return new MyLerpEffector();
+    }
+
+    protected override void CloneCore(ParticleEffector source)
+    {
+      base.CloneCore(source);
+
+      var sourceTyped = (MyLerpEffector)source;
+      ValueParameter = sourceTyped.ValueParameter;
+      StartParameter = sourceTyped.StartParameter;
+      EndParameter = sourceTyped.EndParameter;
+      FactorParameter = sourceTyped.FactorParameter;
+    }
+
+    protected override void OnRequeryParameters()
+    {
+      _valueParameter = ParticleSystem.Parameters.Get<float>(ValueParameter);
+      _startParameter = ParticleSystem.Parameters.Get<float>(StartParameter);
+      _endParameter = ParticleSystem.Parameters.Get<float>(EndParameter);
+      _factorParameter = ParticleSystem.Parameters.Get<float>(FactorParameter);
+    }
+
+    protected override void OnUninitialize()
+    {
+      _valueParameter = null;
+      _startParameter = null;
+      _endParameter = null;
+      _factorParameter = null;
+    }
+
+    protected override void OnBeginUpdate(TimeSpan deltaTime)
+    {
+      if (_valueParameter == null || _startParameter == null || _endParameter == null || _factorParameter == null)
+      {
+        return;
+      }
+
+      if (_valueParameter.IsUniform)
+      {
+        // Value is a uniform parameter.
+        var f = _factorParameter.DefaultValue;
+        _valueParameter.DefaultValue = (1 - f) * _startParameter.DefaultValue + f * _endParameter.DefaultValue;
+      }
+    }
+
+    protected override void OnUpdateParticles(TimeSpan deltaTime, int startIndex, int count)
+    {
+      if (_valueParameter == null || _startParameter == null || _endParameter == null || _factorParameter == null)
+      {
+        return;
+      }
+
+      float[] values = _valueParameter.Values;
+      if (values == null)
+      {
+        // Value is a uniform parameter. Uniform parameters are handled in OnBeginUpdate().
+        return;
+      }
+
+      // Value is a varying parameter.
+
+      float[] starts = _startParameter.Values;
+      float[] ends = _endParameter.Values;
+      float[] factors = _factorParameter.Values;
+
+      if (starts != null && ends != null && factors != null)
+      {
+        // Optimized case: Start, End, and Factor are varying parameters.
+        for (int i = startIndex; i < startIndex + count; i++)
+        {
+          float f = factors[i];
+          values[i] = (1 - f) * starts[i] + f * ends[i];
+        }        
+      }
+      else if (starts == null && ends == null && factors != null)
+      {
+        // Optimized case: Start and End are uniform parameters, Factor is varying parameter.
+        float startValue = _startParameter.DefaultValue;
+        float endValue = _endParameter.DefaultValue;
+        for (int i = startIndex; i < startIndex + count; i++)
+        {
+          float f = factors[i];
+          values[i] = (1 - f) * startValue + f * endValue;
+        }        
+      }
+      else
+      {
+        // General case:
+        for (int i = startIndex; i < startIndex + count; i++)
+        {
+          float f = _factorParameter.GetValue(i);
+          values[i] = (1 - f) * _startParameter.GetValue(i) + f * _endParameter.GetValue(i);
+        }      
+      }      
+    }
+  }
+}
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

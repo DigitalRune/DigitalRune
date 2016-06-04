@@ -1,0 +1,432 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="5697f90f-2893-4ed5-ae66-da63afccdfc3" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This topic describes how to define bodies of water, e.g. rivers, ponds,
+                lakes, ocean.
+            </para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="Video">
+            <title>Video</title>
+            <content>
+                <para>
+                    The following video shows various features of the water rendering in DigitalRune
+                    Graphics.
+                </para>
+                <list class="nobullet">
+                    <listItem>
+                        <para>
+                            <externalLink>
+                                <linkText>Video: Water Rendering</linkText>
+                                <linkUri>https://www.youtube.com/watch?v=lUdBm81y1Ik</linkUri>
+                            </externalLink>
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Water">
+            <title>Defining water</title>
+            <content>
+                <para>
+                    DigitalRune Graphics uses following types to define bodies of water:
+                </para>
+                <mediaLink>
+                    <caption placement="after">Class Diagram: Water</caption>
+                    <image xlink:href="ClassDiagramGraphicsWater"/>
+                </mediaLink>
+            </content>
+            <sections>
+                <section address="WaterNode">
+                    <title>WaterNode</title>
+                    <content>
+                        <para>
+                            A
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.WaterNode</codeEntityReference>
+                            is a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SceneNode</codeEntityReference>
+                            that defines a body of water.
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.WaterNode</codeEntityReference>s
+                            are rendered by the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.WaterRenderer</codeEntityReference>.
+                        </para>
+                        <para>
+                            The property
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.WaterNode.Volume</codeEntityReference>
+                            is a <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.Shape</codeEntityReference>
+                            which defines the water surface and the underwater volume where an underwater effect is
+                            rendered.
+                            If <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.WaterNode.Volume</codeEntityReference>
+                            is set to a valid shape, the shape defines where the water will be rendered.
+                            The shape can be a "flat" shape, e.g. a horizontal rectangle. It only has to be a non-flat
+                            shape, e.g. a box, when the camera can enter the water volume and an underwater effect
+                            should be rendered.
+                            If <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.WaterNode.Volume</codeEntityReference>
+                            is <codeInline>null</codeInline>, a horizontal infinite ocean plane is rendered and everything
+                            under the plane counts as underwater.
+                            The
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.WaterNode.Volume</codeEntityReference>
+                            should be positioned in the local scene node space, such that the water surface goes through
+                            the origin of the scene node (y = 0). And the water surface should be roughly horizontal.
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.WaterRenderer</codeEntityReference>
+                            is optimized for this configuration.
+                        </para>
+                        <para>
+                            The water surface can reflect a static skybox
+                            (property <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.WaterNode.SkyboxReflection</codeEntityReference>)
+                            or a planar reflection (property <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.WaterNode.PlanarReflection</codeEntityReference>).
+                            If the water surface is displaced by high waves, then planar reflections might lead to
+                            some visual artifacts. For small waves a planar reflection is usually an adequate
+                            approximation of the real reflection.
+                            Planar reflections are expensive in most scenes and in most games a static skybox should
+                            be used.
+                        </para>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.WaterNode.Volume</codeEntityReference>
+                            is also used as the bounding shape for frustum culling. If the water is displaced by waves,
+                            then
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.WaterNode.Volume</codeEntityReference>
+                            is not a valid shape because some water vertices can be moved outside this bounding shape.
+                            For this case, an
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.WaterNode.ExtraHeight</codeEntityReference>
+                            has to be set which is at least as large as the highest wave. Internally,
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.WaterNode.ExtraHeight</codeEntityReference>
+                            is used to increase the bounding shape to get a shape which will contain all waves.
+                        </para>
+                        <alert class="tip">
+                            <para>
+                                An infinite ocean can be rendered by setting
+                                <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.WaterNode.Volume</codeEntityReference>
+                                to <codeInline>null</codeInline>. When the ocean is not visible, e.g. because the player
+                                is inside a house or a cave, it is recommended to disable the ocean, e.g.
+                                by setting
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.SceneGraph.SceneNode.IsEnabled</codeEntityReference>
+                                to
+                                <codeInline>false</codeInline>.
+                            </para>
+                            <para>
+                                If the camera cannot enter the water, it is also recommended to set
+                                <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.WaterNode.EnableUnderwaterEffect</codeEntityReference>
+                                to
+                                <codeInline>false</codeInline>.
+                            </para>
+                        </alert>
+                    </content>
+                </section>
+
+
+                <section address="Water">
+                    <title>Water</title>
+                    <content>
+                        <para>
+                            The class
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Water</codeEntityReference>
+                            defines the visual appearance of the water.
+                        </para>
+                        <para>
+                            The water is rendered using reflections, refractions and a specular highlight from the
+                            dominant directional light.
+                            Water ripples are created using two normal maps which are moved over the water surface.
+                            Foam can be rendered where the water intersects geometry and for high water waves.
+                            The water also supports real-time underwater caustics (at the moment only for
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.WaterWaves</codeEntityReference>
+                            and not for water ripples from the normal maps).
+                        </para>
+                        <para>
+                            The water color is defined by
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Water.WaterColor</codeEntityReference>
+                            and
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Water.UnderwaterFogDensity</codeEntityReference>.
+                            By tweaking this properties, you can create uniform blue water, brown, muddy water
+                            or a Caribbean water which is turquoise near the shore and dark blue in the distance.
+                        </para>
+                    </content>
+                </section>
+
+
+                <section address="WaterFlow">
+                    <title>WaterFlow</title>
+                    <content>
+                        <para>
+                            The class
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.WaterFlow</codeEntityReference>
+                            can be used to define the direction in which the water is flowing.
+                        </para>
+                        <alert class="note">
+                            <para>
+                                Currently,
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.WaterFlow</codeEntityReference>
+                                is not rendered if the water is displaced by
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.WaterWaves</codeEntityReference>.
+                            </para>
+                        </alert>
+                        <para>
+                            The water flow can be defined using:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                A constant flow direction. See
+                                <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.WaterFlow.BaseVelocity</codeEntityReference>.
+                            </listItem>
+                            <listItem>
+                                The vertex normals of the water
+                                <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.WaterNode.Volume</codeEntityReference>.
+                                See
+                                <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.WaterFlow.SurfaceSlopeSpeed</codeEntityReference>.
+                            </listItem>
+                            <listItem>
+                                A flow texture. See
+                                <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.WaterFlow.FlowMap</codeEntityReference>.
+                            </listItem>
+                        </list>
+                        <para>
+                            See
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.WaterFlow</codeEntityReference>
+                            for more details.
+                        </para>
+                    </content>
+                </section>
+
+
+                <section address="WaterWaves">
+                    <title>WaterWaves</title>
+                    <content>
+                        <para>
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.WaterWaves</codeEntityReference>
+                            can be used to displace the water surface (using vertex shader displacement mapping).
+                        </para>
+                        <para>
+                            Using
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.UserDefinedWaves</codeEntityReference>
+                            the wave displacement and normal maps can be defined by the user.
+                            The displacement and normal maps must be updated by the user each frame.
+                            For example, you could run a custom CPU or GPU ripple simulation in small radius around
+                            the player position.
+                        </para>
+                        <para>
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.OceanWaves</codeEntityReference>
+                            use Fast Fourier Transform (FFT) on the GPU with a stastical model of ocean waves to
+                            compute complex, periodic waves. You can also query the displacement of a point on the
+                            water surface on the CPU. (This requires that a smaller scale FFT is executed on the CPU
+                            and should only be enable when needed. See
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.OceanWaves.EnableCpuQueries</codeEntityReference>.)
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Rendering">
+            <title>Rendering water</title>
+            <content>
+                <para>
+                    This section explains how to render
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.WaterNode</codeEntityReference>s.
+                </para>
+            </content>
+            <sections>
+                <section address="WaterRenderer">
+                    <title>WaterRenderer</title>
+                    <content>
+                        <para>
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.WaterRenderer</codeEntityReference>
+                            is a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneNodeRenderer</codeEntityReference>
+                            which handles
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.WaterNode</codeEntityReference>s.
+                        </para>
+                        <para>
+                            The water is usually rendered after all opaque objects:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+// Render opaque objects...
+          
+// Render water.
+waterRenderer.Render(waterNodes, context);
+          ]]>
+                        </code>
+                    </content>
+                </section>
+
+                <section address="Refraction">
+                    <title>Refractions</title>
+                    <content>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.WaterRenderer</codeEntityReference>
+                            renders refractions and for this it needs a texture which contains an image of the
+                            current scene. It expects this texture in
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.RenderContext.SourceTexture</codeEntityReference>.
+                            If
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.RenderContext.SourceTexture</codeEntityReference>
+                            is <codeInline>null</codeInline>, the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.WaterRenderer</codeEntityReference>
+                            automatically resolves the current render target (which must be an off-screen render target),
+                            replaces it with a new render target, like this:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+if (context.SourceTexture == null && context.RenderTarget != null)
+{
+  context.SourceTexture = context.RenderTarget;
+  context.RenderTarget = renderTargetPool.Obtain2D(new RenderTargetFormat(context.RenderTarget));
+  graphicsDevice.SetRenderTarget(context.RenderTarget);
+  graphicsDevice.Viewport = context.Viewport;
+  _rebuildZBufferRenderer.Render(context, context.SourceTexture);
+}
+          ]]>
+                        </code>
+                        <para>
+                            That means, it is not necessary to set
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.RenderContext.SourceTexture</codeEntityReference>
+                            manually before calling the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.WaterRenderer</codeEntityReference>.
+                            However, it is sometimes more efficient if
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.RenderContext.SourceTexture</codeEntityReference>
+                            is set explicitly.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="AlphaBlending">
+                    <title>Water and alpha-blended/transparent objects</title>
+                    <content>
+                        <para>
+                            Water is similar to an alpha-blended object. The render order is relevant.
+                            Especially, if transparent objects intersect the water surface, some rendering artifacts
+                            will be visible.
+                        </para>
+                        <para>
+                            In many games, alpha-blended objects and the player camera will not enter the water.
+                            In this case, water should be rendered before all alpha-blended objects.
+                        </para>
+                        <para>
+                            If transparent objects and the player camera can enter the water, following render
+                            order is better:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                If camera is above the water surface:
+                                <list class="ordered">
+                                    <listItem>
+                                        Render alpha-blended objects which are under the water surface.
+                                    </listItem>
+                                    <listItem>
+                                        Render the water.
+                                    </listItem>
+                                    <listItem>
+                                        Render alpha-blended objects which are above the water surface.
+                                    </listItem>
+                                </list>
+                            </listItem>
+                            <listItem>
+                                If camera is under the water surface:
+                                <list class="ordered">
+                                    <listItem>
+                                        Render alpha-blended objects.
+                                    </listItem>
+                                    <listItem>
+                                        Render the water.
+                                    </listItem>
+                                </list>
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section address="WaterWavesRenderer">
+                    <title>WaterWavesRenderer</title>
+                    <content>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.WaterWavesRenderer</codeEntityReference>
+                            is a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneNodeRenderer</codeEntityReference>
+                            which handles <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.WaterNode</codeEntityReference>s.
+                            If a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.WaterNode</codeEntityReference>
+                            references an
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.OceanWaves</codeEntityReference>
+                            instance, the renderer performs the ocean simulation, creates the wave displacement texture
+                            and the normal texture and stores the result in the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.OceanWaves</codeEntityReference>
+                            instance.
+                        </para>
+                        <para>
+                            Currently, the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.WaterWavesRenderer</codeEntityReference>
+                            supports only
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.OceanWaves</codeEntityReference>.
+                            It does not support any other wave type derived from
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.WaterWaves</codeEntityReference>.
+                        </para>
+                        <para>
+                            Wave textures are usually generated at the start of the <legacyBold>Draw</legacyBold>-method,
+                            before the scene is rendered:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+// Compute ocean waves.
+waterWavesRenderer.Render(waterNodes, context);
+
+// Render scene...
+          ]]>
+                        </code>
+                        <para>
+                            To summarize: The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.WaterWavesRenderer</codeEntityReference>
+                            creates the wave displacement and normal textures of
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.OceanWaves</codeEntityReference>.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="FurtherReading">
+            <title>Further Reading</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        <para>
+                            <externalLink>
+                                <linkText>
+                                    Water Rendering (DigitalRune Blog)
+                                </linkText>
+                                <linkUri>
+                                    http://www.digitalrune.com/Blog/Post/1758/Water-Rendering
+                                </linkUri>
+                            </externalLink>
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <externalLink>
+                                <linkText>
+                                    Water Rendering - Resources (DigitalRune Blog)
+                                </linkText>
+                                <linkUri>
+                                    http://www.digitalrune.com/Blog/Post/1756/Water-Rendering-Resources
+                                </linkUri>
+                            </externalLink>
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+    </developerConceptualDocument>
+</topic>

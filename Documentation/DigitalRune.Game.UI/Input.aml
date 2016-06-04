@@ -1,0 +1,490 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="450784f4-d741-4447-809a-527f5c902c98" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This section describes the classes that read and process input from devices,
+                like keyboard, mouse, etc.
+            </para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Overview">
+            <title>Overview</title>
+            <content>
+                <para>
+                    Every interactive application has to read and process input from one or more input devices. The namespace
+                    <codeEntityReference qualifyHint="false">N:DigitalRune.Game.Input</codeEntityReference>
+                    (see also
+                    <link xlink:href="726991b1-4bbc-4d45-a9c7-e422a5e4f65d"/>)
+                    provides classes that handle several common input-related tasks:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Detecting clicks and double-clicks.
+                    </listItem>
+                    <listItem>
+                        Order of input handling between game components.
+                    </listItem>
+                    <listItem>
+                        Assigning logical players to physical controllers.
+                    </listItem>
+                    <listItem>
+                        Key/button repetition: Repeating clicks for keys/buttons that are pressed down for a longer period.
+                    </listItem>
+                    <listItem>
+                        Translating raw input (e.g. "Button A was clicked") to semantic commands (e.g. "User wants to jump").
+                    </listItem>
+                    <listItem>
+                        Centering the mouse cursor for relative mouse input.
+                    </listItem>
+                    <listItem>
+                        Etc.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="InputService">
+            <title>The InputService and the InputManager</title>
+            <content>
+                <para>
+                    The central interface is
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.Input.IInputService</codeEntityReference>,
+                    which provides access to all input devices supported by XNA:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Keyboard
+                    </listItem>
+                    <listItem>
+                        Mouse
+                    </listItem>
+                    <listItem>
+                        Gamepads (including special controllers, like guitars, dancepads, etc.)
+                    </listItem>
+                    <listItem>
+                        Accelerometer (Windows Phone 7)
+                    </listItem>
+                    <listItem>
+                        Touch input (Windows Phone 7)
+                    </listItem>
+                </list>
+                <alert class="tip">
+                    <para>
+                        All components of a game should use this interface to read user input instead
+                        of accessing the input devices in XNA directly.
+                    </para>
+                    <para>
+                        The interface could be implemented in various ways. The implementations can be changed
+                        without breaking existing components. For example, the default implementation of the
+                        input service reads input from various the devices. Another implementation could read
+                        input from a file to replay a previous gameplay session.
+                    </para>
+                    <para>
+                        Components that only depend on certain interfaces are easier to unit-tested.
+                    </para>
+                </alert>
+                <para>
+                    This interface is implemented by the class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.Input.InputManager</codeEntityReference>.
+                    The input manager has one additional member, which is not in the interface:
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Game.Input.InputManager.Update(System.TimeSpan)</codeEntityReference>.
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Game.Input.InputManager.Update(System.TimeSpan)</codeEntityReference>
+                    must be called once per frame. In this method the input manager reads the device states and processes the input.
+                </para>
+                <para>
+                    The input service has a
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.Input.IInputService.Settings</codeEntityReference>
+                    property where
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.Input.InputSettings</codeEntityReference>
+                    can be configured (timings, thresholds, etc.).
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Clicks">
+            <title>Detecting clicks</title>
+            <content>
+                <para>
+                    The input service provides methods to check if a button is down, up, pressed, or released:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <legacyBold>IsDown()</legacyBold> checks if a button is currently pressed down.
+                    </listItem>
+                    <listItem>
+                        <legacyBold>IsUp()</legacyBold> checks if a button is currently released.
+                    </listItem>
+                    <listItem>
+                        <legacyBold>IsPressed()</legacyBold> checks if a button was pressed in the current frame.
+                        (The button was up in the previous frame, but is down in the current frame.)
+                    </listItem>
+                    <listItem>
+                        <legacyBold>IsReleased()</legacyBold> checks if a button was released in the current frame.
+                        (The button was down in the previous frame, but is up in the current frame.)
+                    </listItem>
+                </list>
+                <para>
+                    That means: If the user presses a button and holds it for 10 frames, then
+                    <legacyBold>IsDown</legacyBold> returns true for all 10 frames.
+                    <legacyBold>IsPressed</legacyBold> is only true in the first frame.
+                    <legacyBold>IsReleased</legacyBold> is true for the one frame where the user
+                    releases the button.
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <legacyBold>IsDoubleClick()</legacyBold> can be used to check for double-clicks.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Preemption">
+            <title>Input preemption and IsHandled flags</title>
+            <content>
+                <para>
+                    Typically, multiple components in a game need to handle input. The input needs
+                    to be processed in a certain order.
+                </para>
+                <para>
+                    For example: If several game menus are open, only the top-most menu should handle
+                    the input. If a component has captured the mouse during a drag-and-drop operation,
+                    other components should ignore mouse input.
+                </para>
+                <para>
+                    To handle the input preemption, the input service provides <legacyBold>IsHandled</legacyBold>
+                    flags for all devices:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">P:DigitalRune.Game.Input.IInputService.IsAccelerometerHandled</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">M:DigitalRune.Game.Input.IInputService.IsGamePadHandled(DigitalRune.Game.Input.LogicalPlayerIndex)</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">P:DigitalRune.Game.Input.IInputService.IsKeyboardHandled</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">P:DigitalRune.Game.Input.IInputService.IsMouseOrTouchHandled</codeEntityReference>
+                    </listItem>
+                </list>
+                <para>
+                    The flags are reset in <codeEntityReference qualifyHint="true">M:DigitalRune.Game.Input.InputManager.Update(System.TimeSpan)</codeEntityReference>
+                    and the game components that handle input can set one or more flags to indicate
+                    that a device has been handled and should not be processed by other components.
+                    All components should check the flags before processing input.
+                    (Game components can choose to ignore this flag and still read and handle the input.)
+                </para>
+                <para>
+                    Here is an example that shows how a game component should process mouse clicks:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Has mouse input been handled by another game component?
+if (!inputService.IsMouseOrTouchHandled)
+{
+  // Was left mouse button pressed in this frame?
+  if (inputService.IsPressed(MouseButtons.Left, false)) 
+  {
+    // React to mouse click.
+    ...
+    
+    // Inform other game objects that the mouse input was handled.
+    inputService.IsMouseOrTouchHandled = true;
+  }
+}
+]]>
+                </code>
+                <para>
+                    Albeit very simple, this mechanism has proven to be very powerful in practice.
+                    It allows to correctly handle input even in complex games with multiple windows,
+                    nested 3D scenes and even "mouse-capturing" for drag-and-drop. The
+                    <legacyBold>IsHandled</legacyBold> flags replace more complex input routing methods.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="LogicalPlayers">
+            <title>Connected controllers and logical players</title>
+            <content>
+                <para>
+                    The Xbox 360 supports up to 4 connected game controllers.
+                </para>
+                <para>
+                    <legacyBold>Important:</legacyBold>
+                    Games should not assume that the game controller connected to
+                    the first port is the controller that the player wants to use. For single
+                    player games, the user should be able to pick any controller and play with
+                    it. The input handling must be able to ignore some controllers (e.g. the
+                    first controller could be a guitar controller). And the game must be able
+                    to detect when a controller was disconnected and automatically pause the
+                    gameplay.
+                </para>
+                <para>
+                    The input service allows to assign a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.Input.LogicalPlayerIndex</codeEntityReference>
+                    (= player) to a
+                    <externalLink>
+                        <linkText>PlayerIndex</linkText>
+                        <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.playerindex.aspx</linkUri>
+                    </externalLink>
+                    (= controller port). This assignment does not occur automatically, it must be set by
+                    the game code. Typically, the game will show a start screen where the user has to press
+                    the START or the A button. The controller where START or A is pressed should henceforth
+                    be used as the first logical player index ("Player One").
+                </para>
+                <para>
+                    Game controllers are assigned to players using the method
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Game.Input.IInputService.SetLogicalPlayer(DigitalRune.Game.Input.LogicalPlayerIndex,System.Nullable{Microsoft.Xna.Framework.PlayerIndex})</codeEntityReference>.
+                </para>
+                <para>
+                    Several methods of the input service can be called using either the <legacyBold>PlayerIndex</legacyBold>
+                    or the <legacyBold>LogicalPlayerIndex</legacyBold>. When using the <legacyBold>PlayerIndex</legacyBold>,
+                    the methods will return the input of the game controller at the given port when connected or default values when
+                    disconnected. When using the <legacyBold>LogicalPlayerIndex</legacyBold>
+                    the methods will return the input of the game controller assigned to the specified player or default
+                    values when no controller has been assigned to the player.
+                </para>
+                <para>
+                    Further, the game must poll the
+                    <externalLink>
+                        <linkText>IsConnected</linkText>
+                        <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.input.gamepadstate.isconnected.aspx</linkUri>
+                    </externalLink>
+                    flag of the game controller in each frame to detect and handle disconnects. (The input service
+                    does not handle disconnects automatically.)
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Repetition">
+            <title>Key and button repetition</title>
+            <content>
+                <para>
+                    Key repetition creates "virtual key presses" when a key is held down for a
+                    longer period.
+                </para>
+                <para>
+                    Key repetition is, for example, used for keyboard input in text boxes: The user
+                    presses and holds the 'A' key. The first 'A' character is displayed immediately
+                    and after a short delay more 'A' characters are added to the text box.
+                </para>
+                <para>
+                    Button repetition is also used when navigating menus with a gamepad: The user opened a game menu
+                    and holds down the thumbstick or D-pad in one direction. Immediately the next item in the
+                    menu is selected. After a short delay the selection moves from menu item to menu item until
+                    the user releases the thumbstick or D-pad.
+                </para>
+                <para>
+                    The input services automatically generates virtual key presses. The
+                    <legacyBold>IsPressed</legacyBold> methods have an additional parameter called
+                    <codeInline>useKeyRepetition</codeInline>/<codeInline>useButtonRepetition</codeInline>.
+                    If this parameter is true, the <legacyBold>IsPressed</legacyBold> method return physical key
+                    presses as well as virtual key presses.
+                </para>
+                <para>
+                    The repetition delay and repetition interval can be configured in the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.Input.InputSettings</codeEntityReference>.
+                </para>
+
+                <alert class="note">
+                    <para>
+                        Only the last key/button press is repeated. If button A and then B are pressed
+                        and held, virtual presses are only generated for button B.
+                    </para>
+                    <para>
+                        This is not optimal when navigating menus with a gamepad. For example:
+                        The left thumbstick is pushed downwards. Then the thumbstick is, accidentally, pushed to the left.
+                        Now both a down and a left press are recognized. If the user corrects his mistake and pushes the
+                        thumbstick straight down, no virtual presses are generated because virtual presses are only
+                        generated for the last pressed button/direction. The thumbstick must be released and pushed down
+                        so that a new down press is recognized and used for the repetition. - If this problem occurs,
+                        it might help to increase the
+                        <codeEntityReference qualifyHint="false">P:DigitalRune.Game.Input.InputSettings.ThumbstickThreshold</codeEntityReference>.
+                    </para>
+                </alert>
+            </content>
+        </section>
+
+
+        <section address="MouseCentering">
+            <title>Mouse position and mouse centering</title>
+            <content>
+                <para>
+                    The mouse position, as read from the mouse device, is available in
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.Input.IInputService.MousePositionRaw</codeEntityReference>,
+                    which is a read-only property. The same value is also stored in
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.Input.IInputService.MousePosition</codeEntityReference>,
+                    which is writable property and can be modified by game components. This is helpful if
+                    a game component expects the mouse position to be relative to a local (or transformed) viewport.
+                    In general, game components should use the <legacyBold>MousePosition</legacyBold> property to read
+                    the mouse position. The game (or the first game component that handles input) can read
+                    <legacyBold>MousePositionRaw</legacyBold> in each frame and set the adjusted position in
+                    <legacyBold>MousePosition</legacyBold>.
+                </para>
+                <para>
+                    Some games, like first-person shooters, need relative mouse input to rotate the view.
+                    Normally, the mouse is stopped when it reaches the screen boundary - and the view does
+                    not rotate any further. To avoid this behavior,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.Input.IInputService.EnableMouseCentering</codeEntityReference>
+                    can be set. The input service will automatically reset the mouse position in each frame.
+                    The mouse position will be set to
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.Input.InputSettings.MouseCenter</codeEntityReference>
+                    - usually the center of the screen. The property is defined in the input settings.
+                </para>
+                <para>
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.Input.IInputService.MousePositionDeltaRaw</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.Input.IInputService.MousePositionDelta</codeEntityReference>
+                    can be used to get the relative movement of the mouse since the last frame.
+                </para>
+                <alert class="tip">
+                    <para>
+                        It is a good practice to disable mouse centering when the game window does not have
+                        the focus (e.g. the user presses ALT+Tab and switches to another applications). Check
+                        <externalLink>
+                            <linkText>Game.IsActive</linkText>
+                            <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.game.isactive.aspx</linkUri>
+                        </externalLink>
+                        to see whether the game window is active.
+                    </para>
+                </alert>
+            </content>
+        </section>
+
+
+        <section address="Commands">
+            <title>Input commands and user-defined input bindings</title>
+            <content>
+                <para>
+                    Game input should be configurable by the user. Users should be able to
+                    reconfigure the controls to their likings. Game components that require user
+                    input should not directly check the "A" button to decide if the user wants to jump.
+                    Instead, there needs to be a level of abstraction that separates the actual input from
+                    the desired action the user wants to perform.
+                </para>
+                <para>
+                    Input commands (see base class <codeEntityReference qualifyHint="false">T:DigitalRune.Game.Input.IInputCommand</codeEntityReference>)
+                    translate raw input (such as button presses, key combinations, etc.) to semantic
+                    actions.
+                </para>
+                <para>
+                    All input commands have a <codeEntityReference qualifyHint="false">P:DigitalRune.INamedObject.Name</codeEntityReference>,
+                    such as "Forward", "Jump", "Shoot", which identifies the action and a
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.Input.IInputCommand.Value</codeEntityReference>
+                    that represents the result of the user input. The <codeEntityReference qualifyHint="false">P:DigitalRune.Game.Input.IInputCommand.Value</codeEntityReference>
+                    is a floating-point number - most actions will have only two output values:
+                    0 to indicate that the input command is inactive - the user has not pressed the
+                    required buttons or keys. And 1 to indicate that the input command is active - the
+                    user wants to perform the action. Depending on the type of action, input commands can be
+                    bound to analog input. For example, the "Forward" command could be mapped to the y-axis
+                    of the game pad. In this case a positive value indicates that the user wants
+                    to move	forward and a negative value indicates that the user wants to move backward.
+                </para>
+                <para>
+                    Input commands are managed by the <codeEntityReference qualifyHint="false">T:DigitalRune.Game.Input.IInputService</codeEntityReference>.
+                    Input commands can be registered or unregistered by adding them to or removing them
+                    from the <codeEntityReference qualifyHint="false">P:DigitalRune.Game.Input.IInputService.Commands</codeEntityReference>.
+                    When the input service is updated, the method <codeEntityReference qualifyHint="false">M:DigitalRune.Game.Input.IInputCommand.Update(System.TimeSpan)</codeEntityReference>
+                    of all registered input commands is executed and the commands can check the input
+                    devices and update their value.
+                </para>
+                <para>
+                    Game components can check the <codeEntityReference qualifyHint="false">P:DigitalRune.Game.Input.IInputCommand.Value</codeEntityReference>
+                    of an input command to see if a certain action should be performed. For example:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+if (InputService.Commands["Jump"].Value > 0)
+{
+  // Let the player character jump.
+  ...
+}
+]]>
+                </code>
+                <para>
+                    If all game components strictly use input commands, then controls can easily be
+                    remapped at runtime. Input commands can be created for different input events: button
+                    presses, key presses, key combinations, double-clicks, mouse gestures, etc.
+                    Custom input commands can also be used to encapsulate complex input processing. For example:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Create a "LowPassFilterCommand" that reads and filters an input signal.
+                    </listItem>
+                    <listItem>
+                        Create a "HoldButtonCommand" that becomes active when a button is held down for a certain duration.
+                    </listItem>
+                    <listItem>
+                        Etc.
+                    </listItem>
+                </list>
+                <para>
+                    Creating custom input commands is simple: New input commands need to implement the
+                    interface <codeEntityReference qualifyHint="false">T:DigitalRune.Game.Input.IInputCommand</codeEntityReference>.
+                    In the <codeEntityReference qualifyHint="false">M:DigitalRune.Game.Input.IInputCommand.Update(System.TimeSpan)</codeEntityReference>
+                    method the commands need to check the input and set their
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.Input.IInputCommand.Value</codeEntityReference>
+                    accordingly.
+                </para>
+                <para>
+                    If game components regularly access input commands, they can retrieve the
+                    input commands once from the input service and store a reference to the command
+                    for future use. (This assumes that the command instances are persistent for the
+                    lifetime of the game. That means, once a "Jump" command has been registered in
+                    the input service it should not be replaced by another "Jump" command.)
+                </para>
+            </content>
+            <sections>
+                <section address="ConfigurableInputCommand">
+                    <title>ConfigurableInputCommand</title>
+                    <content>
+                        <para>
+                            The <codeEntityReference qualifyHint="false">T:DigitalRune.Game.Input.ConfigurableInputCommand</codeEntityReference>
+                            is the default implementation of <codeEntityReference qualifyHint="false">T:DigitalRune.Game.Input.IInputCommand</codeEntityReference>,
+                            which is recommend for most games: The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.Input.ConfigurableInputCommand</codeEntityReference>
+                            allowes to define a <codeEntityReference qualifyHint="false">P:DigitalRune.Game.Input.ConfigurableInputCommand.PrimaryMapping</codeEntityReference>
+                            and a <codeEntityReference qualifyHint="false">P:DigitalRune.Game.Input.ConfigurableInputCommand.SecondaryMapping</codeEntityReference>.
+                            Actions can be bound to mouse, keyboard, or game pad input and reconfigured
+                            at runtime.
+                        </para>
+                        <mediaLink>
+                            <image xlink:href="ClassDiagramGameInputCommands"/>
+                        </mediaLink>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Misc">
+            <title>Miscellaneous</title>
+            <content>
+                <para>
+                    In some game states it makes sense to skip <codeEntityReference qualifyHint="true">M:DigitalRune.Game.Input.InputManager.Update(System.TimeSpan)</codeEntityReference>,
+                    for example if the game window does not have focus (<externalLink>
+                        <linkText>Game.IsActive</linkText>
+                        <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.game.isactive.aspx</linkUri>
+                    </externalLink>
+                    is false). (This is not automatically done by the input manager because in
+                    some cases input should be processed even if the game is inactive.)
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

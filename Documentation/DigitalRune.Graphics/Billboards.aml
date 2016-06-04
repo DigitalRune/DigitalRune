@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="4518dd2c-21ea-4cf8-8dec-8b3a32584743" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="Billboard">
+            <title>Billboards (images and text)</title>
+            <content>
+                <para>
+                    A <newTerm>billboard</newTerm> is a textured polygon (usually a quad) used for drawing
+                    impostors, particles and other effects. The difference to a regular polygon is that the
+                    billboard can be automatically oriented during rendering. For example: A view plane-aligned
+                    billboard is always rendered parallel to the screen, the quad always faces the camera.
+                </para>
+                <para>
+                    There are two types of billboards:
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.ImageBillboard</codeEntityReference>s
+                    and <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.TextBillboard</codeEntityReference>s.
+                </para>
+                <para>
+                    Billboards are positioned using a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.BillboardNode</codeEntityReference>.
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.BillboardOrientation</codeEntityReference>
+                    defines how the billboard is rendered. This type provides definitions for the most common
+                    orientations.
+                </para>
+                <mediaLink>
+                    <caption placement="after">Class Diagram: Billboards</caption>
+                    <image xlink:href="ClassDiagramGraphicsBillboards"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Particles">
+            <title>Particles</title>
+            <content>
+                <para>
+                    Particle systems can be used to simulate complex effects, such as explosion, fire, or smoke.
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleSystem</codeEntityReference>s
+                    are part of the <link xlink:href="5044112e-c86d-4d85-87d0-b567a0361c21" /> library. A
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ParticleSystemNode</codeEntityReference>
+                    creates an instance of a particle system within a scene.
+                </para>
+                <para>
+                    The particle system manager and the graphics manager can be run in parallel (multithreading).
+                    This complicates the use of particle effects: The game logic needs to explicitly synchronize
+                    the particle data and the render data by calling
+                    <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Graphics.SceneGraph.ParticleSystemNode.Synchronize(DigitalRune.Graphics.IGraphicsService)</codeEntityReference>
+                    explicitly in each frame! See <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ParticleSystemNode</codeEntityReference>
+                    for more information.
+                </para>
+                <mediaLink>
+                    <caption placement="after">Class Diagram: Particles</caption>
+                    <image xlink:href="ClassDiagramGraphicsParticles"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Rendering">
+            <title>Rendering billboards and particles</title>
+            <content>
+                <para>
+                    This section explains how to render billboards and particle effects using the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.BillboardRenderer</codeEntityReference>.
+                </para>
+            </content>
+            <sections>
+                <section address="Renderer">
+                    <title>BillboardRenderer</title>
+                    <content>
+                        <para>
+                            The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.BillboardRenderer</codeEntityReference>
+                            is a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneNodeRenderer</codeEntityReference>
+                            that handles <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.BillboardNode</codeEntityReference>s
+                            and <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ParticleSystemNode</codeEntityReference>s.
+                        </para>
+                        <para>
+                            Billboards and particles may be rendered with or without depth test. The required depth-stencil
+                            state needs to be set before the renderer is called.
+                        </para>
+                        <code language="c#" title="Example (C#)">
+                            <![CDATA[
+// Render opaque objects here...
+
+// Set required depth-stencil state.
+graphicsDevice.DepthStencilState = DepthStencilState.DepthRead;
+
+// Render a list of billboard and particle nodes.
+billboardRenderer.Render(sceneNodes, context, RenderOrder.BackToFront);
+          ]]>
+                        </code>
+                        <para>
+                            The renderer automatically batches billboards and particles that use the same texture and
+                            renders them with a single draw call. The property
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Rendering.BillboardRenderer.BufferSize</codeEntityReference>
+                            limits the number of billboards/particles that can be drawn with a single draw call.
+                        </para>
+                        <alert class="tip">
+                            <para>
+                                The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.BillboardRenderer</codeEntityReference>
+                                batches billboards and particles based on their texture. It is therefore recommended to
+                                minimize the number of texture, for example by packing all billboard and particle images
+                                into a single texture (see <link xlink:href="4e6f5dc1-8897-466f-88f2-b5c56d43a3c5#TextureAtlas">Texture Atlases</link>).
+                            </para>
+                        </alert>
+                        <para>
+                            The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.BillboardRenderer</codeEntityReference>
+                            can also render particles as ribbons (a.k.a. "beams", "lines", "trails"). See
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ParticleSystemNode</codeEntityReference>
+                            for more information.
+                        </para>
+                    </content>
+                </section>
+
+
+                <section address="SoftParticles">
+                    <title>Soft particles</title>
+                    <content>
+                        <para>
+                            Billboards and particles are usually rendered as flat quads, which cause hard edges when they
+                            intersect with other geometry in the scene. "Soft particles" are rendered by performing a
+                            depth check in the pixel shader. Soft particles create
+                            smooth transitions when they intersect with other geometry.
+                        </para>
+                        <mediaLink>
+                            <image xlink:href="Soft-Particles"/>
+                        </mediaLink>
+                        <para>
+                            Soft particles also fade out near the camera. That means, if the camera moves through
+                            a particle, the particle fades out smoothly (which reduces "popping" artifacts).
+                        </para>
+                        <para>
+                            To enable rendering of soft particles set the property
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Rendering.BillboardRenderer.EnableSoftParticles</codeEntityReference>
+                            to <codeInline>true</codeInline>. In addition, the depth buffer needs to be set in the render
+                            context (property <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.GBuffer0</codeEntityReference>).
+                        </para>
+                        <para>
+                            For image billboards: The property <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.ImageBillboard.Softness</codeEntityReference>
+                            defines whether billboards are rendered "hard" or "soft".
+                        </para>
+                        <para>
+                            For particle systems: The <codeEntityReference qualifyHint="false">F:DigitalRune.Particles.ParticleParameterNames.Softness</codeEntityReference>
+                            parameter (a uniform particle parameter of type <codeEntityReference qualifyHint="false">T:System.Single</codeEntityReference>)
+                            defines whether particles are rendered "hard" or "soft".
+                        </para>
+                        <para>
+                            The default softness is 0, which means that the billboard/particle shows hard edges.
+                            The value can be set to NaN (= automatic) or a fixed softness value. (The softness is
+                            basically the thickness of the particle in world space.)
+                        </para>
+                    </content>
+                </section>
+
+
+                <section address="OffScreen">
+                    <title>High-speed, off-screen particles</title>
+                    <content>
+                        <para>
+                            Off-screen rendering is only available in HiDef profile. It can
+                            be turned on or off using BillboardRenderer.EnableOffscreenRendering.
+                        </para>
+                        <para>
+                            Large amounts of particles covering the screen can cause a lot of overdraw. This can reduce
+                            the frame rate, if the game is limited by the GPU's fill rate. One solution to this problem
+                            is to render particles into a low-resolution off-screen buffer. After all particles
+                            are rendered, the low-resolution buffer is upsampled and combined with the scene
+                            render target. This reduces the amount of overdraw, at the expense of additional
+                            image processing overhead and image quality.
+                        </para>
+                        <para>
+                            To enable off-screen rendering set the property <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Rendering.BillboardRenderer.EnableOffscreenRendering</codeEntityReference>
+                            to <codeInline>true</codeInline>. In addition a low-resolution copy of the depth buffer
+                            (half width and height) needs to be stored in
+                            <codeInline>renderContext.Data[RenderContextKey.DepthBufferHalf]</codeInline>.
+                        </para>
+                        <alert class="warning">
+                            <para>
+                                When off-screen rendering is enabled the
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.BillboardRenderer</codeEntityReference>
+                                automatically switches render targets and invalidates the current depth-stencil buffer!
+                            </para>
+                            <para>
+                                HDR rendering combined with off-screen rendering on the Xbox 360
+                                is currently limited. It works for additively blended particles, but may cause
+                                artifacts when using alpha-blended particles. This is caused by the HdrBlendable
+                                format, which only has 2 bits for the alpha channel on the Xbox 360.
+                            </para>
+                        </alert>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

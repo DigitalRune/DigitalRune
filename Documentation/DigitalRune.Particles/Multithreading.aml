@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="678bfb4e-070d-4322-80d6-3367d6fdec68" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>This section describes how to configure multithreading in DigitalRune Particles.</para>
+    </introduction>
+
+
+    <section address="Multithreading">
+      <title>Multithreading in DigitalRune Particles</title>
+      <content>
+        <para>
+          The
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleSystemManager</codeEntityReference>
+          has integrated support for multithreading. Multithreading can be enabled or disabled using the property
+          <codeEntityReference qualifyHint="false">P:DigitalRune.Particles.ParticleSystemManager.EnableMultithreading</codeEntityReference>.
+          In multithreading mode particle systems are updated in parallel on multiple threads.
+          The property is enabled by default on systems with multiple CPU cores (most PCs and the Xbox 360).
+          You need to disable multithreading if you decide to run all particle systems on a single thread.
+        </para>
+        <para>
+          The
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleSystem</codeEntityReference>
+          has integrated support for multithreading too. Multithreading can be enabled or disabled using the property
+          <codeEntityReference qualifyHint="false">P:DigitalRune.Particles.ParticleSystemManager.EnableMultithreading</codeEntityReference>.
+          In multithreading mode child particle systems are automatically updated in parallel on multiple threads.
+          The property is <legacyItalic>disabled</legacyItalic> by default.
+        </para>
+        <para>
+          The particle effectors of a single particle system are not updated in parallel.
+          They are updated in the order in which they were added to a particle system. (Most effects
+          require the particle effectors to be updated in a specific sequence.)
+        </para>
+        <para>
+          The multithreading support is provided by the
+          <link xlink:href="dc44c3a5-8545-4253-9da1-62258a00607c" />. The namespace
+          <codeEntityReference qualifyHint="true">N:DigitalRune.Threading</codeEntityReference>
+          provides a task-based threading library that works cross-platform. The solution is optimized
+          for the .NET Compact Framework to achieve maximum performance on the Xbox 360.
+        </para>
+        <para>
+          The DigitalRune libraries make extensive use of the threading library. You should also take
+          advantage of the library if you plan to implement concurrency in your application.
+          The threading solution is fully configurable and the included task scheduler can automatically
+          balance the workload across all available CPU cores.
+          See class
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Threading.Parallel</codeEntityReference>
+          to find out more.
+        </para>
+        <alert class="caution">
+          <para>
+            It is not recommended to use multiple threading solutions in one application. Using multiple
+            independent solutions can lead to bad load balancing and oversubscription. The additional
+            overhead can cause a performance hit.
+          </para>
+        </alert>
+      </content>
+    </section>
+
+
+    <section address="random">
+      <title>Class Random is not thread-safe!</title>
+      <content>
+        <para>
+          It is important to know that the .NET class
+          <externalLink>
+            <linkText>Random</linkText>
+            <linkUri>http://msdn.microsoft.com/en-us/library/system.random.aspx</linkUri>
+          </externalLink>,
+          which is used by particle systems as the random number generator, is not thread-safe!
+          Therefore, each particle system creates its own instance of
+          <externalLink>
+            <linkText>Random</linkText>
+            <linkUri>http://msdn.microsoft.com/en-us/library/system.random.aspx</linkUri>
+          </externalLink> -
+          see also <link xlink:href="8c6f4ed6-3d35-4c23-9f64-aa823200e78b">Statistics and Distributions in DigitalRune Mathematics</link>.
+        </para>
+        <para>
+          If multithreading is disabled, the same random number generator can be assigned to
+          all particle system instances (property
+          <codeEntityReference qualifyHint="true">P:DigitalRune.Particles.ParticleSystem.Random</codeEntityReference>)
+          to safe a bit of memory.
+        </para>
+      </content>
+    </section>
+
+
+    <relatedTopics>
+      <codeEntityReference qualifyHint="true">P:DigitalRune.Particles.ParticleSystemManager.EnableMultithreading</codeEntityReference>
+      <codeEntityReference qualifyHint="true">P:DigitalRune.Particles.ParticleSystem.EnableMultithreading</codeEntityReference>
+      <codeEntityReference qualifyHint="true">T:DigitalRune.Threading.Parallel</codeEntityReference>
+      <codeEntityReference qualifyHint="true">N:DigitalRune.Threading</codeEntityReference>
+    </relatedTopics>
+
+  </developerConceptualDocument>
+</topic>

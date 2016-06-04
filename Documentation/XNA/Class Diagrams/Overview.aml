@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="d9205cc0-780b-4302-a5bb-7f35d4268085" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This topic contains class diagrams of the Microsoft XNA Framework.
+            </para>
+            <para>
+                Since MonoGame uses the same API as XNA (with minor differences), the same class diagrams
+                are also very helpful for MonoGame developers.
+            </para>
+            <!--<autoOutline />-->
+        </introduction>
+
+
+        <section address="Notes">
+            <title>Notes</title>
+            <content>
+                <list class="bullet">
+                    <listItem>
+                        The class diagrams contain all types of the Microsoft XNA Framework 4.0.
+                    </listItem>
+                    <listItem>
+                        We tried to arrange the class diagrams so that they can be viewed on a
+                        widescreen monitor.
+                    </listItem>
+                    <listItem>
+                        Large namespaces, e.g. Microsoft.Xna.Framework.Graphics, are subdivided
+                        into several diagrams.
+                    </listItem>
+                    <listItem>
+                        Some class members are hidden to remove "noise" and save space:
+                        <list class="bullet">
+                            <listItem>
+                                Constructors
+                            </listItem>
+                            <listItem>
+                                Private or internal members
+                            </listItem>
+                            <listItem>
+                                Overridden members if they are trivial (e.g. <legacyBold>ToString</legacyBold>,
+                                <legacyBold>GetHashCode</legacyBold>) or if the base class is in
+                                the class diagrams.
+                            </listItem>
+                            <listItem>
+                                Interface members if the interface is well-known (e.g.
+                                <legacyBold>IDisposable</legacyBold>, <legacyBold>ICollection</legacyBold>)
+                                or if the interface is in the class diagrams.>
+                            </listItem>
+                        </list>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="ClassDiagrams">
+            <title>Class diagrams</title>
+            <content>
+                <list class="bullet">
+                    <listItem>
+                        <link xlink:href="722f4554-6c82-4c66-9a7d-884ca7d370c4" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="49c88a02-71a6-4613-ac5a-ed4fcc460e09" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="f31248b8-8e59-4cfb-8e69-ac74d605b228" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="f997132f-1982-407c-a7f9-52296798979a" />
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="MakingOf">
+            <title>How the XNA class diagrams were created</title>
+            <content>
+                <para>
+                    If you don’t know how to create class diagrams for the XNA classes in Visual Studio,
+                    here is a quick summary of the process.
+                </para>
+            </content>
+            <sections>
+                <section>
+                    <title>Prerequisites</title>
+                    <content>
+                        <para>
+                            You need Microsoft Visual Studio 2008 Professional Edition or better. I
+                            think you cannot create class diagrams in the Express editions.
+                        </para>
+                    </content>
+                </section>
+                <section>
+                    <title>Steps</title>
+                    <content>
+                        <para>
+                        </para>
+                        <list class="ordered">
+                            <listItem>
+                                Create a new XNA Game Project in Visual Studio.
+                            </listItem>
+                            <listItem>
+                                Add an empty Class Diagram to the project: Right click on project
+                                in <legacyBold>Solution Explorer | Add | New Item… | Class Diagram</legacyBold>
+                            </listItem>
+                            <listItem>
+                                Open the "Object Browser".
+                            </listItem>
+                            <listItem>
+                                Browse to the XNA Framework Assemblies:
+                                <mediaLink>
+                                    <image xlink:href="TheMakingOfXNAClassDiagrams"/>
+                                </mediaLink>
+                            </listItem>
+                            <listItem>
+                                Drag-and-drop a namespace or individual types from the Object Browser
+                                to the empty class diagram.
+                            </listItem>
+                        </list>
+                        <para>
+                            Simple. The only "surprising" action might be that you can drag-and-drop
+                            items from the Object Browser onto the class diagram.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

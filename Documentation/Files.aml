@@ -1,0 +1,974 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="972bde71-5d0c-46be-8a81-ad0d2cea770a" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        
+        <introduction>
+            
+            <alert class="warning">
+                <para>
+                    The information on this page is outdated. It does not apply to the open source project.
+                </para>
+            </alert>
+            
+            <para>Here is an overview of files that are distributed with the DigitalRune products.</para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="General">
+            <title>General</title>
+            <content>
+                <para>
+                    This page gives an overview of the files and folders distributed with the DigitalRune libraries.
+                </para>
+                <para>
+                    Most DigitalRune libraries include multiple builds to support different
+                    versions of the Microsoft .NET Framework, Silverlight and the XNA Framework.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Folders">
+            <title>Folders</title>
+            <content>
+                <para>
+                    When you download one of the DigitalRune libraries you will receive a
+                    package with the following folders:
+                </para>
+
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Folder</para>
+                            </entry>
+                            <entry>
+                                <para>Description</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>Content</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains XNA content projects and pre-built assets (e.g. shaders, textures)
+                                used by DigitalRune libraries.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>Documentation</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains links to view the documentation online or to download the documentation.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>References</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains the pre-built binaries (DLLs) for different platforms.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>Samples</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains example applications that demonstrate how to use the DigitalRune libraries.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>Source</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains the source code of the DigitalRune libraries.
+                                (The source code of selected libraries may be available for free.
+                                The full source code is only available if you have bought a source code license.
+                                See
+                                <externalLink>
+                                    <linkText>DigitalRune Website</linkText>
+                                    <linkUri>http://www.digitalrune.com/</linkUri>
+                                </externalLink>
+                                for more information.)
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>Tools</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains command-line tools.
+                            </para>
+                        </entry>
+                    </row>
+                </table>
+            </content>
+        </section>
+
+
+        <section address="Platforms">
+            <title>Builds and platforms</title>
+            <content>
+                <para>
+                    Different builds of the DigitalRune libraries are included to support
+                    various platforms and .NET Framework versions. The pre-built binaries
+                    (DLLs) are sorted into the following folders:
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Folder</para>
+                            </entry>
+                            <entry>
+                                <para>Description</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>References/.NETCore/</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains the build for Windows Store Universal Apps (Windows + Windows Phone).
+                                No XNA/MonoGame-specific functionality.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>References/.NETFramework/</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains the build for the Microsoft .NET Framework and
+                                <link xlink:href="73ecd962-4ff5-4988-bb0c-bffa66f933b9">Mono</link>.
+                            </para>
+                            <para>
+                                No XNA/MonoGame-specific functionality.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>References/.NETPortable/</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains the Portable Class Library (PCL) builds supporting Profile328:
+                                .NET 4 + Silverlight 5 + Windows 8 + Windows Phone 8 + Xamarin.Android
+                                + Xamarin.iOS.
+                            </para>
+                            <para>
+                                Platform-specific functionality will throw
+                                <codeEntityReference qualifyHint="false">T:System.NotImplementedException</codeEntityReference>s.
+                            </para>
+                            <para>
+                                Use these builds if you need to reference the DigitalRune assemblies from a portable class library.
+                                (See also
+                                <externalLink>
+                                    <linkText>Advanced PCL / Bait and Switch PCL</linkText>
+                                    <linkUri>http://log.paulbetts.org/the-bait-and-switch-pcl-trick/</linkUri>
+                                </externalLink>)
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>References/Android/</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains the build for Xamarin.Android.
+                                No XNA/MonoGame-specific functionality.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>References/iOS/</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains the build for Xamarin.iOS.
+                                No XNA/MonoGame-specific functionality.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>References/MonoGame/Windows/</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains MonoGame and the DigitalRune libraries built for Windows desktop using
+                                DirectX11 (SharpDX).
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>References/MonoGame/WindowsPhone/</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains MonoGame and the DigitalRune libraries built for Windows Phone 8.1 apps.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>References/MonoGame/WindowsStore/</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains MonoGame and the DigitalRune libraries built for the Windows Store 8.1 apps (WinRT).
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>References/MonoGame/WindowsUniversal/</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains MonoGame and the DigitalRune libraries built for the Universal Windows
+                                Platform (UWP).
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>References/MonoGame/Linux/</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains MonoGame and the DigitalRune libraries built for Linux.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>References/MonoGame/MacOS/</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains MonoGame and the DigitalRune libraries built for Mac OS X.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>References/MonoGame/Android/</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains MonoGame and the DigitalRune libraries built for Android.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>References/MonoGame/iOS/</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains MonoGame and the DigitalRune libraries built for iOS.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>References/Silverlight/</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains the build for Microsoft Silverlight 5.
+                            </para>
+                            <para>
+                                No XNA/MonoGame-specific functionality.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>References/Unity/</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains the build for the Unity game engine.
+                            </para>
+                            <para>
+                                No XNA/MonoGame-specific functionality.
+                            </para>
+                            <para>
+                                The Unity assemblies were built for the .NET Framework 3.5.
+                            </para>
+                            <para>
+                                <localUri>DigitalRune.ServiceLocation.dll</localUri> is not available in Unity.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>References/XNA/Windows/</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains the Windows (x86) build for the Microsoft XNA Framework.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>References/XNA/Xbox360/</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains the Xbox 360 build for the Microsoft XNA Framework.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>References/XNA/Xbox360/</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains the Windows Phone 7 build for the Microsoft XNA Framework.
+                            </para>
+                        </entry>
+                    </row>
+                </table>
+            </content>
+        </section>
+
+
+        <section address="Dependencies">
+            <title>Dependencies</title>
+            <content>
+                <para>
+                    The following graph illustrates the dependencies between the DigitalRune assemblies and
+                    third-party assemblies.
+                </para>
+                <para>
+                    It is usually not necessary to worry about these dependencies as long as all assemblies are
+                    included in the application. But if you want to minimize the size of your package, you can
+                    include only the assemblies relevant to your application.
+                </para>
+                <mediaLink>
+                    <caption placement="after" lead="Screenshot">Dependency Graph</caption>
+                    <image xlink:href="DependencyGraph"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="XNA">
+            <title>XNA and MonoGame</title>
+            <content>
+                <para>
+                    As you can see from this graph, the assemblies <localUri>DigitalRune.Game.Input.dll</localUri>,
+                    <localUri>DigitalRune.Game.UI.dll</localUri> and <localUri>DigitalRune.Graphics.dll</localUri>
+                    require XNA or MonoGame. The other assemblies can be used without XNA or MonoGame.
+                </para>
+                <para>
+                    The assemblies <localUri>DigitalRune.Mathematics.dll</localUri>, <localUri>DigitalRune.Geometry.dll</localUri>,
+                    <localUri>DigitalRune.Animation.dll</localUri>, <localUri>DigitalRune.Particles.dll</localUri>,
+                    <localUri>DigitalRune.Physics.dll</localUri> and <localUri>DigitalRune.Physics.Specialize.dll</localUri>
+                    optionally support XNA/MonoGame: For example, conversion between DigitialRune and XNA data types,
+                    XNA content serialization, XNA avatar ragdolls, etc. These additional features are optional, i.e.
+                    these DigitalRune assemblies can also be used without XNA or MonoGame.
+                </para>
+            </content>
+            <sections>
+                <section>
+                    <title>MonoGame stub DLL</title>
+                    <content>
+                        <para>
+                            The XNA/MonoGame-independent builds (<localUri>References/.NETCore</localUri>,
+                            <localUri>References/.NETFramework</localUri>, etc.)
+                            contain <localUri>MonoGame.Framework.dll</localUri>. This is a PCL stub DLL which
+                            implements the MonoGame API but does not actually implement all MonoGame functions.
+                            The XNA/MonoGame-independent builds require this DLL. However, calling any MonoGame-
+                            specific functions, e.g. 3D graphics, audio, will raise a
+                            <codeEntityReference qualifyHint="false">T:System.NotImplementedException</codeEntityReference>.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Binaries">
+            <title>Binaries</title>
+            <content>
+                <para>
+                    Here is a description of files that can be found in the build folders.
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>File</para>
+                            </entry>
+                            <entry>
+                                <para>Description</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.dll</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The DigitalRune Base library, required by most DigitalRune libraries.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.xml</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The XML documentation file for <localUri>DigitalRune.dll</localUri>.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Animation.dll</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The DigitalRune Animation library.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Animation.xml</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The XML documentation file for <localUri>DigitalRune.Animation.dll</localUri>.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Animation.Content.Pipeline.dll</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                An XNA Content Pipeline project that contains the content importers,
+                                processors and type writers for DigitalRune Animation.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Game.dll</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The DigitalRune Game library, required by DigitalRune Game UI.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Game.xml</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The XML documentation file for <localUri>DigitalRune.Game.dll</localUri>.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Game.Input.dll</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The input processing of the DigitalRune Game UI library.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Game.Input.xml</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The XML documentation file for <localUri>DigitalRune.Game.Input.dll</localUri>.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Game.UI.dll</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The GUI classes of the DigitalRune Game UI library.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Game.UI.xml</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The XML documentation file for <localUri>DigitalRune.Game.UI.dll</localUri>.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Game.UI.Content.Pipeline.dll</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                An XNA Content Pipeline project that contains the content importers,
+                                processors and type writers for DigitalRune Game UI.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Game.UI.Content.Pipeline.xml</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The XML documentation file for <localUri>DigitalRune.Game.UI.Content.Pipeline.dll</localUri>.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Geometry.dll</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The DigitalRune Geometry library.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Geometry.xml</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The XML documentation file for <localUri>DigitalRune.Geometry.dll</localUri>.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Geometry.Content.Pipeline.dll</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                An XNA Content Pipeline project that contains the content type writers for DigitalRune.Geometry.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Geometry.Content.Pipeline.xml</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The XML documentation file for <localUri>DigitalRune.Geometry.Content.Pipeline.dll</localUri>.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Graphics.dll</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The DigitalRune Graphics library.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Graphics.xml</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The XML documentation file for <localUri>DigitalRune.Geometry.dll</localUri>.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Graphics.Content.Pipeline.dll</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                An XNA Content Pipeline project that contains the content type writers for DigitalRune.Graphics.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Graphics.Content.Pipeline.xml</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The XML documentation file for <localUri>DigitalRune.Graphics.Content.Pipeline.dll</localUri>.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Mathematics.dll</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The DigitalRune Mathematics library.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Mathematics.xml</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The XML documentation file for <localUri>DigitalRune.Mathematics.dll</localUri>.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Mathematics.Content.Pipeline.dll</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                An XNA Content Pipeline project that contains the content type writers for DigitalRune.Mathematics.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Mathematics.Content.Pipeline.xml</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The XML documentation file for <localUri>DigitalRune.Mathematics.Content.Pipeline.dll</localUri>.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Particles.dll</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The DigitalRune Particles library.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Particles.xml</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The XML documentation file for <localUri>DigitalRune.Particles.dll</localUri>.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Physics.dll</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The DigitalRune Physics library.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Physics.xml</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The XML documentation file for <localUri>DigitalRune.Physics.dll</localUri>.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Physics.Specialized.dll</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Contains specialized physics modules: ragdolls for Xbox LIVE Avatars,
+                                general character controllers and vehicle physics.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.Physics.Specialized.xml</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The XML documentation file for <localUri>DigitalRune.Physics.Specialized.dll</localUri>.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.ServiceLocation.dll</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                An optional library that comes with the DigitalRune Base library. Contains an Inversion of
+                                Control (IoC) container.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>DigitalRune.ServiceLocation.xml</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The XML documentation file for <localUri>DigitalRune.ServiceLocation.dll</localUri>.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>Microsoft.Practices.ServiceLocation.dll</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The
+                                <externalLink>
+                                    <linkText>Common Service Locator library</linkText>
+                                    <linkUri>http://commonservicelocator.codeplex.com/</linkUri>
+                                </externalLink>
+                                from
+                                <externalLink>
+                                    <linkText>Microsoft patterns and practices</linkText>
+                                    <linkUri>http://msdn.microsoft.com/en-us/practices</linkUri>
+                                </externalLink>.
+                                This library is required by
+                                <localUri>DigitalRune.ServiceLocation.dll</localUri>.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>Microsoft.Practices.ServiceLocation.xml</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The XML documentation file for <localUri>Microsoft.Practices.ServiceLocation.dll</localUri>.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <localUri>MonoGame.Framework.dll</localUri>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The actual MonoGame library or a stub DLL (see details above).
+                            </para>
+                        </entry>
+                    </row>
+                    <!--<row>
+            <entry>
+              <localUri>DigitalRune.Windows.dll</localUri>
+            </entry>
+            <entry>
+              The DigitalRune Windows helper library, required by most DigitalRune WPF libraries.
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <localUri>DigitalRune.Windows.xml</localUri>
+            </entry>
+            <entry>
+              The XML documentation file for <localUri>DigitalRune.Windows.dll</localUri>.
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <localUri>DigitalRune.Windows.Docking.dll</localUri>
+            </entry>
+            <entry>
+              The DigitalRune Docking Windows library.
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <localUri>DigitalRune.Windows.Docking.xml</localUri>
+            </entry>
+            <entry>
+              The XML documentation file for <localUri>DigitalRune.Windows.Docking.dll</localUri>.
+            </entry>
+          </row>-->
+                </table>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

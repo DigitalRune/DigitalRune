@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="ba13b3e9-cf11-4a8d-959d-338de0a4aa81" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="RenderContext">
+            <title>What is the render context?</title>
+            <content>
+                <para>
+                    The class <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.RenderContext</codeEntityReference>
+                    is automatically created by the graphics service. It is a collection of data that needs to
+                    be passed to every <legacyBold>Render</legacyBold> method. The render context should contain
+                    all information required to render an object or to perform a rendering step. (That means,
+                    if a renderer requires additional information, it should be able to find the information
+                    through the render context.)
+                </para>
+                <para>
+                    In most cases the active camera (property <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.CameraNode</codeEntityReference>),
+                    the render pass (property <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.RenderPass</codeEntityReference>)
+                    and the current scene (property <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.Scene</codeEntityReference>)
+                    need to be set for rendering. Additional information in the render context might be required
+                    depending on the effect bindings or renderer that are used.
+                </para>
+                <para>
+                    Additional information can be stored in the
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.RenderContext.Data</codeEntityReference>
+                    dictionary.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Usage">
+            <title>How to Use the render context</title>
+            <content>
+                <para>
+                    Several properties of the render context are set automatically by the graphics service.
+                    These properties include:
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.DeltaTime</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.GraphicsService</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.PresentationTarget</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.RenderTarget</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.Screen</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.SourceTexture</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.Viewport</codeEntityReference>
+                </para>
+                <para>
+                    Other properties are automatically set by scene node renderers.
+                    These properties include:
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.MaterialBinding</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.MaterialInstanceBinding</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.PassIndex</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.SceneNode</codeEntityReference>
+                </para>
+                <para>
+                    Following properties should be managed explicitly in your custom graphics screens or your custom renderers:
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.CameraNode</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.Data</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.GBuffer0</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.GBuffer1</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.GBuffer2</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.GBuffer3</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.LightBuffer0</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.LightBuffer1</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.RenderPass</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.RenderTarget</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.Scene</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.SourceTexture</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.Technique</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.Viewport</codeEntityReference>
+                </para>
+                <para>
+                    Here are some guidelines for using the render context:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            If you have a piece of information and there is a render context property for it, then
+                            update the render context. For example, if a graphics screen has a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.Scene</codeEntityReference>
+                            then set the
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.RenderContext.Scene</codeEntityReference>
+                            property at the beginning of the graphics screen's <legacyBold>Render</legacyBold> method.
+                            Especially before calling a renderer, make sure that the render context is up-to-date.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            All graphics screens and renderers should restore the original render context at the
+                            end of their <legacyBold>Render</legacyBold> method.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            It is allowed that renderers exchange the current render targets with another render
+                            target of the same format. This can be necessary for performance optimizations.
+                            After a renderer has executed, be prepared that it might have changed the current
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.RenderTarget</codeEntityReference>,
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.GBuffer0</codeEntityReference>
+                            or other render targets. Therefore, it is not recommended to store the current render target
+                            or G-buffer in a local variable. Use the render context properties.
+                        </para>
+                    </listItem>
+                </list>
+                <para>
+                    Here are some common usage examples:
+                </para>
+                <code language="c#" title="Example (C#): A Simple Graphics Screen Render Method">
+                    <![CDATA[
+protected override void OnRender(RenderContext context)
+{
+  // Update render context.
+  context.CameraNode = _myCameraNode;
+  context.Scene = _myScene;
+
+  // Render...
+
+  // Clean up.
+  context.Scene = null;
+  context.CameraNode = null;
+}
+              ]]>
+                </code>
+                <code language="c#" title="Example (C#): Calling a MeshRenderer">
+                    <![CDATA[
+context.RenderPass = "Default";
+_renderer.Render(query.SceneNodes, context);
+context.RenderPass = null;
+              ]]>
+                </code>
+                <code language="c#" title="Example (C#): Calling a Post-Processor">
+                    <![CDATA[
+context.SourceTexture = sourceTexture;
+context.RenderTarget = renderTarget;
+context.Viewport = new Viewport(0, 0, renderTarget.Width, renderTarget.Height);
+postProcessor.Process(context);
+context.SourceTexture = null;
+              ]]>
+                </code>
+                <code language="c#" title="Example (C#): Switching a Render Target">
+                    <![CDATA[
+graphicsDevice.SetRenderTarget(myRenderTarget);
+context.RenderTarget = myRenderTarget;
+context.Viewport = graphicsDevice.Viewport;
+              ]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Custom">
+            <title>Custom render contexts</title>
+            <content>
+                <para>
+                    It is possible to use a custom render context:
+                </para>
+                <list class="ordered">
+                    <listItem>
+                        <para>
+                            Create a new class that derives from
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.RenderContext</codeEntityReference>
+                            and add the desired members (properties, methods, etc.).
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+public class MyRenderContext : RenderContext
+{
+  // TODO: Add members here.
+}              
+              ]]>
+                        </code>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            Create a new class that derives from
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.GraphicsManager</codeEntityReference>.
+                            and override the method <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.GraphicsManager.CreateRenderContext</codeEntityReference>.
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+public class MyGraphicsManager : GraphicsManager
+{
+  protected override RenderContext CreateRenderContext()
+  {
+    return new MyRenderContext();
+  }
+}
+              ]]>
+                        </code>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            In the application use the new class instead of the default
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.GraphicsManager</codeEntityReference>.
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+        
+    </developerConceptualDocument>
+</topic>

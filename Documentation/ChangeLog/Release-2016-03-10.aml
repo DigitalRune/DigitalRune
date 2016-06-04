@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="ca6ae3c3-7f7c-481d-b1d5-8a3c310921b5" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="ReleaseNotes">
+            <title>Release notes</title>
+            <content>
+                <para>
+                The new release includes improved graphics interoperability and minor bug fixes.
+                </para>
+            </content>
+            <sections>
+                <section address="NET45">
+                    <title>SwapChainPresentationTarget for Universal Windows Platform (UWP)</title>
+                    <content>
+                        <para>
+                            This release adds a new
+                            <link xlink:href="7fbfaba5-af8d-4bf7-b5c3-6c084e1bfc54">interop presentation target</link>
+                            for Universal Windows Platform (UWP)
+                            apps: The 
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Interop.SwapChainPresentationTarget</codeEntityReference>
+                            is a XAML element that is derived from the
+                            <externalLink>
+                                <linkText>SwapChainPanel</linkText>
+                            <linkUri>https://msdn.microsoft.com/library/windows/apps/windows.ui.xaml.controls.swapchainpanel</linkUri>
+                            </externalLink>
+                            element. This control can be used to draw 3D graphics inside a regular 
+                            UWP app.
+                        </para>
+                        <para>
+                            We have provided a new example application, called <localUri>UwpInteropSample</localUri>,
+                            which shows how to use this new element.
+                        </para>
+                <mediaLink>
+                    <caption placement="after">Screenshot: UwpInteropSample</caption>
+                    <image xlink:href="UwpInteropSample"/>
+                </mediaLink>
+                        <para>
+                            Two <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Interop.SwapChainPresentationTarget</codeEntityReference>s
+                            are used in the screenshot. The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Interop.SwapChainPresentationTarget</codeEntityReference>
+                            supports transparency, scaling, and rotations - like other XAML elements.
+                        </para>
+                        <para>
+                            The <localUri>UwpInteropSample</localUri> also shows how to create a game
+                            loop in a UWP app. The game loop runs in a parallel thread. It updates game
+                            services at a regular interval, e.g. 60 frames per second.
+                        </para>
+                    </content>
+                </section>
+                <section address="Remote">
+                    <title>WPF applications over remote desktop (RDP)</title>
+                    <content>
+                        <para>
+                            The assembly <localUri>DigitalRune.Graphics.dll</localUri> now targets
+                            .NET 4.5, and the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Interop.D3DImagePresentationTarget</codeEntityReference>
+                            uses the improved
+                            <externalLink>
+                                <linkText>D3DImage</linkText>
+                                <linkUri>https://msdn.microsoft.com/en-us/library/system.windows.interop.d3dimage.aspx</linkUri>
+                            </externalLink>. The D3DImage will automatically fall back to software rendering
+                            when the front buffer becomes unavailable. (It is no longer necessary to check
+                            the <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Interop.D3DImagePresentationTarget.IsFrontBufferAvailable</codeEntityReference>
+                            flag.)
+                        </para>
+                        <para>
+                            As a result of this change, WPF applications with 3D graphics can now be run
+                            over remote desktop (RDP) connections.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="ChangeLog">
+            <title>Change log</title>
+            <content>
+            </content>
+            <sections>
+                <section address="Base">
+                    <title>DigitalRune Base 1.20</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                NEW: Method
+                                <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Storages.Path.GetRelativePath(System.String,System.String)</codeEntityReference>
+                                added.
+                            </listItem>
+                            <listItem>
+                                CHANGE: When a service with
+                                <codeEntityReference qualifyHint="true">F:DigitalRune.ServiceLocation.DisposalPolicy.Automatic</codeEntityReference>
+                                is unregistered from a
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.ServiceLocation.ServiceContainer</codeEntityReference>,
+                                all service instances are disposed of. (Previously, unregistering a service did not
+                                dispose of the service instances. The documentation of
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.ServiceLocation.DisposalPolicy</codeEntityReference>
+                                has been updated accordingly.)
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Geometry">
+                    <title>DigitalRune Geometry 1.18.2</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                FIX: The properties
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Collisions.Contact.FeatureA</codeEntityReference>
+                                and <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.Contact.FeatureB</codeEntityReference>
+                                were not set for certain mesh vs. mesh contacts.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Graphics">
+                    <title>DigitalRune Graphics 1.2</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                NEW: <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Interop.SwapChainPresentationTarget</codeEntityReference>
+                                for Universal Windows Platform (UWP)
+                                allows to combine 3D graphics with XAML elements.
+                            </listItem>
+                            <listItem>
+                                NEW: Improved performance when resizing
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Interop.FormsPresentationTarget</codeEntityReference>.
+                            </listItem>
+                            <listItem>
+                                CHANGE: Switched DigitalRune Graphics for MonoGame/Windows from .NET 4.0 to .NET 4.5. This solves D3DImage problems when used in remote desktop.
+                            </listItem>
+                            <listItem>
+                                CHANGE: <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.DebugRenderer</codeEntityReference>
+                                snaps text to pixel positions for sharper text rendering.
+                            </listItem>
+                            <listItem>
+                                FIX: When model has skeleton with too many bones, a
+                                <codeEntityReference qualifyHint="false">T:System.NullReferenceException</codeEntityReference>
+                                is thrown instead of a
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.GraphicsException</codeEntityReference>.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Game">
+                    <title>DigitalRune Game 1.4</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                NEW: Property <codeEntityReference qualifyHint="true">P:DigitalRune.Game.Timing.IGameClock.MaxDeltaTime</codeEntityReference>
+                                added.
+                            </listItem>
+                            <listItem>
+                                NEW: Property <codeEntityReference qualifyHint="true">P:DigitalRune.Game.Timing.FixedStepTimer.StepSizeTolerance</codeEntityReference>
+                                added.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="GameUI">
+                    <title>DigitalRune Game UI 1.7</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                NEW: Set attribute <codeInline>Premultiply="False"</codeInline> in theme XML
+                                to disable premultiplication with alpha during content processing of texture.
+                            </listItem>
+                            <listItem>
+                                FIX: Users could write into a read-only 
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.TextBox</codeEntityReference>
+                                if the focus was moved into the UI element with the keyboard.
+                            </listItem>
+                            <listItem>
+                                FIX: Improved exception messages in content processor.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Samples">
+                    <title>Samples</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                NEW: <localUri>UwpInteropSample</localUri> shows how to mix 3D graphics
+                                with XAML elements in Windows Universal Platform (UWP) apps.
+                            </listItem>
+                            <listItem>
+                                CHANGE: Switched MonoGame/Windows samples from .NET 4.0 to .NET 4.5.
+                            </listItem>
+                            <listItem>
+                                FIX: <legacyBold>SampleHelper.CreateMesh</legacyBold> did not set a proper bounding shape.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

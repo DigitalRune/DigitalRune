@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="066b3b04-8a74-4f6e-a727-2b6966d62e45" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        In this article, we talk about the second profiler, which is a "hierarchical profiler". It
+        was inspired by an article in the book 
+        <legacyItalic>Real-Time Hierarchical Profiling (Game Programming Gems 3)</legacyItalic>.
+      </para>
+      <para>
+        This class has slightly different goals than the
+        <link xlink:href="ae51011c-e8a5-4381-b6de-c38102bdfbde" />. The main goal is to measure the
+        timing of nested method calls. This is extremely helpful in many applications – in particular
+        if you need to optimize your game loop. An important difference between the simple profiler
+        and the hierarchical profiler is that the hierarchical profiler does not work across multiple
+        threads. That’s why we still need the simple profiler. The simple profiler can be used to
+        collect values and to profile code in multi-threaded scenarios.
+      </para>
+      <autoOutline/>
+    </introduction>
+
+    <section address="Overview">
+      <title>Overview</title>
+      <content>
+        <para>
+          The
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Diagnostics.HierarchicalProfiler</codeEntityReference>
+          class can be found in the namespace
+          <legacyBold>DigitalRune.Diagnostics</legacyBold>. Here is a class diagram of the relevant classes.
+        </para>
+        <mediaLink>
+          <image xlink:href="ClassDiagramDiagnosticsHierarchical"/>
+        </mediaLink>
+        <para>
+          Unlike the
+          <link xlink:href="ae51011c-e8a5-4381-b6de-c38102bdfbde">Profiler</link>
+          class, the 
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Diagnostics.HierarchicalProfiler</codeEntityReference>
+          is not a static class. You need to create a new instance
+          of the 
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Diagnostics.HierarchicalProfiler</codeEntityReference>, 
+          and this instance must not be shared across threads.
+        </para>
+        <para>
+          Time is measured with
+          <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Diagnostics.HierarchicalProfiler.Start(System.String)</codeEntityReference>
+          and
+          <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Diagnostics.HierarchicalProfiler.Stop</codeEntityReference>.
+          This profiler allows nested time measurement – even for recursive calls! If
+          <codeInline>Start("Foo")</codeInline>
+          is called twice, without calling
+          <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Diagnostics.HierarchicalProfiler.Stop</codeEntityReference>.
+        the profiler treats this as a recursive method call. If
+        <codeInline>Start("Foo0")</codeInline> and then
+        <codeInline>Start("Foo1")</codeInline> is called, the profiler assumes that Foo1 is a method called by Foo0. Thus,
+        it builds a tree of profiler data. The root of the tree is
+        <codeEntityReference qualifyHint="false">P:DigitalRune.Diagnostics.HierarchicalProfiler.Root</codeEntityReference>.
+          Each node in the tree is a
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Diagnostics.HierarchicalProfilerNode</codeEntityReference>
+          and has other child nodes.
+        </para>
+        <para>
+          The method
+          <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Diagnostics.HierarchicalProfiler.NewFrame</codeEntityReference>
+          must be called when a new frame of the game starts (= at the beginning of the game’s main
+          loop, or at beginning of Game.Update in XNA).
+          I guess it gets clearer with an example…
+        </para>
+      </content>
+    </section>
+
+    <section address="Example">
+      <title>Example</title>
+      <content>
+        <para>
+          The following example "simulates" a game. Methods called Update and Draw are called in
+          a loop. The Update method calls other methods to compute Physics and AI.
+        </para>
+        <code language="cs">
+          <![CDATA[
+// The compilation symbol "DIGITALRUNE_PROFILE" must 
+// be defined to activate profiling.
+#define DIGITALRUNE_PROFILE
+
+using System;
+using System.Threading;
+using DigitalRune.Diagnostics;
+
+namespace ProfilingTest 
+{
+  class Program 
+  {
+    // The profiler instance.
+    private static HierarchicalProfiler _profiler = new HierarchicalProfiler("MyProfiler");
+
+    static void Main(string[] args) 
+    {
+      // Start profiling.
+      _profiler.Reset();
+
+      // This represents the main-loop of a game.
+      for (int i = 0; i < 10; i++) 
+      {
+        // NewFrame() must be called when a new frame of the game begins.
+        _profiler.NewFrame();
+
+        Update();
+        Draw();
+      }
+
+      // Write the profiler data to the console. We start at the root node and include 
+      // up to 5 child levels.
+      Console.WriteLine(_profiler.Dump(_profiler.Root, 5));
+    }
+
+    private static void Update() 
+    {
+      _profiler.Start("Update");
+
+      Physics();
+      AI();
+      AI();
+      AI();
+      Thread.Sleep(1);
+
+      _profiler.Stop();
+    }
+
+    private static void Physics() 
+    {
+      _profiler.Start("Physics");
+
+      Thread.Sleep(6);
+
+      _profiler.Stop();
+    }
+
+    private static void AI() 
+    {  
+      _profiler.Start("AI");
+
+      Thread.Sleep(3);
+
+      _profiler.Stop();
+    }
+
+    private static void Draw() 
+    {
+      _profiler.Start("Draw");
+
+      Thread.Sleep(4);
+
+      _profiler.Stop();
+    }
+  }
+}
+]]>
+        </code>
+        <para>
+          Here is the console output:
+        </para>
+        <code language="none">
+          <![CDATA[
+MyProfiler.Root 20 frames 20.286ms/frame 405.721ms total
+  Update 79.8% 16.198ms/frame 1 calls/frame (15.99ms/16.198ms/18ms)
+    Physics 29.6% 6.003ms/frame 1 calls/frame (5.367ms/6.003ms/6.356ms)
+    AI 45.1% 9.145ms/frame 3 calls/frame (2.389ms/3.048ms/5.107ms)
+    Other 5.2% 20.977ms 1.049ms/frame
+  Draw 19.6% 3.979ms/frame 1 calls/frame (3.514ms/3.979ms/4.683ms)
+  Other 1.2% 4.919ms 245.97µs/frame
+]]>
+        </code>
+        <para>
+          The dump uses a compacted format. The percentage values show the time of a node relative 
+          to the root of the dump. The values in round brackets are 
+          Minimum/Average/Maximum times. 'Other' represents the time of a node that was not measured 
+          by a child node. (If you don’t like the output format, you can traverse the tree manually, 
+          starting at the Root node, and collect the data that is relevant in your particular case.)
+        </para>
+        <para>
+          The output tells us a few things:
+        </para>
+        <list class="bullet">
+          <listItem>
+              The main loop of the game was executed 20 times. The average frame time is ~20ms. If we 
+              target a 60 fps game (= 16.6 ms/frame), we need to do some optimization.
+          </listItem>
+          <listItem>
+              79.9% of the whole game time is spent in Update(). Drawing accounts for 19.6% of the game time.
+          </listItem>
+          <listItem>
+              AI uses 45.1% of the whole game time and is called 3 times per frame.
+          </listItem>
+          <listItem>
+              ...
+          </listItem>
+        </list>
+      </content>
+    </section>
+      
+
+    <relatedTopics>
+    </relatedTopics>
+      
+  </developerConceptualDocument>
+</topic>

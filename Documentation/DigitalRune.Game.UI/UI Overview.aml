@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="5bf85e1f-8f25-4778-b4b1-9d29faf15cc9" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                The DigitalRune Game UI library provides GUI controls, like windows, buttons, text boxes, ..., for any
+                XNA application (Windows, Windows Phone 7 or Xbox 360). This section gives an overview over the UI
+                service and controls.
+            </para>
+            <!--<autoOutline>1</autoOutline>-->
+        </introduction>
+
+
+        <section address="Overview">
+            <title>The UI service and the UI manager</title>
+            <content>
+                <para>
+                    Each application that wants to render UI controls must create an instance of the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.UIManager</codeEntityReference>.
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Game.Input.InputManager.Update(System.TimeSpan)</codeEntityReference>
+                    must be called once per frame.
+                </para>
+                <para>
+                    The UI manager implements the interface
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.IUIService</codeEntityReference>,
+                    which can be used by game components to add UI screens and UI controls.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="UIControls">
+            <title>UI controls and UI screens</title>
+            <content>
+                <para>
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIControl</codeEntityReference>
+                    is the base class for all UI controls. UI controls are managed in a <legacyItalic>visual tree</legacyItalic>
+                    (e.g. a Window control contains a StackPanel control which contains several Button controls, ...).
+                </para>
+                <para>
+                    The root of the visual tree is the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIScreen</codeEntityReference>.
+                    Screens must be added to the UI service. The UI service automatically updates the
+                    screens in each frame. Screens are not drawn automatically. You must call
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Game.UI.Controls.UIScreen.Draw(Microsoft.Xna.Framework.GameTime)</codeEntityReference>
+                    manually to draw a screen. Screens can be rendered into the backbuffer or into a render target.
+                    For example, it is also possible to render a screen into a render target
+                    and use it as an interactive texture in the 3D game.
+                </para>
+                <para>
+                    Games can use any number of screens. Many games will only use a single screen.
+                    Some games will use several screens, e.g. a "Debug" screen with debug statistics
+                    above the normal "Game" screen with the UI controls of the game.
+                </para>
+            </content>
+            <sections>
+                <section address="Trees">
+                    <title>Visual tree and logical tree</title>
+                    <content>
+                        <para>
+                            Controls are managed in a <legacyItalic>visual tree</legacyItalic>: Each control has a
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.VisualParent</codeEntityReference>
+                            and <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.VisualChildren</codeEntityReference>.
+                            Visual children are managed by the controls themselves; the
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.VisualChildren</codeEntityReference>
+                            collection should not be directly changed by the user. The controls will automatically
+                            add a "logical child" to the visual children if it needs to be rendered.
+                        </para>
+                        <para>
+                            The root of the visual tree is the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIScreen</codeEntityReference>,
+                            which starts all update, layout and render traversals. The screen does not
+                            have a visual parent. Only objects in the visual tree handle input, take part
+                            in the layout process and are rendered.
+                        </para>
+                        <para>
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.ContentControl</codeEntityReference>s
+                            have a
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.ContentControl.Content</codeEntityReference>
+                            property.
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.Panel</codeEntityReference>
+                            and the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIScreen</codeEntityReference>
+                            have a
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIScreen.Children</codeEntityReference>
+                            collection. Other controls may have an
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.DropDownButton.Items</codeEntityReference>
+                            collection. Using these properties the user can
+                            create parent-child relationships which define the <legacyItalic>logical tree</legacyItalic>.
+                        </para>
+                        <para>
+                            Here is an example:
+                            A <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.Window</codeEntityReference>
+                            is a <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.ContentControl</codeEntityReference>,
+                            therefore it has a <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.ContentControl.Content</codeEntityReference>
+                            property. The user adds a logical child to the window by setting the
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.ContentControl.Content</codeEntityReference>
+                            property (e.g. a <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.StackPanel</codeEntityReference>
+                            that contains other controls). The window will automatically put the content into the
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.VisualChildren</codeEntityReference>
+                            collection because the content should be updated and rendered with the window. The window has a few more
+                            visual children: An <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.Image</codeEntityReference>
+                            control that draws the window icon, a <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.TextBlock</codeEntityReference>
+                            that draws the window title and a <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.Button</codeEntityReference>
+                            that represents the Close button of a window. These "internal" controls are automatically created by the
+                            window and added to its visual children.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+        <section address="Subtopics">
+            <title>Subtopics</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        <link xlink:href="2c10bf58-571a-4d67-b763-0f6b584c9bce" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="c0f13e6f-5e80-4d6b-8816-39f1789fe825" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="bb35e0b0-49d5-4847-b7f8-f5a1bb467fbb" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="44fe138f-8897-48c6-8ed6-c41bafd7853f" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="b6cd5e3b-0bfa-4edb-8ad4-3abe5b47a071" />
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="8befb151-f7b6-4884-936b-530458b13860" revisionNumber="1">
+    <developerConceptualDocument
+      xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction></introduction>
+
+        <section address="Prerequisites">
+            <title>Prerequisites</title>
+            <content>
+                <para>
+                    For developing .NET applications, you need to install:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <externalLink>
+                            <linkText>Microsoft Visual Studio 2010 (or newer)</linkText>
+                            <linkUri>http://msdn.microsoft.com/en-us/vstudio/default.aspx</linkUri>
+                        </externalLink>
+                    </listItem>
+                </list>
+                <para>
+                    To develop XNA-based games or applications you need to install:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <externalLink>
+                            <linkText>Microsoft XNA Game Studio 4.0 Refresh</linkText>
+                            <linkUri>http://www.microsoft.com/en-us/download/details.aspx?id=27599</linkUri>
+                        </externalLink>
+                    </listItem>
+                    <listItem>
+                        <externalLink>
+                            <linkText>Windows Phone SDK 7.1</linkText>
+                            <linkUri>http://www.microsoft.com/en-us/download/details.aspx?id=27570</linkUri>
+                        </externalLink>
+                    </listItem>
+                    <listItem>
+                        <externalLink>
+                            <linkText>Windows Phone SDK 7.1.1 Update</linkText>
+                            <linkUri>http://www.microsoft.com/en-us/download/details.aspx?id=29233</linkUri>
+                        </externalLink>
+                    </listItem>
+                </list>
+                <alert class="note">
+                    <para>
+                        The XNA/Windows Phone downloads are only required for XNA projects. They are
+                        not required anymore for MonoGame projects.
+                    </para>
+                </alert>
+                <para>
+                    This article assumes you are using Visual Studio 2010. If you want to use newer
+                    VS versions, see: <link xlink:href="06ec096e-b312-4052-b0ac-056d89efb5e1" />
+                </para>
+                <para>
+                    Windows Phone SDK packages contains important XNA updates. Even if you do not
+                    intend to develop for Windows Phone 7, you should still install these packages.
+                </para>
+            </content>
+            <sections>
+                <section>
+                    <title>Troubleshooting</title>
+                    <content>
+                        <para>
+                            The installation of XNA Game Studio or Windows Phone SDK might fail on
+                            Windows 8 (or newer). For a workaround see:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                <externalLink>
+                                    <linkText>
+                                        How to work around a possible XNA Game Studio or Windows
+                                        Phone SDK install failure on Windows 8 by Aaron Stebner
+                                    </linkText>
+                                    <linkUri>http://blogs.msdn.com/b/astebner/archive/2012/02/29/10274694.aspx</linkUri>
+                                </externalLink>
+                            </listItem>
+                        </list>
+                        <para>
+                            The setup of the Windows Phone SDK 7.1.1 can fail if a newer version of
+                            the Microsoft Advertising SDK for Windows Phone is already installed on
+                            the system. In this case please follow these steps:
+                        </para>
+                        <list class="ordered">
+                            <listItem>
+                                Download the latest version of the
+                                <externalLink>
+                                    <linkText>
+                                        Microsoft Advertising SDK for Windows Phone 8
+                                    </linkText>
+                                    <linkUri>http://www.microsoft.com/en-us/download/details.aspx?id=8729</linkUri>
+                                </externalLink>.
+                            </listItem>
+                            <listItem>
+                                Remove the previous installation by running the setup. (If the Ad
+                                SDK on the PC is older, install the latest version first, and then
+                                run the setup again to uninstall it.)
+                            </listItem>
+                            <listItem>
+                                Install the Windows Phone SDK 7.1.1.
+                            </listItem>
+                            <listItem>
+                                Re-install the latest version of the Microsoft Advertising SDK for Windows Phone.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Setup">
+            <title>Install the DigitalRune Engine</title>
+            <content>
+                <list class="ordered">
+                    <listItem>
+                        <token>Download</token>
+                    </listItem>
+                    <listItem>
+                        Unblock downloaded ZIP file:
+                        <list class="bullet">
+                            <listItem>
+                                Right-click the file and select <ui>Properties</ui> from the context menu.
+                            </listItem>
+                            <listItem>
+                                In the <ui>Properties</ui> dialog select the <ui>General</ui> tab and click the <ui>Unblock</ui> button. 
+                                <mediaLink>
+                                    <image xlink:href="Unblock-Zip"/>
+                                </mediaLink>
+                            </listItem>
+                            <listItem>
+                                Close the <ui>Properties</ui> dialog by clicking <ui>OK</ui>.
+                            </listItem>
+                        </list>
+                    </listItem>
+                    <listItem>
+                        After unblocking the ZIP file, simply extract the files to a folder of your choice:
+                        Right-click the ZIP file and select <ui>Extract All…</ui> from the context menu.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Next">
+            <title>Next</title>
+            <content>
+                <para>
+                    <link xlink:href="25418622-e634-4741-8d17-efc9fb44fba7" />
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

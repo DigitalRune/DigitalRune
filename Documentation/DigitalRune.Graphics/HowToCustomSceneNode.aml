@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="578746ac-7e3c-42b5-b9c9-6900714c966e" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                DigitalRune Graphics contains an extensible scene graph. This section demonstrates how to
+                add a new type of scene node.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+        
+        <section address="Node">
+            <title>Creating a custom scene node</title>
+            <content>
+                <para>
+                    Let's assume we want to render text labels at 3D position within the scene. To define
+                    the text labels we can implement a new type of
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SceneNode</codeEntityReference>.
+                </para>
+                <para>
+                    The following code defines a new scene node that stores a color and a text.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+  // The TextNode contains a text (string) and a color.
+  public class TextNode : SceneNode
+  {
+    // ----- The properties of the new scene node.
+    public Color Color { get; set; }
+    public string Text { get; set; }
+
+    // ----- The constructor sets relevant scene node properties.
+    public TextNode()
+    {
+      // The IsRenderable flag needs to be set to indicate that the scene node should 
+      // be handled during rendering.
+      IsRenderable = true;
+
+      // The CastsShadows flag needs to be set if the scene node needs to be rendered 
+      // into the shadow maps. But in this case the scene node should be ignored.
+      CastsShadows = false;
+
+      // A bounding shape needs to be set for frustum culling.
+      Shape = new PointShape();
+    }
+
+    // ----- The following methods are required by the cloning mechanism:
+    // CreateInstanceCore() is called when a clone needs to be created.
+    protected override SceneNode CreateInstanceCore()
+    {
+      return new TextNode();
+    }
+
+    // CloneCore() is called to initialize the clone.
+    protected override void CloneCore(SceneNode source)
+    {
+      // Copy the SceneNode properties (base class).
+      base.CloneCore(source);
+
+      // Copy the TextNode properties.
+      var sourceTextNode = (TextNode)source;
+      Color = sourceTextNode.Color;
+      Text = sourceTextNode.Text;
+    }
+  }
+          ]]>
+                </code>
+                <para>
+                    The newly created scene node can be used to define a label within a scene. For example:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+var textNode = new TextNode
+{
+  PoseLocal = new Pose(new Vector3F(1, 2, 3),
+  Color = Color.Red,
+  Text = "Label123",
+};
+myScene.Children.Add(textNode);
+          ]]>
+                </code>
+                <para>
+                    But DigitalRune Graphics does not yet know how to render a <legacyBold>TextNode</legacyBold>.
+                    A new type of <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneNodeRenderer</codeEntityReference>
+                    needs to be implemented.
+                </para>
+            </content>
+        </section>
+
+        <section address="Renderer">
+            <title>Creating a new scene node renderer</title>
+            <content>
+                <para>
+                    A <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneNodeRenderer</codeEntityReference>
+                    handles one or more types of scene nodes. For example, the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.MeshRenderer</codeEntityReference>
+                    handles <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshNode</codeEntityReference>s,
+                    the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.BillboardRenderer</codeEntityReference>
+                    handles <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.BillboardNode</codeEntityReference>s
+                    and <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ParticleSystemNode</codeEntityReference>s,
+                    etc.
+                </para>
+                <para>
+                    Let's implement a scene node renderer that draws text labels.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// The TextRenderer is a custom scene node renderer which draws TextNodes using a 
+// SpriteBatch and a SpriteFont.
+public class TextRenderer : SceneNodeRenderer
+{
+  private SpriteBatch _spriteBatch;
+  private SpriteFont _spriteFont;
+
+  public TextRenderer(IGraphicsService graphicsService, SpriteFont font)
+  {
+    if (graphicsService == null)
+      throw new ArgumentNullException("graphicsService");
+    if (font == null)
+      throw new ArgumentNullException("font");
+
+    _spriteBatch = new SpriteBatch(graphicsService.GraphicsDevice);
+    _spriteFont = font;
+    
+    // The TextRenderer should be called after all other scene node renderers.
+    // This is only relevant if different types of scene nodes (e.g. MeshNodes, 
+    // TextNodes, ...) are rendered at the same time.
+    Order = 100;
+  }
+
+  // CanRender() checks whether a given scene node can be rendered with this
+  // scene node renderer.
+  public override bool CanRender(SceneNode node, RenderContext context)
+  {
+    return node is TextNode;
+  }
+
+  // Render() draws a list of scene nodes.
+  public override void Render(IList<SceneNode> nodes, RenderContext context, RenderOrder order)
+  {
+    // For simplicity we ignore the 'order' parameter and do not sort the TextNodes
+    // by distance.
+    var graphicsDevice = context.GraphicsService.GraphicsDevice;
+    var cameraNode = context.CameraNode;
+    if (cameraNode == null)
+      return; // No camera set.
+
+    Matrix view = (Matrix)cameraNode.View;
+    Matrix projection = cameraNode.Camera.Projection;
+    var viewport = graphicsDevice.Viewport;
+
+    // Use the SpriteBatch for rendering text.
+    _spriteBatch.Begin();
+
+    for (int i = 0; i < nodes.Count; i++)
+    {
+      var node = nodes[i] as TextNode;
+      if (node != null)
+      {
+        // Draw text centered at position of TextNode.
+        Vector3 positionWorld = (Vector3)node.PoseWorld.Position;
+        Vector3 positionScreen = viewport.Project(positionWorld, projection, view, Matrix.Identity);
+        Vector2 position2D = new Vector2(positionScreen.X, positionScreen.Y);
+        Vector2 size = _spriteFont.MeasureString(node.Text);
+        _spriteBatch.DrawString(_spriteFont, node.Text, position2D - size / 2, node.Color);
+      }
+    }
+
+    _spriteBatch.End();
+  }
+}
+          ]]>
+                </code>
+                <para>
+                    A
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneRenderer</codeEntityReference>
+                    can be used to create a renderer which combines the <legacyBold>TextRenderer</legacyBold>
+                    with other scene node renderers.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Let's create a renderer that supports meshes, and text nodes.
+var sceneRenderer = new SceneRenderer();
+sceneRenderer.Renderers.Add(new MeshRenderer());
+sceneRenderer.Renderers.Add(new TextRenderer(graphicsService, spriteFont)
+          ]]>
+                </code>
+                <para>
+                    This renderer can be used to render a scene:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Set render context info.
+context.CameraNode = Player.CameraNode;
+context.RenderPass = "Default"; // Needs to be set for MeshNodes.
+context.Scene = myScene;
+
+var graphicsDevice = context.GraphicsService.GraphicsDevice;
+graphicsDevice.DepthStencilState = DepthStencilState.Default;
+graphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
+graphicsDevice.BlendState = BlendState.Opaque;
+
+// Render all scene nodes within camera frustum.
+var query = myScene.Query<CameraFrustumQuery>(context.CameraNode);
+sceneRenderer.Render(query.RenderableNodes, context);
+
+// Clean up.
+context.Scene = null;
+context.RenderPass = null;
+context.CameraNode = null;
+          ]]>
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

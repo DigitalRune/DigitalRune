@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="fda7b77e-2d84-46d6-a082-175b4308a1af" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This section explains the concept of a game object.
+            </para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="GameObjects">
+            <title>Game objects</title>
+            <content>
+                <para>
+                    <legacyItalic>Game objects</legacyItalic> (also called <legacyItalic>game entities</legacyItalic>,
+                    <legacyItalic>controllers</legacyItalic>, or <legacyItalic>actors</legacyItalic>) are
+                    implemented by the class <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GameObject</codeEntityReference>.
+                    Game objects are containers that contain game logic and have game object properties (see
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.GameObject.Properties</codeEntityReference>)
+                    and game object events (see <codeEntityReference qualifyHint="false">P:DigitalRune.Game.GameObject.Events</codeEntityReference>).
+                    Game object properties and events can be dynamically added to or removed from any game
+                    object at runtime.
+                </para>
+                <para>
+                    Game object properties contain relevant data for scripting, e.g. "Health", "Damage", or reference
+                    components of other game services, for example a "RigidBody" for physics, a "Model" for rendering.
+                    Game object events describe events that can be raised by the game object, such as the "Enter" event
+                    of a Trigger or the "Click" event of a Button.
+                </para>
+                <para>
+                    A game usually contains a number of service, such as Input, AI, Audio, Physics, Graphics, etc.
+                    These services usually don't communicate directly with each other. Instead, the game objects
+                    act as the glue code that orchestrate the functions of different game services: They read input
+                    from the input service, set forces to rigid bodies, read the rigid body positions, and use it to
+                    position graphical models in the scene of the renderer.
+                </para>
+                <para>
+                    Game objects can be used as generic containers that are configured in a game
+                    editor. But it is also possible to derive from the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GameObject</codeEntityReference>
+                    class and create specialized game objects. This is, for example, done in the
+                    <link xlink:href="a5a463da-de2e-432f-bf7d-07206aaca634"/> where the class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIControl</codeEntityReference>
+                    derives from <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GameObject</codeEntityReference>.
+                    The DigitalRune game object system was designed to support both cases: Using game objects
+                    in an editor or script environment, and using game objects in game libraries.
+                </para>
+                <alert class="note">
+                    <para>
+                        In many game engines, game objects have a few fixed properties, such as a "Position"
+                        that defines the 3D position in the scene. Sometimes it also has more predefined properties
+                        like, "Shape" (for collision detection), "Model" for rendering, etc. Such a design is
+                        adequate for a game editor with limited functionality. It is not suitable for a general
+                        purpose game library; because depending on the game, a position of a game object can be
+                        defined using a 2D vector, a 3D vector, a parent object - or maybe it should not have a
+                        position at all (like a "ScriptObject").
+                    </para>
+                    <para>
+                        In the DigitalRune Game library game objects are blank slates without predefined properties.
+                        This is preferable because it does not impose any restrictions on the architecture of a game.
+                    </para>
+                </alert>
+            </content>
+
+            <sections>
+                <section address="Naming">
+                    <title>Naming game objects</title>
+                    <content>
+                        <para>
+                            Game objects can have a <codeEntityReference qualifyHint="false">P:DigitalRune.Game.GameObject.Name</codeEntityReference>.
+                            The name can be used to identify a game object and is also helpful for debugging.
+                            When a game object is added to a <codeEntityReference qualifyHint="false">T:DigitalRune.Game.IGameObjectService</codeEntityReference>
+                            it must have unique name. See also <link xlink:href="bae21eb9-66c2-422c-95ce-992e873a4774"/>.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Lifecycle">
+                    <title>Loading, updating, and unloading game objects</title>
+                    <content>
+                        <para>
+                            A game object contains the methods
+                            <codeEntityReference qualifyHint="false">M:DigitalRune.Game.GameObject.Load</codeEntityReference> and
+                            <codeEntityReference qualifyHint="false">M:DigitalRune.Game.GameObject.Unload</codeEntityReference>.
+                            These methods are automatically called when the game object is added to or removed from
+                            a <codeEntityReference qualifyHint="false">T:DigitalRune.Game.IGameObjectService</codeEntityReference>.
+                            See also <link xlink:href="bae21eb9-66c2-422c-95ce-992e873a4774"/>.
+                        </para>
+                        <para>
+                            The method <codeEntityReference qualifyHint="false">M:DigitalRune.Game.GameObject.Update(System.TimeSpan)</codeEntityReference>
+                            is also call by the <codeEntityReference qualifyHint="false">T:DigitalRune.Game.IGameObjectService</codeEntityReference>
+                            that manages the game object. The method is usually called once per frame to
+                            run the game logic of the object.
+                        </para>
+                        <para>
+                            Derived classes can override the methods
+                            <codeEntityReference qualifyHint="false">M:DigitalRune.Game.GameObject.OnLoad</codeEntityReference>,
+                            <codeEntityReference qualifyHint="false">M:DigitalRune.Game.GameObject.OnUpdate(System.TimeSpan)</codeEntityReference>,
+                            <codeEntityReference qualifyHint="false">M:DigitalRune.Game.GameObject.OnUnload</codeEntityReference>
+                            and perform the required steps to initialize, update or uninitialize objects.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

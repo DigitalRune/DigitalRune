@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="920ac165-5f26-4bf1-a1b7-d0ecb308b14c" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                In some cases a rigid body consists of parts with different densities and materials.
+                For example: A hammer has a metal head and a wooden shaft. This section
+                shows how to model these kind of rigid bodies.
+            </para>
+        </introduction>
+
+
+        <section address="Composition">
+            <title>Composite rigid bodies</title>
+            <content>
+                <para>
+                    To model rigid bodies with different mass parts, create a rigid body with a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.CompositeShape</codeEntityReference>.
+                    Normally, all child objects in the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.CompositeShape</codeEntityReference>
+                    have the same density - but: If the child of a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.CompositeShape</codeEntityReference>
+                    is a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.RigidBody</codeEntityReference>,
+                    the mass properties of this child body are used.
+                </para>
+                <alert>
+                    <para>
+                        The children of a
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.CompositeShape</codeEntityReference>
+                        are of the type
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.IGeometricObject</codeEntityReference>
+                        and a
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.RigidBody</codeEntityReference>
+                        implements
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.IGeometricObject</codeEntityReference>.
+                        Therefore, a rigid body can be the child of a
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.CompositeShape</codeEntityReference>.
+                    </para>
+                </alert>
+                <para>
+                    Now, to model a hammer:
+                    Create a rigid body for the metal head. For example:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+BoxShape headShape = new BoxShape(0.03f, 0.03f, 0.1f);
+MassFrame headMass = MassFrame.FromShapeAndDensity(headShape, Vector3F.One, 7850, 0.01f, 3);
+UniformMaterial metal = new UniformMaterial("Metal")
+{
+  StaticFriction = 0.6f,
+  DynamicFriction = 0.6f,
+  Restitution = 0.2f,
+};
+RigidBody head = new RigidBody(headShape, headMass, metal)
+{
+  Pose = new Pose(new Vector3F(0, 0.1f, 0))   // The relative hammer head position in "hammer space".
+};
+]]>
+                </code>
+                <para>
+                    Create a second rigid body for the wooden shaft with different mass and
+                    different material properties:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+CylinderShape shaftShape = new CylinderShape(0.015f, 0.2f);
+MassFrame shaftMass = MassFrame.FromShapeAndDensity(shaftShape, Vector3F.One, 700, 0.01f, 3);
+UniformMaterial wood = new UniformMaterial("Wood")
+{
+  StaticFriction = 0.5f,
+  DynamicFriction = 0.3f,
+  Restitution = 0.2f,
+};
+RigidBody shaft = new RigidBody(shaftShape, shaftMass, wood);
+]]>
+                </code>
+                <para>
+                    Then, add both rigid bodies to a composite shape:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+CompositeShape hammerShape = new CompositeShape();
+hammerShape.Children.Add(head);
+hammerShape.Children.Add(shaft);
+]]>
+                </code>
+                <para>
+                    Use
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Physics.MassFrame.FromShapeAndDensity(DigitalRune.Geometry.Shapes.Shape,DigitalRune.Mathematics.Algebra.Vector3F,System.Single,System.Single,System.Int32)</codeEntityReference>
+                    to compute the mass frame for the composite shape.
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Physics.MassFrame.FromShapeAndDensity(DigitalRune.Geometry.Shapes.Shape,DigitalRune.Mathematics.Algebra.Vector3F,System.Single,System.Single,System.Int32)</codeEntityReference>
+                    automatically uses the mass properties of the child bodies:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+MassFrame hammerMass = MassFrame.FromShapeAndDensity(hammerShape, Vector3F.One, 100, 0.01f, 3);
+]]>
+                </code>
+                <para>
+                    The density parameter in this method call is irrelevant because each child
+                    of the composite has pre-defined mass properties.
+                </para>
+                <para>
+                    If the hammer uses a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Materials.CompositeMaterial</codeEntityReference>,
+                    the simulation will automatically use the materials of the child bodies:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+CompositeMaterial compositeMaterial = new CompositeMaterial();
+]]>
+                </code>
+                <para>
+                    The first two bodies are only used to define the composite shape - they are
+                    never added to the simulation directly. Only the composite rigid body
+                    is added to the simulation:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+RigidBody hammer = new RigidBody(hammerShape, hammerMass, compositeMaterial);
+mySimulation.RigidBodies.Add(hammer);
+]]>
+                </code>
+                <para>
+                    For the simulation the hammer is a single rigid body. The child bodies are
+                    only used to define mass and material properties.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

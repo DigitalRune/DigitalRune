@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="b7e96cd7-c737-4805-b5a9-98f1e8acd1d5" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                DigitalRune Graphics supports different anti-aliasing methods.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="MSAA">
+            <title>Multisample Anti-Aliasing (MSAA)</title>
+            <content>
+                <para>
+                    <newTerm>Multisample Anti-Aliasing</newTerm> (MSAA) is supported by the XNA Framework:
+                    See
+                    <externalLink>
+                        <linkText>MSDN: Enabling Antialiasing (Multisampling)</linkText>
+                        <linkUri>http://msdn.microsoft.com/en-us/library/bb975403.aspx</linkUri>
+                    </externalLink>.
+                </para>
+                <para>
+                    However, MSAA is not compatible with the light pre-pass renderer ("deferred lighting")
+                    as implemented in the examples. It is recommended to use
+                    <newTerm>Fast Approximate Anti-Aliasing</newTerm> (FXAA) or
+                    <newTerm>Enhanced Subpixel Morphological Anti-Aliasing</newTerm> (SMAA) instead.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="FXAA">
+            <title>Fast Approximate Anti-Aliasing (FXAA)</title>
+            <content>
+                <para>
+                    <newTerm>Fast Approximate Anti-Aliasing</newTerm> (FXAA) is implemented as a
+                    post-process filter. See
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PostProcessing.FxaaFilter</codeEntityReference>.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="SMAA">
+            <title>Enhanced Subpixel Morphological Anti-Aliasing (SMAA)</title>
+            <content>
+                <para>
+                    <newTerm>Enhanced Subpixel Morphological Anti-Aliasing</newTerm> (SMAA) is implemented as
+                    a post-process filter. See
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PostProcessing.SmaaFilter</codeEntityReference>.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

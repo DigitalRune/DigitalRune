@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="cdc88d41-dcb6-4464-be17-46d29a15d25a" revisionNumber="1">
+    <developerConceptualDocument
+      xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                In this step we will enable playback of animations.
+            </para>
+        </introduction>
+
+
+        <section address="AnimationManager">
+            <title>Add animation service</title>
+            <content>
+                <para>
+                    Let's add the animation service to <localUri>Game1.cs</localUri>:
+                </para>
+                <code language="c#" title="Game1.cs">
+                    <![CDATA[
+…
+using DigitalRune.Animation;                                                          // NEW
+…
+
+namespace MyGame
+{
+    public class Game1 : Microsoft.Xna.Framework.Game
+    {
+        …
+        private AnimationManager _animationManager;                                   // NEW
+        …
+
+        protected override void Initialize()
+        {
+            …
+            _gameObjectManager = new GameObjectManager();
+            _services.Register(typeof(IGameObjectService), null, _gameObjectManager);
+
+            _animationManager = new AnimationManager();                               // NEW
+            _services.Register(typeof(IAnimationService), null, _animationManager);   // NEW
+
+            Components.Add(new MyGameComponent(this));
+
+            base.Initialize();
+        }
+
+        protected override void Update(GameTime gameTime)
+        {
+            _inputManager.Update(gameTime.ElapsedGameTime);
+
+            base.Update(gameTime);
+
+            _gameObjectManager.Update(gameTime.ElapsedGameTime);
+
+            _animationManager.Update(gameTime.ElapsedGameTime);                       // NEW
+            _animationManager.ApplyAnimations();                                      // NEW
+        }
+        …
+                    ]]>
+                </code>
+                <para>
+                    The animation service is similar to the other service – only the update consists
+                    of two parts. <legacyBold>AnimationManager.Update</legacyBold> computes the animations
+                    but it does not change the animated objects. <legacyBold>AnimationManager.ApplyAnimations</legacyBold>
+                    applies the changes to the animated objects. This separation is only relevant for
+                    multithreaded game loops. For beginners it is best to call these methods in immediate
+                    succession, as shown above.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Dude">
+            <title>Load Dude model</title>
+            <content>
+                <para>
+                    Next, we create a new game object <localUri>DudeObject.cs</localUri>, which
+                    loads the Dude model:
+                </para>
+                <code language="c#" title="DudeObject.cs">
+                    <![CDATA[
+using System;
+using System.Linq;
+using DigitalRune.Animation;
+using DigitalRune.Animation.Character;
+using DigitalRune.Game;
+using DigitalRune.Graphics.SceneGraph;
+using Microsoft.Practices.ServiceLocation;
+using Microsoft.Xna.Framework;
+
+namespace MyGame
+{
+    public class DudeObject : GameObject
+    {
+        private ModelNode _modelNode;
+        private AnimationController _animationController;
+
+        protected override void OnLoad()
+        {
+            var game = ServiceLocator.Current.GetInstance<Game>();
+            var scene = ServiceLocator.Current.GetInstance<IScene>();
+
+            _modelNode = game.Content.Load<ModelNode>("Dude/Dude").Clone();
+            scene.Children.Add(_modelNode);
+
+            // Create looping animation.
+            var meshNode = (MeshNode)_modelNode.Children[0];   // The dude model has a single mesh node as its child.
+            var animations = meshNode.Mesh.Animations;
+            var animationClip = new AnimationClip<SkeletonPose>(animations.Values.First())
+            {
+                LoopBehavior = LoopBehavior.Cycle,  // Repeat animation…
+                Duration = TimeSpan.MaxValue,       // …forever.
+            };
+
+            // Start animation.
+            var animationService = ServiceLocator.Current.GetInstance<IAnimationService>();
+            _animationController = animationService.StartAnimation(animationClip, (IAnimatableProperty)meshNode.SkeletonPose);
+        }
+
+
+        protected override void OnUnload()
+        {
+            _animationController.Stop();
+            _animationController.Recycle();
+
+            _modelNode.Parent.Children.Remove(_modelNode);
+            _modelNode.Dispose(false);
+            _modelNode = null;
+        }
+    }
+}
+                    ]]>
+                </code>
+                <para>
+                    This game object loads the model, clones it and adds it to the scene. A model consists
+                    of a <legacyBold>ModelNode</legacyBold>, which has one or more child nodes. Child
+                    nodes can be of type <legacyBold>MeshNode</legacyBold>, <legacyBold>LightNode</legacyBold>,
+                    etc. Most models, such as the <localUri>Dude.fbx</localUri>, contain a single
+                    <legacyBold>MeshNode</legacyBold>.
+                </para>
+                <para>
+                    Next, we need to get the animations of the model.  Animations are always stored per
+                    mesh. We get the first animation of the mesh, which in this case is a walk animation.
+                    To loop the animation we need to create an <legacyBold>AnimationClip</legacyBold>.
+                </para>
+                <para>
+                    Then the animation is started using the animation service. The animation is applied
+                    to the <legacyBold>SkeletonPose</legacyBold> of the <legacyBold>MeshNode</legacyBold>.
+                </para>
+                <para>
+                    From now on the animation service will play the walk cycle forever – or until we
+                    stop it manually. <legacyBold>IAnimationService.StartAnimation</legacyBold> returns
+                    an <legacyBold>AnimationController</legacyBold>, which we can use to stop the animation.
+                </para>
+                <para>
+                    If we run the game, the dude model is shown, but it is huge and not animated. Let's fix this.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="XML">
+            <title>Changing *.drmdl and *.drmat files</title>
+            <content>
+                <para>
+                    If you open the Windows File Explorer browse to the folder of the Dude model, you
+                    should see a few new files with the file extensions drmdl and drmat.
+                </para>
+                <mediaLink>
+                    <image xlink:href="Tutorial-01-16"/>
+                </mediaLink>
+                <para>
+                    These files were automatically created when the XNA content pipeline processed
+                    <localUri>Dude.fbx</localUri>.
+                </para>
+                <para>
+                    (For some models these files are not created automatically. In this case you have
+                    to create them manually. Copy an existing *.drmdl and *.drmat file from the DigitalRune
+                    samples and use them as a starting point.)
+                </para>
+                <para>
+                    To change the scale of the Dude model, open the <localUri>Dude.drmdl</localUri> file
+                    in a text editor and change the <![CDATA[<Model>]]> tag:
+                </para>
+                <code language="xml" title="Dude.drmdl">
+                    <![CDATA[
+…
+<Model File="Dude.fbx"
+       GenerateTangentFrames="True"
+       PremultiplyVertexColors="True"
+       RotationX="0" RotationY="0" RotationZ="0"
+       Scale="0.02"
+       SwapWindingOrder="False"
+       AabbMinimum="-1,-0.2,-1"
+       AabbMaximum="1,2,1">
+…
+                    ]]>
+                </code>
+                <para>
+                    We set the <legacyBold>Scale</legacyBold> to 0.02. Also set
+                    <legacyBold>GenerateTangentFrames</legacyBold> to true – we do not need this right
+                    now, but in the future we will when we start to use normal mapping and advanced graphics.
+                </para>
+                <para>
+                    We also define the axis aligned bounding box (AABB) of the model using
+                    <legacyBold>AabbMinimum</legacyBold> and <legacyBold>AabbMaximum</legacyBold>.
+                    Normally, the bounding box is computed automatically for models. However, the bounding
+                    box is always computed for the rest pose (unanimated pose) of the model. When the
+                    model is animated some limbs can be moved outside the this box. Therefore, we have
+                    to manually set a bigger box manually, which is large enough to contain all animated
+                    poses of the model.
+                </para>
+                <para>
+                    Next, open all <localUri>*.drmat</localUri> files in a text editor and change the
+                    effect of the default render pass from <legacyBold>BasicEffect</legacyBold> to
+                    <legacyBold>SkinnedEffect</legacyBold>.
+                </para>
+                <code language="xml" title="*.drmat">
+                    <![CDATA[
+…
+<Pass Name="Default" Effect="SkinnedEffect" Profile="Any">
+…
+                    ]]>
+                </code>
+                <para>
+                    The XNA <legacyBold>BasicEffect</legacyBold> cannot render animated models (a.k.a.
+                    <newTerm>skinned meshes</newTerm>). The XNA <legacyBold>SkinnedEffect</legacyBold> can.
+                </para>
+                <para>
+                    Make these changes and run the game again. The Dude should be walking:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Tutorial-01-17"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Next">
+            <title>Next</title>
+            <content>
+                <para>
+                    <link xlink:href="a1c6f3cc-8a48-4c68-9401-421d36f67eba" />
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

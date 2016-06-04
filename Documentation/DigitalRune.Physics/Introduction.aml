@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="79a8677d-9460-4118-b27b-cef353dfbd92" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <mediaLink>
+                <image xlink:href="LogoPhysics"/>
+            </mediaLink>
+            <para>
+                <application>DigitalRune Physics</application> is a .NET class library for
+                game physics, especially rigid body dynamics. Such a library is usually called
+                a <legacyItalic>physics engine</legacyItalic>.
+                The library was designed for use in video games and virtual reality applications.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Features">
+            <title>Features</title>
+            <content>
+                <para>
+                    Here is an overview of features in this product.
+                </para>
+            </content>
+            <sections>
+
+                <section>
+                    <title>General</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Intended and optimized for use in 3D real-time applications
+                            </listItem>
+                            <listItem>
+                                Multithreading support
+                            </listItem>
+                            <listItem>
+                                Extensible: Users can add new force effects, constraints (joints),
+                                materials etc.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Simulation</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Rigid body dynamics
+                            </listItem>
+                            <listItem>
+                                Computation of mass properties for all kinds of shapes and general triangle meshes
+                            </listItem>
+                            <listItem>
+                                Force effects and force fields: Gravity, Damping, Explosion,
+                                Buoyancy (bodies swimming in water)
+                            </listItem>
+                            <listItem>
+                                Materials supporting dry friction, restitution and surface
+                                motion. Support for uniform materials, composite materials and
+                                custom materials.
+                            </listItem>
+                            <listItem>
+                                Sleeping (Automatic deactivation of inactive objects)
+                            </listItem>
+                            <listItem>
+                                Continuous Collision Detection (CCD) for fast moving objects
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Constraints</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Joints: ball-and-socked joint, cylindrical slider joint, prismatic
+                                slider joint, fixed/weld joint, hinge/revolute joint, hinge-2 joint,
+                                universal joint
+                            </listItem>
+                            <listItem>
+                                Joint limits: angular limits, linear limits, plane limit, twist-and-swing limit
+                            </listItem>
+                            <listItem>
+                                Free configurable constraints that can be used to create new constraint
+                                types: AngularLimit, LinearLimit
+                            </listItem>
+                            <listItem>
+                                Motors and damped springs: Position motors, orientation motors,
+                                velocity motors (servos)
+                            </listItem>
+                            <listItem>
+                                Miscellaneous constraints: No-rotation constraint, point-on-line
+                                constraint, point-on-plane constraint
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Special modules</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Ragdolls for Xbox LIVE Avatars (including blending of ragdoll physics and keyframed animation)
+                            </listItem>
+                            <listItem>
+                                Character controllers for computing 3D avatar movement
+                            </listItem>
+                            <listItem>
+                                Vehicle physics
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Namespaces">
+            <title>Namespaces</title>
+            <content>
+                <para>
+                    Following namespaces belong to DigitalRune.Physics:
+                </para>
+                <list class="nobullet">
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Physics</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Physics.Constraints</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Physics.ForceEffects</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Physics.Materials</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Physics.Settings</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Physics.Specialized</codeEntityReference>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Subtopics">
+            <title>Subtopics</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        <link xlink:href="6e0b9a08-b1d8-41a3-9ab4-ebf6235abe19" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="258f6a2c-e513-40c6-ab5b-848d130dc3b0" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="bc000d5a-cac9-49f1-9a18-a26b17faa8e9" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="1e6a58ee-1cfd-4e71-8afc-afff720bb53d" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="576be7e1-f56c-4c5d-a0a6-22f67bde0379" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="a91cc376-dcbf-4b86-af7b-869fae861146" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="dc07e943-fc57-4c45-bcc2-3dbc1f436272" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="3e1b091b-d795-4f67-a390-67648a3e5465" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="81a6e7ab-bdd3-43d6-b20c-5322ff3f936a"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="61ea0a18-fef3-4e46-be80-e146b5e00d80"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="c12eca22-95ea-48f4-95ee-91239af553fc" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="3734bae3-9f7f-4154-b120-4adfa4fc53e5"/>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

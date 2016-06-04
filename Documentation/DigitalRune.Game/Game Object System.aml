@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="309293e8-f2d6-4308-8c85-3f4726f92244" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This section describes the game object system provided by the DigitalRune Game library.
+            </para>
+            <!--<autoOutline>1</autoOutline>-->
+        </introduction>
+
+
+        <section address="General">
+            <title>General</title>
+            <content>
+                <para>
+                    A game object is a unit of game logic that manages a part of the game.
+                </para>
+                <para>
+                    For example: An "EnemySoldier" manages the AI, graphics, collision detection,
+                    health, etc. of a soldier in a 3D action game. A "Player" object handles the
+                    device input and controls the movement of the player.
+                </para>
+            </content>
+            <sections>
+                <section address="InheritanceAndComposition">
+                    <title>Inheritance vs. composition</title>
+                    <content>
+                        <para>
+                            Traditionally, game objects were created and extended using <legacyItalic>class inheritance</legacyItalic>.
+                            For example: A class <legacyItalic>GameObject</legacyItalic> serves as the base class for all game objects.
+                            A class <legacyItalic>Moveable</legacyItalic> is derived from <legacyItalic>GameObject</legacyItalic> and represents
+                            all game objects that can move. The class <legacyItalic>Enemy</legacyItalic> derives from <legacyItalic>Moveable</legacyItalic>.
+                            <legacyItalic>EnemyTank</legacyItalic> and <legacyItalic>EnemySoldier</legacyItalic>
+                            derive from <legacyItalic>Enemy</legacyItalic>. And so on. <legacyItalic>Inheritance-based</legacyItalic>
+                            game object structures can be used for simple games but quickly get unwieldy for non-trivial games with complex
+                            inheritance trees or multiple inheritance.
+                        </para>
+                        <para>
+                            <legacyItalic>Component-based</legacyItalic> game object systems have been developed to fight the
+                            inherent problems of inheritance-based game object systems. A component-based game object is
+                            generic container of components, e.g. a <legacyItalic>PhysicsComponent</legacyItalic>,
+                            a <legacyItalic>GraphicsComponent</legacyItalic>, etc. Game objects communicate using message-passing.
+                        </para>
+                        <para>
+                            The game object system in the DigitalRune Game library was designed to support both, inheritance-based
+                            and component-based systems. The component-based approach is usually used in 2D and 3D games
+                            to manage scene objects (players, enemies, level objects, etc.). The inheritance-based approach is,
+                            for example, used by the GUI controls in the <link xlink:href="a5a463da-de2e-432f-bf7d-07206aaca634"/>
+                            library.
+                        </para>
+                    </content>
+                </section>
+                <section address="Terms">
+                    <title>Terminology</title>
+                    <content>
+                        <para>
+                            To compare with other literature and designs:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                <legacyItalic>Game objects systems</legacyItalic> are also called
+                                <legacyItalic>game entity systems</legacyItalic>.
+                            </listItem>
+                            <listItem>
+                                <legacyItalic>Game objects</legacyItalic> are also called <legacyItalic>game entities</legacyItalic>,
+                                <legacyItalic>controllers</legacyItalic>, or <legacyItalic>actors</legacyItalic>.
+                            </listItem>
+                            <listItem>
+                                <legacyItalic>Game object properties/events</legacyItalic> are also called
+                                <legacyItalic>ports</legacyItalic>, <legacyItalic>signals</legacyItalic>, or
+                                <legacyItalic>attributes</legacyItalic>.
+                            </listItem>
+                            <listItem>
+                                <legacyItalic>Templates</legacyItalic> are also called <legacyItalic>prefabs</legacyItalic>,
+                                <legacyItalic>prototypes</legacyItalic>, or <legacyItalic>archetypes</legacyItalic>.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+
+                <section address="Requirements">
+                    <title>Requirements</title>
+                    <content>
+                        <para>
+                            The DigitalRune game objects system was built to support the following features:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                Support for inheritance-based and component-based game object structures.
+                            </listItem>
+                            <listItem>
+                                Properties can be added to or removed from a game object at runtime.
+                            </listItem>
+                            <listItem>
+                                Properties of a game object can be enumerated.
+                            </listItem>
+                            <listItem>
+                                Properties can be accessed via C# properties, via handle (integer ID) or via name (string).
+                            </listItem>
+                            <listItem>
+                                Properties can have default values and metadata (such as ID, name, description, category).
+                            </listItem>
+                            <listItem>
+                                Properties can be animated.
+                            </listItem>
+                            <listItem>
+                                Properties have <legacyItalic>Changed</legacyItalic> events.
+                            </listItem>
+                            <listItem>
+                                Properties have a coercion mechanism for value changes.
+                            </listItem>
+                            <listItem>
+                                Game objects can act as a <legacyItalic>template</legacyItalic> for other game objects.
+                            </listItem>
+                            <listItem>
+                                Memory efficiency
+                                <list class="bullet">
+                                    <listItem>
+                                        Properties do only use memory if the values differ from the default values.
+                                    </listItem>
+                                    <listItem>
+                                        Game objects that are built from a template do only store the minimum
+                                        amount of data and do not duplicate the data of the template in memory.
+                                    </listItem>
+                                </list>
+                            </listItem>
+                            <listItem>
+                                Game objects are scriptable.
+                            </listItem>
+                            <listItem>
+                                Game objects are configurable in XML or graphical editors (adding properties,
+                                setting property values and connecting properties of game objects with properties
+                                of other game objects).
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Subtopics">
+            <title>Subtopics</title>
+            <content>
+                <para>
+                    The following subtopics explain the game object system in more detail.
+                </para>
+                <list class="nobullet">
+                    <listItem>
+                        <link xlink:href="fda7b77e-2d84-46d6-a082-175b4308a1af"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="bae21eb9-66c2-422c-95ce-992e873a4774"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="08a99230-99dd-416b-9f58-1d00a4dfddea"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="9d38663a-2ce9-48c5-b9a8-0a07326e0290"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="be9dad32-1e3f-4361-9cbe-9874e2225049"/>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

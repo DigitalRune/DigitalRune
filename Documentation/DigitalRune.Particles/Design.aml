@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="6f2fd7a2-0d47-4a6d-a833-14b1fe62e0a9" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This section discusses the motivation behind the design of DigitalRune Particles.</para>
+        </introduction>
+
+
+        <section address="Notes">
+            <title>Design notes</title>
+            <content>
+            </content>
+            <sections>
+
+                <section address="cpubased">
+                    <title>CPU-based</title>
+                    <content>
+                        <para>
+                            DigitalRune Particles v1.0 was designed as a <legacyItalic>CPU-based</legacyItalic>
+                            particle system that allows to create complex particle effects. For a CPU-based
+                            particle engine, <legacyItalic>flexibility</legacyItalic> is more important than
+                            raw performance. In DigitalRune Particles it is easy to define new particle states
+                            and create complex particle behaviors.
+                        </para>
+                        <para>
+                            Another benefit of a CPU-based particle system: It is independent of the graphics
+                            API and graphics engine and can be integrated in many different applications.
+                        </para>
+                        <para>
+                            The drawback of a CPU-based particle system is that it is slower than a
+                            GPU-based particle system, especially in .NET where SIMD hardware extensions
+                            of most CPUs are not available.
+                            If an application needs to render a large scale effect (e.g. heavy rain or snow)
+                            or requires maximum performance, the particle effect can be designed using
+                            DigitalRune Particles. Then the final effect can be manually ported to run on the
+                            GPU.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="parameters">
+                    <title>Particle parameters</title>
+                    <content>
+                        <para>
+                            Most particle engines provide a fixed set of parameters for particles (e.g.
+                            Position, Speed, Direction, Size, Angle, ...), or they require to create a new
+                            particle struct/class for each new type of particles. In addition, effectors
+                            (objects that manipulate particles) work only for specific particle parameters.
+                        </para>
+                        <para>
+                            Such a design is limiting. If a visual effects designer wants to try a new
+                            effect where he needs a new parameter (e.g. Shininess), a new particle class
+                            has to be created - or often it is not possible to add a new parameter at all.
+                            And if particle effectors are not flexible to work with different particle
+                            parameters, a new particle effector has to be created (e.g. a ShininessInterpolator
+                            has to be created because the AlphaInterpolator cannot be used with any other
+                            parameters than Alpha.)
+                        </para>
+                        <para>
+                            Predefined particle types can also waste a lot of memory because most particle
+                            effects will not need all predefined particle parameters.
+                        </para>
+                        <para>
+                            In DigitalRune Particles, particles have only one predefined particle parameter: NormalizedAge.
+                            All other parameters (such as Position, Speed, Direction, Size, Angle, Mass, Restitution,
+                            Gravity, Texture, Color, etc.) can be added and interpreted by the user as needed
+                            (for example, Size can be a scalar value or a 2D vector).
+                            Particle effectors can be configured to work with any particle parameter
+                            (e.g. a SingleLerpEffector can linearly interpolate any single-precision
+                            floating point parameter, like Alpha or Size).
+                        </para>
+                        <para>
+                            It is possible to create particle parameters where each particle has its
+                            own value (called "varying parameters") or where all particles share the same
+                            value (called "uniform parameters"). For example, in one particle effect each
+                            particle has its own random Size value. In another particle system all particles
+                            can share the same Size value.
+                        </para>
+                        <para>
+                            Uniform particle parameters store only a single value for the whole particle
+                            system. Varying particle parameters store an array of values. These arrays
+                            are preallocated for a maximal particle number and used as circular buffers.
+                        </para>
+                        <para>
+                            This <legacyItalic>Structure of Arrays</legacyItalic> approach saves memory
+                            because only arrays for the required varying particle parameters need to be allocated.
+                            It is also more <legacyItalic>cache friendly</legacyItalic> because most particle
+                            effectors operate only on one particle parameter or on a small subset of particle parameters.
+                            The particle effectors do not need to load the whole particle structures -  only the
+                            required parameters.
+                        </para>
+                    </content>
+                </section>
+
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

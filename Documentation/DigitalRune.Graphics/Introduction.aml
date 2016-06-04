@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="0a8eb9ca-74ae-4746-9289-93d909b07e22" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <mediaLink>
+                <image xlink:href="LogoGraphics"/>
+            </mediaLink>
+            <para>
+                <application>DigitalRune Graphics</application> is a graphics engine based on the Microsoft
+                XNA Framework. It is designed and optimized for use in 3D games and simulations.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Features">
+            <title>Features</title>
+            <content>
+                <para>
+                    Here is an overview of features in this product.
+                </para>
+            </content>
+            <sections>
+                <section>
+                    <title>General</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Low-dynamic range (LDR) and high-dynamic range (HDR) rendering
+                            </listItem>
+                            <listItem>
+                                Linear (Gamma-aware) content and rendering pipeline
+                            </listItem>
+                            <listItem>
+                                Screen space ambient occlusion (SSAO)
+                            </listItem>
+                            <listItem>
+                                Anti-aliasing: MSAA, FXAA, SMAA
+                            </listItem>
+                            <listItem>
+                                Support for Reach and HiDef profile
+                            </listItem>
+                            <listItem>
+                                Interoperability: 3D graphics can be embedded in Windows Forms, Windows 
+                                Presentation Foundation (WPF) and Universal Windows Platform (UWP) apps
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Content processing</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Extends the XNA content pipeline
+                            </listItem>
+                            <listItem>
+                                Static and animated models (skeletal animations incl. animation compression, morph targets)
+                            </listItem>
+                            <listItem>
+                                Reusable material definitions
+                            </listItem>
+                            <listItem>
+                                Texture processing: Color keying, normal map compression (DXT5nm), mipmap correction
+                                for alpha textures
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Scene management</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Hierarchical scene graph
+                            </listItem>
+                            <listItem>
+                                Static meshes
+                            </listItem>
+                            <listItem>
+                                Animated meshes: skeletal animation, morph target animation
+                            </listItem>
+                            <listItem>
+                                Sprites, billboards, particle effects, lens flare effects
+                            </listItem>
+                            <listItem>
+                                Orthographic and perspective cameras
+                            </listItem>
+                            <listItem>
+                                Various light types: ambient, point lights, directional lights, spotlights, projector lights,
+                                image-based lighting (IBL)
+                            </listItem>
+                            <listItem>
+                                Decal rendering
+                            </listItem>
+                            <listItem>
+                                Different fog types such as distance fog and height fog
+                            </listItem>
+                            <listItem>
+                                Sky rendering supporting skyboxes, user-defined gradient skies,
+                                atmospheric scattering and simulation of natural light, sun, moon with phases,
+                                starfields, cloud layers, and an ephemeris model for correct positions of sky objects
+                            </listItem>
+                            <listItem>
+                                Terrain rendering for large-scale, tile-based terrains, supporting continuous
+                                level of detail, flexible material blending, decals, roads, holes, etc.
+                            </listItem>
+                            <listItem>
+                                Water rendering supporting skybox reflections, planar reflections, refraction, foam,
+                                caustics, underwater effects, user-defined flow, infinite ocean plane, and wave
+                                displacement mapping (including FFT-based ocean waves)
+                            </listItem>
+                            <listItem>
+                                Vegetation rendering with wind animations, translucency, LOD and hardware instancing
+                            </listItem>
+                            <listItem>
+                                Reflections and render-to-texture support
+                            </listItem>
+                            <listItem>
+                                Figure rendering for drawings composed of lines and 2D shapes; supporting
+                                anti-aliased lines, dash patterns, filled shapes and hit testing
+                            </listItem>
+                            <listItem>
+                                Frustum culling, light culling and custom overlap queries
+                            </listItem>
+                            <listItem>
+                                Occlusion culling and shadow caster culling
+                            </listItem>
+                            <listItem>
+                                Level of detail (LOD)
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Materials</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Advanced effect binding system which automatically resolves shaders and shader
+                                parameters at runtime
+                            </listItem>
+                            <listItem>
+                                Various built-in materials supporting diffuse maps, specular maps, normal maps,
+                                opacity masks
+                            </listItem>
+                            <listItem>
+                                Support for XNA stock effects
+                            </listItem>
+                            <listItem>
+                                Extensible with custom effects
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Rendering</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Customizable render pipeline which supports forward and deferred rendering
+                            </listItem>
+                            <listItem>
+                                Default: Light pre-pass renderer ("deferred lighting") for opaque geometry and forward rendering for transparent geometry
+                            </listItem>
+                            <listItem>
+                                Various shadow types: filtered shadow maps, omni-directional shadow maps, cascaded shadow maps
+                            </listItem>
+                            <listItem>
+                                Optimized rendering through state sorting and hardware instancing
+                            </listItem>
+                            <listItem>
+                                Billboard renderer supporting soft particles and high-speed, off-screen rendering
+                            </listItem>
+                            <listItem>
+                                Debug rendering
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Post-processing</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Image processing: Color grading, sharpening, unsharp-masking, saturation, sepia, noise, edge filter
+                            </listItem>
+                            <listItem>
+                                Special effects: Motions blur, depth of field, crepuscular rays ("god rays"), bloom,
+                                dynamic eye adaption, night vision blue-shift ("scotopic vision")
+                            </listItem>
+                            <listItem>
+                                Various blur filters: Gaussian blur, Box blur, Poisson blur, Kawase blur, horizontal blur,
+                                radial blur
+                            </listItem>
+                            <listItem>
+                                Nesting/chaining of post-processing effects
+                            </listItem>
+                            <listItem>
+                                Extensible with custom post-processing effects
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Support for Windows Phone</title>
+                    <content>
+                        <para>
+                            Due to the limitations of the XNA Framework, rendering on Windows Phone is limited
+                            to the XNA stock effects (<externalLink>
+                                <linkText>AlphaTestEffect</linkText>
+                                <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.alphatesteffect.aspx</linkUri>
+                            </externalLink>,
+                            <externalLink>
+                                <linkText>BasicEffect</linkText>
+                                <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.basiceffect.aspx</linkUri>
+                            </externalLink>,
+                            <externalLink>
+                                <linkText>DualTextureEffect</linkText>
+                                <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.dualtextureeffect.aspx</linkUri>
+                            </externalLink>,
+                            <externalLink>
+                                <linkText>EnvironmentMapEffect</linkText>
+                                <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.environmentmapeffect.aspx</linkUri>
+                            </externalLink>, and
+                            <externalLink>
+                                <linkText>SkinnedEffect</linkText>
+                                <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.skinnedeffect.aspx</linkUri>
+                            </externalLink>).
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Namespaces">
+            <title>Namespaces</title>
+            <content>
+                <para>
+                    Following namespaces belong to DigitalRune.Graphics:
+                </para>
+                <list class="nobullet">
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Graphics</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Graphics.Content</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Graphics.Content.Pipeline</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Graphics.Effects</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Graphics.Interop</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Graphics.PostProcessing</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Graphics.Rendering</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Graphics.SceneGraph</codeEntityReference>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Subtopics">
+            <title>Subtopics</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        <link xlink:href="9604b781-8adb-4ec6-87bd-85b805e9c036" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="7d5a0abe-8231-452c-895c-e6dbab83822b" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="a7a376fe-d747-4c66-ad76-2bc95232af85" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="014ef916-0699-4c01-942a-1093db3ef311" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="4c81587d-2692-4e4c-a5f7-bd08f83ba2af" />
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

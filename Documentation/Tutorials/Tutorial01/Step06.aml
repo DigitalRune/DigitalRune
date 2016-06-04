@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="da752ba9-7056-4485-9b90-d6070cb7c1e8" revisionNumber="1">
+    <developerConceptualDocument
+      xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                In this step we will add game logic to control the camera with keyboard and mouse.
+            </para>
+        </introduction>
+
+
+        <section address="GameObject">
+            <title>Add a game object to control the camera</title>
+            <content>
+                <para>
+                    Currently, the camera is static. To simplify debugging, I always try to add code
+                    which moves the camera as soon as possible.
+                    Code that controls objects of the game, like the camera, is called game logic. We
+                    could add the code to <legacyBold>MyGame</legacyBold> or <legacyBold>MyGameComponent</legacyBold>,
+                    but it is better to put it into a separate class. It is good to separate game logic
+                    into separate classes to keep the code clean and to allow reusing the code in other
+                    projects.
+                    The DigitalRune Engine provides the base class <legacyBold>DigitalRune.Game.GameObject</legacyBold>.
+                    This is the ideal place for game logic.
+                </para>
+                <para>
+                    First, let's remove the camera code from <localUri>MyGraphicsScreen.cs</localUri>:
+                </para>
+                <code language="c#" title="MyGraphicsScreen.cs">
+                    <![CDATA[
+…
+public MyGraphicsScreen(IGraphicsService graphicsService)
+  : base(graphicsService)
+{
+    var spriteFont = graphicsService.Content.Load<SpriteFont>("SpriteFont1");
+    DebugRenderer = new DebugRenderer(graphicsService, spriteFont);
+
+    // var projection = new PerspectiveProjection();                          // REMOVE
+    // projection.SetFieldOfView(                                             // REMOVE
+    //     ConstantsF.PiOver4,                                                // REMOVE
+    //         graphicsService.GraphicsDevice.Viewport.AspectRatio,           // REMOVE
+    //         0.1f,                                                          // REMOVE
+    //         100);                                                          // REMOVE
+    // var camera = new Camera(projection);                                   // REMOVE
+    // CameraNode = new CameraNode(camera);                                   // REMOVE
+    // CameraNode.PoseWorld = new Pose(new Vector3F(0, 1, 5));                // REMOVE
+}
+…
+]]>
+                </code>
+                <para>
+                    Let's add a new item <localUri>CameraObject.cs</localUri> to the project. Here
+                    is the code of the <legacyBold>CameraObject</legacyBold>:
+                </para>
+                <code language="c#" title="CameraObject.cs">
+                    <![CDATA[
+using System;
+using DigitalRune.Game;
+using DigitalRune.Game.Input;
+using DigitalRune.Geometry;
+using DigitalRune.Graphics;
+using DigitalRune.Graphics.SceneGraph;
+using DigitalRune.Mathematics;
+using DigitalRune.Mathematics.Algebra;
+using Microsoft.Practices.ServiceLocation;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using MathHelper = DigitalRune.Mathematics.MathHelper;
+
+namespace MyGame
+{
+    public class CameraObject : GameObject
+    {
+        private Game _game;
+        private IInputService _inputService;
+        private float _currentYaw;
+        private float _currentPitch;
+
+        public CameraNode CameraNode { get; private set; }
+
+        public CameraObject()
+        {
+            _game = ServiceLocator.Current.GetInstance<Game>();
+            _inputService = ServiceLocator.Current.GetInstance<IInputService>();
+
+            var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
+            var projection = new PerspectiveProjection();
+            projection.SetFieldOfView(
+                ConstantsF.PiOver4,
+                    graphicsService.GraphicsDevice.Viewport.AspectRatio,
+                    0.1f,
+                    100);
+            var camera = new Camera(projection);
+            CameraNode = new CameraNode(camera);
+            CameraNode.PoseWorld = new Pose(new Vector3F(0, 1, 3));
+        }
+
+        protected override void OnLoad()
+        {
+        }
+
+        protected override void OnUnload()
+        {
+        }
+
+        protected override void OnUpdate(TimeSpan deltaTime)
+        {
+            _inputService.EnableMouseCentering = _game.IsActive;
+
+            float deltaTimeF = (float)deltaTime.TotalSeconds;
+
+            Vector2F mousePositionDelta = _inputService.MousePositionDelta;
+
+            float deltaYaw = -mousePositionDelta.X;
+            _currentYaw += deltaYaw * deltaTimeF * 0.1f;
+
+            float deltaPitch = -mousePositionDelta.Y;
+            _currentPitch += deltaPitch * deltaTimeF * 0.1f;
+
+            // Limit the pitch angle to +/- 90°.
+            _currentPitch = MathHelper.Clamp(_currentPitch, -ConstantsF.PiOver2, ConstantsF.PiOver2);
+
+            // Compute new orientation of the camera.
+            QuaternionF orientation = QuaternionF.CreateRotationY(_currentYaw) * QuaternionF.CreateRotationX(_currentPitch);
+
+            Vector3F velocity = Vector3F.Zero;
+            KeyboardState keyboardState = _inputService.KeyboardState;
+            if (keyboardState.IsKeyDown(Keys.W))
+                velocity.Z--;
+            if (keyboardState.IsKeyDown(Keys.S))
+                velocity.Z++;
+            if (keyboardState.IsKeyDown(Keys.A))
+                velocity.X--;
+            if (keyboardState.IsKeyDown(Keys.D))
+                velocity.X++;
+            if (keyboardState.IsKeyDown(Keys.R))  // R … "raise"
+                velocity.Y++;
+            if (keyboardState.IsKeyDown(Keys.F))  // F … "fall"
+                velocity.Y--;
+
+            velocity = orientation.Rotate(velocity);
+            Vector3F translation = velocity * deltaTimeF * 5;
+
+            CameraNode.LastPoseWorld = CameraNode.PoseWorld;
+            CameraNode.PoseWorld = new Pose(
+                CameraNode.PoseWorld.Position + translation,
+                orientation);
+        }
+    }
+}
+                    ]]>
+                </code>
+                <para>
+                    Here are few important notes about the code:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        The <legacyBold>CameraObject</legacyBold> derives from <legacyBold>GameObject</legacyBold>.
+                    </listItem>
+                    <listItem>
+                        The <legacyBold>CameraObject</legacyBold> overrides a few methods of the
+                        <legacyBold>GameObject</legacyBold> base class:
+                        <legacyBold>OnLoad</legacyBold>, <legacyBold>OnUnload</legacyBold>,
+                        <legacyBold>OnUpdate</legacyBold>.
+                    </listItem>
+                    <listItem>
+                        In <legacyBold>OnUpdate</legacyBold>, we enable <newTerm>mouse centering</newTerm>:
+                        <code language="c#">
+                            <![CDATA[
+_inputService.EnableMouseCentering = _game.IsActive;
+                            ]]>
+                        </code>
+                        XNA does not have a relative mouse mode. The mouse position is always
+                        absolute and if the mouse cursor hits the screen border, it stops. This
+                        is not suitable for typical first-person shooter controls. To create a
+                        relative mouse mode, we have to reset the mouse position in each frame,
+                        so that it can never reach the screen border. This is the purpose of
+                        <legacyBold>EnableMouseCentering</legacyBold>.
+                        Mouse centering should be automatically disabled when the game is not
+                        active. That means, when another desktop application is active and the
+                        XNA game is in the background, the game should not interfere with the
+                        mouse movement.
+                    </listItem>
+                    <listItem>
+                        In <legacyBold>OnUpdate</legacyBold>, the class reads the mouse input and
+                        computes a new pose (= orientation + position) for the <legacyBold>CameraNode</legacyBold>.
+                    </listItem>
+                    <listItem>
+                        The previous pose of the <legacyBold>CameraNode</legacyBold> is stored in
+                        <legacyBold>LastPoseWorld</legacyBold>:
+                        <code language="c#">
+                            CameraNode.LastPoseWorld = CameraNode.PoseWorld;
+                        </code>
+                        This is necessary for some advanced effects, e.g. motion blur effects will
+                        compare <legacyBold>LastPoseWorld</legacyBold> and the current
+                        <legacyBold>PoseWorld</legacyBold>
+                        to compute how much the scene must be blurred.
+                    </listItem>
+                </list>
+                <para>
+                    Now, we need something that calls
+                    <legacyBold>OnLoad</legacyBold>,
+                    <legacyBold>OnUnload</legacyBold> and
+                    <legacyBold>OnUpdate</legacyBold> methods of the game object. This is the game object service.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="GameObjectManager">
+            <title>
+                Add the game object service
+            </title>
+            <content>
+                <para>
+                    Let's add the game object service to <localUri>Game1.cs</localUri>:
+                </para>
+                <code language="c#" title="Game1.cs">
+                    <![CDATA[
+…
+using DigitalRune.Game;                                                                 // NEW
+…
+
+namespace MyGame
+{
+    public class Game1 : Microsoft.Xna.Framework.Game
+    {
+        …
+        private GameObjectManager _gameObjectManager;                                   // NEW
+        …
+        
+        protected override void Initialize()
+        {
+          _services = new ServiceContainer();
+          ServiceLocator.SetLocatorProvider(() => _services);
+
+          _inputManager = new InputManager(false);
+          _services.Register(typeof(IInputService), null, _inputManager);
+
+          _graphicsManager = new GraphicsManager(GraphicsDevice, Window, Content);
+          _services.Register(typeof(IGraphicsService), null, _graphicsManager);
+           
+          _gameObjectManager = new GameObjectManager();                                 // NEW
+          _services.Register(typeof(IGameObjectService), null, _gameObjectManager);     // NEW
+
+          Components.Add(new MyGameComponent(this));
+
+          base.Initialize();
+        }
+
+        protected override void Update(GameTime gameTime)
+        {
+          _inputManager.Update(gameTime.ElapsedGameTime);
+
+          base.Update(gameTime);
+
+          _gameObjectManager.Update(gameTime.ElapsedGameTime);                          // NEW
+        }
+        …
+                    ]]>
+                </code>
+                <para>
+                    The service is registered in the service container as usual. It is updated in
+                    <legacyBold>Game1.Update</legacyBold>. You might wonder why the input manager is
+                    updated before
+                    <legacyBold>base.Update(gameTime)</legacyBold> and the game object manager is
+                    update last. The reason is:
+                    <legacyBold>base.Update(gameTime)</legacyBold> updates the XNA game components,
+                    like <legacyBold>MyGameComponent</legacyBold>. Since
+                    <legacyBold>MyGameComponent</legacyBold> and the <legacyBold>CameraObject</legacyBold>
+                    use the input service, the input manager should be updated first. As you will see
+                    next, we use <legacyBold>MyGameComponent</legacyBold> to load the
+                    <legacyBold>CameraObject</legacyBold>. Therefore, it makes sense to update the
+                    XNA game components before the game objects.
+                </para>
+                <para>
+                    However, this update order is not set in stone. The DigitalRune Engine is modular
+                    and gives you full control over the update order.
+                </para>
+                <para>
+                    To use the camera game object add the following code to <localUri>MyGameComponent.cs</localUri>:
+                </para>
+                <code language="c#" title="MyGameComponent.cs">
+                    <![CDATA[
+…
+using DigitalRune.Game;                                                                         // NEW
+…
+
+namespace MyGame
+{
+    public class MyGameComponent : Microsoft.Xna.Framework.GameComponent
+    {
+        …
+        public MyGameComponent(Game game)
+            : base(game)
+        {
+            _inputService = ServiceLocator.Current.GetInstance<IInputService>();
+
+            _graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
+            
+            _myGraphicsScreen = new MyGraphicsScreen(_graphicsService);
+            _graphicsService.Screens.Add(_myGraphicsScreen);
+
+            var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();   // NEW
+            var cameraObject = new CameraObject();                                              // NEW
+            _myGraphicsScreen.CameraNode = cameraObject.CameraNode;                             // NEW
+            gameObjectService.Objects.Add(cameraObject);                                        // NEW
+            
+            _myGraphicsScreen.DebugRenderer.DrawText("MyGame");
+            _myGraphicsScreen.DebugRenderer.DrawAxes(Pose.Identity, 1, false);
+        }
+        
+        …
+                    ]]>
+                </code>
+                <para>
+                    This code creates the camera game object, tells the graphics screen about the
+                    camera and adds the game object to the game object service. The game object manager
+                    automatically calls <legacyBold>GameObject.OnLoad/OnUnload</legacyBold> when a
+                    game object is added to or removed from the game object service. Each frame, when
+                    <legacyBold>GameObjectManager.Update</legacyBold> is executed by the
+                    <legacyBold>Game</legacyBold> class, the <legacyBold>OnUpdate</legacyBold> method
+                    of the game objects is called, and the <legacyBold>CameraObject</legacyBold> will update the camera.
+                </para>
+                <para>
+                    Run the game. Now, you can move the camera using the keys W, A, S, D, R, F and the mouse.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Next">
+            <title>Next</title>
+            <content>
+                <para>
+                    <link xlink:href="53ee55e3-b4a5-42cc-b47d-88d18b9de2f5" />
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

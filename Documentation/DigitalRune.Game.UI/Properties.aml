@@ -1,0 +1,484 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="2c10bf58-571a-4d67-b763-0f6b584c9bce" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This article discusses the concept of <newTerm>UI control properties and events</newTerm>.
+            </para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="UIControls">
+            <title>UI controls are game objects</title>
+            <content>
+                <para>
+                    A
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIControl</codeEntityReference>
+                    is derived from
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GameObject</codeEntityReference>
+                    and therefore can have game object properties (see
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GameProperty`1</codeEntityReference>)
+                    and game object events (see
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GameEvent`1</codeEntityReference>).
+                    Have a look at <link xlink:href="309293e8-f2d6-4308-8c85-3f4726f92244" /> to learn more
+                    about game objects, game object properties and game object events.
+                </para>
+                <para>
+                    If you are familiar with WPF/Silverlight, you might be familiar with
+                    the types <legacyBold>DependencyObject</legacyBold> and <legacyBold>DependencyProperty</legacyBold>.
+                    The game object system provides a similar functionality to WPF dependency objects.
+                    To compare WPF/Silverlight and the DigitalRune Game UI:
+                </para>
+                <para>
+                    <legacyItalic>
+                        In WPF/Silverlight a FrameworkElement inherits (indirectly) from
+                        DependencyObject and has DependencyProperties.
+                    </legacyItalic>
+                </para>
+                <para>
+                    <legacyItalic>
+                        In DigitalRune Game UI a
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIControl</codeEntityReference>
+                        inherits from
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GameObject</codeEntityReference>
+                        and has game object properties
+                        (<codeEntityReference qualifyHint="false">T:DigitalRune.Game.GameProperty`1</codeEntityReference>).
+                    </legacyItalic>
+                </para>
+                <para>
+                    But in contrast to WPF dependency objects and properties, the DigitalRune game objects and
+                    properties address needs specific to game programming.
+                </para>
+                <para>
+                    Leveraging the strengths of the game objects system enables many important features,
+                    like UI themes, automatic invalidation, animation, and many more.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Properties">
+            <title>UI control properties</title>
+            <content>
+                <para>
+                    The UI control properties are extended game object properties: UI control properties must
+                    be created using the new
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Game.UI.Controls.UIControl.CreateProperty``1(System.Type,System.String,System.String,System.String,``0,DigitalRune.Game.UI.Controls.UIPropertyOptions)</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Game.UI.Controls.UIControl.CreateEvent``1(System.Type,System.String,System.String,System.String,``0)</codeEntityReference>
+                    methods. For example, the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.IsEnabled</codeEntityReference>
+                    property of a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIControl</codeEntityReference>
+                    is created like this:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+class UIControl : GameObject
+{
+  ...
+  public static readonly int IsEnabledPropertyId = CreateProperty(
+    typeof(UIControl), "IsEnabled", GamePropertyCategories.Common, null, true,
+    UIPropertyOptions.AffectsRender);
+ 
+  public bool IsEnabled
+  {
+    get { return GetValue<bool>(IsEnabledPropertyId); }
+    set { SetValue(IsEnabledPropertyId, value); }
+  }
+  ...
+}
+]]>
+                </code>
+                <para>
+                    That is more complicated than a normal .NET property - but also a lot more powerful. Let's dissect this code lines:
+                </para>
+                <para>
+                    Using the static method
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Game.UI.Controls.UIControl.CreateProperty``1(System.Type,System.String,System.String,System.String,``0,DigitalRune.Game.UI.Controls.UIPropertyOptions)</codeEntityReference>
+                    a new UI control property is created, and the integer ID of this property is stored for public access.
+                    Everyone can access this property using:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+bool isEnabled = myControl.GetValue<bool>(UIControl.IsEnabledPropertyId);
+]]>
+                </code>
+                <para>
+                    or (slower and less safe because you could make a typo):
+                </para>
+                <code language="cs">
+                    <![CDATA[
+bool isEnabled = myControl.GetValue<bool>("IsEnabled");
+]]>
+                </code>
+                <para>
+                    After the
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.CreateProperty``1(System.Type,System.String,System.String,System.String,``0,DigitalRune.Game.UI.Controls.UIPropertyOptions)</codeEntityReference>
+                    call, a normal .NET
+                    property
+                    <legacyBold>IsEnabled</legacyBold>
+                    is added which uses the
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.GameObject.GetValue``1(System.Int32)</codeEntityReference>/<codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.GameObject.SetValue``1(System.Int32,``0)</codeEntityReference>
+                    methods. This
+                    <legacyBold>IsEnabled</legacyBold>
+                    .NET property is added to make property access easy for the user. That means you will nearly always use
+                </para>
+                <code language="cs">
+                    bool isEnabled = myControl.IsEnabled;
+                </code>
+                <para>
+                    instead of the more complex
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.GameObject.GetValue``1(System.Int32)</codeEntityReference>/<codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.GameObject.SetValue``1(System.Int32,``0)</codeEntityReference>
+                    methods.
+                </para>
+                <para>
+                    Next we have a look at the parameters of
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.CreateProperty``1(System.Type,System.String,System.String,System.String,``0,DigitalRune.Game.UI.Controls.UIPropertyOptions)</codeEntityReference>
+                    in detail. The first is the type of the class that owns this property. The second is the name of the
+                    property. The third
+                    <codeEntityReference qualifyHint="true">F:DigitalRune.Game.GamePropertyCategories.Common</codeEntityReference>
+                    is simply a string that can be used in a game editor to sort the game object properties into categories.
+                    The forth parameter is a description string, which we have left out because we think the property
+                    name is already pretty self-explanatory. Then comes the property default value <codeInline>true</codeInline>.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Affects">
+            <title>AffectsMeasure, AffectsArrange and AffectsVisual</title>
+            <content>
+                <para>
+                    The last parameter of
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.CreateProperty``1(System.Type,System.String,System.String,System.String,``0,DigitalRune.Game.UI.Controls.UIPropertyOptions)</codeEntityReference>
+                    is special for
+                    UI controls. It tells the UI system whether the property influences the size
+                    (<codeEntityReference qualifyHint="false">F:DigitalRune.Game.UI.Controls.UIPropertyOptions.AffectsMeasure</codeEntityReference>),
+                    positioning
+                    (<codeEntityReference qualifyHint="false">F:DigitalRune.Game.UI.Controls.UIPropertyOptions.AffectsArrange</codeEntityReference>)
+                    or visual appearance
+                    (<codeEntityReference qualifyHint="false">F:DigitalRune.Game.UI.Controls.UIPropertyOptions.AffectsRender</codeEntityReference>)
+                    of the control.
+                </para>
+                <para>
+                    To determine the GUI graphics, the UI system makes three traversals over all GUI controls.
+                    First, it measures each control to determine how much room each control desires –
+                    this is the <newTerm>measure pass</newTerm>. Then it tells each control its final
+                    position and allotted space on the screen – this is the <newTerm>arrange pass</newTerm>.
+                    And in each frame it the controls are drawn – this is the
+                    <newTerm>render pass</newTerm>. The results of each pass are cached and are re-used in
+                    each frame.
+                </para>
+                <para>
+                    When you change a property of a
+                    UIControl,
+                    then you need to tell the UI system whether it needs to update its cached information.
+                    For this, you can manually call
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.InvalidateMeasure</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.InvalidateArrange</codeEntityReference> or
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.InvalidateVisual</codeEntityReference>.
+                    (Invalidating the measure data automatically invalidates arrange and
+                    visual data. Invalidating the arrange data automatically invalidates the visual data
+                    but keeps the measure data intact.
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.InvalidateVisual</codeEntityReference>
+                    only affects drawing data but no measure or arrange data.) If you change a UI control
+                    property, the property will automatically call the appropriate invalidate method for you.
+                </para>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.IsEnabled</codeEntityReference>
+                    property has set the
+                    <codeEntityReference qualifyHint="false">F:DigitalRune.Game.UI.Controls.UIPropertyOptions.AffectsRender</codeEntityReference>
+                    flag because the visual appearance will usually change to indicate that the UI control
+                    is enabled or not (e.g. using grayed-out button text). An example of a property with
+                    <codeEntityReference qualifyHint="false">F:DigitalRune.Game.UI.Controls.UIPropertyOptions.AffectsArrange</codeEntityReference>
+                    is
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Game.UI.Controls.UIControl.X</codeEntityReference>.
+                    This property determines the X position of a control in a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.Canvas</codeEntityReference>
+                    or in a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIScreen</codeEntityReference>.
+                    It does not influence the size of the control.
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Game.UI.Controls.UIControl.Width</codeEntityReference>
+                    is the perfect example for a property that
+                    <codeEntityReference qualifyHint="false">F:DigitalRune.Game.UI.Controls.UIPropertyOptions.AffectsMeasure</codeEntityReference>.
+                </para>
+                <para>
+                    Now, if you have an unusual case where you want to shrink a button when it is disabled
+                    (<codeInline>IsEnabled == false</codeInline>),
+                    then you would have to call
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.InvalidateMeasure</codeEntityReference>
+                    manually.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Style">
+            <title>Styling and themes</title>
+            <content>
+                <para>
+                    Another advantage of UI control properties is that when a controls is initialized, it will
+                    ask the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Rendering.IUIRenderer</codeEntityReference>
+                    for default values. The standard
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Rendering.UIRenderer</codeEntityReference>
+                    class reads the data of the
+                    <legacyItalic>Theme.xml</legacyItalic>
+                    file to initialize the UI control properties. The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Rendering.UIRenderer</codeEntityReference>
+                    can only do this for UI control properties - not for normal .NET properties. And
+                    properties will only be changed if they have not been touched by the user. That
+                    means, if you create dialog with a button and you set the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Foreground</codeEntityReference>
+                    color to green manually in your code, then this will have priority over the foreground
+                    color defined in the theme.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Override">
+            <title>Overriding default values</title>
+            <content>
+                <para>
+                    Game object properties have only one global default value. UI control properties
+                    can have a default value per type of control.
+                    For example, if a control like
+                    a <legacyBold>Button</legacyBold>, should have class-specific default values,
+                    the method
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Game.UI.Controls.UIControl.OverrideDefaultValue``1(System.Type,System.Int32,``0)</codeEntityReference>
+                    can be used. Here is an example:
+                </para>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIControl</codeEntityReference>
+                    base class creates a UI control property called
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Focusable</codeEntityReference>
+                    which determines whether a control can receive input focus. The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIControl</codeEntityReference>
+                    defines this property including the default value for this property. The default value is
+                    false, since most controls, like images, text blocks, panels, cannot receive the input
+                    focus. If this default value is not suitable for a control, then the control can
+                    override the default value. For example, buttons, text boxes and a lot more controls can
+                    get input focus and therefore need a different default value:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+// Static constructor of the ButtonBase class. 
+static ButtonBase() 
+{ 
+  OverrideDefaultValue(typeof(ButtonBase), FocusablePropertyId, true); 
+}]]>
+                </code>
+                <para>
+                    At first it might look like we could simply call
+                    <codeInline>Focusable = true</codeInline>
+                    in the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.ButtonBase</codeEntityReference>
+                    constructor. However, using
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.OverrideDefaultValue``1(System.Type,System.Int32,``0)</codeEntityReference>
+                    we register a new default value in the internal metadata. So when a new button is
+                    created, it uses this default value. If the theme defines another value, the value of
+                    the theme is used. But if we call
+                    <codeInline>Focusable = true</codeInline> ,
+                    then we have changed the actual value of the property. This actual value has priority over
+                    the value defined in the theme – hence the control user cannot change this value
+                    anymore using the <legacyItalic>Theme.xml</legacyItalic>. Using the
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.OverrideDefaultValue``1(System.Type,System.Int32,``0)</codeEntityReference>
+                    method the default value can be changed, and the property can still be modified in the theme.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Animation">
+            <title>Animation</title>
+            <content>
+                <para>
+                    Each UI control property can be animated using DigitalRune Animation. For example, here
+                    is a fade-in animation that animates the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Opacity</codeEntityReference>
+                    UI control property from to 0 to its default value over 0.3 seconds:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+var animation = new SingleFromToByAnimation 
+{ 
+  TargetProperty = "Opacity",  
+  From = 0,                    
+  Duration = 0.3f,             
+};
+]]>
+                </code>
+                <para>
+                    The animation can be started on a control using
+                </para>
+                <code language="cs">
+                    animationService.StartAnimation(animation, myControl);
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Events">
+            <title>Events</title>
+            <content>
+                <para>
+                    Each UI control property is automatically an event. Do you want to be notified when
+                    a property is disabled? No problem, just get the UI control property from the control:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+GameProperty<bool> isEnabledProperty= myControl.Properties.Get<bool>(UIControl.IsClickedPropertyId);
+]]>
+                </code>
+                <para>
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GameProperty`1</codeEntityReference>
+                    is a structure that represents the game object property. It has a
+                    <codeEntityReference qualifyHint="false">E:DigitalRune.Game.GameProperty`1.Changing</codeEntityReference>
+                    and a
+                    <codeEntityReference qualifyHint="false">E:DigitalRune.Game.GameProperty`1.Changed</codeEntityReference>
+                    event which you can subscribe to, for example:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+isEnabledProperty.Changed += (s, e) => 
+{ 
+  if (e.NewValue == true) 
+  { 
+    /* React to enabling of control */
+  }
+};
+]]>
+                </code>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GameProperty`1</codeEntityReference>
+                    structure also has a
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.GameProperty`1.Change</codeEntityReference>
+                    property, which is an event handler. You can use this to connect two UI control
+                    properties. For example, the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.ScrollViewer</codeEntityReference>
+                    control uses a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.ScrollBar</codeEntityReference>
+                    control internally. When the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.ScrollViewer</codeEntityReference>
+                    is loaded it connects its own
+                    HorizontalOffset
+                    property with the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.RangeBase.Value</codeEntityReference>
+                    property of the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.ScrollBar</codeEntityReference>:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+protected override void OnLoad() 
+{ 
+  ...   
+  // Connect ScrollBar.Value with HorizontalOffset (two-way connection). 
+  var scrollBarValue = _horizontalScrollBar.Properties.Get<float>(RangeBase.ValuePropertyId); 
+  var horizontalOffset = Properties.Get<float>(HorizontalOffsetPropertyId); 
+  scrollBarValue.Changed += horizontalOffset.Change; 
+  horizontalOffset.Changed += scrollBarValue.Change; 
+  ... 
+}
+]]>
+                </code>
+                <para>
+                    This connects the properties: Changing one property automatically changes the other property.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="More">
+            <title>Other features of UI control properties</title>
+            <content>
+                <para>
+                    UI control properties have several other nice features.
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Reduced memory usage: Per-instance memory for UI control properties is only allocated when needed.
+                    </listItem>
+                    <listItem>
+                        Templating: For each control style loaded from the renderer only one template
+                        control is created. All controls using the same style refer to this
+                        template. This safes memory and by changing the template we can change all controls
+                        that use the template at once.
+                    </listItem>
+                    <listItem>
+                        Attached properties: If you want to add a property to an existing control, you can
+                        simply create new property using
+                        <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.CreateProperty``1(System.Type,System.String,System.String,System.String,``0,DigitalRune.Game.UI.Controls.UIPropertyOptions)</codeEntityReference>.
+                        No need to change the source code or to derive a new control class.
+                    </listItem>
+                    <listItem>
+                        Metadata: UI control properties can be enumerated and have metadata which can be used in game editors.
+                    </listItem>
+                </list>
+                <para>
+                    However, UI control properties are slower than normal .NET properties.
+                    Only use UI control properties if really needed. The controls in DigitalRune Game UI
+                    have UI control properties as well as normal .NET properties. If you want to set a
+                    property in the UI theme XML or if you want to animate a property, then you need a UI
+                    control property. Otherwise a normal .NET property might do.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="GameObjectEvents">
+            <title>UI control events</title>
+            <content>
+                <para>
+                    The game object system also supports
+                    <newTerm>game object events</newTerm>, which are very similar to
+                    <newTerm>game object properties</newTerm>. The
+                    <codeEntityReference qualifyHint="true">E:DigitalRune.Game.UI.Controls.ButtonBase.Click</codeEntityReference>
+                    event is such an event:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+public static readonly int ClickEventId = CreateEvent( 
+  typeof(ButtonBase), "Click", GamePropertyCategories.Default, null, EventArgs.Empty); 
+      
+public event EventHandler<eventargs> Click 
+{ 
+  add 
+  { 
+    var click = Events.Get<eventargs>(ClickEventId); 
+    click.Event += value; 
+  } 
+  remove 
+  { 
+    var click = Events.Get<eventargs>(ClickEventId); 
+    click.Event -= value; 
+  } 
+}
+]]>
+                </code>
+                <para>
+                    This looks very similar to the declaration of a UI control property. The
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.CreateEvent``1(System.Type,System.String,System.String,System.String,``0)</codeEntityReference>
+                    call defines the event. The
+                    <codeEntityReference qualifyHint="false">E:DigitalRune.Game.UI.Controls.ButtonBase.Click</codeEntityReference>
+                    event is a normal .NET event that is only there for convenience and uses
+                    the UI control event.
+                </para>
+                <para>
+                    UI control events are useful to wire up events, e.g. in a game editor.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

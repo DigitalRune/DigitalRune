@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="987da96e-bf8e-4cce-8357-29859a5559a2" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                The DigitalRune Charts library (<localUri>DigitalRune.Windows.Charts.dll</localUri>) provides
+                controls for rendering 2D charts.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Requirements">
+            <title>System requirements and supported platforms</title>
+            <content>
+                <list class="bullet">
+                    <listItem>
+                        <para>Microsoft .NET Framework 4.5 or higher</para>
+                    </listItem>
+                    <listItem>
+                        <para>Microsoft Silverlight 4 or higher</para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Features">
+            <title>Features</title>
+            <content>
+                <para>
+                    Here is an overview of features in this product:
+                </para>
+            </content>
+            <sections>
+                <section>
+                    <title>General</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                <para>All elements styleable and templatable (control templates and data templates).</para>
+                            </listItem>
+                            <listItem>
+                                <para>Default chart layout: Two x-axes (primary at bottom, secondary at top) and two y-axes (primary left, secondary right).</para>
+                            </listItem>
+                            <listItem>
+                                <para>Custom layouts: A chart is split into individual controls (panel, axes, charts, legend, etc.). These controls can be used independently in a WPF application. Example usages:</para>
+                                <list class="bullet">
+                                    <listItem>
+                                        <para>Build chart controls with any number of axes.</para>
+                                    </listItem>
+                                    <listItem>
+                                        <para>Axes can be detached from the chart and positioned freely.</para>
+                                    </listItem>
+                                    <listItem>
+                                        <para>Axes (such as a date/time axis) can be used inside other controls (such as Gantt controls).</para>
+                                    </listItem>
+                                    <listItem>
+                                        <para>The chart panel can be used as a regular WPF panel. WPF elements (e.g. Button, TextBlock) can be placed inside the panel. Elements can be placed relative to (x, y) values/ranges.</para>
+                                    </listItem>
+                                    <listItem>
+                                        <para>The chart panel can be used as an ItemsPanel inside an ItemsControl (e.g. ListView).</para>
+                                    </listItem>
+                                </list>
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section>
+                    <title>Axis and scales</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                <para>The axis control consists of axis, axis label, major ticks, minor ticks, tick labels.</para>
+                            </listItem>
+                            <listItem>
+                                <para>Configurable tick/label placement (above or below axes, one-sided or two-sided ticks)</para>
+                            </listItem>
+                            <listItem>
+                                <para>Automatic/manual scales and tick placement</para>
+                            </listItem>
+                            <listItem>
+                                <para>Reversible direction</para>
+                            </listItem>
+                            <listItem>
+                                <para>Localizable for different languages and numeric formats</para>
+                            </listItem>
+                            <listItem>
+                                <para>Scale types</para>
+                                <list class="bullet">
+                                    <listItem>
+                                        <para>Linear scales</para>
+                                    </listItem>
+                                    <listItem>
+                                        <para>Logarithmic scales</para>
+                                    </listItem>
+                                    <listItem>
+                                        <para>Ordinal scales</para>
+                                    </listItem>
+                                    <listItem>
+                                        <para>Date/time scales (localizable for different time zones, from milliseconds to millennia)</para>
+                                    </listItem>
+                                    <listItem>
+                                        <para>Text-based scale (e.g. days, month, custom labels, …)</para>
+                                    </listItem>
+                                    <listItem>
+                                        <para>Extensible with custom scales</para>
+                                    </listItem>
+                                </list>
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section>
+                    <title>Chart types</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                <para>Scatter plot</para>
+                            </listItem>
+                            <listItem>
+                                <para>Line/area chart</para>
+                                <list class="bullet">
+                                    <listItem>
+                                        <para>Step (left, right, centered steps) or linear interpolation</para>
+                                    </listItem>
+                                    <listItem>
+                                        <para>Stacked charts (absolute or relative)</para>
+                                    </listItem>
+                                    <listItem>
+                                        <para>Colored line or area (customizable palette, single color, horizontal gradient or vertical gradient)</para>
+                                    </listItem>
+                                </list>
+                            </listItem>
+                            <listItem>
+                                <para>Bar charts</para>
+                                <list class="bullet">
+                                    <listItem>
+                                        <para>Horizontal (bar chart) or vertical (column chart)</para>
+                                    </listItem>
+                                    <listItem>
+                                        <para>Grouped bar charts (clustered, absolute stacked, relative stacked)</para>
+                                    </listItem>
+                                    <listItem>
+                                        <para>Colored bars (single color or gradient, customizable palette)</para>
+                                    </listItem>
+                                </list>
+                            </listItem>
+                            <listItem>
+                                <para>1D heat charts</para>
+                            </listItem>
+                            <listItem>
+                                <para>Pie charts</para>
+                                <list class="bullet">
+                                    <listItem>
+                                        <para>Pie or doughnut shape with Inner and outer labels</para>
+                                    </listItem>
+                                    <listItem>
+                                        <para>Exploded pie charts</para>
+                                    </listItem>
+                                </list>
+                            </listItem>
+                            <listItem>
+                                <para>Extensible with custom charts</para>
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section>
+                    <title>Special chart elements</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                <para>Chart background</para>
+                            </listItem>
+                            <listItem>
+                                <para>Grid lines</para>
+                            </listItem>
+                            <listItem>
+                                <para>Coordinate cross</para>
+                            </listItem>
+                            <listItem>
+                                <para>Horizontal/vertical line</para>
+                            </listItem>
+                            <listItem>
+                                <para>Extensible with custom elements</para>
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section>
+                    <title>Data sources</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                <para>Wrappers for common data sources (<codeInline>IList&lt;Point&gt;</codeInline>, <codeInline>IList&lt;DataPoint&gt;</codeInline>)</para>
+                            </listItem>
+                            <listItem>
+                                <para>Data binding to extract data from existing collections</para>
+                            </listItem>
+                            <listItem>
+                                <para>
+                                    Manual update or automatic update via 
+                                    <codeEntityReference qualifyHint="false">T:System.ComponentModel.INotifyPropertyChanged</codeEntityReference>
+                                </para>
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section>
+                    <title>Legend</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                <para>Chart legend with title and customizable items (symbols and labels)</para>
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section>
+                    <title>Interactions</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                <para>Pan, Zoom</para>
+                            </listItem>
+                            <listItem>
+                                <para>Selection rectangle</para>
+                            </listItem>
+                            <listItem>
+                                <para>Mouse guides</para>
+                            </listItem>
+                            <listItem>
+                                <para>Hit testing for chart panel, axes, labels, and charts</para>
+                            </listItem>
+                            <listItem>
+                                <para>Extensible with custom interactions</para>
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Namespaces">
+            <title>Namespaces</title>
+            <content>
+                <para>
+                    Following namespaces belong to DigitalRune.Windows.Charts:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <codeEntityReference qualifyHint="true">N:DigitalRune.Windows.Charts</codeEntityReference>
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <codeEntityReference qualifyHint="true">N:DigitalRune.Windows.Charts.Interactivity</codeEntityReference>
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Subtopics">
+            <title>Subtopics</title>
+            <content>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <link xlink:href="fe5c89e3-94a3-4e7e-b8e2-736e58c4f5c4" />
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <link xlink:href="37998b1f-50ba-460f-97cd-74eadbda486e" />
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <link xlink:href="6b5647c4-453f-4e8a-b387-7f821e4c06c9" />
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <link xlink:href="24cf8977-8709-4afe-b03e-37238e4eb828" />
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <link xlink:href="f9750444-b26b-4da9-93a1-ec2a31f2ad48" />
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <link xlink:href="2165429d-06b6-4786-8985-15177bcb91f8" />
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics></relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

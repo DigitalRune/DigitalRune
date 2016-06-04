@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="014ef916-0699-4c01-942a-1093db3ef311" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>Here is a collection of frequently asked questions, common problems and solutions.</para>
+            <autoOutline>2</autoOutline>
+        </introduction>
+
+
+        <section address="General">
+            <title>General</title>
+            <content>
+            </content>
+            <sections>
+                <section address="Tips">
+                    <title>Debugging tips</title>
+                    <content>
+                        <para>
+                            Use the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.DebugRenderer</codeEntityReference>
+                            to visualize debug information: bounding shapes, skeletons of skinned meshes, etc.
+                        </para>
+                        <para>
+                            If you are using deferred lighting, visualize the intermediate render targets as shown
+                            in the samples.
+                        </para>
+                        <para>
+                            To debug rendering problems or problems with effects use a graphics debugging tool,
+                            for example <legacyItalic>PIX for Windows</legacyItalic>,
+                            <legacyItalic>
+                                <externalLink>
+                                    <linkText>Visual Studio Graphics Diagnostics</linkText>
+                                    <linkUri>http://msdn.microsoft.com/en-us/library/hh315751(v=vs.110).aspx</linkUri>
+                                </externalLink>
+                            </legacyItalic> or
+                            <legacyItalic>
+                                <externalLink>
+                                    <linkText>NVIDIA Nsight</linkText>
+                                    <linkUri>https://developer.nvidia.com/nvidia-nsight-visual-studio-edition</linkUri>
+                                </externalLink>
+                            </legacyItalic>.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Effects">
+            <title>Effects and effect bindings</title>
+            <content>
+            </content>
+            <sections>
+                <section address="TimeParameter">
+                    <title>How can I add an effect parameter for absolute time?</title>
+                    <content>
+                        <para>
+                            Here is the quick-and-dirty solution:
+                            Add the time parameter to the effect file:
+                        </para>
+                        <code language="cs">
+                            float time : TIME;
+                        </code>
+                        <para>
+                            Load the mesh and manually set the time in every frame:
+                        </para>
+                        <code language="cs">
+                            var effectBinding = myMeshNode.Mesh.Materials[index]["render pass"];
+                            effectBinding.Set("time", currentTimeInSeconds);
+                        </code>
+                        <para>
+                            Or set a callback method once that automatically sets the current time:
+                        </para>
+                        <code language="cs">
+                            // Assuming there is a method GetCurrentTimeInSeconds() that returns the time
+                            // as float, you can write the following:
+                            var effectBinding = myMeshNode.Mesh.Materials[index]["render pass"];
+                            effectBinding.Set("time", (binding, context) => GetCurrentTimeInSeconds());
+                        </code>
+                    </content>
+                </section>
+                <section address="BrokenBinding">
+                    <title>Effect parameter binding is not working</title>
+                    <content>
+                        <para>
+                            If the effect parameter binding does not work, try this:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                Check if the name or semantic of the effect parameter is spelled correctly.
+                            </listItem>
+                            <listItem>
+                                Check if the type of the parameter is supported by the semantic, e.g. the semantic
+                                <codeEntityReference qualifyHint="false">F:DigitalRune.Graphics.Effects.SceneEffectParameterSemantics.PointLightAttenuation</codeEntityReference>
+                                can only be used with <legacyBold>float</legacyBold>, not with
+                                <legacyBold>float3</legacyBold>.
+                            </listItem>
+                            <listItem>
+                                Check the materials of the meshes:
+                                Using the Visual Studio debugger check if all parameters which should be set
+                                automatically have
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.DelegateParameterBinding`1</codeEntityReference>s
+                                (not
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.ConstParameterBinding`1</codeEntityReference>s).
+                            </listItem>
+                            <listItem>
+                                In custom effects use default values for effect parameters. Check if the default
+                                value or a dynamic value is used at runtime.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Lights">
+            <title>Lights</title>
+            <content>
+            </content>
+            <sections>
+                <section address="HdrLdr">
+                    <title>How should I handle LDR rendering and HDR rendering in the same game?</title>
+                    <content>
+                        <para>
+                            In HDR scenes you usually render the scene into a HdrBlendable render target. For best
+                            performance you should render LDR scenes into a Color render target.
+                            The light classes usually have
+                            <legacyBold>Diffuse/SpecularIntensity</legacyBold> properties
+                            and a
+                            <legacyBold>HdrScale</legacyBold>. Try to set the correct
+                            <legacyBold>Diffuse/SpecularIntensity</legacyBold>
+                            for the LDR scene and use the
+                            <legacyBold>HdrScale</legacyBold>
+                            to tweak the HDR scene.
+                        </para>
+                        <para>
+                            For materials and particles you can also apply a custom
+                            "HdrScale" factor if necessary.
+                            (They do not have a built-in <legacyBold>HdrScale</legacyBold> property.)
+                        </para>
+                    </content>
+                </section>
+
+
+                <section address="PointLights">
+                    <title>PointLights/Spotlights/ProjectorLights are not working</title>
+                    <content>
+                        <para>
+                            Point lights, spotlight and projector lights should work automatically for opaque objects
+                            if you use deferred rendering, as shown in the deferred lighting samples.
+                            If you do not use deferred rendering, then it depends on the used effect. The XNA stock
+                            effects (e.g. <legacyBold>BasicEffect</legacyBold>, <legacyBold>SkinnedEffect</legacyBold>) and the built-in forward rendering effects of
+                            DigitalRune Graphics (e.g. <legacyItalic>DigitalRune/Materials/Forward</legacyItalic>, <legacyItalic>ForwardTwoSided</legacyItalic>) support only
+                            ambient lights and directional lights. That means, if you do not use deferred lighting or
+                            the object uses alpha-blending, you have to write your own effect which supports point lights.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Meshes">
+            <title>Models and meshes</title>
+            <content>
+            </content>
+            <sections>
+                <section address="STL">
+                    <title>Can I load models from .STL/… files?</title>
+                    <content>
+                        <para>
+                            XNA supports .X and .FBX files. To load .STL files or other file formats, you need
+                            a XNA Content Importer or a custom loader. For common formats you will usually find an
+                            open source implementation or an example on the Internet.
+                        </para>
+                    </content>
+                </section>
+
+
+                <section address="ProceduralMesh">
+                    <title>How to create a mesh in code</title>
+                    <content>
+                        <para>
+                            See <legacyItalic>ProceduralObject.cs</legacyItalic> in the
+                            <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="BlackModel">
+                    <title>Model appears only black</title>
+                    <content>
+                        <para>
+                            If all models are black, then please check if the 3D scene contains any light sources.
+                        </para>
+                        <para>
+                            Sometimes exported models have a wrong alpha value of 0. Correct this in a 3D modeling
+                            tool or in set a correct alpha value (usually 1) in code after you have loaded the model.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="BoundingShapeForCollisions">
+                    <title>Can I use the Shape of the ModelNode for collision tests?</title>
+                    <content>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ModelNode</codeEntityReference>
+                            is just a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SceneNode</codeEntityReference>
+                            that groups other
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SceneNode</codeEntityReference>s.
+                            In most cases the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ModelNode</codeEntityReference>
+                            has child of type
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshNode</codeEntityReference>.
+                            The
+                            Shape
+                            of the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ModelNode</codeEntityReference>
+                            is usually an
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.EmptyShape</codeEntityReference>.
+                            You can try to use the shape of the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshNode</codeEntityReference>.
+                            However, the
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.SceneNode.Shape</codeEntityReference>
+                            of a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SceneNode</codeEntityReference>
+                            is just a simple bounding shape - usually just a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.TransformedShape</codeEntityReference>
+                            with a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.BoxShape</codeEntityReference>
+                            or a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.SphereShape</codeEntityReference>.
+                            For example, the bounding shape of the "Dude" model is just a fixed size box. The
+                            bounding shapes are used for frustum culling and scene queries. But the shapes are
+                            usually not accurate enough for physics or collision detection.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Misc">
+            <title>Miscellaneous</title>
+            <content>
+            </content>
+            <sections>
+                <section address="TextureFilterPoint">
+                    <title>
+                        NotSupportedException: "XNA Framework HiDef profile requires TextureFilter to be Point when using
+                        texture format HdrBlendable/Vector4/..."
+                    </title>
+                    <content>
+                        <para>
+                            In XNA floating-point textures (e.g. surface format HdrBlendable, Vector4, etc.) can only
+                            be sampled with point sampling. Hardware filtering is not supported for floating-point
+                            textures. Therefore, effects which sample floating-point textures must set the
+                            sampler state to point filtering.
+                        </para>
+                        <para>
+                            But sometimes the exception is thrown while rendering a mesh without a texture or with a normal texture.
+                            In this case, the problem might be that a previous renderer read from one or more
+                            floating-point textures and did not reset the texture stages of the graphics device.
+                            To solve the problem, call
+                            <codeEntityReference qualifyHint="true">M:DigitalRune.Graphics.GraphicsHelper.ResetTextures(Microsoft.Xna.Framework.Graphics.GraphicsDevice)</codeEntityReference>
+                            before the render action which throws the exception.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+        <relatedTopics>
+        </relatedTopics>
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="d70873e7-1dbc-492b-b10d-1afb6f06687a" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This topic gives an overview of <legacyItalic>figures</legacyItalic>.
+                Figures in DigitalRune Graphics are drawings composed of 3D lines and 2D shapes.
+            </para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Definition">
+            <title>Defining figures</title>
+            <content>
+                <para>
+                    The class <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Figure</codeEntityReference>s
+                    is the base class for a range of types.
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.EllipseFigure</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.RectangleFigure</codeEntityReference>
+                    can be used to create simple 2D shapes.
+                    It is possible to transform and group figures using the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.TransformedFigure</codeEntityReference>
+                    and the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.CompositeFigure</codeEntityReference>.
+                </para>
+                <para>
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PathFigure2F</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PathFigure3F</codeEntityReference>
+                    can be used to define complex 2D and 3D figures. Both classes are composed of line
+                    segments where each segment is described by an
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Interpolation.ICurve`2</codeEntityReference>.
+                    DigitalRune Mathematics provides several curve classes in the namespace
+                    <codeEntityReference qualifyHint="true">N:DigitalRune.Mathematics.Interpolation</codeEntityReference>.
+                    These classes can be used to create straight lines, splines or complex paths.
+                    By default, all segments of a path figure get stroked. The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.StrokedSegment`2</codeEntityReference>
+                    decorator can be used to define whether a line segment that is stroked.
+                    A <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PathFigure2F</codeEntityReference>
+                    can be filled, but <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PathFigure3F</codeEntityReference>
+                    is a pure line drawing that cannot be filled.
+                </para>
+                <para>
+                    When a renderer draws curved lines, it might convert them to a series of
+                    line segments. The properties
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Figure.MaxNumberOfIterations</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Figure.Tolerance</codeEntityReference>
+                    define how accurate such an approximation should be.
+                </para>
+                <para>
+                    Each figure has a
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Figure.BoundingShape</codeEntityReference>
+                    that can be used for frustum culling and a
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Figure.HitShape</codeEntityReference>
+                    that can be used for accurate hit testing.
+                </para>
+                <para>
+                    To add a figure to a scene a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.FigureNode</codeEntityReference>
+                    must be added. The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.FigureNode</codeEntityReference>
+                    references a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Figure</codeEntityReference>
+                    and allows to define the appearance of the shapes. The <legacyBold>Stroke</legacyBold> properties
+                    describe how the shape's outline is rendered. The stroke is rendered as an anti-aliased line
+                    and can use a dash pattern. Closed shapes can be filled with a solid color, defined by the
+                    <legacyBold>Fill</legacyBold> properties. (Some figures, like simple lines, do not have an
+                    interior and cannot be filled.)
+                </para>
+                <para>
+                    Multiple <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.FigureNode</codeEntityReference>s
+                    can reference the same
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Figure</codeEntityReference>.
+                    This can be used to define a common figure (e.g. an arrow symbol) once,
+                    and draw the figure several times in a scene with different appearances.
+                </para>
+                <mediaLink>
+                    <caption placement="after">Class Diagram: Figures</caption>
+                    <image xlink:href="ClassDiagramGraphicsFigures"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Example">
+            <title>Example</title>
+            <content>
+                <para>
+                    Figures can be used to render anti-aliased lines with dash pattern:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Lines"/>
+                </mediaLink>
+                <para>
+                    Figures can also be used to create various shapes:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Figures"/>
+                </mediaLink>
+
+                <para>
+                    The following example code creates a 2D drawing that resembles a flower
+                    and adds it to a scene.
+                </para>
+                <code language="c#" title="Example (C#)">
+                    <![CDATA[
+// Define single flower petal.
+var petalPath = new Path2F
+{
+  new PathKey2F
+  {
+    Parameter = 0,
+    Interpolation = SplineInterpolation.Bezier,
+    Point = new Vector2F(0, 0),
+    TangentIn = new Vector2F(0, 0),
+    TangentOut = new Vector2F(-0.2f, 0.2f)
+  },
+  new PathKey2F
+  {
+    Parameter = 1,
+    Interpolation = SplineInterpolation.Bezier,
+    Point = new Vector2F(0, 1),
+    TangentIn = new Vector2F(-0.3f, 1.1f),
+    TangentOut = new Vector2F(0.3f, 1.1f)
+  },
+  new PathKey2F
+  {
+    Parameter = 2,
+    Interpolation = SplineInterpolation.Bezier,
+    Point = new Vector2F(0, 0),
+    TangentIn = new Vector2F(0.2f, 0.2f),
+    TangentOut = new Vector2F(0, 0)
+  }
+};
+
+var petal = new PathFigure2F();
+petal.Segments.Add(petalPath);
+
+// Duplicate and rotate flower petal several times.
+const int numberOfPetals = 9;
+var flower = new CompositeFigure();
+flower.Children.Add(petal);
+for (int i = 1; i < numberOfPetals; i++)
+{
+  var transformedPetal = new TransformedFigure(petal)
+  {
+    Pose = new Pose(Matrix33F.CreateRotationZ(i * ConstantsF.TwoPi / numberOfPetals))
+  };
+  flower.Children.Add(transformedPetal);
+}
+
+// Add figure to the scene.
+var flowerNode = new FigureNode(flower)
+{
+  Name = "Flower",
+  StrokeThickness = 2,
+  StrokeColor = new Vector3F(1, 0.2f, 0.2f),
+  FillColor = new Vector3F(1, 0.5f, 0.5f),
+  FillAlpha = 1,
+  PoseLocal = new Pose(new Vector3F(3, 1, 0)),
+  ScaleLocal = new Vector3F(0.5f)
+};
+scene.Children.Add(flowerNode);
+          ]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Renderer">
+            <title>FigureRenderer</title>
+            <content>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.FigureRenderer</codeEntityReference>
+                    is a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneNodeRenderer</codeEntityReference>
+                    that handles <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.FigureNode</codeEntityReference>s.
+                    The renderer can render filled shapes and stroked lines using anti-aliasing, different
+                    thickness and dash patterns.
+                </para>
+                <para>
+                    Figures may be rendered on top of a scene (always visible) or as part of the current scene
+                    (to hide figures occluded by geometry). This is defined by setting the appropriate
+                    depth-stencil state. Alpha-blending can be used as well.
+                </para>
+                <code language="c#" title="Example (C#)">
+                    <![CDATA[
+// Set desired depth-stencil and blend states.
+graphicsDevice.DepthStencilState = DepthStencilState.DepthRead;
+graphicsDevice.BlendState = BlendState.AlphaBlend;
+
+// Render a list of figure nodes.
+figureRenderer.Render(sceneNodes, context);
+          ]]>
+                </code>
+                <para>
+                    Figures are usually rendered with alpha-blending and without writing to the depth buffer.
+                    This means that the depth test can't be used for sorting figures, overlapping figures may
+                    be rendered in the wrong order.
+                    Most cases can be solved by choosing the right
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.RenderOrder</codeEntityReference>
+                    when calling the
+                    <codeEntityReference qualifyHint="false" autoUpgrade="false">M:DigitalRune.Graphics.Rendering.SceneNodeRenderer.Render(System.Collections.Generic.IList{DigitalRune.Graphics.SceneGraph.SceneNode},DigitalRune.Graphics.RenderContext,DigitalRune.Graphics.Rendering.RenderOrder)</codeEntityReference>.
+                    However, there is not yet a general solution that works in all cases.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

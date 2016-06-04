@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="630fb69e-a032-4125-bdc0-5484fbe2c86d" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                A <newTerm>lens flare</newTerm> is an effect caused by a camera lens when looking at bright
+                light. A lens flare usually consists of multiple elements which move across the screen
+                depending on the position of the light source: bloom and halo around the light source, light
+                streaks, secondary rings, hexagonal patterns caused by the lens' aperture blades.
+            </para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="Definition">
+            <title>Defining lens flares</title>
+            <content>
+                <para>
+                    A lens flare effect is defined by creating a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.LensFlare</codeEntityReference>.
+                    The elements of a lens flare (e.g. rings, halos, ...) are defined using the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.LensFlareElement</codeEntityReference>.
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.LensFlareElement</codeEntityReference>s
+                    need to be added to the <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.LensFlare.Elements</codeEntityReference>
+                    collection. The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LensFlareNode</codeEntityReference>
+                    positions a lens flare within a scene. (Lens flare effects in DigitalRune Graphics are not
+                    bound to cameras or light sources - they can be placed anywhere within a scene.)
+                </para>
+                <mediaLink>
+                    <caption placement="after">Class Diagram: Lens Flares</caption>
+                    <image xlink:href="ClassDiagramGraphicsLensFlares"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Rendering">
+            <title>Rendering lens flares</title>
+            <content>
+                <para>
+                    This section explains how to render lens flare effects using the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.LensFlareRenderer</codeEntityReference>.
+                </para>
+            </content>
+            <sections>
+                <section address="LensFlareRenderer">
+                    <title>LensFlareRenderer</title>
+                    <content>
+                        <para>
+                            The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.LensFlareRenderer</codeEntityReference>
+                            is <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneNodeRenderer</codeEntityReference>
+                            that handles <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LensFlareNode</codeEntityReference>s.
+                            The renderer performs hardware occlusion queries to determine the visibility of the lens
+                            flares. The query results are delayed by one or more frames, which means that lens flares
+                            need at least two frames to become visible.
+                        </para>
+                        <para>
+                            Lens flares need to be rendered in two passes:
+                        </para>
+                        <list class="ordered">
+                            <listItem>
+                                <para>
+                                    <legacyBold>Occlusion Query:</legacyBold>
+                                    The method <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.Rendering.LensFlareRenderer.UpdateOcclusion(System.Collections.Generic.IList{DigitalRune.Graphics.SceneGraph.SceneNode},DigitalRune.Graphics.RenderContext)</codeEntityReference>
+                                    needs to be called after the scene is rendered. The Z-buffer of the current render target
+                                    needs to contain the depth information of the scene. The method performs a hardware occlusion
+                                    query to check the visibility of the light source. In a deferred lighting renderer the method
+                                    can be called at the end of the "Material" pass. No pixels are rendered into the current
+                                    render target during the occlusion queries.
+                                </para>
+                            </listItem>
+                            <listItem>
+                                <para>
+                                    <legacyBold>Rendering:</legacyBold>
+                                    The method <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.Rendering.LensFlareRenderer.Render(System.Collections.Generic.IList{DigitalRune.Graphics.SceneGraph.SceneNode},DigitalRune.Graphics.RenderContext,DigitalRune.Graphics.Rendering.RenderOrder)</codeEntityReference>
+                                    needs to be called to render the lens flares into the current render target. The method
+                                    can be called at any point after the occlusion queries.
+                                </para>
+                            </listItem>
+                        </list>
+                        <para>
+                            The following code illustrates the usage within the rendering pipeline.
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+// Here: Render all opaque objects... 
+// At this point the Z-buffer should contain the depth information of the scene.
+
+// Perform occlusion queries to determine the visibility of the lens flare nodes. 
+lensFlareRenderer.UpdateOcclusion(query.SceneNodes, context);
+
+// Render other stuff...
+
+// Render lens flares.
+lensFlareRenderer.Render(query.SceneNodes, context);
+          ]]>
+                        </code>
+                    </content>
+                </section>
+
+
+                <section address="Limitations">
+                    <title>Limitations</title>
+                    <content>
+                        <para>
+                            The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.LensFlareRenderer</codeEntityReference>
+                            has certain limitations:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                Does not work with orthographic projections. Lens flares for local light sources require
+                                a camera with perspective projection.
+                            </listItem>
+                            <listItem>
+                                Hardware occlusion queries are not support in Reach profile. The method
+                                <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.Rendering.LensFlareRenderer.UpdateOcclusion(System.Collections.Generic.IList{DigitalRune.Graphics.SceneGraph.SceneNode},DigitalRune.Graphics.RenderContext)</codeEntityReference>
+                                has no effect in Reach profile. That means lens flares in front of the camera are
+                                always visible.
+                                <markup>
+                                    <br/>
+                                </markup>
+                                As a workaround: Override the method <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.LensFlare.OnGetSizeAndIntensity(DigitalRune.Graphics.SceneGraph.LensFlareNode,DigitalRune.Graphics.RenderContext,System.Int32,System.Int32,System.Single@,System.Single@)</codeEntityReference>
+                                (as described below) and perform a custom visibility check.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+
+                <section address="Custom">
+                    <title>Custom size and intensity</title>
+                    <content>
+                        <para>
+                            It is further possible to customize the size and intensity of a lens-flare effect by
+                            deriving a custom lens-flare type from <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.LensFlare</codeEntityReference>
+                            and overriding the method <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.LensFlare.OnGetSizeAndIntensity(DigitalRune.Graphics.SceneGraph.LensFlareNode,DigitalRune.Graphics.RenderContext,System.Int32,System.Int32,System.Single@,System.Single@)</codeEntityReference>.
+                            This method is called by the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.LensFlareRenderer</codeEntityReference>
+                            during <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.Rendering.LensFlareRenderer.Render(System.Collections.Generic.IList{DigitalRune.Graphics.SceneGraph.SceneNode},DigitalRune.Graphics.RenderContext,DigitalRune.Graphics.Rendering.RenderOrder)</codeEntityReference>.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

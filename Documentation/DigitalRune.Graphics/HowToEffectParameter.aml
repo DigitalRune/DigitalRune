@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="66ba3eee-84a2-4ff2-935f-77b0afa44a89" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                Materials contain <newTerm>effect parameter bindings</newTerm>. These bindings automatically
+                resolve and apply effect parameters at runtime. This topic explains how to change effect
+                parameter bindings at runtime.
+            </para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Access">
+            <title>Accessing effect parameter bindings</title>
+            <content>
+                <para>
+                    The effect parameters are grouped into categories.
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <legacyBold>Global Parameters:</legacyBold>
+                            These effect parameters are identical for all meshes that use the same effect and effect
+                            technique. They do not depend on the object that is being rendered or on the location of the
+                            object in the scene. Examples of global parameters are: view matrix, projection matrix,
+                            camera position, etc.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Material Parameters:</legacyBold>
+                            These effect parameters define the material of a mesh. Multiple meshes can share the same
+                            material. Material parameters are independent of the location of the object in the scene.
+                            Examples of material parameters are: diffuse color, albedo texture, specular color, gloss
+                            texture, normal map, etc.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Local Parameters:</legacyBold>
+                            These effect parameters depend on the location of the mesh in the scene. Multiple
+                            meshes which are close to each other in the scene may share the same parameter values.
+                            Examples of local parameters are: local environment maps, local lights, etc.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Per-Instance Parameters:</legacyBold>
+                            These effect parameters can be different for each mesh instance. Examples of instance
+                            parameters are: world matrix, skinning matrices.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Per-Pass Parameters:</legacyBold>
+                            These effect parameters can be different in each effect pass. Examples of per-pass
+                            parameters are: pass index.
+                        </para>
+                    </listItem>
+                </list>
+                <para>
+                    The following code snippets show how to access the effect parameter bindings for a certain
+                    category of effect parameters:
+                </para>
+                <para>
+                    At run-time the bindings for global effect parameters are stored per
+                    <codeEntityReference qualifyHint="false">T:Microsoft.Xna.Framework.Graphics.Effect</codeEntityReference>
+                    and can be accessed using the helper method
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.Effects.EffectHelper.GetParameterBindings(Microsoft.Xna.Framework.Graphics.Effect)</codeEntityReference>.
+                </para>
+                <code language="c#" title="Example (C#): Get bindings for global parameters">
+                    <![CDATA[
+// If the Effect is given:
+var parameterBindings = effect.GetParameterBindings();
+
+// If the Mesh is given:
+var effectBinding = mesh.Materials[materialIndex]["name of render pass"];
+var parameterBindings = effectBinding.Effect.GetParameterBindings();
+
+// If the MeshNode is given:
+var effectBinding = meshNode.MaterialInstances[materialIndex]["name of render pass"];
+var parameterBindings = effectBinding.Effect.GetParameterBindings();
+          ]]>
+                </code>
+                <para>
+                    Bindings for material parameters are stored per
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Material</codeEntityReference>.
+                </para>
+                <code language="c#" title="Example (C#): Get bindings for material parameters">
+                    <![CDATA[
+// If the Mesh is given:
+var effectBinding = mesh.Materials[materialIndex]["name of render pass"];
+var parameterBindings = effectBinding.ParameterBindings;
+
+// If the MeshNode is given:
+var effectBinding = meshNode.MaterialInstances[materialIndex].Material["name of render pass"];
+var parameterBindings = effectBinding.ParameterBindings;
+          ]]>
+                </code>
+                <para>
+                    Bindings for local, per-instance, and per-pass parameters are stored per
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MaterialInstance</codeEntityReference>.
+                </para>
+                <code language="c#" title="Example (C#): Get bindings for local, per-instance and per-pass parameters">
+                    <![CDATA[
+var effectBinding = meshNode.MaterialInstances[index]["name of render pass"];
+var parameterBindings = effectBinding.ParameterBindings;
+          ]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Change">
+            <title>Changing effect parameters</title>
+            <content>
+                <para>
+                    Effect parameters can be changed using the
+                    <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Graphics.Effects.EffectBinding.Set``1(System.String,``0)</codeEntityReference>
+                    methods. The following example shows how to change material parameters.
+                </para>
+                <code language="c#" title="Example (C#): Changing material parameters">
+                    <![CDATA[
+// The mesh in this example has a single material which uses the XNA BasicEffect.
+var effectBinding = mesh.Materials[0]["Default"];
+effectBinding.Set("DiffuseColor", new Vector3(1, 0, 0));
+effectBinding.Set("SpecularColor", new Vector3(1, 1, 0));
+effectBinding.Set("SpecularPower", 100f);
+effectBinding.Set("Texture", diffuseTexture);
+          ]]>
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <link xlink:href="ba1be841-af9c-41a4-8348-0b6bd92efdd9" />
+            <link xlink:href="34a7f065-df4f-4f40-8b5c-5f0afee365db" />
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

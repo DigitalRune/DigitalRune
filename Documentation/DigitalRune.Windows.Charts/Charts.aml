@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="6b5647c4-453f-4e8a-b387-7f821e4c06c9" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+
+        <introduction>
+            <para>
+                Different types of charts can be used to represent data in a graphical form. This section
+                describes the available chart types as well as general chart elements.
+            </para>
+            <!-- <autoOutline /> -->
+        </introduction>
+
+
+        <section address="ChartElements">
+            <title>Chart elements</title>
+            <content>
+                <para>
+                    The following is a list of general chart elements that can be added inside a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.ChartPanel</codeEntityReference>.
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            The <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.ChartBackground</codeEntityReference>
+                            fills the chart area (= the area defined by the x-axis and y-axis) with a
+                            certain color.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            The <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.ChartGrid</codeEntityReference>
+                            draws grid lines at the major and minor tick position of the corresponding
+                            axes.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            The <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.HorizontalChartLine</codeEntityReference>
+                            draws a horizontal line at a certain y value.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            The <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.VerticalChartLine</codeEntityReference>
+                            draws a vertical line at a certain x value.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            The <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.ChartCross</codeEntityReference>
+                            draws a horizontal and a vertical line at a certain (x, y) value.
+                        </para>
+                    </listItem>
+                </list>
+                <para>
+                    These elements are derived from the base class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.ChartElement</codeEntityReference>.
+                    The properties <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Charts.ChartElement.XAxis</codeEntityReference>
+                    and <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Charts.ChartElement.YAxis</codeEntityReference>
+                    need to be set to the corresponding axes.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Charts">
+            <title>Charts</title>
+            <content>
+                <para>
+                    Charts (base class <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.Chart</codeEntityReference>)
+                    represent data in various graphical forms. The data needs to be set by assigning a
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Charts.Chart.DataSource</codeEntityReference>.
+                </para>
+            </content>
+            <sections>
+                <section address="DataSources">
+                    <title>Data sources</title>
+                    <content>
+                        <para>
+                            A chart data source is a collection of (x, y) values. The following property
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Charts.Chart.DataSource</codeEntityReference>
+                            accepts the following types:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                <para>
+                                    <codeInline>IEnumerable&lt;DataPoint&gt;</codeInline>, <codeInline>IEnumerable&lt;Point&gt;</codeInline>
+                                </para>
+                            </listItem>
+                            <listItem>
+                                <para>
+                                    <codeInline>IList&lt;DataPoint&gt;</codeInline>, <codeInline>IList&lt;Point&gt;</codeInline>
+                                </para>
+                            </listItem>
+                            <listItem>
+                                <para>
+                                    <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.DataPointCollection</codeEntityReference>,
+                                    <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.ObservableDataPointCollection</codeEntityReference>
+                                </para>
+                            </listItem>
+                            <listItem>
+                                <para>
+                                    <legacyBold>PointCollection</legacyBold>
+                                </para>
+                            </listItem>
+                            <listItem>
+                                <para>
+                                    <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.CompositeDataSource</codeEntityReference>
+                                    (combines two separate collections for x and y values into a single data source)
+                                </para>
+                            </listItem>
+                            <listItem>
+                                <para>
+                                    Any <codeEntityReference qualifyHint="false">T:System.Collections.IEnumerable</codeEntityReference>.
+                                    In this case the properties
+                                    <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Charts.Chart.XValuePath</codeEntityReference>
+                                    + <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Charts.Chart.YValuePath</codeEntityReference>
+                                    or <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Charts.Chart.XYValuePath</codeEntityReference>
+                                    need to be set. The data values can then be extracted using data bindings.
+                                </para>
+                            </listItem>
+                        </list>
+                        <para>
+                            Internally all data sources are converted to an <codeInline>IList&lt;DataPoint&gt;</codeInline>.
+                            Therefore, for maximum performance we recommend using
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.DataPointCollection</codeEntityReference>
+                            or <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.ObservableDataPointCollection</codeEntityReference>.
+                        </para>
+                        <para>
+                            When the data source implements <codeEntityReference qualifyHint="false">T:System.Collections.Specialized.INotifyCollectionChanged</codeEntityReference>,
+                            the chart is automatically updated when data points are added or removed.
+                            The chart does not monitor value changes of data points. That means, when the value of an existing
+                            data point is changed, the chart needs to be notified by explicitly calling
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Windows.Charts.Chart.InvalidateDataSource</codeEntityReference>.
+                            (Changing an item in a collection usually does not trigger the
+                            <codeEntityReference qualifyHint="false">E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged</codeEntityReference>
+                            event.)
+                        </para>
+                    </content>
+                </section>
+                <section address="ChartTypes">
+                    <title>Chart types</title>
+                    <content>
+                        <para>
+                            The following chart types are supported:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                <para>
+                                    <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.BarChart</codeEntityReference>,
+                                    <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.ColoredBarChart</codeEntityReference>,
+                                    <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.BarChartGroup</codeEntityReference>
+                                </para>
+                            </listItem>
+                            <listItem>
+                                <para>
+                                    <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.LineChart</codeEntityReference>,
+                                    <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.ColoredLineChart</codeEntityReference>,
+                                    <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.LineChartGroup</codeEntityReference>
+                                </para>
+                            </listItem>
+                            <listItem>
+                                <para>
+                                    <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.ScatterPlot</codeEntityReference>
+                                </para>
+                            </listItem>
+                            <listItem>
+                                <para>
+                                    <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.HeatChart</codeEntityReference>,
+                                    <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.HeatChartGroup</codeEntityReference>
+                                </para>
+                            </listItem>
+                            <listItem>
+                                <para>
+                                    <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.PieChart</codeEntityReference>
+                                </para>
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Customize">
+                    <title>Customizing charts</title>
+                    <content>
+                        <para>
+                            The bars in a bar chart and the points in line chart or scatter plot can be
+                            customized by changing the
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Charts.Chart.DataPointStyle</codeEntityReference>
+                            or the <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Charts.Chart.DataPointTemplate</codeEntityReference>.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Custom">
+            <title>Custom charts and chart elements</title>
+            <content>
+                <para>
+                    Any UI element (such as buttons, text boxes, shapes) can be placed inside a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.ChartPanel</codeEntityReference>.
+                    The attached dependency properties
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Windows.Charts.ChartPanel.XAxis</codeEntityReference>,
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Windows.Charts.ChartPanel.YAxis</codeEntityReference>,
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Windows.Charts.ChartPanel.X1</codeEntityReference>,
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Windows.Charts.ChartPanel.Y1</codeEntityReference>,
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Windows.Charts.ChartPanel.X2</codeEntityReference>, and
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Windows.Charts.ChartPanel.Y2</codeEntityReference>.
+                    For more information see <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.ChartPanel</codeEntityReference>.
+                </para>
+                <para>
+                    Custom charts and chart elements can also be created by implementing custom classes derived
+                    from <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.Chart</codeEntityReference>
+                    or <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.ChartElement</codeEntityReference>.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Legend">
+            <title>Legend</title>
+            <content>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.Legend</codeEntityReference> control
+                    renders a chart legend desribing all chart elements. The 
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.Legend</codeEntityReference>
+                    is a separate control that can be placed anywhere in the application. It is not automatically
+                    rendered by the <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.ChartPanel</codeEntityReference>.
+                </para>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.Legend</codeEntityReference>
+                    control can be connected to a <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.ChartPanel</codeEntityReference>
+                    by setting the property 
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Charts.Legend.Source</codeEntityReference>.
+                    The property <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Charts.ChartElement.IsVisibleInLegend</codeEntityReference>
+                    determines whether an element is included in the list.
+                </para>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.PieChartLegend</codeEntityReference>
+                    is designed for use with a <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.PieChart</codeEntityReference>.
+                </para>
+            </content>
+        </section>
+        
+
+        <relatedTopics>
+        </relatedTopics>
+
+
+    </developerConceptualDocument>
+</topic>

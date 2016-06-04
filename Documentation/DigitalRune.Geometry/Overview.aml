@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="1510119e-5c7c-4ebc-851d-684976c1fb29" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                According to
+                <externalLink>
+                    <linkText>Wikipedia</linkText>
+                    <linkUri>http://en.wikipedia.org/wiki/Geometry</linkUri>
+                </externalLink>
+                Geometry (Ancient Greek: γεωμετρία; geo = earth, metria = measure) is a part of
+                mathematics concerned with questions of size, shape, and relative position of
+                figures and with properties of space. In that sense the DigitalRune Geometry
+                library contains functions to define objects that have a position and a shape,
+                to compute distance, detect collisions of objects and more.
+            </para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Geometry">
+            <title>Geometric objects and shapes</title>
+            <content>
+                <para>
+                    The namespace
+                    <codeEntityReference qualifyHint="true">N:DigitalRune.Geometry</codeEntityReference>
+                    contains the interface
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.IGeometricObject</codeEntityReference>.
+                    A geometric object is a 3D object that has a shape and is positioned
+                    in the 3D world.
+                    The position and orientation of a geometric object are defined using a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Pose</codeEntityReference>
+                    instance. A pose defines a rotation and a translation that positions a
+                    geometric object. The shape of geometric object can be defined using
+                    one of many shapes of the namespace
+                    <codeEntityReference qualifyHint="true">N:DigitalRune.Geometry.Shapes</codeEntityReference>.
+                    See <link xlink:href="ed50b52b-a4d4-4192-bc72-0061085466d5" /> for
+                    a detailed description of geometric object and shapes.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Collisions">
+            <title>Collision detection</title>
+            <content>
+                <para>
+                    The namespace
+                    <codeEntityReference qualifyHint="true">N:DigitalRune.Geometry.Collisions</codeEntityReference>
+                    contains classes that compute whether two geometries are in contact (<newTerm>contact queries</newTerm>)
+                    or compute the closest points of separated geometries (<newTerm>closest point queries</newTerm>).
+                    See <link xlink:href="629ec6f3-8533-4ef9-94d0-220ef375387c" /> for an overview
+                    of collision detection in DigitalRune Geometry.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Hierarchies">
+            <title>Spatial partitioning</title>
+            <content>
+                <para>
+                    The namespace
+                    <codeEntityReference qualifyHint="true">N:DigitalRune.Geometry.Partitioning</codeEntityReference>
+                    provides spatial partitioning methods to structure complex objects or complex sets of objects in
+                    hierarchical data structures, such as bounding volume trees.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Meshes">
+            <title>Handling meshes</title>
+            <content>
+                <para>
+                    The namespace
+                    <codeEntityReference qualifyHint="true">N:DigitalRune.Geometry.Meshes</codeEntityReference>
+                    contains objects to create, describe and manipulate meshes. A doubly-connected
+                    edge list (DCEL) can be used to manipulate meshes
+                    (see <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Meshes.DcelMesh</codeEntityReference>).
+                </para>
+            </content>
+        </section>
+
+
+        <section address="OtherFeatures">
+            <title>Other features</title>
+            <content>
+                <para>
+                    The class
+                    <codeEntityReference qualifyHint="true">T:DigitalRune.Geometry.GeometryHelper</codeEntityReference>
+                    contains several useful methods, for example, to compute convex hulls
+                    and bounding shapes for point clouds.
+                </para>
+                <para>
+                    The class
+                    <codeEntityReference qualifyHint="true">T:DigitalRune.Geometry.Meshes.ConvexDecomposition</codeEntityReference>
+                    can be used to convert arbitrary meshes into convex shapes. (Convex shapes are better suited
+                    for collision detection.)
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <link xlink:href="3cbb67a9-77ff-44cd-be2a-618e0a2d89df"/>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

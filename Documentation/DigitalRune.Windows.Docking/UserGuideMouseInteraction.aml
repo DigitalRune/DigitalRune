@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="88665d06-80f7-4593-8c8e-53830a26c0b9" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>This section explains how to change a window layout using mouse and keyboard interaction.</para>
+      <autoOutline/>
+    </introduction>
+
+
+    <section address="DragDrop">
+      <title>Drag-and-drop</title>
+      <content>
+        <para>
+          Docking windows can be repositioned via drag-and-drop.
+        </para>
+      </content>
+      <sections>
+        <section address="Reordering">
+          <title>Reordering tabs</title>
+          <content>
+            <para>
+              DockWindow tabs can be reordered by dragging a tab inside the tab
+              area of a DockPane.
+            </para>
+          </content>
+        </section>
+        <section address="DockingWindows">
+          <title>Repositioning DockWindows</title>
+          <content>
+            <para>
+              DockWindows can be repositioned by clicking a tab and dragging the
+              tab out of the DockPane.
+            </para>
+            <para>
+              While a dockable object is dragged dock indicators will automatically pop up
+              and indicate where the object can be docked. Move the mouse cursor over one of
+              the icons to dock the object at the position indicated by the translucent rectangle.
+            </para>
+            <mediaLink>
+              <caption placement="after" lead="Figure 1">Dock indicators are displayed when a dockable object is dragged with the mouse.</caption>
+              <image xlink:href="DockIndicators"/>
+            </mediaLink>
+            <para>
+              A DockWindow can also be dragged onto the tab area of a DockPane. The
+              DockWindow will be inserted into the DockPane directly.
+            </para>
+          </content>
+        </section>
+        <section address="DockingPanes">
+          <title>Repositioning DockPanes</title>
+          <content>
+            <para>
+              DockPanes (including all windows inside the pane) can be repositioned by
+              clicking and dragging the empty area between the tabs and the DockPane buttons.
+            </para>
+            <mediaLink>
+              <caption placement="after" lead="Figure 2">Dragging a DockPane by clicking the tab area.</caption>
+              <image xlink:href="DockPaneDrag"/>
+            </mediaLink>
+          </content>
+        </section>
+        <section address="DockingFloatingWindows">
+          <title>Repositioning FloatingWindows</title>
+          <content>
+            <para>
+              FloatingWindows can be dragged like normal windows. However, unlike normal windows,
+              FloatingWindows can be docked inside the main window. Dock indicators will appear
+              automatically and highlight the areas where the window can be dropped.
+            </para>
+          </content>
+        </section>
+      </sections>
+    </section>
+
+
+    <section address="DoubeClick">
+      <title>Toggling the dock state (double-clicks)</title>
+      <content>
+        <para>
+          Several elements can be double-clicked with the left mouse button to change
+          the docking layout.
+        </para>
+        <list class="bullet">
+          <listItem>
+            <para>
+              <legacyBold>DockWindow tab:</legacyBold> Double-click a DockWindow tab to toggle between floating and docked mode.
+              If the DockWindow is docked near other DockWindows, it is moved into a new FloatingWindow. If the DockWindow
+              is in a FloatingWindow (with no other DockWindows in the same FloatingWindow), the FloatingWindow is closed
+              and the DockWindow is docked at the last known docking position.
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              <legacyBold>DockPane:</legacyBold> Double-click the DockPane area between the DockWindow tabs and the DockPane buttons
+              to toggle between floating and docked mode for the DockPane (including all contained DockWindows).
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              <legacyBold>FloatingWindow:</legacyBold> Double-click the title bar of a FloatingWindow to maximize the FloatingWindow.
+            </para>
+          </listItem>
+        </list>
+      </content>
+    </section>
+
+
+    <section address="Resizing">
+      <title>Resizing DockPanes</title>
+      <content>
+        <para>
+          The size of DockPanes can be adjusted by clicking and dragging the splitter
+          between the DockPanes.
+        </para>
+        <mediaLink>
+          <caption placement="after" lead="Figure 3">Resizing DockPanes.</caption>
+          <image xlink:href="Splitter"/>
+        </mediaLink>
+        <para>
+          By double-clicking a splitter the DockPanes can be resized to their default size.
+          (The exact behavior depends on the type of windows inside the DockPane. When a splitter
+          between *-size windows is double-clicked the DockPanes are distributed evenly. DockPanes
+          with fixed-size windows are reset to their default size.)
+        </para>
+      </content>
+    </section>
+
+
+    <section address="Keyboard">
+      <title>Keyboard shortcuts</title>
+      <content>
+        <para>
+          The docking controls support following keyboard shortcuts:
+        </para>
+        <table>
+          <tableHeader>
+            <row>
+              <entry>
+                <para>Shortcut</para>
+              </entry>
+              <entry>
+                <para>Description</para>
+              </entry>
+            </row>
+          </tableHeader>
+          <row>
+            <entry>
+              <para>Control + Tab</para>
+            </entry>
+            <entry>
+              <para>
+                Activate next DockWindow of the currently active DockPane.
+                Use this shortcut to cycle forward through the DockWindows
+                of a single DockPane.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>Control + Shift + Tab</para>
+            </entry>
+            <entry>
+              <para>
+                Activate previous DockWindow of the currently active DockPane.
+                Use this shortcut to cycle forward through the DockWindows
+                of a single DockPane.
+              </para>
+            </entry>
+          </row>
+        </table>
+      </content>
+    </section>
+
+
+    <relatedTopics>
+      <link xlink:href="c829d353-ff2c-48ba-847d-5a78b8f5a403" />
+      <link xlink:href="af0e3dd1-df9f-437d-be9e-673c926ca76c" />
+    </relatedTopics>
+
+  </developerConceptualDocument>
+</topic>

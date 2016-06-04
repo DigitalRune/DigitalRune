@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="fda6c965-0105-4a5e-a0db-f8fa6ec4e73f" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This section describes the graphics service.</para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Service">
+            <title>IGraphicsService and GraphicsManager</title>
+            <content>
+                <para>
+                    The graphics service (interface <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.IGraphicsService</codeEntityReference>)
+                    is the main interface for graphics-related tasks. It provides access
+                    to the graphics device (see <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.IGraphicsService.GraphicsDevice</codeEntityReference>),
+                    the main game window (see <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.IGraphicsService.GameForm</codeEntityReference>,
+                    Windows only), the graphics screens (see <link xlink:href="2e870374-8980-4fbc-9426-1d1a6e2d9766" />)
+                    and a <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.IGraphicsService.RenderTargetPool</codeEntityReference>.
+                </para>
+                <para>
+                    Graphics screens render game content, like the 3D scene or the HUD. The graphics service
+                    manages a collection of screens, which are rendered back to front.
+                    The graphics are displayed in a presentation target (see
+                    <link xlink:href="7fbfaba5-af8d-4bf7-b5c3-6c084e1bfc54" />), which is either a window, a
+                    Windows Forms control or a WPF control.
+                </para>
+                <para>
+                    The graphics service is implemented by the class <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.GraphicsManager</codeEntityReference>.
+                    The following examples shows how to add the graphics service to an XNA game.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+using DigitalRune.Graphics;
+using Microsoft.Xna.Framework;
+
+namespace GeneralSamples
+{
+  public class MyGame : Game
+  {
+    private GraphicsManager _graphicsManager;
+
+    public MyGame()
+    {
+      var graphicsDeviceManager = new GraphicsDeviceManager(this)
+      {
+        PreferredBackBufferWidth = 1280,
+        PreferredBackBufferHeight = 720,
+        PreferMultiSampling = false,
+      };
+      Content.RootDirectory = "Content";
+    }
+
+    protected override void Initialize()
+    {
+      _graphicsManager = new GraphicsManager(GraphicsDevice, Window, Content);
+      
+      ...
+
+      base.Initialize();
+    }
+
+    protected override void Update(GameTime gameTime)
+    {
+      ...
+      
+      base.Update(gameTime);
+    }
+
+    protected override void Draw(GameTime gameTime)
+    {
+      _graphicsManager.Update(gameTime.ElapsedGameTime);
+      _graphicsManager.Render(false);
+
+      base.Draw(gameTime);
+    }
+  }
+}        
+        ]]>
+                </code>
+            </content>
+        </section>
+
+        <section address="ClassDiagram">
+            <title>Class diagram</title>
+            <content>
+                <mediaLink>
+                    <image xlink:href="ClassDiagramGraphics"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

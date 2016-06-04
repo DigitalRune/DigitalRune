@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="1b907017-5904-440d-b5fa-75c75ab60e6b" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This topic describes the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.DebugRenderer</codeEntityReference>,
+                which can be used to draw debug information.
+            </para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="DebugRenderer">
+            <title>DebugRenderer</title>
+            <content>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.DebugRenderer</codeEntityReference>
+                    is a tool for rendering debug information. It can be used to print text, visualize shapes,
+                    textures, and more.
+                </para>
+                <alert class="important">
+                    <para>
+                        The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.DebugRenderer</codeEntityReference>
+                        is intended purely for rendering debug information. It is not designed for rendering regular content.
+                    </para>
+                </alert>
+                <para>
+                    The debug renderer records and batches a list of draw jobs. A draw job is added by calling
+                    one of the <legacyBold>Draw</legacyBold> methods. Note that the <legacyBold>Draw</legacyBold> methods
+                    can be called outside of the <legacyBold>Game.Draw()</legacyBold> method! For example, debug
+                    output can be added during <legacyBold>Game.Update()</legacyBold> when the game logic is
+                    executed.
+                </para>
+                <alert class="important">
+                    <para>
+                        The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.DebugRenderer</codeEntityReference>
+                        is not thread-safe. To add draw jobs from multiple threads simultaneously either use locks
+                        or use multiple <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.DebugRenderer</codeEntityReference>s
+                        (one per thread).
+                    </para>
+                </alert>
+                <para>
+                    The method <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.Rendering.DebugRenderer.Render(DigitalRune.Graphics.RenderContext)</codeEntityReference>
+                    can be called at any time during <legacyBold>Game.Draw()</legacyBold> to output all recorded
+                    draw jobs.
+                </para>
+                <para>
+                    The method <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.Rendering.DebugRenderer.Clear</codeEntityReference>
+                    can be called to clear the list of draw jobs. (Rendering the list of draw jobs does not
+                    automatically clear the list!)
+                </para>
+                <alert class="tip">
+                    <para>
+                        If your application needs to output two types of debug information - for example, one that
+                        is updated per every frame and one that persistent across frames - you can simply use two
+                        instances of the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.DebugRenderer</codeEntityReference>
+                        class.
+                    </para>
+                </alert>
+            </content>
+        </section>
+
+
+        <section address="Examples">
+            <title>Examples</title>
+            <content>
+                <para>
+                    The following examples show how create a new <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.DebugRenderer</codeEntityReference>
+                    (usually at the start of the application).
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Use a content manager to load sprite font for debug text.
+var debugFont = GraphicsService.Content.Load<SpriteFont>("DebugFont");
+
+// Create a new debug renderer.
+var debugRenderer = new DebugRenderer(graphicsService, debugFont) 
+{ 
+  DefaultColor = Color.White 
+};
+          ]]>
+                </code>
+                <para>
+                    Once the debug renderer is created it can be used to record debug output.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Clear list of draw jobs.
+debugRenderer.Clear();
+
+// Draw a point.
+debugRenderer.DrawPoint(position, Color.White, false);
+
+// Draw a line.
+debugRenderer.DrawLine(start, end, Color.Red, false);
+
+// Draw continuous text.
+debugRenderer.DefaultTextPosition = new Vector2F(10, 10);
+debugRenderer.DrawText("Line #1...");
+debugRenderer.DrawText("Line #2..");
+debugRenderer.DrawText("Line #3...");
+
+// Draw centered text at world space position.
+debugRenderer.DrawText("WorldSpacePosition (0, 0)", new Vector3F(0, 0, 0), new Vector2F(0.5f, 0.5f), Color.White, false);
+
+// Draw left/top aligned text at screen space position.
+debugRenderer.DrawText("ScreenPosition (600, 40)", new Vector2F(600, 40), new Vector2F(0, 0), Color.White);
+
+// Copy texture to screen for debugging.
+debugRenderer.DrawTexture(texture2D, new Rectangle(1000, 10, 128, 128));
+
+// Draw coordinate axes for certain pose (position + orientation).
+debugRenderer.DrawAxes(new Pose(new Vector3F(0, 0, 0)), 1, true);
+
+// Draw axis-aligned bounding box (AABB).
+debugRenderer.DrawAabb(new Aabb(new Vector3F(-0.5f), new Vector3F(0.5f)), new Pose(new Vector3F(2, 0, -3)), Color.Green, false);
+
+// Draw different shapes.
+debugRenderer.DrawBox(1, 1, 1, new Pose(new Vector3F(-6, 0, -5)), Color.Green, false, false);
+debugRenderer.DrawViewVolume(new PerspectiveViewVolume(1, 2, 0.1f, 1f), new Pose(new Vector3F(-2, 0, -5)), Color.Green, false, false);
+debugRenderer.DrawSphere(0.5f, new Pose(new Vector3F(2, 0, -5)), Color.Green, false, false);
+debugRenderer.DrawCapsule(0.3f, 1, new Pose(new Vector3F(-6, 0, -7)), Color.Green, false, false);
+debugRenderer.DrawCylinder(0.3f, 1, new Pose(new Vector3F(-2, 0, -7)), Color.Green, false, false);
+debugRenderer.DrawCone(0.3f, 1, new Pose(new Vector3F(2, 0, -7)), Color.Green, false, false);
+
+// Draw any IGeometricObject (GeometricObject, RigidBody, SceneNode, ParticleSystem, etc.).
+debugRenderer.DrawObject(geometricObject, Color.Brown, false, false);
+
+// Draw an XNA Model or DigitalRune ModelNode.
+debugRenderer.DrawModel(xnaModel, new Pose(new Vector3F(0, 2, -2)), new Vector3F(1, 1, 1), Color.Brown, false, false);
+debugRenderer.DrawModel(modelNode, Color.Brown, false, false);
+          ]]>
+                </code>
+                <para>
+                    The recorded draw jobs can then be rendered.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Make sure that the current camera is set in the render context.
+context.CameraNode = cameraNode;
+
+// Render draw jobs. (Can only be called during Game.Draw()).
+debugRenderer.Render(context);
+          ]]>
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

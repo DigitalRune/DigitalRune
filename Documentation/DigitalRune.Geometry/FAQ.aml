@@ -1,0 +1,425 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="e32cab3b-cc7c-42ee-8ec9-23dd4467edd0" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>Here is a collection of frequently asked questions, common problems and solutions.</para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="CreatingShapes">
+            <title>How can I define collision shapes for 3D models?</title>
+            <content>
+                <para>
+                    We are working on an editor to simplify and automate this process. Without an editor you
+                    can use one of following approaches.
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        The very lazy approach: Just use the triangle mesh. Of course, this is not so good for
+                        performance and simulation stability (convex shapes behave better).
+                    </listItem>
+                    <listItem>
+                        Convex Hulls: Compute simplified convex hulls for the meshes at runtime or preferably
+                        in the XNA content pipeline.
+                    </listItem>
+                    <listItem>
+                        Manually placing collision shapes in a 3d modeling tool of your choice. You can create a
+                        separate model that defines only the collision shapes. Or create the collision shapes
+                        in the same model and use a naming convention to identify collision shapes. Or use a
+                        custom export script. Etc.
+                    </listItem>
+                    <listItem>
+                        Automatic Approximate Convex Decomposition of meshes using the
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Meshes.ConvexDecomposition</codeEntityReference>
+                        class.
+                    </listItem>
+                    <listItem>
+                        Creating bounding shapes using methods of the
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.GeometryHelper</codeEntityReference>
+                        (e.g.
+                        <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Geometry.GeometryHelper.CreateBoundingShape(System.Collections.Generic.IList{DigitalRune.Mathematics.Algebra.Vector3F})</codeEntityReference>,
+                        <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Geometry.GeometryHelper.ComputeBoundingBox(System.Collections.Generic.IList{DigitalRune.Mathematics.Algebra.Vector3F},DigitalRune.Mathematics.Algebra.Vector3F@,DigitalRune.Geometry.Pose@)</codeEntityReference>, etc.).
+                    </listItem>
+                </list>
+                <para>
+                    The DigitalRune samples demonstrate several different ways to create shapes for models.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="AllRayHits">
+            <title>How can I get ALL ray hits of a ray and a triangle mesh?</title>
+            <content>
+                <para>
+                    Usually, the collision detection reports only a single contact between a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.RayShape</codeEntityReference>
+                    and a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.TriangleMeshShape</codeEntityReference>.
+                    This is by design. If the ray hits several features (triangles) of a single object, only
+                    the first hit is returned.
+                    (Note: <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Shapes.RayShape.StopsAtFirstHit</codeEntityReference>
+                    is only relevant if the ray hits several different objects.)
+                </para>
+                <para>
+                    If you want to find all hit triangles, check out
+                    <link xlink:href="#RayMes">How can I efficiently perform a lot of ray casts against a single mesh?</link>.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="RayMesh">
+            <title>How can I efficiently perform a lot of ray casts against a single mesh?</title>
+            <content>
+                <para>
+                    Use a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.TriangleMeshShape</codeEntityReference>
+                    with an
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.AabbTree`1</codeEntityReference>
+                    or a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.CompressedAabbTree</codeEntityReference>
+                    for the static mesh. (You have to experiment which tree type is faster. The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.CompressedAabbTree</codeEntityReference>
+                    can be slower than the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.AabbTree`1</codeEntityReference>
+                    because it has to do a bit more computations, but it could also be faster because it uses
+                    less memory and generates less cache misses.)
+                </para>
+                <para>
+                    Create a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.Ray</codeEntityReference>
+                    in the local space of the mesh.
+                    Call
+                    <legacyBold>TriangleMeshShape.Partition.GetOverlaps(Ray)</legacyBold>
+                    to find all triangles which potentially overlap the ray.
+                    Use
+                    <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Geometry.GeometryHelper.GetContact(DigitalRune.Geometry.Shapes.Ray,DigitalRune.Geometry.Shapes.Triangle,System.Boolean,System.Single@)</codeEntityReference>
+                    to test the returned triangles vs. ray.
+                    The returned contacts are in the local space of the triangle mesh object. Don't forget to
+                    convert them back to world space if necessary.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="TriangleToDcelMesh">
+            <title>Cannot convert TriangleMesh to DcelMesh</title>
+            <content>
+                <para>
+                    The winding order is relevant for the DCEL mesh. The
+                    <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Geometry.Meshes.DcelMesh.FromTriangleMesh(DigitalRune.Geometry.Meshes.ITriangleMesh)</codeEntityReference>
+                    method currently assumes that all triangles in the mesh are connected. Unconnected
+                    submeshes are not allowed. Two triangles are connected if they share an edge and if the
+                    winding order matches. - In other words, the triangle (A, B, C) is connected to the
+                    triangle (C, B, D) but not to the triangle (B, C, D).
+                </para>
+            </content>
+        </section>
+
+
+        <section address="ModelToTriangleMesh">
+            <title>How can I convert an XNA Model to a TriangleMesh?</title>
+            <content>
+                <para>
+                    You can use the method
+                    <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Geometry.Meshes.TriangleMesh.FromModel(Microsoft.Xna.Framework.Graphics.Model)</codeEntityReference>.
+                    This method works very similar to this code snippet:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+public static TriangleMesh FromModel(Model model)
+{
+  var triangleMesh = new TriangleMesh();
+ 
+  foreach (var modelMesh in model.Meshes)
+  {
+    // Get bone transformation.
+    Matrix transform = GetAbsoluteTransform(modelMesh.ParentBone);
+ 
+    foreach (var modelMeshPart in modelMesh.MeshParts)
+    {
+      // Get vertex element info.
+      var vertexDeclaration = modelMeshPart.VertexBuffer.VertexDeclaration;
+      var vertexElements = vertexDeclaration.GetVertexElements();
+ 
+      // Get the vertex positions.
+      var positionElement = vertexElements.First(e => e.VertexElementUsage == VertexElementUsage.Position);
+      if (positionElement.VertexElementFormat != VertexElementFormat.Vector3)
+        throw new NotSupportedException("For vertex positions only VertexElementFormat.Vector3 is supported.");
+      var positions = new Vector3[modelMeshPart.NumVertices];
+      modelMeshPart.VertexBuffer.GetData(
+        modelMeshPart.VertexOffset * vertexDeclaration.VertexStride + positionElement.Offset,
+        positions,
+        0,
+        modelMeshPart.NumVertices,
+        vertexDeclaration.VertexStride);
+ 
+      // Apply bone transformation.
+      for (int i = 0; i < positions.Length; i++)
+        positions[i] = Vector3.Transform(positions[i], transform);
+ 
+      // Get indices.
+      var indexElementSize = (modelMeshPart.IndexBuffer.IndexElementSize == IndexElementSize.SixteenBits) ? 2 : 4;
+      if (indexElementSize != 2)
+        throw new NotSupportedException("Only 16 bit indices are supported.");
+ 
+      var indices = new short[modelMeshPart.PrimitiveCount * 3];
+      modelMeshPart.IndexBuffer.GetData(
+        modelMeshPart.StartIndex * 2,
+        indices,
+        0,
+        modelMeshPart.PrimitiveCount * 3);
+ 
+      // Remember the number of vertices already in the mesh.
+      int vertexCount = triangleMesh.Vertices.Count;
+ 
+      // Add the vertices of the current modelMeshPart.
+      foreach (var p in positions)
+        triangleMesh.Vertices.Add((Vector3F)p);
+ 
+      // Add indices to triangle mesh.
+      for (int i = 0; i < modelMeshPart.PrimitiveCount; i++)
+      {
+        // The three indices of the next triangle.
+        // We add 'vertexCount' because the triangleMesh already contains other mesh parts.
+        var i0 = indices[i * 3 + 0] + vertexCount;
+        var i1 = indices[i * 3 + 1] + vertexCount;
+        var i2 = indices[i * 3 + 2] + vertexCount;
+ 
+        triangleMesh.Indices.Add(i0);
+        triangleMesh.Indices.Add(i2);     // DigitalRune Geometry uses other winding order!
+        triangleMesh.Indices.Add(i1);
+      }
+    }
+  }
+ 
+  return triangleMesh;
+}
+ 
+ 
+private static Matrix GetAbsoluteTransform(ModelBone bone)
+{
+  if (bone == null)
+    return Matrix.Identity;
+  return bone.Transform * GetAbsoluteTransform(bone.Parent);
+}
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="WhichPartition">
+            <title>Which spatial partition should I use?</title>
+            <content>
+                <para>
+                    Our spatial partitions are used in several places:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Collisions.CollisionDomain.BroadPhase</codeEntityReference>:
+                        </para>
+                        <para>
+                            In the broad phase the collision detection finds potential candidate pairs. This is
+                            done using a spatial partitioning method with
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Partitioning.ISpatialPartition`1.EnableSelfOverlaps</codeEntityReference>
+                            = true.
+                        </para>
+                        <para>
+                            Recommended types are:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.SweepAndPruneSpace`1</codeEntityReference>
+                                (Default):
+                                <list class="nobullet">
+                                    <listItem>
+                                        ++ Very fast and efficient for computing self-overlaps.
+                                    </listItem>
+                                    <listItem>
+                                        - Insertion and removal of objects is slow. (Though this may be improved in future versions.)
+                                    </listItem>
+                                    <listItem>
+                                        - Slow when using a lot of large
+                                        <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.RayShape</codeEntityReference>s
+                                        or
+                                        ray queries (<codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Geometry.Partitioning.ISpatialPartition`1.GetOverlaps(DigitalRune.Geometry.Shapes.Ray)</codeEntityReference>).
+                                    </listItem>
+                                    <listItem>
+                                    </listItem>
+                                    <listItem>
+                                    </listItem>
+                                </list>
+                            </listItem>
+                            <listItem>
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.DualPartition`1</codeEntityReference>:
+                                <list class="nobullet">
+                                    <listItem>
+                                        + Fast for computing self-overlaps, but in general not as efficient as
+                                        <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.SweepAndPruneSpace`1</codeEntityReference>.
+                                    </listItem>
+                                    <listItem>
+                                        + Insertion and removal of objects is fast.
+                                    </listItem>
+                                    <listItem>
+                                        + Implements
+                                        <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.ISupportFrustumCulling`1</codeEntityReference>,
+                                        which can be used for manual frustum culling.
+                                    </listItem>
+                                    <listItem>
+                                        + Fast ray queries.
+                                    </listItem>
+                                </list>
+                            </listItem>
+                        </list>
+                    </listItem>
+                    <listItem>
+                        <para>Compound Collision Shapes:</para>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.CompositeShape</codeEntityReference>
+                            and the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.TriangleMeshShape</codeEntityReference>
+                            are shapes that consist of several other objects. When the number of shapes exceeds a
+                            certain threshold (needs to be found experimentally), a spatial partition needs to be
+                            set to improve collision detection. Suitable types are:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.AabbTree`1</codeEntityReference>:
+                                <list class="nobullet">
+                                    <listItem>
+                                        + Fast for static meshes.
+                                    </listItem>
+                                    <listItem>
+                                        -- Not suited for dynamic (deformable) shapes.
+                                    </listItem>
+                                </list>
+                            </listItem>
+                            <listItem>
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.CompressedAabbTree</codeEntityReference>:
+                                <list class="nobullet">
+                                    <listItem>
+                                        ++ Minimal memory requirements.
+                                    </listItem>
+                                    <listItem>
+                                        + Fast for static meshes, more cache friendly than AabbTree.
+                                    </listItem>
+                                    <listItem>
+                                        - Less precision than AabbTree.
+                                    </listItem>
+                                    <listItem>
+                                        -- Not suited for dynamic (deformable) shapes.
+                                    </listItem>
+                                    <listItem>
+                                        -- Cannot be used with shapes of infinite size.
+                                    </listItem>
+                                </list>
+                            </listItem>
+                            <listItem>
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.DynamicAabbTree`1</codeEntityReference>:
+                                <list class="nobullet">
+                                    <listItem>
+                                        ++ Fast for dynamic (deformable) shapes.
+                                    </listItem>
+                                    <listItem>
+                                        ++ Fast for ray queries and frustum culling.
+                                    </listItem>
+                                </list>
+                            </listItem>
+                            <listItem>
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.AdaptiveAabbTree`1</codeEntityReference>:
+                                <list class="nobullet">
+                                    <listItem>
+                                        ++ Fast for dynamic (deformable) shapes consisting of a large number of objects.
+                                    </listItem>
+                                </list>
+                            </listItem>
+                        </list>
+                    </listItem>
+                </list>
+                <para>
+                    Recommendations:
+                </para>
+                <para>
+                    For the collision detection broad phase use the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.SweepAndPruneSpace`1</codeEntityReference>.
+                    Only if you make a lot of ray queries and/or use frustum culling use a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.DualPartition`1</codeEntityReference>.
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Use the
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.CompressedAabbTree</codeEntityReference>
+                        for static meshes.
+                    </listItem>
+                    <listItem>
+                        Use the
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.DynamicAabbTree`1</codeEntityReference>
+                        for dynamic meshes.
+                    </listItem>
+                </list>
+                <para>
+                    Start using these partitions. Once you have a representative level running in your game,
+                    you can test other partition types and see whether they perform better.
+                </para>
+                <para>
+                    Note: Our library is very flexible. You can, for example, use an
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.AdaptiveAabbTree`1</codeEntityReference>
+                    as the collision detection broad phase, or the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.DualPartition`1</codeEntityReference>
+                    for a triangle mesh. Though in a typical game these combinations will perform worse. For example:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+// This is the default:
+_simulation.CollisionDomain.BroadPhase = new SweepAndPruneSpace<CollisionObject>();
+   
+// Here are other examples:
+_simulation.CollisionDomain.BroadPhase = new DualPartition<CollisionObject>();
+_simulation.CollisionDomain.BroadPhase = new DynamicAabbTree<CollisionObject>
+{ EnableMotionPrediction = true, OptimizationPerFrame = 0.01f };
+_simulation.CollisionDomain.BroadPhase = new AdaptiveAabbTree<CollisionObject>();
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="DynamicSpatialPartition">
+            <title>How can I manage dynamic objects in a spatial partition?</title>
+            <content>
+                <para>
+                    Use a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.DynamicAabbTree`1</codeEntityReference>.
+                    If the AABB of an item in tree is changed at runtime, you must invalidate the tree:
+                </para>
+                <code language="cs">
+                    tree.Invalidate(indexOfChangedAabb);
+                </code>
+                <para>
+                    In each frame call:
+                </para>
+                <code language="cs">
+                    tree.Update(false);
+                </code>
+                <para>
+                    This rebuilds or incrementally optimizes the tree when needed. (It does nothing if no
+                    AABBs have changed and no objects were added or removed.) If you do not make this call,
+                    then this will be done automatically in
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Geometry.Partitioning.ISpatialPartition`1.GetOverlaps</codeEntityReference>.
+                    But it is better to control manually when this happens.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

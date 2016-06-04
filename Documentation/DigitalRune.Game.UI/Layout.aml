@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="c0f13e6f-5e80-4d6b-8816-39f1789fe825" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This article discusses the layout process of GUI controls.
+            </para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="Size">
+            <title>Defining size</title>
+            <content>
+                <para>
+                    Each
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIControl</codeEntityReference>
+                    has a
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Width</codeEntityReference>,
+                    and a
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Height</codeEntityReference>
+                    property which define the control size. The default value is NaN, which means that the
+                    control automatically determines its size. For example: The size of an
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.Image</codeEntityReference>
+                    control is determined by the drawn image. The size of a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.TextBlock</codeEntityReference>
+                    is determined by the text. If a control has child controls, like a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.Panel</codeEntityReference>
+                    or a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.ContentControl</codeEntityReference>,
+                    the size is usually determined by the child controls.
+                </para>
+                <para>
+                    A control also has the properties
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.MinWidth</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.MinHeight</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.MaxWidth</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.MaxHeight</codeEntityReference>.
+                    They default to 0 for the minimums and NaN for the maximums, which means that there
+                    are no size restrictions. These properties limit the actual control size.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Position">
+            <title>Defining position</title>
+            <content>
+                <para>
+                    There a several mechanisms that influence the position of a control.
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <legacyBold>Parent Controls:</legacyBold>
+                            GUI controls are organized in a tree. The control at the root is the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIScreen</codeEntityReference>.
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIScreen</codeEntityReference>
+                            contains other child controls, like
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.Window</codeEntityReference>s,
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.Panel</codeEntityReference>s,
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.Button</codeEntityReference>s.
+                            Each control can in turn contain other controls. A parent control defines how it
+                            positions child elements. Most other controls allow the children to position
+                            themselves freely within the parent control space using the properties described below.
+                        </para>
+                        <para>
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.Panel</codeEntityReference>s
+                            are special controls – their whole purpose is to arrange child elements using a
+                            specific layout strategy. Current panel controls are the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.Canvas</codeEntityReference>,
+                            which allows free positioning of the children, and the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.StackPanel</codeEntityReference>,
+                            which arranges child controls in a horizontal or vertical stack.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Margin and Padding: </legacyBold>
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Margin</codeEntityReference>
+                            and
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Padding</codeEntityReference>
+                            are two UI control properties.
+                            Each is a 4-dimensional vector specifying the left, top, right, and bottom values. The
+                            margin is added around a control. Per default, it is (0, 0, 0, 0). In a panel (e.g. a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.StackPanel</codeEntityReference>)
+                            a margin can be added to the controls to create some empty space between them. The
+                            padding is usually the space between the outer border of a control and contained child
+                            controls. However, different types of controls may interpret the
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Padding</codeEntityReference>
+                            property differently.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>HorizontalAlignment and VerticalAlignment:</legacyBold>
+                            Using the properties
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.HorizontalAlignment</codeEntityReference>
+                            and
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.VerticalAlignment</codeEntityReference>
+                            a control can determine its alignment in the area of the parent control.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>X and Y:</legacyBold>
+                            Each
+                            control
+                            has an
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.X</codeEntityReference>
+                            and a
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Y</codeEntityReference>
+                            property.
+                            These two properties are only relevant for children of a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIScreen</codeEntityReference>
+                            or a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.Canvas</codeEntityReference>
+                            panel.
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.X</codeEntityReference>
+                            and
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Y</codeEntityReference>
+                            determine the position of the control’s top left corner on the screen or
+                            in the canvas. –
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.X</codeEntityReference>
+                            and
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Y</codeEntityReference>
+                            should only be used for controls that are left/top aligned.
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Layout">
+            <title>Layout process</title>
+            <content>
+                <para>
+                    GUI controls are organized in a tree. The control at the root is the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIScreen</codeEntityReference>.
+                    The screen contains child controls, which in turn contain other controls, and so on. The
+                    layout process consists of two traversals of the whole control tree: The
+                    <newTerm>measure pass</newTerm>
+                    and the
+                    <newTerm>arrange pass</newTerm>. First all controls are measured and determine their
+                    desired own size. In the second pass all controls are told where on the screen they should
+                    be rendered.
+                </para>
+                <para>
+                    The layout process is started by calling
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.UpdateLayout</codeEntityReference>
+                    on the root control. It is not necessary to call this manually. The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIScreen</codeEntityReference>
+                    will automatically call
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.UpdateLayout</codeEntityReference>
+                    when needed.
+                </para>
+            </content>
+            <sections>
+                <section address="Measure">
+                    <title>Measure pass</title>
+                    <content>
+                        <para>
+                            In the measure pass the method
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.Measure(DigitalRune.Mathematics.Algebra.Vector2F)</codeEntityReference>
+                            is called on each control with the available size for the control. Each control can
+                            determine how big it wants to be. The measure results are stored in the
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.DesiredWidth</codeEntityReference>
+                            and
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.DesiredHeight</codeEntityReference>
+                            properties.
+                        </para>
+                        <para>
+                            Controls can override the method
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.OnMeasure(DigitalRune.Mathematics.Algebra.Vector2F)</codeEntityReference>.
+                            This method should call
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.Measure(DigitalRune.Mathematics.Algebra.Vector2F)</codeEntityReference>
+                            of child controls and then return the desired size. A control can ignore the
+                            <codeInline>availabeSize</codeInline> parameter and return any value. Some controls
+                            will want to adapt to the available size (e.g. a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.TextBlock</codeEntityReference>
+                            with text wrapping will wrap the text at the bounds defined by the available size).
+                        </para>
+                        <para>
+                            The results of the measure pass are cached until a UI control property with the
+                            <codeEntityReference qualifyHint="false">F:DigitalRune.Game.UI.Controls.UIPropertyOptions.AffectsMeasure</codeEntityReference>
+                            flag is modified or
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.InvalidateMeasure</codeEntityReference>
+                            is called manually. The flag
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.IsMeasureValid</codeEntityReference>
+                            indicates whether the current measure results are valid.
+                        </para>
+                    </content>
+                </section>
+                <section address="Arrange">
+                    <title>Arrange pass</title>
+                    <content>
+                        <para>
+                            In the arrange pass the method
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.Arrange(DigitalRune.Mathematics.Algebra.Vector2F,DigitalRune.Mathematics.Algebra.Vector2F)</codeEntityReference>
+                            is called on each control. The method tells a control the rectangle on screen that
+                            the control can use. Each control subtracts its own margin and sets its
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.ActualX</codeEntityReference>,
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.ActualY</codeEntityReference>,
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.ActualWidth</codeEntityReference>
+                            and
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.ActualHeight</codeEntityReference>
+                            properties. This properties define the rectangle relative to the screen
+                            that this control can use. A UI control also has an
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.ActualBounds</codeEntityReference>
+                            property to get the rectangle defined by these properties.
+                        </para>
+                        <para>
+                            Often a control will get exactly its desired size to arrange into. If it gets more
+                            space, it is allowed to fill the whole space. It can also happen that the actual size
+                            is less than the desired size when there is not enough space on the screen or in a
+                            window. In this case a well-behaved control only draws within the actual bounds. A
+                            misbehaving control may draw outside the allowed bounds and hope that the parent
+                            control automatically clips the drawing. Some controls like the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.ContentControl</codeEntityReference>s
+                            have a
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.ContentControl.ClipContent</codeEntityReference>
+                            property. If this is set to true, they will clip the content automatically during
+                            the render process.
+                        </para>
+                        <para>
+                            If the desired size of a child control is smaller than the actual size of the parent
+                            control, then the properties
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.HorizontalAlignment</codeEntityReference>
+                            and
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.VerticalAlignment</codeEntityReference>
+                            are used to determine the relative position of the child control in the parent control.
+                        </para>
+                        <para>
+                            Arrange pass results are cached until a UI control property with the
+                            <codeEntityReference qualifyHint="false">F:DigitalRune.Game.UI.Controls.UIPropertyOptions.AffectsMeasure</codeEntityReference>
+                            flag or a
+                            <codeEntityReference qualifyHint="false">F:DigitalRune.Game.UI.Controls.UIPropertyOptions.AffectsArrange</codeEntityReference>
+                            flag is modified or
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.InvalidateMeasure</codeEntityReference>
+                            or
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.InvalidateArrange</codeEntityReference>.
+                            is called. The flag
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.IsArrangeValid</codeEntityReference>
+                            indicates whether the current actual positions are valid.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Conclusion">
+            <title>Conclusion</title>
+            <content>
+                <para>
+                    This GUI layout mechanism was heavily inspired by WPF and Silverlight. It allows to
+                    create flexible GUI layouts. And by creating new
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.Panel</codeEntityReference>
+                    controls, which override
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.OnMeasure(DigitalRune.Mathematics.Algebra.Vector2F)</codeEntityReference> and
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.OnArrange(DigitalRune.Mathematics.Algebra.Vector2F,DigitalRune.Mathematics.Algebra.Vector2F)</codeEntityReference>,
+                    developers can add new layout strategies.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,657 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="2225f642-6f72-4a1a-adc7-ad1be8bbd543" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        <legacyItalic>
+          Microsoft(R) DirectX 11 Texture Converter (DirectXTex version).
+          Copyright (C) Microsoft Corp. All rights reserved.
+        </legacyItalic>
+      </para>
+      <para>
+        The <token>DirectXTex</token> command-line tool <command>texconv</command> can be
+        used prepare images for runtime use. It supports resizing, format conversion, mipmap
+        generation, block-compression.
+      </para>
+      <para>
+        To create cubemaps, volume maps, or texture arrays from individual files, use
+        <link xlink:href="82aae839-9dee-4d18-b87b-85da2b547f7f" />.
+      </para>
+      <autoOutline />
+    </introduction>
+
+
+    <section address="Usage">
+      <title>Usage</title>
+      <content>
+        <para>
+
+        </para>
+        <code language="none">
+          <![CDATA[
+texconv [-w <width>] [-h <height>] [-m <miplevels>] [-f <format>] [-if <filter>] [-srgb | -srgbi | -srgbo] [-px  <prefix>] [-sx <suffix>] [-o <directory>] [-ft <filetype>] [-hflip] [-vflip] [-sepalpha] [-wrap | -mirror] [-pmalpha] [-fl <featurelevel>] [-pow2] [-tu | -tf] [-dword] [-xlum] [-dx10] [-nologo] [-singleproc] [-nogpu] [-bcuniform] [-bcdither] [-bcmax] [-aw <alphaweight>] [-nmap <options>] [-nmapamp <weight>] [-timing] <files>]]>
+        </code>
+      </content>
+    </section>
+
+
+    <section address="Arguments">
+      <title>Arguments</title>
+      <content>
+        <para>
+          The following arguments can be specified on the command-line:
+        </para>
+        <table>
+          <tableHeader>
+            <row>
+              <entry>
+                <para>Argument</para>
+              </entry>
+              <entry>
+                <para>Description</para>
+              </entry>
+            </row>
+          </tableHeader>
+          <row>
+            <entry>
+              <para>
+                <legacyItalic>files</legacyItalic>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                The image files that should be assembled into the DDS file.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-w</command>&#0160;<legacyItalic>width</legacyItalic>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                The width of the output texture in pixels.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-h</command>&#0160;<legacyItalic>height</legacyItalic>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                The height of the output texture in pixels.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-m</command>&#0160;<legacyItalic>miplevels</legacyItalic>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                The number of mipmap levels to generate.
+              </para>
+              <para>
+                The default value is 0: By default, a full mipmap chain is generated.
+                However, if the input image already has more than one mipmap levels,
+                the same number will be generated for the output image.
+              </para>
+              <para>
+                This setting only applies to DDS output files!
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-f</command>&#0160;<legacyItalic>format</legacyItalic>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                The texture format of the output texture.  If no format is given,
+                the format of the first image file is used.
+              </para>
+              <para>
+                Allowed values are all
+                <externalLink>
+                  <linkText>DXGI formats</linkText>
+                  <linkUri>http://msdn.microsoft.com/en-us/library/windows/desktop/bb173059.aspx</linkUri>
+                </externalLink>
+                (without the "DXGI_FORMAT_" prefix).
+              </para>
+              <para>
+                Example: -f R10G10B10A2_UNORM
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-if</command>&#0160;<legacyItalic>filter</legacyItalic>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                The image filter used for resizing.
+              </para>
+              <para>
+                Allowed values: POINT, LINEAR, CUBIC, FANT, BOX, TRIANGLE,
+                POINT_DITHER, LINEAR_DITHER, CUBIC_DITHER, FANT_DITHER, BOX_DITHER,
+                TRIANGLE_DITHER, POINT_DITHER_DIFFUSION, LINEAR_DITHER_DIFFUSION,
+                CUBIC_DITHER_DIFFUSION, FANT_DITHER_DIFFUSION, BOX_DITHER_DIFFUSION,
+                TRIANGLE_DITHER_DIFFUSION
+              </para>
+              <para>
+                Filters with DITHER in their name indicate that the 4x4 ordered
+                dither algorithm, while "DITHER_DIFFUSION" is error diffusion
+                dithering.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-srgbi</command>, <command>-srgbo</command>, <command>-srgb</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                Defines whether the input image (<command>-srgbi</command>), the
+                output image (<command>-srgbo</command>) or both (<command>-srgb</command>)
+                use sRGB color format (gamma 2.2).
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-px</command>&#0160;<legacyItalic>prefix</legacyItalic>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                The text that is attached to the front of the output file name.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-sx</command>&#0160;<legacyItalic>suffix</legacyItalic>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                The text that is attached to the end of the output file name.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-o</command>&#0160;<legacyItalic>directory</legacyItalic>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                The output directory.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-ft</command>&#0160;<legacyItalic>filetype</legacyItalic>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                The type of the output file.
+              </para>
+              <para>
+                Allowed values are: BMP, JPG, JPEG, PNG, DDS, TGA, TIF, TIFF, WDP, HDP
+              </para>
+              <para>
+                The default value is DDS.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-hflip</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                Flip image horizontally.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-vflip</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                Flip image vertically.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-sepalpha</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                Resize/generate mipmap levels for alpha channel separately from color
+                channels. This implies an alpha mode setting of DDS_ALPHA_MODE_CUSTOM
+                as this is typically only used if the alpha channel doesn't contain
+                transparency information.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-wrap</command>, <command>-mirror</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                Sets the texture addressing mode for filtering to WRAP or MIRROR.
+                The default value is CLAMP.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-pmalpha</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                Convert final texture to premultiplied alpha. This sets an alpha
+                mode of DDS_ALPHA_MODE_PREMULTIPLIED unless the entire alpha channel
+                is fully opaque.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-fl</command>&#0160;<legacyItalic>featurelevel</legacyItalic>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                Sets the target feature level which determines the maximum supported
+                texture size.
+              </para>
+              <para>
+                Allowed values are: 9.1, 9.2, 9.3, 10.0, 10.1, 11.0, 11.1, 12.0, 12.1
+              </para>
+              <para>
+                The default value is "11.0" which indicates a maximum texture size
+                of 16834.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-pow2</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                Fit each texture to a power-of-2 for width and height, minimizing
+                changes to the aspect ratio.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-tf</command>, <command>-tu</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                Defines whether TYPELESS format is treated as FLOAT or UNORM.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-dword</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                Use DWORD instead of BYTE alignment. Only relevant for legacy DDS files.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-xlum</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                Expand legacy L8, L16, A8L8 and A8P8 formats to 8:8:8:8 or 16:16:16:16 format.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-dx10</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                Force DDS file output to always use the "DX10" header extension. The
+                resulting file may not be compatible with the legacy D3DX10 or D3DX11
+                libraries.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-nologo</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                Suppress copyright message.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-singleproc</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                Disable multi-threaded compression.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-nogpu</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                Disable DirectCompute-based codecs.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-bcuniform</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                Use uniform rather than perceptual weighting for BC1-3.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-bcdither</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                Use dithering for BC1-3.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-bcmax</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                Use exchaustive compression (BC7 only).
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-aw</command>&#0160;<legacyItalic>alphaweight</legacyItalic>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                The BC7 GPU compressor weighting for alpha error metric.
+              </para>
+              <para>
+                The default value is 1.0.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-nmap</command>&#0160;<legacyItalic>options</legacyItalic>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                Convert height map to normal map.
+              </para>
+              <para>
+                Allowed values are:
+              </para>
+              <table>
+                <tableHeader>
+                  <row>
+                    <entry>
+                      <para>
+                        Value
+                      </para>
+                    </entry>
+                    <entry>
+                      <para>
+                        Description
+                      </para>
+                    </entry>
+                  </row>
+                </tableHeader>
+                <row>
+                  <entry>
+                    <para>
+                      r
+                    </para>
+                  </entry>
+                  <entry>
+                    <para>
+                      Use red channel.
+                    </para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para>
+                      g
+                    </para>
+                  </entry>
+                  <entry>
+                    <para>
+                      Use green channel.
+                    </para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para>
+                      b
+                    </para>
+                  </entry>
+                  <entry>
+                    <para>
+                      Use alpha channel.
+                    </para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para>
+                      l
+                    </para>
+                  </entry>
+                  <entry>
+                    <para>
+                      Use luminance computed from red, green, and blue channels.
+                    </para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para>
+                      m
+                    </para>
+                  </entry>
+                  <entry>
+                    <para>
+                      Use mirroring in U &amp; V. Defaults to wrap when doing the central difference computation.
+                    </para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para>
+                      u
+                    </para>
+                  </entry>
+                  <entry>
+                    <para>
+                      Use mirroring in U. Defaults to wrap when doing the central difference computation.
+                    </para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para>
+                      v
+                    </para>
+                  </entry>
+                  <entry>
+                    <para>
+                      Use mirroring in V. Defaults to wrap when doing the central difference computation.
+                    </para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para>
+                      i
+                    </para>
+                  </entry>
+                  <entry>
+                    <para>
+                      Invert sign of the computed normal.
+                    </para>
+                  </entry>
+                </row>
+                <row>
+                  <entry>
+                    <para>
+                      o
+                    </para>
+                  </entry>
+                  <entry>
+                    <para>
+                      Compute a rough occlusion term and encode it into alpha channel.
+                    </para>
+                  </entry>
+                </row>
+              </table>
+              <para>
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-nmapamp</command>&#0160;<legacyItalic>weight</legacyItalic>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                The normal map amplitude.
+              </para>
+              <para>
+                The default value is 1.0.
+              </para>
+            </entry>
+          </row>
+          <row>
+            <entry>
+              <para>
+                <command>-timing</command>
+              </para>
+            </entry>
+            <entry>
+              <para>
+                Display elapsed processing time.
+              </para>
+            </entry>
+          </row>
+        </table>
+      </content>
+    </section>
+
+
+    <section address="Examples">
+      <title>Examples</title>
+      <content>
+        <para>
+          Resize an image to a power of 2 in each dimension, generate all mipmap levels
+          and store the result as a DDS file with BC1 (DXT1) block compression:
+        </para>
+        <code language="none">
+          texconv -pow2 -f BC1_UNORM cat.jpg
+        </code>
+      </content>
+    </section>
+
+
+    <relatedTopics>
+      <!-- Texassemble -->
+      <link xlink:href="82aae839-9dee-4d18-b87b-85da2b547f7f" />
+    </relatedTopics>
+
+  </developerConceptualDocument>
+</topic>

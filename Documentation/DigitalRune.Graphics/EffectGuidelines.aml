@@ -1,0 +1,2769 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="17442709-63e0-419c-abe8-00697ca4fc3a" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This topic explains how to write DirectX Effects that are compatible with DigitalRune Graphics.
+            </para>
+            <para>
+                In general, it is not necessary to write DirectX Effects (.fx files) in a certain way. Most
+                effects should be usable with DigitalRune Graphics. However, by using certain effect
+                parameter names, semantics, and annotations, the engine can automate many task at runtime.
+            </para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="Semantics">
+            <title>Semantics</title>
+            <content>
+                <para>
+                    When loading an effect, DigitalRune Graphics checks whether the effect parameter has a
+                    certain name or semantic. If it recognizes an effect parameter it will automatically create
+                    an effect parameter binding. It is not necessary to update these effect parameters
+                    explicitly at runtime. The graphics engine manages them automatically.
+                </para>
+                <para>
+                    For example:
+                </para>
+                <code language="none">
+                    <![CDATA[
+float4x4 w : WORLD;           // The world matrix.
+float4x4 vp : VIEWPROJECTION; // The view-projection matrix.
+float4x3 Bones[72];           // The skinning matrices.
+texture LightBuffer0;         // The first light buffer (diffuse light).
+texture LightBuffer1;         // The second light buffer (specular light).
+                    ]]>
+                </code>
+                <para>
+                    These are examples of effect parameter, which are recognized by the graphics engine.
+                    The graphics engine checks whether the parameter name or its semantic matches the
+                    following pattern:
+                </para>
+                <list class="nobullet">
+                    <listItem>
+                        <para>
+                            <codeInline>SEMANTIC</codeInline>
+                            <legacyItalic>n</legacyItalic>
+                        </para>
+                    </listItem>
+                </list>
+                <para>
+                    The graphics engine compares the first part <codeInline>SEMANTIC</codeInline> with the
+                    values listed below. (The string comparison is case-insensitive.)
+                </para>
+                <para>
+                    The parameter names or semantic may end with an index <legacyItalic>n</legacyItalic>.
+                    The index is optional. It is only relevant when the effect parameter may be bound to
+                    multiple values. For example, consider a material shader that supports up to 4 point lights. The parameters
+                    storing the point light positions can be declared as:
+                </para>
+                <code language="none">
+                    float3 lightPos0 : POINTLIGHTPOSITION0;
+                    float3 lightPos1 : POINTLIGHTPOSITION1;
+                    float3 lightPos2 : POINTLIGHTPOSITION2;
+                    float3 lightPos3 : POINTLIGHTPOSITION3;
+                </code>
+                <para>
+                    Alternatively, the point light positions can be declared as:
+                </para>
+                <code language="none">
+                    float3 lightPos[4] : POINTLIGHTPOSITION;
+                </code>
+                <para>
+                    In either case, the graphics engine will recognize the effect parameters and create effect
+                    parameter bindings. At runtime, whenever an object is rendered using this shader,
+                    the graphics engine will fetch the four point lights closest to the object, determine their
+                    positions and automatically set the effect parameters in the shader.
+                </para>
+                <para>
+                    DigitalRune Graphics supports the following semantics (the semantics can also be
+                    found in the classes
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.DefaultEffectParameterSemantics</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.SceneEffectParameterSemantics</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.TerrainEffectParameterSemantics</codeEntityReference>):
+                </para>
+            </content>
+            <sections>
+                <section address="Animation">
+                    <title>Animation</title>
+                    <content>
+                        <table>
+                            <tableHeader>
+                                <row>
+                                    <entry>
+                                        <para>Semantic</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Types</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Description</para>
+                                    </entry>
+                                </row>
+                            </tableHeader>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>BONES</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x3[]</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The skinning matrices for mesh skinning.</para>
+                                </entry>
+                            </row>
+                        </table>
+                    </content>
+                </section>
+                <section address="Camera">
+                    <title>Camera</title>
+                    <content>
+                        <table>
+                            <tableHeader>
+                                <row>
+                                    <entry>
+                                        <para>Semantic</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Types</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Description</para>
+                                    </entry>
+                                </row>
+                            </tableHeader>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>CAMERADIRECTION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The camera direction in world space.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>CAMERAPOSITION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The camera position in world space.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTCAMERADIRECTION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The camera direction of the last frame in world space.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTCAMERAPOSITION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The camera position of the last frame in world space.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>CAMERANEAR</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The distance of the camera near plane.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>CAMERAFAR</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The distance of the camera far plane.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LODCAMERAPOSITION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        The position of the camera used as reference for LOD calculations
+                                    </para>
+                                </entry>
+                            </row>
+                        </table>
+                    </content>
+                </section>
+                <section address="Lights">
+                    <title>Lights</title>
+                    <content>
+                        <table>
+                            <tableHeader>
+                                <row>
+                                    <entry>
+                                        <para>Semantic</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Types</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Description</para>
+                                    </entry>
+                                </row>
+                            </tableHeader>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>AMBIENTLIGHT</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The intensity of an ambient light.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>AMBIENTLIGHTATTENUATION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        The hemispheric attenuation factor of the ambient light.
+                                        (0 = pure ambient, no hemispheric lighting; 1 = one-sided hemispheric lighting)
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>AMBIENTLIGHTUP</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        The up vector of the ambient light in world space.
+                                        (Required for hemispheric attenuation.)
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>DIRECTIONALLIGHTDIFFUSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The diffuse intensity of a directional light.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>DIRECTIONALLIGHTSPECULAR</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The specular intensity of a directional light.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>DIRECTIONALLIGHTDIRECTION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The light direction in world space.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>DIRECTIONALLIGHTTEXTURE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>Texture2D</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The texture of a directional light.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>DIRECTIONALLIGHTTEXTUREOFFSET</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float2</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The texture offset of a directional light.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>DIRECTIONALLIGHTTEXTURESCALE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float2</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The texture scale of a directional light.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>DIRECTIONALLIGHTTEXTUREMATRIX</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        The texture matrix of a directional light which converts positions from world
+                                        space to the texture space of the light.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>DIRECTIONALLIGHTSHADOWMAP</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>Texture2D</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        The shadow map of a directional light.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>DIRECTIONALLIGHTSHADOWPARAMETERS</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>*</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        The shadow parameters of a directional light shadow.
+                                    </para>
+                                    <para>
+                                        * The supported types are struct <codeInline>ShadowParameters</codeInline> as
+                                        defined in ShadowMap.fxh or or struct <codeInline>CascadedShadowParameters</codeInline>
+                                        as defined in CascadedShadowMap.fxh.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>ENVIRONMENTMAP</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>TextureCube</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The cube map texture containing the environment.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>ENVIRONMENTMAPSIZE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The side length of one cube map face of the environment map in texels.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>ENVIRONMENTMAPDIFFUSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The intensity of diffuse environment map reflections.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>ENVIRONMENTMAPSPECULAR</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The intensity of specular environment map reflections.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>ENVIRONMENTMAPRGBMMAX</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        The max value (see also
+                                        <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.RgbmEncoding.Max</codeEntityReference>)
+                                        of the RGBM encoding. If the environment map is encoded using sRGB, this value
+                                        is 1.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>ENVIRONMENTMAPMATRIX</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        The texture matrix of the environment map which converts positions from world
+                                        space to the texture space of the cube map.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>POINTLIGHTDIFFUSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The diffuse intensity of a point light.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>POINTLIGHTSPECULAR</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The specular intensity of a point light.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>POINTLIGHTPOSITION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The position of a point light in world space.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>POINTLIGHTRANGE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The range of a point light.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>POINTLIGHTATTENUATION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The attenuation exponent of a point light.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>POINTLIGHTTEXTURE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>TextureCube</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The texture of a point light.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>POINTLIGHTTEXTUREMATRIX</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3x3</codeInline> or
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        The texture matrix of a point light which converts directions from world
+                                        space to the texture space of the light.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>PROJECTORLIGHTDIFFUSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The diffuse intensity of a projector light.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>PROJECTORLIGHTSPECULAR</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The specular intensity of a projector light.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>PROJECTORLIGHTPOSITION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The position of a projector light in world space.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>PROJECTORLIGHTDIRECTION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The direction of a projector light in world space.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>PROJECTORLIGHTRANGE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The range of a projector light.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>PROJECTORLIGHTATTENUATION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The attenuation exponent of a projector light.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>PROJECTORLIGHTTEXTURE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>Texture2D</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The texture that is projected by the projector light.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>PROJECTORLIGHTVIEWPROJECTION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The view-projection matrix of the projector light.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>PROJECTORLIGHTTEXTUREMATRIX</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        The texture matrix of a projector light which converts positions from world
+                                        space to the texture space of the light.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>SPOTLIGHTDIFFUSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The diffuse intensity of a spotlight.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>SPOTLIGHTSPECULAR</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The specular intensity of a spotlight.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>SPOTLIGHTPOSITION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The position of a spotlight in world space.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>SPOTLIGHTDIRECTION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The direction of a spotlight in world space.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>SPOTLIGHTRANGE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The range of a spotlight.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>SPOTLIGHTFALLOFFANGLE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The falloff (umbra) angle of the spotlight in radians.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>SPOTLIGHTCUTOFFANGLE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The cutoff (penumbra) angle of the spotlight in radians.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>SPOTLIGHTATTENUATION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The attenuation exponent of a spotlight.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>SPOTLIGHTTEXTURE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>Texture2D</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The texture of a spotlight.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>SPOTLIGHTTEXTUREMATRIX</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        The texture matrix of a spotlight which converts positions from world
+                                        space to the texture space of the light.
+                                    </para>
+                                </entry>
+                            </row>
+                        </table>
+                    </content>
+                </section>
+                <section address="Material">
+                    <title>Material</title>
+                    <content>
+                        <table>
+                            <tableHeader>
+                                <row>
+                                    <entry>
+                                        <para>Semantic</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Types</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Description</para>
+                                    </entry>
+                                </row>
+                            </tableHeader>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>DIFFUSECOLOR</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The diffuse material color.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>DIFFUSETEXTURE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>Texture2D</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The diffuse (albedo) texture.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>SPECULARCOLOR</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The specular material color.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>SPECULARTEXTURE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>Texture2D</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The gloss texture containing the specular intensity (not specular power).</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>SPECULARPOWER</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline> or <codeInline>float3</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The material specular color exponent as a single value or per-component.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>EMISSIVECOLOR</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The emissive material color.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>EMISSIVETEXTURE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>Texture2D</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The emissive texture.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>OPACITY</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The opacity (alpha).</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>ALPHA</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The opacity (alpha).</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>BLENDMODE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        The blend mode: 0 = additive blending, 1 = normal alpha-blending.
+                                        (Other values than 0 and 1 are allowed to create mixed blend modes.)
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>REFERENCEALPHA</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The reference value used for alpha testing.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>NORMALTEXTURE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>Texture2D</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The normal texture.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>FRESNELPOWER</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The power of the Fresnel term.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>INSTANCECOLOR</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The instance color as RGB.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>INSTANCEALPHA</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        The instance opacity (alpha).
+                                    </para>
+                                </entry>
+                            </row>
+                        </table>
+                    </content>
+                </section>
+                <section address="Transforms">
+                    <title>Transforms</title>
+                    <content>
+                        <table>
+                            <tableHeader>
+                                <row>
+                                    <entry>
+                                        <para>Semantic</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Types</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Description</para>
+                                    </entry>
+                                </row>
+                            </tableHeader>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>POSITION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The position of the object in world space.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>WORLD</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The world matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>WORLDINVERSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The inverse world matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>WORLDTRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the world matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>WORLDINVERSETRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the inverse world matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>VIEW</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The view matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>VIEWINVERSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The inverse view matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>VIEWTRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the view matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>VIEWINVERSETRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the inverse view matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>PROJECTION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The projection matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>PROJECTIONINVERSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The inverse projection matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>PROJECTIONTRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the projection matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>PROJECTIONINVERSETRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the inverse projection matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>WORLDVIEW</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The world-view matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>WORLDVIEWINVERSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The inverse world-view matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>WORLDVIEWTRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the world-view matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>WORLDVIEWINVERSETRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the inverse world-view matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>VIEWPROJECTION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The view-projection matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>VIEWPROJECTIONINVERSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The inverse view-projection matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>VIEWPROJECTIONTRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the view-projection matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>VIEWPROJECTIONINVERSETRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the inverse view-projection matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>WORLDVIEWPROJECTION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The world-view-projection matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>WORLDVIEWPROJECTIONINVERSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The inverse world-view-projection matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>WORLDVIEWPROJECTIONTRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the world-view-projection matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>WORLDVIEWPROJECTIONINVERSETRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the inverse world-view-projection matrix.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTPOSITION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline> or <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The position of the object in world space of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTWORLD</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The world matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTWORLDINVERSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The inverse world matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTWORLDTRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the world matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTWORLDINVERSETRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the inverse world matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTVIEW</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The view matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTVIEWINVERSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The inverse view matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTVIEWTRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the view matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTVIEWINVERSETRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the inverse view matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTPROJECTION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The projection matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTPROJECTIONINVERSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The inverse projection matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTPROJECTIONTRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the projection matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTPROJECTIONINVERSETRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the inverse projection matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTWORLDVIEW</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The world-view matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTWORLDVIEWINVERSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The inverse world-view matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTWORLDVIEWTRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the world-view matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTWORLDVIEWINVERSETRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the inverse world-view matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTVIEWPROJECTION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The view-projection matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTVIEWPROJECTIONINVERSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The inverse view-projection matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTVIEWPROJECTIONTRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the view-projection matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTVIEWPROJECTIONINVERSETRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the inverse view-projection matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTWORLDVIEWPROJECTION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The world-view-projection matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTWORLDVIEWPROJECTIONINVERSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The inverse world-view-projection matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTWORLDVIEWPROJECTIONTRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the world-view-projection matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LASTWORLDVIEWPROJECTIONINVERSETRANSPOSE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The transpose of the inverse world-view-projection matrix of the last frame.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>UNSCALEDWORLD</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        Same as WORLD, except that the matrix does not contain any scale factors.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>UNSCALEDWORLDVIEW</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4x4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        Same as WORLDVIEW, except that the matrix does not contain any scale factors.
+                                    </para>
+                                </entry>
+                            </row>
+                        </table>
+                    </content>
+                </section>
+                <section address="Decals">
+                    <title>Decals</title>
+                    <content>
+                        <table>
+                            <tableHeader>
+                                <row>
+                                    <entry>
+                                        <para>Semantic</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Types</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Description</para>
+                                    </entry>
+                                </row>
+                            </tableHeader>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>DECALALPHA</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The opacity of the decal.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>DECALNORMALTHRESHOLD</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The normal threshold of the decal.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>DECALOPTIONS</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>-</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The decal options.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>DECALORIENTATION</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float3</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The z-axis of the decal in world space.</para>
+                                </entry>
+                            </row>
+                        </table>
+                    </content>
+                </section>
+                <section address="Fog">
+                    <title>Fog</title>
+                    <content>
+                        <table>
+                            <tableHeader>
+                                <row>
+                                    <entry>
+                                        <para>Semantic</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Types</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Description</para>
+                                    </entry>
+                                </row>
+                            </tableHeader>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>FOGCOLOR</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The fog color.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>FOGSTART</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The start distance of the fog.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>FOGEND</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The end distance of the fog.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>FOGDENSITY</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The density of the fog.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>FOGPARAMETERS</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        The combined parameters of the fog; a 4-dimensional vector containing:
+                                        (start distance, end distance or 1 / density, fog curve exponent, height falloff).
+                                    </para>
+                                </entry>
+                            </row>
+                        </table>
+                    </content>
+                </section>
+                <section address="Misc">
+                    <title>Misc</title>
+                    <content>
+                        <table>
+                            <tableHeader>
+                                <row>
+                                    <entry>
+                                        <para>Semantic</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Types</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Description</para>
+                                    </entry>
+                                </row>
+                            </tableHeader>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>DEBUG</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float4</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        A 4-element vector with user-defined data for debugging.
+                                        The values are set using 
+                                        <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Effects.DefaultEffectBinder.Debug0</codeEntityReference>
+                                        and
+                                        <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Effects.DefaultEffectBinder.Debug1</codeEntityReference>.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>ELAPSEDTIME</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The time since the previous frame in seconds.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>GBUFFER</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>Texture2D</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The G-buffer.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>DITHERMAP</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>Texture2D</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        An 8-bit texture (alpha only) with 16x16 dither values.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>JITTERMAP</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>Texture2D</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        A quadratic RGBA texture (8 bit per channel) with random values.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>JITTERMAPSIZE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline> or
+                                        <codeInline>float2</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        The width of the quadratic <codeInline>JITTERMAP</codeInline> in texels.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>LIGHTBUFFER</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>Texture2D</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The light buffer.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>NAN</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        A float value containing NaN.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>NOISEMAP</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>Texture2D</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        A quadratic, tileable RGBA texture (8 bit per channel) with smooth noise values.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>NORMALSFITTINGTEXTURE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>Texture2D</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The normals fitting texture for encoding "best fit" normals.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>PASSINDEX</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>int</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The zero-based index of the current effect pass.</para>
+                                </entry>
+                            </row>
+                            <!--<row>
+                <entry>
+                  <para>
+                    <codeInline>RENDERTARGETSIZE</codeInline>
+                  </para>
+                </entry>
+                <entry>
+                  <para>
+                    <codeInline>float2</codeInline>
+                  </para>
+                </entry>
+                <entry>
+                  <para>The render target width and height in pixels.</para>
+                </entry>
+              </row>-->
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>SOURCETEXTURE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>Texture2D</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The source texture, which is usually the last backbuffer or the result of a previous post-processor.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>
+                                        <codeInline>VIEWPORTSIZE</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        <codeInline>float2</codeInline>
+                                    </para>
+                                </entry>
+                                <entry>
+                                    <para>The viewport width and height in pixels.</para>
+                                </entry>
+                            </row>
+                        </table>
+                    </content>
+                </section>
+                <section address="Terrain">
+                    <title>Terrain</title>
+                    <content>
+                        <para>
+                           The class 
+                           <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.TerrainEffectParameterSemantics</codeEntityReference>
+                           defines additional semantics supported by the terrain rendering system.
+                        </para>
+                    </content>
+                </section>
+                <section address="Custom">
+                    <title>Custom semantics</title>
+                    <content>
+                        <para>
+                            See <link xlink:href="c2b20686-df99-4d21-b5b6-fd7d58a5f407" />
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="DXSAS">
+            <title>
+                DirectX Standard Annotations and Semantics (DXSAS) 0.8
+            </title>
+            <content>
+                <para>
+                    DigitalRune Graphics partially supports the <newTerm>
+                        DirectX Standard Annotations and
+                        Semantics (DXSAS)
+                    </newTerm> version 0.8.
+                </para>
+                <para>
+                    The following DXSAS 0.8 semantics are supported:
+                </para>
+                <para>
+                    <codeInline>
+                        AMBIENT, CAMERAPOSITION, DIFFUSE, DIFFUSEMAP, DIRECTION, ELAPSEDTIME, EMISSIVE,
+                        ENVIRONMENT, ENVMAP, FALLOFFANGLE,
+                        LIGHTPOSITION, NORMAL, OPACITY, POSITION, PROJECTION, PROJECTIONINVERSE, PROJECTIONTRANSPOSE,
+                        PROJECTIONINVERSETRANSPOSE,
+                        <!-- RENDERTARGETDIMENSIONS, -->
+                        SPECULAR, SPECULARMAP, SPECULARPOWER,
+                        VIEW, VIEWINVERSE, VIEWINVERSETRANSPOSE, VIEWPORTPIXELSIZE, VIEWPROJECTION, VIEWPROJECTIONINVERSE,
+                        VIEWPROJECTIONTRANSPOSE, VIEWPROJECTIONINVERSETRANSPOSE, VIEWTRANSPOSE, WORLD, WORLDINVERSE,
+                        WORLDINVERSETRANSPOSE, WORLDTRANSPOSE, WORLDVIEW, WORLDVIEWINVERSE, WORLDVIEWINVERSETRANSPOSE,
+                        WORLDVIEWTRANSPOSE, WORLDVIEWPROJECTION, WORLDVIEWPROJECTIONINVERSE, WORLDVIEWPROJECTIONINVERSETRANSPOSE,
+                        WORLDVIEWPROJECTIONTRANSPOSE
+                    </codeInline>
+                </para>
+                <para>
+                    The following DXSAS 0.8 semantics are not (yet) supported:
+                </para>
+                <para>
+                    <codeInline>
+                        ATTENUATION, BOUNDINGCENTER, BOUNDINGBOXMAX, BOUNDINGBOXMIN, BOUNDINGBOXSIZE, BOUNDINGSPHEREMAX,
+                        BOUNDINGSPHEREMIN, BOUNDINGSPHERESIZE, CONSTANTATTENUATION, ENVIRONMENTNORMAL,
+                        FALLOFFEXPONENT, HEIGHT, JOINT, JOINTWORLD, JOINTWORLDINVERSE, JOINTWORLDINVERSETRANSPOSE,
+                        JOINTWORLDTRANSPOSE, JOINTWORLDVIEW, JOINTWORLDVIEWINVERSE, JOINTWORLDVIEWINVERSETRANSPOSE,
+                        JOINTWORLDVIEWTRANSPOSE, LASTTIME, LINEARATTENUATION, QUADRATICATTENUATION, RANDOM, REFRACTION,
+                        TEXTUREMATRIX, TIME
+                    </codeInline>
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Hints">
+            <title>Sort hints</title>
+            <content>
+                <para>
+                    A <newTerm>sort hint</newTerm> (see enum <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.EffectParameterHint</codeEntityReference>)
+                    is a value that indicates when an effect parameter should be updated and how it should be
+                    treated during state sorting.
+                </para>
+                <para>
+                    The supported sort hints are:
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Hint</para>
+                            </entry>
+                            <entry>
+                                <para>Description</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>
+                                <codeInline>Global</codeInline>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Global effect parameters are identical for all meshes that use the same effect and effect
+                                technique. They do not depend on the object that is being rendered or on the location of the
+                                object in the scene. Examples of global parameters are: view matrix, projection matrix,
+                                camera position, etc.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <codeInline>Material</codeInline>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                This effect parameter defines the material of a mesh. Multiple meshes can share the same
+                                material. Material parameters are independent of the location of the object in the scene.
+                                Examples of material parameters are: diffuse color, albedo texture, specular color, gloss
+                                texture, normal map, etc.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <codeInline>Local</codeInline>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                This effect parameter depends on the location of the mesh in the scene. Multiple
+                                meshes which are close to each other in the scene may share the same parameter values.
+                                Examples of local parameters are: local environment maps, local lights, etc.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <codeInline>PerInstance</codeInline>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                This effect parameter can be different for each mesh instance. Examples of instance
+                                parameters are: world matrix, skinning matrices.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <codeInline>PerPass</codeInline>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                This effect parameter can be different in each effect pass. Examples of per-pass
+                                parameters are: pass index.
+                            </para>
+                        </entry>
+                    </row>
+                </table>
+                <para>
+                    The engine automatically sets an appropriate sort hint, if it recognizes an effect
+                    parameter name or semantic. But the sort hints can also be set or overridden in the
+                    DirectX Effect file using annotations. Examples:
+                </para>
+                <code language="none">
+                    <![CDATA[
+// The following parameter is a global parameter that stores the simulation time. 
+// It only needs to be updated once per frame.
+float time
+<
+  string Hint = "Global";
+>;
+
+// The following parameter is used in a fur effect. The fur density is a material 
+// property. All mesh instances with the same material share the same value.
+float furDensity
+<
+  string Hint = "Material";
+>;
+
+// The following parameter is used in a material shader that paints each mesh 
+// instance with a different color.
+float4 uniqueColor
+<
+  string Hint = "PerInstance";
+>;
+          ]]>
+                </code>
+                <para>
+                    By default, if the graphics engine does not recognize an effect parameter,
+                    it assigns the sort hint <codeEntityReference qualifyHint="false">F:DigitalRune.Graphics.Effects.EffectParameterHint.Material</codeEntityReference>.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Instancing">
+            <title>Hardware instancing</title>
+            <content>
+                <para>
+                    DigitalRune Graphics supports hardware instancing. The DirectX Effect used
+                    for rendering the objects needs to include two effect techniques:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        The effect technique for rendering without instancing, and
+                    </listItem>
+                    <listItem>
+                        the effect technique for hardware instancing.
+                    </listItem>
+                </list>
+                <para>
+                    DigitalRune Graphics uses a naming scheme to identify the instancing technique.
+                    The instancing technique needs to have the same name as the default technique
+                    plus the postfix <codeInline>"Instancing"</codeInline>. Example:
+                </para>
+                <code language="none" title="Naming scheme to identify hardware instancing technique (MonoGame, XNA)">
+                    <![CDATA[
+// Technique without hardware instancing
+technique MyTechnique
+{
+  pass
+  {
+    VertexShader = compile vs_2_0 VS();
+    PixelShader = compile ps_2_0 PS();
+  }
+}
+
+// Equivalent of MyTechnique that supports hardware instancing.
+technique MyTechniqueInstancing
+{
+  pass
+  {
+    VertexShader = compile vs_3_0 HardwareInstancingVS();
+    PixelShader = compile ps_3_0 PS();
+  }
+}
+]]>
+                </code>
+                <para>
+                    You may also designate the instancing technique by adding the effect annotation
+                    <codeInline>InstancingTechnique</codeInline> to the default technique.
+                </para>
+                <alert class="warning">
+                    <para>
+                        MonoGame currently does not support effect annotations. Therefore, this only works in XNA.
+                    </para>
+                </alert>
+                <code language="none" title="Effect annotation to identify hardware instancing techniqe (XNA only!)">
+                    <![CDATA[
+// Default technique without hardware instancing
+technique MyTechnique
+<
+  // There is an equivalent of this technique that supports hardware instancing.
+  string InstancingTechnique = "HardwareInstancing"; 
+>
+{
+  pass
+  {
+    VertexShader = compile vs_2_0 VS();
+    PixelShader = compile ps_2_0 PS();
+  }
+}
+
+// Hardware instancing technique.
+technique HardwareInstancing
+{
+  pass
+  {
+    VertexShader = compile vs_3_0 HardwareInstancingVS();
+    PixelShader = compile ps_3_0 PS();
+  }
+}
+]]>
+                </code>
+                <para>
+                    At runtime, you can query whether an effect technique has a matching instancing
+                    technique by checking the property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Effects.EffectTechniqueDescription.InstancingTechnique</codeEntityReference>.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Restore">
+            <title>Restore pass</title>
+            <content>
+                <para>
+                    Effect techniques can have a <newTerm>restore pass</newTerm>. The purpose of this pass is
+                    to reset render pipeline states to default values - without rendering geometry.
+                </para>
+                <para>
+                    The restore pass needs to be the last effect pass of a technique and it needs to be
+                    named <codeInline>Restore</codeInline>.
+                </para>
+                <code language="none">
+                    <![CDATA[
+technique
+{
+  pass
+  {
+    ZEnable = false;
+    VertexShader = compile vs_2_0 VS();
+    PixelShader = compile ps_2_0 PS();
+  }
+  pass Restore
+  {
+    ZEnable = true;
+  }
+}
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

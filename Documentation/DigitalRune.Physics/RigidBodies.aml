@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="258f6a2c-e513-40c6-ab5b-848d130dc3b0" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This section explains the basics of rigid bodies.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="RigidBody">
+            <title>Rigid bodies</title>
+            <content>
+                <para>
+                    A <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.RigidBody</codeEntityReference>
+                    is a body that is simulated by the laws of rigid body dynamics.
+                    The body has a
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.Shape</codeEntityReference>
+                    that is constant for the simulation (although the shape can be exchanged between
+                    simulation updates). No deformations are computed, therefore this type of body
+                    cannot be used to model soft objects like cloth or fluids.
+                    The rigid body also has mass properties defined in
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.MassFrame</codeEntityReference>
+                    and a
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.Material</codeEntityReference>
+                    that defines friction, bounciness and other material properties.
+                </para>
+                <para>
+                    A rigid body can be positioned in the world using the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.Pose</codeEntityReference>
+                    property. The rigid body moves and rotates with velocities defined by
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.LinearVelocity</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.AngularVelocity</codeEntityReference>.
+                </para>
+                <para>
+                    The physics simulation updates the properties
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.Pose</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.LinearVelocity</codeEntityReference>,
+                    and
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.AngularVelocity</codeEntityReference>
+                    in each simulation step according to the forces and constraints that act on the rigid body.
+                    The other properties are treated as read-only by the simulation. The simulation reads properties
+                    like shape, mass, material, etc., but it does not change them.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="MassFrame">
+            <title>Mass frame</title>
+            <content>
+                <para>
+                    Mass defines how difficult it is to change the linear velocity of a body. For example,
+                    if mass is infinite it is impossible to move a resting body or to stop a body that
+                    is already in motion. The inertia matrix is the rotational equivalent of mass.
+                    It defines how difficult it is to change the angular velocity of a body.
+                </para>
+                <para>
+                    The mass frame defines the <newTerm>center of mass</newTerm> relative
+                    to the local coordinate system of the rigid body.
+                    For the simulation the center of mass is the center of a rigid body. The
+                    center of mass has a special importance because if forces act on an
+                    unconstrained rigid body (e.g. a body floating in outer space) any
+                    rotations will be around the center of mass. In contrast, the local space
+                    origin of a rigid body can be anywhere where the user or game editor
+                    wants it to be. For example, the origin of rigid body with a cone shape
+                    is typically at the base of the cone, whereas the center of mass of a
+                    cone is inside the cone. Or the origin of a human can be at the feet and
+                    the center of mass is near the pelvis. This distinction allows easy
+                    placement of the rigid body in a game editor.
+                </para>
+                <para>
+                    The inertia tensor describes the "rotational mass" of a rigid body.
+                    In general, the inertia tensor is 3 x 3 matrix. But for all rigid
+                    bodies a rotated coordinate space can be found where all off-diagonal
+                    elements of the inertia matrix are 0. The axes of this rotated
+                    coordinate space are called the "principal axes". The mass frame class
+                    stores the diagonal elements of the diagonalized inertia matrix.
+                </para>
+                <para>
+                    A mass frame is defined by the class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.MassFrame</codeEntityReference>.
+                    The property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.MassFrame.Pose</codeEntityReference>
+                    defines the position of the center of mass and the orientation of the
+                    principal axis relative to the local space of the rigid body.
+                </para>
+                <para>
+                    When a rigid body is created and no
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.MassFrame</codeEntityReference>
+                    instance is specified in the rigid body's constructor, the mass
+                    is computed automatically.
+                    Rigid bodies also have a property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.AutoUpdateMass</codeEntityReference>
+                    that defines whether mass frames are automatically updated when the shape of the
+                    rigid body changes.
+                </para>
+                <para>
+                    Mass frames can be defined manually, but this is non-trivial for complex
+                    shapes. Therefore, it is recommended to use the methods
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Physics.MassFrame.FromShapeAndDensity(DigitalRune.Geometry.Shapes.Shape,DigitalRune.Mathematics.Algebra.Vector3F,System.Single,System.Single,System.Int32)</codeEntityReference>
+                    or
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Physics.MassFrame.FromShapeAndMass(DigitalRune.Geometry.Shapes.Shape,DigitalRune.Mathematics.Algebra.Vector3F,System.Single,System.Single,System.Int32)</codeEntityReference>.
+                    The first method takes a shape and a density and computes the mass properties.
+                    The second method takes a shape and a target mass value and computes mass
+                    frame properties so that the mass is equal to the specified target mass.
+                </para>
+                <para>
+                    For a stable simulation it is recommended that the mass ratios of different dynamic rigid bodies
+                    are small. The mass of the lightest dynamic object compared to the heaviest dynamic object should be around 1:10.
+                    In addition, all dynamic rigid bodies must have a mass less than
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.MassFrame.MassLimit</codeEntityReference>.
+                    A mass value larger than
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.MassFrame.MassLimit</codeEntityReference>
+                    is treated as infinite, which means the body will not respond to forces or impulses (similar to a kinematic
+                    or static body).
+                </para>
+                <para>
+                    When a rigid body is created and no
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.MassFrame</codeEntityReference>
+                    instance is specified in the rigid body's constructor, or when the shape of a rigid body
+                    is changed and
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.AutoUpdateMass</codeEntityReference>
+                    is set, a new
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.MassFrame</codeEntityReference>
+                    is computed automatically. If the shape is very large, the mass can easily
+                    exceed the recommended mass ratio of 1:10. It can also exceed
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.MassFrame.MassLimit</codeEntityReference>.
+                    In such cases it is recommended to specify a manually chosen
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.MassFrame</codeEntityReference>
+                    explicitly in the constructor of the rigid body and to set
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.AutoUpdateMass</codeEntityReference>
+                    to false.
+                </para>
+                <para>
+                    The mass computation of complex shapes, such as triangle meshes, can take some time.
+                    To speed up the mass computation the mass frame can be substituted with the mass frame
+                    of a simpler shape. For example, the mass frame of a simple box or sphere could be used
+                    instead of the exact mass frame. Whether a body is simulated with its exact mass frame
+                    or an approximation is in many cases hardly noticeable.
+                </para>
+                <para>
+                    For kinematic and static bodies, the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.MassFrame</codeEntityReference>
+                    mass frame is not used by the simulation because non-dynamic bodies are treated as
+                    bodies with infinite mass. For such bodies the mass frame can be set to any value,
+                    e.g. an empty <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.MassFrame</codeEntityReference>
+                    instance:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+RigidBody bodyA = new RigidBody(shape, new MassFrame(), null)
+{
+  MotionType = MotionType.Static,
+  AutoUpdateMass = false,
+};
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Spaces">
+            <title>Coordinate spaces</title>
+            <content>
+                <para>
+                    Several coordinates spaces are used in the simulation. Here, is a short
+                    overview. Coordinate spaces are also called spaces, frames, reference
+                    frames, coordinate systems, etc.
+                </para>
+                <para>
+                    <newTerm>World space</newTerm> (or <newTerm>global space</newTerm>)
+                    is the space of the simulation. The origin of the world space is typically
+                    the center or start of a game level. All bodies are positioned in this
+                    space. Unless noted otherwise all vector quantities (like forces, velocities,
+                    impulses) are given in world space.
+                </para>
+                <para>
+                    Each rigid body has <newTerm>local space</newTerm> (or
+                    <newTerm>body space</newTerm>) in which its shape is defined.
+                    This space is fixed on the rigid body. The origin of this space is usually
+                    chosen so that a simple placement of the rigid body in a game editor is possible.
+                </para>
+                <para>
+                    Each rigid body further has a <newTerm>mass frame</newTerm> which
+                    defines a coordinate space where the center of mass of the rigid body is
+                    the origin and the inertia tensor is a diagonal matrix. The axes of this
+                    space are the principal axes of the body. This space is fixed on the rigid
+                    body.
+                </para>
+                <para>
+                    The property
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.RigidBody.Pose</codeEntityReference>
+                    defines the position and orientation of the local space of a rigid body.
+                    This pose defines the position and orientation of the rigid body in world
+                    space. It can be used to transform coordinates from local space to world space.
+                </para>
+                <para>
+                    The property
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.RigidBody.PoseCenterOfMass</codeEntityReference>
+                    defines the position and orientation of the mass frame of the rigid body.
+                    This pose defines the position of the center of mass and the orientation
+                    of the principal axes in world space. It can be used to transform coordinates
+                    from the mass frame to world space.
+                </para>
+                <para>
+                    The change the position of a rigid body either
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.Pose</codeEntityReference>
+                    or
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.PoseCenterOfMass</codeEntityReference>
+                    can be changed. If one property is changed, the other property is updated
+                    automatically. Usually
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.Pose</codeEntityReference>
+                    is used to move a body.
+                </para>
+                <para>
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.MassFrame.Pose</codeEntityReference>
+                    defines the mass frame relative to the local space of the rigid body. This pose
+                    is constant for a rigid body. It defines how the
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.RigidBody.PoseCenterOfMass</codeEntityReference>
+                    can be computed from the
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.RigidBody.Pose</codeEntityReference>
+                    and vice versa. Normally,
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.MassFrame.Pose</codeEntityReference>
+                    is only used by the simulation internally.
+                </para>
+                <para>
+                    Here are a few examples: For normal primitives that are symmetric and
+                    centered at the local space origin (such as spheres, boxes and capsules)
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.RigidBody.PoseCenterOfMass</codeEntityReference>
+                    is equal to
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.RigidBody.Pose</codeEntityReference>.
+                    For symmetric shapes that are not centered at the local space origin
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.RigidBody.PoseCenterOfMass</codeEntityReference>
+                    has the same orientation as
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.RigidBody.Pose</codeEntityReference>
+                    but the position is different. This is the case for a cone shape - the local
+                    space origin is at the cone base and the center of mass is inside the cone.
+                    For arbitrary triangle meshes and convex shapes
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.RigidBody.PoseCenterOfMass</codeEntityReference>
+                    is typically different from
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.RigidBody.Pose</codeEntityReference>.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="MotionType">
+            <title>Static, kinematic and dynamic rigid bodies</title>
+            <content>
+                <para>
+                    Rigid bodies have a property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.MotionType</codeEntityReference>,
+                    which can be set to any of the following values:
+                </para>
+
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <legacyBold>Dynamic</legacyBold>:
+                            Per default, a rigid body is dynamic. This means that
+                            the motion of this body is controlled by the forces and constraints in the simulation.
+                            In detail: Forces and constraints will update the velocity of the body. The pose
+                            of the body will be updated according to the body's velocity.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Kinematic</legacyBold>:
+                            A kinematic rigid body moves according to its velocities, but it is not affected
+                            by any forces or constraints in the simulation. The simulation updates the pose
+                            of a kinematic body based on its velocities. The velocities must
+                            be set by the user. The values are not changed by the simulation. Typical examples for
+                            kinematic bodies are elevators and other machinery that push other objects in the
+                            scene but cannot be pushed themselves.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Static</legacyBold>:
+                            A static body has a velocity of zero and a constant position. The simulation treats
+                            static bodies as immovable. Typical examples for static bodies are terrain, walls
+                            and other fixed structures.
+                        </para>
+                    </listItem>
+                </list>
+
+                <alert class="note">
+                    <para>
+                        <legacyBold>Moving Kinematic Bodies:</legacyBold> In many games, there
+                        are moving kinematic bodies, like moving platforms. To behave well in
+                        a simulation, kinematic bodies should be moved by setting velocities
+                        (<codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.LinearVelocity</codeEntityReference> and
+                        <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.AngularVelocity</codeEntityReference>)
+                        and letting the simulation compute the new pose.
+                        It is not recommended to change the
+                        <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.Pose</codeEntityReference>
+                        directly. If the pose is changed manually, the body is "teleported" to the
+                        new position - for the simulation the body disappears on its old place and
+                        re-appears on the new place without any velocity-based movement in between.
+                        Collision response between a kinematic body and a dynamic body is
+                        only smooth if the kinematic body is moved using velocities.
+                    </para>
+                </alert>
+
+            </content>
+        </section>
+
+
+        <section address="CollisionObjects">
+            <title>Geometric objects and collision objects</title>
+            <content>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.RigidBody</codeEntityReference>
+                    class implements the interface
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.IGeometricObject</codeEntityReference>.
+                    A <legacyItalic>geometric object</legacyItalic> is an object that has a pose (= position + orientation),
+                    a shape and a scale. Each rigid body has a property
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.RigidBody.CollisionObject</codeEntityReference>
+                    that defines the collision properties of the rigid body (e.g. the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.CollisionObject.CollisionGroup</codeEntityReference>
+                    used for collision filtering).
+                    The collision object in turn has the property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.CollisionObject.GeometricObject</codeEntityReference>,
+                    which refers to the rigid body. In other words:
+                </para>
+                <code language="c#">rigidBody.CollisionObject.GeometricObject == rigidBody</code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <codeEntityReference qualifyHint="true">T:DigitalRune.Physics.RigidBody</codeEntityReference>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

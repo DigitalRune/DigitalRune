@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="9df3b4b6-1218-43b8-be9e-319d97a5b9a0" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This section describes how to configure multithreading in DigitalRune Geometry.</para>
+        </introduction>
+
+
+        <section address="Multithreading">
+            <title>Multithreading in DigitalRune Geometry</title>
+            <content>
+                <para>
+                    All collision algorithms implemented in DigitalRune Geometry are thread-safe. Collision queries
+                    between any objects using any of the available collision algorithms can be performed concurrently
+                    on multiple threads and even recursively.
+                </para>
+                <para>
+                    A <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.CollisionDomain</codeEntityReference>
+                    has integrated support for multithreading. Multithreading can be enabled by setting the property
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Collisions.CollisionDomain.EnableMultithreading</codeEntityReference>.
+                    In multithreading mode collision queries are automatically computed in parallel on multiple threads.
+                </para>
+                <para>
+                    The property is enabled by default on systems with multiple CPU cores (typical PCs and the Xbox 360).
+                    You need to disable multithreading if you decide to run the collision detection on a single thread.
+                </para>
+                <para>
+                    The multithreading support is provided by the
+                    <link xlink:href="dc44c3a5-8545-4253-9da1-62258a00607c" />. The namespace
+                    <codeEntityReference qualifyHint="true">N:DigitalRune.Threading</codeEntityReference>
+                    provides a task-based threading library that works cross-platform. The solution is highly
+                    optimized for the .NET Compact Framework to achieve maximum performance on the Xbox 360.
+                </para>
+                <para>
+                    The DigitalRune libraries make extensive use of this threading library. You should take
+                    advantage of the library if you plan to implement concurrency in your application.
+                    The threading solution is fully configurable and the included task scheduler can automatically
+                    balance the workload across all available CPU cores.
+                    See class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Threading.Parallel</codeEntityReference>
+                    to find out more.
+                </para>
+                <alert class="caution">
+                    <para>
+                        It is not recommended to use multiple threading solutions in one application. Using multiple
+                        independent solutions can lead to bad load balancing and oversubscription. The additional
+                        overhead can cause a performance hit.
+                    </para>
+                </alert>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <link xlink:href="84231d22-23c1-446c-9e17-36ad2a081133">Multithreading in DigitalRune Physics</link>
+            <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Collisions.CollisionDomain.EnableMultithreading</codeEntityReference>
+            <codeEntityReference qualifyHint="true">T:DigitalRune.Threading.Parallel</codeEntityReference>
+            <codeEntityReference qualifyHint="true">N:DigitalRune.Threading</codeEntityReference>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

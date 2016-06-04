@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="a3f49f80-226e-4a6b-b13a-dbf673b41438" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="ShadowMaps">
+            <title>How shadow maps are used</title>
+            <content>
+                <para>In DigitalRune Graphics shadow maps are used in two ways: </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <legacyBold>Forward rendering:</legacyBold>
+                            In
+                            <newTerm>forward rendering</newTerm> models are drawn directly to the screen. The effect
+                            that renders the model samples the shadow map directly to see if a pixel is lit/shadowed.
+                            Shadows are disabled in the pre-built effects for forward rendering. But the code for
+                            directional light shadows is included in the source and can be enabled using preprocessor
+                            directives. If you want to add shadows for forward rendering, please have a look at the
+                            source code of
+                            <newTerm>Forward.fx</newTerm>.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Deferred shadow maps:</legacyBold>
+                            In a
+                            <newTerm>deferred lighting</newTerm> pipeline models are first rendered into the G-buffer. Then the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.ShadowMaskRenderer</codeEntityReference>
+                            reads the shadow maps and creates a <newTerm>shadow mask</newTerm>.
+                            The shadow mask indicates which pixels in the
+                            G-buffer are lit and which are shadowed.
+                            Shadow filtering is done when the shadow mask is created. In addition, the shadow mask can be
+                            blurred to create soft shadows. The shadow mask can also be rendered into a low-resolution
+                            render target to improve performance.
+                            Any shader that applies a light can simply read the shadow mask – it is not necessary to
+                            sample individual shadow maps.
+                        </para>
+                    </listItem>
+                </list>
+                <para>
+                    In a typical game with deferred lighting, opaque meshes are rendered into the G-buffer, and
+                    transparent meshes are rendered using forward rendering. Therefore, deferred shadow maps only
+                    work for opaque meshes. In many games transparent meshes do not receive any shadows to keep
+                    the forward rendering simple.
+                </para>
+            </content>
+        </section>
+
+        <section address="ShadowMask">
+            <title>Shadow mask</title>
+            <content>
+                <para>
+                    The <newTerm>shadow mask</newTerm> is an image, as seen from the camera, where each pixel
+                    stores the shadow information of the scene. Each shadow-casting light is assigned to one
+                    8-bit channel (R, G, B, or A). Lights that do not overlap can use the same channel!
+                </para>
+                <para>
+                    Each channel stores the shadow term of the light source. A value of 0 means the pixel is
+                    shadowed; a value of 1 means the pixel is fully lit. The shadow mask is usually an RGBA render
+                    target, which means that it can store the shadow terms of up to four shadows per pixel.
+                    If a pixel is affected by more than 4 shadows at the same time, multiple render targets
+                    are required to store the shadow mask. – For performance reasons it is recommended that no
+                    more than 4 shadow-casting lights overlap in a scene. A single render target should be
+                    sufficient in most cases.
+                </para>
+                <para>
+                    The following screenshot shows a scene with a directional light (sun) and a point light
+                    (colored sphere). The shadow mask is shown in the upper left. The shadows have to use
+                    different shadow mask channels because the directional light and the point light overlap.
+                    The directional light's shadow is stored in the R channel. The point light's shadow is
+                    stored in the G channel.
+                </para>
+                <mediaLink>
+                    <image xlink:href="Shadow-Mask"/>
+                </mediaLink>
+                <para>
+                    DigitalRune Graphics provides a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.ShadowMaskRenderer</codeEntityReference>.
+                    The renderer supports
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.StandardShadow</codeEntityReference>s,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.CubeMapShadow</codeEntityReference>s,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.CascadedShadow</codeEntityReference>s and
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.CompositeShadow</codeEntityReference>s.
+                    Support for new shadow types can be implemented by creating a new renderer and adding it to
+                    the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Rendering.SceneRenderer.Renderers</codeEntityReference>
+                    collection of the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.ShadowMaskRenderer</codeEntityReference>.
+                </para>
+                <para>
+                    In deferred rendering pipelines, the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.ShadowMaskRenderer</codeEntityReference>
+                    is usually called after the shadow map renderer:
+                </para>
+                <code language="cs">
+                    // Create shadow masks for the specified light nodes.
+                    shadowMaskRenderer.Render(lightNodes, context);
+                </code>
+                <para>
+                    The shadow mask renderer handles shadow filtering and biasing. The resulting shadow masks
+                    are stored in
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.Shadow.ShadowMask</codeEntityReference>.
+                    The assigned shadow mask channel is stored in
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.Shadow.ShadowMaskChannel</codeEntityReference>.
+                </para>
+                <para>
+                    Shadow masks are also available via the
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.Rendering.ShadowMaskRenderer.ShadowMasks</codeEntityReference>
+                    property – which is often helpful for debugging.
+                </para>
+                <para>
+                    The shadow masks are usually used by the deferred
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.LightRenderer</codeEntityReference>.
+                    When the shadow masks are no longer required, they can be recycled by calling
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.Rendering.ShadowMaskRenderer.RecycleShadowMasks</codeEntityReference>.
+                </para>
+                <code language="cs">
+                    shadowMaskRenderer.RecycleShadowMasks();
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Filtering">
+            <title>Shadow mask filtering (a.k.a screen-space blurred shadows)</title>
+            <content>
+                <para>
+                    The shadow mask can be blurred as post-process to reduce shadow aliasing even further.
+                    This requires a special type of filter:
+                    A <newTerm>depth-scaled, cross-bilateral, anisotropic, pseudo-separable Gaussian filter</newTerm>.
+                </para>
+                <para>
+                    This filter needs to be assigned to the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.ShadowMaskRenderer</codeEntityReference>,
+                    for example:
+                </para>
+                <code language="cs">
+                    var blur = new Blur(GraphicsService);
+                    blur.InitializeGaussianBlur(11, 3, true);  // 11 taps
+                    blur.DepthScaling = 0.7f;
+                    blur.IsBilateral = true;
+                    blur.IsAnisotropic = true;
+
+                    shadowMaskRenderer.Filter = blur;
+                </code>
+                <para>
+                    As can be seen in the screenshot below, this type of filter produces excellent results
+                    and is particularly efficient. It can blur all shadows in the shadow mask at once!
+                </para>
+                <mediaLink>
+                    <caption placement="after">Figure: Unfiltered shadow mask (left) and filtered shadow mask (right)</caption>
+                    <image xlink:href="Shadow-Mask-Blur"/>
+                </mediaLink>
+                <para>
+                    The next image compares shadow map filtering (PCF) with shadow mask filtering ("screen space blur").
+                </para>
+                <mediaLink>
+                    <caption placement="after">Figure: Shadow map filtering using PCF (left) vs. shadow mask filtering (right)</caption>
+                    <image xlink:href="Shadow-Mask-Blur2"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="HalfRes">
+            <title>Half-resolution rendering</title>
+            <content>
+                <para>
+                    The shadow mask can optionally be rendered at half resolution to improve performance.
+                </para>
+                <code language="cs">
+                    ShadowMaskRenderer.UseHalfResolution = true;
+                </code>
+                <para>
+                    The shadow mask is then upscaled using cross-bilateral ("depth-aware") upsampling.
+                </para>
+                <mediaLink>
+                    <image xlink:href="Shadow-Mask-Half-Res"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

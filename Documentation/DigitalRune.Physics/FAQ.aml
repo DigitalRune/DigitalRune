@@ -1,0 +1,831 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="c12eca22-95ea-48f4-95ee-91239af553fc" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>Here is a collection of frequently asked questions, common problems and solutions.</para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+        <section address="General">
+            <title>General</title>
+            <content>
+            </content>
+            <sections>
+                <section address="VariableFrameRate">
+                    <title>How can I use a variable time step?</title>
+                    <content>
+                        <para>
+                            If, for some reason, you want to force the simulation to use a variable time step, then
+                            you have to update
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.Settings.TimingSettings.FixedTimeStep</codeEntityReference>
+                            before each
+                            <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Physics.Simulation.Update(System.TimeSpan)</codeEntityReference>
+                            call:
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+mySimulation.Settings.Timing.FixedTimeStep = variableTime;
+mySimulation.Update(variableTime);
+]]>
+                        </code>
+                    </content>
+                </section>
+
+                <section address="TwoD">
+                    <title>Can I use DigitalRune Physics for 2D games?</title>
+                    <content>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.RigidBody</codeEntityReference>
+                            class has flags which let you disable rotations about certain axes (e.g,
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.LockRotationX</codeEntityReference>).
+                            And you can use constraints like a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Constraints.PointOnPlaneConstraint</codeEntityReference>
+                            to keep all movement in the 2D plane.
+                            But: A 3D physics engine is more complex than a 2D engine and it has to do additional work
+                            to keep objects in a 2D plane. A dedicated 2D engine would be more efficient for pure
+                            2D games.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="KinematicPush">
+                    <title>Bodies pushed by kinematic bodies are not moving correctly</title>
+                    <content>
+                        <para>
+                            If you use a moving kinematic object, do not change the
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.Pose</codeEntityReference>
+                            directly in each frame.
+                            Instead, set the velocity
+                            (<codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.LinearVelocity</codeEntityReference>
+                            and
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.AngularVelocity</codeEntityReference>)
+                            in each frame and let the simulation compute the new pose.
+                        </para>
+                        <para>
+                            If you change the pose of a rigid body directly, the simulation "teleports" the body to
+                            the new position and does not treat it as a moving body with a non-zero velocity.
+                            Collision response between a kinematic and a dynamic body will only be smooth if you use
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.LinearVelocity</codeEntityReference>
+                            and
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.AngularVelocity</codeEntityReference>,
+                            and let the simulation move the body.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="ProceduralNotMoving">
+                    <title>Procedurally controlled bodies are not moving</title>
+                    <content>
+                        <para>
+                            You may have to disable "sleeping" for the body:
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+myRigidBody.CanSleep = false;
+]]>
+                        </code>
+                        <para>
+                            "Sleeping" means: The simulation is allowed to deactivate slow moving bodies to improve
+                            performance and stability. If you apply a velocity which is less than the sleeping
+                            threshold, the body does not wake up. See
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Settings.SleepingSettings</codeEntityReference>.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="LargeNotMoving">
+                    <title>Large, heavy body is not moving</title>
+                    <content>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.MassFrame</codeEntityReference>
+                            has a limit
+                            (<codeEntityReference qualifyHint="true">P:DigitalRune.Physics.MassFrame.MassLimit</codeEntityReference>,
+                            which, is around 1e10 per default). If an object has a mass beyond this limit, it will
+                            be treated like a kinematic body that is not affected by forces or collisions.
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.MassFrame.MassLimit</codeEntityReference>
+                            is static property that can be changed.
+                        </para>
+                    </content>
+                </section>
+
+
+                <section address="CheckMoving">
+                    <title>How can I check if a dynamic body has stopped moving?</title>
+                    <content>
+                        <para>
+                            To find out if a body is done moving, you could check the
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.RigidBody.IsSleeping</codeEntityReference>
+                            flag. The simulation sets this flag if a body has stopped moving. See
+                            <link xlink:href="059ddf90-e473-470c-a59c-ee26feff7d12" />.
+                            Please note that it is possible that "sleeping"  is disabled for a rigid body or that the
+                            sleeping settings of the simulation are not suitable for your purpose (e.g. the sleeping
+                            time threshold is too large).
+                        </para>
+                        <para>
+                            You could also manually check if a body is not moving. There are several options, for example:
+                        </para>
+                        <list class="ordered">
+                            <listItem>
+                                Choose three points on the body and check if their movement is under a threshold over
+                                several frames.
+                            </listItem>
+                            <listItem>
+                                Check if linear and angular velocity is very low for several frames.
+                            </listItem>
+                            <listItem>
+                                Check if kinetic energy of the body is very low for several frames.
+                            </listItem>
+                        </list>
+                        <para>
+                            Usually, option 2 is used. Please note, that small simulation errors can cause bodies to
+                            jitter a bit, therefore these test need to use tolerance values. To get more robust
+                            results you could add additional conditions, e.g. "the linear velocity must not be rising".
+                        </para>
+                    </content>
+                </section>
+
+                <section address="MoveBody">
+                    <title>How can I move a body to a target position over several frames?</title>
+                    <content>
+                        <para>
+                            There are several options:
+                        </para>
+                        <list class="ordered">
+                            <listItem>
+                                Simply change
+                                <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.Pose</codeEntityReference>
+                                manually step-by-step over several frames. - But be aware that bodies moved this way
+                                do not properly push other bodies.
+                            </listItem>
+                            <listItem>
+                                Set a
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.RigidBody.LinearVelocity</codeEntityReference>
+                                and
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.RigidBody.AngularVelocity</codeEntityReference>
+                                which moves the body to the target position. - Bodies moved this way properly
+                                interact with other bodies. But if they hit another heavy body the other body might
+                                block them.
+                            </listItem>
+                            <listItem>
+                                Like option 2 but set the
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.RigidBody.MotionType</codeEntityReference>
+                                to
+                                <codeEntityReference qualifyHint="false">F:DigitalRune.Physics.MotionType.Kinematic</codeEntityReference>.
+                                Kinematic bodies push other dynamic bodies - but there movement is
+                                not blocked by other bodies.
+                            </listItem>
+                            <listItem>
+                                Apply forces
+                                (<codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Physics.RigidBody.AddForce(DigitalRune.Mathematics.Algebra.Vector3F)</codeEntityReference>,
+                                <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Physics.RigidBody.AddTorque(DigitalRune.Mathematics.Algebra.Vector3F)</codeEntityReference>)
+                                or use a custom
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.ForceEffects.ForceEffect</codeEntityReference>.
+                            </listItem>
+                            <listItem>
+                                Use one of the predefined
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Constraints.Constraint</codeEntityReference>s
+                                or a custom constraint to move the body. Constraints are more stable than using forces.
+                            </listItem>
+                        </list>
+                        <para>
+                            The solution depends on your requirements and your game physics experience. Constraints
+                            provide the most sophisticated solution, but you need more experience to get them right.
+                        </para>
+                    </content>
+                </section>
+
+
+                <section address="ManyStatic">
+                    <title>How should I handle a large number of static bodies?</title>
+                    <content>
+                        <para>
+                            First, if not already done, set a broad-phase collision filter that
+                            disables collision computation for static vs. static.
+                            See the code example in
+                            <link xlink:href="dc07e943-fc57-4c45-bcc2-3dbc1f436272" />.
+                            Per default, the physics engine computes collisions between two
+                            static bodies. The collision info is computed only once - but if you
+                            have many static bodies, many
+                            contact sets an be generated which needlessly clog the system.
+                        </para>
+                        <para>
+                            <legacyBold>
+                                Tip 1: Use a CompositeShape
+                            </legacyBold>
+                        </para>
+                        <para>
+                            The broad-phase of the collision detection already uses spatial
+                            partitioning to manage all rigid bodies. But each rigid body has an
+                            overhead: It can be enabled/disabled, could have individual collision
+                            filtering, individual material, etc.. So it is better to reduce the
+                            number of rigid bodies and combine them if possible.
+                        </para>
+                        <para>
+                            Try to create a single rigid body with a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.CompositeShape</codeEntityReference>
+                            that contains all static parts. And set an
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.AabbTree`1</codeEntityReference>
+                            as the spatial partition for this composite shape, for example:
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+compositeShape.Partition = new AabbTree<int>();
+]]>
+                        </code>
+                        <para>
+                            This should give you a significant speedup.
+                        </para>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.AabbTree`1</codeEntityReference>
+                            has a property
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Partitioning.AabbTree`1.BottomUpBuildThreshold</codeEntityReference>
+                            which you can set to a lower value if the building of the tree takes too long.
+                            (In our test-suite, we have a test-level with a composite shape with
+                            80 000 boxes (on PC). The level building takes quite some time, but
+                            after creation it runs in real-time.)
+                        </para>
+                        <para>
+                            <legacyBold>
+                                Tip 2: Use several CompositeShapes
+                            </legacyBold>
+                        </para>
+                        <para>
+                            One extreme is: A single rigid bodies with a composite shape of N parts.
+                            The other extreme is: N individual rigid bodies. 
+                            The optimal case could lie between those extremes, for example:
+                            10 rigid bodies with 100 parts each. That depends on your level
+                            geometry and should be determined by experimentation.
+                        </para>
+                        <para>
+                            <legacyBold>
+                                Tip 3: TriangleMeshShape
+                            </legacyBold>
+                        </para>
+                        <para>
+                            Using a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.TriangleMeshShape</codeEntityReference>
+                            could be even faster because you only need a vertex and index buffer
+                            to define the mesh containing all the parts.
+                            The disadvantage of a triangle mesh is that it is sometimes less stable
+                            than composite shapes of convex bodies:
+                            The triangles are "thin" and that can lead to tunneling and other
+                            simulation problems.
+                        </para>
+                    </content>
+                </section>
+
+            </sections>
+        </section>
+
+
+        <section address="Forces">
+            <title>Forces and Force Effects</title>
+            <content>
+            </content>
+            <sections>
+
+                <section address="ForceNoMove">
+                    <title>Body controlled by force is not moving</title>
+                    <content>
+                        <para>
+                            Perhaps you call
+                            <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Physics.RigidBody.AddForce(DigitalRune.Mathematics.Algebra.Vector3F)</codeEntityReference>
+                            only once. In this case the force is applied only for a single time step.
+                            To apply a permanent force, the method needs to be called every frame.
+                        </para>
+                    </content>
+                </section>
+
+
+                <section address="DampAxis">
+                    <title>How to damp only a single axis of a moving body</title>
+                    <content>
+                        <para>
+                            Damping is really simple. Damping can be done using a force effect which directly reduces
+                            the velocity (without applying any forces). Here is the gist of a damping class:
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+public class Damping : ForceField  
+{  
+  public float LinearDamping { get; set; }  
+  public float AngularDamping { get; set; }  
+  public override void Apply(RigidBody body)  
+  {  
+    float fixedTimeStep = Simulation.Settings.Timing.FixedTimeStep;  
+    body.LinearVelocity = (1 - LinearDamping * fixedTimeStep) * body.LinearVelocity;  
+    body.AngularVelocity = (1 - AngularDamping * fixedTimeStep) * body.AngularVelocity;  
+  }
+}
+]]>
+                        </code>
+                        <para>
+                            Following article describes the used damping formula:
+                            <externalLink>
+                                <linkText>Damping in Computer Games</linkText>
+                                <linkUri>http://www.digitalrune.com/Support/Blog/tabid/719/EntryId/78/Damping-in-Computer-Games.aspx</linkUri>
+                            </externalLink>.
+                            You don't even need to use the "exact" formulas or a force effect. Try to simply
+                            reduce the angular velocity manually between
+                            <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Physics.Simulation.Update(System.TimeSpan)</codeEntityReference>
+                            calls (or at
+                            <codeEntityReference qualifyHint="true">E:DigitalRune.Physics.Simulation.SubTimeStepFinished</codeEntityReference>
+                            events if your simulation is sub-stepping):
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+var localVelocity = body.Pose.ToLocalDirection(body.AngularVelocity); 
+localVelocity.X *= 0.9f;        // Damp on a single axis. 
+body.AngularVelocity = body.Pose.ToWorldDirection(localVelocity);
+]]>
+                        </code>
+                    </content>
+                </section>
+
+                <section address="BuoyancySleep">
+                    <title>Buoyancy: Bodies do not move fluently. Instead, they move, stop, move, stop, and so on.</title>
+                    <content>
+                        <!-- From this forum thread:
+                     http://www.digitalrune.com/Support/Forum/tabid/586/forumid/20/postid/4166/scope/posts/Default.aspx#4166
+                     Video:
+                     http://www.youtube.com/watch?feature=player_detailpage&v=Ghzu75epoqE
+                -->
+                        <para>
+                            This could be caused by the rigid body sleeping. Please disable sleeping and
+                            check if the problem disappears. (To disable sleeping you just have to set
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Settings.SleepingSettings.TimeThreshold</codeEntityReference>
+                            to a large value.)
+                        </para>
+                        <para>
+                            If sleeping is the culprit, you can create your own Buoyancy effect which wakes
+                            up all rigid bodies in the water. Something like:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+class MyBuoyancy : Buoyancy
+{
+  public override void Apply(RigidBody body)
+  {
+    body.WakeUp();
+    base.Apply(body);
+  }
+}                  
+]]>
+                        </code>
+                    </content>
+                </section>
+
+                <section address="Shoot">
+                    <title>
+                        I want to shoot a body so that it hits a certain target. Which force/impulse do I have to
+                        apply?
+                    </title>
+                    <content>
+                        <para>
+                            This link should cover what your looking for:
+                            <externalLink>
+                                <linkText>Trajectory of a projectile</linkText>
+                                <linkUri>http://en.wikipedia.org/wiki/Trajectory_of_a_projectile</linkUri>
+                            </externalLink>.
+                            Look at the vacuum based formulas.
+                            These formulas are also explained in detail in the book "Game Programming Gems 2",
+                            chapter "Inverse Trajectory Determination".
+                        </para>
+                        <para>
+                            When using this formulas in the physics simulation, you will probably not hit the target
+                            exactly for two main reasons:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                The numerical integration used in the simulation is not exact.
+                            </listItem>
+                            <listItem>
+                                If the simulation uses a
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.ForceEffects.Damping</codeEntityReference>
+                                effect: Vacuum-based formulas do not consider damping (a.k.a. drag).
+                                You might want to remove damping globally
+                                or maybe only for the projectiles (while they are flying).
+                            </listItem>
+                        </list>
+                        <para>
+                            A quick note on impulses and velocities:
+                            If you want to shoot an object, you can apply an impulse. Or you simply set the start
+                            velocity of the projectile body directly - without worrying about impulse formulas.
+                        </para>
+                    </content>
+                </section>
+
+
+                <section address="GlobalAreaOfEffectExclude">
+                    <title>
+                        How to use GlobalAreaOfEffect.Exclude
+                    </title>
+                    <content>
+                        <para>
+                            The predicate
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.ForceEffects.GlobalAreaOfEffect.Exclude</codeEntityReference>
+                            is a simple callback function. That means you can implement any kind of logic. For example:
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+// Create a global list of excluded bodies in your game.
+public static List<RigidBody> ExcludedRigidBodies = new List<RigidBody>(); 
+... 
+// The Exclude-predicate checks whether a rigid body is in the list. 
+globalAreaOfEffect.Exclude = rigidBody => ExcludedRigidBodies.Contains(rigidBody);
+]]>
+                        </code>
+                    </content>
+                </section>
+
+
+                <section address="IAreaOfEffect">
+                    <title>
+                        How can I create a custom IAreaOfEffect implementation?
+                    </title>
+                    <content>
+                        <para>
+                            For example:
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+public class CustomGlobalAreaOfEffect : IAreaOfEffect 
+{
+  public List<RigidBody> ExcludedRigidBodies { get; private set; }
+    
+  public CustomGlobalAreaOfEffect()
+  {
+    ExcludedRigidBodies = new List<RigidBody>();
+  }
+      
+  public void Apply(ForceField forceField)
+  {
+    var simulation = forceField.Simulation;
+    if (simulation != null)
+    {
+      foreach (var body in simulation.RigidBodies)
+        if (body.MotionType == MotionType.Dynamic && !ExcludedRigidBodies.Contains(body))
+          forceField.Apply(body);
+    }
+  }
+}
+]]>
+                        </code>
+                        <para>
+                            Notes: If the number of excluded rigid bodies is large, List&lt;T&gt;.Contains() might
+                            be too expensive. You can for example store a flag in
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.RigidBody.UserData</codeEntityReference>
+                            and check the flag in the Exclude-predicate. Or you can check
+                            <legacyBold>RigidBody.CollisionObject.CollisionGroup</legacyBold>.
+                        </para>
+                    </content>
+                </section>
+
+
+                <section address="Slower">
+                    <title>Why do bodies seem to fall a bit slower than in reality?</title>
+                    <content>
+                        <para>
+                            If the game objects are large, you might have the feeling that the objects fall a
+                            bit slower than you would expect in reality - especially if the scene is abstract
+                            with no reference objects. This is caused by the scale of the objects - in the real
+                            world we observe small falling objects more frequently than huge falling object.
+                            For example: Bodies in the samples are usually around 1 m in size, like a big rock
+                            or crate in a game. If the bodies would be 1 cm, the falling velocity of the bodies
+                            relative to their size would be much higher and feel different.
+                        </para>
+                        <para>
+                            So the simulation speed is correct - as long as the simulation can keep up with the
+                            target frame rate. If the simulation is too slow for the target frame rate, it
+                            will drop some simulation time to avoid freezing the game. That means, if the frame
+                            rate drops significantly below the target frame rate, the
+                            bodies will appear to move in slow-motion.
+                            (See also <link xlink:href="c4a491c9-bc08-48fa-b85f-7bac2e78e295" />)
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="CC">
+            <title>Character Controllers</title>
+            <content>
+            </content>
+            <sections>
+                <section address="CCVel">
+                    <title>How can I get the velocity of the KinematicCharacterController?</title>
+                    <content>
+                        <code language="cs">
+                            <![CDATA[
+var velocity = (myCharacterController.Position - oldPosition) / deltaTime;
+]]>
+                        </code>
+                    </content>
+                </section>
+
+                <section address="ComplexCC">
+                    <title>
+                        How I can I create a complex character controller where individual limbs can collide
+                        with objects (instead of using one capsule shape for the whole character)?
+                    </title>
+                    <content>
+                        <para>
+                            A common approach is to have the character controller capsule that handles the
+                            movement and a ragdoll for detailed collision detection with the limbs. You need to
+                            disable collisions between the character controller body and the ragdoll bodies
+                            (e.g. using
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.Specialized.KinematicCharacterController.CollisionGroup</codeEntityReference>).
+                        </para>
+                        <para>
+                            If you want to have a very detailed character, you can combine the character
+                            controller with a ragdoll and configure collision filters to do this:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                The capsule collides only with the landscape and big objects, like big crates.
+                            </listItem>
+                            <listItem>
+                                Big objects are pushed by the character controller.
+                            </listItem>
+                            <listItem>
+                                The capsule does not collide with small objects, like small rocks.
+                            </listItem>
+                            <listItem>
+                                The ragdoll collides with the small objects, e.g. to kick small rocks when walking through.
+                            </listItem>
+                            <listItem>
+                                The ragdoll collides with the raycasts for arrows and bullets.
+                            </listItem>
+                            <listItem>
+                                ...
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Ragdolls">
+            <title>Ragdolls</title>
+            <content>
+            </content>
+            <sections>
+                <section address="Motors">
+                    <title>What is the difference between velocity motors vs. quaternion motors?</title>
+                    <content>
+                        <para>
+                            Velocity motors simply set the linear and angular velocities of the
+                            bodies in each frame to move the bodies to the target positions. If such
+                            motors are used, the ragdoll follows the target animation very closely, and
+                            the ragdoll is kept upright.
+                            Forces and impacts acting on the bodies have minimal impact because the
+                            velocity motors override the bodies' velocities in each frame.
+                        </para>
+                        <para>
+                            Constraint motors use physics constraints (like
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Constraints.QuaternionMotor</codeEntityReference>)
+                            to control the relative orientation of the bodies. This is used in the
+                            <legacyItalic>ActiveRagdollSample</legacyItalic> of the
+                            <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />.
+                            Since only the relative orientation is controlled, the ragdoll falls to
+                            the floor but keeps playing the animation. Bodies controlled by
+                            constraints react to impacts.
+                        </para>
+                    </content>
+                </section>
+
+
+                <section address="Rotation">
+                    <title>How can I rotate the ragdoll bodies around the model origin?</title>
+                    <content>
+                        <para>
+                            Given:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                The current pose of the rigid body (RigidBody.Pose). Let's call it pWB.
+                            </listItem>
+                            <listItem>
+                                The pose of the character/model. Let's call it pWM.
+                            </listItem>
+                            <listItem>
+                                A pose which rotates a vector by 90°. Let's call it pR.
+                            </listItem>
+                        </list>
+                        <para>
+                            Wanted:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                The pose of the rigid body rotated by 90° relative to model space. Let's call it pWB'.
+                            </listItem>
+                        </list>
+                        <para>
+                            Solution:
+                        </para>
+                        <list class="nobullet">
+                            <listItem>
+                                pWB' = pWM * pR * pMW * pWB
+                                          = pWM * pR * (pWM)^-1 * pWB
+
+                            </listItem>
+                        </list>
+                        <para>
+                            Explanation:
+                        </para>
+                        <list class="nobullet">
+                            <listItem>
+                                In the DigitalRune Engine, transformations are applied from right to
+                                left. So you have to read the equation from right to left.
+                            </listItem>
+                            <listItem>
+                                pWB transforms a vector from the local body space (indicated by the
+                                letter B) to world space (W).
+                            </listItem>
+                            <listItem>
+                                pMW transforms from world space to model space. pMW is not given but
+                                it simply is the inverse of pWM.
+                            </listItem>
+                            <listItem>
+                                After applying pMW * pWB, we are in model space. We multiply by
+                                pR to apply the rotation relative to the model.
+                            </listItem>
+                            <listItem>
+                                Finally we use pWM to convert from model space to world space.
+                            </listItem>
+                        </list>
+                        <para>
+                            Code example:
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+myBody.Pose = poseModel * new Pose(Matrix33F.CreateRotationY(MathHelper.ToRadians(90))) * poseModel.Inverse * myBody.Pose;
+]]>
+                        </code>
+                    </content>
+                </section>
+
+                <section address="Transition">
+                    <title>How to transition from an animated model to a ragdoll-controlled model?</title>
+                    <content>
+                        <para>
+                            <legacyBold>Option A:</legacyBold>
+                        </para>
+                        <para>
+                            While the character is standing, the animation is played. The bodies are
+                            dynamic and in each frame the position of the bodies is updated
+                            from the animation using
+                            <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Physics.Specialized.Ragdoll.UpdateBodiesFromSkeleton(DigitalRune.Animation.Character.SkeletonPose)</codeEntityReference>
+                            (as in the
+                            <legacyItalic>CollisionDetectionOnlyRagdollSample</legacyItalic>).
+                            After the hit, the bodies update the skeleton using
+                            <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Physics.Specialized.Ragdoll.UpdateSkeletonFromBodies(DigitalRune.Animation.Character.SkeletonPose)</codeEntityReference>.
+                            Since the bodies are dynamic all the
+                            time, they will react to the impact. The disadvantage is that while the
+                            animation is active the dynamic bodies do not properly push other rigid
+                            bodies. - Often this is okay because a character controller is used and
+                            takes care of the pushing while the ragdoll is used only for collision
+                            detection.
+                        </para>
+                        <para>
+                            In other words: Start with a Ragdoll with disabled joints, limits and motors.
+                        </para>
+                        <code language="cs">
+                            _ragdoll.Pose = _pose;
+                            _ragdoll.UpdateBodiesFromSkeleton(_skeletonPose);
+                            _ragdoll.DisableJoints();
+                            _ragdoll.DisableLimits();
+                            _ragdoll.DisableMotors();
+                        </code>
+                        <para>
+                            and in each frame call
+                        </para>
+                        <code language="cs">
+                            _ragdoll.UpdateBodiesFromSkeleton(_skeletonPose);
+                        </code>
+                        <para>
+                            to move the bodies to upright or animated skeleton position.
+                        </para>
+                        <para>
+                            Then once you have detected a hit (similar to the
+                            <legacyItalic>CollisionDetectionOnlyRagdollSample</legacyItalic>),
+                            switch to the passive ragdoll:
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+_ragdoll.EnableJoints();
+_ragdoll.EnableLimits();
+foreach (RagdollMotor motor in _ragdoll.Motors)
+{
+  if (motor != null)
+  {
+    motor.Mode = RagdollMotorMode.Constraint;
+    motor.ConstraintDamping = 5;
+    motor.ConstraintSpring = 0;
+  }
+}
+_ragdoll.EnableMotors();
+]]>
+                        </code>
+                        <para>
+                            and in each frame call
+                        </para>
+                        <code language="cs">
+                            _ragdoll.UpdateSkeletonFromBodies(_skeletonPose);
+                        </code>
+                        <para>
+                            That means: First the skeleton controls the bodies. After the hit
+                            the bodies control the skeleton.
+                        </para>
+                        <para>
+                            <legacyBold>Option B:</legacyBold>
+                        </para>
+                        <para>
+                            You use kinematic bodies and motors as in the
+                            <legacyItalic>KinematicRagdollSample</legacyItalic>. When the character
+                            is hit you make all bodies dynamic and use
+                            <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Physics.Specialized.Ragdoll.UpdateSkeletonFromBodies(DigitalRune.Animation.Character.SkeletonPose)</codeEntityReference>.
+                            Such a character properly pushes other objects while the animation is
+                            active. But it will not react to the impact. You can then manually call
+                            <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Physics.RigidBody.ApplyImpulse(DigitalRune.Mathematics.Algebra.Vector3F,DigitalRune.Mathematics.Algebra.Vector3F)</codeEntityReference>
+                            to apply an impact impulse (after the bodies were set to dynamic).
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Vehicle">
+            <title>Vehicle physics</title>
+            <content>
+            </content>
+            <sections>
+                <section address="LimitVehicleSpeed">
+                    <title>How to limit the speed of the vehicle?</title>
+                    <content>
+                        <para>
+                            Option A) Simply clamp
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.LinearVelocity</codeEntityReference>
+                            of the chassis body manually after
+                            <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Physics.Simulation.Update(System.TimeSpan)</codeEntityReference>.
+                            This can look OK with one minor problem: If there is a large instant force (like an
+                            explosion), the body can have a larger velocity for one frame.
+                        </para>
+                        <para>
+                            Option B) Create a constraint that limits the velocity. This is better because it
+                            applies the velocity limit inside the simulation update. Here is an example constraint:
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+class LinearSpeedLimit : Constraint
+{
+  public float MaxSpeed { get; set; }
+
+  protected override void OnSetup() { }
+
+  protected override bool OnApplyImpulse()
+  {
+    var speed = BodyA.LinearVelocity.Length;
+    if (speed <= MaxSpeed + Numeric.EpsilonF)
+      return false;
+
+    BodyA.LinearVelocity = BodyA.LinearVelocity * (MaxSpeed / speed);
+    return true;
+  }
+
+  public override Vector3F LinearConstraintImpulse
+  {
+    get { throw new System.NotImplementedException(); }
+  }
+
+  public override Vector3F AngularConstraintImpulse
+  {
+    get { throw new System.NotImplementedException(); }
+  }
+}
+]]>
+                        </code>
+                        <para>
+                            And use it like this:
+                        </para>
+                        <code language="cs">
+                            Simulation.Constraints.Add(new LinearSpeedLimit { BodyA = chassis, BodyB = chassis, MaxSpeed = 50 });
+                        </code>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

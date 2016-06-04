@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="e3826476-e1c8-4ac7-8304-bb2f5bd3e532" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Ephemeris">
+            <title>Ephemeris</title>
+            <content>
+                <para>
+                    In astronomy and celestial navigation, an
+                    ephemeris gives the positions of astronomical objects in the sky at a given time.
+                    The class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Ephemeris</codeEntityReference>
+                    implements an ephemeris model based on the research of Jensen et al. [1].
+                </para>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Ephemeris</codeEntityReference>
+                    class takes the current time and the position on the Earth
+                    (longitude/latitude/altitude) as input. With this info it calculates the positions
+                    of the sun and moon, the moon phase and several transformation matrices which can
+                    be used to
+                    convert between different celestial coordinate systems. These can be used to orient
+                    the stars and Milky Way cube maps correctly.
+                </para>
+                <para>
+                    This class can also compute the direct light and ambient
+                    light from the sun and the moon using a physically-based model of the Earth's
+                    atmosphere and NASA data of the sun's spectrum.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="References">
+            <title>References</title>
+            <content>
+                <para>
+                    [1] Jensen et al.: "A Physically-Based Night Sky Model",
+                    <externalLink>
+                        <linkText>http://graphics.stanford.edu/~henrik/papers/nightsky/nightsky.pdf</linkText>
+                        <linkUri>http://graphics.stanford.edu/~henrik/papers/nightsky/nightsky.pdf</linkUri>
+                    </externalLink>
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

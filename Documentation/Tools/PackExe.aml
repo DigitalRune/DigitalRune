@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="983ed4b5-d98b-4244-81d3-9518b7a16ab4" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                The command-line tool <command>Pack.exe</command> can be used to pack files and
+                directories into a single package. The resulting file uses the ZIP format and can be
+                read with standard ZIP tools.
+            </para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Usage">
+            <title>Usage</title>
+            <content>
+                <para>
+
+                </para>
+                <code language="none">
+                    <![CDATA[
+Pack <files> [/directory <directory>] [/recursive] /output <package> [/password <password>] [/encryption (ZipCrypto|Aes256)] [/test] [/help]
+]]>
+                </code>
+                <para>
+                    If no package exists at the target location, a new file is created.
+                </para>
+                <para>
+                    When the package already exists, it is updated. The input files are compared
+                    with the packaged files. New files are added, modified files are updated, and
+                    missing files are removed from the package. Files are compared by checking the
+                    "Last Modified" time and the file size.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Arguments">
+            <title>Arguments</title>
+            <content>
+                <para>
+                    The following arguments can be specified on the command-line:
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Argument</para>
+                            </entry>
+                            <entry>
+                                <para>Description</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>
+                                <legacyItalic>files</legacyItalic>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The files and directories to add to the package. The specified files
+                                and directories are relative to the current working copy or the base
+                                directory, which can be specified with /directory.
+                            </para>
+                            <para>
+                                Wildcards ('?', '*') are supported.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <command>/directory</command>&#0160;<legacyItalic>directory</legacyItalic>
+                            </para>
+                            <para>
+                                <command>/d</command>&#0160;<legacyItalic>directory</legacyItalic>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The base directory where to search for files.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <command>/recursive</command>
+                            </para>
+                            <para>
+                                <command>/r</command>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Recursively add subdirectories to package.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <command>/output</command>&#0160;<legacyItalic>package</legacyItalic>
+                            </para>
+                            <para>
+                                <command>/o</command>&#0160;<legacyItalic>package</legacyItalic>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The package (file name incl. path) to create or update.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <command>/password</command>&#0160;<legacyItalic>password</legacyItalic>
+                            </para>
+                            <para>
+                                <command>/p</command>&#0160;<legacyItalic>password</legacyItalic>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Encrypt the package with a password.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <command>/encryption</command>&#0160;<legacyItalic>method</legacyItalic>
+                            </para>
+                            <para>
+                                <command>/e</command>&#0160;<legacyItalic>method</legacyItalic>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The encryption method to use in case a password is set.
+                                The default encryption method is ZipCrypto.
+                            </para>
+                            <para>
+                                Allowed values: ZipCrypto, Aes256
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <command>/test</command>
+                            </para>
+                            <para>
+                                <command>/t</command>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Make a test run without creating/updating the actual package.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <command>/help</command>
+                            </para>
+                            <para>
+                                <command>/h</command>
+                            </para>
+                            <para>
+                                <command>/?</command>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Show help information.
+                            </para>
+                        </entry>
+                    </row>
+                </table>
+                <para>
+                    Switches need to be preceded by "/". Alternatively, switches can be preceded by
+                    "--" (long form) or "-" (short form). The following arguments are equivalent:
+                </para>
+                <code language="none">
+                    /help
+                    /h
+                    --help
+                    -h
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Examples">
+            <title>Examples</title>
+            <content>
+                <para>
+                    Show the command-line help:
+                </para>
+                <code language="none">
+                    pack /help
+                    pack /h
+                    pack /?
+                </code>
+                <para>
+                    Pack all files in the folder <localUri>Content</localUri> (inkl. subfolders)
+                    into a package called <localUri>Assets.zip</localUri>:
+                </para>
+                <code language="none">
+                    pack /output "Assets.zip" /recursive /directory "Content" *.*
+                    pack /o "Assets.zip" /r /d "Content" *.*
+                </code>
+                <para>
+                    When wildcards (such as <command>*.*</command>) are used, the path relative to
+                    the current directory or the base directory (<command>/directory</command>) is
+                    stored in the package. When no wildcards are used, the files are added to the
+                    package directly without path information.
+                </para>
+                <para>
+                    Pack specified files directly to a package called <localUri>Package.pak</localUri>:
+                </para>
+                <code language="none">
+                    pack /output "Package.pak" "folderA\fileA.txt" "folderB\fileB.txt"
+                </code>
+            </content>
+        </section>
+
+<!--
+        <section address="BuildEvent">
+            <title>Visual Studio build events</title>
+            <content>
+                <para>
+                    When using MonoGame the tool <command>Pack.exe</command> can be called as a
+                    post-build event to package all game assets into a single file. See the
+                    <localUri>ContentBuilder</localUri> project in the
+                    <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" /> solution.
+                </para>
+                <code language="none" title="Post-Build Event">
+                    "$(SolutionDir)Tools\Pack.exe" /output "$(TargetDir)Assets.zip" /recursive /directory "$(TargetDir)Content" *.*
+                </code>
+            </content>
+        </section>
+-->
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

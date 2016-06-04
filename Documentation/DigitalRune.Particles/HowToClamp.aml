@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="f9e9b1f3-4850-437f-aa2b-a6b4c236f196" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This topic shows how you can limit particle parameter values at runtime, e.g. to limit the
+                alpha value of particles.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+        <section address="Effector">
+            <title>Creating a ClampValueEffector</title>
+            <content>
+                <para>
+                    You can use a custom
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleEffector</codeEntityReference>
+                    to change particle parameters. See
+                    <link xlink:href="2e27afb1-6482-4f56-9497-ca903aef3c9f" />.
+                </para>
+                <para>
+                    Here is a code snippet of a particle effector that clamps a value between a min and max value:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+using System;
+using DigitalRune.Mathematics;
+using DigitalRune.Particles;
+ 
+namespace Samples.Particles
+{
+  public class ClampValueEffector<T> : ParticleEffector where T : IComparable<T>
+  {
+    private IParticleParameter<T> _parameter;
+ 
+    [ParticleParameter(ParticleParameterUsage.InOut)]
+    public string Parameter { get; set; }
+ 
+    public T Min { get; set; }
+    public T Max { get; set; }
+ 
+    protected override ParticleEffector CreateInstanceCore()
+    {
+      return new ClampValueEffector<T>();
+    }
+ 
+    protected override void CloneCore(ParticleEffector source)
+    {
+      base.CloneCore(source);
+ 
+      var sourceTyped = (ClampValueEffector<T>)source;
+      Parameter = sourceTyped.Parameter;
+    }
+ 
+    protected override void OnRequeryParameters()
+    {
+      _parameter = ParticleSystem.Parameters.Get<T>(Parameter);
+    }
+ 
+    protected override void OnUninitialize()
+    {
+      _parameter = null;
+    }
+ 
+    protected override void OnBeginUpdate(TimeSpan deltaTime)
+    {
+      if (_parameter == null)
+        return;
+ 
+      T[] values = _parameter.Values;
+      if (values == null)
+      {
+        // Value is a uniform parameter.
+        _parameter.DefaultValue = MathHelper.Clamp(_parameter.DefaultValue, Min, Max);
+      }
+    }
+ 
+    protected override void OnUpdateParticles(TimeSpan deltaTime, int startIndex, int count)
+    {
+      if (_parameter == null)
+        return;
+ 
+      T[] values = _parameter.Values;
+      if (values == null)
+      {
+        // Value is a uniform parameter. Uniform parameters are handled in OnBeginUpdate().
+        return;
+      }
+ 
+      // Value is a varying parameter.
+      for (int i = startIndex; i < startIndex + count; i++)
+        values[i] = MathHelper.Clamp(values[i], Min, Max);
+    }
+  }
+}
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Add">
+            <title>Adding ClampValueEffector to a ParticleSystem</title>
+            <content>
+                <para>
+                    You need to add the new
+                    <legacyBold>ClampValueEffecto </legacyBold>
+                    to the particle system, for example:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+_particleSystem.Effectors.Add(new ClampValueEffector<float>
+{
+  Parameter = ParticleParameterNames.Alpha,
+  Min = 0.2f,
+  Max = 0.8f,
+});
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="FuncEffector">
+            <title>Clamping using a standard FuncEffector</title>
+            <content>
+                <para>
+                    Alternatively, you can use the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.Effectors.FuncEffector`2</codeEntityReference>:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+particleSystem.Effectors.Add(new FuncEffector<float, float>
+{
+  InputParameter = "Alpha",
+  OutputParameter = "Alpha",
+  Func = x => MathHelper.Clamp(x, 0.2f, 0.8f),
+});
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,818 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="d193b4e7-58fd-4578-9019-e6ecf46ebcc0" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This articles contains a list of official XNA articles, samples, and tutorials.</para>
+            <!--<autoOutline />-->
+        </introduction>
+
+
+        <section address="Documentation">
+            <title>Microsoft XNA documentation</title>
+            <content>
+                <para>
+                    The official Microsoft XNA Game Studio documentation can be found in the MSDN library.
+                    For a complete understanding of XNA, we recommend reading the documentation start to finish.
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <externalLink>
+                            <linkText>XNA Game Studio 4.0 Refresh</linkText>
+                            <linkUri>https://msdn.microsoft.com/en-us/library/bb200104.aspx</linkUri>
+                        </externalLink>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="XBLIG">
+            <title>Microsoft XBLIG education catalog</title>
+            <content>
+                <para>
+                    The
+                    <externalLink>
+                        <linkText>Xbox LIVE Indie Games (App Hub)</linkText>
+                        <linkUri>>http://xbox.create.msdn.com/en-US/</linkUri>
+                    </externalLink>
+                    website contains a wealth of examples and tutorials.
+                </para>
+            </content>
+            <sections>
+                <section address="Articles">
+                    <title>Recommended articles</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Intro to Game Loop</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/article/intro_to_game_loop</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Intro to C# From Objective-C and Java</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/article/intro_to_c_sharp</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>3D Audio</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/3d_audio</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Aiming</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/aiming</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Billboards</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/billboard</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Bloom Postprocess</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/bloom</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Chase Camera</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/chasecamera</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Chase &amp; Evade</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/chase_evade</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Collision</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/collision</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Collision Series 1: 2D Rectangle Collision</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/tutorial/collision_2d_rectangle</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Collision Series 2: 2D Per-Pixel Collision</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/tutorial/collision_2d_perpixel</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Collision Series 3: 2D Collision with Transformed Objects</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/tutorial/collision_2d_perpixel_transformed</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Collision Series 4: Collision with a Heightmap</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/collision_3d_heightmap</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Collision Series 5: Heightmap Collision with Normals</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/collision_3d_heightmap_normals</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Compiled (XNB) Content Format</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/sample/xnb_format</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Color Replacement</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/color_replacement</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>CPU Skinning</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/cpu_skinning</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Content Manifest Extensions</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/sample/contentmanifestextensions</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Custom Model Class</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/custom_model_class</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Custom Model Effect</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/custom_model_effect</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Custom Model Importer</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/custom_model_importer</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Custom Model Rigid and Skinned Animations</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/custom_model_rigid_and_skinned</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Data Structures</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/article/data_structures</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Distortion</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/distortion</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Dynamic Audio</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/article/dynamic_audio</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Flocking</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/flocking</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Fuzzy Logic</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/fuzzy_logic</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Game State Management</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/game_state_management</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Generated Geometry</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/generated_geometry</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Input Sequence</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/input_sequence_sample</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Instanced Model</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/mesh_instancing</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Inverse Kinematics Sample</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/inverse_kinematics</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Invites</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/invites</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Lens Flare</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/lens_flare</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Localization</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/localization</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Marketing Tips: Get your app or game noticed</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/article/marketingtips2011</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Network Architecture: Client/Server</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/network_cs</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Network Architecture: Peer-to-Peer</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/network_p2p</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Network Game State Management</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/network_game_state_management</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Network Prediction</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/network_prediction</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Non-Realistic Rendering</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/nonrealistic_rendering</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Normal Mapping</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/normal_mapping</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Picking</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/picking</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Picking with Triangle Accuracy</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/picking_triangle</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Primitives 2D</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/primitives</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Primitives 3D</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/primitives_3d</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Safe Area</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/safe_area</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Shader Series: Introduction</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/article/shader_primer</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Shader Series: Coordinate Spaces</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/article/shader_coord</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Shader Series 1: Vertex Lighting</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/shader_series_1</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Shader Series 2: Textures and Colors</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/shader_series_2</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Shader Series 3: Per-Pixel Lighting</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/shader_series_3</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Shader Series 5: Multipass Lighting (ARCHIVED)</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/shader_series_5</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Shadow Mapping</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/shadow_mapping_1</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Shatter</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/shatter</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Simple Animation</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/simple_animation</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Skinned Model</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/skinned_model</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Skinned Model Extensions Tutorial</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/tutorial/skinned_model_extensions</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Sprite Effects</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/sprite_effects</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Sprite Sheet</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/sprite_sheet</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Stock Effects</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/stock_effects</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Pathfinding</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/pathfinding</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Particles 2D</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/particle</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Particles 3D</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/particle_3d</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Particles Pipeline</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/particles_pipeline</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Authoring Particle Systems Using XML and the Content Pipeline</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/tutorial/particle_xml</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Performance Measuring Sample</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/performance_sample</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Performance Utility</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/utility/performance_utility</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Reach Graphics Demo</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/reach_graphics_demo</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Rim Lighting</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/rim_lighting</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Shape Rendering</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/shape_rendering</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Split Screen</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/split_screen</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Waypoint Navigation</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/waypoints</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>WinForms Series 1: Graphics Device</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/winforms_series_1</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>WinForms Series 2: Content Loading</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/winforms_series_2</linkUri>
+                                </externalLink>
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="StarterKits">
+                    <title>Samples, starter kits</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Card Game Starter Kit: Blackjack (C#/VB)</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/blackjack</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Multi-Platform Game Training Kit</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/trainingkit/honeycomb_rush_tk</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Net Rumble</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/net_rumble</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Platformer</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/platformer</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Role-Playing Game</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/roleplaying_game</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Ship Game</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/starterkit/shipgame</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Snow Shovel</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/snow_shovel</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Spacewar</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/spacewar</linkUri>
+                                </externalLink>
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Resources">
+                    <title>Resources</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Avatar Animation Rig</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/utility/avatar_animation_rig</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Avatar Animation Pack</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/utility/avatar_animation_pack</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Network Lobby and Chat Icons</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/utility/lobby_chat_icons</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>SoundLab</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/utility/soundlab</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Xbox 360 Controller Images</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/utility/controller_images</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Xbox 360 Controller Button Images</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/utility/controller_buttons</linkUri>
+                                </externalLink>
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Tools">
+                    <title>Tools</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Bitmap Font Maker</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/utility/bitmap_font_maker</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Curve Editor</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/utility/curve_editor</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Graphics Profile Checker</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/utility/graphics_profile_checker</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Input Reporter</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/utility/input_reporter</linkUri>
+                                </externalLink>
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Xbox360">
+                    <title>Xbox 360</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Xbox 360 Performance Best Practices</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/article/xbox360_performance_best_practices</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Avatar Usage Guidelines</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/article/avatar_use</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Avatar Animation Blending Sample</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/avatar_animation_blending</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Avatar Multiple Animations Sample</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/avatar_multiple_animations</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Avatar Shadows</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/avatar_shadows</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Custom Avatar Animation Sample</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/custom_avatar_animation</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Object Placement On Avatar Sample</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/object_placement_on_avatar</linkUri>
+                                </externalLink>
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+        <!--
+Windows Phone 7.x
+Note: "Mango" = Windows Phone 7.1
+XNA Game Studio or Silverlight: Which Product is Right for Me? (Updated for Mango)
+    http://xbox.create.msdn.com/en-US/education/catalog/article/which_product_for_windows_phone
+PEGI Express Rating Tool Information
+    http://xbox.create.msdn.com/en-US/education/catalog/article/PEGI_Express
+3D Graphics
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/graphics_3d
+Gestures
+    http://xbox.create.msdn.com/en-US/education/catalog/article/gestures
+Performance Considerations for Windows Phone 7 Games
+    http://xbox.create.msdn.com/en-US/education/catalog/article/performance_wp7_games
+Games for WP7 - Talks at PDC
+    http://xbox.create.msdn.com/en-US/education/catalog/article/pdc_games_wp7_talks
+Avoiding the Windows Phone Watchdog
+    http://xbox.create.msdn.com/en-US/education/catalog/article/watchdog
+Best Practices for Windows Phone 7 Games
+    http://xbox.create.msdn.com/en-US/education/catalog/article/best_practices_wp7_games
+Tombstoning for Windows Phone 7 Games
+    http://xbox.create.msdn.com/en-US/education/catalog/article/tombstoning_wp7_games
+Recipe: Non-Linear Navigation Service for Windows Phone 7
+    http://xbox.create.msdn.com/en-US/education/catalog/article/nln-serv-wp7
+Loading Time Reduction for Windows Phone 7 Games
+    http://xbox.create.msdn.com/en-US/education/catalog/article/loading_time_reduction_WP7
+Windows Phone Silverlight Application Life Cycle
+    http://xbox.create.msdn.com/en-US/education/catalog/article/silverlight_application_life_cycle
+Visual Basic Support in XNA Game Studio (Mango)
+    http://xbox.create.msdn.com/en-US/education/gamedevelopment/VBSupportForXNA
+Migration Guide: From the Game Class to Silverlight/XNA (Mango, C#/VB)
+    http://xbox.create.msdn.com/en-US/education/catalog/article/migration_guide_moving_to_silverlight_xna
+What's New for Games (Mango)
+    http://xbox.create.msdn.com/en-US/education/catalog/article/whats_new_for_games
+Recipe: Push Notification Server Side Helper for WP7
+    http://xbox.create.msdn.com/en-US/education/catalog/article/pnhelp-wp7
+Paddle Battle (Mango, C#/VB)
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/paddle_battle
+Silverlight XNA Game Components (Mango, C#/VB)
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/silverlight_xna_game_components
+Windows Phone Localization for Games
+    http://xbox.create.msdn.com/en-US/education/gamedevelopment/localization_windows_phone_games
+Fast Application Switching: Implications for Xbox LIVE Titles on Windows Phone Operating System 7.1 (“Mango”)
+    http://xbox.create.msdn.com/en-US/education/catalog/article/fast_app_switching
+Get to Windows Phone 7.5 #1: From XNA to SLXNA
+    http://xbox.create.msdn.com/en-US/education/catalog/tutorial/xna-to-slxna
+Get to Windows Phone 7.5 #2: Adding FAS to XNA
+    http://xbox.create.msdn.com/en-US/education/catalog/tutorial/fas-to-xna
+Get to Windows Phone 7.5 #3: Adding FAS to a Typical Silverlight Application
+    http://xbox.create.msdn.com/en-US/education/catalog/tutorial/fas-to-silverlight
+Get to Windows Phone 7.5 #4: Adding Secondary Tiles
+    http://xbox.create.msdn.com/en-US/education/catalog/adding-secondary-tiles
+Get to Windows Phone 7.5 #5: Adding Background Agents
+    No longer available.
+Get to Windows Phone 7.5 #6: Using a Live Camera Feed
+    http://xbox.create.msdn.com/en-US/education/catalog/using-a-live-camera-feed
+Get to Windows Phone 7.5 #7: Using Push Notifications with Secondary Tiles and Deep Toast
+    http://xbox.create.msdn.com/en-US/education/catalog/push-notifications-with-secondary-tiles
+Accelerometer
+    http://xbox.create.msdn.com/en-US/sample/accelerometer
+Bounce
+    http://xbox.create.msdn.com/en-US/sample/bounce
+Touch Gestures
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/gestures
+Touch Thumbsticks
+    http://xbox.create.msdn.com/en-US/sample/touchthumbsticks
+Sound and Music
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/sound_and_music
+Orientation
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/orientation
+Catapult Wars Lab
+    http://xbox.create.msdn.com/en-US/education/catalog/lab/catapult_wars
+Catapult Wars Extensions Kit
+    http://xbox.create.msdn.com/en-US/education/catalog/trainingkit/catapult_wars
+Marble Maze
+    http://xbox.create.msdn.com/en-US/education/catalog/lab/marble_maze
+Microphone Echo
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/microphone_echo
+Push Notifications
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/push_notifications
+Saving Embedded Images
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/saving_embedded_images
+Custom Indeterminate Progress Bar Sample
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/custom_indeterminate_progress_bar
+Geolocation
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/geolocation
+Soccer Pitch
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/soccer_pitch
+Camera Shake
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/camera_shake
+Tilt Perspective
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/tilt_perspective
+Honeycomb Rush Lab
+    http://xbox.create.msdn.com/en-US/education/catalog/lab/honeycomb_rush
+Path Drawing
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/path_drawing
+User Interface Controls
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/ui_controls
+Level Starter Kit
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/level_starter_kit
+Silverlight Microphone Sample
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/silverlight_microphone
+Tombstoning Sample
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/tombstoning
+Unit Converter Starter Kit
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/unit_converter
+Bing Maps for Games
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/bing_maps
+Bing Maps for Games with Pathfinding
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/bing_maps_pathfinding
+Dynamic Menu
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/dynamic_menu
+HTTP Multiplayer: Tic Tac Toe
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/tic_tac_toe
+Keyboard Input Scope Sample | Windows Phone
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/keyboardinputscopesample
+Memory Madness Lab
+    http://xbox.create.msdn.com/en-US/education/catalog/lab/memory_madness
+Model-View-ViewModel (MVVM) Sample | Windows Phone
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/mvvmsample
+Music Management for Windows Phone 7
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/windows_phone_music_manager
+NinjAcademy
+    http://xbox.create.msdn.com/en-US/education/catalog/starterkit/ninjacademy
+Silverlight Sound Sample | Windows Phone
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/silverlightsound
+Translator Starter Kit | Windows Phone
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/translatorstarterkit
+Model Viewer Demo (Mango)
+    http://xbox.create.msdn.com/en-US/education/catalog/sample/model_viewer_demo
+Yacht (dice game)
+    http://xbox.create.msdn.com/en-US/education/catalog/starterkit/yacht 
+-->
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

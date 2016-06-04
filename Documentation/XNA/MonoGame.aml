@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="73ecd962-4ff5-4988-bb0c-bffa66f933b9" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Mono">
+            <title>Mono</title>
+            <content>
+                <para>
+                    <token>Mono</token> is an open source implementation of Microsoft’s .NET Framework. It makes the .NET framework
+                    available under Linux and Mac OS X.
+                </para>
+            </content>
+            <sections>
+                <section address="Xamarin">
+                    <title>Mono for Android and iOS</title>
+                    <content>
+                        <para>
+                            Mono implementations for Android (<legacyBold>Xamarin.Android</legacyBold>, formerly known as
+                            <legacyBold>Mono for Android</legacyBold> or <legacyBold>MonoDroid</legacyBold>) and iOS
+                            (<legacyBold>Xamarin.iOS</legacyBold>, formerly known as <legacyBold>MonoTouch</legacyBold>)
+                            are provided by <token>Xamarin</token>. To develop Mono projects for Android or iOS, you need a Xamarin.iOS
+                            or Xamarin.Android license from Xamarin.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="MonoGame">
+            <title>MonoGame</title>
+            <content>
+                <para>
+                    MonoGame is a cross-platform, open source implementation of the Microsoft XNA Framework.
+                    See the <token>MGWebsite</token> for more information.
+                </para>
+                <alert class="note">
+                    <para>
+                        When the DigitalRune Engine user documentation or class library reference refers to
+                        "XNA", it usually refers to both XNA and MonoGame. Many parts of the documentation were
+                        written before MonoGame support was added - or before MonoGame even existed.
+                    </para>
+                </alert>
+            </content>
+            <sections>
+                <section address="Repository">
+                    <title>DigitalRune MonoGame repository</title>
+                    <content>
+                        <para>
+                            DigitalRune libraries are built against a forked version of MonoGame. The source
+                            code repository is publicly available here: <token>DRMGRepository</token>
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="SharpDX">
+            <title>SharpDX</title>
+            <content>
+                <para>
+                    MonoGame uses <token>SharpDX</token> on Windows, Windows Store and Windows Phone.
+                </para>
+            </content>
+            <sections>
+                <section address="DebugSharpDX">
+                    <title>How to debug SharpDX problems</title>
+                    <content>
+                        <para>
+                            To get better debug information for graphics and SharpDX problems, you can enable a
+                            debug graphics device:
+                        </para>
+                        <code language="cs">
+                            <![CDATA[ 
+Microsoft.Xna.Framework.Graphics.GraphicsAdapter.UseDebugDevice = true;
+]]>
+                        </code>
+                        <para>
+                            During debugging SharpDX will print helpful warning and error messages to the Visual
+                            Studio Output window, but only if native code debugging is enabled:
+                        </para>
+                        <para>
+                            In some project types you have
+                            to choose between "Managed Only" or "Native Only". This means, you will have to switch
+                            to "Managed Only" if you want to debug your own code. You have to switch to "Native Only"
+                            to see SharpDX messages.
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                Open the project properties in Visual Studio.
+                            </listItem>
+                            <listItem>
+                                <para>
+                                    In the Debug tab check the "Enable native debugging" option
+                                    (<legacyBold>Visual Studio | Project | Properties | Debug | Enable native debugging</legacyBold>).
+                                </para>
+                                <para>
+                                    In some project types you have to choose between "Managed Only" or "Native Only".
+                                    This means, you will have to switch to "Managed Only" if you want to debug your own
+                                    code. You have to switch to "Native Only" to see SharpDX messages.
+                                </para>
+                            </listItem>
+                        </list>
+                        <para>
+                            See also
+                            <externalLink>
+                                <linkText>How to debug a SharpDXException (SharpDX Forum)</linkText>
+                                <linkUri>http://sharpdx.org/forum/4-general/1774-how-to-debug-a-sharpdxexception</linkUri>
+                            </externalLink>.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="WP">
+            <title>Windows Store and Windows Phone 8</title>
+            <content>
+            </content>
+            <sections>
+                <section address="DebugWP">
+                    <title>Debugging Windows Store and Windows Phone 8 problems</title>
+                    <content>
+                        <para>
+                            Sometimes when debugging a Windows Store or Windows Phone project, the project does
+                            not work and the Visual Studio debugger does not provide any helpful exception messages.
+                            For example, a Windows Phone app is started and only a black screen is shown on the phone.
+                            This usually means that a problem happened, an exception was thrown
+                            but the debugger didn't break at the exception. To get more info about the exception
+                            you can try following:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                Open the <legacyBold>Visual Studio | Debug | Exceptions...</legacyBold> menu.
+                                Check the check box of the <legacyBold>Common Language Runtime Exceptions</legacyBold>.
+                                You can selectively add/remove exceptions, you are not interested in.
+                            </listItem>
+                            <listItem>
+                                Or, you can disable "Just My Code" debugging in the Visual Studio options:
+                                Uncheck <legacyBold>Visual Studio | Options | Debugging | General | Enable Just My Code</legacyBold>.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

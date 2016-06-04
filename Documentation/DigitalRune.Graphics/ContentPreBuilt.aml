@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="2631164b-0b8b-47b2-9cda-f7923d7518f4" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This section explains how to add pre-built assets (effects, textures)
+                which are required by DigitalRune Graphics at runtime.
+            </para>
+            <alert class="info">
+                <para>
+                    If your game uses only XNA stock effects and if it does not use any of the
+                    <link xlink:href="fda15306-d5dc-449c-850d-82227359d35b">predefined materials</link>,
+                    post-processors or advanced renderers, it is not necessary to add the pre-built content
+                    to your project.
+                </para>
+                <para>
+                    Some newer platforms (e.g. Linux, Mac OS X, Android, iOS) do not yet support
+                    advanced graphics (e.g. deferred rendering, post-processing). In this case there is no
+                    pre-built content necessary for this platform.
+                </para>
+                <para>
+                    Windows Phone 7 projects do not need pre-built assets at all because custom shaders
+                    are not supported on this platform.
+                </para>
+            </alert>
+            <autoOutline>1</autoOutline>
+        </introduction>
+        
+
+        <section address="Location">
+            <title>Location of pre-built content</title>
+            <content>
+                <para>
+                    DigitalRune Graphics requires several effects and textures. These assets include effects
+                    for built-in renderers, post-processing effects, lookup textures, and
+                    <link xlink:href="fda15306-d5dc-449c-850d-82227359d35b">predefined material effects</link>.
+                    These assets are pre-built and can be found in these folders:
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Framework</para>
+                            </entry>
+                            <entry>
+                                <para>Platform</para>
+                            </entry>
+                            <entry>
+                                <para>Content Folder</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>XNA Framework</para>
+                        </entry>
+                        <entry>
+                            <para>Windows</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <localUri>Content\XNA\Windows</localUri>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>XNA Framework</para>
+                        </entry>
+                        <entry>
+                            <para>Xbox 360</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <localUri>Content\XNA\Xbox360</localUri>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>MonoGame</para>
+                        </entry>
+                        <entry>
+                            <para>Windows</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <localUri>Content\MonoGame\Windows</localUri>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>MonoGame</para>
+                        </entry>
+                        <entry>
+                            <para>Windows Phone 8</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <localUri>Content\MonoGame\WindowsPhone</localUri>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>MonoGame</para>
+                        </entry>
+                        <entry>
+                            <para>Windows Store</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <localUri>Content\MonoGame\WindowsStore</localUri>
+                            </para>
+                        </entry>
+                    </row>
+                </table>
+                <para>
+                    Each folder contains either
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        an XNA content project (*.contentproj) with the pre-built assets (*.xnb),
+                    </listItem>
+                    <listItem>
+                        or a ZIP file (DigitalRune.zip) containing the pre-build assets (*.xnb).
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+        <section address="Add">
+            <title>Add pre-built content to project</title>
+            <content>
+            </content>
+            <sections>
+                <section address="ContentProjects">
+                    <title>Using content projects</title>
+                    <content>
+                        <para>
+                            If the pre-built content consists of a content project (*.contentproj) and XNB files,
+                            you need to a add a content reference to this content project in your XNA game project.
+                            The content project then automatically copies the pre-built assets to the output folder
+                            of the game.
+                        </para>
+                        <para>
+                            First, you need to include the content project in the solution:
+                        </para>
+                        <list class="ordered">
+                            <listItem>
+                                Right-click the solution and choose <ui>Add | Existing Project...</ui>.
+                            </listItem>
+                            <listItem>
+                                <para>
+                                    Select the content project for your target platform, for example:
+                                </para>
+                                <para>
+                                    For XNA on Windows (desktop) use
+                                </para>
+                                <para>
+                                    <localUri>&lt;DIGITALRUNE_FOLDER&gt;\Content\XNA\Windows\DigitalRune.Graphics (Windows).contentproj</localUri>
+                                </para>
+                                <para>
+                                    For Xbox 360 use
+                                </para>
+                                <para>
+                                    <localUri>&lt;DIGITALRUNE_FOLDER&gt;\Content\XNA\Xbox360\DigitalRune.Graphics (Xbox 360).contentproj</localUri>
+                                </para>
+                                <para>
+                                    and click <ui>Open</ui>.
+                                </para>
+                            </listItem>
+                        </list>
+                        <para>
+                            Then add a content reference to the main project:
+                        </para>
+                        <list class="ordered">
+                            <listItem>
+                                Open the <ui>Solution Explorer</ui> in Visual Studio.
+                            </listItem>
+                            <listItem>
+                                Right-click the project (or right-click the folder <localUri>Content References</localUri>
+                                within the project) and choose <ui>Add Content Reference...</ui>
+                            </listItem>
+                            <listItem>
+                                In the tab <ui>Projects</ui> select the DigitalRune Graphics content project and click
+                                <ui>OK</ui>.
+                            </listItem>
+                        </list>
+                        <para>
+                            The content project copies the pre-built assets to the output folder of the game.
+                        </para>
+                        <para>
+                            When you initialize the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.GraphicsManager</codeEntityReference>
+                            in your game code, you need to provide a <legacyBold>ContentManager</legacyBold>
+                            which can load the pre-built assets. You can use the default <legacyBold>ContentManager</legacyBold>
+                            of the XNA game (<legacyBold>Game.Content</legacyBold>) or create a new content manager.
+                            For example:
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+var graphicsContentManager = new ContentManager(Services, "Content");
+myGaphicsManager = new GraphicsManager(GraphicsDevice, Window, graphicsContentManager);
+]]>
+                        </code>
+                        <para>
+                            Please have a look at the DigitalRune
+                            <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" /> for more detailed example code.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="ZIP">
+                    <title>Using ZIP file</title>
+                    <content>
+                        <para>
+                            If the pre-built content consists of a ZIP file, this file needs to be copied to the
+                            output folder of the game. In the game code you need to create a content manager
+                            which can read from the ZIP file using the
+                            <link xlink:href="120bed13-f23b-4774-bae7-d64d410d2122">DigitalRune Storage API</link>.
+                        </para>
+                        <para>
+                            To automatically add the ZIP file to the output folder of your game:
+                        </para>
+                        <list class="ordered">
+                            <listItem>
+                                In Visual Studio add a folder named "Content" to your game project.
+                            </listItem>
+                            <listItem>
+                                In the Visual Studio Solution Explorer right-click the "Content" folder and choose
+                                <legacyBold>Add | Existing Item.</legacyBold>
+                            </listItem>
+                            <listItem>
+                                <para>
+                                    Select the file DigitalRune.zip for your target platform, for example:
+                                </para>
+                                <para>
+                                    For MonoGame on Windows (desktop) use
+                                </para>
+                                <para>
+                                    <localUri>&lt;DIGITALRUNE_FOLDER&gt;\Content\MonoGame\Windows\DigitalRune.zip</localUri>
+                                </para>
+                                <para>
+                                    Click the drop down arrow next to the <ui>Add</ui> button and select
+                                    <ui>Add As Link</ui>.
+                                </para>
+                            </listItem>
+                            <listItem>
+                                In the solution explorer right-click the newly added "DigitalRune.zip" and
+                                select <legacyBold>Properties</legacyBold>.
+                            </listItem>
+                            <listItem>
+                                In the properties window set the "Build Action" to "Content" and the
+                                "Copy to Output Directory" to "Copy if newer".
+                            </listItem>
+                        </list>
+                        <para>
+                            When you initialize the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.GraphicsManager</codeEntityReference>
+                            in your game code, you need to provide a <legacyBold>ContentManager</legacyBold>
+                            which can load the pre-built assets. For example:
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+var titleStorage = new TitleStorage("Content");
+var graphicsStorage = new ZipStorage(titleStorage, "DigitalRune.zip");
+var graphicsContentManager = new StorageContentManager(Services, graphicsStorage);
+myGaphicsManager = new GraphicsManager(GraphicsDevice, Window, graphicsContentManager);
+]]>
+                        </code>
+                        <para>
+                            Please have a look at the DigitalRune
+                            <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" /> for more detailed example code.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

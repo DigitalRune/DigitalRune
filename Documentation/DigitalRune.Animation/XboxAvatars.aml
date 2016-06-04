@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="70b9ddd0-4356-45ac-8915-1af42a62ee08" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                DigitalRune Animation supports Xbox LIVE Avatars. Avatars can be animated,
+                animations can be cross-faded, avatar ragdolls can be automatically created, and much more.
+            </para>
+        </introduction>
+
+
+        <section address="Avatars">
+            <title>Xbox LIVE Avatars (Xbox 360 only)</title>
+            <content>
+                <alert class="warning">
+                    <para>
+                        The Xbox LIVE Avatar support in <legacyBold>DigitalRune Animation</legacyBold>
+                        is newer and replaces the Xbox LIVE Avatar support in
+                        <legacyBold>DigitalRune.Physics.Specialized</legacyBold>
+                        (see <link xlink:href="3e1b091b-d795-4f67-a390-67648a3e5465" />).
+                    </para>
+                </alert>
+                <para>
+                    DigitalRune Animation also provides support for animating Xbox LIVE Avatars:
+                    The class <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.AvatarPose</codeEntityReference>
+                    describes the <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.SkeletonPose</codeEntityReference>
+                    of an avatar as well as its
+                    <externalLink>
+                        <linkText>AvatarExpression</linkText>
+                        <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.gamerservices.avatarexpression.aspx</linkUri>
+                    </externalLink>
+                    (facial expression). <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.AvatarPose</codeEntityReference>
+                    implements
+                    <externalLink>
+                        <linkText>IAvatarAnimation</linkText>
+                        <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.gamerservices.iavataranimation.aspx</linkUri>
+                    </externalLink>
+                    and therefore can be used directly with the XNA class for rendering.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="ClassDiagram">
+            <title>Class diagram</title>
+            <content>
+                <mediaLink>
+                    <image xlink:href="ClassDiagramAnimationCharacterAvatars"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Sample">
+            <title>Sample</title>
+            <content>
+                <para>
+                    The AvatarSample (see <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />)
+                    shows how to use DigitalRune Animation to animate Xbox LIVE Avatars
+                    and to create avatar ragdolls.
+                </para>
+                <mediaLink>
+                    <caption placement="after" lead="Screenshot">Screenshot of the AvatarSample</caption>
+                    <image xlink:href="AvatarSample"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

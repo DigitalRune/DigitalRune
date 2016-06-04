@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="9e2a4144-69e9-4bf2-8cea-79713eb91490" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                The DigitalRune Base library provides a general implementation of a
+                resource pool. This section explains the concept of a resource pool and
+                why it is necessary.
+            </para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="ResourcePooling">
+            <title>Resource pooling</title>
+            <content>
+                <para>
+                    The current version of the .NET Compact Framework has some limitations compared to the full version
+                    of the .NET Framework. In particular, it does not support generational garbage collection. A run of
+                    the garbage collector on the Xbox 360 or on the Windows Phone 7 typically has a higher latency than
+                    in Windows and can lead to significant frame rate drops.
+                </para>
+                <para>
+                    Therefore, it is crucial to reduce the amount of memory that is allocated at runtime to avoid too
+                    frequent garbage collections. A strategy to reduce memory allocations is
+                    <legacyItalic>resource pooling</legacyItalic> (or <legacyItalic>free-lists</legacyItalic>). When
+                    using a resource pool objects are acquired from the pool instead of being newly allocated on the
+                    managed heap. When an object is no longer used it is returned to the resource pool for later reuse.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Generic">
+            <title>ResourcePool&lt;T&gt;</title>
+            <content>
+                <para>
+                    The DigitalRune Base library contains a general implementation of a
+                    resource pool: see <codeEntityReference qualifyHint="false">T:DigitalRune.ResourcePool`1</codeEntityReference>.
+                    Other DigitalRune projects, such as DigitalRune Geometry and Physics, make extensive use
+                    of this class. For example, the collision detection in DigitalRune Geometry creates and removes
+                    contacts every frame. The type that stores the contact information is reused using a resource pool
+                    to minimize the number of newly allocated objects.
+                </para>
+                <para>
+                    Here is an example how to create a resource pool for an object of type <legacyBold>ObjectXyz</legacyBold>:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+ResourcePool<ObjectXyz> Pool = new ResourcePool<ObjectXyz>(
+  () => new ObjectXyz(),      // Create the object.
+  obj => obj.Initialize(),    // Initialize the object. (Optional)
+  obj => obj.Uninitialize()); // Uninitialize the object. (Optional)
+]]>
+                </code>
+                <para>
+                    The constructor of the <codeEntityReference qualifyHint="false">T:DigitalRune.ResourcePool`1</codeEntityReference>
+                    requires 3 parameters: A create callback, an initialize callback and an uninitialize callback.
+                    In the example above the callbacks are implemented using lambda expressions. The initialize
+                    and the uninitialize callbacks are optional. (The last two parameters can be <codeInline>null</codeInline>.)
+                </para>
+                <para>
+                    Using this resource pool objects of the given type can be obtained when needed and recycled after use:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+var obj = Pool.Obtain();
+
+// Do something with the object.
+...
+
+// Return the object to the resource pool when no longer needed.
+Pool.Recycle(obj);
+obj = null;
+]]>
+                </code>
+                <para>
+                    Resource pools are initially empty. New objects are created on demand – so a
+                    resource pool never runs out of objects.
+                </para>
+                <para>
+                    By consistently using the resource pool and the Obtain/Recycle pattern throughout
+                    the application unnecessary garbage can be avoided.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="GenericCollections">
+            <title>Resource pools for generic collections</title>
+            <content>
+                <para>
+                    In some situations we temporarily need a collection of a certain type
+                    (e.g. a <codeInline>List&lt;T&gt;</codeInline>). It is not necessary to manually
+                    create a new resource pool for every type <codeInline>T</codeInline>. The
+                    static class <codeEntityReference qualifyHint="false">T:DigitalRune.ResourcePools`1</codeEntityReference>
+                    provides resource pools for common types of collections (lists, hash-sets, stacks).
+                </para>
+                <para>
+                    Here is an example that shows how to obtain a <codeInline>List&lt;float&gt;</codeInline>
+                    from the global resource pool.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Obtain an empty list from the global resource pool. 
+List<float> list = ResourcePools<float>.Lists.Obtain(); 
+
+// Do something with the list. 
+... 
+
+// After use, recycle the list. (Note: It is not necessary to clear the 
+// list before recycling. This is handled automatically.) 
+ResourcePools<float>.Lists.Recycle(list);
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="ThreadSafety">
+            <title>Thread-safety</title>
+            <content>
+                <para>
+                    The implementation of <codeEntityReference qualifyHint="false">T:DigitalRune.ResourcePool`1</codeEntityReference>
+                    is thread-safe. Multiple threads can simultaneously obtain/recycle objects from the same resource pool.
+                </para>
+                <para>
+                    Additionally, the current implementation is lock free – for the most parts. Locks can be
+                    expensive, we therefore tried to avoid locks whenever possible for optimal performance.
+                    (Internally, all threads have a local resource pool to prevent contention when multiple
+                    threads need to access the same resource. If one thread’s local pool is empty it tries
+                    to steal resources from another thread. But users don’t have to worry about these internals.)
+                </para>
+            </content>
+        </section>
+
+
+        <section address="GlobalControl">
+            <title>Global control</title>
+            <content>
+                <para>
+                    The base class <codeEntityReference qualifyHint="false">T:DigitalRune.ResourcePool</codeEntityReference>
+                    provides global control over all resource pools. For example,
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        By setting <codeEntityReference qualifyHint="true">P:DigitalRune.ResourcePool.Enabled</codeEntityReference>
+                        to <codeInline>false</codeInline>, resource pooling can be disabled in the entire application.
+                        (The property is <codeInline>true</codeInline> by default.)
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">M:DigitalRune.ResourcePool.ClearAll</codeEntityReference>
+                        can be called to clear all resource pools in the application. This is useful because different
+                        parts of an application might have a different memory usage. One level in a game might be very
+                        physics intensive and thereby fill up the resource pools of the physics simulations. The next
+                        level might be very graphics intensive and fill up other resource pools. It can be useful to
+                        clear all resource pools when loading a new level to start with a clean memory. In particular,
+                        if you ever call <codeInline>GC.Collect()</codeInline> manually, you should consider calling
+                        <codeEntityReference qualifyHint="true">M:DigitalRune.ResourcePool.ClearAll</codeEntityReference>
+                        before running the garbage collector. (Note that you can also clear individual pools by calling
+                        <codeEntityReference qualifyHint="true">M:DigitalRune.ResourcePool.Clear</codeEntityReference>.)
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.ResourcePool.Pools</codeEntityReference>
+                        is a collection containing all active resource pools of the application. This property might be
+                        useful during debugging to observe memory usage. (Resource pools are automatically registered.
+                        Internally the resource pools are stored using weak reference. So you do not need to worry that
+                        obsolete resource pools are accidentally kept alive.)
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <link xlink:href="dc44c3a5-8545-4253-9da1-62258a00607c" />
+            <link xlink:href="ea2eddc5-2628-4671-83cd-33fe38daaf4e" />
+            <codeEntityReference qualifyHint="true">T:DigitalRune.ResourcePool`1</codeEntityReference>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

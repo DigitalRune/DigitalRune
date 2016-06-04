@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="08902551-6d52-40de-b8bf-ff40a46bbc3f" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                DigitalRune Graphics contains the
+                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.OcclusionBuffer</codeEntityReference>
+                class which implements occlusion culling.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="OcclusionBuffer">
+            <title>Occlusion buffer</title>
+            <content>
+                <para>
+                    Occlusion culling is handled by the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.OcclusionBuffer</codeEntityReference>.
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.OcclusionBuffer</codeEntityReference>
+                    implements occlusion culling using a hierarchical Z-buffer (HZB). (For a detailed description
+                    of the algorithm, see
+                    <externalLink>
+                        <linkText>"Prac­ti­cal, Dynamic Vis­i­bil­ity for Games"</linkText>
+                        <linkUri>http://blog.selfshadow.com/publications/practical-visibility/</linkUri>
+                    </externalLink>
+                    by Stephen Hill and Daniel Collin.)
+                </para>
+                <para>
+                    The usage is simple - occlusion culling involves only two method calls:
+                </para>
+                <code language="c#" title="Occlusion Culling using the OcclusionBuffer">
+                    <![CDATA[
+// Render the occluders into the occlusion buffer.
+occlusionBuffer.Render(occluders, context);
+
+// Perform occlusion culling on the list of scene nodes.
+// (Scene nodes that are culled are replaced by null entries.)
+occlusionBuffer.Query(sceneNodes, context);
+          ]]>
+                </code>
+                <para>
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.Rendering.OcclusionBuffer.Render(System.Collections.Generic.IList{DigitalRune.Graphics.SceneGraph.SceneNode},DigitalRune.Graphics.RenderContext)</codeEntityReference>
+                    takes a list of scene nodes and renders all occluders into a HZB.
+                </para>
+                <para>
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.Rendering.OcclusionBuffer.Query(System.Collections.Generic.IList{DigitalRune.Graphics.SceneGraph.SceneNode},DigitalRune.Graphics.RenderContext)</codeEntityReference>
+                    takes a list of scene nodes (usually all objects in the scene or in the viewing frustum) and
+                    tests these nodes against the HZB. Scene nodes that are hidden by occluders are removed from
+                    the list (i.e. replaced with null entries).
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Performance">
+            <title>Performance</title>
+            <content>
+                <para>
+                    Occlusion culling has a significant overhead. The process typically takes somewhere between
+                    less than a millisecond and up to several milliseconds. The overall latency depends on several
+                    factors: content, platform, timing settings, CPU/GPU load, etc.
+                </para>
+                <alert class="important">
+                    <para>
+                        Occlusion culling runs on the GPU. Accessing the results requires a readback from the
+                        GPU to the CPU, which stalls the pipeline (see
+                        <externalLink>
+                            <linkText>Copying and Accessing Resource Data (Direct3D 10), MSDN</linkText>
+                            <linkUri>http://msdn.microsoft.com/en-us/library/windows/desktop/bb205132(v=vs.85).aspx</linkUri>
+                        </externalLink>).
+                    </para>
+                    <para>
+                        Occlusion culling should only be used when there is an overall CPU/GPU saving.
+                        This needs to be determined experimentally.
+                    </para>
+                </alert>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

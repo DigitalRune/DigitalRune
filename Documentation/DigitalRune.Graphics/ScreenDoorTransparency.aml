@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="fa431d48-b457-4c70-a590-d44b0840ab1e" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                <newTerm>Screen-door transparency</newTerm> is a technique to fake transparency.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="ScreenDoorTransparency">
+            <title>What is screen-door transparency</title>
+            <content>
+                <para>
+                    <newTerm>Alpha blending</newTerm> can be problematic in some cases:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        No depth writes, objects needs to be sorted by distance.
+                    </listItem>
+                    <listItem>
+                        Does not play well with deferred shading.
+                    </listItem>
+                </list>
+                <para>
+                    <newTerm>Screen-door transparency</newTerm> (also called
+                    <newTerm>screen space stipple</newTerm>,
+                    <newTerm>stipple patterns</newTerm>,
+                    <newTerm>dissolve</newTerm>,
+                    <newTerm>fizzle</newTerm>,
+                    etc.) uses alpha testing to fake transparency. The effect is fast and cheap:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        No alpha blending.
+                    </listItem>
+                    <listItem>
+                        Pixels are written to the depth buffer, no sorting required.
+                    </listItem>
+                    <listItem>
+                        Can easily be added to most materials.
+                    </listItem>
+                </list>
+                <para>
+                    The downside is that the results contain obvious pixel patterns.
+                </para>
+                <para>
+                    DigitalRune Graphics uses screen-door transparency to fade-out objects near the max
+                    draw distance and to blend between levels of detail (LODs). The pixel patterns are less
+                    noticeable in these situations.
+                </para>
+                <mediaLink>
+                    <caption placement="after">An object is faded out using screen-door transparency</caption>
+                    <image xlink:href="Screen-Door-Transparency"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Implementation">
+            <title>How to implement screen-door transparency</title>
+            <content>
+                <para>
+                    Implementing screen-door transparency in a pixel shader is relatively simple: One only
+                    needs to take the pixel's alpha and discard the pixel if it is below a certain
+                    threshold.
+                </para>
+                <code language="cs">
+                    // Screen-door transparency: Discard pixel if below threshold.
+                    float threshold = 0.5;
+                    clip(alpha - threshold);
+                </code>
+                <para>
+                    If the same threshold is used for all pixels, then the object has two states: It is
+                    either visible or invisible. But if we use different thresholds per pixel we can create
+                    multiple states. In the following example we use 16 different thresholds for each
+                    4 x 4 block of pixels:
+                </para>
+                <code language="cs">
+                    // Screen-door transparency: Discard pixel if below threshold.
+                    // (Note: pos is pixel position.)
+                    float4x4 thresholdMatrix =
+                    {
+                    1.0 / 17.0,  9.0 / 17.0,  3.0 / 17.0, 11.0 / 17.0,
+                    13.0 / 17.0,  5.0 / 17.0, 15.0 / 17.0,  7.0 / 17.0,
+                    4.0 / 17.0, 12.0 / 17.0,  2.0 / 17.0, 10.0 / 17.0,
+                    16.0 / 17.0,  8.0 / 17.0, 14.0 / 17.0,  6.0 / 17.0
+                    };
+
+                    clip(alpha - thresholdMatrix[pos.x % 4][pos.y % 4]);
+                </code>
+                <para>
+                    With 4 x 4 threshold values, it is possible to create 17 states: visible, invisible,
+                    and 15 patterns in between. The result is shown in the image above.
+                </para>
+                <para>
+                    The threshold matrix used in this example is the same matrix as used by
+                    <newTerm>ordered dithering</newTerm> [1]. It is also known as
+                    <newTerm>index matrix</newTerm> or
+                    <newTerm>Bayer matrix</newTerm>.
+                    Dither matrices are nice because they create regular patterns. But in
+                    theory, any random permutation of threshold values should do.
+                </para>
+                <para>
+                    To create more states, we need bigger matrices. For example, with 16 x 16 threshold
+                    values we can create 257 states. (To create a regular 16 x 16 dither
+                    pattern, the information in [2] and the corresponding code example [3] can be very
+                    helpful.)
+                </para>
+            </content>
+        </section>
+
+
+        <section address="DigitalRune">
+            <title>Screen-door transparency in DigitalRune Graphics</title>
+            <content>
+            </content>
+            <sections>
+                <section address="Materials">
+                    <title>Materials</title>
+                    <content>
+                        <para>
+                            Several <link xlink:href="fda15306-d5dc-449c-850d-82227359d35b" /> support
+                            screen-door transparency:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                <localUri>DigitalRune/Materials/GBufferTransparent</localUri>
+                            </listItem>
+                            <listItem>
+                                <localUri>DigitalRune/Materials/GBufferNormalTransparent</localUri>
+                            </listItem>
+                            <listItem>
+                                <localUri>DigitalRune/Materials/MaterialTransparent</localUri>
+                            </listItem>
+                        </list>
+                        <para>
+                            Screen-door transparency is also used in the <newTerm>InstancingSample</newTerm>
+                            (see <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />).
+                        </para>
+                    </content>
+                </section>
+                <section address="LOD">
+                    <title>Distance culling and LOD blending</title>
+                    <content>
+                        <para>
+                            Screen-door transparency can be used to fade out objects near the max draw
+                            distance and to blend between LODs. This is demonstrated in the
+                            <newTerm>LodBlendingSample</newTerm> (see
+                            <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />).
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="References">
+            <title>References</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        [1] Ordered Dithering,
+                        <externalLink>
+                            <linkText>http://en.wikipedia.org/wiki/Ordered_dithering</linkText>
+                            <linkUri>http://en.wikipedia.org/wiki/Ordered_dithering</linkUri>
+                        </externalLink>
+                    </listItem>
+                    <listItem>
+                        [2] Ordered Dithering, Graphics Gems II edited by James Arvo, Academic Press, 1991, pp. 73
+                    </listItem>
+                    <listItem>
+                        [3] dither.c,
+                        <externalLink>
+                            <linkText>http://tog.acm.org/resources/GraphicsGems/gemsii/dither/dither.c</linkText>
+                            <linkUri>http://tog.acm.org/resources/GraphicsGems/gemsii/dither/dither.c</linkUri>
+                        </externalLink>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

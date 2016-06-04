@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="cbab334c-f52c-4ab3-bbe8-9e8534c1695e" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <introduction>
+      <para>
+        The interface <codeEntityReference qualifyHint="true">T:DigitalRune.Windows.Docking.IDockable</codeEntityReference>
+        is implemented by all dockable elements
+        (<codeEntityReference qualifyHint="true">T:DigitalRune.Windows.Docking.DockWindow</codeEntityReference>,
+        <codeEntityReference qualifyHint="true">T:DigitalRune.Windows.Docking.DockPane</codeEntityReference>,
+        <codeEntityReference qualifyHint="true">T:DigitalRune.Windows.Docking.DockZone</codeEntityReference>,
+        and <codeEntityReference qualifyHint="true">T:DigitalRune.Windows.Docking.DockSplitPanel</codeEntityReference>).
+      </para>
+      <para>
+        It provides properties and methods to control the position and state of dockable elements.
+      </para>
+    </introduction>
+    
+
+    <section address="ClassDiagram">
+      <title>
+        Interface IDockable and related types
+      </title>
+      <content>
+        <mediaLink>
+          <image xlink:href="ClassDiagramIDockable"/>
+        </mediaLink>
+      </content>
+    </section>
+
+    
+    <relatedTopics>
+      <link xlink:href="99353552-6552-4910-8645-9d7ede864b06">DigitalRune.Windows.Docking Class Diagrams</link>
+      <codeEntityReference qualifyHint="true">N:DigitalRune.Windows.Docking</codeEntityReference>
+    </relatedTopics>
+
+  </developerConceptualDocument>
+</topic>

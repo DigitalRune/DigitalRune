@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="c6170a88-b013-46b8-9183-d2efe06b9fc4" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Scene">
+            <title>Scene</title>
+            <content>
+                <para>
+                    A <newTerm>scene</newTerm> (interface
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.IScene</codeEntityReference>)
+                    manages a collection of scene nodes. A scene node (base class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SceneNode</codeEntityReference>)
+                    usually represents an instance of a graphics object (a mesh, a camera, a light, etc.).
+                </para>
+                <para>
+                    A scene has two important purposes:
+                </para>
+                <list class='bullet'>
+                    <listItem>
+                        <para>
+                            <legacyBold>Scene Graph</legacyBold> -
+                            The main purpose is to organize the objects in a 3D scene. Graphics objects (such
+                            as meshes, cameras, lights, etc.) are represented by scene nodes. Scene nodes are
+                            organized in a hierarchy: Each scene node can have a
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.SceneNode.Parent</codeEntityReference>
+                            and zero or more <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.SceneNode.Children</codeEntityReference>.
+                            The resulting hierarchy is a tree (a graph without cycles) - usually called the
+                            "scene graph".
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Scene Queries</legacyBold> -
+                            The second purpose is to execute queries against the scene. For example, when
+                            rendering a scene it is important to quickly access all scene nodes that are within
+                            the camera frustum. When an object is lit, it is important to quickly get all lights
+                            that affect the object. A scene query is run by calling
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.SceneGraph.IScene.Query``1(DigitalRune.Graphics.SceneGraph.SceneNode,DigitalRune.Graphics.RenderContext)</codeEntityReference>.
+                            The generic type parameter of the method specifies the type of the query.
+                            See <link xlink:href="52bcba79-48f5-45f4-a5e8-288b0ca34d0c" /> for more information.
+                        </para>
+                    </listItem>
+                </list>
+                <para>
+                    The default implementation (class <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.Scene</codeEntityReference>)
+                    is derived from <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SceneNode</codeEntityReference>.
+                    That means the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.Scene</codeEntityReference>
+                    is always the root node of a scene graph.
+                </para>
+                <para>
+                    The scene graph is the organization of the scene nodes that is visible to the application logic.
+                    But internally, a scene can organize scene nodes in a way which is optimal for rendering.
+                    Different types of scenes might require different implementations: For example, indoor
+                    levels, outdoor levels, top-down views, side-scrolling games, etc. might require different
+                    data structures in order to enable efficient queries. Therefore, different applications
+                    can use different implementations of
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.IScene</codeEntityReference>.
+                </para>
+                <para>
+                    The default implementation <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.Scene</codeEntityReference>
+                    internally uses a <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.CollisionDomain</codeEntityReference>
+                    with a <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.DualPartition`1</codeEntityReference>
+                    to accelerate scene queries.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="SceneNodes">
+            <title>Scene nodes</title>
+            <content>
+                <para>
+                    A <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SceneNode</codeEntityReference>
+                    usually represents an instance of a graphics object. Derived classes are for example:
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ModelNode</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshNode</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.CameraNode</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LightNode</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LensFlareNode</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.DecalNode</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.BillboardNode</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ParticleSystemNode</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SpriteNode</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.FigureNode</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.FogNode</codeEntityReference>,
+                    etc. (see namespace <codeEntityReference qualifyHint="true">N:DigitalRune.Graphics.SceneGraph</codeEntityReference>).
+                </para>
+                <para>
+                    The scene node hierarchy, defined by the properties
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.SceneNode.Parent</codeEntityReference>
+                    and <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.SceneNode.Children</codeEntityReference>,
+                    is a tree (a graph without cycles). A scene node can only have zero or one parent - it
+                    cannot be the child of multiple nodes.
+                </para>
+                <para>
+                    Scene nodes implement <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.IGeometricObject</codeEntityReference>,
+                    which means that scene nodes have a bounding shape (property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.SceneNode.Shape</codeEntityReference>)
+                    and a transformation (properties <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.SceneNode.ScaleLocal</codeEntityReference>
+                    and <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.SceneNode.PoseLocal</codeEntityReference>/<codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.SceneNode.PoseWorld</codeEntityReference>).
+                </para>
+                <para>
+                    The bounding shape of the scene node is used by the scene for frustum culling and other
+                    optimizations. Be aware that the bounding shape of a scene node is <legacyBold>not</legacyBold>
+                    a hierarchical bounding shape. It defines only the bounds of the current node. The bounding
+                    shape does not include the bounds of the children! Some scene nodes have an
+                    <codeEntityReference qualifyHint="false">F:DigitalRune.Geometry.Shapes.Shape.Empty</codeEntityReference>
+                    bounding shape. These scene nodes are ignored in scene queries, i.e. they do not show up
+                    in the query results.
+                </para>
+                <para>
+                    Transformations can be specified in world space or local space (relative to the parent node).
+                    Scene nodes are attached to their parent: When the parent node is transformed (scaled,
+                    rotated or translated), all descendant nodes move together with the parent node.
+                </para>
+                <para>
+                    A scene node has two additional properties, which store the pose and scale of the last frame:
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.SceneNode.LastPoseWorld</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.SceneNode.LastScaleWorld</codeEntityReference>.
+                    These properties are usually only read by advanced effects, e.g. post-process motion blur.
+                    Both properties are not set automatically - they must be set manually! That means, you typically
+                    call the helper methods
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.SceneGraph.SceneHelper.SetLastPose(DigitalRune.Graphics.SceneGraph.SceneNode,System.Boolean)</codeEntityReference>
+                    or
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.SceneGraph.SceneHelper.SetLastScale(DigitalRune.Graphics.SceneGraph.SceneNode,System.Boolean)</codeEntityReference>
+                    before changing the pose or scale. For example:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Set LastPoseWorld of the model node and all child nodes to the current pose.
+myModelNode.SetLastPose(true);
+// Update the pose.
+myModelNode.PoseWorld = pose;
+]]>
+                </code>
+                <para>
+                    See class documentation <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SceneNode</codeEntityReference>
+                    for more information.
+                </para>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SceneHelper</codeEntityReference>
+                    provides useful extension methods for scene nodes. (For example: Scene nodes can be
+                    traversed using LINQ.)
+                </para>
+                <alert class="important">
+                    <para>
+                        It is necessary to point out that the scene graph in DigitalRune Graphics is <legacyBold>not</legacyBold>
+                        a traditional scene graph: The sole purpose of a scene is to define the hierarchical
+                        and spatial relationship of graphics objects. The scene graph does not
+                        implement game logic. That means the scene graph does not have an <newTerm>update traversal</newTerm>
+                        and the scene nodes do not have an Update method.
+                    </para>
+                    <para>
+                        It is important to distinguish between scene nodes and game objects ("entities").
+                        Game objects implement game logic. See <link xlink:href="fe8ccefb-7bce-4290-be56-81bd38ba86fe" />
+                        for more information on game objects.
+                    </para>
+                </alert>
+                <alert class="caution">
+                    <para>
+                        <legacyBold>Non-uniform  scaling and rotated scene nodes:</legacyBold>
+                        Scene nodes support scaling. When a parent scene node is scaled, all children are
+                        also scaled. If a child is rotated, the scaling can result in a <legacyItalic>shearing</legacyItalic>
+                        transformation. - Shearing is not supported. DigitalRune Graphics will automatically
+                        use a plausible non-sheared transformation for bounding shapes instead of the specified
+                        transformation.
+                        <legacyItalic>In general, it is recommended to avoid non-uniform scaling.</legacyItalic>
+                    </para>
+                    <para>
+                        The reason for avoiding shearing is that DigitalRune Graphics uses optimized collision
+                        detection algorithms for basic shapes, like boxes or spheres. These algorithms do
+                        not support shearing. Sheared shapes require slower collision algorithms.
+                    </para>
+                </alert>
+            </content>
+        </section>
+
+
+        <section address="CloneAndDispose">
+            <title>Cloning and disposal</title>
+            <content>
+                <para>
+                    Scene nodes are cloneable (see method
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.SceneGraph.SceneNode.Clone</codeEntityReference>).
+                    When a scene node is cloned, the instance data is duplicated. But the data objects (e.g.
+                    the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Camera</codeEntityReference>
+                    or the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Mesh</codeEntityReference>)
+                    are copied by reference. Cloning can be used to quickly create multiple instances of an object
+                    in a scene.
+                </para>
+                <alert class="tip">
+                    <para>
+                        It is recommended to create a clone when loading a model using the XNA ContentManager.
+                        This ensures that the original instance is not modified.
+                    </para>
+                </alert>
+                <para>
+                    Scene nodes implement the interface <codeEntityReference qualifyHint="false">T:System.IDisposable</codeEntityReference>.
+                    The <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.SceneGraph.SceneNode.Dispose(System.Boolean)</codeEntityReference>
+                    method should be called when the scene node is no longer needed. This is necessary in order
+                    to prevent potential memory leaks. Once the method has been called, the scene node
+                    is no longer usable. Reusing a previously disposed scene node may result in undefined
+                    behavior.
+                </para>
+                <para>
+                    The parameter of the <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.SceneGraph.SceneNode.Dispose(System.Boolean)</codeEntityReference>
+                    method determines whether data objects (e.g. the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Camera</codeEntityReference>,
+                    or the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Mesh</codeEntityReference>)
+                    are disposed as well. In most cases the data objects need to be kept intact because
+                    they might be shared between scene nodes.
+                </para>
+                <para>
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.SceneGraph.SceneNode.Dispose(System.Boolean)</codeEntityReference>
+                    is a recursive method: It is applied to the current scene node and all descendant scene
+                    nodes. I.e. if the entire scene should be disposed, it is sufficient to call
+                    <codeInline>scene.Dispose(false)</codeInline>.
+                </para>
+                <para>
+                    The following example demonstrates cloning and disposal of a model.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Load and clone a model, which was processed using the DigitalRune Model Processor.
+// Cloning ensures that the original instance stored by the XNA ContentMananger is 
+// not modified.
+ModelNode model = game.Content.Load<ModelNode>("tank").Clone();
+
+// Position the model in a scene.
+model.ScaleLocal = new Vector3F(0.8f);
+model.PoseWorld = new Pose(new Vector3F(0, 0, -2), Matrix33F.CreateRotationY(-0.3f));
+scene.Children.Add(model);
+
+...
+
+// Don't forget to dispose the model if it is no longer needed.
+scene.Children.Remove(model);
+model.Dispose(false);  // Disposes the model and all descendant nodes!
+                       // (Data objects are not disposed.)
+model = null;
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

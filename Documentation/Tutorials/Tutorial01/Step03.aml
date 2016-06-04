@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="0c04e065-a5fb-4045-bc09-7cce47c63d4e" revisionNumber="1">
+    <developerConceptualDocument
+      xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+        </introduction>
+
+
+        <section address="InputService">
+            <title>Add the input service</title>
+            <content>
+                <para>
+                    Let's add the DigitalRune input service to the game and use it to exit the game when ESC is pressed.
+                </para>
+                <code language="c#" title="Game1.cs">
+                    <![CDATA[
+…
+using DigitalRune.Game.Input;                                   // NEW
+…
+
+namespace MyGame
+{
+    public class Game1 : Microsoft.Xna.Framework.Game
+    {
+        …
+        public InputManager _inputManager;                      // NEW
+        …
+        
+        protected override void Initialize()
+        {
+            _inputManager = new InputManager(false);            // NEW
+
+            base.Initialize();
+        }
+        
+        protected override void Update(GameTime gameTime)
+        {
+            _inputManager.Update(gameTime.ElapsedGameTime);     // NEW
+
+            if (_inputManager.IsDown(Keys.Escape))              // NEW
+                Exit();                                         // NEW
+
+            base.Update(gameTime);
+        }
+        …
+                    ]]>
+                </code>
+                <para>
+                    Here you can see a common pattern: A service/manager is created in
+                    <legacyBold>Game.Initialize</legacyBold>.
+                    It is updated in <legacyBold>Game.Update</legacyBold>. Most services/managers
+                    in the DigitalRune Engine are used like this.
+                </para>
+                <para>
+                    If you run the game, you should be able to exit by pressing ESC on the keyboard.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="MyGameComponent">
+            <title>Add a game component</title>
+            <content>
+                <para>
+                    Personally, I prefer to keep my <legacyBold>Game</legacyBold> class clean and
+                    move have any game-specific update logic and input handling (like handling the
+                    ESC key) in a separate class.
+                </para>
+                <para>
+                    Let's add an item <localUri>MyGameComponent.cs</localUri> to the project and
+                    move the input handling into this class:
+                </para>
+                <code language="c#" title="MyGameComponent.cs">
+                    <![CDATA[
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+
+namespace MyGame
+{
+    public class MyGameComponent : Microsoft.Xna.Framework.GameComponent
+    {
+        public MyGameComponent(Game game)
+            : base(game)
+        {
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (((Game1)Game)._inputManager.IsDown(Keys.Escape))
+                Game.Exit();
+
+            base.Update(gameTime);
+        }
+    }
+}
+]]>
+                </code>
+                <para>
+                    In <localUri>Game1.cs</localUri> we create an instance of this game
+                    component. The input handling is removed.
+                </para>
+                <code language="c#" title="Game1.cs">
+                    <![CDATA[
+public class Game1 : Microsoft.Xna.Framework.Game
+{
+    …
+
+    protected override void Initialize()
+    {
+        _inputManager = new InputManager(false);
+
+        Components.Add(new MyGameComponent(this));          // NEW
+
+        base.Initialize();
+    }
+
+    protected override void Update(GameTime gameTime)
+    {
+        _inputManager.Update(gameTime.ElapsedGameTime);
+        
+        //// Allows the game to exit                        // REMOVE
+        //if (_inputManager.IsDown(Keys.Escape))            // REMOVE
+        //  Exit();                                         // REMOVE
+        
+        base.Update(gameTime);
+    }
+    …
+                      ]]>
+                </code>
+                <para>
+                    The <legacyBold>Game</legacyBold> class is now cleaner. However, the game
+                    component uses following code to access the input manager:
+                </para>
+                <code language="c#">
+                    if (((Game1)Game)._inputManager.IsDown(Keys.Escape))
+                </code>
+                <para>
+                    That means, every class in the game that wants to use the input service must
+                    have a reference to the <legacyBold>Game</legacyBold> instance. This is fine for
+                    small project. However, in more complex projects we want to <legacyItalic>decouple</legacyItalic> classes.
+                    This makes the whole code more reusable and maintainable. A design pattern that
+                    can be used for this is the <newTerm>service provider pattern</newTerm>.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="ServiceContainer">
+            <title>Add a service container</title>
+            <content>
+                <para>
+                    Let's use the service provider pattern in our game using the
+                    <codeEntityReference qualifyHint="true">T:DigitalRune.ServiceLocation.ServiceContainer</codeEntityReference>
+                    class.
+                </para>
+                <para>
+                    Add following in <localUri>Game1.cs</localUri>:
+                </para>
+                <code language="c#" title="Game1.cs">
+                    <![CDATA[
+…
+using DigitalRune.ServiceLocation;                                                  // NEW
+using Microsoft.Practices.ServiceLocation;                                          // NEW
+…
+
+namespace MyGame
+{
+    public class Game1 : Microsoft.Xna.Framework.Game
+    {
+        …
+        private ServiceContainer _services;                                         // NEW
+        private InputManager _inputManager;                                         // NEW: private instead of public
+        …
+
+        protected override void Initialize()
+        {
+            _services = new ServiceContainer();                                     // NEW
+            ServiceLocator.SetLocatorProvider(() => _services);                     // NEW
+
+            _services.Register(typeof(Microsoft.Xna.Framework.Game), null, this);   // NEW
+            _services.Register(typeof(Game1), null, this);                          // NEW
+
+            _inputManager = new InputManager(false);
+            _services.Register(typeof(IInputService), null, _inputManager);         // NEW
+
+            Components.Add(new MyGameComponent(this));
+
+            base.Initialize();
+        }
+        …
+    }
+}
+                    ]]>
+                </code>
+                <para>
+                    This code creates a <legacyBold>ServiceContainer</legacyBold> instance and uses
+                    the <legacyBold>ServiceLocator</legacyBold> to make it globally available.
+                    The input service is registered in the service container. The field
+                    <legacyBold>Game1._inputManager</legacyBold> doesn't have to be public any more.
+                    We also register the <legacyBold>Game</legacyBold> instance itself in the service container.
+                </para>
+                <para>
+                    From now on <legacyBold>MyGameComponent</legacyBold> and any other code in your
+                    game can access the input service like this:
+                </para>
+                <code language="c#" title="MyGameComponent.cs">
+                    <![CDATA[
+using DigitalRune.Game.Input;                                                     // NEW
+using Microsoft.Practices.ServiceLocation;                                        // NEW
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+
+namespace MyGame
+{
+    public class MyGameComponent : Microsoft.Xna.Framework.GameComponent
+    {
+        private IInputService _inputService;                                      // NEW
+
+        public MyGameComponent(Game game)
+            : base(game)
+        {
+            _inputService = ServiceLocator.Current.GetInstance<IInputService>();  // NEW
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            //if (((Game1)Game)._inputManager.IsDown(Keys.Escape))                // REMOVE
+            if (_inputService.IsDown(Keys.Escape))                                // NEW
+                Game.Exit();
+
+            base.Update(gameTime);
+        }
+    }
+}
+]]>
+                </code>
+                <para>
+                    Another pattern that is used througout the DigitalRune libraries: The manager
+                    class, e.g. <legacyBold>InputManager</legacyBold>, implements an interface, e.g.
+                    <legacyBold>IInputService</legacyBold>. The <legacyBold>Game</legacyBold> class
+                    creates and uses the manager instances. Only the interfaces are registered in the
+                    service container. The rest of the game code uses only the interface
+                    <legacyBold>IInputService</legacyBold>. This interface contains everything that is
+                    needed by other game components.
+                </para>
+                <para>
+                    The service provider pattern is very helpful – however, it is completely optional.
+                    You do not need to use it. All DigitalRune libraries will work fine without a
+                    service provider.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Next">
+            <title>Next</title>
+            <content>
+                <para>
+                    <link xlink:href="26ebc8f3-4778-4979-a217-1d85e2c5ae31" />
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

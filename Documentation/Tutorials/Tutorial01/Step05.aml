@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="efe7ad45-ea74-4e57-810d-93bc3ef3a28f" revisionNumber="1">
+    <developerConceptualDocument
+      xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+        </introduction>
+
+
+        <section address="SpriteFont">
+            <title>Add a sprite font</title>
+            <content>
+                <para>
+                    To output text in an XNA game, we need a sprite font. Let's add one:
+                </para>
+                <list class="ordered">
+                    <listItem>
+                        In the VS Solution Explorer right-click <localUri>MyGameContent</localUri>.
+                    </listItem>
+                    <listItem>
+                        Select <ui>Add | New Item…</ui>
+                    </listItem>
+                    <listItem>
+                        Select the <localUri>Sprite Font</localUri> template.
+                    </listItem>
+                    <listItem>
+                        Leave the default name (<localUri>SpriteFont1.spritefont</localUri>).
+                    </listItem>
+                    <listItem>
+                        And press <ui>Add</ui>.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="DebugRenderer">
+            <title>Add a debug renderer</title>
+            <content>
+                <para>
+                    Modify <localUri>MyGraphicsScreen.cs</localUri> and add a <legacyBold>DebugRenderer</legacyBold>:
+                </para>
+                <code language="c#" title="MyGraphicsScreen.cs">
+                    <![CDATA[
+using System;
+using DigitalRune.Graphics;
+using DigitalRune.Graphics.Rendering;                                                   // NEW
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;                                                 // NEW
+
+namespace MyGame
+{
+    public class MyGraphicsScreen : GraphicsScreen
+    {
+        public DebugRenderer DebugRenderer { get; private set; }                        // NEW
+        
+        public MyGraphicsScreen(IGraphicsService graphicsService)
+            : base(graphicsService)
+        {
+            var spriteFont = graphicsService.Content.Load<SpriteFont>("SpriteFont1");   // NEW
+            DebugRenderer = new DebugRenderer(graphicsService, spriteFont);             // NEW
+        }
+        
+        protected override void OnUpdate(TimeSpan deltaTime)
+        {
+        }
+        
+        protected override void OnRender(RenderContext context)
+        {
+            var graphicsDevice = GraphicsService.GraphicsDevice;
+            graphicsDevice.Clear(Color.CornflowerBlue);
+
+            DebugRenderer.Render(context);                                              // NEW
+        }
+    }
+}
+
+                    ]]>
+                </code>
+                <para>
+                    Draw some debug text in <localUri>MyGameComponent.cs</localUri>:
+                </para>
+                <code language="c#" title="MyGameComponent.cs">
+                    <![CDATA[
+… 
+public class MyGameComponent : Microsoft.Xna.Framework.GameComponent
+{
+    …
+    
+    public MyGameComponent(Game game)
+        : base(game)
+    {
+        _inputService = ServiceLocator.Current.GetInstance<IInputService>();
+
+        _graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
+        
+        _myGraphicsScreen = new MyGraphicsScreen(_graphicsService);
+        _graphicsService.Screens.Add(_myGraphicsScreen);
+        
+        _myGraphicsScreen.DebugRenderer.DrawText("MyGame");                             // NEW
+    }
+    …
+]]>
+                </code>
+                <para>
+                    Now, the game looks like this:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Tutorial-01-05"/>
+                </mediaLink>
+                <para>
+                    Next, we use the <legacyBold>DebugRenderer</legacyBold> to render a few arrows
+                    at the world origin. Add the following lines in <localUri>MyGameComponent.cs</localUri>:
+                </para>
+                <code language="c#" title="MyGameComponent.cs">
+                    <![CDATA[
+…
+using DigitalRune.Geometry;                                                     // NEW
+…
+
+namespace MyGame
+{
+    public class MyGameComponent : Microsoft.Xna.Framework.GameComponent
+    {
+        …
+        
+        public MyGameComponent(Game game)
+            : base(game)
+        {
+            …
+            _myGraphicsScreen.DebugRenderer.DrawText("MyGame");
+            _myGraphicsScreen.DebugRenderer.DrawAxes(Pose.Identity, 1, false);  // NEW
+        }
+        …
+]]>
+                </code>
+                <para>
+                    If you try to run the project, you will get an exception. The
+                    <legacyBold>DebugRenderer</legacyBold> lets you know that it cannot render 3D
+                    graphics without a camera. The camera is necessary to define the viewpoint of
+                    the player.
+                </para>
+                <para>
+                    Let's add a camera in <localUri>MyGraphicsScreen.cs</localUri>:
+                </para>
+                <code language="c#" title="MyGraphicsScreen.cs">
+                    <![CDATA[
+using System;
+using DigitalRune.Geometry;
+using DigitalRune.Graphics;
+using DigitalRune.Graphics.Rendering;
+using DigitalRune.Graphics.SceneGraph;                                                  // NEW
+using DigitalRune.Mathematics;                                                          // NEW
+using DigitalRune.Mathematics.Algebra;                                                  // NEW
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+namespace MyGame
+{
+    public class MyGraphicsScreen : GraphicsScreen
+    {
+        public DebugRenderer DebugRenderer { get; set; }
+        public CameraNode CameraNode { get; set; }                                      // NEW
+
+        public MyGraphicsScreen(IGraphicsService graphicsService)
+            : base(graphicsService)
+        {
+            var spriteFont = graphicsService.Content.Load<SpriteFont>("SpriteFont1");
+            DebugRenderer = new DebugRenderer(graphicsService, spriteFont);
+
+            var projection = new PerspectiveProjection();                               // NEW
+            projection.SetFieldOfView(                                                  // NEW
+                ConstantsF.PiOver4,                                                     // NEW
+                    graphicsService.GraphicsDevice.Viewport.AspectRatio,                // NEW
+                    0.1f,                                                               // NEW
+                    100);                                                               // NEW
+            var camera = new Camera(projection);                                        // NEW
+            CameraNode = new CameraNode(camera);                                        // NEW
+            CameraNode.PoseWorld = new Pose(new Vector3F(0, 1, 3));                     // NEW
+        }
+        
+        …
+        
+        protected override void OnRender(RenderContext context)
+        {
+            var graphicsDevice = GraphicsService.GraphicsDevice;
+            graphicsDevice.Clear(Color.CornflowerBlue);
+
+            context.CameraNode = CameraNode;                                            // NEW
+
+            DebugRenderer.Render(context);
+
+            context.CameraNode = null;                                                  // NEW
+        }
+    }
+}
+                    ]]>
+                </code>
+                <para>
+                    The camera is positioned at (0, 1, 5). Per default it looks forward (which is
+                    the -z direction in XNA and DigitalRune). To let the renderer know which camera
+                    it should use, we have to set this information in the
+                    <legacyBold>RenderContext</legacyBold> in <legacyBold>MyGraphicsScreen.OnRender</legacyBold>.
+                </para>
+                <para>
+                    Our current game:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Tutorial-01-06"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Next">
+            <title>Next</title>
+            <content>
+                <para>
+                    <link xlink:href="da752ba9-7056-4485-9b90-d6070cb7c1e8" />
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

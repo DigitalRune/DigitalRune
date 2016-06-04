@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="bae21eb9-66c2-422c-95ce-992e873a4774" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This section describes the game object service.
+            </para>
+        </introduction>
+
+
+        <section address="Service">
+            <title>Game object service</title>
+            <content>
+                <para>
+                    The interface <codeEntityReference qualifyHint="false">T:DigitalRune.Game.IGameObjectService</codeEntityReference>
+                    is a service that manages a collection of game objects. Objects which have access to
+                    this interface can add new game objects or remove existing game objects. Game objects
+                    can be queried by their name. (All game objects managed by a game object service must
+                    have a unique name. See property <codeEntityReference qualifyHint="true">P:DigitalRune.Game.GameObject.Name</codeEntityReference>.)
+                </para>
+                <para>
+                    The interface is implemented by the <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GameObjectManager</codeEntityReference>.
+                    The game object manager is, in most cases, created and owned by the main game class.
+                    The manager has an <codeEntityReference qualifyHint="false">M:DigitalRune.Game.GameObjectManager.Update(System.TimeSpan)</codeEntityReference>
+                    method which updates all game objects and is usually called once per frame in the game loop.
+                </para>
+
+                <!-- TODO: Add sample showing how to initialize and update the GameObjectManager. -->
+
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

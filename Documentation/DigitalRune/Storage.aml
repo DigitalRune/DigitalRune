@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="120bed13-f23b-4774-bae7-d64d410d2122" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <!--
+    <summary>
+      <para>Optional summary abstract</para>
+    </summary>
+    -->
+
+    <introduction>
+      <para>
+        This topic describes the storage API for cross-platform file access and virtual file systems.
+      </para>
+      <autoOutline />
+    </introduction>
+
+    <section address="Storages">
+      <title>Storages</title>
+      <content>
+        <para>
+          Different platforms have different APIs for accessing files. For example:
+        </para>
+        <list class="bullet">
+          <listItem>
+              Desktop apps access the file system directly (namespace <codeEntityReference qualifyHint="true">N:System.IO</codeEntityReference>).
+          </listItem>
+          <listItem>
+              Silverlight apps use isolated storage.
+          </listItem>
+          <listItem>
+              Windows Store apps use storage folders.
+          </listItem>
+          <listItem>
+              XNA games use the title storage and user storage on Xbox 360.
+          </listItem>
+          <listItem>
+              Etc.
+          </listItem>
+        </list>
+        <para>
+          DigitalRune introduces a common storage API. The interface <codeEntityReference qualifyHint="false">T:DigitalRune.Storages.IStorage</codeEntityReference>
+          provides access to files from different sources. The namespace <codeEntityReference qualifyHint="true">N:DigitalRune.Storages</codeEntityReference>
+          includes several storage providers:
+        </para>
+        <list class="bullet">
+          <listItem>
+              <codeEntityReference qualifyHint="false">T:DigitalRune.Storages.FileSystemStorage</codeEntityReference>
+              provides access to the file system of the operation system.
+          </listItem>
+          <listItem>
+              <codeEntityReference qualifyHint="false">T:DigitalRune.Storages.TitleStorage</codeEntityReference>
+              provides access to the title storage on Xbox 360.
+          </listItem>
+        </list>
+        <para>
+          The following storage types are built on top of other storages:
+        </para>
+        <list class="bullet">
+          <listItem>
+              <codeEntityReference qualifyHint="false">T:DigitalRune.Storages.ZipStorage</codeEntityReference>
+              provides access to files stored in ZIP archives. The ZIP archive can be read from any
+              of the existing storages.
+          </listItem>
+          <listItem>
+              <codeEntityReference qualifyHint="false">T:DigitalRune.Storages.VfsStorage</codeEntityReference>
+              maps existing storages into a virtual file system. Different storage devices and locations
+              can be accessed as a single directory hierarchy.
+          </listItem>
+        </list>
+        <para>
+          Additional storage providers will be added in future releases. Third-party developers can
+          also provide custom implementations.
+        </para>
+      </content>
+    </section>
+
+
+    <section address="PAK">
+      <title>PAK file format</title>
+      <content>
+        <para>
+          Video games have a tradition of packing game content into single package files (.PAK files).
+          Package formats are used to simplify the file structure, add file compression and encryption.
+          The actual file format of a .PAK file may vary from one game to another.
+        </para>
+        <para>
+          The <codeEntityReference qualifyHint="false">T:DigitalRune.Storages.ZipStorage</codeEntityReference>
+          provides access to package files that use the ZIP file format. That means, game assets can
+          be packed into a ZIP package and the game logic can access the files in the package. The
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Storages.ZipStorage</codeEntityReference>
+          automatically handles decompression and encryption (optional).
+        </para>
+        <para>
+          Developers can provide custom <codeEntityReference qualifyHint="false">T:DigitalRune.Storages.IStorage</codeEntityReference>
+          implementations to provide support for other package file formats.
+        </para>
+        <para>
+          DigitalRune includes a command-line tool <link xlink:href="983ed4b5-d98b-4244-81d3-9518b7a16ab4" />
+          for packing files into a ZIP archive. The tool was designed to be used from the command-line or called
+          as a <ui>Build Event</ui> in a Visual Studio project.
+        </para>
+        <alert class="note">
+          <para>
+            It is not required to use the Pack.exe provided by DigitalRune. Any standard ZIP tool can
+            be used to create/update packages.
+          </para>
+        </alert>
+      </content>
+    </section>
+    
+
+    <section address="VFS">
+      <title>Virtual file systems</title>
+      <content>
+        <para>
+          The class <codeEntityReference qualifyHint="false">T:DigitalRune.Storages.VfsStorage</codeEntityReference>
+          can be used to create a <newTerm>virtual file system</newTerm>. A virtual file system is 
+          abstraction on top of concrete storages. Existing storage locations can be mapped into a
+          virtual directory hierarchy.
+        </para>
+        <para>
+          Virtual files systems are commonly used in games to abstract access to files. The actual
+          storage locations and file IO may vary from one platform to another. For example, game
+          content can be provided on a removable media (ROM cartridge, DVD, Blu-ray Disc, etc.), can
+          be installed on a local harddisk, or can be cached in memory for faster access. The storage
+          classes can be used to access these locations. A <codeEntityReference qualifyHint="false">T:DigitalRune.Storages.VfsStorage</codeEntityReference>
+          can be set up to map these locations into a virtual file system. The game logic reads
+          assets from the virtual file system. Using this approach the game logic can more easily be
+          ported to different platforms.
+        </para>
+      </content>
+      <sections>
+        <section>
+          <title>Example: MonoGame Samples project</title>
+          <content>
+            <para>
+              The following structure is used in the <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />
+              project for MonoGame: The game assets are stored in the <localUri>Content</localUri>
+              subdirectory of the application directory. The sample assets (*.xnb files) are packed
+              into a single ZIP archive <localUri>Assets.zip</localUri>. The DigitalRune Graphics assets
+              are stored in <localUri>DigitalRune.zip</localUri>.
+            </para>
+            <code language="none">
+      <![CDATA[
+<gameLocation>/
+    Content/
+      Assets.zip
+      DigitalRune.zip
+      other assets...
+]]>
+            </code>
+            <para>
+              The following code is used to set up the virtual file system:
+            </para>
+            <code language="c#" title="Setting up a virtual file system">
+        <![CDATA[
+// Create a TitleStorage that reads files from "<gameLocation>/Content".
+var titleStorage = new TitleStorage("Content");
+
+// The VfsStorage creates a virtual file system.
+var vfsStorage = new VfsStorage();
+
+// Map the titleStorage to the root "/" of the virtual file system.
+vfsStorage.MountInfos.Add(new VfsMountInfo(titleStorage, null));
+
+// The game assets (*.xnb files) are packed as a ZIP archive "Content/Assets.zip".
+// A ZipStorage can be used to access files inside the ZIP archive.
+// Mount the zipped files to the root "/" of the virtual file system.
+var assetsStorage = new ZipStorage(titleStorage, "Assets.zip");
+vfsStorage.MountInfos.Add(new VfsMountInfo(assetsStorage, null));
+
+// DigitalRune Graphics assets (built-in effects) are stored in "Content/DigitalRune.zip".
+// Mount the DigitalRune assets to the root of the virtual file system.
+var drStorage = new ZipStorage(titleStorage, "DigitalRune.zip");
+vfsStorage.MountInfos.Add(new VfsMountInfo(drStorage, null));
+]]>
+            </code>
+            <para>
+              Once the virtual file system is set up, files can be easily be open for reading.
+            </para>
+            <code language="c#" title="Reading a file from a virtual file system"><![CDATA[
+try
+{
+  // To read the file "Models/Model.xnb" which is stored in "Assets.zip":
+  using (var stream = vfsStorage.OpenFile("Models/Model.xnb")
+  {
+    // Here: Read file content.
+  }
+}
+catch (Exception ex)
+{
+  // Here: Handle file IO exceptions.
+}
+]]>
+            </code>
+            <para>
+              In XNA an <codeEntityReference qualifyHint="false">T:DigitalRune.Storages.StorageContentManager</codeEntityReference>
+              can be used instead of the regular XNA ContentManager.
+            </para>
+            <code language="c#" title="StorageContentManager for XNA">
+              <![CDATA[
+// The StorageContentManager can be used in XNA to read game assets from the
+// virtual file system. (Replaces the XNA ContentManager.)
+Content = new StorageContentManager(Services, vfsStorage);
+]]>
+            </code>
+            <para>
+              Note that multiple storage locations can be mapped to the same mount point. In the 
+              example above three storages (<localUri>Content/*.*</localUri>, <localUri>Content/Assets.zip</localUri>,
+              and <localUri>Content/DigitalRune.zip</localUri>) are mapped to the root "/" of the virtual
+              file system. The order of the entries in the
+              <codeEntityReference qualifyHint="false">P:DigitalRune.Storages.VfsStorage.MountInfos</codeEntityReference>
+              list determines the search order.
+            </para>
+          </content>
+        </section>
+      </sections>
+    </section>
+
+    
+    <relatedTopics>
+      <externalLink>
+        <linkText>PAK file format (Wikipedia)</linkText>
+        <linkUri>http://en.wikipedia.org/wiki/PAK_(file_format)</linkUri>
+      </externalLink>
+      <externalLink>
+        <linkText>Virtual File Systems (Wikipedia)</linkText>
+        <linkUri>http://en.wikipedia.org/wiki/Virtual_file_system</linkUri>
+      </externalLink>
+        
+        <link xlink:href="983ed4b5-d98b-4244-81d3-9518b7a16ab4" />
+
+        <codeEntityReference qualifyHint="true">N:DigitalRune.Storages</codeEntityReference>
+      <codeEntityReference qualifyHint="false">T:DigitalRune.Storages.IStorage</codeEntityReference>
+      <codeEntityReference qualifyHint="false">T:DigitalRune.Storages.FileSystemStorage</codeEntityReference>
+      <codeEntityReference qualifyHint="false">T:DigitalRune.Storages.TitleStorage</codeEntityReference>
+      <codeEntityReference qualifyHint="false">T:DigitalRune.Storages.VfsStorage</codeEntityReference>
+      <codeEntityReference qualifyHint="false">T:DigitalRune.Storages.ZipStorage</codeEntityReference>
+      <codeEntityReference qualifyHint="false">T:DigitalRune.Storages.StorageContentManager</codeEntityReference>
+    </relatedTopics>
+  
+  </developerConceptualDocument>
+</topic>

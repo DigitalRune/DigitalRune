@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="e988b18d-0b1a-481d-89e6-3d40afa5ab5d" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                DigitalRune Animation supports skeleton mapping which can be used to transfer
+                an animation from one skeleton to another skeleton with a different structure.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Mapping">
+            <title>Skeleton mapping</title>
+            <content>
+                <para>
+                    Skeleton mapping can be used to transfer skeletal poses from one skeleton
+                    to another skeleton with a different topology (different number of bones,
+                    different bone poses, rotated bones, etc.). Skeleton mapping can be used for:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Ragdoll Mapping: A high detail skeleton (e.g. 60 bones) is mapped to a low detail skeleton
+                        (e.g. 15 bones). The high detail skeleton controls a visual character model. The low detail
+                        skeleton controls a ragdoll.
+                    </listItem>
+                    <listItem>
+                        Motion Retargeting: The animations of one character should be applied to another character that
+                        uses a different skeleton. Motion retargeting is usually done as a pre-processing step, e.g. in
+                        the XNA content pipeline.
+                    </listItem>
+                </list>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.SkeletonMapper</codeEntityReference>
+                    establishes the relations between two skeletons using a collection of
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.BoneMapper</codeEntityReference>s.
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.SkeletonMapper</codeEntityReference>
+                    allows to transfer poses in both directions.
+                </para>
+                <para>
+                    DigitalRune Animation contains several predefined bone mapper classes:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.DirectBoneMapper</codeEntityReference>:
+                        This is the simplest bone mapper class. It observes the bone transformation of a single
+                        bone in the source skeleton  and replicates the same bone transformation in the target skeleton.
+                        This is the only bone mapper that supports translations. Other bone mappers only transfer rotations.
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.ChainBoneMapper</codeEntityReference>:
+                        This bone mapper can be used to map between bone chains of different length. It can also
+                        be used for single bones. It computes the direction from the root bone of a chain to the
+                        tip bone of a chain. Then it makes sure that the chain in the target skeleton has the same
+                        root to tip direction. Only the root bone of the chain is modified.
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.UpperBackBoneMapper</codeEntityReference>:
+                        A specialized bone mapper for spine bones.
+                    </listItem>
+                    <listItem>
+                        Custom bone mappers:
+                        You can also derive a class from
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.BoneMapper</codeEntityReference>
+                        to add a custom bone mapping for special situations.
+                    </listItem>
+                </list>
+                <para>
+                    Without the bone mappers, the skeleton mapper does nothing. Bone mappers must
+                    be configured manually. Defining the right bone mappers is not trivial if the skeletons are very different.
+                    The skeleton mapping sample in the CharacterAnimationSample contains tips that help to set up a skeleton mapping between
+                    two skeletons.
+                </para>
+                <para>
+                    See the class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.SkeletonMapper</codeEntityReference>, the
+                    class <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.BoneMapper</codeEntityReference>,
+                    and derived bone mappers for more information.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="ClassDiagram">
+            <title>Class diagram</title>
+            <content>
+                <mediaLink>
+                    <image xlink:href="ClassDiagramAnimationCharacterMapping"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Retargeting">
+            <title>Motion retargeting</title>
+            <content>
+                <para>
+                    <newTerm>Motion retargeting</newTerm> (or more precise:
+                    <newTerm>animation retargeting</newTerm>) is the process of transferring the animations of
+                    one character to another character with a different skeleton topology.
+                    In the following video, the walk animation of the Dude model (left) is applied to the
+                    Marine model (right).
+                </para>
+                <list class="nobullet">
+                    <listItem>
+                        <para>
+                            <externalLink>
+                                <linkText>Video: Motion retargeting</linkText>
+                                <linkUri>https://www.youtube.com/watch?v=9TRPSabQpNQ</linkUri>
+                            </externalLink>
+                        </para>
+                    </listItem>
+                </list>
+                <para>
+                    At the first look the models seem similar, but a look at skeletal structure reveals a number
+                    of differences:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Skeletons"/>
+                </mediaLink>
+                <para>
+                    (The orange lines represent bones and the red-green-blue tripods indicate bone spaces.)
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Both characters are modeled at a different scale, which is removed in the sample by
+                        scaling the models in the XNA content pipeline.
+                    </listItem>
+                    <listItem>
+                        The Dude's skeleton is more detailed compared to the Marine: 58 bones vs. 26 bones
+                    </listItem>
+                    <listItem>
+                        The bones have different size and orientations.
+                    </listItem>
+                    <listItem>
+                        The bind poses are similar, but not identical. The Dude’s legs are spread wider apart,
+                        whereas the Marine's legs are modeled straight. (This can often be a problem when
+                        retargeting walk animations.)
+                    </listItem>
+                    <listItem>
+                        The Dude's root bone is located at the center of the model (near the pelvis). The
+                        Marine's root bone is placed at the ground.
+                    </listItem>
+                    <listItem>
+                        Etc.
+                    </listItem>
+                </list>
+                <para>
+                    Motion retargeting is done using the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.SkeletonMapper</codeEntityReference>.
+                    Following example code defines the mappings between the models in the video:
+                </para>
+                <code language="cs">
+                    _mapper = new SkeletonMapper(_dudeSkeletonPose, _marineSkeletonPose);
+
+                    // Pelvis
+                    _mapper.BoneMappers.Add(new DirectBoneMapper(1, 1) { MapTranslations=true });
+                        
+                    // Spine
+                    _mapper.BoneMappers.Add(new ChainBoneMapper(3, 6, 2, 3));
+
+                    // Clavicle
+                    _mapper.BoneMappers.Add(new DirectBoneMapper(12, 6) { MapTranslations=false });
+                    _mapper.BoneMappers.Add(new DirectBoneMapper(31, 12) { MapTranslations=false });
+
+                    // Left leg
+                    _mapper.BoneMappers.Add(new ChainBoneMapper(50, 51, 16, 17));
+                    _mapper.BoneMappers.Add(new ChainBoneMapper(51, 52, 17, 18));
+                    _mapper.BoneMappers.Add(new DirectBoneMapper(52, 18) { MapTranslations=false });
+
+                    // Right leg
+                    _mapper.BoneMappers.Add(new ChainBoneMapper(54, 55, 21, 22));
+                    _mapper.BoneMappers.Add(new ChainBoneMapper(55, 56, 22, 23));
+                    _mapper.BoneMappers.Add(new DirectBoneMapper(56, 23) { MapTranslations=false });
+
+                    // Left arm
+                    _mapper.BoneMappers.Add(new ChainBoneMapper(13, 14, 7, 8));
+                    _mapper.BoneMappers.Add(new ChainBoneMapper(14, 15, 8, 9));
+                    _mapper.BoneMappers.Add(new DirectBoneMapper(15, 9) { MapTranslations=false });
+
+                    // Right arm
+                    _mapper.BoneMappers.Add(new ChainBoneMapper(32, 33, 12, 13));
+                    _mapper.BoneMappers.Add(new ChainBoneMapper(33, 34, 13, 14));
+                    _mapper.BoneMappers.Add(new DirectBoneMapper(34, 14) { MapTranslations=false });
+
+                    // Neck, head
+                    _mapper.BoneMappers.Add(new ChainBoneMapper(6, 7, 3, 4));
+                    _mapper.BoneMappers.Add(new DirectBoneMapper(7, 4) { MapTranslations=false });
+                </code>
+                <para>
+                    The numbers in brackets are simply bone indices.
+                    Once the mapping is initialized, any animations running on one model can be copied to the
+                    other model by calling:
+                </para>
+                <code language="cs">
+                    _skeletonMapper.MapAToB();
+                </code>
+                <para>or</para>
+                <code language="cs">
+                    _skeletonMapper.MapBToA();
+                </code>
+                <para>These methods transfer the current pose and must be called each frame.</para>
+            </content>
+        </section>
+
+
+        <section address="Ragdoll">
+            <title>Ragdoll mapping</title>
+            <content>
+                <para>
+                    Another application of the skeleton mapper is
+                    <newTerm>ragdoll mapping</newTerm>:
+                </para>
+                <para>
+                    Imagine a character with 60+ bones. Creating a ragdoll with 60+ rigid bodies (one per
+                    bone) is a bad idea performance-wise. Ragdolls should have a low number of bodies; for
+                    example, 15 bodies (or less). In this scenario there are two skeleton representations for
+                    one model. A 60 bone, high-detail skeleton is used to animate the visual model. A 15 bone,
+                    low-detail skeleton represents the ragdoll. We can create a skeleton mapper that maps
+                    between both skeletons. The skeleton mapper can transfer key frame animations from the
+                    high-detail skeleton to the ragdoll, or ragdoll poses to the visual character.
+                </para>
+                <alert class="important">
+                    <para>
+                        It is not always required to use a skeleton mapper to create a low-detail ragdoll for
+                        a high-detail skeleton. The ragdoll samples of DigitalRune Animation (see
+                        <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />) show that it
+                        is possible to create a ragdoll for the high-detail skeleton directly by simply
+                        ignoring some bones. Both approaches have their pros and cons. For beginners and simple
+                        scenarios (like in the samples), we recommend not using the skeleton mapper.
+                    </para>
+                </alert>
+            </content>
+        </section>
+
+
+        <section address="Caveats">
+            <title>Caveats</title>
+            <content>
+                <para>
+                    If you perform motion retargeting at runtime and run into performance issues, then it is
+                    better to use the skeleton mapper in the
+                    preprocessing stage: Retarget the animation once and store the retargeted animation as
+                    a new key frame animation.
+                </para>
+                <para>
+                    If the mapped skeletons are very different, the mapped animation is not optimal. In the
+                    video above, you can see that the feet of the Marine model are tilted, and there are
+                    other minor issues. The mapping process is not perfect.
+                </para>
+                <para>
+                    If the standard
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.BoneMapper</codeEntityReference>s
+                    don’t do a good job for a model, then you can create custom bone mapper types or extend
+                    the existing classes.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

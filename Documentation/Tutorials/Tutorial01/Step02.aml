@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="25418622-e634-4741-8d17-efc9fb44fba7" revisionNumber="1">
+    <developerConceptualDocument
+      xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+        </introduction>
+
+
+        <section address="Create">
+            <title>Create an XNA game</title>
+            <content>
+                <para>
+                    Let's start by creating an empty XNA game in Visual Studio:
+                </para>
+                <list class="ordered">
+                    <listItem>
+                        Start <legacyItalic>Visual Studio 2010</legacyItalic>.
+                    </listItem>
+                    <listItem>
+                        Select <ui>File | New | Project…</ui>
+                    </listItem>
+                    <listItem>
+                        Select the <legacyItalic>Windows Game (4.0)</legacyItalic> project template.
+                    </listItem>
+                    <listItem>
+                        Choose a <ui>name</ui>, e.g. <legacyItalic>MyGame</legacyItalic>.
+                    </listItem>
+                    <listItem>
+                        Choose a <ui>location</ui>.
+                    </listItem>
+                    <listItem>
+                        Press <ui>OK</ui>.
+                    </listItem>
+                    <listItem>
+                        Select <ui>Debug | Start Debugging</ui> or press F5 to run the game.
+                    </listItem>
+                </list>
+                <para>
+                    You should see an empty game window like this:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Tutorial-01-02"/>
+                </mediaLink>
+                <para>
+                    Press ALT+F4 to quit the game.
+                </para>
+                <para>
+                    Let's clean up <localUri>Game1.cs</localUri> and remove anything we do not need. Change <localUri>Game1.cs</localUri> to this:
+                </para>
+                <code language="C#" title="Game1.cs">
+                    <![CDATA[
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+
+namespace MyGame
+{
+    public class Game1 : Microsoft.Xna.Framework.Game
+    {
+        private GraphicsDeviceManager _graphicsDeviceManager;
+    
+        public Game1()
+        {
+            _graphicsDeviceManager= new GraphicsDeviceManager(this);
+        }
+    
+        protected override void Initialize()
+        {
+            base.Initialize();
+        }
+    
+        protected override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+        }
+    
+        protected override void Draw(GameTime gameTime)
+        {
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+    
+            base.Draw(gameTime);
+        }
+    }
+}
+                    ]]>
+                </code>
+                <para>
+                    We have an empty XNA game. Next, we start to add DigitalRune Engine features to this project.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="References">
+            <title>Add references to DigitalRune assemblies</title>
+            <content>
+                <list class="ordered">
+                    <listItem>
+                        In the VS <ui>Solution Explorer</ui>, right-click the <ui>References</ui> folder and select <ui>Add Reference…</ui>
+                    </listItem>
+                    <listItem>
+                        Browse to folder which contains the DigitalRune assemblies for XNA/Windows:
+                        <list class="nobullet">
+                            <listItem>
+                                <localUri>
+                                    <![CDATA[<DigitalRune Engine Folder>\References\XNA\Windows]]>
+                                </localUri>
+                            </listItem>
+                        </list>
+                    </listItem>
+                    <listItem>
+                        Select all assemblies except the Content Pipeline assemblies and press <ui>OK</ui>.
+                    </listItem>
+                </list>
+                <para>
+                    Your solution should look like this:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Tutorial-01-03"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Next">
+            <title>Next</title>
+            <content>
+                <para>
+                    <link xlink:href="0c04e065-a5fb-4045-bc09-7cce47c63d4e" />
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

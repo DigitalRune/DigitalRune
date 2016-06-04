@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="aa0975de-0777-4a65-bee0-1bfed7d87b3e" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This section explains how animations can be applied to animatable object and
+                properties.
+            </para>
+        </introduction>
+
+
+        <section address="Property">
+            <title>Animating a property</title>
+            <content>
+                <para>
+                    The following example demonstrates how an <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableProperty`1</codeEntityReference>
+                    can be animated.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Create new property which can be animated.
+AnimatableProperty<Vector3F> position = new AnimatableProperty<Vector3F>();
+
+// Create an animation that animates the position from point (0, 0, 0)
+// to point (100, 200, 300) over a time of 3 seconds.
+var animation = new Vector3FFromToByAnimation
+{
+  From = new Vector3F(0, 0, 0),
+  To = new Vector3F(100, 200, 300),
+  Duration = TimeSpan.FromSeconds(3),
+};
+
+// Fetch the animation service from the global service provider.
+var animationService = (IAnimationService)Game.Services.GetService(typeof(IAnimationService));
+
+// Start the animation
+animationService.StartAnimation(animation, position);
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Object">
+            <title>Animating an object</title>
+            <content>
+                <para>
+                    The advantage of an <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableObject</codeEntityReference>
+                    is that multiple animations can be applied at once. The following example
+                    to animations are combined into a "storyboard" (see class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.TimelineGroup</codeEntityReference>).
+                    Each animation in the storyboard affects a different property. (The example
+                    applies the storyboard to an <legacyBold>AnimatableSprite</legacyBold>
+                    which was defined in the <link xlink:href="126b4c8b-7f0a-4530-9e6b-081703fb74dd">previous section</link>.)
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Create an object which can be animated.
+var sprite = new AnimatableSprite();
+
+// Move the sprite from point (100, 100) to point (300, 200) on screen.
+var positionAnimation = new Vector2FromToByAnimation
+{
+  TargetProperty = "Position",
+  From = new Vector2(100, 100),
+  To = new Vector2(300, 200),
+};
+
+// Change its color from red to blue.
+var colorAnimation = new ColorFromToByAnimation
+{
+  TargetProperty = "Color",
+  From = Color.Red,
+  To = Color.Blue,
+};
+
+// Group the animations together in one 'storyboard'.
+var storyboard = new TimelineGroup { positionAnimation, colorAnimation };
+
+// Fetch the animation service from the service provider.
+var animationService = (IAnimationService)Game.Services.GetService(typeof(IAnimationService));
+
+// Start the animation
+animationService.StartAnimation(storyboard, sprite);
+]]>
+                </code>
+                <para>
+                    The property <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.IAnimation.TargetProperty</codeEntityReference>
+                    assigns an animation to a certain property. The animation system automatically
+                    applies the animations to the matching properties. (Note that the type of the
+                    animation value needs to match the type of the property value.)
+                </para>
+                <alert class="important">
+                    <para>
+                        Note that the sprite's current position does not change immediately after calling
+                        <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.IAnimationService.StartAnimation(DigitalRune.Animation.ITimeline,DigitalRune.Animation.IAnimatableProperty)</codeEntityReference>!
+                        The method only schedules the animation for playback. The new animation values
+                        are computed when <codeEntityReference qualifyHint="true">M:DigitalRune.Animation.AnimationManager.Update(System.TimeSpan)</codeEntityReference>
+                        is called and the result are written in
+                        <codeEntityReference qualifyHint="true">M:DigitalRune.Animation.AnimationManager.ApplyAnimations</codeEntityReference>.
+                    </para>
+                    <para>
+                        The next section "<link xlink:href="de13b766-a75f-4320-9928-4f9fa2bdc967"/>" shows
+                        how new animation values can be applied immediately if necessary.
+                    </para>
+                </alert>
+            </content>
+        </section>
+
+
+        <section address="Group">
+            <title>Animating a group of objects</title>
+            <content>
+                <para>
+                    It is also possible to go one step further. Animations for different objects
+                    can be grouped together into a single storyboard.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Create some sprites.
+var sprites = new List<AnimatableSprite>
+{
+  new AnimatableSprite() { Name = "SpriteA" };
+  new AnimatableSprite() { Name = "SpriteB" };
+  new AnimatableSprite() { Name = "SpriteC" };
+};
+
+// Move spriteA from point (100, 100) to point (300, 100) on screen and at 
+// the same time change its color from red to blue.
+var positionAnimation = new Vector2FromToByAnimation
+{
+  TargetProperty = "Position",
+  From = new Vector2(100, 100),
+  To = new Vector2(300, 100),
+};
+var colorAnimation = new ColorFromToByAnimation
+{
+  TargetProperty = "Color",
+  From = Color.Red,
+  To = Color.Blue,
+};
+
+// Group the animations together.
+var animationA = new TimelineGroup(); 
+animationA.TargetObject = "SpriteA";
+animationA.Add(positionAnimation);
+animationA.Add(colorAnimation);
+
+// Move spriteB from point (100, 200) to point (300, 200) on screen.
+var animationB = new Vector2FromToByAnimation
+{
+  TargetObject = "SpriteB",
+  TargetProperty = "Position",
+  From = new Vector2(100, 200),
+  To = new Vector2(300, 200),
+};
+
+// Move spriteC from point (100, 300) to point (300, 300) on screen.
+var animationC = new Vector2FromToByAnimation
+{
+  TargetObject = "SpriteC",
+  TargetProperty = "Position",
+  From = new Vector2(100, 300),
+  To = new Vector2(300, 300),
+};
+
+// Now, group all animations together in one 'storyboard'.
+var storyboard = new TimelineGroup { animationA, animationB, animationC };
+
+// Fetch the animation service from the global service provider.
+var animationService = (IAnimationService)Game.Services.GetService(typeof(IAnimationService));
+
+// Start the storyboard.
+animationService.StartAnimation(storyboard, sprites);
+]]>
+                </code>
+                <para>
+                    The property <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.ITimeline.TargetObject</codeEntityReference>
+                    assigns each animation or timeline group to an object. The animation system
+                    then automatically applies the animations to the appropriate objects.
+                </para>
+                <para>
+                    As shown in the example above, <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.TimelineGroup</codeEntityReference>s
+                    can be nested. A timeline group can contain one or more animations or timeline groups.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

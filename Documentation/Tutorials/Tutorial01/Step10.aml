@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="a1c6f3cc-8a48-4c68-9401-421d36f67eba" revisionNumber="1">
+    <developerConceptualDocument
+      xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+        </introduction>
+
+
+        <section address="MoreDebug">
+            <title>Render more debug information</title>
+            <content>
+                <para>
+                    It is a good idea to use the debug renderer a lot during development. With a few
+                    simply changes in <localUri>MyGameComponent.cs</localUri>, we can see a lot more
+                    information which helps to identify problems:
+                </para>
+                <code language="c#" title="MyGameComponent.cs">
+                    <![CDATA[
+using System.Linq;                                                                  // NEW
+using DigitalRune.Physics;                                                          // NEW
+…
+
+namespace MyGame
+{
+    public class MyGameComponent : Microsoft.Xna.Framework.GameComponent
+    {
+        …
+
+        public MyGameComponent(Game game)
+            : base(game)
+        {
+            …
+
+            //_myGraphicsScreen.DebugRenderer.DrawText("MyGame");                   // REMOVE
+            //_myGraphicsScreen.DebugRenderer.DrawAxes(Pose.Identity, 1, false);    // REMOVE
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (_inputService.IsDown(Keys.Escape))
+                Game.Exit();
+
+            var debugRenderer = _myGraphicsScreen.DebugRenderer;                    // NEW
+            debugRenderer.Clear();                                                  // NEW
+            debugRenderer.DrawText("MyGame");                                       // NEW
+            debugRenderer.DrawAxes(Pose.Identity, 1, false);                        // NEW
+
+            foreach (var sceneNode in _myGraphicsScreen.Scene.GetDescendants())     // NEW
+            {                                                                       // NEW
+                debugRenderer.DrawObjects(                                          // NEW
+                    _myGraphicsScreen.Scene.GetDescendants(),                       // NEW
+                    Color.Yellow, true, false);                                     // NEW
+                if (sceneNode is MeshNode)                                          // NEW
+                    debugRenderer.DrawSkeleton(                                     // NEW
+                        ((MeshNode)sceneNode).SkeletonPose, sceneNode.PoseWorld,    // NEW
+                        sceneNode.ScaleWorld, 0.1f, Color.Orange, true);            // NEW
+            }                                                                       // NEW
+
+            var simulation = ServiceLocator.Current.GetInstance<Simulation>();      // NEW
+            debugRenderer.DrawContacts(                                             // NEW
+                simulation.CollisionDomain.ContactSets, 0.1f, Color.Green, true);   // NEW
+
+            base.Update(gameTime);
+        }
+    }
+}
+                    ]]>
+                </code>
+                <para>
+                    In <legacyBold>Update</legacyBold> the debug renderer is cleared each frame and
+                    filled with new draw jobs.
+                    The foreach-loop enumerates all nodes of the scene graph. For each scene node the
+                    bounding shape is drawn using <legacyBold>DrawObjects</legacyBold>.
+                    If the scene node is a <legacyBold>MeshNode</legacyBold>, the animated skeleton of
+                    the mesh is drawn using <legacyBold>DrawSkeleton</legacyBold>. This is very helpful
+                    to check bone names and animation problems.
+                    <legacyBold>DrawContacts</legacyBold> draws all contact points of the physics simulaton.
+                </para>
+                <mediaLink>
+                    <image xlink:href="Tutorial-01-18"/>
+                </mediaLink>
+                <para>
+                    The <legacyBold>DebugRenderer</legacyBold> has a lot of useful methods. Use them a lot!
+                </para>
+                <para>
+                    For now, comment out the debug code to hide the debug graphics.
+                </para>
+                <code language="c#" title="MyGameComponent.cs">
+                    <![CDATA[
+    …
+    public override void Update(GameTime gameTime)
+    {
+        if (_inputService.IsDown(Keys.Escape))
+            Game.Exit();
+
+        var debugRenderer = _myGraphicsScreen.DebugRenderer;
+        debugRenderer.Clear();
+        //debugRenderer.DrawText("MyGame");                                         // Comment out
+        //debugRenderer.DrawAxes(Pose.Identity, 1, false);                          // Comment out
+                                                                                    
+        //foreach (var sceneNode in _myGraphicsScreen.Scene.GetDescendants())       // Comment out
+        //{                                                                         // Comment out
+        //    debugRenderer.DrawObjects(                                            // Comment out
+        //        _myGraphicsScreen.Scene.GetDescendants(),                         // Comment out
+        //        Color.Yellow, true, false);                                       // Comment out
+        //    if (sceneNode is MeshNode)                                            // Comment out
+        //        debugRenderer.DrawSkeleton(
+        //            ((MeshNode)sceneNode).SkeletonPose, sceneNode.PoseWorld,      // Comment out
+        //            sceneNode.ScaleWorld, 0.1f, Color.Orange, true);              // Comment out
+        //}                                                                         // Comment out
+                                                                                         
+        //var simulation = ServiceLocator.Current.GetInstance<Simulation>();        // Comment out
+        //debugRenderer.DrawContacts(                                               // Comment out
+        //    simulation.CollisionDomain.ContactSets, 0.1f, Color.Green, true);     // Comment out
+        
+        base.Update(gameTime);
+    }
+    …
+                    ]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Next">
+            <title>Next</title>
+            <content>
+                <para>
+                    <link xlink:href="dd394bdc-c9ec-442a-929d-7141f7b301ae" />
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

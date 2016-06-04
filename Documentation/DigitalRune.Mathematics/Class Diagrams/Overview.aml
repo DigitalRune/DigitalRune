@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="ae58c8d2-5792-4560-9c28-93e8db73f059" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This section contains class diagrams of the <application>DigitalRune Mathematics</application> library.
+            </para>
+        </introduction>
+
+
+        <section address="Explanation">
+            <title>Explanation</title>
+            <content></content>
+            <sections>
+                <section address="Precision">
+                    <title>Single precision and double precision types</title>
+                    <content>
+                        <para>
+                            Several classes exist in a single-precision
+                            (<codeEntityReference qualifyHint="false">T:System.Single</codeEntityReference>) version and a
+                            double-precision (<codeEntityReference qualifyHint="false">T:System.Double</codeEntityReference>)
+                            version.
+                            Single-precision types have the postfix <codeInline>F</codeInline>.
+                            Double-precision types have the postfix <codeInline>D</codeInline>.
+                            To simplify the diagrams the members of the double-precision types are hidden if there is an equivalent
+                            single-precision type. (For example: In the class diagram the members of
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Algebra.Vector3F</codeEntityReference>
+                            are shown. The members of
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Algebra.Vector3D</codeEntityReference>
+                            are hidden because they are similar.)
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Hidden">
+                    <title>Hidden type members</title>
+                    <content>
+                        <para>
+                            To make the class diagrams easier to understand the diagrams show only the important type members.
+                            Following members are typically hidden:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                constructors,
+                            </listItem>
+                            <listItem>
+                                private or internal members,
+                            </listItem>
+                            <listItem>
+                                members that are only for internal use,
+                            </listItem>
+                            <listItem>
+                                overridden members.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="ClassDiagrams">
+            <title>Class diagrams</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        <link xlink:href="df437fa4-7a6c-48d1-b83d-4d8585f39873"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="2d4a16e1-70ab-4323-9c0b-9a8fc8862841"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="9b01e8f7-0f4a-4d7d-b1c0-aaf1e8fff434"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="fa0b1c3c-595d-436c-b914-dc1fc4bf0fa1"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="d7286918-1e78-49af-a7c0-0fd25cd37c25"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="fea00d10-ec4a-4db9-a981-df4c680bf542"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="e865e15d-ac62-49e9-b67c-1f64d45c76d5"/>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

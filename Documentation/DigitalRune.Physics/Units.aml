@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="bf6f855b-d3b3-49c0-a341-a31f922bb4da" revisionNumber="1">
+    <developerConceptualDocument
+      xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+        </introduction>
+
+
+        <section address="Units">
+            <title>Which units and which scale should I use?</title>
+            <content>
+                <para>
+                    The physics engine does not really care whether 1 unit is 1 m or 1 inch. However, the
+                    default settings are all specified in SI standard unit (m, s, kg, …). The default settings
+                    are optimized (hand tweaked) for typical action games where, for example, a character is
+                    1.80 m, a crate is about 1m x 1m x 1m, … and the ratio between the smallest and largest
+                    object in the simulation is about 1:10.
+                </para>
+                <para>
+                    So there are some cases to consider:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        If you use a different system of units, you have to convert all dependent simulation settings.
+                    </listItem>
+                    <listItem>
+                        If you use a vastly different scale, you have to make additional adjustments.
+                    </listItem>
+                    <listItem>
+                        If you simulate both extremely small objects and very large objects in the same
+                        simulation, you will have to increase the precision of the physics simulation.
+                    </listItem>
+                </list>
+                <para>
+                    Let's go through these cases one by one:
+                </para>
+            </content>
+        </section>
+
+
+        <section>
+            <title>Case #1: Game uses units other than the SI standard units</title>
+            <content>
+                <para>
+                    In this case you have to convert the default settings from SI standard units to the
+                    new units. Here is a list of the relevant settings and the units used by the default
+                    values:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.CollisionDetection.ContactPositionTolerance</codeEntityReference>
+                        of
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Simulation.CollisionDomain</codeEntityReference>
+                        [m]
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Settings.ConstraintSettings.AllowedAngularDeviation</codeEntityReference>
+                        [rad]
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Settings.ConstraintSettings.AllowedLinearDeviation</codeEntityReference>
+                        [m]
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Settings.ConstraintSettings.AllowedPenetration</codeEntityReference>
+                        [m]
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Settings.ConstraintSettings.MaxErrorCorrectionVelocity</codeEntityReference>
+                        [m/s]
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Settings.ConstraintSettings.MaxPenetrationCorrectionVelocity</codeEntityReference>
+                        [m/s]
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Settings.ConstraintSettings.MinConstraintImpulse</codeEntityReference>
+                        [kg∙m/s]
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Settings.ConstraintSettings.RestingVelocityLimit</codeEntityReference>
+                        [m/s]
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Settings.MotionSettings.CcdVelocityThreshold</codeEntityReference>
+                        [m/s]
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Settings.MotionSettings.MaxAngularVelocity</codeEntityReference>
+                        [rad/s]
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Settings.MotionSettings.MaxLinearVelocity</codeEntityReference>
+                        [m/s]
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Settings.SleepingSettings.AngularVelocityThreshold</codeEntityReference>
+                        [rad/s]
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Settings.SleepingSettings.LinearVelocityThreshold</codeEntityReference>
+                        [m/s]
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Settings.SleepingSettings.TimeThreshold</codeEntityReference>
+                        [s]
+                    </listItem>
+                </list>
+                <para>
+                    So there are quite a lot parameters to change. Therefore, we recommend using the
+                    standard units. You can also convert the game objects on-the-fly to or from standard
+                    units when interfacing with the physics engine.
+                </para>
+            </content>
+        </section>
+        <section>
+            <title>Case #2: Game uses a vastly different scale</title>
+            <content>
+                <para>
+                    Let's assume the game uses a larger scale: Objects are 100 units in size or larger.
+                    In this case you need to adjust the settings accordingly. For example, the default
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.CollisionDetection.ContactPositionTolerance</codeEntityReference>
+                    is 0.01 (= 1 cm) which does not make sense in such a scenario. The
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.Settings.ConstraintSettings.MaxErrorCorrectionVelocity</codeEntityReference>
+                    is 100 (= 100 m/s) which is not enough for really large objects. Etc.
+                    Therefore, you should increase all lengths, linear velocities and impulses in the
+                    simulation settings by an adequate factor. (Factor 100 for lengths and velocities.
+                    Factor 100 or more for impulses - depends on whether the masses are also different.)
+                </para>
+                <para>
+                    The opposite case is when the game uses a smaller scale where all objects are only
+                    0.01 units or less. In this case you will need to decrease all lengths, linear
+                    velocities and impulses by an adequate factor. (Factor 1/100 for lengths and
+                    velocities. Factor 1/100 or smaller for impulses.)
+                </para>
+                <para>
+                    There is one additional thing you need to do when your objects are really, really
+                    small: The DigitalRune libraries use two configurable epsilon values:
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Mathematics.Numeric.EpsilonF</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Collisions.CollisionDetection.Epsilon</codeEntityReference>.
+                    The epsilon values are used in floating-point comparisons and are required because we
+                    are working with floating-point numbers with limited precision (internal: float =
+                    single precision = 32 bit). The first epsilon value is used in general math operations.
+                    The second is used specifically in the collision detection (and is much larger than
+                    the normal epsilon).
+                </para>
+                <para>
+                    The libraries automatically scale the epsilon values when working with large numbers
+                    (values &gt;&gt; 1). So simulating a world with a larger scale is no problem. But the epsilon
+                    is not automatically scaled if the values are very small (values &lt;&lt; 1). In this
+                    case the epsilon values need to be adjusted manually. (Note: We haven't yet
+                    encountered a case where we actually had to adjust the epsilon values. However, we
+                    usually do not simulate objects smaller than 1 cm.)
+                </para>
+            </content>
+        </section>
+
+
+        <section>
+            <title>Case #3: Game simulates both extremely small objects and very large objects</title>
+            <content>
+                <para>
+                    Consider a game that contains both large objects (e.g. a crate with 1 m) and very small
+                    objects (e.g. a die with 1 cm). Now, if the large object falls onto the small objects it
+                    applies a force that is extremely big in relation to the size of the small object. In
+                    order to solve this situation adequately the simulation needs to perform more time steps
+                    and iterations than normally.
+                </para>
+                <para>
+                    You should do the following:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Decrease the size of a single time step (see
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Settings.TimingSettings.FixedTimeStep</codeEntityReference>),
+                    </listItem>
+                    <listItem>
+                        and increase the max number of time steps per update (see
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Settings.TimingSettings.MaxNumberOfSteps</codeEntityReference>).
+                    </listItem>
+                </list>
+                <para>
+                    Another example of case #3 is when the game objects are very small (~1 cm), but the
+                    gravity is normal (9.81 m/s²). In this case the gravity accelerates an object by a great
+                    amount - even in a fraction of a second.
+                </para>
+            </content>
+        </section>
+
+
+        <section>
+            <title>Samples</title>
+            <content>
+                <para>
+                    The physics
+                    <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" /> contain a sample, which shows
+                    how to set up the simulation for a different scale: "27-SmallerScaleSample"
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="9a8c8b37-b996-477a-aeab-5d92714be3ca" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="General">
+            <title>What is a MatCap shader?</title>
+            <content>
+                <para>
+                    <legacyItalic>Material capture ("MatCap") shaders</legacyItalic> are popular effects used
+                    in most 3D modeling tools: A material is captured by rendering a sphere into a texture.
+                    Models can be shaded by making a simple lookup into the reference texture.
+                </para>
+                <mediaLink>
+                    <image xlink:href="MatCaps1"/>
+                </mediaLink>
+                <mediaLink>
+                    <image xlink:href="MatCaps2"/>
+                </mediaLink>
+                <para>
+                    This type of shading is very efficient – no complicated computations, only a single
+                    texture lookup per pixel. The effect works great for previewing objects in a 3D modeling
+                    tool. However, it is less suited for games: The reference texture only stores one side of
+                    a sphere. The effect breaks down, when the camera moves around the object.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="DR">
+            <title>MatCaps in DigitalRune Graphics</title>
+            <content>
+                <para>
+                    <link xlink:href="0a8eb9ca-74ae-4746-9289-93d909b07e22" /> contains
+                    <link xlink:href="fda15306-d5dc-449c-850d-82227359d35b"/>
+                    and
+                    <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />
+                    with MatCap shaders.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

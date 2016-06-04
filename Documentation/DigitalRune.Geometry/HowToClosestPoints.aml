@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="23a00744-a02d-4830-9104-5b978cf74882" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This topic will demonstrate how to compute the minimal distance between
+                a pair of objects.
+            </para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Namespaces">
+            <title>Add DigitalRune namespaces</title>
+            <content>
+                <para>
+                    The following example will use data types from DigitalRune Geometry and
+                    Mathematics. The following namespaces must be imported at the beginning of
+                    the source code file:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+using DigitalRune.Geometry;
+using DigitalRune.Geometry.Collisions;
+using DigitalRune.Geometry.Shapes;
+using DigitalRune.Mathematics.Algebra;
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Objects">
+            <title>Create collision objects</title>
+            <content>
+                <para>
+                    First, we create two collision objects. One object gets the shape of a
+                    box. The other object gets a sphere shape. Both objects are positioned
+                    and rotated.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+GeometricObject geometryA = new GeometricObject()
+{
+  Shape = new BoxShape(1, 2, 3),
+  Pose = new Pose(new Vector3F(-2, 0, 0), QuaternionF.CreateRotationZ(0.1f)),
+};
+GeometricObject geometryB = new GeometricObject()
+{
+  Shape = new SphereShape(1),
+  Pose = new Pose(new Vector3F(2, 0, 0), QuaternionF.CreateRotationZ(-0.2f)),
+};
+]]>
+                </code>
+                <para>
+                    Now, a collision object is created for each geometric object.
+                    A collision object stores additional information required by the collision detection.
+                </para>
+                <code language="cs">
+                    <![CDATA[
+CollisionObject objectA = new CollisionObject(geometryA);
+CollisionObject objectB = new CollisionObject(geometryB);
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="ClosestPoints">
+            <title>Compute minimal distance</title>
+            <content>
+                <para>
+                    Let's create a collision detection which handles the computation of
+                    closest-point queries and contact queries. Normally, this is done only
+                    once for the entire application.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+CollisionDetection collisionDetection = new CollisionDetection();
+]]>
+                </code>
+                <para>
+                    The collision detection computes a closest-point query with:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+ContactSet contactSet = collisionDetection.GetClosestPoints(objectA, objectB);
+]]>
+                </code>
+                <para>
+                    The resulting contact set is a collection of contacts. For a closest-point
+                    query the contact set contains exactly one contact that describes the closest-point
+                    pair. The contact contains a property for the penetration depth, which
+                    is the inverse of the separation distance. The separation distance is positive
+                    for separated objects and negative for penetrating objects.
+                    The contact also contains the positions of the closest points on the objects.
+                    Finally, we can retrieve the following information for further use:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+Contact contact = contactSet[0];
+float distance = -contact.PenetrationDepth;  // The distance between the objects.
+Vector3F pointA = contact.PositionAWorld;    // The point on object A that is closest to object B (in world space).
+Vector3F pointB = contact.PositionBWorld;    // The point on object B that is closest to object A (in world space).
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

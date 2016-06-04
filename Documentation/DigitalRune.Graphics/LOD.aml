@@ -1,0 +1,430 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="b320aebd-46a0-45d8-8edb-0c717152a56b" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                <newTerm>Level of Detail</newTerm> (LOD) can be used to improve the render performance of
+                distant objects.
+            </para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="Definition">
+            <title>Defining LOD</title>
+            <content>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LodGroupNode</codeEntityReference>
+                    represents an objects with multiple levels of detail (LODs). It stores a collection of LODs
+                    (see property <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.LodGroupNode.Levels</codeEntityReference>).
+                    A LOD is defined by its LOD distance and a LOD node:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.LodEntry.Distance</codeEntityReference>:
+                            The <newTerm>LOD distance</newTerm> is the threshold distance at which the engine
+                            switches to this LOD. All distances are "view-normalized" distances. This means that
+                            distance values are corrected based on the camera's field of view. The resulting LOD
+                            distances are independent of the current field of view. See
+                            <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Graphics.GraphicsHelper.GetViewNormalizedDistance(System.Single,DigitalRune.Mathematics.Algebra.Matrix44F)</codeEntityReference>
+                            for more information.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.LodEntry.Node</codeEntityReference>:
+                            The <newTerm>LOD node</newTerm> is a scene node that represents this LOD. In most cases
+                            this is a single node (typically a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshNode</codeEntityReference>),
+                            but it can also be a tree of scene nodes.
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LodGroupNode</codeEntityReference>s
+                            can even be nested, i.e. a LOD node may contain other
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LodGroupNode</codeEntityReference>s.
+                        </para>
+                    </listItem>
+                </list>
+                <mediaLink>
+                    <caption placement="after">Class diagram: level of detail</caption>
+                    <image xlink:href="ClassDiagramGraphicsLOD"/>
+                </mediaLink>
+            </content>
+            <sections>
+                <section address="Code">
+                    <title>Creating LOD in code</title>
+                    <content>
+                        <para>
+                            Creating a new <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LodGroupNode</codeEntityReference>
+                            in code is simple:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+var lodGroupNode = new LodGroupNode();
+lodGroupNode.Levels.Add(0, meshNode0);  // Maximal details (LOD0)
+lodGroupNode.Levels.Add(3, meshNode1);  // Medium details (LOD1)
+lodGroupNode.Levels.Add(8, meshNode2);  // Minimum details (LOD2)
+lodGroupNode.MaxDistance = 20;          // Optional: Maximum draw distance
+]]>
+                        </code>
+                        <para>
+                            The LODs are automatically sorted by distance - they can be added or removed in any order.
+                        </para>
+                    </content>
+                </section>
+                <section address="Content">
+                    <title>Importing LOD using content pipeline</title>
+                    <content>
+                        <para>
+                            The content pipeline supports models with LOD. See
+                            <link xlink:href="1bb7c46b-886a-4cca-a16d-f5f2a16e239f" />
+                        </para>
+                    </content>
+                </section>
+
+
+                <section address="Settings">
+                    <title>LOD settings</title>
+                    <content>
+                        <para>
+                            LOD settings are stored in the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.CameraNode</codeEntityReference>
+                            and the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.RenderContext</codeEntityReference>.
+                        </para>
+                    </content>
+                    <sections>
+                        <section address="Camera">
+                            <title>LOD camera</title>
+                            <content>
+                                <para>
+                                    LOD selection depends on the camera field of view and the distance of an object from the
+                                    camera. The property <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.RenderContext.LodCameraNode</codeEntityReference>
+                                    defines the camera that is used as a reference for all LOD calculations. The properties
+                                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.CameraNode</codeEntityReference>
+                                    and <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.LodCameraNode</codeEntityReference>
+                                    usually reference the same camera instance. LOD calculations will fail if the
+                                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.LodCameraNode</codeEntityReference>
+                                    is not set.
+                                </para>
+                                <para>
+                                    Note that
+                                    <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.RenderContext.CameraNode</codeEntityReference>
+                                    and
+                                    <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.RenderContext.LodCameraNode</codeEntityReference>
+                                    are two different properties. The currently active camera is not necessarily
+                                    the same camera that is used in LOD computations. This distinction is, for
+                                    example, important when rendering shadow maps.
+                                </para>
+                            </content>
+                        </section>
+                        <section address="Bias">
+                            <title>LOD bias</title>
+                            <content>
+                                <para>
+                                    The <newTerm>LOD bias</newTerm> is an additional factor that can be set globally (see
+                                    <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.RenderContext.LodBias</codeEntityReference>)
+                                    or per camera (see <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.SceneGraph.CameraNode.LodBias</codeEntityReference>).
+                                    These factors are multiplied to the LOD distance of a scene node. They can be used to
+                                    increase or decrease the level of detail based on scene, performance, platform, quality
+                                    settings or other criteria.
+                                </para>
+                                <para>
+                                    The default LOD bias is 1. A factor of 0 forces all objects to be rendered with
+                                    the highest level of detail. A large factor, such as ∞, forces all objects to be
+                                    drawn with the lowest level of detail.
+                                </para>
+                                <para>Example uses:</para>
+                                <list class="bullet">
+                                    <listItem>
+                                        The LOD bias can be increased during computationally intensive scenes
+                                        (e.g. large number of objects or characters on screen) to improve
+                                        performance.
+                                    </listItem>
+                                    <listItem>
+                                        During cut-scenes the LOD bias can be decreased to improve quality.
+                                    </listItem>
+                                    <listItem>
+                                        The LOD bias of fast moving cameras or secondary cameras can be increased.
+                                    </listItem>
+                                    <listItem>
+                                        The LOD bias can be increased or decreased based on the game's
+                                        quality settings.
+                                    </listItem>
+                                    <listItem>
+                                        Different LOD biases can be used for different platforms (e.g. PC vs.
+                                        mobile platforms).
+                                    </listItem>
+                                    <listItem>
+                                        The LOD bias can also be used to account for different screen
+                                        resolutions. This can be necessary because the chosen LOD metric is
+                                        independent of the resolution.
+                                    </listItem>
+                                </list>
+                            </content>
+                        </section>
+                        <section address="Hysteresis">
+                            <title>LOD hysteresis</title>
+                            <content>
+                                <para>
+                                    The <newTerm>LOD hysteresis</newTerm> adds a
+                                    <externalLink>
+                                        <linkText>hysteresis</linkText>
+                                        <linkUri>http://en.wikipedia.org/wiki/Hysteresis</linkUri>
+                                    </externalLink>
+                                    to LOD switches (see <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.RenderContext.LodHysteresis</codeEntityReference>).
+                                    Instead of switching between LODs at a certain threshold distance, the
+                                    distance for switching to the lower LOD is further away than the threshold distance and
+                                    the distance for switching to the higher LOD is closer. This is a common technique used to
+                                    reduce LOD popping.
+                                </para>
+                                <para>
+                                    Example: The LOD distance for LOD2 is 100. With an LOD hysteresis of 10, the object
+                                    transitions from LOD1 to LOD2 at distance 105, and from LOD2 to LOD1 at distance 95.
+                                </para>
+                            </content>
+                        </section>
+                    </sections>
+                </section>
+            </sections>
+        </section>
+
+
+
+        <section address="Integration">
+            <title>Integrating LOD into a game</title>
+            <content>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.Scene</codeEntityReference>
+                    itself is agnostic about
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LodGroupNode</codeEntityReference>s
+                    – it does not distinguish between different types of scene and therefore does
+                    not automatically evaluate LOD. The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LodGroupNode</codeEntityReference>s
+                    need to be handled in the scene queries (interface
+                    ISceneQuery).
+                    The important steps that need to be performed in the scene query are:
+                </para>
+                <list class="ordered">
+                    <listItem>
+                        <para>
+                            <legacyBold>Distance calculation:</legacyBold>
+                            The first step is to compute the view-normalized distance of a scene node.
+                        </para>
+                        <code language="cs">
+                            // Calculate view-normalized distance of scene node.
+                            float distance = GraphicsHelper.GetViewNormalizedDistance(node, cameraNode);
+
+                            // Apply LOD bias. (The LOD bias is a factor that can be used to increase
+                            // or decrease the viewing distance.)
+                            distance *= cameraNode.LodBias * context.LodBias;
+                        </code>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Distance culling (MaxDistance):</legacyBold>
+                            The distance can then be used for distance culling.
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+// Distance Culling: Check whether scene node is within MaxDistance.
+if (Numeric.IsPositiveFinite(node.MaxDistance) && distance >= node.MaxDistance)
+  ... ignore scene node ...
+]]>
+                        </code>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>LOD selection:</legacyBold>
+                        </para>
+                        <para>
+                            Then, if the current node is a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LodGroupNode</codeEntityReference>,
+                            the current LOD can be selected.
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+var lodGroupNode = node as LodGroupNode;
+if (lodGroupNode != null)
+{
+  // Evaluate LOD group.
+  var lodSelection = lodGroupNode.SelectLod(context, distance);
+  ... add lodSelection.Current to scene nodes ...
+}
+]]>
+                        </code>
+                    </listItem>
+                </list>
+                <para>
+                    See
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ISceneQuery</codeEntityReference>
+                    for full example code of scene query that supports LOD.
+                </para>
+                <para>
+                    LOD and LOD blending are explained in detail in the
+                    <legacyItalic>LodBlendingSample</legacyItalic> (see
+                    <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />).
+                </para>
+            </content>
+            <sections>
+                <section address="Blending">
+                    <title>LOD blending</title>
+                    <content>
+                        <para>
+                            <newTerm>LOD blending</newTerm> can be used to create smooth transitions between LODs.
+                            Instant LOD switches can result in apparent "popping" of the geometry in the scene. The
+                            property <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.RenderContext.LodBlendingEnabled</codeEntityReference>
+                            can be set to enable smooth transitions: The renderer draws both LODs and blends them
+                            using screen-door transparency (stipple patterns). The length of the transition phase is
+                            determined by the <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.LodHysteresis</codeEntityReference>.
+                        </para>
+                        <para>
+                            Here is a video comparing instant switches and LOD blending:
+                        </para>
+                        <list class="nobullet">
+                            <listItem>
+                                <para>
+                                    <externalLink>
+                                        <linkText>Video: LOD Blending</linkText>
+                                        <linkUri>https://www.youtube.com/watch?v=UlXb9Si2GNI</linkUri>
+                                    </externalLink>
+                                </para>
+                            </listItem>
+                        </list>
+                        <para>
+                            Only models that support screen-door transparency can be blended at runtime.
+                            See <link xlink:href="fa431d48-b457-4c70-a590-d44b0840ab1e" /> for more
+                            information.
+                        </para>
+                        <para>
+                            If LOD blending should be used, it must be implemented in the scene query
+                            where LOD is handled. It involves following steps:
+                        </para>
+                        <para>
+                            If the scene node is close to the max draw distance, we can fade out the model.
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+// Fade out scene node near MaxDistance to avoid popping.
+if (context.LodBlendingEnabled && node.SupportsInstanceAlpha())
+{
+  float d = node.MaxDistance - distance;
+  float alpha = (d < context.LodHysteresis) ? d / context.LodHysteresis : 1;
+  node.SetInstanceAlpha(alpha);
+}
+]]>
+                        </code>
+                        <para>
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.SceneGraph.SceneHelper.SupportsInstanceAlpha(DigitalRune.Graphics.SceneGraph.SceneNode)</codeEntityReference>
+                            and
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.SceneGraph.SceneHelper.SetInstanceAlpha(DigitalRune.Graphics.SceneGraph.SceneNode,System.Single)</codeEntityReference>
+                            are two helper methods for setting the effect parameter for screen-door transparency.
+                        </para>
+                        <para>
+                            After the LOD selection, we can use the information of the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LodSelection</codeEntityReference>
+                            to find out the current LOD and whether the model is
+                            currently transitioning between levels. Based on this information we can
+                            blend between LODs.
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+// ----- Evaluate LOD group.
+var lodSelection = lodGroupNode.SelectLod(context, distance);
+if (lodSelection.Next != null
+    && context.LodBlendingEnabled
+    && lodSelection.Current.SupportsInstanceAlpha()
+    && lodSelection.Next.SupportsInstanceAlpha())
+{
+  // The LOD model is currently transitioning between two LODs.
+  ... add lodSelection.Current to query results ...
+  lodSelection.Current.SetInstanceAlpha(-(1 - lodSelection.Transition));
+ 
+  ... add lodSelection.Next to query results ...
+  lodSelection.Next.SetInstanceAlpha(lodSelection.Transition);
+}
+else
+{
+  // No blending between two LODs. Just show current LOD.
+  if (lodSelection.Current.SupportsInstanceAlpha())
+    lodSelection.Current.SetInstanceAlpha(1);
+ 
+  ... add lodSelection.Current to query results ...
+}
+]]>
+                        </code>
+                        <para>
+                            Note that the current LOD is drawn with a negative alpha and the next LOD is
+                            drawn with a positive alpha. The pixel shader checks the sign and automatically
+                            inverts one of the stipple patterns.
+                        </para>
+                        <para>
+                            LOD and LOD blending are explained in detail in the
+                            <legacyItalic>LodBlendingSample</legacyItalic> (see
+                            <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />).
+                        </para>
+                        <alert class="note">
+                            <para>
+                                LOD blending can be expensive: The workload increases during transitions. Two
+                                models need to be rendered instead of one. Therefore, LOD blending should be
+                                disable during graphically intensive scenes. Chances are that LOD popping is not
+                                noticed anyway. The LOD transition phase should be kept short. (The length of the
+                                LOD transition is determined by the property
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.RenderContext.LodHysteresis</codeEntityReference>).
+                            </para>
+                        </alert>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="FurtherReading">
+            <title>Further Reading</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        <para>
+                            <externalLink>
+                                <linkText>
+                                    Level Of Detail (DigitalRune Blog)
+                                </linkText>
+                                <linkUri>
+                                    http://www.digitalrune.com/Blog/Post/1737/Level-Of-Detail
+                                </linkUri>
+                            </externalLink>
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <externalLink>
+                                <linkText>
+                                    Level of Detail: Useful Equations (DigitalRune Blog)
+                                </linkText>
+                                <linkUri>
+                                    http://www.digitalrune.com/Blog/Post/1738/Level-of-Detail-Useful-Equations
+                                </linkUri>
+                            </externalLink>
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <externalLink>
+                                <linkText>
+                                    LOD Metrics (DigitalRune Blog)
+                                </linkText>
+                                <linkUri>
+                                    http://www.digitalrune.com/Blog/Post/1739/LOD-Metrics
+                                </linkUri>
+                            </externalLink>
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

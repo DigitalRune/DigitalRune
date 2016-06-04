@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="c060be3d-f85f-4551-838c-6969ab45b0b4" revisionNumber="1">
+    <developerConceptualDocument
+      xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                In this step we will add a sky box for rendering the background.
+            </para>
+        </introduction>
+
+
+        <section address="SkyBox">
+            <title>Add sky cube map</title>
+            <content>
+                <list class="ordered">
+                    <listItem>
+                        In the <ui>Solution Explorer</ui> right-click the
+                        <localUri>MyGameContent</localUri> content project.
+                    </listItem>
+                    <listItem>
+                        Select <ui>Add | Existing Item…</ui>
+                    </listItem>
+                    <listItem>
+                        Browse to this folder of the DigitalRune Engine:
+                        <list class="nobullet">
+                            <listItem>
+                                <localUri>
+                                    <![CDATA[<DigitalRune Engine Folder>\Samples\Content\]]>
+                                </localUri>
+                            </listItem>
+                        </list>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            Select <localUri>Sky2.dds</localUri> and click <ui>Add</ui>.
+                        </para>
+                    </listItem>
+                </list>
+                <para>
+                    (No special content processore required. Texture can use the default XNA importers and processors.)
+                </para>
+            </content>
+        </section>
+
+
+        <section address="SkyObject">
+            <title>Add sky game object</title>
+            <content>
+                <para>
+                    Add a new game object called <localUri>SkyObject.cs</localUri>:
+                </para>
+                <code language="c#" title="SkyObject.cs">
+                    <![CDATA[
+using DigitalRune.Game;
+using DigitalRune.Graphics.SceneGraph;
+using Microsoft.Practices.ServiceLocation;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+namespace MyGame
+{
+    public class SkyObject : GameObject
+    {
+        private SkyboxNode _skyboxNode;
+        
+        protected override void OnLoad()
+        {
+            var game = ServiceLocator.Current.GetInstance<Game>();
+            var scene = ServiceLocator.Current.GetInstance<IScene>();
+
+            var cubeMap = game.Content.Load<TextureCube>("Sky2");
+            _skyboxNode = new SkyboxNode(cubeMap);
+            scene.Children.Add(_skyboxNode);
+        }
+
+        protected override void OnUnload()
+        {
+            _skyboxNode.Parent.Children.Remove(_skyboxNode);
+            _skyboxNode.Dispose(false);
+            _skyboxNode = null;
+        }
+    }
+}
+]]>
+                </code>
+                <para>
+                    In <localUri>MyGameComponent.cs</localUri> add a sky object to the game object service:
+                </para>
+                <code language="c#" title="MyGameComponent.cs">
+                    <![CDATA[
+…
+namespace MyGame
+{
+    public class MyGameComponent : Microsoft.Xna.Framework.GameComponent
+    {
+        …
+
+        public MyGameComponent(Game game)
+            : base(game)
+        {
+            …
+            gameObjectService.Objects.Add(new GroundObject());
+            gameObjectService.Objects.Add(new LightsObject());
+            gameObjectService.Objects.Add(new DudeObject());
+            gameObjectService.Objects.Add(new CrateObject());
+            gameObjectService.Objects.Add(new SmokeObject());
+            gameObjectService.Objects.Add(new SkyObject());                       // NEW
+
+            _myGraphicsScreen.DebugRenderer.DrawText("MyGame");
+            _myGraphicsScreen.DebugRenderer.DrawAxes(Pose.Identity, 1, false);
+        }
+        …
+                    ]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="SkyRenderer">
+            <title>Add sky renderer</title>
+            <content>
+                <para>
+                    The <legacyBold>SkyRenderer</legacyBold> can handle <legacyBold>SkyBoxNodes</legacyBold>.
+                    Let's use it in <legacyBold>MyGraphicsScreen</legacyBold>:
+                </para>
+                <code language="c#" title="MyGraphicsScreen.cs">
+                    <![CDATA[
+…
+namespace MyGame
+{
+    public class MyGraphicsScreen : GraphicsScreen
+    {
+        private MeshRenderer _meshRenderer;
+        private BillboardRenderer _billboardRenderer;
+        private SkyRenderer _skyRenderer;                                                 // NEW
+
+        …
+
+        public MyGraphicsScreen(IGraphicsService graphicsService)
+            : base(graphicsService)
+        {
+            _meshRenderer = new MeshRenderer();
+            _billboardRenderer = new BillboardRenderer(graphicsService, 2048);
+            _skyRenderer = new SkyRenderer(graphicsService);                              // NEW
+
+            var spriteFont = graphicsService.Content.Load<SpriteFont>("SpriteFont1");
+            DebugRenderer = new DebugRenderer(graphicsService, spriteFont);
+
+            Scene = new Scene();
+        }
+
+        …
+
+        protected override void OnRender(RenderContext context)
+        {
+            var graphicsDevice = GraphicsService.GraphicsDevice;
+            graphicsDevice.Clear(Color.CornflowerBlue);
+
+            context.CameraNode = CameraNode;
+            context.Scene = Scene;
+
+            // Frustum Culling: Get all the scene nodes that intersect the camera frustum.
+            var query = Scene.Query<CameraFrustumQuery>(context.CameraNode, context);
+
+            // Render opaque meshes that are visible from the camera
+            graphicsDevice.DepthStencilState = DepthStencilState.Default;
+            graphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
+            graphicsDevice.BlendState = BlendState.Opaque;
+            graphicsDevice.SamplerStates[0] = SamplerState.AnisotropicWrap;
+            context.RenderPass = "Default";
+            _meshRenderer.Render(query.SceneNodes, context);
+            context.RenderPass = null;
+
+            _skyRenderer.Render(query.SceneNodes, context);                               // NEW
+
+            graphicsDevice.DepthStencilState = DepthStencilState.DepthRead;
+            _billboardRenderer.Render(query.SceneNodes, context, RenderOrder.BackToFront);
+
+            DebugRenderer.Render(context);
+
+            context.Scene = null;
+            context.CameraNode = null;
+        }
+    }
+}
+                ]]>
+                </code>
+                <para>
+                    Here is our sky:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Tutorial-01-21"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Next">
+            <title>Next</title>
+            <content>
+                <para>
+                    <link xlink:href="68c9f201-aa9c-4b7f-bf96-a57893faddfe" />
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

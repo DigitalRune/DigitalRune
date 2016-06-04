@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="06ec096e-b312-4052-b0ac-056d89efb5e1" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                Microsoft XNA Game Studio only supports Visual Studio 2010. Later version of Visual Studio
+                are only partially supported (only Windows Phone 7 projects). Here is a list of workarounds to
+                use the Microsoft XNA Game Studio with Visual Studio 2012 and higher.
+            </para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Setup">
+            <title>Setup</title>
+            <content>
+                <para>
+                    Follow these instructions to use XNA Game Studio with Visual Studio 2012 (or higher).
+                </para>
+                <list class="ordered">
+                    <listItem>
+                        For Windows 8 users: Install
+                        <externalLink>
+                            <linkText>Games for Windows Live client</linkText>
+                            <linkUri>http://www.xbox.com/en-US/Live/PC/DownloadClient</linkUri>
+                        </externalLink>.
+                    </listItem>
+                    <listItem>
+                        Install Visual Studio 2012 or higher.
+                    </listItem>
+                    <listItem>
+                        Install
+                        <externalLink>
+                            <linkText>Windows Phone SDK 7.1</linkText>
+                            <linkUri>https://dev.windowsphone.com/en-us/downloadsdk</linkUri>
+                        </externalLink>
+                        and
+                        <externalLink>
+                            <linkText>Window Phone SDK 7.1.1 Update</linkText>
+                            <linkUri>https://dev.windowsphone.com/en-us/downloadsdk</linkUri>
+                        </externalLink>.
+                        (Note: The Windows Phone SDK contains XNA Game Studio.)
+                    </listItem>
+                    <listItem>
+                        <para>
+                            Copy the folder named <localUri>XNA Game Studio 4.0</localUri> from
+                        </para>
+                        <list class="nobullet">
+                            <listItem>
+                                <localUri>C:\Program Files (x86)\Microsoft Visual Studio 10.0\common7\ide\extensions\Microsoft</localUri>
+                            </listItem>
+                        </list>
+                        <para>
+                            to
+                        </para>
+                        <list class="nobullet">
+                            <listItem>
+                                (for VS2012) <localUri>C:\Program Files (x86)\Microsoft Visual Studio 11.0\common7\ide\extensions\Microsoft</localUri>
+                            </listItem>
+                            <listItem>
+                                (for VS2013) <localUri>C:\Program Files (x86)\Microsoft Visual Studio 12.0\common7\ide\extensions\Microsoft</localUri>
+                            </listItem>
+                            <listItem>
+                                (for VS2015) <localUri>C:\Program Files (x86)\Microsoft Visual Studio 14.0\common7\ide\extensions\Microsoft</localUri>
+                            </listItem>
+                        </list>
+                        <para>
+                            On some systems Visual Studio is incorrectly installed in the Program Files (x86) folder
+                            instead of the Microsoft Visual Studio 12.0 folder. In this case you have to use this
+                            target path:
+                            C:\Program Files (x86)\Common7\IDE\Extensions\Microsoft
+                        </para>
+                        <list class="nobullet">
+                            <listItem>
+                                <localUri>C:\Program Files (x86)\Common7\IDE\Extensions\Microsoft</localUri>
+                            </listItem>
+                        </list>
+                    </listItem>
+                    <listItem>
+                        Start a text editor with administrator privileges.
+                        Open the file <localUri>extension.vsixmanifest</localUri> from the folder <localUri>XNA Game Studio 4.0</localUri>.
+                        and change the supported Visual Studio version from
+                        <list class="nobullet">
+                            <listItem>
+                                <codeInline>
+                                    <![CDATA[
+<VisualStudio Version="10.0">
+              ]]>
+                                </codeInline>
+                            </listItem>
+                        </list>
+                        <para>
+                            to
+                        </para>
+                        <list class="nobullet">
+                            <listItem>
+                                (for VS2012) <codeInline>
+                                    <![CDATA[
+<VisualStudio Version="11.0">
+              ]]>
+                                </codeInline>
+                            </listItem>
+                            <listItem>
+                                (for VS2013) <codeInline>
+                                    <![CDATA[
+<VisualStudio Version="12.0">
+              ]]>
+                                </codeInline>
+                            </listItem>
+                            <listItem>
+                                (for VS2015) <codeInline>
+                                    <![CDATA[
+<VisualStudio Version="14.0">
+              ]]>
+                                </codeInline>
+                            </listItem>
+                        </list>
+                        <para>
+                            This works for Visual Studio Professional. If you use an edition that is not
+                            listed, you might have to add a tag for this edition. For example, for Visual Studio
+                            2013 Premium or Ultimate change
+                        </para>
+                        <code language="xml">
+                            <![CDATA[
+<SupportedProducts>
+  <VisualStudio Version="10.0">
+    <Edition>VSTS</Edition>
+    <Edition>VSTD</Edition>
+    <Edition>Pro</Edition>
+    <Edition>VCSExpress</Edition>
+    <Edition>VPDExpress</Edition>
+  </VisualStudio>
+</SupportedProducts>
+              ]]>
+                        </code>
+                        <para>
+                            to
+                        </para>
+                        <code language="xml">
+                            <![CDATA[
+<SupportedProducts>
+  <VisualStudio Version="12.0">
+    <Edition>Ultimate</Edition>
+    <Edition>Premium</Edition>
+    <Edition>Pro</Edition>
+  </VisualStudio>
+</SupportedProducts>
+              ]]>
+                        </code>
+                    </listItem>
+                    <listItem>
+                        On some PCs the following step is necessary: Clear the VS extension cache. For example,
+                        for Visual Studio 2013 delete the files in
+                        <list class="nobullet">
+                            <listItem>
+                                <localUri>%localappdata%\Microsoft\VisualStudio\12.0\Extensions</localUri>
+                            </listItem>
+                        </list>
+                    </listItem>
+                    <listItem>
+                        Open the command prompt with administrator privileges. Change the working directory to
+                        the directory which contains <localUri>devenv.exe</localUri>:
+                        <list class="nobullet">
+                            <listItem>
+                                (for VS2012) <localUri>C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE\</localUri>
+                            </listItem>
+                            <listItem>
+                                (for VS2013) <localUri>C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\</localUri>
+                            </listItem>
+                            <listItem>
+                                (for VS2015) <localUri>C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\</localUri>
+                            </listItem>
+                        </list>
+                        <para>
+                            or
+                        </para>
+                        <list class="nobullet">
+                            <listItem>
+                                <localUri>C:\Program Files (x86)\Common7\IDE\</localUri>
+                            </listItem>
+                        </list>
+                        <para>
+                            and execute
+                        </para>
+                        <code language="none">
+                            devenv.exe /setup
+                        </code>
+                        <para>
+                            to rebuild the extension cache.
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Issues">
+            <title>Known issues</title>
+            <content>
+            </content>
+            <sections>
+                <section>
+                    <title>Content is always rebuilt</title>
+                    <content>
+                        <para>
+                            In some solutions XNA content projects are always rebuilt even if the output is up-to-date -
+                            which can be annoying because building content can take many minutes in larger
+                            projects.
+                            Usually, this happens if a content pipeline project is included in the solution. The content pipeline
+                            assembly is updated every time the project is built, which causes the content to be rebuilt.
+                        </para>
+                        <para>
+                            A simple workaround is to build the content pipeline projects once and then unload it from the
+                            Visual Studio solution: In Visual Studio open the <legacyBold>Solution Explorer</legacyBold>,
+                            right-click the content pipeline project and select <legacyBold>Unload Project</legacyBold>
+                            in the context menu.
+                        </para>
+                        <para>
+                            If this does not solve the problem and the content is still rebuilding, then you can
+                            check the Visual Studio build log in the <ui>Output</ui> window
+                            to see which project causes the rebuilds. You might have to increase the amount of
+                            information in the build log: Open the menu
+                            <ui>Tools | Options... | Projects and Solutions | Build and Run</ui> and change the
+                            <ui>MSBuild project build output verbosity</ui> to <ui>Detailed</ui>.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+            <link xlink:href="46419cff-2a6e-4d81-84e4-051800b9727b" />
+            <externalLink>
+                <linkText>Stackoverflow: How to install XNA game studio on Visual Studio 2012?</linkText>
+                <linkUri>http://stackoverflow.com/questions/10881005/how-to-install-xna-game-studio-on-visual-studio-2012</linkUri>
+            </externalLink>
+            <externalLink>
+                <linkText>Álison Fernandes: Install XNA on Visual Studio 2013 and 2012</linkText>
+                <linkUri>http://dementedvice.wordpress.com/2013/10/21/let-me-explain-install-xna-on-visual-studio-2013-and-2012/</linkUri>
+            </externalLink>
+            <externalLink>
+                <linkText>Justin Aquadro: XNA Templates for Visual Studio 2013</linkText>
+                <linkUri>http://jaquadro.com/2014/02/xna-templates-for-visual-studio-2013/</linkUri>
+            </externalLink>
+            <externalLink>
+                <linkText>Justin Aquadro: Migrating MonoGame Projects to VS2013 and Windows 8.1</linkText>
+                <linkUri>http://jaquadro.com/2013/11/migrating-monogame-projects-to-vs2013-and-windows-8-1/</linkUri>
+            </externalLink>
+            <externalLink>
+                <linkText>Chris Cascioli: The XNA Enabler App – XNA in Visual Studio 2012 &amp; 2013</linkText>
+                <linkUri>http://what-ev.net/2014/02/19/the-xna-enabler-app-xna-in-visual-studio-2012-2013/?wt=5</linkUri>
+            </externalLink>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="5b005b7b-e103-4da2-8d18-cddce0a5bea7" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This section explains how to create a <legacyItalic>particle emitter</legacyItalic> (an effector that creates particles).
+            </para>
+        </introduction>
+
+
+        <section>
+            <title>What is a particle emitter?</title>
+            <content>
+                <para>
+                    Objects that create new particles are usually called
+                    <legacyItalic>particle emitters</legacyItalic>. In DigitalRune Particles, emitters can be implemented
+                    as <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleEffector</codeEntityReference>s
+                    that call the method <codeEntityReference qualifyHint="true">M:DigitalRune.Particles.ParticleSystem.AddParticles(System.Int32)</codeEntityReference>
+                    to create particles.
+                </para>
+                <para>
+                    This article shows how to implement a stream emitter that creates
+                    particles at a configurable rate. (Please note: DigitalRune Particles
+                    contains a <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.Effectors.StreamEmitter</codeEntityReference>
+                    that provides the same functionality.)
+                </para>
+            </content>
+        </section>
+
+
+        <section>
+            <title>Creating a stream emitter</title>
+            <content>
+                <para>
+                    First, we create a new class that inherits from
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleEffector</codeEntityReference>.
+                    Particle effectors can be added to a particle system, and they are called
+                    whenever the particle system is initialized or updated. Here is the empty class
+                    and the namespaces that we will need:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+using System;
+using System.Collections.Generic;
+using DigitalRune.Particles;
+
+
+namespace MyNamespace
+{
+  public class MyStreamEmitter : ParticleEffector
+  {
+    // TODO: Add code.
+  }
+}
+]]>
+                </code>
+                <para>
+                    To allow users to configure the emission rate, we have two options:
+                </para>
+                <list class="ordered">
+                    <listItem>
+                        The stream emitter class could have an "EmissionRateParameter" property of
+                        type string where the user can set the name of a uniform particle parameter
+                        that defines the emission rate.
+                    </listItem>
+                    <listItem>
+                        The stream emitter class has an "EmissionRate" property of type float that
+                        defines the current emission rate.
+                    </listItem>
+                </list>
+                <para>
+                    We can offer both options by adding these properties to the stream emitter:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+[ParticleParameter(ParticleParameterUsage.In, Optional = true)]
+public string EmissionRateParameter { get; set; }
+
+public float DefaultEmissionRate { get; set; }
+
+public MyStreamEmitter()
+{
+  DefaultEmissionRate = 10;
+}
+]]>
+                </code>
+                <para>
+                    If <legacyBold>EmissionRateParameter</legacyBold> is set, the stream emitter
+                    should search for a uniform particle parameter with this name and use the value
+                    of this parameter as the emission rate. Using particle parameters is very flexible because
+                    particle parameters can be animated using other particle effectors or the animation
+                    system in <link xlink:href="c2892dfd-491e-4e78-83d1-737e38f1acc9">DigitalRune Animation</link>.
+                </para>
+                <para>
+                    If the <legacyBold>EmissionRateParameter</legacyBold> is not set, the value of the property <legacyBold>DefaultEmissionRate</legacyBold>
+                    (with a default value of 10) is used as the emission rate. Regular properties are easier
+                    to use than particle parameters - but offer less flexibility.
+                </para>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleParameterAttribute</codeEntityReference>
+                    provides meta-information for particle editors and validation. In this example,
+                    the <legacyBold>EmissionRateParameter</legacyBold> is an optional input parameter.
+                </para>
+                <para>
+                    Particle effectors should be cloneable. The following two methods must be
+                    overridden to support cloning:
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.CreateInstanceCore</codeEntityReference>
+                    must return a new instance of the particle emitter and
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.CloneCore(DigitalRune.Particles.ParticleEffector)</codeEntityReference>
+                    must copy all important properties:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+protected override ParticleEffector CreateInstanceCore()
+{
+  return new MyStreamEmitter();
+}
+
+
+protected override void CloneCore(ParticleEffector source)
+{
+  base.CloneCore(source);
+
+  var sourceTyped = (MyStreamEmitter)source;
+  EmissionRateParameter = sourceTyped.EmissionRateParameter;
+  DefaultEmissionRate = sourceTyped.DefaultEmissionRate;
+}
+]]>
+                </code>
+                <para>
+                    The base class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleEffector</codeEntityReference>
+                    provides several virtual methods, which are automatically called by the
+                    particle system. Derived classes can override these methods to change
+                    particle parameters, manipulate the particle system, or emit new particles.
+                </para>
+                <para>
+                    The particle effector can query the required parameters and cache the
+                    references in
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.OnRequeryParameters</codeEntityReference>.
+                    This method is called when the particle system is updated for the first
+                    time, and then every time the particle parameters change and need
+                    to be requeried.
+                </para>
+                <para>
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.OnInitialize</codeEntityReference>
+                    is called after <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.OnRequeryParameters</codeEntityReference>
+                    when the particle system is updated for the first time and whenever
+                    the particle system is reset. In this method the internal state of the
+                    particle effector should be reset.
+                </para>
+                <para>
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.OnUninitialize</codeEntityReference>
+                    is called when the particle effector is removed from a particle system. In this method
+                    all resources and references to external objects should be released.
+                </para>
+                <para>
+                    The stream emitter in our example will use two private fields that require initialization
+                    and clean-up: The first field stores a reference to the emission rate parameter, and
+                    the second field remembers how many particles need to be emitted in the next time step:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+private IParticleParameter<float> _emissionRateParameter;
+private float _leftoverParticles;
+
+protected override void OnRequeryParameters()
+{
+  _emissionRateParameter = ParticleSystem.Parameters.Get<float>(EmissionRateParameter);
+}
+
+protected override void OnInitialize()
+{
+  _leftoverParticles = 0;
+}
+
+protected override void OnUninitialize()
+{
+  _emissionRateParameter = null;
+}
+]]>
+                </code>
+                <para>
+                    The base class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleEffector</codeEntityReference>
+                    has several virtual methods that are called when the particle system is updated.
+                    One of these method is
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleEffector.OnBeginUpdate(System.TimeSpan)</codeEntityReference>.
+                    This method is called when the particle system begins with the update. The
+                    stream emitter can override the method and call
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Particles.ParticleSystem.AddParticles(System.Int32)</codeEntityReference>
+                    to create ("emit") new particles in each frame.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+protected override void OnBeginUpdate(TimeSpan deltaTime)
+{
+  float dt = (float)deltaTime.TotalSeconds;
+  float emissionRate = (_emissionRateParameter != null) ? _emissionRateParameter.DefaultValue : DefaultEmissionRate;
+  float numberOfParticles = emissionRate * dt + _leftoverParticles;
+
+  ParticleSystem.AddParticles((int)numberOfParticles, this);
+
+  // The decimal fraction of numberOfParticles is truncated, so not the whole
+  // deltaTime is really used. We store the unused fraction for the next frame.
+  _leftoverParticles = numberOfParticles - (float)Math.Floor(numberOfParticles);
+}
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section>
+            <title>The final stream emitter code</title>
+            <content>
+                <para>
+                    Here is the full source code of the stream emitter.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+using System;
+using System.Collections.Generic;
+using DigitalRune.Particles;
+
+
+namespace MyNamespace
+{
+  public class MyStreamEmitter : ParticleEffector
+  {
+    private IParticleParameter<float> _emissionRateParameter;
+    private float _leftoverParticles;
+
+
+    [ParticleParameter(ParticleParameterUsage.In, Optional = true)]
+    public string EmissionRateParameter { get; set; }
+
+    public float DefaultEmissionRate { get; set; }
+
+
+    public MyStreamEmitter()
+    {
+      DefaultEmissionRate = 10;
+    }
+
+
+    protected override ParticleEffector CreateInstanceCore()
+    {
+      return new MyStreamEmitter();
+    }
+
+    protected override void CloneCore(ParticleEffector source)
+    {
+      base.CloneCore(source);
+
+      var sourceTyped = (MyStreamEmitter)source;
+      EmissionRateParameter = sourceTyped.EmissionRateParameter;
+      DefaultEmissionRate = sourceTyped.DefaultEmissionRate;
+    }
+    
+    protected override void OnRequeryParameters()
+    {
+      _emissionRateParameter = ParticleSystem.Parameters.Get<float>(EmissionRateParameter);
+    }
+
+    protected override void OnInitialize()
+    {
+      _leftoverParticles = 0;
+    }
+
+    protected override void OnUninitialize()
+    {
+      _emissionRateParameter = null;
+    }
+
+    protected override void OnBeginUpdate(TimeSpan deltaTime)
+    {
+      float dt = (float)deltaTime.TotalSeconds;
+      float emissionRate = (_emissionRateParameter != null) ? _emissionRateParameter.DefaultValue : DefaultEmissionRate;
+      float numberOfParticles = emissionRate * dt + _leftoverParticles;
+
+      ParticleSystem.AddParticles((int)numberOfParticles, this);
+
+      // The decimal fraction of numberOfParticles is truncated, so not the whole
+      // deltaTime is really used. We store the unused fraction for the next frame.
+      _leftoverParticles = numberOfParticles - (float)Math.Floor(numberOfParticles);
+    }
+  }
+}
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

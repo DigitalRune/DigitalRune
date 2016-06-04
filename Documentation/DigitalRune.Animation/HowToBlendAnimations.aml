@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="9d913b4f-ba42-4d64-bb24-c96b97878829" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This topic explains how to blend between a "Walk" and a "Run" animations based on the speed
+                of a character.
+            </para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Simple">
+            <title>Method 1: Varying playback speeds and animation transitions</title>
+            <content>
+                <para>
+                    The character needs to have two animations: The "Walk" animation lets the character walk at
+                    average speed and the "Run" animation lets the character sprint with maximal speed.
+                    (Each animation contains a single
+                    <externalLink>
+                        <linkText>walk cycle</linkText>
+                        <linkUri>http://en.wikipedia.org/wiki/Walk_cycle</linkUri>
+                    </externalLink>.)
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Load the animations.
+SkeletonKeyFrameAnimation walkAnimation = animations["Walk"];
+SkeletonKeyFrameAnimation runAnimation = animations["Run"];
+
+// Create an AnimationClip<T> to loop the animation.
+var cyclicWalkAnimation = new AnimationClip<SkeletonPose>(walkAnimation)
+{
+  LoopBehavior = LoopBehavior.Cycle,
+  Duration = TimeSpan.MaxValue,
+};
+
+var cyclicRunAnimation = new AnimationClip<SkeletonPose>(runAnimation)
+{
+  LoopBehavior = LoopBehavior.Cycle,
+  Duration = TimeSpan.MaxValue,
+};
+          ]]>
+                </code>
+                <para>
+                    When the character starts moving, start by playing the "Walk" animation.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Start "Walk" animation.
+var animationController = AnimationService.StartAnimation(
+  walkAnimation, 
+  (IAnimatableProperty)_skeletonPose);
+animationController.AutoRecycle();
+          ]]>
+                </code>
+                <para>
+                    Vary the playback speed of the animation to match the speed of the character.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Play walk animation at half speed:
+animationController.Speed = 0.5f;
+          ]]>
+                </code>
+                <para>
+                    Once the speed exceeds a certain threshold, switch to the run animation using a short
+                    fade-in duration:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+animationController = AnimationService.StartAnimation(
+  cyclicRunAnimation,
+  (IAnimatableProperty)_skeletonPose,
+  AnimationTransitions.Replace(0.2f));
+animationController.AutoRecycle();
+          ]]>
+                </code>
+                <para>
+                    The problem with this approach is that the "Run" animation is not automatically synchronized
+                    with the "Walk" animation. The transition is acceptable in the most cases, but will create
+                    some animation glitches in the worst case (when the right foot is in front in the "Walk"
+                    animation, but the left foot is in front in the "Run" animation).
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Blend">
+            <title>Method 2: Animation blending using a BlendGroup</title>
+            <content>
+                <para>
+                    The more accurate (but a bit more expensive way) way is to use a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.BlendGroup</codeEntityReference>.
+                    A <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.BlendGroup</codeEntityReference>
+                    is an animation that blends cyclic animations with different length.
+                </para>
+                <para>
+                    Load the animations as before, but instead of creating an
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.AnimationClip`1</codeEntityReference>
+                    add the animations to a new <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.BlendGroup</codeEntityReference>.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Load the animations.
+SkeletonKeyFrameAnimation walkAnimation = animations["Walk"];
+SkeletonKeyFrameAnimation runAnimation = animations["Run"];
+
+// Add the animations to a new blend group.
+BlendGroup walkRunAnimation = new BlendGroup
+{
+  LoopBehavior = LoopBehavior.Cycle, 
+  Duration = TimeSpan.MaxValue
+};
+walkRunAnimation.Add(walkAnimation);
+walkRunAnimation.Add(runAnimation);
+walkRunAnimation.SynchronizeDurations(); // Needs to be called once!
+walkRunAnimation.SetWeight(0, 1.0f);     // Enable walk animation.
+walkRunAnimation.SetWeight(1, 0.0f);     // Disable run animation.
+          ]]>
+                </code>
+                <para>
+                    The method <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Animation.BlendGroup.SynchronizeDurations</codeEntityReference>
+                    needs to be called once after all animations have been added.
+                </para>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.BlendGroup</codeEntityReference>
+                    can be used like any other animation. For example, to start the animation call:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+AnimationService.StartAnimation(
+  walkRunAnimation, 
+  (IAnimatableProperty)_skeletonPose
+  ).AutoRecycle();
+          ]]>
+                </code>
+                <para>
+                    The blend weights can be used to create a seamless transition from walking to running.
+                    (Note: The blend weights are automatically normalized.)
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Cross-fade between "Walk" and "Run":
+walkRunAnimation.SetWeight(0, 0.5f); // 50% walk
+walkRunAnimation.SetWeight(1, 0.5f); // 50% run
+          ]]>
+                </code>
+                <para>
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.BlendGroup</codeEntityReference>
+                    are actually pretty powerful: A <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.BlendGroup</codeEntityReference>
+                    can blend any number of animations, not just two. For example, it is possible to mix a "Walk"
+                    animation with a "Run" animation and a "Limp" animation.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

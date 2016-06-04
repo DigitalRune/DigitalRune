@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="dd394bdc-c9ec-442a-929d-7141f7b301ae" revisionNumber="1">
+    <developerConceptualDocument
+      xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                In this step we will add the physics simulation.
+            </para>
+        </introduction>
+
+
+        <section address="Physics">
+            <title>Add physics service</title>
+            <content>
+                <para>
+                    Let's add the physics service to the game:
+                </para>
+                <code language="c#" title="Game1.cs">
+                    <![CDATA[
+…
+using DigitalRune.Physics;                                                              // NEW
+…
+
+namespace MyGame
+{
+    public class Game1 : Microsoft.Xna.Framework.Game
+    {
+        …
+        private Simulation _simulation;                                                 // NEW
+        …
+
+        protected override void Initialize()
+        {
+            …
+            _animationManager = new AnimationManager();
+            _services.Register(typeof(IAnimationService), null, _animationManager);
+
+            _simulation = new Simulation();                                             // NEW
+            _simulation.ForceEffects.Add(new Gravity());                                // NEW
+            _simulation.ForceEffects.Add(new Damping());                                // NEW
+            _services.Register(typeof(Simulation), null, _simulation);                  // NEW
+
+            Components.Add(new MyGameComponent(this));
+
+            base.Initialize();
+        }
+        
+        protected override void Update(GameTime gameTime)
+        {
+            _inputManager.Update(gameTime.ElapsedGameTime);
+
+            base.Update(gameTime);
+
+            _gameObjectManager.Update(gameTime.ElapsedGameTime);
+
+            _simulation.Update(gameTime.ElapsedGameTime);                               // NEW
+
+            _animationManager.Update(gameTime.ElapsedGameTime);
+            _animationManager.ApplyAnimations();
+        }
+        …
+                    ]]>
+                </code>
+                <para>
+                    The physics service is represented by the class <legacyBold>Simulation</legacyBold>.
+                    (The physics library was one of our first products. If we redesign the physics library
+                    in the future we will probably rename <legacyBold>Simulation</legacyBold> to
+                    <legacyBold>IPhysicsService</legacyBold> and <legacyBold>PhysicsManager</legacyBold>
+                    to use the same naming convention as the other libraries.)
+                </para>
+                <para>
+                    After we create the simulation, we immediately add two force effects:
+                    <legacyBold>Gravity</legacyBold> and <legacyBold>Damping</legacyBold>. Unless you
+                    make a game in space, you will need these force effects.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Ground">
+            <title>
+                Add a rigid body to the GroundObject
+            </title>
+            <content>
+                <para>
+                    So far the ground plane does not have a physical representation. Let's add a rigid
+                    body which represents the ground in <localUri>GroundObject.cs</localUri>:
+                </para>
+                <code language="c#" title="GroundObject.cs">
+                    <![CDATA[
+…
+using DigitalRune.Geometry.Shapes;                                              // NEW
+using DigitalRune.Physics;                                                      // NEW
+…
+
+namespace MyGame
+{
+    public class GroundObject : GameObject
+    {
+        private ModelNode _modelNode;
+        private RigidBody _rigidBody;                                           // NEW
+
+        protected override void OnLoad()
+        {
+            var game = ServiceLocator.Current.GetInstance<Game>();
+            var scene = ServiceLocator.Current.GetInstance<IScene>();
+            var simulation = ServiceLocator.Current.GetInstance<Simulation>();  // NEW
+
+            _modelNode = game.Content.Load<ModelNode>("Ground/Ground").Clone();
+            _modelNode.ScaleLocal = new Vector3F(0.5f);
+            scene.Children.Add(_modelNode);
+
+            _rigidBody = new RigidBody(new PlaneShape(Vector3F.UnitY, 0))       // NEW
+            {                                                                   // NEW
+                MotionType = MotionType.Static,                                 // NEW
+            };                                                                  // NEW
+          simulation.RigidBodies.Add(_rigidBody);
+        }
+
+        protected override void OnUnload()
+        {
+            _modelNode.Parent.Children.Remove(_modelNode);
+            _modelNode.Dispose(false);
+            _modelNode = null;
+
+            _rigidBody.Simulation.RigidBodies.Remove(_rigidBody);               // NEW
+            _rigidBody = null;                                                  // NEW
+        }
+
+        protected override void OnUpdate(TimeSpan deltaTime)
+        {
+        }
+    }
+}
+                    ]]>
+                </code>
+                <para>
+                    Now the ground is represented in the physics simulation as an infinite plane.
+                    The <legacyBold>MotionType</legacyBold> of the ground is <legacyBold>Static</legacyBold>.
+                    This means, that it will never move.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Crate">
+            <title>Add a dynamic crate</title>
+            <content>
+                <para>
+                    Next, we add a physics object which moves using a new game object:
+                    <localUri>CrateObject.cs</localUri>
+                </para>
+                <code language="c#" title="CrateObject.cs">
+                    <![CDATA[
+using System;
+using DigitalRune.Game;
+using DigitalRune.Geometry;
+using DigitalRune.Geometry.Shapes;
+using DigitalRune.Graphics.SceneGraph;
+using DigitalRune.Mathematics.Algebra;
+using DigitalRune.Mathematics.Statistics;
+using DigitalRune.Physics;
+using Microsoft.Practices.ServiceLocation;
+using Microsoft.Xna.Framework;
+
+namespace MyGame
+{
+    public class CrateObject : GameObject
+    {
+        private ModelNode _modelNode;
+        private RigidBody _rigidBody;
+
+        protected override void OnLoad()
+        {
+            var game = ServiceLocator.Current.GetInstance<Game>();
+            var scene = ServiceLocator.Current.GetInstance<IScene>();
+            var simulation = ServiceLocator.Current.GetInstance<Simulation>();
+
+            _modelNode = game.Content.Load<ModelNode>("MetalGrateBox/MetalGrateBox").Clone();
+            scene.Children.Add(_modelNode);
+
+            _rigidBody = new RigidBody(new BoxShape(1, 1, 1));
+            _rigidBody.Pose = new Pose(new Vector3F(2, 2, -2), RandomHelper.Random.NextQuaternionF());
+            simulation.RigidBodies.Add(_rigidBody);
+        }
+
+        protected override void OnUnload()
+        {
+            _modelNode.Parent.Children.Remove(_modelNode);
+            _modelNode.Dispose(false);
+            _modelNode = null;
+
+            _rigidBody.Simulation.RigidBodies.Remove(_rigidBody);
+            _rigidBody = null;
+        }
+
+        protected override void OnUpdate(TimeSpan deltaTime)
+        {
+            _modelNode.SetLastPose(true);
+            _modelNode.PoseWorld = _rigidBody.Pose;
+        }
+    }
+}
+                    ]]>
+                </code>
+                <para>
+                    The crate object uses the <localUri>MetalGrateBox.fbx</localUri> model. It also
+                    creates a rigid body which has a box shape. The shape of the box must match size of
+                    the graphics model.
+                </para>
+                <para>
+                    The <legacyBold>ModelNode</legacyBold> is handled by the graphics service. The
+                    <legacyBold>RigidBody</legacyBold> is handled by the physics service. In our case,
+                    the model should always have the same pose (position and orientation) as the physics
+                    body. To do this, we copy the pose of the rigid body to the pose of the model in
+                    <legacyBold>OnUpdate</legacyBold>.
+                </para>
+                <para>
+                    But before we override the pose of the model, we call
+                    <legacyBold>SetLastPose(recursive = true)</legacyBold>. This method stores the current
+                    <legacyBold>SceneNode.PoseWorld</legacyBold> in <legacyBold>SceneNode.LastPoseWorld</legacyBold>.
+                    This is done recursively for the <legacyBold>ModelNode</legacyBold> and all child
+                    nodes. <legacyBold>LastPoseWorld</legacyBold> may be required later by certain effects,
+                    such as motion blur.
+                </para>
+                <para>
+                    In <legacyBold>MyGameComponent</legacyBold> we create an instance of
+                    <legacyBold>CrateObject</legacyBold>:
+                </para>
+                <code language="c#" title="Game1.cs">
+                    <![CDATA[
+…
+namespace MyGame
+{
+    public class MyGameComponent : Microsoft.Xna.Framework.GameComponent
+    {
+        …
+
+        public MyGameComponent(Game game)
+            : base(game)
+        {
+            …
+
+            gameObjectService.Objects.Add(new GroundObject());
+            gameObjectService.Objects.Add(new LightsObject());
+            gameObjectService.Objects.Add(new DudeObject());
+            gameObjectService.Objects.Add(new CrateObject());                       // NEW
+
+            _myGraphicsScreen.DebugRenderer.DrawText("MyGame");
+            _myGraphicsScreen.DebugRenderer.DrawAxes(Pose.Identity, 1, false);
+        }
+        …
+                    ]]>
+                </code>
+                <para>
+                    Current state of the game:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Tutorial-01-19"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="GameEngineDesign">
+            <title>Interlude: Game engine design – Game logic and services</title>
+            <content>
+                <para>
+                    The <legacyBold>CrateObject</legacyBold> demonstrates an important aspect of our
+                    game engine design:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Game logic is encapsulated in reusable game objects (e.g. <legacyBold>CreateObject</legacyBold>).
+                    </listItem>
+                    <listItem>
+                        The game object creates objects in the different services (e.g. graphics and physics).
+                    </listItem>
+                    <listItem>
+                        Services can be discovered through the service provider.
+                    </listItem>
+                    <listItem>
+                        Services are separated: Each service (e.g. graphics and physics) is designed and
+                        optimized independently. Both services could be executed in parallel (in case
+                        you want to create a multithreaded game).
+                    </listItem>
+                    <listItem>
+                        The game object is used to exchange data between the different services. In this
+                        example, it copies the pose of the physics object to the pose of the graphics
+                        object. In other instances it might be the other way around. This kind of code is the
+                        <newTerm>glue logic</newTerm> that connects different services.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Next">
+            <title>Next</title>
+            <content>
+                <para>
+                    <link xlink:href="aa0a6f8f-d355-4188-9d4a-7041160411d1" />
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="c9764263-9fc9-43cf-86cb-11daa5090dc2" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                The <newTerm>ParallaxMappingSample</newTerm> (see
+                <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />) shows how to implement a new
+                light type which adds environment map reflections to all materials in the scene.
+                This article provides additional background information and explanations.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Parallax">
+            <title>Parallax mapping</title>
+            <content>
+                <para>
+                    The new ParallaxMappingSample shows how to add a new materials that support
+                    <newTerm>Parallax Mapping with Offset Limiting</newTerm>
+                    and
+                    <newTerm>Parallax Occlusion Mapping</newTerm>.
+                </para>
+                <para>
+                    Parallax mapping is an enhancement of normal mapping. While normal mapping makes
+                    bumps and dents appear under lighting, parallax mapping gives the material the
+                    appearance of depth – as shown in the following screenshots:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Parallax"/>
+                </mediaLink>
+                <para>
+                    The ground on the left is created using 3 texture maps:
+                </para>
+                <mediaLink>
+                    <caption placement="after">Diffuse Texture</caption>
+                    <image xlink:href="Ground-Diffuse"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Specular Texture</caption>
+                    <image xlink:href="Ground-Specular"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Normal Texture</caption>
+                    <image xlink:href="Ground-Normal"/>
+                </mediaLink>
+                <para>
+                    Parallax mapping uses an additional height map:
+                </para>
+                <mediaLink>
+                    <caption placement="after">Height Texture</caption>
+                    <image xlink:href="Ground-Height"/>
+                </mediaLink>
+                <para>
+                    The height map is used to offset the lookup into the other texture maps. This way,
+                    we can create the appearance of depth – even if the ground consists only of a flat
+                    triangles. There are many resources, which explain how parallax mapping works, for
+                    example [3] and [4].
+                </para>
+                <para>
+                    In addition to standard Parallax Mapping with Offset Limiting and Parallax Occlusion
+                    Mapping, the sample code shows:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        How to add a height bias, which lets you define whether the bumps should appear
+                        above or below the actual ground plane.
+                    </listItem>
+                    <listItem>
+                        How to transition to normal mapping in the distance.
+                    </listItem>
+                    <listItem>
+                        How to add simple soft self-shadowing.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="References">
+            <title>References</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        [1] W. Engel, J. Hoxley, R. Kornmann, N. Suni, J. Zink: Techniques For Dynamic
+                        Per-Pixel Lighting. In Programming Vertex, Geometry, and Pixel Shaders.
+                        <externalLink>
+                            <linkText>http://content.gpwiki.org/index.php/D3DBook:(Lighting)_Per-Pixel_Lighting</linkText>
+                            <linkUri>http://content.gpwiki.org/index.php/D3DBook:(Lighting)_Per-Pixel_Lighting</linkUri>
+                        </externalLink>
+                    </listItem>
+                    <listItem>
+                        [2] N.Tatarchuk: Practical Parallax Occlusion Mapping with Approximate Soft
+                        Shadows for Detailed Surface Rendering. In ShaderX5: Advanced Rendering Techniques,
+                        edited by W. Engel
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="52bcba79-48f5-45f4-a5e8-288b0ca34d0c" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="SceneQueries">
+            <title>What are scene queries?</title>
+            <content>
+                <para>
+                    One main purpose of a scene graph (represented by the interface <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.IScene</codeEntityReference>)
+                    is the ability to quickly identify scene nodes that match a certain criterion. For example,
+                    all scene nodes within the camera viewing frustum, all light nodes that affect a certain mesh,
+                    all mesh nodes that cast shadows from a given light source, ...
+                </para>
+                <para>
+                    The interface <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.IScene</codeEntityReference>
+                    provides a <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.SceneGraph.IScene.Query``1(DigitalRune.Graphics.SceneGraph.SceneNode,DigitalRune.Graphics.RenderContext)</codeEntityReference>
+                    method. This method can be used to get all scene nodes that touch a given scene node, the
+                    <newTerm>reference node</newTerm>. For example: If the reference node is the currently
+                    active camera node, the <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.SceneGraph.IScene.Query``1(DigitalRune.Graphics.SceneGraph.SceneNode,DigitalRune.Graphics.RenderContext)</codeEntityReference>
+                    method returns all scene nodes within the viewing frustum. (Checks are performed using the
+                    bounding shape of the scene nodes, not the exact geometry.)
+                </para>
+                <para>
+                    The <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.SceneGraph.IScene.Query``1(DigitalRune.Graphics.SceneGraph.SceneNode,DigitalRune.Graphics.RenderContext)</codeEntityReference>
+                    is a generic method that requires a type parameter. The type parameter specifies the
+                    <newTerm>scene query type</newTerm>, which must be a class that implements
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ISceneQuery</codeEntityReference>.
+                    An instance of this scene query type is returned as the result of the method.
+                </para>
+                <code language="c#" title="Example (C#)">
+                    <![CDATA[
+// Get all scene nodes within viewing frustum.
+CameraFrustumQuery sceneQuery = scene.Query<CameraFrustumQuery>(cameraNode);
+
+// (The result is stored in sceneQuery.SceneNodes.)
+          ]]>
+                </code>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ISceneQuery</codeEntityReference>
+                    can further filter the returned scene nodes, or group them by category. DigitalRune Graphics
+                    provides several predefined scene query types:
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.CameraFrustumQuery</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.FogQuery</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LightQuery</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ShadowCasterQuery</codeEntityReference>.
+                </para>
+                <alert class="important">
+                    <para>
+                        Scene queries are cached and reused internally by the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.Scene</codeEntityReference>.
+                        That means, if <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.SceneGraph.IScene.Query``1(DigitalRune.Graphics.SceneGraph.SceneNode,DigitalRune.Graphics.RenderContext)</codeEntityReference>
+                        is called a second time with the same <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ISceneQuery</codeEntityReference>
+                        type, the same <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ISceneQuery</codeEntityReference>
+                        instance is returned.
+                    </para>
+                </alert>
+            </content>
+        </section>
+
+
+        <section address="UserDefined">
+            <title>User-defined queries</title>
+            <content>
+                <para>
+                    In complex rendering pipelines it can be useful to create a custom scene query. A new scene
+                    query type can be created by adding a new class that implements
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ISceneQuery</codeEntityReference>.
+                </para>
+                <para>
+                    Example: The following scene query sorts scene nodes by category and ignores unsupported
+                    scene node types.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+public class CustomSceneQuery : ISceneQuery
+{
+  public SceneNode ReferenceNode { get; private set; }
+
+  public List<SceneNode> DecalNodes { get; private set; }
+  public List<SceneNode> Lights { get; private set; }
+  public List<SceneNode> LensFlareNodes { get; private set; }
+  public List<SceneNode> SkyNodes { get; private set; }
+  public List<SceneNode> FogNodes { get; private set; }
+
+  // All other scene nodes where IsRenderable is true (e.g. MeshNodes).
+  public List<SceneNode> RenderableNodes { get; private set; }
+
+  public CustomSceneQuery()
+  {
+    DecalNodes = new List<SceneNode>();
+    Lights = new List<SceneNode>();
+    LensFlareNodes = new List<SceneNode>();
+    SkyNodes = new List<SceneNode>();
+    FogNodes = new List<SceneNode>();
+    RenderableNodes = new List<SceneNode>();
+  }
+
+
+  public void Reset()
+  {
+    ReferenceNode = null;
+
+    DecalNodes.Clear();
+    Lights.Clear();
+    LensFlareNodes.Clear();
+    SkyNodes.Clear();
+    FogNodes.Clear();
+    RenderableNodes.Clear();
+  }
+
+
+  public void Set(SceneNode referenceNode, IList<SceneNode> nodes)
+  {
+    Reset();
+    ReferenceNode = referenceNode;
+
+    for (int i = 0; i < nodes.Count; i++)
+    {
+      var node = nodes[i];
+
+      if (node is DecalNode)
+        DecalNodes.Add(node);
+      else if (node is LightNode)
+        Lights.Add(node);
+      else if (node is LensFlareNode)
+        LensFlareNodes.Add(node);
+      else if (node is SkyNode)
+        SkyNodes.Add(node);
+      else if (node is FogNode)
+        FogNodes.Add(node);
+      else if (node.IsRenderable)
+        RenderableNodes.Add(node);
+
+      // Note: Unsupported types are simply ignored.
+    }
+  }
+}
+          ]]>
+                </code>
+                <para>
+                    The following line shows how to use the new scene query:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+CustomSceneQuery sceneQuery = scene.Query<CustomSceneQuery>(referenceNode);
+          ]]>
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

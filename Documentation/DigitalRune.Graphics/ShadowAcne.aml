@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="3f4d959e-9c98-4a97-8d85-7a73c26145d7" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Acne">
+            <title>Shadow acne</title>
+            <content>
+                <para>
+                    <newTerm>Shadow acne</newTerm> is another problem caused by the limited
+                    resolution of the shadow map.
+                </para>
+                <para>
+                    First, a scene with no shadow acne:
+                </para>
+                <mediaLink>
+                    <caption placement="after">Figure: Reference scene, no shadow acne</caption>
+                    <image xlink:href="Shadow-Acne-Reference"/>
+                </mediaLink>
+                <para>
+                    When shadows are rendered naively – simply comparing a depth value with the
+                    value in the shadow map – the following happens: Faces are likely to be
+                    self-shadowed. This erroneous self-shadowing is called
+                    <newTerm>shadow acne</newTerm>.
+                </para>
+                <mediaLink>
+                    <caption placement="after">Figure: Shadow Acne</caption>
+                    <image xlink:href="Shadow-Acne"/>
+                </mediaLink>
+                <para>
+                    Note that increasing the resolution of the shadow map does not prevent
+                    shadow acne…
+                </para>
+                <mediaLink>
+                    <caption placement="after">Figure: Shadow acne with increased shadow map resolution.</caption>
+                    <image xlink:href="Shadow-Acne-Increased-Resolution"/>
+                </mediaLink>
+                <para>
+                    … nor does shadow map filtering. A large filter radius can make the problem even
+                    worse.
+                </para>
+                <mediaLink>
+                    <caption placement="after">Figure: Shadow filtering does not remove shadow acne.</caption>
+                    <image xlink:href="Shadow-Acne-Filtering"/>
+                </mediaLink>
+            </content>
+        </section>
+
+        <section address="Biasing">
+            <title>Shadow biasing</title>
+            <content>
+                <para>
+                    To avoid shadow acne, the pixels in the scene need to be moved closer to
+                    the light source during the shadow test. This is called
+                    <newTerm>biasing</newTerm>. Different biasing methods exist:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Depth Bias: The pixel is moved in the direction of the light.
+                    </listItem>
+                    <listItem>
+                        Slope-Scaled Depth Bias: Like the depth bias, but the offset depends on
+                        the slope of the surface because shadow acne is bigger on slopes which
+                        are nearly parallel to the light.
+                    </listItem>
+                    <listItem>
+                        Normal Offset [1]: The pixels are moved in the direction of the surface
+                        normal. The offset can be proportional to the slope.
+                    </listItem>
+                    <listItem>
+                        View Direction Offset [2]: Like the normal offset but instead of moving
+                        into the normal direction, the pixel is moved in the view direction.
+                        This is cheaper but not as good as the normal offset.
+                    </listItem>
+                    <listItem>
+                        Receiver Plane Depth Bias [3][4]: The receiver plane is calculated to
+                        analytically find the ideal bias.
+                    </listItem>
+                </list>
+                <para>
+                    A bias can be applied to the depth values when rendering the shadow map or
+                    when reading the shadow map: The depth bias and the slope-scaled depth
+                    bias are usually applied when the shadow map is created using the depth
+                    bias features of the graphics hardware. The other bias types are applied
+                    when the shadow map is read.
+                </para>
+                <para>
+                    We have tested these methods and found a combination of depth bias and
+                    slope-scaled normal offset to be the most robust. Both are applied when
+                    the shadow map is read. The bias values are controlled with the
+                    shadow
+                    properties
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.CascadedShadow.DepthBias</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.CascadedShadow.NormalOffset</codeEntityReference>.
+                </para>
+                <alert class="note">
+                    <para>
+                        The depth bias and the normal offset are applied by the
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.ShadowMaskRenderer</codeEntityReference>
+                        (see <link xlink:href="a3f49f80-226e-4a6b-b13a-dbf673b41438" />).
+                        If you use forward rendering, you have to implement shadow biasing in
+                        the forward rendering shader and you are free to implement any biasing
+                        method you prefer.
+                    </para>
+                </alert>
+            </content>
+        </section>
+
+        <section address="DepthBias">
+            <title>Depth bias</title>
+            <content>
+                <para>
+                    Increasing the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.CascadedShadow.DepthBias</codeEntityReference>
+                    moves lit pixels closer to the light (the pixels are only moved during
+                    the shadow test, not in the real scene). The depth bias removes shadow
+                    acne from surfaces facing the light source.
+                </para>
+                <mediaLink>
+                    <image xlink:href="Shadow-Depth-Bias"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="NormalOffset">
+            <title>Normal offset</title>
+            <content>
+                <para>
+                    As shown in the image above, faces parallel to the light direction may
+                    still show shadow acne. To clean these faces the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.CascadedShadow.NormalOffset</codeEntityReference>
+                    needs to be increased. The normal offset virtually pushes pixels into
+                    the light by moving them in the direction of the surface normal.
+                </para>
+                <mediaLink>
+                    <image xlink:href="Shadow-Normal-Offset"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Units">
+            <title>Bias units</title>
+            <content>
+                <para>
+                    Depth bias and normal offset values are specified in
+                    <newTerm>shadow map texels</newTerm>.
+                    For example, depth bias = 3 means that the pixels is moved the length
+                    of 3 shadows map texels closer to the light.
+                </para>
+                <para>
+                    This unit choice makes bias settings easier to understand and to
+                    configure: When shadow filtering is disabled, the size of the shadow map
+                    texels is easy to spot in the stair pattern of the shadow edges.
+                </para>
+                <para>
+                    This unit ensures that the bias automatically scales with the shadow
+                    map resolution. The same bias settings work regardless of the shadow map
+                    resolution.
+                </para>
+                <para>
+                    The bias also scales for lights with perspective projections such as
+                    spotlights: Objects near a spotlight (good shadow map resolution) only
+                    need a small bias, objects in the distance (poor shadow map resolution)
+                    need a large bias. By keeping the bias proportional to the projected shadow
+                    map texels, the same settings work at all distances.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="PeterPanning">
+            <title>Peter panning</title>
+            <content>
+                <para>
+                    If shadow filtering uses a large filter radius, you need larger depth
+                    bias and normal offset values. However, using large values can introduce
+                    a new problem called <newTerm>Peter Panning</newTerm>, where the shadow
+                    becomes disconnected from the shadow caster.
+                </para>
+                <mediaLink>
+                    <caption placement="after">
+                        Figure: Correct shadow bias (left) vs. large shadow bias (right)
+                    </caption>
+                    <image xlink:href="Shadow-Peter-Panning"/>
+                </mediaLink>
+                <para>
+                    Therefore, make the depth bias and normal offset only as large as
+                    necessary to remove shadow acne.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="References">
+            <title>References</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        [1] Daniel Holbert: "Saying 'Goodbye' to Shadow Acne", GDC 2011 poster,
+                        <externalLink>
+                            <linkText>http://www.dissidentlogic.com/old/images/NormalOffsetShadows/GDC_Poster_NormalOffset.png</linkText>
+                            <linkUri>http://www.dissidentlogic.com/old/images/NormalOffsetShadows/GDC_Poster_NormalOffset.png</linkUri>
+                        </externalLink>
+                    </listItem>
+                    <listItem>
+                        [2] Angelo Pesce: "Shadowmap bias notes",
+                        <externalLink>
+                            <linkText>http://c0de517e.blogspot.co.at/2011/05/shadowmap-bias-notes.html</linkText>
+                            <linkUri>http://c0de517e.blogspot.co.at/2011/05/shadowmap-bias-notes.html</linkUri>
+                        </externalLink>
+                    </listItem>
+                    <listItem>
+                        [3] John R. Isidoro: "Shadow Mapping: GPU-based Tips and Techniques", GDC 2006,
+                        <externalLink>
+                            <linkText>http://developer.amd.com/wordpress/media/2012/10/Isidoro-ShadowMapping.pdf</linkText>
+                            <linkUri>http://developer.amd.com/wordpress/media/2012/10/Isidoro-ShadowMapping.pdf</linkUri>
+                        </externalLink>
+                    </listItem>
+                    <listItem>
+                        [4] David Tuft: "Plane-Based Depth Bias for Percentage Closer Filtering –
+                        Calculating a custom offset to remove self-shadowing for large PCF Kernels by
+                        fitting the underlying geometry to a plane", Game Developer Magazine 05/2010,
+                        pp. 35,
+                        <externalLink>
+                            <linkText>http://twvideo01.ubm-us.net/o1/vault/GD_Mag_Archives/GDM_May_2010.pdf</linkText>
+                            <linkUri>http://twvideo01.ubm-us.net/o1/vault/GD_Mag_Archives/GDM_May_2010.pdf</linkUri>
+                        </externalLink>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="4e6f5dc1-8897-466f-88f2-b5c56d43a3c5" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Helpers">
+            <title>Helper classes</title>
+            <content>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.EffectHelper</codeEntityReference>
+                    provides extensions methods for effects and related types.
+                </para>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.GraphicsHelper</codeEntityReference>
+                    provides various helper methods, extension methods, as well as new blend and depth-stencil states.
+                </para>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.MeshHelper</codeEntityReference>
+                    provides helper methods and extensions methods for working with meshes, submeshes, and materials.
+                </para>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.NoiseHelper</codeEntityReference>
+                    provides noise textures, such as grain or Perlin noise.
+                </para>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PostProcessing.PostProcessHelper</codeEntityReference>
+                    provides a few reusable standard filters.
+                </para>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SceneHelper</codeEntityReference>
+                    provides extensions methods for scene nodes.
+                </para>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.TextureHelper</codeEntityReference>
+                    provides reusable default textures and helper methods for working with textures.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="RenderTargetPool">
+            <title>Render target pool</title>
+            <content>
+                <para>
+                    Intermediate render targets for deferred rendering, shadow maps, post-processing, etc.
+                    can be obtained from the <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.IGraphicsService.RenderTargetPool</codeEntityReference>.
+                    The render target pool manages a set of reusable render targets. Render targets can be
+                    obtained by calling
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.RenderTargetPool.Obtain2D(DigitalRune.Graphics.RenderTargetFormat)</codeEntityReference>/<codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.RenderTargetPool.ObtainCube(DigitalRune.Graphics.RenderTargetFormat)</codeEntityReference>
+                    and specifying a certain <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.RenderTargetFormat</codeEntityReference>.
+                    When a render target is no longer needed it should be returned to the render target pool by
+                    calling <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.RenderTargetPool.Recycle(Microsoft.Xna.Framework.Graphics.RenderTarget2D)</codeEntityReference>.
+                </para>
+                <para>
+                    The render target pool has a
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.RenderTargetPool.Clear</codeEntityReference>
+                    method. This method removes all cached render targets. It is recommended to call this
+                    method manually if the viewport size of the game changes. This method can also be
+                    called when the game needs to clean up resources, e.g. when a new level is
+                    loaded.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="TextureAtlas">
+            <title>Texture atlases, tile sets and 2D animations</title>
+            <content>
+                <para>
+                    A <newTerm>texture atlas</newTerm> is a large image containing a collection of textures. Texture
+                    atlases are used because it is often more efficient to pack multiple textures into a texture atlas
+                    which can be treated as a single unit by the graphics hardware. Textures of different size
+                    can be packed together.
+                </para>
+                <para>
+                    A <newTerm>tile set</newTerm> is similar to a texture atlas: A tile set is a collection
+                    of images (called "sprites" or "tiles"). All tiles have the same size and are packed as a
+                    regular grid.
+                </para>
+                <para>
+                    A tile set can be used for 2D animations ("flipbook animations", "sprite sheet animations"):
+                    The tile set contains a sequence of images (animation frames). Cycling through the images in
+                    rapid succession creates the illusion of movement.
+                </para>
+                <para>
+                    When a tile set is used for animation, the top-left tile contains the first animation frame,
+                    the second tile in the upper row contains the second animation frame, and so on. The
+                    bottom-right tile contains the last animation frame.
+                </para>
+                <alert class="important">
+                    <para>
+                        Most renderers require that the animation frames are tightly packed and the tile set does
+                        not contain empty tiles. For example, an animation consisting of 3 frames can be packed
+                        as a 1x3 or 3x1 tile set, but not as 2x2!
+                    </para>
+                </alert>
+                <para>
+                    Note that the two concepts, texture atlases and tile sets, can be combined: A texture atlases
+                    may contain a texture which may contain a tile set. At runtime the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PackedTexture</codeEntityReference>
+                    represents a texture, a tile set, a texture within a texture atlas, or a tile set within a
+                    texture atlas.
+                </para>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PackedTexture</codeEntityReference>
+                    is used by <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Billboard</codeEntityReference>s
+                    and <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleSystem</codeEntityReference>s.
+                </para>
+                <para>
+                    Models may use texture atlases, however they do not require the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PackedTexture</codeEntityReference>s
+                    class at runtime. (It makes no difference whether a model texture is a regular texture or a
+                    texture atlas. DigitalRune Graphics assumes that any UV coordinate changes are already baked
+                    into the model, or that the associated DirectX Effects handle the UV coordinate changes automatically.)
+                </para>
+                <alert class="note">
+                    <para>
+                        Currently there is no support for packing texture atlases and loading packed textures via the
+                        XNA content pipeline. Texture atlases can be created using third-party tools,
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PackedTexture</codeEntityReference>s
+                        need to be created manually at runtime.
+                    </para>
+                    <para>
+                        A texture packer including XNA content pipeline support will be added in a future release
+                        of DigitalRune Graphics.
+                    </para>
+                </alert>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

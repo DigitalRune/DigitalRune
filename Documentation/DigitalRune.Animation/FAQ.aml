@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="5bfb585d-77b4-4faa-b04c-1b626e09cddf" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>Here is a collection of frequently asked questions, common problems and solutions.</para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="General">
+            <title>General</title>
+            <content>
+            </content>
+            <sections>
+                <section address="Loop">
+                    <title>How can I play/loop a character animation in reverse?</title>
+                    <content>
+                        <para>
+                            Use <codeEntityReference qualifyHint="true">P:DigitalRune.Animation.TimelineClip.IsClipReversed</codeEntityReference>
+                            or <codeEntityReference qualifyHint="true">P:DigitalRune.Animation.AnimationClip`1.IsClipReversed</codeEntityReference>
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Duration">
+                    <title>How can I get the total duration of an AnimationClip?</title>
+                    <content>
+                        <para>
+                            If <codeEntityReference qualifyHint="true">P:DigitalRune.Animation.AnimationClip`1.Duration</codeEntityReference>
+                            is set to <legacyBold>null</legacyBold>, the clip plays only once and
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Animation.AnimationClip`1.GetTotalDuration</codeEntityReference>
+                            returns the actual duration.
+                            Often
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.AnimationClip`1.Duration</codeEntityReference>
+                            is set to <legacyBold>TimeSpan.MaxValue</legacyBold> to repeat the animation forever.
+                            In this case
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Animation.AnimationClip`1.GetTotalDuration</codeEntityReference>
+                            also returns <legacyBold>TimeSpan.MaxValue</legacyBold>.
+                        </para>
+                        <para>
+                            Other ways to get the duration:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                If <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.AnimationClip`1.ClipStart</codeEntityReference>
+                                and <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.AnimationClip`1.ClipEnd</codeEntityReference>
+                                are not set, you can simply call
+                                <legacyBold>AnimationClip&lt;T&gt;.Animation.GetTotalDuration()</legacyBold>.
+                            </listItem>
+                            <listItem>
+                                If <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.AnimationClip`1.ClipStart</codeEntityReference>
+                                or <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.AnimationClip`1.ClipEnd</codeEntityReference>
+                                is set, the duration is:
+                                <code language="cs">
+                                    <![CDATA[
+var start = clip.ClipStart ?? TimeSpan.Zero;
+var end = clip.ClipEnd ?? clip.Animation.GetTotalDuration();
+var duration = end - start;
+]]>
+                                </code>
+                                <para>
+                                    (This does not consider any
+                                    <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.AnimationClip`1.Delay</codeEntityReference>
+                                    or
+                                    <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.AnimationClip`1.Speed</codeEntityReference>
+                                    factor.)
+                                </para>
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Character">
+            <title>Character animation</title>
+            <content>
+            </content>
+            <sections>
+                <section address="LeafBoneLength">
+                    <title>How can I get the length of a bone which has no child?</title>
+                    <content>
+                        <para>
+                            There is no built-in way to get the length of a bone which has no child. Following methods
+                            could be used:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                Use a dummy bone to mark the end.
+                            </listItem>
+                            <listItem>
+                                Or, create and use a custom exporter tool for your 3D modeling app where you can
+                                enter the length of the last bones manually and export this info with the model.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section address="Export">
+                    <title>My animations exported from Maya/3ds Max/etc. are not working!?</title>
+                    <content>
+                        <para>
+                            Per default, DigitalRune Animation uses the XNA content pipeline to import models.
+                            The XNA content pipeline has some limitations and not all exported 3D models work with it.
+                        </para>
+                        <para>
+                            If you are using the XNA content pipeline, please test if your model works with the
+                            standard
+                            <externalLink>
+                                <linkText>XNA Skinned Model Sample</linkText>
+                                <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/skinned_model</linkUri>
+                            </externalLink>
+                        </para>
+                        <para>
+                            If it does not work, please check the
+                            <externalLink>
+                                <linkText>XNA forum</linkText>
+                                <linkUri>http://xboxforums.create.msdn.com/forums/</linkUri>
+                            </externalLink> for possible solutions.
+                        </para>
+                        <para>
+                            If the model works with the XNA Skinned Model Sample, but it does not work with the
+                            DigitalRune Engine, please let us know and we will provide a fix.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Convert">
+                    <title>
+                        How can I convert a SkeletonPose to an Animation that can be mixed
+                        (blended) with other animations?
+                    </title>
+                    <content>
+                        <para>
+                            Following animation class "wraps" a SkeletonPose. The current pose of the
+                            SkeletonPose property is copied to the value that should be animated.
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+using System;
+using DigitalRune.Animation;
+using DigitalRune.Animation.Character;
+using DigitalRune.Animation.Traits;
+ 
+namespace CharacterAnimationSample
+{
+  // A custom SkeletonPose animation that simply "wraps" a SkeletonPose. The current pose
+  // of the SkeletonPose property is copied to the SkeletonPose that should be animated.
+  public class WrappedSkeletonPoseAnimation : Animation<SkeletonPose>
+  {
+    // The source SkeletonPose.
+    public SkeletonPose SkeletonPose { get; set; }
+ 
+    // Traits tell the animation system how to create/recycle/add/blend/etc. the animated
+    // value type. Trait classes are usually singletons.
+    public override IAnimationValueTraits<SkeletonPose> Traits
+    {
+      get { return SkeletonPoseTraits.Instance; }
+    }
+ 
+    // This animation goes on forever.
+    public override TimeSpan GetTotalDuration()
+    {
+      return TimeSpan.MaxValue;
+    }
+ 
+    // Compute the animation value for the given time and stores it in result. 
+    protected override void GetValueCore(TimeSpan time, ref SkeletonPose defaultSource, ref SkeletonPose defaultTarget, ref SkeletonPose result)
+    {
+      var source = SkeletonPose ?? defaultSource;
+      Traits.Copy(ref source, ref result);
+    }
+  }
+}]]>
+                        </code>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

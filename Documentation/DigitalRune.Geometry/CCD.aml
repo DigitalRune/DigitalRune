@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="cd2fc090-d3fd-4a0f-a7d3-1759241c8545" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This section shows how to use Continuous Collision Detection.</para>
+            <alert class="tip">
+                <para>
+                    More general information about CCD can be found in the following article:
+                    <link xlink:href="138fc8fe-c536-40e0-af6b-0fb7e8eb9623" />
+                </para>
+            </alert>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Comparison">
+            <title>Discrete collision detection vs. continuous collision detection</title>
+            <content>
+                <para>
+                    The normal <newTerm>Discrete Collision Detection</newTerm> checks for collisions at the current
+                    objects positions. Then the game moves the objects to new positions and in the
+                    next frame the collision detection checks for collision at the new positions.
+                </para>
+                <para>
+                    Here is an example (from the
+                    <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57#CCDSample">ContinuousCollisionDetectionSample</link>).
+                    The capsule is moving from top to bottom. The table is moving from left
+                    to right.
+                </para>
+                <mediaLink>
+                    <caption placement="after" lead="Screenshot">Discrete Collision Detection</caption>
+                    <image xlink:href="DiscreteCD"/>
+                </mediaLink>
+                <para>
+                    In the first frame of the game the objects are at their top and left positions.
+                    In the next frame of the game the objects are at their bottom and right positions.
+                    Discrete Collision Detection does not detect a collision because only the start
+                    and end positions were checked.
+                </para>
+                <para>
+                    This problem is known as "tunneling" and happens for small and fast moving objects
+                    in a game. A game must make sure that tunneling does not happen for game critical
+                    objects, for example, for bullet that is shot at an enemy or a rocket
+                    that should hit a wall.
+                </para>
+                <para>
+                    <newTerm>Continuous Collision Detection (CCD)</newTerm> provides methods to compute the first time
+                    of impact of objects that are in motion. With CCD the intermediate collision
+                    can be found: (Objects in red show the first time of impact.)
+                </para>
+                <mediaLink>
+                    <caption placement="after" lead="Screenshot">Continuous Collision Detection</caption>
+                    <image xlink:href="ContinuousCD"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="TOI">
+            <title>Method GetTimeOfImpact()</title>
+            <content>
+                <para>
+                    To compute the first time of impact the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.CollisionDetection</codeEntityReference>
+                    class has the method
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Geometry.Collisions.CollisionDetection.GetTimeOfImpact(DigitalRune.Geometry.Collisions.CollisionObject,DigitalRune.Geometry.Pose,DigitalRune.Geometry.Collisions.CollisionObject,DigitalRune.Geometry.Pose,System.Single)</codeEntityReference>.
+                    This method takes two objects (positioned at their start poses) and the target poses as parameters.
+                    It returns the <codeInline>timeOfImpact</codeInline>, a value in the range [0,1]:
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Return Value</para>
+                            </entry>
+                            <entry>
+                                <para>Description</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>
+                                <codeInline>timeOfImpact = 0</codeInline>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>The objects touch at the start poses.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <codeInline>timeOfImpact = 1</codeInline>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>The objects either collide at the end poses or they do not collide at all.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <codeInline>0 &lt; timeOfImpact &lt; 1</codeInline>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The objects collide somewhere between start and end pose.
+                                The returned value indicates the time when the objects collide.
+                            </para>
+                        </entry>
+                    </row>
+                </table>
+                <para>
+                    The last parameter of
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Geometry.Collisions.CollisionDetection.GetTimeOfImpact(DigitalRune.Geometry.Collisions.CollisionObject,DigitalRune.Geometry.Pose,DigitalRune.Geometry.Collisions.CollisionObject,DigitalRune.Geometry.Pose,System.Single)</codeEntityReference>
+                    is the <codeInline>allowedPenetration</codeInline>. This parameter
+                    should be set to a small positive value. For example, when most game objects
+                    have an extent around 1 unit (1 m) an <codeInline>allowedPenetration</codeInline> of 0.01 (1 cm) is a good choice.
+                    If the parameter is 0, the time of impact is the
+                    exact time when the objects start to touch. But because of numerical inaccuracies or
+                    approximations in the CCD-phase the discrete collision detection may or may not
+                    detect a collision at this time. Therefore, it is recommended to allow penetrations in the CCD
+                    computation. This way, when the objects are moved to the time of impact
+                    the collision detection will find a solid contact.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Modes">
+            <title>CCD modes</title>
+            <content>
+                <para>
+                    DigitalRune Geometry supports two CCD modes that can be set with
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Collisions.CollisionDetection.ContinuousCollisionDetectionMode</codeEntityReference>:
+                </para>
+
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>CCD Mode</para>
+                            </entry>
+                            <entry>
+                                <para>Description</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>
+                                <legacyBold>Linear</legacyBold>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The continuous collision detection considers
+                                only the linear movement of the objects involved. The rotational movement is ignored.
+                                This mode is faster, but less accurate.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <legacyBold>Full</legacyBold>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The continuous collision detection considers
+                                the linear and the rotational movement of the objects involved.
+                                This mode is slower, but more accurate.
+                            </para>
+                        </entry>
+                    </row>
+                </table>
+
+            </content>
+        </section>
+
+
+        <section address="limitations">
+            <title>CCD limitations</title>
+            <content>
+                <list class="bullet">
+                    <listItem>
+                        CCD assumes that the object rotates less than 180°. The motion of the object is
+                        defined using a start and end pose. It is not possible to correctly handle objects
+                        that make several rotations per frame. - But even for such high rotation speeds an
+                        approximate solution is usually sufficient and visual errors are not noticeable.
+                    </listItem>
+                    <listItem>
+                        CCD assumes that the objects rotate around their local space origin (which is the
+                        position stored in the <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Pose</codeEntityReference>
+                        of the geometric objects). If the center of rotation is not equal to the
+                        local space origin, the computed time of impact is only an approximation.
+                    </listItem>
+                    <listItem>
+                        CCD is not supported for
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.TriangleMeshShape</codeEntityReference>
+                        vs.
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.TriangleMeshShape</codeEntityReference>.
+                        For mesh vs. mesh the time of impact is always 1.
+                    </listItem>
+                    <listItem>
+                        CCD is not supported for
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.LineShape</codeEntityReference>
+                        vs. any other shape. For line vs. * the time of impact is always 1.
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.LineSegmentShape</codeEntityReference>
+                        can be used instead if CCD is required for lines.
+                    </listItem>
+                    <listItem>
+                        For <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.CompositeShape</codeEntityReference>s
+                        vs. other shapes the computed CCD is only an approximation.
+                    </listItem>
+                    <listItem>
+                        Similar to closest-point queries, time of impact queries are not (yet) integrated into the
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.CollisionDomain</codeEntityReference>
+                        class.
+                        <codeEntityReference qualifyHint="true">M:DigitalRune.Geometry.Collisions.CollisionDetection.GetTimeOfImpact(DigitalRune.Geometry.Collisions.CollisionObject,DigitalRune.Geometry.Pose,DigitalRune.Geometry.Collisions.CollisionObject,DigitalRune.Geometry.Pose,System.Single)</codeEntityReference>
+                        must be called manually when needed.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Recommendations">
+            <title>CCD recommendations</title>
+            <content>
+                <list class="bullet">
+                    <listItem>
+                        Use CCD only for important game objects.
+                    </listItem>
+                    <listItem>
+                        Use CCD only for objects that move with a velocity that is high (relative to the average object size).
+                    </listItem>
+                    <listItem>
+                        Do not use CCD if the objects are already touching at the start positions.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <codeEntityReference qualifyHint="true">M:DigitalRune.Geometry.Collisions.CollisionDetection.GetTimeOfImpact(DigitalRune.Geometry.Collisions.CollisionObject,DigitalRune.Geometry.Pose,DigitalRune.Geometry.Collisions.CollisionObject,DigitalRune.Geometry.Pose,System.Single)</codeEntityReference>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

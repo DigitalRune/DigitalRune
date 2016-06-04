@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="b113ef19-247b-4731-b704-1f4855dccfc0" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>Here is a collection of frequently asked questions, common problems and solutions.</para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Remove">
+            <title>How can I remove/kill a particle?</title>
+            <content>
+                <para>
+                    In the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleEffector</codeEntityReference>
+                    read the
+                    <codeEntityReference qualifyHint="false">F:DigitalRune.Particles.ParticleParameterNames.NormalizedAge</codeEntityReference>
+                    parameter. If the normalized age >= 1, then the particle is dead and will be ignored.
+                    To kill the particle, set
+                    <codeEntityReference qualifyHint="false">F:DigitalRune.Particles.ParticleParameterNames.NormalizedAge</codeEntityReference>
+                    parameter to 1 (or higher) in the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleEffector</codeEntityReference>.
+                    If you kill a particles out of order, i.e. the array contains
+                    [..., living particle, living particle, dead particle, living particle, ...], the dead
+                    particle stays in there until all previous particle are dead. That's why the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.ParticleEffector</codeEntityReference>
+                    should check whether normalizedAge >= 1.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Alpha">
+            <title>How can I control the alpha of particles with a global value that affects all particles, e.g. to fade out the whole effect?</title>
+            <content>
+                <para>
+                    This is explained in the particle samples of the
+                    <legacyItalic>Samples</legacyItalic> solution. See sample <localUri>10-Teleport</localUri>.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

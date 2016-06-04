@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="d4d56ebf-a623-492c-bd37-b41a2979323e" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Definition">
+            <title>Defining sprites</title>
+            <content>
+                <para>
+                    A sprite is a 2D image, such as a bitmap or a text. Sprites are positioned in world space,
+                    but rendered in screen space. That means, a 16x16 pixel image is usually exactly 16x16 pixel
+                    on screen. (Internally the images and texts are rendered using the XNA
+                    <externalLink>
+                        <linkText>SpriteBatch</linkText>
+                        <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.spritebatch.aspx</linkUri>
+                    </externalLink>,
+                    hence the name.)
+                </para>
+                <para>
+                    Here is an example of a 2D sprite in a 3D scene:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Sprite"/>
+                </mediaLink>
+                <para>
+                    There are two types of sprites:
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.ImageSprite</codeEntityReference>s
+                    and <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.TextSprite</codeEntityReference>s.
+                </para>
+                <para>
+                    A sprite is positioned in world space by creating a new <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SpriteNode</codeEntityReference>
+                    and adding it to a 3D scene. Sprite nodes support simple hit testing. I.e. it is easy to
+                    check whether the mouse cursor has hit a certain sprite node. See
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SpriteNode</codeEntityReference>
+                    for more information.
+                </para>
+                <mediaLink>
+                    <caption placement="after">Class Diagram: Sprites</caption>
+                    <image xlink:href="ClassDiagramGraphicsSprites"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Rendering">
+            <title>Rendering sprites</title>
+            <content>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SpriteRenderer</codeEntityReference>
+                    is a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneNodeRenderer</codeEntityReference>
+                    that handles <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SpriteNode</codeEntityReference>s.
+                </para>
+                <para>
+                    Internally, the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SpriteRenderer</codeEntityReference>
+                    is basically just a wrapper around XNA's <legacyBold>SpriteBatch</legacyBold>. It converts
+                    the positions of the sprite nodes from world space to screen space and draws the images
+                    and texts using to the <legacyBold>SpriteBatch</legacyBold>.
+                </para>
+                <para>
+                    Example:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Set desired depth-stencil and blend states.
+graphicsDevice.DepthStencilState = DepthStencilState.None;
+graphicsDevice.BlendState = BlendState.AlphaBlend;
+
+// Render a list of sprite nodes.
+spriteRenderer.Render(sceneNodes, context, RenderOrder.BackToFront);
+          ]]>
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

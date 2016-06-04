@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="576be7e1-f56c-4c5d-a0a6-22f67bde0379" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This section explains how to define the behavior of a rigid body using materials.</para>
+        </introduction>
+
+
+        <section address="Materials">
+            <title>Materials</title>
+            <content>
+                <para>
+                    A material is a type that implements the interface
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Materials.IMaterial</codeEntityReference>.
+                    A material can be assigned to a rigid body by setting the property
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.RigidBody.Material</codeEntityReference>.
+                    Materials define the behavior of the rigid body when it collides with another rigid body,
+                    especially:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <legacyBold>Dry Friction:</legacyBold> Friction resists relative lateral motion of two solid surfaces in contact. The friction
+                            properties can be changed to model slippery surface (ice) or rough surfaces (rubber).
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Restitution (Bounciness):</legacyBold> A rigid body colliding with another rigid body will bounce back.
+                            In a perfectly elastic collision the separation velocity after the collision is
+                            equal to the approach velocity before the collision. This is modeled with a
+                            coefficient of restitution of 1. In a perfectly inelastic collision the bodies
+                            do not separate after the collision. This is modeled with a coefficient of
+                            restitution of 0. The restitution can be varied between 0 and 1 to model the bounce
+                            behavior of different materials, like clay or elastic rubber.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Surface Motion:</legacyBold> A surface velocity can be set to model bodies with moving surfaces,
+                            like conveyor belts.
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Types">
+            <title>Uniform, composite and custom materials</title>
+            <content>
+                <para>
+                    The default material classes are
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Materials.UniformMaterial</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Materials.CompositeMaterial</codeEntityReference>.
+                    A uniform material is a material that is identical on all surface points of a
+                    rigid body. This material is typically used for most bodies in a game.
+                    A composite material is a material that varies over the surface of the rigid body.
+                    This is very useful for rigid bodies where the shape is a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.CompositeShape</codeEntityReference>
+                    or a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.TriangleMeshShape</codeEntityReference>:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            Composite shape example: A rigid body uses a composite shape to create a hammer. A
+                            composite material can be used to assign different materials to the metal hammer head
+                            and the wooden shaft.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            Triangle mesh example: A single, static rigid body uses a triangle mesh shape to create the
+                            game level terrain. A composite material can be used to assign different materials
+                            to the triangles to create rough parts and slippery parts.
+                        </para>
+                    </listItem>
+                </list>
+                <para>
+                    Custom material classes can be created by implementing the interface
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Materials.IMaterial</codeEntityReference>.
+                    This can be used to create, for example, complex procedural, time-dependent material
+                    or optimized composite materials that use less memory and are optimized for your game.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Combiner">
+            <title>Material property combiner</title>
+            <content>
+                <alert>
+                    <para>
+                        Following information is for advanced users. In most scenarios changing
+                        material property combiners is not required.
+                    </para>
+                </alert>
+                <para>
+                    In reality, material properties like friction and restitution depend on the two
+                    touching materials - they cannot be determined by looking at a single rigid body alone.
+                    Ice on rubber behaves different than ice on ice and rubber on rubber.
+                </para>
+                <para>
+                    Types that implement the interface
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Materials.IMaterialPropertyCombiner</codeEntityReference>
+                    can be used to define how two friction values or two restitution values are
+                    combined. In the standard implementation the class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Materials.MaterialPropertyCombiner</codeEntityReference>
+                    uses a mathematical operation (like multiplication or average) to combine the
+                    material properties.
+                    Custom material property combiners could use material tables to compute
+                    more realistic values.
+                </para>
+                <para>
+                    The material property combiner of a simulation can be changed in the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Settings.SimulationSettings</codeEntityReference>.
+                    The simulation always uses the results of the material property combiner when
+                    contact between two rigid bodies needs to be simulated.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <link xlink:href="3c3e93d4-349e-44ac-8c3d-179f3fbe3c42" />
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

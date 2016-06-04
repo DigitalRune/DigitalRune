@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="7fc08da6-fe1c-4cfe-ad65-743d08b2b0ba" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This section will demonstrate how to construct the convex hull of a cloud of points and
+                convert the convex hull to a triangle mesh which can be rendered.
+            </para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Namespaces">
+            <title>Add DigitalRune namespaces</title>
+            <content>
+                <para>
+                    The following example will use data types and helper methods from DigitalRune Geometry and
+                    Mathematics. The following namespaces must be imported for this example
+                    at the beginning of the source code file:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+using DigitalRune.Geometry;
+using DigitalRune.Geometry.Meshes;
+using DigitalRune.Mathematics.Algebra;
+using DigitalRune.Mathematics.Statistics;
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Points">
+            <title>Create random points</title>
+            <content>
+                <para>
+                    For the purpose of this example, we will create a cloud consisting of randomly placed points.
+                    The points will lie between <math>(-100, -100, -100)</math> and <math>(100, 100, 100)</math>.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+List<Vector3F> points = new List<Vector3F>();
+for (int i = 0; i < 100; i++)
+  points.Add(RandomHelper.Random.NextVector3F(-100, 100));
+          ]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="ConvexHull">
+            <title>Create convex hull</title>
+            <content>
+                <para>
+                    Next, we will build the convex hull of all points.
+                    <codeEntityReference>T:DigitalRune.Geometry.GeometryHelper</codeEntityReference>
+                    is an auxiliary class which can be used to create a convex hull from any collection of points
+                    (<codeEntityReference>T:DigitalRune.Mathematics.Algebra.Vector3F</codeEntityReference>).
+                </para>
+                <code language="c#">
+                    DcelMesh convexHull = GeometryHelper.CreateConvexHull(points);
+                </code>
+                <para>
+                    The <codeEntityReference>T:DigitalRune.Geometry.Meshes.DcelMesh</codeEntityReference> is
+                    a doubly-connected edge list. This is a data structure that is used to build or manipulate
+                    meshes. It defines the mesh's vertices, edges, and faces (not necessarily triangles).
+                </para>
+                <para>
+                    The returned <codeEntityReference>T:DigitalRune.Geometry.Meshes.DcelMesh</codeEntityReference>
+                    can be converted to a <codeEntityReference>T:DigitalRune.Geometry.Meshes.TriangleMesh</codeEntityReference>
+                    which consists only of triangles - a representation suitable for rendering.
+                </para>
+                <code language="c#">
+                    TriangleMesh triangleMesh = convexHull.ToTriangleMesh();
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

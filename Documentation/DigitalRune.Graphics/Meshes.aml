@@ -1,0 +1,452 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="cb08d0d8-8ea6-49fc-b318-b185dbb70608" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="Model">
+            <title>Models</title>
+            <content>
+                <para>
+                    A <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ModelNode</codeEntityReference>
+                    represents a 3D model. The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ModelNode</codeEntityReference>
+                    serves as a "group node", i.e. the actual data is stored in the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ModelNode</codeEntityReference>.
+                    The complexity of a model can vary from a single <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshNode</codeEntityReference>
+                    to a complex hierarchical tree of <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshNode</codeEntityReference>s,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LightNode</codeEntityReference>s,
+                    and other scene nodes.
+                </para>
+                <para>
+                    Models are usually loaded from files using the XNA content pipeline: see <link xlink:href="80150ca3-144d-493e-9741-3587ab95ccdf" />.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Mesh">
+            <title>Meshes</title>
+            <content>
+                <para>
+                    A <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Mesh</codeEntityReference>
+                    represents the geometry and materials of a 3D object that can be rendered. A mesh owns a
+                    collection of materials (see property <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Mesh.Materials</codeEntityReference>)
+                    and is divided into submeshes (see property <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Mesh.Submeshes</codeEntityReference>).
+                    Each <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Submesh</codeEntityReference>
+                    describes a batch of primitives (usually indexed triangles) that use one material and can be
+                    rendered with a single draw call.
+                </para>
+                <para>
+                    A <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshNode</codeEntityReference>
+                    is used to position a mesh in a 3D scene. The mesh node defines
+                    its position and orientation. Multiple mesh nodes can reference the same mesh, hence
+                    it is possible to render the same mesh multiple times in a scene.
+                </para>
+            </content>
+            <sections>
+                <section address="BoundingShapes">
+                    <title>Bounding shapes</title>
+                    <content>
+                        <para>
+                            The bounding shape of the mesh is usually created by the content pipeline and stored in
+                            the <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Mesh.BoundingShape</codeEntityReference>
+                            property. It is not updated automatically when the vertex buffer changes. The user who
+                            changes the vertex buffer is responsible for updating or replacing the shape stored in
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Mesh.BoundingShape</codeEntityReference>.
+                            If the mesh can be deformed on the GPU (e.g. using mesh skinning), then the bounding
+                            shape must be large enough to contain all possible deformations.
+                        </para>
+                        <para>
+                            The properties of the bounding shape can be changed at any time. But it is not allowed
+                            to replace the whole bounding shape while the mesh is in use, i.e. referenced by a
+                            scene node. For example, if the bounding shape is a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.SphereShape</codeEntityReference>,
+                            the radius of the sphere can be changed at any time. But it is not allowed to replace
+                            the <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.SphereShape</codeEntityReference>
+                            with a <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.BoxShape</codeEntityReference>
+                            as long as the mesh is used in a scene. Replacing the bounding shape will not raise any
+                            exceptions, but the mesh may no longer be culled/rendered correctly.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Materials">
+                    <title>Materials</title>
+                    <content>
+                        <para>
+                            A mesh can have one or more materials. A material (class <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Material</codeEntityReference>)
+                            defines how a submesh should be rendered. Materials can be shared between different
+                            meshes.
+                        </para>
+                        <para>
+                            When a mesh node is created, a material instance (class
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MaterialInstance</codeEntityReference>)
+                            is created for each material of the mesh. The material instance stores the effect
+                            parameters that are specific to a certain mesh instance.
+                        </para>
+                        <para>
+                            See <link xlink:href="34a7f065-df4f-4f40-8b5c-5f0afee365db" />
+                            for more information.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="MorphTargets">
+                    <title>Morph target animation</title>
+                    <content>
+                        <para>
+                            Meshes support morph target animation. See
+                            <link xlink:href="b44b915a-f5f6-416a-9ffb-98de885812d7" /> for more information.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="SkeletalAnimation">
+                    <title>Skeletal animation ("mesh skinning")</title>
+                    <content>
+                        <para>
+                            A mesh can have a skeleton (see property <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Mesh.Skeleton</codeEntityReference>),
+                            which can be used to animate (deform) the mesh. The skeletal animations are automatically
+                            loaded together with the mesh and stored in the property <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Mesh.Animations</codeEntityReference>.
+                            <link xlink:href="c2892dfd-491e-4e78-83d1-737e38f1acc9" /> can be used to play animations and apply them to the
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.MeshNode.SkeletonPose</codeEntityReference>
+                            of a specific <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshNode</codeEntityReference>.
+                        </para>
+                        <para>
+                            The animations stored in <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.Mesh.Animations</codeEntityReference>
+                            are usually of type <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.SkeletonKeyFrameAnimation</codeEntityReference>.
+                            When played back, a <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.SkeletonKeyFrameAnimation</codeEntityReference>
+                            runs once and then stops. To create a looping animation, the animation needs to be wrapped
+                            with an <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.AnimationClip`1</codeEntityReference>
+                            or a <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.TimelineClip</codeEntityReference>.
+                        </para>
+                        <code language="c#" title="Playing a walk cycle">
+                            <![CDATA[
+// Start animation.
+var animationService = _services.GetInstance<IAnimationService>();
+var animationClip = new AnimationClip<SkeletonPose>(meshNode.Mesh.Animations["Walk"])
+{
+  LoopBehavior = LoopBehavior.Cycle,  // Repeat animation...
+  Duration = TimeSpan.MaxValue,       // ...forever.
+};
+
+var animationController = animationService.StartAnimation(animationClip, (IAnimatableProperty)meshNode.SkeletonPose);
+              ]]>
+                        </code>
+                        <para>
+                            See <link xlink:href="93178dcc-a9b9-4cc6-b4df-ed693b988561" /> for more information.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Primitives">
+                    <title>Primitives</title>
+                    <content>
+                        <para>
+                            The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.MeshHelper</codeEntityReference>
+                            provides methods to create geometric primitives, such as boxes, spheres, cylinders, cones,
+                            etc.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="ClassDiagram">
+            <title>Class diagram</title>
+            <content>
+                <mediaLink>
+                    <caption placement="after">Class Diagram: Meshes</caption>
+                    <image xlink:href="ClassDiagramGraphicsMeshes"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Rendering">
+            <title>Rendering models and meshes</title>
+            <content>
+                <para>
+                    This section explains how to render meshes using the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.MeshRenderer</codeEntityReference>.
+                </para>
+            </content>
+            <sections>
+                <section address="Renderer">
+                    <title>MeshRenderer</title>
+                    <content>
+                        <para>
+                            The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.MeshRenderer</codeEntityReference>
+                            is a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneNodeRenderer</codeEntityReference>
+                            that handles <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshNode</codeEntityReference>s.
+                            It can render a large number of meshes very efficiently: The renderer sorts meshes by material
+                            to reduce the number of render state changes. Multiple instances of the same mesh are rendered
+                            with a single draw call using geometry instancing.
+                        </para>
+                        <para>
+                            It may be necessary to render a mesh multiple times per frame with different setting. These
+                            are called "render passes". For example, in the <codeInline>"GBuffer"</codeInline> pass the mesh is
+                            rendered into the G-buffer, in the <codeInline>"ShadowMap"</codeInline> pass the mesh is
+                            rendered into the shadow map, in the <codeInline>"Material"</codeInline> the mesh is rendered
+                            into the back buffer, etc. Each render pass requires different settings: parameters, shaders,
+                            textures. The number of render passes may differ from application to application.
+                        </para>
+                        <para>
+                            DigitalRune Graphics uses the following structure to describe meshes: A
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshNode</codeEntityReference>
+                            references a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Mesh</codeEntityReference>
+                            which defines vertex buffers, index buffers and materials. The mesh is divided into one or
+                            more <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Submesh</codeEntityReference>es.
+                            Each submesh has a certain <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Material</codeEntityReference>.
+                            A material is a dictionary of <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.EffectBinding</codeEntityReference>s -
+                            one effect binding per render pass.
+                        </para>
+                        <para>
+                            The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.MeshRenderer</codeEntityReference>
+                            renders a single render pass: It takes a list of scene nodes, selects all mesh nodes and
+                            renders them using the selected render pass. A render pass is selected by setting the
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.RenderPass</codeEntityReference>
+                            property in the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.RenderContext</codeEntityReference>.
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+// TODO: Set graphics device states here.
+
+// Select render pass.
+context.RenderPass = "Material";
+
+// Render a list of mesh nodes.
+meshRenderer.Render(meshNodes, context);
+          ]]>
+                        </code>
+                        <para>
+                            For each submesh, the mesh renderer looks up the effect binding in the material. If an effect
+                            binding for the given render pass is found, it applies the bindings (parameters, shaders,
+                            textures) and draws the submesh.
+                        </para>
+                        <alert class="important">
+                            <para>
+                                Render passes are arbitrary, user-defined strings. DigitalRune Graphics does not use a
+                                fixed set of render passes. Choosing the right render passes is up to the application.
+                            </para>
+                            <para>
+                                If a material does not contain an entry for a specific render pass, the mesh renderer
+                                simply ignores the submesh. - It won't be rendered in this render pass!
+                            </para>
+                        </alert>
+                    </content>
+                </section>
+
+
+                <section address="Opaque">
+                    <title>Example: Opaque meshes</title>
+                    <content>
+                        <para>
+                            The following code snippets shows how to render opaque meshes.
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+// Optional: Set render target and viewport.
+graphicsDevice.SetRenderTarget(renderTarget);
+graphicsDevice.Viewport = viewport;
+
+// Set the same values in the render context.
+context.RenderTarget = renderTarget;
+context.Viewport = viewport;
+
+// Set render states.
+graphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
+graphicsDevice.DepthStencilState = DepthStencilState.Default;
+graphicsDevice.BlendState = BlendState.Opaque;
+
+// Select render pass.
+context.RenderPass = "Default";  // Or "Material" ... depends on application
+
+// Render a list of scene nodes.
+meshRenderer.Render(sceneNodes, context);
+
+// Optional: If one of the meshes uses floating-point texture, it might be 
+// necessary to reset the texture stage. Otherwise, the subsequent code may 
+// throw an exception in XNA.
+graphicsDevice.ResetTextures();
+          ]]>
+                        </code>
+                    </content>
+                </section>
+
+
+                <section address="AlphaBlended">
+                    <title>Example: Alpha-blended meshes</title>
+                    <content>
+                        <para>
+                            The following code snippets shows how to render alpha-blended meshes.
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+// Optional: Set render target and viewport.
+graphicsDevice.SetRenderTarget(renderTarget);
+graphicsDevice.Viewport = viewport;
+
+// Set the same values in the render context.
+context.RenderTarget = renderTarget;
+context.Viewport = viewport;
+
+// Set render states.
+graphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
+graphicsDevice.DepthStencilState = DepthStencilState.DepthRead;
+graphicsDevice.BlendState = BlendState.AlphaBlend;
+
+// Select render pass.
+context.RenderPass = "AlphaBlend";
+
+// Render a list of scene nodes.
+meshRenderer.Render(sceneNodes, context, RenderOrder.BackToFront);
+
+// Optional: If one of the meshes uses floating-point texture, it might be 
+// necessary to reset the texture stage. Otherwise, the subsequent code may 
+// throw an exception in XNA.
+graphicsDevice.ResetTextures();
+          ]]>
+                        </code>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Batching">
+            <title>Batching and hardware instancing</title>
+            <content>
+                <para>
+                    Rendering a scene with many mesh instances can be time-consuming.
+                    <legacyItalic>Batching</legacyItalic> and <legacyItalic>hardware instancing</legacyItalic>
+                    can be used to improve performance.
+                </para>
+                <para>
+                    Following strategies can be used to handle a scene with many mesh instances:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <legacyBold>A) No batching:</legacyBold>
+                        </para>
+                        <para>
+                            Each instance is represented by a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshNode</codeEntityReference>.
+                            The mesh nodes use a material which does not support hardware instancing
+                            (see <link xlink:href="17442709-63e0-419c-abe8-00697ca4fc3a" />)
+                            and/or
+                            dynamic hardware instancing of the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.MeshRenderer</codeEntityReference>
+                            (see property
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.Rendering.MeshRenderer.EnableInstancing</codeEntityReference>)
+                            is disabled. The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.MeshRenderer</codeEntityReference>
+                            renders meshes individually, which
+                            requires one draw call per instance. This method is the slowest.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>B) Batching using dynamic hardware instancing:</legacyBold>
+                        </para>
+                        <para>
+                            Each instance is represented by a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshNode</codeEntityReference>.
+                            The mesh nodes use a material which supports hardware instancing
+                            (see <link xlink:href="17442709-63e0-419c-abe8-00697ca4fc3a" />)
+                            and
+                            dynamic hardware instancing of the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.MeshRenderer</codeEntityReference>
+                            (see property
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.Rendering.MeshRenderer.EnableInstancing</codeEntityReference>)
+                            is enabled.
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.MeshRenderer</codeEntityReference>
+                            automatically renders all instances of the same mesh with a single draw call.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>C) Batching using static hardware instancing:</legacyBold>
+                        </para>
+                        <para>
+                            The class
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshInstancingNode`1</codeEntityReference>
+                            represents a mesh and a collection of mesh instances. A single
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshInstancingNode`1</codeEntityReference>
+                            can be used instead of storing individual
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshNode</codeEntityReference>.
+                            When the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.MeshRenderer</codeEntityReference>
+                            renders a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshInstancingNode`1</codeEntityReference>,
+                            it renders all instances using only a single draw call. This is
+                            faster than strategy B because the graphics resources for hardware instancing only need to be
+                            created once (or whenever
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.SceneGraph.MeshInstancingNode`1.Instances</codeEntityReference>
+                            is modified).
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>D) Static batching:</legacyBold>
+                        </para>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.MeshHelper</codeEntityReference>
+                            can be used to merge all instances of a mesh into a new mesh. This creates one big
+                            vertex buffer with the pre-transformed vertices.
+                        </para>
+                    </listItem>
+                </list>
+                <para>
+                    Some more notes:
+                </para>
+                <list>
+                    <listItem>
+                        Strategies C and D are the fastest. It is recommended to use D for small meshes (e.g. grass
+                        billboards) and C for large meshes (e.g. trees).
+                    </listItem>
+                    <listItem>
+                        Strategies B and C require HiDef graphics profile and cannot be used with the Reach graphics profile.
+                    </listItem>
+                    <listItem>
+                        Strategies C and D cannot be used with depth sorting (i.e., transparent objects
+                        will be blended in random order and not back-to-front).
+                    </listItem>
+                    <listItem>
+                        Strategy C does not support occluders (i.e., the mesh should not contain an occluder).
+                    </listItem>
+                    <listItem>
+                        No batching strategy can be used with skinned meshes or morphing (at the moment).
+                    </listItem>
+                </list>
+                <para>
+                    For more details have a look at the <localUri>BatchingSample</localUri> (see
+                    <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />).
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Subtopics">
+            <title>Subtopics</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        <link xlink:href="b44b915a-f5f6-416a-9ffb-98de885812d7" />
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="9b4a54b5-1c1a-481b-961b-492e9ee6b5fa" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                In this article we show how to implement a service provider, how the DigitalRune libraries
+                support this pattern, and how to use it in an XNA game.
+            </para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Implementation">
+            <title>A simple Implementation</title>
+            <content>
+                <para>
+                    Implementing a basic service provider with a Dictionary is simple:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+public class ServiceProvider : IServiceProvider {
+  private readonly Dictionary<Type, object> _services = new Dictionary<Type, object>();
+ 
+  public void AddService(Type type, object service) {
+    _services.Add(type, service);
+  }
+ 
+  public bool RemoveService(Type type) {
+    return _services.Remove(type);
+  }
+ 
+  public object GetService(Type serviceType) {
+    object service;
+    _services.TryGetValue(serviceType, out service);
+    return service;
+  }
+}]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Better">
+            <title>A better Implementation</title>
+            <content>
+                <para>
+                    A more robust implementation needs a few more things:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Throw ArgumentNullExceptions if the input parameters are null.
+                    </listItem>
+                    <listItem>
+                        In AddService() throw an exception if the service parameter does not implement the given type.
+                    </listItem>
+                    <listItem>
+                        Throw an exception if a type should be added that is already registered in the service provider.
+                    </listItem>
+                    <listItem>
+                        Use locking to make the service provider thread-safe.
+                    </listItem>
+                    <listItem>
+                        Implement IEnumerable to allow the user to enumerate all registered services.
+                    </listItem>
+                    <listItem>
+                        ...
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="XNA">
+            <title>The service provider pattern in XNA</title>
+            <content>
+                <para>
+                    The XNA Framework contains an IServiceProvider implementation:
+                    <codeEntityReference qualifyHint="false">T:Microsoft.Xna.Framework.GameServiceContainer</codeEntityReference>
+                    This service provider is accessed using the
+                    <codeEntityReference qualifyHint="false">P:Microsoft.Xna.Framework.Game.Services</codeEntityReference>
+                    property of the
+                    <codeEntityReference qualifyHint="false">T:Microsoft.Xna.Framework.Game</codeEntityReference>
+                    class. That means, every object that needs to find a service needs a reference to the
+                    <codeEntityReference qualifyHint="false">T:Microsoft.Xna.Framework.Game</codeEntityReference>
+                    instance.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="DigitalRune">
+            <title>Using the DigitalRune Engine</title>
+            <content>
+                <para>
+                    The DigitalRune Base library contains an advanced service provider implementation. See
+                    <link xlink:href="ce7bca46-717a-4dfb-a154-acb6ee1e8ad9" />
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

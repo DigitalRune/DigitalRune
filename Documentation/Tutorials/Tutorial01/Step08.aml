@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="253857cc-d401-4788-ae6e-4ca12a94a21e" revisionNumber="1">
+    <developerConceptualDocument
+      xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                In this step we will render the previously added model.
+            </para>
+        </introduction>
+
+
+        <section address="Scene">
+            <title>
+                Add a scene and mesh rendering to the graphics screen
+            </title>
+            <content>
+                <para>
+                    Before we load the models, we need some code which can render these graphics objects.
+                </para>
+                <para>
+                    Add following code to <localUri>MyGraphicsScreen.cs</localUri>:
+                </para>
+                <code language="c#" title="MyGraphicsScreen.cs">
+                    <![CDATA[
+…
+namespace MyGame
+{
+    public class MyGraphicsScreen : GraphicsScreen
+    {
+        private MeshRenderer _meshRenderer;                                             // NEW
+
+        public DebugRenderer DebugRenderer { get; private set; }
+        public CameraNode CameraNode { get; set; }
+        public Scene Scene { get; private set; }                                        // NEW
+
+        public MyGraphicsScreen(IGraphicsService graphicsService)
+            : base(graphicsService)
+        {
+            _meshRenderer = new MeshRenderer();                                         // NEW
+
+            var spriteFont = graphicsService.Content.Load<SpriteFont>("SpriteFont1");
+            DebugRenderer = new DebugRenderer(graphicsService, spriteFont);
+
+            Scene = new Scene();                                                        // NEW
+        }
+        
+        protected override void OnUpdate(TimeSpan deltaTime)
+        {
+            Scene.Update(deltaTime);                                                    // NEW
+        }
+        
+        protected override void OnRender(RenderContext context)
+        {
+            var graphicsDevice = GraphicsService.GraphicsDevice;
+            graphicsDevice.Clear(Color.CornflowerBlue);
+
+            context.CameraNode = CameraNode;
+            context.Scene = Scene;                                                      // NEW
+
+            // Frustum Culling: Get all the scene nodes that intersect camera frustum.  // NEW
+            var query = Scene.Query<CameraFrustumQuery>(context.CameraNode, context);   // NEW
+
+            // Render opaque meshes.                                                    // NEW
+            graphicsDevice.DepthStencilState = DepthStencilState.Default;               // NEW
+            graphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;      // NEW
+            graphicsDevice.BlendState = BlendState.Opaque;                              // NEW
+            graphicsDevice.SamplerStates[0] = SamplerState.AnisotropicWrap;             // NEW
+            context.RenderPass = "Default";                                             // NEW
+            _meshRenderer.Render(query.SceneNodes, context);                            // NEW
+            context.RenderPass = null;                                                  // NEW
+
+            DebugRenderer.Render(context);
+        
+            context.Scene = null;                                                       // NEW
+            context.CameraNode = null;
+        }
+    }
+}
+                    ]]>
+                </code>
+                <para>
+                    We have added a <legacyBold>MeshRenderer</legacyBold> and a <legacyBold>Scene</legacyBold>.
+                    A <legacyBold>Scene</legacyBold> manages <legacyBold>SceneNodes</legacyBold> in a
+                    structure called a <newTerm>scene graph</newTerm>. The scene is updated once per
+                    frame in <legacyBold>MyGraphicsScreen.OnUpdate</legacyBold>.
+                </para>
+                <para>
+                    In <legacyBold>OnRender</legacyBold> we add the scene to the render context. Then
+                    we use the scene to perform a scene query. In this case, we ask the scene for all
+                    scene nodes which are visible from the current camera.
+                    Then we set render states for normal opaque drawing and use the mesh renderer to
+                    render all scene nodes, which were returend by the scene query.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Model">
+            <title>Load model and add it to the scene</title>
+            <content>
+                <para>
+                    Let's load a model in our game component and add it to the scene using a new game
+                    object <localUri>GroundObject.cs</localUri>:
+                </para>
+                <code language="c#" title="GroundObject.cs">
+                    <![CDATA[
+using System;
+using DigitalRune.Game;
+using DigitalRune.Graphics.SceneGraph;
+using DigitalRune.Mathematics.Algebra;
+using Microsoft.Practices.ServiceLocation;
+using Microsoft.Xna.Framework;
+
+namespace MyGame
+{
+    public class GroundObject : GameObject
+    {
+        private ModelNode _modelNode;
+
+        protected override void OnLoad()
+        {
+            var game = ServiceLocator.Current.GetInstance<Game>();
+            var scene = ServiceLocator.Current.GetInstance<IScene>();
+
+            _modelNode = game.Content.Load<ModelNode>("Ground/Ground").Clone();
+            _modelNode.ScaleLocal = new Vector3F(0.5f);
+            scene.Children.Add(_modelNode);
+        }
+
+        protected override void OnUnload()
+        {
+            _modelNode.Parent.Children.Remove(_modelNode);
+            _modelNode.Dispose(false);
+            _modelNode = null;
+        }
+
+        protected override void OnUpdate(TimeSpan deltaTime)
+        {
+        }
+    }
+}
+]]>
+                </code>
+                <para>
+                    The model is loaded in <legacyBold>OnLoad</legacyBold>.
+                </para>
+                <para>
+                    The <legacyBold>ModelNode</legacyBold> is a scene node. This node has one or more
+                    children which are <legacyBold>MeshNodes</legacyBold>. And <legacyBold>MeshNodes</legacyBold>
+                    are scene nodes which can be rendered by the <legacyBold>MeshRenderer</legacyBold>
+                    in the graphics screen.
+                </para>
+                <para>
+                    When the <legacyBold>ModelNode</legacyBold> is loaded, it is immediately cloned:
+                </para>
+                <code language="c#">
+                    <![CDATA[_modelNode = game.Content.Load<ModelNode>("Ground/Ground").Clone();]]>
+                </code>
+                <para>
+                    This is done because <legacyBold>game.Content.Load</legacyBold> will always return
+                    the same shared <legacyBold>ModelNode</legacyBold> instance. That means, everyone
+                    who loads the model gets the same shared instance. Since we change some properties
+                    of the model, like the scale, we create our own clone of the model before we modify it.
+                </para>
+                <para>
+                    In <legacyBold>OnUnload</legacyBold> we remove the model node from its parent node
+                    (which is the scene) and dispose our clone of the model.
+                </para>
+                <para>
+                    In <localUri>MyGameComponent.cs</localUri> we add the new <legacyBold>GroundObject</legacyBold>:
+                </para>
+                <code language="c#" title="MyGameComponent.cs">
+                    <![CDATA[
+…
+using DigitalRune.Graphics.SceneGraph;
+using DigitalRune.ServiceLocation;
+…
+
+namespace MyGame
+{
+    public class MyGameComponent : Microsoft.Xna.Framework.GameComponent
+    {
+        …
+        public MyGameComponent(Game game)
+            : base(game)
+        {
+            _inputService = ServiceLocator.Current.GetInstance<IInputService>();
+
+            _graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
+            
+            _myGraphicsScreen = new MyGraphicsScreen(_graphicsService);
+            _graphicsService.Screens.Add(_myGraphicsScreen);
+            ((ServiceContainer)ServiceLocator.Current).Register(typeof(IScene), null, _myGraphicsScreen.Scene);   // NEW
+
+            var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();
+            var cameraObject = new CameraObject();
+            _myGraphicsScreen.CameraNode = cameraObject.CameraNode;
+            gameObjectService.Objects.Add(cameraObject);
+
+            gameObjectService.Objects.Add(new GroundObject());                                                    // NEW
+
+            _myGraphicsScreen.DebugRenderer.DrawText("MyGame");
+            _myGraphicsScreen.DebugRenderer.DrawAxes(Pose.Identity, 1, false);
+        }
+        …
+                    ]]>
+                </code>
+                <para>
+                    This code also adds the scene to the service container.
+                </para>
+                <para>
+                    Run the game and…
+                </para>
+                <mediaLink>
+                    <image xlink:href="Tutorial-01-14"/>
+                </mediaLink>
+                <para>
+                    …the ground is there but black!?
+                </para>
+                <para>
+                    The model is rendered in black because it is actually dark in the scene. We have
+                    not specified any lights yet.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Lights">
+            <title>Add lights</title>
+            <content>
+                <para>
+                    The material of a model is only visible if a light shines onto it. Let's add a
+                    <localUri>LightObject.cs</localUri>, which adds some lights to the scene:
+                </para>
+                <code language="c#" title="LightObject.cs">
+                    <![CDATA[
+using System;
+using DigitalRune.Game;
+using DigitalRune.Geometry;
+using DigitalRune.Graphics;
+using DigitalRune.Graphics.SceneGraph;
+using DigitalRune.Mathematics.Algebra;
+using Microsoft.Practices.ServiceLocation;
+
+namespace MyGame
+{
+    public class LightsObject : GameObject
+    {
+        private LightNode _ambientLightNode;
+        private LightNode _sunlightNode;
+
+        protected override void OnLoad()
+        {
+            var scene = ServiceLocator.Current.GetInstance<IScene>();
+
+            var ambientLight = new AmbientLight
+            {
+                Color = new Vector3F(0.45f, 0.45f, 0.5f),
+                HdrScale = 0.1f,
+                HemisphericAttenuation = 0.8f,
+            };
+            _ambientLightNode = new LightNode(ambientLight);
+            scene.Children.Add(_ambientLightNode);
+
+            var sunlight = new DirectionalLight
+            {
+                Color = new Vector3F(1, 0.9607844f, 0.9078432f),
+                HdrScale = 0.4f,
+            };
+            _sunlightNode = new LightNode(sunlight)
+            {
+                PoseWorld = new Pose(QuaternionF.CreateRotationY(-1.4f) * QuaternionF.CreateRotationX(-0.6f)),
+                Shadow = new CascadedShadow
+                {
+                    PreferredSize = 1024,
+                    Prefer16Bit = true,
+                }
+            };
+            scene.Children.Add(_sunlightNode);
+        }
+
+        protected override void OnUnload()
+        {
+            _ambientLightNode.Parent.Children.Remove(_ambientLightNode);
+            _ambientLightNode.Dispose(false);
+            _ambientLightNode = null;
+
+            _sunlightNode.Parent.Children.Remove(_sunlightNode);
+            _sunlightNode.Dispose(false);
+            _sunlightNode = null;
+        }
+
+        protected override void OnUpdate(TimeSpan deltaTime)
+        {
+        }
+    }
+}
+                    ]]>
+                </code>
+                <para>
+                    In <localUri>MyGameComponent.cs</localUri>:
+                </para>
+                <code language="c#" title="MyGameComponent.cs">
+                    <![CDATA[
+    …
+    public MyGameComponent(Game game)
+        : base(game)
+    {
+        …
+        gameObjectService.Objects.Add(new GroundObject());
+        gameObjectService.Objects.Add(new LightsObject());                    // NEW
+
+        _myGraphicsScreen.DebugRenderer.DrawText("MyGame");
+        _myGraphicsScreen.DebugRenderer.DrawAxes(Pose.Identity, 1, false);
+    }
+    …
+                    ]]>
+                </code>
+                <para>
+                    If the light shines onto a mesh, we can see its material:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Tutorial-01-15"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Next">
+            <title>Next</title>
+            <content>
+                <para>
+                    <link xlink:href="cdc88d41-dcb6-4464-be17-46d29a15d25a" />
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

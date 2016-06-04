@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="d509413a-d4f7-4763-8457-ed142decc96d" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        This section explains how to create a complex docking layout in XAML.
+      </para>
+    </introduction>
+
+
+    <section address="Layout">
+      <title>Creating a complex layout in XAML</title>
+      <content>
+        <para>
+          A docking window layout with several
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockWindow</codeEntityReference>s
+          and even with
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.FloatingWindow</codeEntityReference>s
+          can be created using XAML - no code-behind required.
+        </para>
+        <mediaLink>
+          <caption placement="after" lead="Figure 1">Docking window layout created in XAML.</caption>
+          <image xlink:href="ImageXamlLayout"/>
+        </mediaLink>
+        <para>
+          This layout is created with the following XAML:
+        </para>
+        <code language="xaml">
+          <![CDATA[
+<Window x:Class="MyApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dr="http://schemas.digitalrune.com/windows"
+        xmlns:local="clr-namespace:MyApplication"
+        Title="MyApplication" 
+        Width="800" Height="600"
+        Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+
+  <!-- The DockControl:
+       The DefaultDockTarget marks the position where new DockWindows should be docked per default. -->
+  <dr:DockControl x:Name="MyDockControl" DefaultDockTarget="{Binding ElementName=DocumentZone}">
+
+    <!-- A horizontal DockSplitPanel which divides the DockControl into two parts. 
+         The left part contains the tool windows "Explorer" and "Properties".
+         The right part contains the document windows. -->
+    <dr:DockSplitPanel>
+
+      <!-- In the left part we add a vertical DockSplitPanel. 
+           This part should have a fixed start width of 200 pixels. -->
+      <dr:DockSplitPanel Orientation="Vertical" DockWidth="200">
+
+        <!-- The top part contains a DockPane with a single DockWindow with a tree view. -->
+        <dr:DockPane>
+          <!-- The DockType property of the DockWindow is set. In the DockWindow style 
+               (see App.xaml) this property is used in a Trigger to give this window a 
+               different style. -->
+          <dr:DockWindow Title="Explorer" DockType="ToolWindow">
+            <local:TreeViewControl/>
+          </dr:DockWindow>
+        </dr:DockPane>
+
+        <!-- The bottom part contains a DockPane with a single DockWindow with a list view. -->
+        <dr:DockPane DockHeight="200">
+          <dr:DockWindow Title="Properties" DockType="ToolWindow">
+            <local:PropertiesControl/>
+          </dr:DockWindow>
+        </dr:DockPane>
+      </dr:DockSplitPanel>
+
+      <!-- On the right we place a DockZone with a DockPane with 2 DockWindows. 
+           The DockZone is used as the default area for new DockWindows (see 
+           DockControl.DefaultDockTarget above). -->
+      <dr:DockZone Name="DocumentZone">
+        <dr:DockPane>
+          <dr:DockWindow Title="Document 1" Background="White">
+            <local:DocumentControl/>
+          </dr:DockWindow>
+          <dr:DockWindow Title="Document 2" Background="White">
+            <local:DocumentControl/>
+          </dr:DockWindow>
+        </dr:DockPane>
+      </dr:DockZone>
+
+    </dr:DockSplitPanel>
+
+  </dr:DockControl>
+
+</Window>
+]]>
+        </code>
+        <para>
+          To create a valid hierarchy of dockable items the following rules must be followed:
+        </para>
+        <list class="bullet">
+            <listItem>
+              <para>
+                A <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockControl</codeEntityReference>
+              is a <codeEntityReference qualifyHint="false">T:System.Windows.Controls.ContentControl</codeEntityReference>
+              that can contain a
+              <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockSplitPanel</codeEntityReference>,
+              a <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockZone</codeEntityReference>,
+              or a <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockPane</codeEntityReference>.
+              </para>
+            </listItem>
+            <listItem>
+              <para>
+                A <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockSplitPanel</codeEntityReference>
+              is a <codeEntityReference qualifyHint="false">T:System.Windows.Controls.Panel</codeEntityReference>
+              that can contain several
+              <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockSplitPanel</codeEntityReference>s,
+              a <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockZone</codeEntityReference>s
+              and/or <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockPane</codeEntityReference>s.
+              </para>
+            </listItem>
+            <listItem>
+              <para>
+                A <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockZone</codeEntityReference>
+                is a <codeEntityReference qualifyHint="false">T:System.Windows.Controls.ContentControl</codeEntityReference>
+                that can contain a
+                <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockSplitPanel</codeEntityReference>
+                or a <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockPane</codeEntityReference>.
+              </para>
+            </listItem>
+            <listItem>
+              <para>
+                A <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockPane</codeEntityReference>
+                is an <codeEntityReference qualifyHint="false">T:System.Windows.Controls.ItemsControl</codeEntityReference>
+                that can contain several
+                <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockWindow</codeEntityReference>s.
+              </para>
+            </listItem>
+            <listItem>
+              <para>
+                A <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockWindow</codeEntityReference>
+                is a <codeEntityReference qualifyHint="false">T:System.Windows.Controls.ContentControl</codeEntityReference>
+                that can contain any application-specific content.
+              </para>
+            </listItem>
+          </list>
+        <para>
+          This example also shows that the properties
+          <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Docking.IDockable.DockWidth</codeEntityReference>
+          and
+          <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Docking.IDockable.DockHeight</codeEntityReference>
+          can be used to define the size of the docked windows.
+        </para>
+      </content>
+    </section>
+
+
+    <section address="Floating">
+      <title>Creating floating windows in XAML</title>
+      <content>
+        <para>
+          It is also possible to create a
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.FloatingWindow</codeEntityReference>
+          directly in the same XAML. For that the
+          <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Docking.IDockable.DockState</codeEntityReference>
+          of any <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.IDockable</codeEntityReference>
+          can be set to
+          <codeEntityReference qualifyHint="false">F:DigitalRune.Windows.Docking.DockState.Floating</codeEntityReference>.
+          The properties
+          <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Docking.IDockable.FloatingLeft</codeEntityReference>,
+          <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Docking.IDockable.FloatingTop</codeEntityReference>,
+          <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Docking.IDockable.FloatingWidth</codeEntityReference> and
+          <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Docking.IDockable.FloatingHeight</codeEntityReference>
+          can be set to define the position and size of the
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.FloatingWindow</codeEntityReference>.
+        </para>
+        <para>
+          When the application starts the
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.IDockable</codeEntityReference>
+          elements that are set to
+          <codeEntityReference qualifyHint="false">F:DigitalRune.Windows.Docking.DockState.Floating</codeEntityReference>
+          will be created in
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.FloatingWindow</codeEntityReference>.
+          For example: If "Document 2" of the previous example should be in a
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.FloatingWindow</codeEntityReference>,
+          following properties can be added to the XAML definition of the
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockWindow</codeEntityReference>:
+        </para>
+        <code language="xaml">
+          <![CDATA[
+<dock:DockWindow Title="Document 2" Background="White"
+                 DockState="Floating" 
+                 FloatingLeft="600" FloatingTop="200" 
+                 FloatingWidth="400" FloatingHeight="600">
+	<local:DocumentControl/>
+</dock:DockWindow>
+]]>
+        </code>
+      </content>
+    </section>
+
+
+    <relatedTopics>
+      <link xlink:href="d509413a-d4f7-4763-8457-ed142decc96d" />
+    </relatedTopics>
+
+  </developerConceptualDocument>
+</topic>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="a8933d84-3eee-430c-a472-4fe0db5c1ecd" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This section shows how collision response can be selectively disabled.</para>
+        </introduction>
+
+
+        <section address="Filter">
+            <title>Collision response filter</title>
+            <content>
+                <para>
+                    Collision response models the behavior of two colliding bodies. The simulation makes
+                    sure that two bodies will not penetrate each other and bounce off of each other.
+                    In some cases it is necessary to disable collision response between a pair of rigid bodies.
+                    When the collision response is disabled, the collision detection will detect
+                    collisions between the rigid bodies, but the simulation will not create
+                    contact constraints. The bodies will move through each other without resistance.
+                </para>
+                <para>
+                    Per default, collision response is enabled for all rigid bodies.
+                    Collision response can be disabled for an individual rigid body using the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.CollisionResponseEnabled</codeEntityReference>
+                    property of the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.RigidBody</codeEntityReference>
+                    class.
+                    It is also possible to disable collision response for specific pairs of rigid
+                    bodies using a collision response filter. A filter can be set for the simulation
+                    in the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.Simulation.ResponseFilter</codeEntityReference>
+                    property. The default filter implementation is
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.CollisionResponseFilter</codeEntityReference>
+                    but custom filters can be implemented as well.
+                </para>
+                <para>
+                    Please note that the collision response filter does not define whether
+                    collision detection is enabled or not. To disable collision detection between
+                    rigid bodies use the collision filter of the collision detection.
+                    See also <link xlink:href="16449523-c2f2-4c86-9dde-720716beaebb" />.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.RigidBody.CollisionResponseEnabled</codeEntityReference>
+            <codeEntityReference qualifyHint="true">T:DigitalRune.Physics.CollisionResponseFilter</codeEntityReference>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

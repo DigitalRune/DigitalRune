@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="2e870374-8980-4fbc-9426-1d1a6e2d9766" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Intro">
+            <title>What are graphics screens?</title>
+            <content>
+                <para>
+                    A <newTerm>graphics screen</newTerm> is a layer in a 3D application. Multiple layers can
+                    be stacked on one another, for example:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        The first (back) screen renders the 3D world.
+                    </listItem>
+                    <listItem>
+                        In front of this screen is second screen that renders the HUD.
+                    </listItem>
+                    <listItem>
+                        In front of these screens is a third screen that renders a 2D GUI, such as an "Options Dialog".
+                    </listItem>
+                </list>
+                <para>
+                    Different types of applications may consist of a different number and different types of
+                    layers. Simple applications may only have a single layer that handles all graphics.
+                </para>
+                <para>
+                    The <newTerm>graphics screen</newTerm> is a concept used to separate rendering code into
+                    different classes. The abstract base class <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.GraphicsScreen</codeEntityReference>
+                    provides the base functionality, but does not implement rendering. The rendering code needs
+                    to be added in derived classes. Each derived graphics screen implements its own rendering
+                    pipeline. That means, a screen that renders the 3D world can use a different rendering pipeline
+                    than a screen that draws the HUD, or the GUI, or debug output. Each graphics screen can use
+                    its own type of scene management.
+                </para>
+                <para>
+                    Graphics screens needs to be added to the graphics service (see collection
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.IGraphicsService.Screens</codeEntityReference>).
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Example:
+GraphicsService.Screens.Add(worldGraphicsScreen); // 3D world
+GraphicsService.Screens.Add(hudGraphicsScreen);   // HUD
+GraphicsService.Screens.Add(guiGraphicsScreen);   // GUI (main menu, options dialog, ...)
+        ]]>
+                </code>
+                <para>
+                    The graphics service updates and renders all registered screens back to front. The output
+                    of one graphics screens can optionally be passed as input to the next graphics screen.
+                </para>
+                <para>
+                    New graphics screens can be implemented by deriving a new type from
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.GraphicsScreen</codeEntityReference>.
+                    Alternatively, a new graphics screen can be created by using a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.DelegateGraphicsScreen</codeEntityReference>
+                    and providing <legacyBold>Update</legacyBold> and <legacyBold>Render</legacyBold> callbacks.
+                </para>
+                <para>
+                    DigitalRune Graphics does not provide a predefined rendering pipeline. The rendering
+                    pipeline is up to the application. The sample applications demonstrate how to implement
+                    different rendering pipelines. For example, the <localUri>DeferredLightingSample</localUri>
+                    demonstrates how to write a light pre-pass renderer ("deferred lighting").
+                </para>
+            </content>
+        </section>
+
+
+        <section address="GraphicsScreen">
+            <title>GraphicsScreen</title>
+            <content>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.GraphicsScreen</codeEntityReference>
+                    is the base class of all graphics screens. It mainly consists of an <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.GraphicsScreen.Update(System.TimeSpan)</codeEntityReference>
+                    and a <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.GraphicsScreen.Render(DigitalRune.Graphics.RenderContext)</codeEntityReference>
+                    method.
+                </para>
+                <para>
+                    A new graphics screen is created by deriving a new class and implementing <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.GraphicsScreen.OnUpdate(System.TimeSpan)</codeEntityReference>
+                    and <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.GraphicsScreen.OnRender(DigitalRune.Graphics.RenderContext)</codeEntityReference>.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+public class MyGraphicsScreen : GraphicsScreen
+{
+  public MyGraphicsScreen(IGraphicsService graphicsService)
+    : base(graphicsService)
+  {
+    Name = "MyScreen"; // Useful for debugging.
+      
+    // TODO: Create any renderers or resources here.
+  }
+
+  protected override void OnUpdate(TimeSpan deltaTime)
+  {
+    // TODO: Implement update logic here.
+  }
+
+  protected override void OnRender(RenderContext context)
+  {
+    var graphicsService = context.GraphicsService;
+    var graphicsDevice = graphicsService.GraphicsDevice;
+    
+    // TODO: Implement rendering pipeline here.
+  }
+}
+          ]]>
+                </code>
+                <para>
+                    The property <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.GraphicsScreen.Coverage</codeEntityReference>
+                    can be set by the derived graphics screen. It determines whether screens in the
+                    background are fully covered or not. For example, the 3D world usually covers the entire screen
+                    whereas a HUD only covers parts of the screens. The graphics service reads the property to
+                    decide whether graphics screens in the background need to be rendered. If screens are completely
+                    hidden, they won't be updated or rendered.
+                </para>
+                <alert class="tip">
+                    <para>
+                        Always set <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.GraphicsScreen.Coverage</codeEntityReference>
+                        to <codeEntityReference qualifyHint="false">F:DigitalRune.Graphics.GraphicsScreenCoverage.Full</codeEntityReference>
+                        if the graphics screens covers the entire screen. This improves performance if multiple
+                        graphics screens are registered in the graphics service.
+                    </para>
+                </alert>
+                <para>
+                    The property <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.GraphicsScreen.IsVisible</codeEntityReference>
+                    can be used enable/disable a graphics screens.
+                </para>
+                <para>
+                    The properties <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.GraphicsScreen.RenderPreviousScreensToTexture</codeEntityReference>
+                    and <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.GraphicsScreen.SourceTextureFormat</codeEntityReference>
+                    can be set to render the output of the previous graphics screens into a temporary render target.
+                    The output can be read as an input texture by the current graphics screen (see property
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.RenderContext.SourceTexture</codeEntityReference>).
+                </para>
+            </content>
+        </section>
+
+
+        <section address="DelegateGraphicsScreen">
+            <title>DelegateGraphicsScreen</title>
+            <content>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.DelegateGraphicsScreen</codeEntityReference>
+                    offers a quick and easy way to add a new graphics screen without implementing a new class.
+                    All that is required is an
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.DelegateGraphicsScreen.UpdateCallback</codeEntityReference>
+                    and a <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.DelegateGraphicsScreen.RenderCallback</codeEntityReference>.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Add a new graphics screen using callbacks.
+var delegateGraphicsScreen = new DelegateGraphicsScreen(GraphicsService)
+{
+  UpdateCallback = delegate(GraphicsScreen screen, TimeSpan deltaTime)
+  {
+    // TODO: Implement update logic here.
+  },
+  RenderCallback = delegate(RenderContext context) 
+  { 
+    var graphicsService = context.GraphicsService;
+    var graphicsDevice = graphicsService.GraphicsDevice;
+    
+    // TODO: Implement rendering pipeline here.
+  }
+};
+
+// Register graphics screen in graphics service.
+GraphicsService.Screens.Add(delegateGraphicsScreen);
+          ]]>
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

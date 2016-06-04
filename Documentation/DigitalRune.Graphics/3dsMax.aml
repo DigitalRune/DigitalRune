@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="48064718-39d0-4169-90d7-09cfad8ae1f8" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+      <introduction>
+          <para>
+              Here are a few tips for exporting FBX files from Autodesk 3ds Max.
+          </para>
+          <autoOutline />
+      </introduction>
+
+
+      <section address="Format">
+          <title>File format</title>
+          <content>
+              <para>
+                  Use FBX 2013 ASCII or FBX 2013 Binary format.
+              </para>
+          </content>
+      </section>
+
+
+      <section address="Paths">
+          <title>Relative file paths</title>
+          <content>
+              <para>
+                  Enable relative paths in the <legacyBold>Preferences</legacyBold>.
+              </para>
+              <mediaLink>
+                  <image xlink:href="3ds-Relative-File-Paths"/>
+              </mediaLink>
+              <para>
+                  Since paths are relative to the project folder, it is best to set a project folder
+                  (<legacyBold>Application Menu | Manage | Set Project Folder</legacyBold>)
+                  and work within this folder.
+              </para>
+          </content>
+      </section>
+
+
+      <section address="Units">
+          <title>Units and scale</title>
+          <content>
+              <para>
+                  Default units in FBX should be cm but the file can also use m, cm, inches, etc.
+                  It is best to use cm in FBX (file units) and 3ds Max (display and system units).
+              </para>
+              <para>
+                  The MonoGame FBX importer usually ignores the unit settings of the FBX file and
+                  assumes 1 unit = 1 cm. The
+                  <link xlink:href="6e0b9a08-b1d8-41a3-9ab4-ebf6235abe19">default units</link> in
+                  DigitalRune are 1 unit = 1 m. Therefore it might necessary to apply a scale factor
+                  of 0.01 to the model during import. This scale factor can be set in the
+                  <link xlink:href="c5deb208-188f-4995-bb6b-c682a3997d40">model description (.drmdl) file</link>.
+              </para>
+          </content>
+      </section>
+
+
+      <section address="Transforms">
+          <title>Transforms</title>
+          <content>
+              <para>
+                  Before exporting a model reset the transforms (Panel
+                  <legacyBold>Utilities | Reset XForm</legacyBold>).
+                  Then collapse the <legacyItalic>XForms</legacyItalic> modifier:
+              </para>
+              <mediaLink>
+                  <image xlink:href="3ds-Collapse-Transforms"/>
+              </mediaLink>
+              <para>
+                  Export with <legacyItalic>Y-Up</legacyItalic> in the FBX exporter.
+              </para>
+          </content>
+      </section>
+
+
+      <section address="Animations">
+          <title>Animations</title>
+          <content>
+              <list class="bullet">
+                  <listItem>
+                      If one component of a vector is key-framed, make sure that all components are key-framed.
+                      For example, in the following picture the position of the bone
+                      <legacyItalic>R_Thumb3</legacyItalic> is animated. The Y and Z Positions are key-framed
+                      with 0 values. The X Position (red dotted line) does not have any key frames. It has a
+                      default value of 1.4. However, Assimp will import the key frames of Y and Z and will
+                      set X to 0 because it does not have any key frames.
+                      <mediaLink>
+                          <image xlink:href="3ds-Animation-Keys"/>
+                      </mediaLink>
+                  </listItem>
+                  <listItem>
+                      Remove all animation key frames before time 0. This might cause problems with Assimp.
+                  </listItem>
+                  <listItem>
+                      Before exporting a skinned model put it into the skin pose mode (Menu
+                      <legacyBold>Animation | Skin Pose Mode or Panel Hierarchy| Rollout Skin Pose | Skin Pose Mode</legacyBold>
+                      checkbox). If the model is in an animated state while exporting (e.g. in the first
+                      key frame of a walk animation), then Assimp might use the current animated state as
+                      the bind pose for the skeleton.
+                  </listItem>
+                  <listItem>
+                      Convert subframe keys to normal keys. For example, the following picture shows a
+                      timeline of an animation with subframe keys (boxes which are not 1 frame wide).
+                      <mediaLink>
+                          <image xlink:href="3ds-Subframe-Keys"/>
+                      </mediaLink>
+                      These frames can be lost when importing with Assimp - the animation stutters.
+                      To convert these subfame key to normal key. Open
+                      <legacyBold>Graph Editors | Track View - Dope Sheet… </legacyBold>
+                      Expand the tree view on the left. Select the subframe keys and move them a little
+                      bit while <legacyBold>Snap Frames</legacyBold> is enabled. This transforms them to
+                      normal keys, recognizable by the width of the box.
+                  </listItem>
+                  <listItem>
+                      If the imported animation stutters at certain animation times (e.g. when checking
+                      the model in open3mod), check the animation in the 3ds Max (curve editor or dope sheet).
+                      You might need to add additional key frames at the frames where the stutter occurs.
+                  </listItem>
+              </list>
+          </content>
+      </section>
+
+
+      <section address="References">
+          <title>References</title>
+          <content>
+              <para>
+                  For more Autodesk 3ds Max tips, see:
+              </para>
+              <list class="nobullet">
+                  <listItem>
+                      <externalLink>
+                          <linkText>Exporting FBX Files from 3DS Max</linkText>
+                          <linkUri>http://metlab.cse.msu.edu/exporting.html</linkUri>
+                      </externalLink>
+                  </listItem>
+              </list>
+          </content>
+      </section>
+
+
+      <relatedTopics>
+          <externalLink>
+              <linkText>Autodesk 3ds Max</linkText>
+              <linkUri>http://www.autodesk.de/products/3ds-max/overview</linkUri>
+          </externalLink>
+      </relatedTopics>
+
+  </developerConceptualDocument>
+</topic>

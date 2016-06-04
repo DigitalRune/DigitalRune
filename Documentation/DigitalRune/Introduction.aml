@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="dc44c3a5-8545-4253-9da1-62258a00607c" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <mediaLink>
+                <image xlink:href="LogoBase"/>
+            </mediaLink>
+            <para>
+                The DigitalRune Base library (<application>DigitalRune.dll</application>) is a .NET helper library containing
+                functionality that is used in most DigitalRune libraries and applications.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Features">
+            <title>Features</title>
+            <content>
+                <para>
+                    Here is an overview of features in this library:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <link xlink:href="09d39ddf-c826-4943-aac8-2ef9e16e5a12" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="9e2a4144-69e9-4bf2-8cea-79713eb91490"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="ce7bca46-717a-4dfb-a154-acb6ee1e8ad9"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="6736e3bc-383c-4d80-a828-c83fea5c3461" />
+                    </listItem>
+                    <listItem>
+                        Robust floating-point comparison (see class
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Numeric</codeEntityReference>)
+                    </listItem>
+                    <listItem>
+                        New types of collections (see namespace
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Collections</codeEntityReference>)
+                    </listItem>
+                    <listItem>
+                        New extension methods for LINQ (see namespace
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Linq</codeEntityReference>)
+                    </listItem>
+                    <listItem>
+                        Base implementation of the <legacyItalic>Singleton</legacyItalic> design pattern (see class
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Singleton`1</codeEntityReference>)
+                    </listItem>
+                    <listItem>
+                        Base implementation of an <legacyItalic>Undo/Redo</legacyItalic> framework (see
+                        namespace <codeEntityReference qualifyHint="true">N:DigitalRune.Undo</codeEntityReference>)
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="120bed13-f23b-4774-bae7-d64d410d2122">
+                            Storage API for cross-platform file access and virtual file systems
+                        </link>
+                    </listItem>
+                    <listItem>
+                        Weak delegates and events
+                    </listItem>
+                    <listItem>
+                        And more...
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Namespaces">
+            <title>Namespaces</title>
+            <content>
+                <para>
+                    Following namespaces belong to the DigitalRune Base library:
+                </para>
+                <list class="nobullet">
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Animation</codeEntityReference>
+                        <superscript>1</superscript>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Collections</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Diagnostics</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Linq</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Mathematics</codeEntityReference>
+                        <superscript>2</superscript>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.ServiceLocation</codeEntityReference>
+                        <superscript>3</superscript>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Storages</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Text</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Threading</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Undo</codeEntityReference>
+                    </listItem>
+                </list>
+                <para>
+                    <superscript>1</superscript> The DigitalRune Base library (<localUri>DigitalRune.dll</localUri>)
+                    includes only the interfaces
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableObject</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableProperty</codeEntityReference>,
+                    and <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableProperty`1</codeEntityReference>.
+                    All other types related to animation are defined in the DigitalRune Animation library
+                    (<localUri>DigitalRune.Animation.dll</localUri>).
+                </para>
+                <para>
+                    <superscript>2</superscript> The DigitalRune Base library (<localUri>DigitalRune.dll</localUri>)
+                    includes only the type <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Numeric</codeEntityReference>.
+                    All other types related to mathematics are defined in the DigitalRune Mathematics library
+                    (<localUri>DigitalRune.Mathematics.dll</localUri>).
+                </para>
+                <para>
+                    <superscript>3</superscript> The <codeEntityReference qualifyHint="false">T:DigitalRune.ServiceLocation.ServiceContainer</codeEntityReference>
+                    is available in a separate assembly (<localUri>DigitalRune.ServiceLocation.dll</localUri>) because
+                    it requires a reference to a third-party assembly (<localUri>Microsoft.Practices.ServiceLocation.dll</localUri>).
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Subtopics">
+            <title>Subtopics</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        <link xlink:href="09d39ddf-c826-4943-aac8-2ef9e16e5a12" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="9e2a4144-69e9-4bf2-8cea-79713eb91490"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="ce7bca46-717a-4dfb-a154-acb6ee1e8ad9"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="6736e3bc-383c-4d80-a828-c83fea5c3461" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="120bed13-f23b-4774-bae7-d64d410d2122" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="3b7ea45b-f13c-49b3-961b-42899323a477"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="dba0bb78-681c-4dd0-b84b-91ce08eeea36"/>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

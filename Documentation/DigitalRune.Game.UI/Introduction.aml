@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="a5a463da-de2e-432f-bf7d-07206aaca634" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <mediaLink>
+                <image xlink:href="LogoGameUI"/>
+            </mediaLink>
+            <para>
+                <application>DigitalRune Game UI</application> is a .NET class library that
+                provides input handling and GUI components for video games and other
+                applications.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Features">
+            <title>Features</title>
+            <content>
+                <para>
+                    Here is an overview of features in this product.
+                </para>
+            </content>
+            <sections>
+                <section>
+                    <title>General</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Includes source code of the input classes and GUI controls.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section>
+                    <title>Input handling</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Detection of button presses, releases and double-clicks
+                            </listItem>
+                            <listItem>
+                                Assigning logical players to physical game controllers
+                            </listItem>
+                            <listItem>
+                                Automatic repetition of button events for held buttons
+                            </listItem>
+                            <listItem>
+                                Mapping inputs to commands
+                            </listItem>
+                            <listItem>
+                                And more convenience functions
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section>
+                    <title>Graphical user interface (GUI)</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Available controls: text block/label, text box, image, slider,
+                                scroll bar, progress bar, context menu, window, scroll viewer,
+                                group box, tab control, button, check box, radio button,
+                                drop down button, tool tips
+                            </listItem>
+                            <listItem>
+                                Interactive console (for debugging, can be extended with custom commands)
+                            </listItem>
+                            <listItem>
+                                Custom controls can easily be added. The source code of the original GUI
+                                controls is included!
+                            </listItem>
+                            <listItem>
+                                Flexible layout system
+                            </listItem>
+                            <listItem>
+                                Predefined layouts can be loaded from XML files.
+                            </listItem>
+                            <listItem>
+                                GUI can be controlled via gamepad, keyboard, mouse, or touch.
+                            </listItem>
+                            <listItem>
+                                Exchangeable GUI renderers
+                            </listItem>
+                            <listItem>
+                                Visual themes can be defined per XML.
+                            </listItem>
+                            <listItem>
+                                Customizable key-mapping (keyboard layouts for the keyboard
+                                and the Xbox 360 Chatpad)
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Namespaces">
+            <title>Namespaces</title>
+            <content>
+                <para>
+                    Following namespaces belong to DigitalRune Game UI:
+                </para>
+                <list class="nobullet">
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Game.Input</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Game.UI</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Game.UI.Consoles</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Game.UI.Content</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Game.UI.Content.Pipeline</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Game.UI.Controls</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Game.UI.Rendering</codeEntityReference>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Subtopics">
+            <title>Subtopics</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        <link xlink:href="450784f4-d741-4447-809a-527f5c902c98"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="5bf85e1f-8f25-4778-b4b1-9d29faf15cc9"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="6643e7a7-230b-43a8-ab8e-ec47a1613cbd" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="6be1c3d5-e842-4dec-81d8-5fce19a76345"/>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

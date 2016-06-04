@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="21165cd4-523e-4809-b051-689f87cf12f6" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        This section explains how the layout of the docking windows can be stored and loaded from a file.
+      </para>
+    </introduction>
+
+    
+    <section address="saving">
+      <title>Saving the layout</title>
+      <content>
+        <para>
+          To store the layout just call
+          <codeEntityReference qualifyHint="false">M:DigitalRune.Windows.Docking.DockControl.SaveLayout</codeEntityReference>.
+          This method serializes the docking layout into an XML document.
+          Here is an example that saves the layout in an XML file:
+        </para>
+
+        <code language="c#">
+          <![CDATA[
+// DockControl.SaveLayout() serializes the layout into a XML document.
+XDocument xmlDocument = MyDockControl.SaveLayout();
+
+// Save the XML document in a file.
+xmlDocument.Save("SavedLayout.xml");
+]]>
+        </code>
+        <para>
+          This code stores the layout but not the actual content of the
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockWindow</codeEntityReference>s.
+          Instead, for each <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockWindow</codeEntityReference>
+          the <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Docking.DockWindow.DockId</codeEntityReference>.
+          is stored, which is a string that must be set by the user and should identify the
+          application-specific content.
+        </para>
+      </content>
+    </section>
+
+    
+    <section address="loading">
+      <title>Loading the layout</title>
+      <content>
+        <para>
+          To load the layout just call
+          <codeEntityReference qualifyHint="false">M:DigitalRune.Windows.Docking.DockControl.LoadLayout</codeEntityReference>.
+          This method reads the docking layout from an XML document.
+          Here is an example that loads the layout from an XML file:
+        </para>
+
+        <code language="c#">
+          <![CDATA[
+// Get the XML document with the serialized layout.
+var xmlDocument = XDocument.Load("SavedLayout.xml");
+
+// Call DockControl.LoadLayout to restore the serialized layout.
+MyDockControl.LoadLayout(xmlDocument, CreateDockWindow);
+]]>
+        </code>
+        <para>
+          Since the <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockWindow</codeEntityReference>
+          content is not stored in the XML layout file,
+          a callback method CreateDockWindow must be specified. This callback
+          must be implemented by the application. It has to create a
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockWindow</codeEntityReference>
+          for a given
+          <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Docking.DockWindow.DockId</codeEntityReference>:
+        </para>
+        <code language="c#">
+          <![CDATA[
+private DockWindow CreateDockWindow(string dockId)
+{
+  // Use dockId to decide which DockWindow to create.
+  if (dockId == "Solution Explorer"))
+    return CreateSolutionExplorer();
+  else if (dockId == "Properties Window")
+    return CreatePropertiesWindow();
+            
+  return null;
+}
+]]>
+        </code>
+      </content>
+    </section>
+
+    
+    <relatedTopics>
+      <link xlink:href="c97c48fd-6566-4438-9a54-ccba157412da" />
+    </relatedTopics>
+
+  </developerConceptualDocument>
+</topic>

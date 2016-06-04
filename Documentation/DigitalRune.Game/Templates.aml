@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="be9dad32-1e3f-4361-9cbe-9874e2225049" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This section describes the template mechanism of the game object system.
+            </para>
+        </introduction>
+
+
+        <section address="Templates">
+            <title>Templates</title>
+            <content>
+                <para>
+                    <legacyItalic>Templates</legacyItalic> (also called <legacyItalic>prefabs</legacyItalic>,
+                    <legacyItalic>prototypes</legacyItalic>, or <legacyItalic>archetypes</legacyItalic>) are
+                    prefabricated game objects. In games, templates are often defined in a game editor and loaded
+                    at runtime. At runtime a template is simply a game object with pre-initialized properties.
+                </para>
+                <para>
+                    A new instance of a template can be created by creating a new game object and assigning
+                    the template object to the property <codeEntityReference qualifyHint="false">P:DigitalRune.Game.GameObject.Template</codeEntityReference>.
+                    The newly created object is now an instance of the template object. At runtime, any number
+                    of instances can be created. All instances will have the same properties as the template.
+                    (The instances "inherit" the values of the template.)
+                </para>
+                <para>
+                    The template mechanism does not create a one-time copy of the template. Instead, it creates
+                    a live relationship between the template and its instances. When the properties of the original
+                    template are changed, all instances are affected and automatically get the new template values.
+                </para>
+                <alert class="note">
+                    <para>
+                        Note that changing a property of a template raises property changed notifications on the
+                        template object, but does not raise property changed notifications on the instances.
+                    </para>
+                </alert>
+                <para>
+                    Instances can have local values that differ from the template values. When the game object property
+                    of a particular instance is set explicitly, the new value will override the template value. From then on the
+                    property of this instance will have a unique, local value. Changing the same property on the template
+                    object will no longer affect the instance. The game object property can be reset by calling
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Game.GameProperty`1.Reset</codeEntityReference>.
+                    The property of the instance will revert back to the value stored in the template.
+                </para>
+                <para>
+                    Using templates saves memory at runtime because game objects only store the local values
+                    that differ from the template value.
+                </para>
+                <alert class="note">
+                    <para>
+                        A template itself can also be an instance of another template. That means, the property
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Game.GameObject.Template</codeEntityReference>
+                        of the template object can point to another game object. In this case, the template "inherits"
+                        the values of another template.
+                    </para>
+                </alert>
+                <!--
+  // In following situation GameProperty.Changing/Changed events are not triggered:
+    // For local values that have the default value (HasLocalValue == false), when
+    // - the template is changed,
+    // - the template value is changed,
+    // - the metadata default value is changed.
+    // That means, we have following current restriction: Example:
+    // GameObject A uses GameObject B as Template: A.Template = B;
+    // If a listener handles A.Properties["X"].Changing/Changed, then the listener will not
+    // get any events if B.Properties["X"].Value is changed. Until A.Properties["X"].Value is
+    // changed, A.Properties["X"].Value will return B.Properties["X"].Value. But 
+    // A.Properties["X"].Value will not trigger Changing/Changed even if B.Properties["X"].Value
+    // is changed.
+    // A practical example: 100 soldiers are instanced using a soldier template. The soldier's
+    // shirt color will change with the template's shirt color. But no events are triggered on the
+    // soldiers - only on the template. To handle the changing soldier shirt color, handle the
+    // template shirt color events directly. Or, connect the properties:
+    // template.ShirtColor.Changed += soldier.ShirtColor.Change;
+  -->
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

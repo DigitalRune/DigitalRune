@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="1dd61993-8033-4bb2-aeab-de3367913a36" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+        </introduction>
+
+
+        <section address="Debugging">
+            <!--<title>Statistics and visualization (debugging)</title>-->
+            <content>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.OcclusionBuffer</codeEntityReference>
+                    provides basic statistics (see
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.Rendering.OcclusionBuffer.Statistics</codeEntityReference>).
+                    These can be used to evaluate the efficiency of the occlusion culling process.
+                </para>
+                <para>
+                    Further, the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.OcclusionBuffer</codeEntityReference>
+                    provides various methods for debugging visibility issues. The most common visibility
+                    problems are:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Occluder geometry may be larger than the models in the scene. When occluders are not
+                        properly aligned with the scene, objects may be missing in the final image.
+                    </listItem>
+                    <listItem>
+                        When important occluders are missing, the performance will drop.
+                    </listItem>
+                    <listItem>
+                        Shadows may flicker or be missing in the final image.
+                    </listItem>
+                </list>
+                <para>
+                    The following methods can be used to visualize occluders and individual occlusion tests:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.Rendering.OcclusionBuffer.VisualizeCameraBuffer(System.Int32,DigitalRune.Graphics.RenderContext)</codeEntityReference>
+                            overlays a level of the HZB on top of the scene. This can be used to
+                            visualize occluders and compare them with the actual scene.
+                        </para>
+                        <mediaLink>
+                            <caption placement="after" lead="Figure">HZB (level 0 - 7)</caption>
+                            <image xlink:href="OcclusionBuffer-Camera"/>
+                        </mediaLink>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.Rendering.OcclusionBuffer.VisualizeObject(DigitalRune.Graphics.SceneGraph.SceneNode,DigitalRune.Graphics.RenderContext)</codeEntityReference>
+                            visualizes a single occlusion test. The bounds of a scene node are compared with the depth
+                            values at a specific level in the HZB. An orange rectangle designates the screen-aligned
+                            bounds of the object. A green rectangle shows the area that is sampled in the HZB.
+                        </para>
+                        <mediaLink>
+                            <caption placement="after" lead="Figure">Object vs. HZB</caption>
+                            <image xlink:href="OcclusionBuffer-Object"/>
+                        </mediaLink>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.Rendering.OcclusionBuffer.VisualizeLightBuffer(System.Int32,DigitalRune.Graphics.RenderContext)</codeEntityReference>
+                            renders HZB of the directional light. This is the same as
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.Rendering.OcclusionBuffer.VisualizeCameraBuffer(System.Int32,DigitalRune.Graphics.RenderContext)</codeEntityReference>
+                            except the scene is shown from the light's point of view. (Only available when shadow
+                            caster culling is active.)
+                        </para>
+                        <mediaLink>
+                            <caption placement="after" lead="Figure">HZB (level 0) of light source</caption>
+                            <image xlink:href="OcclusionBuffer-Light"/>
+                        </mediaLink>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.Rendering.OcclusionBuffer.VisualizeShadowCaster(DigitalRune.Graphics.SceneGraph.SceneNode,DigitalRune.Graphics.RenderContext)</codeEntityReference>
+                            visualizes the occlusion test of a specific shadow caster in the HZB of the directional
+                            light. An orange rectangle designates the screen-aligned bounds of the shadow caster.
+                            A green rectangle shows the area that is sampled in the HZB. (Only available when
+                            shadow caster culling is active.)
+                        </para>
+                        <mediaLink>
+                            <caption placement="after" lead="Figure">Shadow caster vs. light HZB</caption>
+                            <image xlink:href="OcclusionBuffer-ShadowCaster"/>
+                        </mediaLink>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.Rendering.OcclusionBuffer.VisualizeShadowVolume(DigitalRune.Graphics.SceneGraph.SceneNode,DigitalRune.Graphics.RenderContext)</codeEntityReference>
+                            visualizes the occlusion test of the shadow volume of a specific shadow caster.
+                            An orange rectangle designates the screen-aligned bounds of the shadow volume.
+                            A green rectangle shows the area that is sampled in the HZB. (Only available when
+                            shadow caster culling is active.)
+                        </para>
+                        <mediaLink>
+                            <caption placement="after" lead="Figure">Shadow volume vs. camera HZB</caption>
+                            <image xlink:href="OcclusionBuffer-ShadowVolume"/>
+                        </mediaLink>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

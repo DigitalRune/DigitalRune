@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="81cd4f27-5ce5-4439-9a6c-121f2942f175" revisionNumber="1">
+    <developerConceptualDocument
+      xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This article shows how to implement an <newTerm>exponential smoothing filter</newTerm>.
+            </para>
+        </introduction>
+
+        <!-- Add one or more top-level section elements.  These are collapsible.
+         If using <autoOutline />, add an address attribute to identify it
+         and specify a title so that it can be jumped to with a hyperlink. -->
+        <section address="Usage">
+            <title>Usage</title>
+            <content>
+                <para>
+                    The smoothing filter is a low-pass filter which can be used to smooth floating
+                    point values, e.g. camera position and orientation, mouse positions, etc.
+                </para>
+                <code language="c#" title="Example (C#): Filtering rotation changes">
+<![CDATA[
+_filter.RawValue[0] = deltaYaw;
+_filter.RawValue[1] = deltaPitch;
+_filter.Filter(deltaTime);
+deltaYaw = _filter.FilteredValue[0];
+deltaPitch = _filter.FilteredValue[1];
+]]>
+                </code>
+            </content>
+        </section>
+
+        <section address="Implementation">
+            <title>Implementation</title>
+            <content>
+                <code language="c#">
+                    <![CDATA[
+using System;
+
+
+namespace DigitalRune.Mathematics.SignalProcessing
+{
+    /// <summary>
+    /// Implements an exponential smoothing filter.
+    /// </summary>
+    /// <remarks>
+    /// <para>
+    /// This class implements an exponential smoothing filter, a.k.a an infinite-impulse-response 
+    /// (IIR) single-pole low-pass filter. The input values are <see cref="Single"/>
+    /// arrays where the number of array elements is <see cref="ElementsPerValue"/>.
+    /// The smoothness/responsiveness of the filter is controlled by <see cref="TimeConstant"/>.
+    /// </para>
+    /// <para>
+    /// To avoid temporary allocations of arrays, the filter is used like this:
+    /// <list type="number">
+    /// <item>Set the new sample value in <see cref="RawValue"/>.</item>
+    /// <item>Call <see cref="Filter"/>.</item>
+    /// <item>Read the filtered value from <see cref="FilteredValue"/>.</item>
+    /// </list>
+    /// </para>
+    /// <example> 
+    /// For example:
+    /// <code lang="csharp">
+    /// <![CDATA[
+    /// _filter.RawValue[0] = pose.Position.X;
+    /// _filter.RawValue[1] = pose.Position.Y;
+    /// _filter.RawValue[2] = pose.Position.Z;
+    /// _filter.Filter((float)gameTime.ElapsedGameTime.TotalSeconds);
+    /// pose.Position.X = _filter.FilteredValue[0];
+    /// pose.Position.Y = _filter.FilteredValue[1];
+    /// pose.Position.Z = _filter.FilteredValue[2];
+    /// ]]]]><![CDATA[>
+    /// </code>
+    /// </example>
+    /// </remarks>
+    public class ExponentialSmoothingFilterF
+    {
+        // References:
+        // - http://en.wikipedia.org/wiki/Low-pass_filter
+        // - http://en.wikipedia.org/wiki/Exponential_smoothing
+
+
+        //--------------------------------------------------------------
+        #region Fields
+        //--------------------------------------------------------------
+
+        private bool _isInitialized;
+        #endregion
+
+
+        //--------------------------------------------------------------
+        #region Properties & Events
+        //--------------------------------------------------------------
+
+        /// <summary>
+        /// Gets the number of array elements per sample value.
+        /// </summary>
+        /// <value>
+        /// The number of array elements per sample value.
+        /// </value>
+        public int ElementsPerValue
+        {
+            get { return _elementsPerValue; }
+        }
+        private readonly int _elementsPerValue;
+
+
+        /// <summary>
+        /// Gets the current raw input value.
+        /// </summary>
+        /// <value>
+        /// The current raw input value.
+        /// </value>
+        public float[] RawValue
+        {
+            get { return _rawValue; }
+        }
+        private readonly float[] _rawValue;
+
+
+        /// <summary>
+        /// Gets the filtered output value.
+        /// </summary>
+        /// <value>
+        /// The filtered output value.
+        /// </value>
+        public float[] FilteredValue
+        {
+            get { return _filteredValue; }
+        }
+        private readonly float[] _filteredValue;
+
+
+        /// <summary>
+        /// Gets or sets the time constant.
+        /// </summary>
+        /// <value>
+        /// The time constant in seconds. The default value is 0.05s.
+        /// </value>
+        /// <remarks>
+        /// Lower time constant values make the filter more responsive. Higher time constant
+        /// values make the filtered results smoother, but the filter is less responsive (more latency).
+        /// </remarks>
+        public float TimeConstant { get; set; }
+        #endregion
+
+
+        //--------------------------------------------------------------
+        #region Creation & Cleanup
+        //--------------------------------------------------------------
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExponentialSmoothingFilterF"/> class.
+        /// </summary>
+        /// <param name="elementsPerValue">
+        /// The number of array elements per sample value.
+        /// </param>
+        /// <exception cref="System.ArgumentOutOfRangeException">
+        /// <paramref name="elementsPerValue"/> must be greater than 0.
+        /// </exception>
+        public ExponentialSmoothingFilterF(int elementsPerValue)
+        {
+            if (elementsPerValue <= 0)
+                throw new ArgumentOutOfRangeException("elementsPerValue", "ElementsPerValue must be greater than 0.");
+
+            _elementsPerValue = elementsPerValue;
+            TimeConstant = 0.05f;
+
+            _rawValue = new float[elementsPerValue];
+            _filteredValue = new float[elementsPerValue];
+        }
+        #endregion
+
+
+        //--------------------------------------------------------------
+        #region Methods
+        //--------------------------------------------------------------
+
+        /// <summary>
+        /// Resets this filter (= deletes past sample values).
+        /// </summary>
+        public void Reset()
+        {
+            _isInitialized = false;
+            Array.Clear(_rawValue, 0, _elementsPerValue);
+            Array.Clear(_filteredValue, 0, _elementsPerValue);
+        }
+
+
+
+        /// <summary>
+        /// Filters the current <see cref="RawValue"/> and stores the result in
+        /// <see cref="FilteredValue"/>.
+        /// </summary>
+        /// <param name="deltaTime">The elapsed time since the last <see cref="Filter"/> call.</param>
+        public void Filter(float deltaTime)
+        {
+            if (!_isInitialized)
+            {
+                // First time initialization.
+                _isInitialized = true;
+                Array.Copy(_rawValue, _filteredValue, _elementsPerValue);
+            }
+            else
+            {
+                // Average the old values and the current values. 
+                // See http://en.wikipedia.org/wiki/Low-pass_filter for an explanation.
+                float weight1 = deltaTime / (deltaTime + TimeConstant);
+                float weight2 = 1 - weight1;
+                for (int i = 0; i < _elementsPerValue; i++)
+                    _filteredValue[i] = _rawValue[i] * weight1 + _filteredValue[i] * weight2;
+            }
+        }
+        #endregion
+    }
+}
+                    ]]>
+                    
+                    
+                </code>
+            </content>
+        </section>
+
+        <relatedTopics>
+        </relatedTopics>
+    </developerConceptualDocument>
+</topic>

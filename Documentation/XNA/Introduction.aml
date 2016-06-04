@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="4c75f4b9-0771-4cff-b95b-dbb2f8b49619" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                The DigitalRune Engine uses XNA and MonoGame. This section gathers helpful information about
+                XNA and MonoGame.
+            </para>
+            <!--<autoOutline />-->
+        </introduction>
+
+
+        <section address="What">
+            <title>What are XNA and MonoGame?</title>
+            <content>
+                <para>
+                    <legacyItalic>
+                        <legacyBold>Microsoft XNA Game Studio 4.0</legacyBold>
+                        is a programming environment that allows you to use Visual Studio to create games for
+                        Windows Phone, Xbox 360, and Windows. XNA Game Studio includes the XNA Framework, a set
+                        of managed libraries designed for game development based on the Microsoft .NET Framework.
+                    </legacyItalic>
+                    (msdn.microsoft.com)
+                </para>
+                <para>
+                    <legacyItalic>
+                        <legacyBold>MonoGame</legacyBold>
+                        is an Open Source implementation of the Microsoft XNA 4 Framework. Our goal is to
+                        allow XNA developers on Xbox 360, Windows and Windows Phone to port their games to the iOS,
+                        Android, Mac OS X, Linux and Windows 8 Metro.  PlayStation Mobile, Raspberry PI, and
+                        PlayStation 4 platforms are currently in progress.
+                    </legacyItalic>
+                    (MonoGame.net)
+                </para>
+                <para>
+                    The DigitalRune Engine supports XNA and MonoGame in several ways:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        DigitalRune Mathematics contains helper methods to convert types from/to XNA
+                        types (e.g. DigitalRune <legacyBold>Vector3F</legacyBold> to XNA <legacyBold>Vector3</legacyBold>).
+                    </listItem>
+                    <listItem>
+                        Several DigitalRune libraries provide special DLLs for the XNA content pipeline.
+                    </listItem>
+                </list>
+                <para>
+                    Some DigitalRune libraries require XNA or MonoGame:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        DigitalRune Graphics requires XNA/MonoGame to render 2D and 3D graphics.
+                    </listItem>
+                    <listItem>
+                        DigitalRune Game UI requires XNA/MonoGame to read input devices and to render
+                        2D graphics.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Subtopics">
+            <title>Subtopics</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        <link xlink:href="d193b4e7-58fd-4578-9019-e6ecf46ebcc0" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="73ecd962-4ff5-4988-bb0c-bffa66f933b9" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="d9205cc0-780b-4302-a5bb-7f35d4268085" />
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="External">
+            <title>External resources</title>
+            <content>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Source</para>
+                            </entry>
+                            <entry>
+                                <para>Description</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>
+                                <externalLink>
+                                    <linkText>XNA Documentation</linkText>
+                                    <linkUri>http://msdn.microsoft.com/en-us/library/bb200104.aspx</linkUri>
+                                </externalLink>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                XNA Game Studio 4.0 Documentation in MSDN Library.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <externalLink>
+                                    <linkText>Getting Started with XNA</linkText>
+                                    <linkUri>http://xbox.create.msdn.com/en-us/education/gamedevelopmentnormalizedString</linkUri>
+                                </externalLink>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Getting started with XNA and Xbox LIVE indie game development.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <token>MGWebsite</token>
+                                <markup>
+                                    <br/>
+                                </markup>
+                                <token>MGDoc</token>
+                                <markup>
+                                    <br/>
+                                </markup>
+                                <token>MGWiki</token>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                MonoGame resources
+                            </para>
+                        </entry>
+                    </row>
+                </table>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="ce7bca46-717a-4dfb-a154-acb6ee1e8ad9" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                The DigitalRune Base library provides a light-weight <legacyItalic>
+                    Inversion
+                    of Control
+                </legacyItalic> (IoC) container for use in .NET applications and games.
+            </para>
+            <alert class="important">
+                <para>
+                    Note that the <codeEntityReference qualifyHint="false">T:DigitalRune.ServiceLocation.ServiceContainer</codeEntityReference>
+                    is contained in a separate assembly (<localUri>DigitalRune.ServiceLocation.dll</localUri>) because
+                    it has a dependency on a third-party assembly (<localUri>Microsoft.Practices.ServiceLocation.dll</localUri>).
+                </para>
+            </alert>
+            <alert class="tip">
+                <para>
+                    More general information about the service provider design pattern can be found in the following article:
+                    <link xlink:href="2a9138d6-d003-4df7-9793-1c3a018aa652" />
+                </para>
+            </alert>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="ServiceContainer">
+            <title>The service container</title>
+            <content>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.ServiceLocation.ServiceContainer</codeEntityReference>
+                    is a fast and efficient <legacyItalic>Inversion of Control</legacyItalic> (IoC) container
+                    which can be used in .NET Framework, Windows Presentation Foundation (WPF), Silverlight,
+                    Windows Phone 7, and Xbox 360 applications.
+                </para>
+                <para>
+                    IoC is a software design principle based on the idea that components should not directly
+                    create or access dependent objects ("services") to avoid tight coupling. Instead, components
+                    should only access services through abstracted interfaces. At runtime the components can
+                    acquire services by using a service locator, or the services are supplied automatically by
+                    an IoC container through <legacyItalic>Dependency Injection</legacyItalic> (DI). IoC
+                    facilitates software reuse, loose coupling, and easy testing of software components.
+                </para>
+                <para>
+                    This documentation is not meant to be an introduction on inversion of control. Instead, it
+                    explains how the DigitalRune ServiceContainer can be used. To find out more about
+                    Inversion of Control (IoC), Dependency Injection (DI), Service Location, and related concepts see
+                </para>
+                <list class="bullet">
+                    <listItem>
+                            <legacyItalic>"Inversion of Control"</legacyItalic> in Wikipedia:
+                            <externalLink>
+                                <linkText>Link</linkText>
+                                <linkAlternateText>Inversion of Control (Wikipedia)</linkAlternateText>
+                                <linkUri>http://en.wikipedia.org/wiki/Inversion_of_control</linkUri>
+                            </externalLink>
+                    </listItem>
+                    <listItem>
+                            <legacyItalic>"Inversion of Control Containers and the Dependency Injection pattern"</legacyItalic>
+                            by Martin Fowler:
+                            <externalLink>
+                                <linkText>Link</linkText>
+                                <linkAlternateText>Inversion of Control Containers and the Dependency Injection pattern</linkAlternateText>
+                                <linkUri>http://martinfowler.com/articles/injection.html</linkUri>
+                            </externalLink>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Registration">
+            <title>Service registration</title>
+            <content>
+                <para>
+                    Services are usually abstracted using interfaces. This ensures that components
+                    do not have a hard dependency on an actual implementation. Implementations can
+                    be exchanged without requiring a change or rebuild of the component. For example:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// A random service...
+interface IService1
+{
+}
+
+// ... and its implementation.
+class Service1 : IService1
+{
+}
+]]>
+                </code>
+                <para>
+                    Services can be registered in the IoC container using one of the
+                    <legacyBold>Register</legacyBold>-methods.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+var container = new ServiceContainer();
+
+// Register service by type. 
+// (If required, the service container creates a new service instance using 
+// reflection.)
+container.Register(typeof(IService1), null, typeof(Service1));
+
+// Register service instance. 
+// (The service container will always return the specified instance.)
+var service2 = new Service2();
+container.Register(typeof(IService2), null, service2);
+
+// Register a service using a factory method.
+// (If required, the service container will create a new instance using the
+// factory method.)
+container.Register(typeof(IService3), null, container => new Service3());
+]]>
+                </code>
+                <para>
+                    The first parameter is the <legacyItalic>service type</legacyItalic>,
+                    the type for which the service is registered. The service type is usually
+                    a .NET interface, but it can be a class type as well.
+                </para>
+                <para>
+                    The second parameter is the name under which the service is registered.
+                    The name is a string, which can be null. If the name is null, the service
+                    instance is considered the "default instance". Only one default instance
+                    can be registered for any given service type. But when using different
+                    names, multiple service implementations can be registered for any given
+                    service type. For example:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Register multiple implementations by name. 
+container.Register(typeof(IService1), "Implementation1", typeof(ServiceImpl1));
+container.Register(typeof(IService1), "Implementation2", typeof(ServiceImpl2));
+container.Register(typeof(IService1), "Implementation3", typeof(ServiceImpl3));
+]]>
+                </code>
+                <para>
+                    The <legacyBold>Register</legacyBold>-methods have additional overloads
+                    to customize when/how a new service is created and when a service instance
+                    is disposed (if it implements
+                    <codeEntityReference qualifyHint="false">T:System.IDisposable</codeEntityReference>).
+                    See <codeEntityReference qualifyHint="false">T:DigitalRune.ServiceLocation.CreationPolicy</codeEntityReference>
+                    and <codeEntityReference qualifyHint="false">T:DigitalRune.ServiceLocation.DisposalPolicy</codeEntityReference>
+                    for more informations.
+                </para>
+            </content>
+
+            <sections>
+                <section address="DefaultServices">
+                    <title>Registered default services</title>
+                    <content>
+                        <para>
+                            The only service that is registered by default is the service container
+                            itself.
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+// In each ServiceContainer, the ServiceContainer itself is registered by default.
+// The ServiceContainer is available as IServiceProvider, IServiceLocator, or 
+// ServiceContainer. 
+// FYI: These are calls used to register the container:
+container.Register(typeof(IServiceProvider), null, container => container, CreationPolicy.LocalShared, DisposalPolicy.Manual);
+container.Register(typeof(IServiceLocator), null, container => container, CreationPolicy.LocalShared, DisposalPolicy.Manual);
+container.Register(typeof(ServiceContainer), null, container => container, CreationPolicy.LocalShared, DisposalPolicy.Manual);
+]]>
+                        </code>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Resolution">
+            <title>Service resolution</title>
+            <content>
+                <para>
+                    There are various ways to consume a registered service.
+                </para>
+            </content>
+            <sections>
+
+                <section address="ServiceLocation">
+                    <title>Service location</title>
+                    <content>
+                        <para>
+                            The IoC container can be used as a service locator. Components that depend on
+                            a certain service can acquire the service using one of the
+                            <legacyBold>GetInstance</legacyBold>-methods.
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+// Resolve service (default instance).
+IService1 service1 = container.GetInstance<IService1>();
+
+// Resolve named service.
+IService1 service1 = container.GetInstance<IService1>("Implementation1");
+
+// Resolve all named services of type IService1.
+IEnumerable<IService1> service1 = container.GetAllInstances<IService1>();
+]]>
+                        </code>
+                    </content>
+                </section>
+
+                <section address="ConstructorInjection">
+                    <title>Constructor injection</title>
+                    <content>
+                        <para>
+                            Services or components that depend on other services can get the required
+                            services via constructor injection. For example, consider the following
+                            service which depends on two other services.
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+class DependentService
+{
+  public DependentService(IService service1, IService2 service2)
+  {
+    ...
+  }
+}
+]]>
+                        </code>
+                        <para>
+                            The IoC container can create a new instance of the given type and
+                            automatically resolve its dependencies.
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+// Create a new instance using constructor injection.
+// (Note: IService1 and IService2 need to be already registered.)
+container.Register(typeof(DependentService), null, typeof(DependentService));
+var dependentService = container.GetInstance<DependentService>();
+
+// Alternatively, if the DependentService is not registered in the container:
+var dependentService2 = (DependentService)container.CreateInstance(typeof(DependentService));
+]]>
+                        </code>
+                        <para>
+                            Note that by default the <codeEntityReference qualifyHint="false">T:DigitalRune.ServiceLocation.ServiceContainer</codeEntityReference>
+                            uses a greedy strategy for constructor injection: When creating a new instance,
+                            the IoC container looks for the constructor with the most arguments and tries
+                            to resolve the arguments from within the container.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="PropertyInjection">
+                    <title>Property injection</title>
+                    <content>
+                        <para>
+                            Dependencies can also be defined via properties. For example:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+class ComponentXyz
+{
+  // Dependencies:
+  public IService1 Service1 { get; set; }
+  public IService2 Service2 { get; set; }
+  
+  ...
+}
+]]>
+                        </code>
+                        <para>
+                            These dependencies can then be resolved using property injection:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+// Create new instance.
+var component = new ComponentXyz();
+
+// Resolve the dependencies using property injection.
+container.ResolveProperties(component);
+]]>
+                        </code>
+                        <para>
+                            When <codeEntityReference qualifyHint="false">M:DigitalRune.ServiceLocation.ServiceContainer.ResolveProperties(System.Object)</codeEntityReference>
+                            is called the IoC container will examine all public properties and try to
+                            resolve all missing objects.
+                        </para>
+                        <alert class="important">
+                            <para>
+                                Constructor injections is applied automatically when a new instance is created
+                                by the <codeEntityReference qualifyHint="false">T:DigitalRune.ServiceLocation.ServiceContainer</codeEntityReference>
+                                using reflection. However, property injection is not applied automatically. The method
+                                <codeEntityReference qualifyHint="false">M:DigitalRune.ServiceLocation.ServiceContainer.ResolveProperties(System.Object)</codeEntityReference>
+                                needs to be called explicitly.
+                            </para>
+                        </alert>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Libraries">
+            <title>Libraries and inversion of control</title>
+            <content>
+                <para>
+                    As a general rule, a library should not register any services in the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.ServiceLocation.ServiceContainer</codeEntityReference>.
+                    Services should only be registered by the caller of a library. If a library expects
+                    a specific service, this needs to be documented explicitly. In addition, libraries also
+                    need to document whether they expect a global IoC container in
+                    <codeEntityReference qualifyHint="true">P:Microsoft.Practices.ServiceLocation.ServiceLocator.Current</codeEntityReference>.
+                </para>
+                <para>
+                    The DigitalRune Engine libraries (such as DigitalRune Animation, DigitalRune Game,
+                    DigitalRune Physics, etc.) do <legacyBold>not</legacyBold> register any services in
+                    the <codeEntityReference qualifyHint="false">T:DigitalRune.ServiceLocation.ServiceContainer</codeEntityReference>
+                    and they do <legacyBold>not</legacyBold> require any registered services.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Compatibility">
+            <title>Compatibility</title>
+            <content>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.ServiceLocation.ServiceContainer</codeEntityReference>
+                    is yet another IoC/DI container among many other implementations on the Internet. The class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.ServiceLocation.ServiceContainer</codeEntityReference>
+                    implements the interface <codeEntityReference qualifyHint="false">T:Microsoft.Practices.ServiceLocation.IServiceLocator</codeEntityReference>.
+                    This interface is defined in the
+                    <externalLink>
+                        <linkText>Commmon Service Locator library</linkText>
+                        <linkUri>http://commonservicelocator.codeplex.com/</linkUri>
+                    </externalLink>
+                    (<localUri>Microsoft.Practices.ServiceLocation.dll</localUri>,
+                    from
+                    <externalLink>
+                        <linkText>Microsoft patterns and practices</linkText>
+                        <linkUri>http://msdn.microsoft.com/en-us/practices</linkUri>
+                    </externalLink>).
+                    This means that the container shares
+                    a common interface with many other IoC/DI container implementations.
+                </para>
+                <para>
+                    Applications or frameworks should access services only through the
+                    <codeEntityReference qualifyHint="false">T:Microsoft.Practices.ServiceLocation.IServiceLocator</codeEntityReference>
+                    interface. This ensures that the code consuming the services is independent from the actual
+                    IoC/DI container. The <codeEntityReference qualifyHint="false">T:DigitalRune.ServiceLocation.ServiceContainer</codeEntityReference>
+                    can be replaced by another IoC/DI container, or the code can be reused in a different context
+                    where a different IoC/DI container is used.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Availability">
+            <title>Making the service locator available</title>
+            <content>
+                <para>
+                    Code that requires a specific service needs have access to the
+                    <codeEntityReference qualifyHint="false">T:Microsoft.Practices.ServiceLocation.IServiceLocator</codeEntityReference>.
+                    There are several strategies for making the IServiceContainer available.
+                </para>
+            </content>
+            <sections>
+                <section address="Global">
+                    <title>Using a global IServiceLocator</title>
+                    <content>
+                        <para>
+                            The <codeEntityReference qualifyHint="false">T:Microsoft.Practices.ServiceLocation.IServiceLocator</codeEntityReference>
+                            can be made globally available using the static class
+                            <codeEntityReference qualifyHint="false">T:Microsoft.Practices.ServiceLocation.ServiceLocator</codeEntityReference>.
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+var container = new ServiceContainer();
+
+// Register services.
+container.Register(typeof(IService1), null, typeof(Service1));
+...
+
+// Make the service container globally available.
+ServiceLocator.SetLocatorProvider(() => container);
+
+// Now, any component can access the global service locator. For example,
+var service1 = ServiceLocator.Current.GetInstance<IService1>();
+]]>
+                        </code>
+                    </content>
+                </section>
+                <section address="AsParameter">
+                    <title>Passing the IServiceLocator</title>
+                    <content>
+                        <para>
+                            Some developers may have concerns using a global service locator. Instead, the
+                            <codeEntityReference qualifyHint="false">T:Microsoft.Practices.ServiceLocation.IServiceLocator</codeEntityReference>
+                            instance can simply be passed from the caller to all components.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+            <externalLink>
+                <linkText>Inversion of Control Containers and the Dependency Injection pattern</linkText>
+                <linkUri>http://martinfowler.com/articles/injection.html</linkUri>
+            </externalLink>
+            <externalLink>
+                <linkText>Inversion of Control (Wikipedia)</linkText>
+                <linkUri>http://en.wikipedia.org/wiki/Inversion_of_control</linkUri>
+            </externalLink>
+            <externalLink>
+                <linkText>Microsoft patterns &amp; practices CommonServiceLocator</linkText>
+                <linkUri>http://commonservicelocator.codeplex.com/</linkUri>
+            </externalLink>
+
+            <codeEntityReference qualifyHint="true">N:DigitalRune.ServiceLocation</codeEntityReference>
+            <codeEntityReference qualifyHint="true">T:DigitalRune.ServiceLocation.ServiceContainer</codeEntityReference>
+            <codeEntityReference qualifyHint="true">N:Microsoft.Practices.ServiceLocation</codeEntityReference>
+            <codeEntityReference qualifyHint="true">T:Microsoft.Practices.ServiceLocation.IServiceLocator</codeEntityReference>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

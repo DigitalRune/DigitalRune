@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="7945ac67-dffc-4197-9fbf-58a9b68c0ea1" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This section describes definitions and conventions that are used in DigitalRune Geometry.</para>
+            <alert class="tip">
+                <para>
+                    More general information about math conventions can be found in the following article:
+                    <link xlink:href="38879706-9d39-4f03-838f-26b7f14b9878" />
+                </para>
+            </alert>
+        </introduction>
+
+
+        <section address="Conventions">
+            <title>Conventions</title>
+            <content>
+                <para>The library uses the following conventions.</para>
+            </content>
+            <sections>
+                <section>
+                    <title>Math conventions</title>
+                    <content>
+                        <para>
+                            <link xlink:href="335dc86a-c68d-4d7b-8641-81dd80de5e76" /> is based on
+                            <link xlink:href="2ac58586-0d4f-4625-bf4c-fc32591a5304">DigitalRune Mathematics</link>
+                            and therefore uses the same conventions: See
+                            <link xlink:href="384f6645-8a25-488c-9a08-47662266a552">Definitions and Conventions of DigitalRune Mathematics</link>
+                        </para>
+                    </content>
+                </section>
+                <section>
+                    <title>Counter-clockwise orientation</title>
+                    <content>
+                        <para>
+                            An observer is looking at the front side of a face if the vertices
+                            are oriented counter-clockwise.
+                        </para>
+                    </content>
+                </section>
+                <section>
+                    <title>Outward pointing normals</title>
+                    <content>
+                        <para>
+                            The normal vector of a face is pointing in the front direction (away
+                            from the object into the empty space).
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Definitions">
+            <title>Definitions</title>
+            <content>
+                <para>The following terms are used throughout the documentation and in code.</para>
+            </content>
+            <sections>
+                <section>
+                    <title>Local and world space</title>
+                    <content>
+                        <para>
+                            The coordinate system that is fixed on an object is called <newTerm>local space</newTerm>
+                            (other common terms are <newTerm>object space</newTerm>, <newTerm>child space</newTerm>,
+                            <newTerm>body space</newTerm>). The world coordinate space is called
+                            <newTerm>world space</newTerm> (other common terms are <newTerm>global space</newTerm>,
+                            <newTerm>parent space</newTerm>). Some methods and properties have the
+                            words "Local" or "World" in their name to indicate the used space.
+                            If an object is nested inside another object, then nested coordinate spaces
+                            are created. In this case the <legacyItalic>world space</legacyItalic> of the
+                            nested object is equal to the <legacyItalic>localSpace</legacyItalic> of the
+                            parent object. Only if an object is not nested inside another object
+                            <legacyItalic>world space</legacyItalic> is identical to the global, fixed
+                            world coordinate system.
+                        </para>
+                    </content>
+                </section>
+                <section>
+                    <title>Poses, shapes and geometric objects</title>
+                    <content>
+                        <para>
+                            We use the term <newTerm>pose</newTerm> to refer to the position and
+                            orientation of an object in the world.
+                        </para>
+                        <para>
+                            A <newTerm>shape</newTerm> defines the space that is occupied by an
+                            object.
+                        </para>
+                        <para>
+                            A <newTerm>geometric object</newTerm> is an object that has a pose and
+                            a shape.
+                        </para>
+                    </content>
+                </section>
+                <section>
+                    <title>Collisions and contacts</title>
+                    <content>
+                        <para>
+                            The terms <newTerm>collision</newTerm> and <newTerm>contact</newTerm> are used
+                            identically in this documentation. Two objects <newTerm>are in contact</newTerm>
+                            if the geometries touch each other (with or without penetration).
+                            That means, if the distance between two object is exactly 0, they are in
+                            contact. The terms <legacyItalic>touch/intersect/overlap</legacyItalic> are
+                            used interchangeably to describe that two object have contact.
+                        </para>
+                    </content>
+                </section>
+                <section>
+                    <title>Separation distance and penetration depth</title>
+                    <content>
+                        <para>
+                            The <legacyItalic>separation distance</legacyItalic> (or short
+                            <legacyItalic>distance</legacyItalic>) of two separated objects is the
+                            minimum distance between the closest points on the objects. If the objects are penetrating, the separation
+                            distance is negative. Two object have contact if their separation distance is less than or equal
+                            to 0.
+                        </para>
+                        <para>
+                            The <legacyItalic>penetration depth</legacyItalic> of two penetrating objects is the distance
+                            that one object has to move to remove the penetration. If the objects
+                            are separated, the penetration depth is negative.
+                            Two object have contact if their penetration depth is greater than or equal
+                            to 0.
+                        </para>
+                        <para>
+                            The separation distance is the inverse of the penetration depth:
+                            <math>SeparationDistance = -PenetrationDepth</math>
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

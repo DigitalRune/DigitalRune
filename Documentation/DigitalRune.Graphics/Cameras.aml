@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="fda1f969-9b64-4851-873c-a59466ac69ba" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <!--<para></para>-->
+            <!-- <autoOutline /> -->
+        </introduction>
+
+        <section address="Camera">
+            <!--<title>Cameras</title>-->
+            <content>
+                <para>
+                    A <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Camera</codeEntityReference>
+                    defines a view into the 3D scene. It defines the projection transformation (see property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Camera.Projection</codeEntityReference>).
+                    DigitalRune Graphics supports
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PerspectiveProjection</codeEntityReference>s
+                        (default), and
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.OrthographicProjection</codeEntityReference>s.
+                    </listItem>
+                </list>
+                <para>
+                    The view transformation (position and orientation of the camera in world space) is defined by
+                    creating a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.CameraNode</codeEntityReference>
+                    and adding it to a scene.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Define a camera.
+var projection = new PerspectiveProjection();
+projection.SetFieldOfView(
+  ConstantsF.PiOver4, 
+  graphicsService.GraphicsDevice.Viewport.AspectRatio, 
+  0.1f, 
+  100.0f);
+var camera = new Camera(projection);
+
+// Create a camera node and add it to the scene.
+var cameraNode = new CameraNode(camera);
+scene.Children.Add(cameraNode);
+        ]]>
+                </code>
+                <alert class="tip">
+                    <para>
+                        The <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Camera.Projection</codeEntityReference>
+                        of a camera can be cast to <codeEntityReference qualifyHint="false">T:Microsoft.Xna.Framework.Matrix</codeEntityReference>
+                        or <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Algebra.Matrix44F</codeEntityReference>
+                        to get the projection transformation matrix.
+                    </para>
+                </alert>
+                <para>
+                    Scenes can have multiple cameras. Renderers use the currently active camera, which needs to
+                    be set in the render context (see <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.RenderContext.CameraNode</codeEntityReference>).
+                </para>
+                <mediaLink>
+                    <caption placement="after">Class Diagram: Cameras</caption>
+                    <image xlink:href="ClassDiagramGraphicsCameras"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="6f749972-9cb2-4274-b283-c327ba45e379" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                Here are a few tips for exporting FBX files from Blender.
+            </para>
+            <para>
+                This article assumes that you have basic knowledge about modeling and rigging in
+                Blender.
+            </para>
+            <para>
+                Please note that the instruction and settings mentioned in this article were tested
+                with Blender 2.76b. Other versions of Blender may behave differently. Other FBX 
+                files may require different settings.
+            </para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Units">
+            <title>Units</title>
+            <content>
+                <para>
+                    Before creating a new model or importing an existing model into Blender, check
+                    the units settings. Go to <ui>Properties | Scene | Units</ui> and note the settings.
+                    The units should be set to either:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <ui>None</ui> (which is interpreted as 1 unit = 1 m)
+                    </listItem>
+                    <listItem>
+                        <ui>Metric</ui> with <ui>Scale = 1.0</ui> (which is interpreted as 1 unit = 1 m)
+                    </listItem>
+                    <listItem>
+                        <ui>Metric</ui> with <ui>Scale = 0.01</ui> (which is interpreted as 1 unit = 1 cm)
+                    </listItem>
+                </list>
+                <para>
+                    Do not use <ui>Imperial</ui> because the FBX format uses the metric system (1 unit = 1 cm)
+                    by default.
+                </para>
+                <mediaLink>
+                    <image xlink:href="Blender-Units"/>
+                </mediaLink>
+                <para>
+                    Note that changing the units after the model was created does not change the data -
+                    only how it is interpreted.
+                </para>
+            </content>
+        </section>
+
+        
+        <section address="Import">
+            <title>FBX import</title>
+            <content>
+                <para>
+                    Many FBX models available on the web use bad conventions or settings not supported
+                    in MonoGame. In these cases it is necessary to import the model in Blender and apply
+                    the appropriate fixes.
+                </para>
+                <para>
+                    The current versions of Blender can import FBX 7.4 (binary).
+                </para>
+                <alert class="important">
+                    <para>
+                        The FBX import in Blender is the main point of corruption, especially for animated
+                        models. Using the wrong settings can screw up a model or its animations - without 
+                        an easy way to fix them later on!
+                    </para>
+                    <para>
+                        In some cases the imported model and its animations look okay in Blender, yet
+                        it is not possible to export the model and produce a working FBX file. Therefore
+                        it is necessary to test FBX import/export settings early on!
+                    </para>
+                </alert>
+                <para>
+                    To import an FBX file in Blender go to <ui>File | Import | FBX (.fbx)</ui>. In the 
+                    <ui>Main</ui> category, set the <ui>Scale</ui> to:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <ui>100</ui> if the Blender units are "<ui>None</ui>".
+                    </listItem>
+                    <listItem>
+                        <ui>100</ui> if the Blender units are "<ui>Metric</ui> with <ui>Scale = 1</ui>"
+                    </listItem>
+                    <listItem>
+                        <ui>1</ui> if the Blender units are "<ui>Metric</ui> with <ui>Scale = 0.01</ui>"
+                    </listItem>
+                </list>
+                <para>
+                    Do NOT use <ui>!EXPERIMENTAL! Apply Transform</ui> during import. This can corrupt
+                    the animations internally!
+                </para>
+                <mediaLink>
+                    <image xlink:href="Blender-FBX-Import-01"/>
+                </mediaLink>
+                <para>
+                    In the <ui>Armature category</ui> either set <ui>Automatic Bone Orientation</ui>,
+                    or manually play around with the <ui>Primary Bone Axis</ui> and <ui>Second Bone Axis</ui>.
+                    Many FBX models use:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <ui>Primary Bone Axis</ui> = <ui>X Axis</ui>
+                    </listItem>
+                    <listItem>
+                        <ui>Secondary Bone Axis</ui> = <ui>Y Axis</ui>
+                    </listItem>
+                </list>
+                <mediaLink>
+                    <image xlink:href="Blender-FBX-Import-02"/>
+                </mediaLink>
+                <para>
+                    Select the FBX file and click <ui>Import FBX</ui>.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Fix">
+            <title>Fixing the model</title>
+            <content>
+                <para>
+                    After importing the FBX file, animated models (mesh skinning) may look wrong. There
+                    might be a rotation transform between the mesh and armature. Here are instructions
+                    to fix this problem.
+                </para>
+                <para>
+                    If the mesh is parented to the armature, clear the parent: Select the mesh in the
+                    <ui>3D View</ui>, click <ui>Object | Parent | Clear Parent</ui>.
+                </para>
+                <para>
+                    If the mesh has an <ui>Armature Modifier</ui>, remove the modifier.
+                </para>
+                <para>
+                    Select the armature in the <ui>3D View</ui> or the <ui>Outliner</ui> and check the
+                    transform of the armature: Go to <ui>Properties | Object | Transform</ui>. Apply
+                    any rotation, but do NOT apply any scale! The <ui>Rotation</ui> should be (0, 0, 0)
+                    and the <ui>Scale</ui> should be (1, 1, 1)!
+                </para>
+                <alert class="important">
+                    <para>
+                        A <ui>Scale</ui> other than (1, 1, 1) usually means that the FBX was imported with
+                        the wrong settings. The animation data might be corrupt! The animations may look
+                        fine in Blender, but you won't be able to export them correctly. In this case:
+                        Start over again and try different import settings!
+                    </para>
+                </alert>
+                <para>
+                    Next, check the mesh. Select the mesh in the <ui>3D View</ui> or <ui>Outliner</ui>
+                    and go to <ui>Properties | Object | Transform</ui>. Apply any rotation or scale.
+                    The <ui>Rotation</ui> should be (0, 0, 0) and the <ui>Scale</ui> should be (1, 1, 1).
+                    The <ui>Location</ui> of the mesh should be identical to the armature - ideally set
+                    both locations to (0, 0, 0).
+                </para>
+                <mediaLink>
+                    <image xlink:href="Blender-Transform"/>
+                </mediaLink>
+                <para>
+                    After the transforms are fixed, select the mesh and add the <ui>Armature Modifier</ui>
+                    again. Play back the animations check whether the model looks okay.
+                </para>
+            </content>
+        </section>
+
+        
+        <section address="Export">
+            <title>FBX export</title>
+            <content>
+                <para>
+                    The current versions of Blender can export FBX 6.1 ASCII and FBX 7.4 Binary. Choose
+                    <ui>FBX 7.4 binary</ui>.
+                </para>
+                <alert class="note">
+                    <para>
+                        Blender 2.68 could only export FBX 6.1 ASCII, but it had supported special settings
+                        (<ui>XNA Rotate Animation Hack</ui>, <ui>XNA Strict Options</ui>) for XNA. Blender
+                        2.68 did not support importing FBX files.
+                    </para>
+                    <para>
+                        See
+                        <externalLink>
+                            <linkText>Exporting Animated Models From Blender To XNA</linkText>
+                            <linkUri>http://blog.diabolicalgame.co.uk/2011/07/exporting-animated-models-from-blender.html</linkUri>
+                        </externalLink>
+                        when working with previous versions of Blender.
+                    </para>
+                </alert>
+                <para>
+                    To export a model go to <ui>File | Export | FBX (.fbx)</ui>. In the <ui>Main</ui> category set the
+                    <ui>Scale</ui> to:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <ui>0.01</ui> if the Blender units are "<ui>None</ui>".
+                    </listItem>
+                    <listItem>
+                        <ui>0.01</ui> if the Blender units are "<ui>Metric</ui> with <ui>Scale = 1</ui>"
+                    </listItem>
+                    <listItem>
+                        <ui>1</ui> if the Blender units are "<ui>Metric</ui> with <ui>Scale = 0.01</ui>"
+                    </listItem>
+                </list>
+                <para>
+                    Enable <ui>!EXPERIMENTAL! Apply Transform</ui>.
+                </para>
+                <mediaLink>
+                    <image xlink:href="Blender-FBX-Export-01"/>
+                </mediaLink>
+                <para>
+                    In the <ui>Armature</ui> category you may want enable <ui>Only Deform Bones</ui>
+                    and disable <ui>Add Leaf Bones</ui> to exclude bones which are not required at runtime.
+                </para>
+                <mediaLink>
+                    <image xlink:href="Blender-FBX-Export-03"/>
+                </mediaLink>
+                <para>
+                    Select the output file and click <ui>Export FBX</ui>.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <externalLink>
+                <linkText>Blender</linkText>
+                <linkUri>https://www.blender.org/</linkUri>
+            </externalLink>
+            <externalLink>
+                <linkText>Blender FBX Add-on</linkText>
+                <linkUri>http://wiki.blender.org/index.php/Extensions:2.6/Py/Scripts/Import-Export/Autodesk_FBX</linkUri>
+            </externalLink>
+            <externalLink>
+                <linkText>Exporting Animated Models From Blender [2.6x] To XNA</linkText>
+                <linkUri>http://blog.diabolicalgame.co.uk/2011/07/exporting-animated-models-from-blender.html</linkUri>
+            </externalLink>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

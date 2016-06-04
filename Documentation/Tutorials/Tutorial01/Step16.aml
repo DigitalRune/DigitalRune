@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="77f82858-2022-41f9-9325-9a4d97b5450d" revisionNumber="1">
+    <developerConceptualDocument
+      xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                In this step we will add a graphical user interface (GUI) to the game.
+            </para>
+        </introduction>
+
+
+        <section address="Content">
+            <title>Copy UI theme to content</title>
+            <content>
+                <list class="ordered">
+                    <listItem>
+                        Open the Windows File Explorer and browse to
+                        <list class="nobullet">
+                            <listItem>
+                                <localUri>
+                                    <![CDATA[<DigitalRune Engine Folder>\Samples\Content\UI Themes\]]>
+                                </localUri>
+                            </listItem>
+                        </list>
+                    </listItem>
+                    <listItem>
+                        Copy the folder <localUri>BlendBlue</localUri> to <localUri>MyGame\MyGame\MyGameContent</localUri>.
+                        <mediaLink>
+                            <image xlink:href="Tutorial-01-26"/>
+                        </mediaLink>
+                    </listItem>
+                </list>
+                <para>
+                    The folder <localUri>BlendBlue</localUri> contains the UI theme, which consists of
+                </para>
+                <list class="bullet">
+                    <listItem>mouse cursor file,</listItem>
+                    <listItem>sprite fonts,</listItem>
+                    <listItem>textures and</listItem>
+                    <listItem>
+                        a XML file <localUri>Theme.xml</localUri> which defines the UI theme.
+                    </listItem>
+                </list>
+                <mediaLink>
+                    <image xlink:href="Tutorial-01-27"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Include">
+            <title>Include UI theme in the content project</title>
+            <content>
+                <list class="ordered">
+                    <listItem>
+                        In VS <ui>Solution Explorer</ui> select <localUri>MyGameContent</localUri>.
+                    </listItem>
+                    <listItem>
+                        Click the <ui>Show All Files</ui> button.
+                    </listItem>
+                    <listItem>
+                        Find the <localUri>Theme.xml</localUri>, right-click <localUri>Theme.xml</localUri>
+                        and select <ui>Include In Project</ui>.
+                        <mediaLink>
+                            <image xlink:href="Tutorial-01-28"/>
+                        </mediaLink>
+                    </listItem>
+                    <listItem>
+                        Press F4 to show the <ui>Properties</ui> window.
+                    </listItem>
+                    <listItem>
+                        Set the <ui>Content Importer</ui> and the <ui>Content Processor</ui> to
+                        <ui>UI Theme - DigitalRune</ui>.
+                        <mediaLink>
+                            <image xlink:href="Tutorial-01-29"/>
+                        </mediaLink>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="UIManager">
+            <title>Add game UI service</title>
+            <content>
+                <para>
+                    The GUI is handled by the <legacyBold>DigitalRune.Game.UI.UIManager</legacyBold>:
+                </para>
+                <code language="c#" title="Game1.cs">
+                    <![CDATA[
+…
+using DigitalRune.Game.UI;                                                  // NEW
+…
+
+namespace MyGame
+{
+    public class Game1 : Microsoft.Xna.Framework.Game
+    {
+        private GraphicsDeviceManager _graphicsDeviceManager;
+
+        private ServiceContainer _services;
+        private InputManager _inputManager;
+        private GraphicsManager _graphicsManager;
+        private GameObjectManager _gameObjectManager;
+        private AnimationManager _animationManager;
+        private Simulation _simulation;
+        private ParticleSystemManager _particleSystemManager;
+        private UIManager _uiManager;                                       // NEW
+
+        …
+
+        protected override void Initialize()
+        {
+            …
+            _particleSystemManager = new ParticleSystemManager();
+            _services.Register(typeof(IParticleSystemService), null, _particleSystemManager);
+
+            _uiManager = new UIManager(this, _inputManager);                // NEW
+            _services.Register(typeof(IUIService), null, _uiManager);       // NEW
+
+            Components.Add(new MyGameComponent(this));
+
+            base.Initialize();
+        }
+
+        protected override void Update(GameTime gameTime)
+        {
+            _inputManager.Update(gameTime.ElapsedGameTime);
+
+            base.Update(gameTime);
+
+            _uiManager.Update(gameTime.ElapsedGameTime);                    // NEW
+
+            _gameObjectManager.Update(gameTime.ElapsedGameTime);
+
+            _simulation.Update(gameTime.ElapsedGameTime);
+
+            _particleSystemManager.Update(gameTime.ElapsedGameTime);
+
+            _animationManager.Update(gameTime.ElapsedGameTime);
+            _animationManager.ApplyAnimations();
+        }
+        …
+                    ]]>
+                </code>
+                <para>
+                    The UI service manages <legacyBold>UIScreens</legacyBold> and <legacyBold>UIControls</legacyBold>
+                    (e.g. buttons and windows).
+                    <legacyBold>UIManager.Update</legacyBold> updates the GUI layout and let's the controls
+                    handle user input. <legacyBold>UIManager.Update</legacyBold> does not draw anything.
+                </para>
+                <para>
+                    The update logic is similar to other game logic tasks. In the DigitalRune Engine the
+                    UI controls are just another form of game objects, i.e. the class
+                    <legacyBold>UIControl</legacyBold> derives from <legacyBold>GameObject</legacyBold>.
+                    Since the GUI is usually visible "above" the 3D scene, the UI controls are updated
+                    before the game objects.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="GuiGraphicsScreen">
+            <title>Add a new graphics screen for the GUI</title>
+            <content>
+                <para>
+                    As mentioned above, <legacyBold>UIManager.Update</legacyBold> does not render the
+                    GUI. Rendering is done in graphics screens. We could add the GUI rendering to
+                    <legacyBold>MyGraphicsScreen</legacyBold> - but we can also create a new graphics
+                    screen to separate the 3D rendering from the 2D GUI. Let's create a new class
+                    <localUri>GuiGraphicsScreen.cs</localUri>:
+                </para>
+                <code language="c#" title="GuiGraphicsScreen.cs">
+                    <![CDATA[
+using System;
+using DigitalRune;
+using DigitalRune.Game.UI;
+using DigitalRune.Game.UI.Controls;
+using DigitalRune.Graphics;
+using Microsoft.Practices.ServiceLocation;
+using Microsoft.Xna.Framework;
+using DigitalRune.Game.UI.Rendering;
+
+namespace MyGame
+{
+    public class GuiGraphicsScreen : GraphicsScreen
+    {
+        public UIScreen UIScreen { get; private set; }
+
+        public GuiGraphicsScreen(IGraphicsService graphicsService) 
+            : base(graphicsService)
+        {
+            var uiService = ServiceLocator.Current.GetInstance<IUIService>();
+            var game = ServiceLocator.Current.GetInstance<Game>();
+
+            var theme = game.Content.Load<Theme>("BlendBlue/Theme");
+            var renderer = new UIRenderer(GraphicsService.GraphicsDevice, theme);
+            UIScreen = new UIScreen("Default", renderer)
+            {
+                Background = Color.Transparent,
+            };
+            uiService.Screens.Add(UIScreen);
+        }
+
+        public void Dispose()
+        {
+            UIScreen.UIService.Screens.Remove(UIScreen);
+            UIScreen.Renderer.SafeDispose();
+        }
+
+        protected override void OnUpdate(TimeSpan deltaTime)
+        {
+        }
+
+        protected override void OnRender(RenderContext context)
+        {
+            UIScreen.Draw(context.DeltaTime);
+        }
+    }
+}
+                    ]]>
+                </code>
+                <para>
+                    The constructor loads the UI <legacyBold>Theme</legacyBold>, which describes all
+                    relevant mouse cursors, sprite fonts and textures.
+                    Then a <legacyBold>UIRenderer</legacyBold> is created, which can render the UI
+                    controls using the UI theme information.
+                    The <legacyBold>GuiGraphicsScreen</legacyBold> owns a <legacyBold>UIScreen</legacyBold>,
+                    which is a UI control that covers the whole screen. It is the root element of the
+                    GUI. Other controls (e.g. windows) can be added to the <legacyBold>UIScreen</legacyBold>.
+                    The <legacyBold>Background</legacyBold> of the <legacyBold>UIScreen</legacyBold>
+                    is set to transparent, otherwise the GUI would hide any graphics behind it (i.e.
+                    the 3D scene).
+                </para>
+                <para>
+                    The <legacyBold>UIScreen</legacyBold> renders itself to the back buffer in
+                    <legacyBold>OnRender</legacyBold>.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Cleanup">
+            <title>Interlude: Clean up</title>
+            <content>
+                <para>
+                    All changes made in the the constructor are undone in <legacyBold>GuiGraphicsScreen.Dispose</legacyBold>.
+                    In simple projects, like this tutorial, we are often lazy and skip this part. However,
+                    once you have more practice you should make it a habit to clean up all actions. For example:
+                </para>
+                <list class="ordered">
+                    <listItem>
+                        Call <legacyBold>Dispose</legacyBold> for all objects which implement
+                        <legacyBold>IDisposable</legacyBold>.
+                    </listItem>
+                    <listItem>
+                        Remove <legacyBold>UIScreens</legacyBold> from the <legacyBold>IUIService</legacyBold>.
+                    </listItem>
+                    <listItem>
+                        Remove <legacyBold>GraphicsScreens</legacyBold> from the <legacyBold>IGraphicsService</legacyBold>.
+                    </listItem>
+                    <listItem>
+                        Remove <legacyBold>GameObjects</legacyBold> from the <legacyBold>IGameObjectService</legacyBold>.
+                    </listItem>
+                    <listItem>
+                        Remove <legacyBold>SceneNodes</legacyBold> from the <legacyBold>Scene</legacyBold>.
+                    </listItem>
+                    <listItem>
+                        etc.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Window">
+            <title>Add a new window</title>
+            <content>
+                <para>
+                    Let's add a new file <localUri>MenuWindow.cs</localUri> to the project:
+                </para>
+                <code language="c#" title="MenuWindow.cs">
+                    <![CDATA[
+using DigitalRune.Game.UI;
+using DigitalRune.Game.UI.Controls;
+using Microsoft.Practices.ServiceLocation;
+using Microsoft.Xna.Framework;
+
+namespace MyGame
+{
+    public class MenuWindow : Window
+    {
+        public MenuWindow()
+        {
+            Title = "Menu";
+            X = 100;
+            Y = 100;
+
+            var button = new Button
+            {
+                Content = new TextBlock { Text = "Exit" },
+                Width = 60,
+                Height = 30,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+            };
+            button.Click += (s, e) =>
+            {
+                var game = ServiceLocator.Current.GetInstance<Game>();
+                game.Exit();
+            };
+
+            Content = button;
+        }
+    }
+}
+                    ]]>
+                </code>
+                <para>
+                    This class defines a GUI <legacyBold>Window</legacyBold>. The <legacyBold>Content</legacyBold>
+                    of the window is a single <legacyBold>Button</legacyBold>. When the button is pressed, the game exits.
+                </para>
+                <para>
+                    We create an instance of the <legacyBold>GuiGraphicsScreen</legacyBold> and the
+                    <legacyBold>MenuWindow</legacyBold> in <legacyBold>MyGameComponent</legacyBold>:
+                </para>
+                <code language="c#" title="MyGameComponent.cs">
+                    <![CDATA[
+…
+namespace MyGame
+{
+    public class MyGameComponent : Microsoft.Xna.Framework.GameComponent
+    {
+        …
+        private MenuWindow _menuWindow;                                                     // NEW
+
+        public MyGameComponent(Game game)
+            : base(game)
+        {
+            _inputService = ServiceLocator.Current.GetInstance<IInputService>();
+
+            _graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
+            
+            _myGraphicsScreen = new MyGraphicsScreen(_graphicsService);
+            _graphicsService.Screens.Add(_myGraphicsScreen);
+            ((ServiceContainer)ServiceLocator.Current).Register(typeof(IScene), null, _myGraphicsScreen.Scene);
+            
+            var guiGraphicsScreen = new GuiGraphicsScreen(_graphicsService);                // NEW
+            _graphicsService.Screens.Add(guiGraphicsScreen);                                // NEW
+
+            var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();
+            var cameraObject = new CameraObject();
+            _myGraphicsScreen.CameraNode = cameraObject.CameraNode;
+            gameObjectService.Objects.Add(cameraObject);
+
+            gameObjectService.Objects.Add(new GroundObject());
+            gameObjectService.Objects.Add(new LightsObject());
+            gameObjectService.Objects.Add(new DudeObject());
+            gameObjectService.Objects.Add(new CrateObject());
+            gameObjectService.Objects.Add(new SmokeObject());
+            gameObjectService.Objects.Add(new SkyObject());
+            
+            _menuWindow = new MenuWindow();                                                 // NEW
+            _menuWindow.Show(guiGraphicsScreen.UIScreen);                                   // NEW
+
+            _myGraphicsScreen.DebugRenderer.DrawText("MyGame");
+            _myGraphicsScreen.DebugRenderer.DrawAxes(Pose.Identity, 1, false);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            //if (_inputService.IsDown(Keys.Escape))                                        // REMOVE
+            //  Game.Exit();                                                                // REMOVE
+
+            _menuWindow.IsVisible = _inputService.IsDown(Keys.LeftControl);                 // NEW
+            _inputService.EnableMouseCentering = !_menuWindow.IsVisible && Game.IsActive;   // NEW
+            Game.IsMouseVisible = _menuWindow.IsVisible;                                    // NEW
+
+            var debugRenderer = _myGraphicsScreen.DebugRenderer;
+            debugRenderer.Clear();
+            …
+        }
+    }
+}
+                    ]]>
+                </code>
+                <para>
+                    The game component creates an instance of the <legacyBold>GuiGraphicsScreen</legacyBold>
+                    and adds it to the graphics service. The graphics service can manage several graphics
+                    screen. The order in the <legacyBold>IGraphicsService.Screens</legacyBold> collection
+                    defines the draw order: The 3D scene (<legacyBold>MyGraphicsScreen</legacyBold>) is
+                    rendered before the GUI (<legacyBold>GuiGraphicsScreens</legacyBold>).
+                </para>
+                <para>
+                    Then a <legacyBold>MenuWindow</legacyBold> is created and displayed in the
+                    <legacyBold>UIScreen</legacyBold> of the <legacyBold>GuiGraphicsScreen</legacyBold>.
+                    In <legacyBold>OnUpdate</legacyBold> the visibility of the window and the mouse
+                    cursor are controlled. The window is only visible when the left CONTROL key is
+                    pressed. We also have to disable mouse centering.
+                </para>
+                <para>
+                    To quit the game you now have to hold the left CONTROL key and click the exit button –
+                    or simply press ALT + F4.
+                </para>
+                <para>
+                    Previously, mouse centering was controlled by the <legacyBold>CameraObject</legacyBold>. Let's change this:
+                </para>
+                <code language="c#" title="CameraObject.cs">
+                    <![CDATA[
+…
+namespace MyGame
+{
+    public class CameraObject : GameObject
+    {
+        //private Game _game;                                                             // REMOVE
+        private IInputService _inputService;
+        private float _currentYaw;
+        private float _currentPitch;
+
+        public CameraNode CameraNode { get; private set; }
+
+        public CameraObject()
+        {
+            //_game = ServiceLocator.Current.GetInstance<Game>();                         // REMOVE
+            _inputService = ServiceLocator.Current.GetInstance<IInputService>();
+
+            var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
+            var projection = new PerspectiveProjection();
+            projection.SetFieldOfView(
+                ConstantsF.PiOver4,
+                    graphicsService.GraphicsDevice.Viewport.AspectRatio,
+                    0.1f,
+                    100);
+            var camera = new Camera(projection);
+            CameraNode = new CameraNode(camera);
+            CameraNode.PoseWorld = new Pose(new Vector3F(0, 1, 3));
+        }
+
+        protected override void OnUpdate(TimeSpan deltaTime)
+        {
+            //_inputService.EnableMouseCentering = _game.IsActive;                        // REMOVE
+            if (!_inputService.EnableMouseCentering)                                      // NEW
+                return;                                                                   // NEW
+
+            float deltaTimeF = (float)deltaTime.TotalSeconds;
+
+            Vector2F mousePositionDelta = _inputService.MousePositionDelta;
+            …
+        }
+    }
+}
+                    ]]>
+                </code>
+                <para>
+                    Now the camera does not move when the GUI is visible.
+                </para>
+                <para>
+                    This is the result when the CTRL key is pressed:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Tutorial-01-30"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Next">
+            <title>Next</title>
+            <content>
+                <para>
+                    <link xlink:href="7f0f5338-019d-4ef1-a579-3d99df4e1aa2" />
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

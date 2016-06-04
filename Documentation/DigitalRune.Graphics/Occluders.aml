@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="cdbeb666-2028-4b73-b315-75c35e3158a5" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This topic explains how to define occluders.
+            </para>
+        </introduction>
+
+
+        <section address="Occluders">
+            <!--<title>Occluders</title>-->
+            <content>
+                <para>
+                    In theory, any opaque object can act as an occluders. However, most in-game models are too
+                    complex to be considered as occluders. DigitalRune Graphics therefore uses "occlusion proxies".
+                    This means, occluders are artist-authored triangle meshes. These lightweight triangle meshes
+                    are used in place of the actual models during occlusion culling. Occluders are usually created
+                    as part of a model in the 3D modeling tool (see
+                    <link xlink:href="6df1c8c2-edd1-4334-b830-70111c175aac">Asset Creation: Occluders</link>).
+                    But they can also be created at runtime using code.
+                </para>
+                <para>
+                    The class <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Occluder</codeEntityReference>
+                    represents the occluder geometry. The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Occluder</codeEntityReference>
+                    can be assigned to a mesh (see property <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.Mesh.Occluder</codeEntityReference>)
+                    or to an <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.OccluderNode</codeEntityReference>.
+                </para>
+                <para>
+                    The following scene nodes act as occluders during occlusion culling:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        An <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.OccluderNode</codeEntityReference>
+                        positions an occluder within a 3D scene. The sole purpose of this scene node is to
+                        provide an occluder for occlusion culling.
+                    </listItem>
+                    <listItem>
+                        A <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshNode</codeEntityReference>
+                        acts as an occluder when its mesh has an occluder (see property <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.Mesh.Occluder</codeEntityReference>).
+                    </listItem>
+                    <listItem>
+                        A <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LodGroupNode</codeEntityReference>
+                        acts as an occluder when LOD0 (the highest level of detail) has as an occluder.
+                    </listItem>
+                </list>
+                <mediaLink>
+                    <image xlink:href="ClassDiagramGraphicsOccluders"/>
+                </mediaLink>
+                <para>
+                    See
+                    <link xlink:href="6df1c8c2-edd1-4334-b830-70111c175aac">Asset Creation: Occluders</link>
+                    to learn how to import occluders using the content pipeline.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

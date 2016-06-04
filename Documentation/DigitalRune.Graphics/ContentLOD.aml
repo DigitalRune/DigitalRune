@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="1bb7c46b-886a-4cca-a16d-f5f2a16e239f" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                The content pipeline supports models with multiple
+                <link xlink:href="b320aebd-46a0-45d8-8edb-0c717152a56b">levels of detail (LODs)</link>.
+            </para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="LOD">
+            <title>LOD models</title>
+            <content>
+                <para>
+                    A model may contain objects with multiple
+                    <link xlink:href="b320aebd-46a0-45d8-8edb-0c717152a56b">levels of detail (LODs)</link>.
+                    A level of detail (LOD)
+                    can be represented by a single node (typically a mesh) or a tree of nodes. LODs can even
+                    be nested, i.e. a LOD may contain other objects with multiple LODs.
+                </para>
+                <para>
+                    LODs are identified by name. The nodes that represents the LODs need to have the suffix
+                    "_LOD<legacyItalic>i</legacyItalic>" where <legacyItalic>i</legacyItalic> is the LOD index.
+                    By definition "_LOD0" is the highest LOD (max detail) and "_LOD1", "_LOD2", etc. are lower
+                    LODs (less detail). The DigitalRune model content processor reads the LODs and groups them
+                    into a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LodGroupNode</codeEntityReference>.
+                    The name of the LOD group node is the same as the name of the LODs (without the suffix).
+                </para>
+                <para>
+                    The LOD distances for each LOD can be specified in the model description.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Example">
+            <title>Example</title>
+            <content>
+                <para>
+                    The model "Barrel.fbx" contains 3 meshes "Barrel_LO0", "Barrel_LOD1" and "Barrel_LOD2".
+                    The content processor automatically creates a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LodGroupNode</codeEntityReference>
+                    called "Barrel" with 3 LODs. The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LodGroupNode</codeEntityReference>
+                    replaces "Barrel_LOD0". "Barrel_LOD0", "Barrel_LOD1" and "Barrel_LOD2" are removed from
+                    the scene. (But they are still accessible at via
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.SceneGraph.LodGroupNode.Levels</codeEntityReference>.)
+                </para>
+                <mediaLink>
+                    <caption placement="after" lead="Figure">Model "Barrel.fbx"</caption>
+                    <image xlink:href="Barrel-LOD"/>
+                </mediaLink>
+                <para>
+                    The LOD distances are specified in the model description file:
+                </para>
+                <code language="xml" title="Barrel.drmdl">
+                    <![CDATA[
+<?xml version="1.0" encoding="utf-8"?>
+
+<Model File="Barrel.fbx" RotationX="-90" MaxDistance="20">
+  <Mesh Name="Barrel_LOD0" LodDistance="0" GenerateTangentFrames="True">
+    <Submesh Material="Barrel_HighDetail.drmat" />
+  </Mesh>
+  <Mesh Name="Barrel_LOD1" LodDistance="3" GenerateTangentFrames="True">
+    <Submesh Material="Barrel_HighDetail.drmat" />
+  </Mesh>
+  <Mesh Name="Barrel_LOD2" LodDistance="8">
+    <Submesh Material="Barrel_LowDetail.drmat" />
+  </Mesh>
+</Model>]]>
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

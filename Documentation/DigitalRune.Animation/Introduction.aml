@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="c2892dfd-491e-4e78-83d1-737e38f1acc9" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <mediaLink>
+                <image xlink:href="LogoAnimation"/>
+            </mediaLink>
+            <para>
+                <application>DigitalRune Animation</application> is a .NET class library
+                for animation. It provides a general purpose animation system supporting
+                a wide range of animations: From basic animation of a single floating-point
+                value to complex 3D character animation. The library was designed for use in
+                3D computer graphics, video games and virtual reality applications.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Features">
+            <title>Features</title>
+            <content>
+                <para>
+                    Here is an overview of features in this product.
+                </para>
+            </content>
+            <sections>
+                <section>
+                    <title>General</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Intended and optimized for use in 3D real-time applications
+                            </listItem>
+                            <listItem>
+                                Full support for XNA Content Pipeline
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Animation system</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Animations can be applied to standalone variables, other objects (such as
+                                game objects, UI controls) or collections of objects.
+                            </listItem>
+                            <listItem>
+                                    Designed for highly-parallel, multithreaded game engines:
+                                <list class="bullet">
+                                    <listItem>
+                                        Animations are evaluated concurrently.
+                                    </listItem>
+                                    <listItem>
+                                        Animation results are written thread-safe.
+                                    </listItem>
+                                </list>
+                            </listItem>
+                            <listItem>
+                                Resource pooling with auto-recycle function
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Animation types</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                All animations support colors, floating-point values, 2D vectors, 3D vectors, 4D vectors,
+                                quaternions, SRT transformations, skeletal poses, Xbox LIVE Avatar expressions
+                                and even custom value types(!)
+                            </listItem>
+                            <listItem>
+                                From/To/By animations to transition one value to another using a predefined easing functions
+                            </listItem>
+                            <listItem>
+                                10+ predefined, configurable easing functions (bounce ease, elastic ease, smooth-step, power ease, etc.)
+                                and custom easing functions
+                            </listItem>
+                            <listItem>
+                                Cyclic animations
+                            </listItem>
+                            <listItem>
+                                Composite animations (e.g. compose a 3D vector animation out of 3 floating-point animations)
+                            </listItem>
+                            <listItem>
+                                Key frame animations with or without key frame interpolation
+                            </listItem>
+                            <listItem>
+                                Animation curves using spline-based interpolation
+                            </listItem>
+                            <listItem>
+                                2D and 3D path animation using spline-based interpolation
+                            </listItem>
+                            <listItem>
+                                Storyboards:
+                                <list class="bullet">
+                                    <listItem>
+                                        Animation clips to select intervals of other animations.
+                                    </listItem>
+                                    <listItem>
+                                        Animations and clips can be arranged on timelines.
+                                    </listItem>
+                                    <listItem>
+                                        Timelines can be grouped together to be played as a single animation.
+                                    </listItem>
+                                </list>
+                            </listItem>
+                            <listItem>
+                                Extensible with custom animations
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>3D character animation</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Support for custom skinned models
+                            </listItem>
+                            <listItem>
+                                Support for Xbox LIVE Avatars (skeletal animations and facial expressions)
+                            </listItem>
+                            <listItem>
+                                SRT transformations (scaling, rotation, translation)
+                            </listItem>
+                            <listItem>
+                                Skeletal animations with bone weights per channel
+                            </listItem>
+                            <listItem>
+                                Inverse Kinematics: Arm IK, Foot IK, Look-At IK, general IK chains (using
+                                CCD, Jacobian Transpose, or Closed-Form solvers)
+                            </listItem>
+                            <listItem>
+                                Ragdoll physics for active and passive ragdolls, supporting blending of
+                                key-framed animations and physics-based animation
+                            </listItem>
+                            <listItem>
+                                Skeleton mapping for motion retargeting
+                            </listItem>
+                            <listItem>
+                                Animation compression
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Animation transitions</title>
+                    <content>
+                        <para>
+                            Animation transitions control how new animations interact with already
+                            running animations.
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                Replace - Replace existing animations with new animations.
+                            </listItem>
+                            <listItem>
+                                Fade-In/Fade-Out - Smoothly fade animations in or out.
+                            </listItem>
+                            <listItem>
+                                Snapshot - Take snapshots of animations and continue new animations from there.
+                            </listItem>
+                            <listItem>
+                                Compose - Combine animations using animation composition chains.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Animation composition</title>
+                    <content>
+                        <para>
+                            All types of animations can be combined using animation composition chains.
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                Additive animations
+                            </listItem>
+                            <listItem>
+                                Blending of animations using animation weights
+                            </listItem>
+                            <listItem>
+                                Animation weights themselves can be animated
+                            </listItem>
+                            <listItem>
+                                N-blend animations to blend cyclic animations with different length
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Namespaces">
+            <title>Namespaces</title>
+            <content>
+                <para>
+                    Following namespaces belong to DigitalRune.Animation:
+                </para>
+                <list class="nobullet">
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Animation</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Animation.Character</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Animation.Content</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Animation.Content.Pipeline</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Animation.Easing</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Animation.Traits</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Animation.Transitions</codeEntityReference>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Subtopics">
+            <title>Subtopics</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        <link xlink:href="4c3588bf-0b84-4a29-8261-1dec48594c66"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="126b4c8b-7f0a-4530-9e6b-081703fb74dd"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="aa0975de-0777-4a65-bee0-1bfed7d87b3e"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="de13b766-a75f-4320-9928-4f9fa2bdc967"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="c3cf4f80-807c-412a-894f-b77313d88184"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="93178dcc-a9b9-4cc6-b4df-ed693b988561"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="751c362c-34c2-497e-a36e-75af009f37ef"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="5bfb585d-77b4-4faa-b04c-1b626e09cddf" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="e3af2ccd-53d2-4eb6-bbf9-648449e0666f"/>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

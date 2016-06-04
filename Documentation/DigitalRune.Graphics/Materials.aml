@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="34a7f065-df4f-4f40-8b5c-5f0afee365db" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                A material defines how a submesh is rendered: Which render passes are supported? Which
+                effects are used? Which effect parameters (e.g. colors and textures) are used?
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Material">
+            <title>Materials</title>
+            <content>
+                <para>
+                    A material defines how a submesh is rendered. Depending on the render pipeline drawing a
+                    submesh may involve several render passes.
+                </para>
+                <para>
+                    For example, a typical light pre-pass renderer requires the following render passes:
+                </para>
+                <list class="ordered">
+                    <listItem>
+                        In the <codeInline>"ShadowMap"</codeInline> pass the mesh is rendered into the shadow map,
+                        which is used later on.
+                    </listItem>
+                    <listItem>
+                        In the <codeInline>"GBuffer"</codeInline> pass the depth, the normals, and other mesh
+                        properties are rendered into multiple render targets.
+                    </listItem>
+                    <listItem>
+                        Next the renderer computes the lighting information.
+                    </listItem>
+                    <listItem>
+                        Then in the <codeInline>"Material"</codeInline> pass, the mesh is rendered again - the
+                        lighting information is combined with the material settings.
+                    </listItem>
+                </list>
+                <para>
+                    Each render pass usually requires its own effect binding.
+                </para>
+                <para>
+                    A material (see class <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Material</codeEntityReference>)
+                    is a dictionary that contains the effect bindings for all render passes. The dictionary
+                    key is the name of the render pass (string) and the value is the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.EffectBinding</codeEntityReference>
+                    to be used for the render pass.
+                </para>
+                <para>
+                    Simple renderers may only require a single render pass (<codeInline>"Default"</codeInline>).
+                    Complex renderers may require several render passes (<codeInline>"ShadowMap"</codeInline>,
+                    <codeInline>"GBuffer"</codeInline>, <codeInline>"Material"</codeInline>, etc.).
+                </para>
+                <para>
+                    Materials can (and should be!) reused by different meshes. The graphics engine
+                    automatically sorts meshes by materials to reduce the number of required render state
+                    changes in order to improve performance.
+                </para>
+                <para>
+                    Materials can be defined created in code, but materials for model assets are usually defined
+                    in XML files, see <link xlink:href="9e0c41a1-9e6b-4e78-95a0-831ec4fada0a" />. Here is
+                    an example DRMAT file:
+                </para>
+                <code language="xml">
+                    <![CDATA[
+<?xml version="1.0" encoding="utf-8"?>
+
+<Material Name="CustomMaterial">
+  <Pass Name="Default" Effect="BasicEffect" Profile="Any">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="SpecularColor" Value="1,1,1" />
+    <Parameter Name="SpecularPower" Value="100" />
+    <Texture Name="Texture" File="albedo.tga" />
+  </Pass>
+  <Pass Name="ShadowMap" Effect="DigitalRune/Materials/ShadowMap" Profile="HiDef" />
+  <Pass Name="GBuffer" Effect="DigitalRune/Materials/GBufferNormal" Profile="HiDef">
+    <Parameter Name="SpecularPower" Value="100" />
+    <Texture Name="NormalTexture" Format="Normal" File="normal.tga" />
+  </Pass>
+  <Pass Name="Material" Effect="CustomMaterial.fx" Profile="HiDef">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="SpecularColor" Value="1,1,1" />
+    <Parameter Name="CustomParameter" Value="0.95" />
+    <Texture Name="DiffuseTexture" File="albedo.tga" />
+    <Texture Name="SpecularTexture" File="specular.tga" />
+  </Pass>
+</Material>]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="MaterialInstance">
+            <title>MaterialInstances</title>
+            <content>
+                <para>
+                    When a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshNode</codeEntityReference>
+                    is created for a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Mesh</codeEntityReference>,
+                    the materials are "instanced". That means a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MaterialInstance</codeEntityReference>
+                    is created for each <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Material</codeEntityReference>.
+                </para>
+                <para>
+                    A <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Material</codeEntityReference>
+                    contains the effect parameter bindings that are shared by all mesh instances.
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MaterialInstance</codeEntityReference>
+                    contains the effect technique binding and all effect parameter bindings that are specific
+                    to the mesh instance.
+                </para>
+                <para>
+                </para>
+            </content>
+        </section>
+
+
+        <section address="ClassDiagram">
+            <title>Class diagram</title>
+            <content>
+                <mediaLink>
+                    <caption placement="after">Class Diagram: Meshes and Materials</caption>
+                    <image xlink:href="GraphicsDoc_Materials"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

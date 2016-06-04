@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="b44b915a-f5f6-416a-9ffb-98de885812d7" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Overview">
+            <title>Overview</title>
+            <content>
+                <para>
+                    Meshes support
+                    <legacyItalic>morph target animation</legacyItalic> (a.k.a.
+                    <legacyItalic>per-vertex animation</legacyItalic>,
+                    <legacyItalic>blend shape interpolation</legacyItalic>, or just
+                    <legacyItalic>morphing</legacyItalic>).
+                    Morph targets (a.k.a. blend shapes) can be used for
+                    a variety of things:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        to morph one object into another,
+                    </listItem>
+                    <listItem>
+                        to animate the bulging of muscles,
+                    </listItem>
+                    <listItem>
+                        as corrective shapes to fix bone deformations,
+                    </listItem>
+                    <listItem>
+                        as damage states for models,
+                    </listItem>
+                    <listItem>
+                        etc.
+                    </listItem>
+                </list>
+                <para>
+                    But the most prominent application is facial animation. In the past, there have been games
+                    that relied solely on skeletal animation for facial animation, but modern games typically
+                    use a combination of skeletal animation and morph targets.
+                </para>
+                <para>
+                    Morph targets are stored per submesh in the <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Submesh.MorphTargets</codeEntityReference>
+                    collection. Morph targets are identified by their name (e.g. "smile", "frown", "blink", etc.).
+                    The morph target stores the vertices relative to the submesh, i.e. only the difference
+                    between the morph target and the base mesh is stored (a.k.a.
+                    <legacyItalic>delta shapes</legacyItalic>").
+                </para>
+                <para>
+                    The <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.MeshNode.MorphWeights</codeEntityReference>
+                    stored by the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshNode</codeEntityReference>
+                    control the morph targets. Morph target weights can be set directly or animated using
+                    <link xlink:href="c2892dfd-491e-4e78-83d1-737e38f1acc9" />.
+                </para>
+                <code language="c#" title="Activate a morph target">
+                    <![CDATA[
+// Show the morph target named "smile".
+meshNode.MorphWeights["smile"] = 1.0f;
+              ]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Video">
+            <title>Video</title>
+            <content>
+                <para>
+                    The following video demonstrates the use of morph targets for facial animation:
+                </para>
+                <list class="nobullet">
+                    <listItem>
+                        <para>
+                            <externalLink>
+                                <linkText>Video: Facial Animation using Morph Targets</linkText>
+                                <linkUri>https://www.youtube.com/watch?v=fM7RyLp0m2A</linkUri>
+                            </externalLink>
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Import">
+            <title>Importing morph targets</title>
+            <content>
+                <para>
+                    The topic
+                    <link xlink:href="c961412f-43c7-4b82-a68d-b20dd2d5131f">Asset Creation: Morph Targets</link>
+                    explains how to load morph targets
+                    using the XNA content pipeline.
+                </para>
+            </content>
+        </section>
+
+        <section address="Materials">
+            <title>Materials</title>
+            <content>
+                <para>
+                    Mesh deformations are calculated on the GPU. Therefore the model requires a special effects.
+                    See <link xlink:href="fda15306-d5dc-449c-850d-82227359d35b" />.
+                    Here is an example material:
+                </para>
+                <code language="xml">
+                    <![CDATA[
+<?xml version="1.0" encoding="utf-8"?>
+<Material>
+  <Pass Name="ShadowMap" Effect="DigitalRune/Materials/ShadowMapMorphSkinned" Profile="HiDef" />
+  <Pass Name="GBuffer" Effect="DigitalRune/Materials/GBufferMorphSkinned" Profile="HiDef">
+    <Parameter Name="SpecularPower" Value="75" />
+  </Pass>
+  <Pass Name="Material" Effect="DigitalRune/Materials/MaterialMorphSkinned" Profile="HiDef">
+    <Parameter Name="DiffuseColor" Value="1,0.9,0.8,1" />
+    <Parameter Name="SpecularColor" Value="1,0.81,0.64,1" />
+    <Texture Name="DiffuseTexture" File="sintel_face_diff.png" />
+  </Pass>
+</Material>
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Animation">
+            <title>Animating morph targets</title>
+            <content>
+                <para>
+                    The property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.MeshNode.MorphWeights</codeEntityReference>
+                    implements the interface
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableObject</codeEntityReference>,
+                    which means it can be animated using DigitalRune Animation. For example:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+var smile = new SingleKeyFrameAnimation { TargetProperty = "MOUTH-smile" };
+smile.KeyFrames.Add(new KeyFrame<float>(TimeSpan.FromSeconds(0), 0));
+smile.KeyFrames.Add(new KeyFrame<float>(TimeSpan.FromSeconds(1), 1));
+smile.KeyFrames.Add(new KeyFrame<float>(TimeSpan.FromSeconds(4), 1));
+smile.KeyFrames.Add(new KeyFrame<float>(TimeSpan.FromSeconds(5), 0));
+
+var blink = new SingleKeyFrameAnimation { TargetProperty = "EYES-closed" };
+blink.KeyFrames.Add(new KeyFrame<float>(TimeSpan.FromSeconds(3.75), 0));
+blink.KeyFrames.Add(new KeyFrame<float>(TimeSpan.FromSeconds(4), 1));
+blink.KeyFrames.Add(new KeyFrame<float>(TimeSpan.FromSeconds(4.25), 0));
+
+var timelineGroup = new TimelineGroup();
+timelineGroup.Add(smile);
+timelineGroup.Add(blink);
+
+var controller = AnimationService.StartAnimation(timelineGroup, meshNode.MorphWeights);
+]]>
+                </code>
+                <para>
+                    All features of DigitalRune Animation (composition, blending, transitions, …) can be
+                    directly applied to morph targets.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Rendering">
+            <title>Rendering morph targets</title>
+            <content>
+                <para>
+                    Meshes with morph targets are rendered by the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.MeshRenderer</codeEntityReference>
+                    as usual. The
+                    <link xlink:href="fda15306-d5dc-449c-850d-82227359d35b">predefined material shaders</link>
+                    support up to 5 active morph targets simultaneously. When more morph targets are activated
+                    only the 5 morph targets with the largest morph weights are rendered.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

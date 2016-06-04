@@ -1,0 +1,503 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="629ec6f3-8533-4ef9-94d0-220ef375387c" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                The namespace
+                <codeEntityReference qualifyHint="true">N:DigitalRune.Geometry.Collisions</codeEntityReference>
+                contains classes that compute contact information or closest features of objects.
+            </para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="queries">
+            <title>Collision queries</title>
+            <content>
+                <para>
+                    DigitalRune Geometry can compute three different types of collision queries:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <legacyBold>Boolean queries:</legacyBold>
+                        A boolean query (also known as <newTerm>have-contact query</newTerm>)
+                        checks if two objects are in contact. The result is
+                        <codeInline>true</codeInline> if the objects touch. The result is
+                        <codeInline>false</codeInline> if the objects are separated.
+                        <alert class="note">
+                            <para>
+                                The term <newTerm>boolean query</newTerm> is not equal to
+                                the term <newTerm>boolean operation</newTerm> used in 3D modeling.
+                                A boolean operation is an operation that combines objects using operations
+                                like AND or OR.
+                            </para>
+                        </alert>
+                    </listItem>
+                    <listItem>
+                        <legacyBold>Contact queries:</legacyBold>
+                        A contact query (also known as <newTerm>intersection</newTerm> or <newTerm>interference query</newTerm>)
+                        computes the detailed contact information for two touching
+                        objects. A set of contact points describes the geometry of the contact.
+                        If two objects are separated, a contact query reports the separation
+                        and computes no further details.
+                    </listItem>
+                    <listItem>
+                        <legacyBold>Closest-point queries:</legacyBold>
+                        A closest-point query (also known as <newTerm>proximity query</newTerm>)
+                        of two objects computes a point pair consisting
+                        of a point on each object. The point pair describes the closest features
+                        of the objects. The distance of the closest-point pair is equal to the
+                        separation distance.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="CollisionObjects">
+            <title>Collision detection</title>
+            <content>
+                <para>
+                    The collision detection in DigitalRune Geometry can compute collision information
+                    between <newTerm>collision objects</newTerm>
+                    (see <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.CollisionObject</codeEntityReference>).
+                    Each collision object contains a reference to a geometric object (see
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.IGeometricObject</codeEntityReference>).
+                    Besides the geometric object a collision object stores additional information for the collision
+                    detection system.
+                </para>
+                <para>
+                    The class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.CollisionDetection</codeEntityReference>
+                    contains methods to compute contact points for a pair of touching objects or the two
+                    closest points for a pair of separated objects.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Contacts">
+            <title>Contacts and contact sets</title>
+            <content>
+                <para>
+                    For a pair of touching objects the collision detection computes <newTerm>contacts</newTerm> (see
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.Contact</codeEntityReference>)
+                    that represent points where objects touch each other.
+                </para>
+                <para>
+                    A contact describes a single contact point (or closest-point pair) between
+                    two objects (called "object A" and "object B"). A contact consists of 2 points:
+                    a point on object A (see
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.Contact.PositionALocal</codeEntityReference>
+                    or
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.Contact.PositionAWorld</codeEntityReference>)
+                    and a point on object B (see
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.Contact.PositionBLocal</codeEntityReference>
+                    or
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.Contact.PositionBWorld</codeEntityReference>).
+                    The property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.Contact.Position</codeEntityReference>
+                    is a point that lies halfway between those two points. The contact further
+                    stores the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.Contact.Normal</codeEntityReference>,
+                    the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.Contact.PenetrationDepth</codeEntityReference>
+                    and other information.
+                </para>
+                <para>
+                    There are 3 basic types of contacts:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <legacyBold>Touching Contacts:</legacyBold>
+                            Object A and object B are touching at the surface. The
+                            penetration depth is 0. The points on object A and object B are identical.
+                        </para>
+                        <mediaLink>
+                            <caption placement="after" lead="Figure">Contact Between Touching Objects</caption>
+                            <image xlink:href="TouchingContact"/>
+                        </mediaLink>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Pentrating Contacts:</legacyBold>
+                            Object A and object B are penetrating each other. The penetration depth
+                            is greater than 0. The contact stores the points on object A and B that
+                            have maximum penetration.
+                        </para>
+                        <mediaLink>
+                            <caption placement="after" lead="Figure">Contact Between Penetrating Objects</caption>
+                            <image xlink:href="PenetratingContact"/>
+                        </mediaLink>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Closest points (separated objects):</legacyBold>
+                            Object A and object B are separated. They are not in contact. This can be the
+                            result of a closest-point query. (Other contact queries do not compute
+                            closest points. Separated objects are simply ignored in normal queries.)
+                        </para>
+                        <para>
+                            The contact stores closest points between object A and B. The penetration depth
+                            is negative. The absolute value of penetration depth indicates the distance
+                            between object A and object B. (Remember: The penetration depth is the inverse
+                            of the separation distance.)
+                        </para>
+                        <mediaLink>
+                            <caption placement="after" lead="Figure">Closest-Point Pair Between Separated Objects</caption>
+                            <image xlink:href="SeparatedContact"/>
+                        </mediaLink>
+                    </listItem>
+                </list>
+                <para>
+                    All contacts for a pair of objects are gathered in a <newTerm>contact set</newTerm>
+                    (see <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.ContactSet</codeEntityReference>).
+                </para>
+                <mediaLink>
+                    <caption placement="after" lead="Figure">Contact Set Of Two Boxes</caption>
+                    <image xlink:href="ContactSet"/>
+                </mediaLink>
+                <para>
+                    A <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.ContactSetCollection</codeEntityReference>
+                    is a collection of the contact sets of different pairs of collision objects.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="CollisionDomain">
+            <title>Collision domains</title>
+            <content>
+                <para>
+                    Collision detection is one of the most costly part of modern computer games.
+                    A <newTerm>collision domain</newTerm>
+                    (<codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.CollisionDomain</codeEntityReference>)
+                    is a way to improve the performance of collision detection. A collision
+                    domain manages a collection of collision objects. For these objects it
+                    can compute the collision information much faster by re-using old collision
+                    information.
+                </para>
+                <para>
+                    Additionally, if the property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.CollisionDomain.EnableMultithreading</codeEntityReference>
+                    is set, the workload is automatically distributed across multiple CPU cores
+                    to further improve performance.
+                </para>
+                <alert  class="caution">
+                    <para>
+                        The performance of closest point queries is not improved
+                        by using collision domains.
+                    </para>
+                </alert>
+            </content>
+        </section>
+
+
+        <section address="CollisionAlgorithms">
+            <title>Collision algorithms and the collision algorithm matrix</title>
+            <content>
+                <para>
+                    The computation of collision information is performed with different
+                    <newTerm>collision algorithms</newTerm>
+                    (see namespace <codeEntityReference qualifyHint="true">N:DigitalRune.Geometry.Collisions.Algorithms</codeEntityReference>).
+                    The different collision algorithms handle collisions between different
+                    shape types. Some collision algorithms can handle several different
+                    shape types, some handle only a specific shape type.
+                </para>
+                <para>
+                    The collision detection uses the class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.CollisionAlgorithmMatrix</codeEntityReference>
+                    to define which collision algorithms should be used for which pair of
+                    shape types. Per default, all shapes can collide with all other shapes
+                    with following exceptions:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        The special
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.EmptyShape</codeEntityReference>
+                        will never collide with any other shape.
+                    </listItem>
+                    <listItem>
+                        Contacts are not computed for the following pairs of infinite shapes:
+                        <list class="bullet">
+                            <listItem>
+                                line vs. plane
+                            </listItem>
+                            <listItem>
+                                line vs. height field
+                            </listItem>
+                            <listItem>
+                                plane vs. plane
+                            </listItem>
+                            <listItem>
+                                plane vs. height field
+                            </listItem>
+                            <listItem>
+                                height field vs. height field
+                            </listItem>
+                        </list>
+                    </listItem>
+                    <listItem>
+                        Two rays do not collide.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Rays">
+            <title>Ray casting</title>
+            <content>
+                <para>
+                    Ray casting can be done by using a geometric object that has a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.RayShape</codeEntityReference>.
+                    Thus, rays can be used similar to other shape types.
+                </para>
+                <para>
+                    A few things are specials for contacts between a ray and another object:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        The property
+                        <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.Contact.IsRayHit</codeEntityReference>
+                        indicates whether the
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.Contact</codeEntityReference>
+                        is the result of a hit by a ray.
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.Contact.PenetrationDepth</codeEntityReference>
+                        of a contact is used differently if a ray hits an object:
+                        The property stores the distance from the ray origin to the contact position.
+                        (A normal penetration depth is usually not useful for ray contacts.)
+                    </listItem>
+                    <listItem>
+                        The property
+                        <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.Contact.Normal</codeEntityReference>
+                        of a contact is used differently if the ray hits an object:
+                        <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.Contact.Normal</codeEntityReference>
+                        describes the surface normal at the contact position on the object that was hit.
+                        <mediaLink>
+                            <caption placement="after" lead="Figure">A Ray Hit</caption>
+                            <image xlink:href="RayHit"/>
+                        </mediaLink>
+                    </listItem>
+                    <listItem>
+                        If the ray origin is inside the other object, the penetration distance
+                        is 0 and the contact normal is not defined.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Epsilon">
+            <title>Margins and epsilon tolerances</title>
+            <content>
+                <para>
+                    Some collision algorithms are iterative algorithms that abort when the
+                    error of the result falls under a given tolerance limit. In DigitalRune
+                    Geometry this tolerance limit is defined using
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Collisions.CollisionDetection.Epsilon</codeEntityReference>.
+                </para>
+                <para>
+                    Some shapes like points, lines, line segments are treated as infinitely thin
+                    - which mean two points will only collide if they are exactly on the same
+                    position. If you want more tolerant checks, use thick shapes like spheres,
+                    capsule, cylinder, etc. instead.
+                </para>
+                <para>
+                    Objects do not have an "outer margin" and do not collide if their separation
+                    distance is greater than zero. Sometimes it is helpful to detect collisions
+                    if objects are separated but the separation distance is very small. To achieve this
+                    you can scale the shapes to make them slightly bigger, so that "near
+                    collisions" are also detected. To scale an object you can use one of the following
+                    methods:
+                </para>
+
+                <list class="bullet">
+                    <listItem>
+                        Directly increase a parameter of a shape. For example, increase the
+                        <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Shapes.SphereShape.Radius</codeEntityReference>
+                        of a
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.SphereShape</codeEntityReference>.
+                    </listItem>
+                    <listItem>
+                        Use a
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.MinkowskiSumShape</codeEntityReference>
+                        and add a small sphere to the original shape. This has the effect that the
+                        original shape gets a margin with the size of the sphere radius.
+                    </listItem>
+                    <listItem>
+                        Use <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.IGeometricObject.Scale</codeEntityReference>
+                        to increase the size of shape.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Caveats">
+            <title>Caveats</title>
+            <content>
+                <para>
+                    Collision algorithms have (numerical) limitations. For example:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        The penetration information between two convex shapes is usually exact within a
+                        certain numerical tolerance. In rare cases the contact information is only
+                        a <legacyItalic>local</legacyItalic> optimum instead of
+                        <legacyItalic>global</legacyItalic> optimum. That means that the contact information
+                        can be used to separate the objects properly, but a smaller penetration depth with
+                        a different normal vector might exist.
+                    </listItem>
+                    <listItem>
+                        The algorithms for <legacyItalic>concave</legacyItalic> shapes compute penetration
+                        information between convex sub-parts of the concave shape. The resulting contact
+                        information describes locally optimal result between the convex parts.
+                    </listItem>
+                    <listItem>
+                        Triangle meshes are treated as <legacyItalic>hollow</legacyItalic> objects. That
+                        means the penetration information for mesh contacts is only an estimate and might
+                        not be exact for deep penetrations.
+                    </listItem>
+                </list>
+                <para>
+                    We have tried to minimize numerical problems and to filter sub-optimal contact information
+                    where possible. To get the best results please look at the tips below.
+                    If you need more tips to make your application faster and more robust, please contact
+                    our support.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Tips">
+            <title>Tips</title>
+            <content>
+            </content>
+            <sections>
+                <section address="Shapes">
+                    <title>Shapes</title>
+                    <content>
+                        <para>
+                            Here are some tips for choosing the right shape to get the best performance and
+                            the most accurate contact information.
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                Use basic primitives where possible:
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.SphereShape</codeEntityReference>,
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.BoxShape</codeEntityReference>,
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.RayShape</codeEntityReference>
+                            </listItem>
+                            <listItem>
+                                If basic primitives are not accurate enough, try to use other
+                                <legacyItalic>convex</legacyItalic> shapes.
+                            </listItem>
+                            <listItem>
+                                If possible use a
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.HeightField</codeEntityReference>
+                                instead of a
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.TriangleMeshShape</codeEntityReference>.
+                            </listItem>
+                            <listItem>
+                                For concave shapes try to use a
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.CompositeShape</codeEntityReference>
+                                consisting of several convex shapes.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section address="Size">
+                    <title>Object sizes</title>
+                    <content>
+                        <para>
+                            Try to use reasonable sizes for all geometric objects. Avoid extreme sizes:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                Do not use shapes with size 0 (e.g. a sphere with radius 0). Use the
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.PointShape</codeEntityReference>
+                                if you need an infinitely small object.
+                            </listItem>
+                            <listItem>
+                                Do not use infinite shapes (e.g. a box where the widths are set to infinity or
+                                infinite rays).
+                                Use a smaller finite size instead. In some cases there can be different
+                                interpretations for what the collision result (e.g. "penetration depth", "normal vector")
+                                should be if an infinite object is involved. Therefore, the collision algorithms
+                                in DigitalRune Geometry do not always handle infinite objects correctly or as
+                                you would suspect.
+                            </listItem>
+                            <listItem>
+                                Avoid large size differences. All computations are done using single-precision
+                                floating point numbers. If a collision of a large object (e.g. 1 km width) and
+                                a small object (e.g. 1 cm width) is computed, the numerical errors can be large.
+                            </listItem>
+                            <listItem>
+                                Avoid very long stick like objects. Objects which are relatively uniform in all directions
+                                are better.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section address="Performance">
+                    <title>Performance tips</title>
+                    <content>
+                        <para>
+                            Here are a few tips that help to improve the performance and stability of the collision detection:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                Boolean queries are faster than contact queries.
+                                Contact queries are faster than closest-point queries.
+                            </listItem>
+                            <listItem>
+                                Use collision domains.
+                            </listItem>
+                            <listItem>
+                                For objects in a collision domain, contact details are computed per default
+                                for all objects in the collision domain. Collision filtering
+                                can be used to disable the contact computation where it is not necessary.
+                            </listItem>
+                            <listItem>
+                                The property
+                                <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.CollisionObject.Type</codeEntityReference>
+                                can be used to set the object type to "trigger" when only a boolean
+                                result without contact details is required.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Subtopics">
+            <title>Subtopics</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        <link xlink:href="16449523-c2f2-4c86-9dde-720716beaebb"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="cd2fc090-d3fd-4a0f-a7d3-1759241c8545"/>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <link xlink:href="335dc86a-c68d-4d7b-8641-81dd80de5e76" />
+            <link xlink:href="1320df22-cb15-41ba-8c20-0c1d914d6d73"/>
+            <codeEntityReference qualifyHint="true">N:DigitalRune.Geometry.Collisions</codeEntityReference>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

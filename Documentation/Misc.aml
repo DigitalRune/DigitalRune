@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="0628de0a-7540-4ada-afe1-b1b2e58a9992" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline/>
+        </introduction>
+
+        <section address="Threading">
+            <title>Multithreading and thread-safety</title>
+            <content>
+            </content>
+            <sections>
+
+                <section>
+                    <title>General notes on thread-safety in the DigitalRune Engine</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                While an update of a "service" is in progress (e.g.
+                                <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Geometry.Collisions.CollisionDomain.Update(System.TimeSpan)</codeEntityReference>,
+                                <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Physics.Simulation.Update(System.TimeSpan)</codeEntityReference>,
+                                <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Graphics.GraphicsManager.Update(System.TimeSpan)</codeEntityReference>,
+                                etc.), the service state must not be read or modified. For example:
+                                <list class="bullet">
+                                    <listItem>
+                                        While
+                                        <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Geometry.Collisions.CollisionDomain.Update(System.TimeSpan)</codeEntityReference>
+                                        is running, do not use
+                                        <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Geometry.Collisions.CollisionDomain.GetContacts(DigitalRune.Geometry.Collisions.CollisionObject)</codeEntityReference>.
+                                    </listItem>
+                                    <listItem>
+                                        While
+                                        <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Physics.Simulation.Update(System.TimeSpan)</codeEntityReference>
+                                        is running, do not add new rigid bodies to
+                                        <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Simulation.RigidBodies</codeEntityReference>.
+                                    </listItem>
+                                    <listItem>
+                                        Etc.
+                                    </listItem>
+                                </list>
+                            </listItem>
+                            <listItem>
+                                Adding/removing objects to/from collections (e.g.
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Collisions.CollisionDomain.CollisionObjects</codeEntityReference>,
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Simulation.RigidBodies</codeEntityReference>,
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.IGraphicsService.Screens</codeEntityReference>,
+                                etc.) is not thread-safe and must be synchronized manually.
+                            </listItem>
+                        </list>
+                        <para>
+                            When in doubt about thread-safety, ask in our
+                            <externalLink>
+                                <linkText>Forum</linkText>
+                                <linkUri>http://www.digitalrune.com/Support/Forum.aspx</linkUri>
+                            </externalLink>.
+                            As we learn more about how the DigitalRune users use the API, we will try to improve
+                            our documentation.
+                        </para>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Thread-safety in DigitalRune Geometry</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Querying
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.ISpatialPartition`1</codeEntityReference>s
+                                in parallel is safe (e.g.
+                                <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Geometry.Partitioning.AabbTree`1.GetOverlaps(DigitalRune.Geometry.Shapes.Aabb)</codeEntityReference>).
+                            </listItem>
+                            <listItem>
+                                Calling
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.Algorithms.CollisionAlgorithm</codeEntityReference>s
+                                in parallel is safe (e.g.
+                                <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Geometry.Collisions.Algorithms.CollisionAlgorithm.GetContacts(DigitalRune.Geometry.Collisions.CollisionObject,DigitalRune.Geometry.Collisions.CollisionObject)</codeEntityReference>).
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+            </sections>
+        </section>
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

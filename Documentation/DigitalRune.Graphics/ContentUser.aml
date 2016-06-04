@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="92ee2e92-0fc3-4928-b144-460b8e6d4fb7" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                DigitalRune Graphics provides new content importers and processors, which can be used in an
+                XNA content project. This topic explains how to build assets using the new content
+                importers and processors.
+            </para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="Importers">
+            <title>Content importers</title>
+            <content>
+                <para>
+                    DigitalRune Graphics provides the following content importers:
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>
+                                    Name
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Type
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Description
+                                </para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>
+                                "Material - DigitalRune Graphics"
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Content.Pipeline.DRMaterialImporter</codeEntityReference>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Imports materials.
+                                See <link xlink:href="9e0c41a1-9e6b-4e78-95a0-831ec4fada0a" />.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                "Model - DigitalRune Graphics"
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Content.Pipeline.DRModelImporter</codeEntityReference>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Imports models from model description files.
+                                See <link xlink:href="c5deb208-188f-4995-bb6b-c682a3997d40" />.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                "Texture - DigitalRune Graphics"
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Content.Pipeline.DRTextureImporter</codeEntityReference>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Imports textures. Extends and replaces the XNA Texture Importer.
+                            </para>
+                        </entry>
+                    </row>
+                </table>
+            </content>
+        </section>
+
+
+        <section address="Processors">
+            <title>Content processors</title>
+            <content>
+                <para>
+                    DigitalRune Graphics provides the following content processors:
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>
+                                    Name
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Type
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Output Type
+                                </para>
+                            </entry>
+                            <entry>
+                                <para>
+                                    Description
+                                </para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>
+                                "Material - DigitalRune Graphics"
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Content.Pipeline.DRMaterialProcessor</codeEntityReference>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Material</codeEntityReference>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Processes materials.
+                                See <link xlink:href="9e0c41a1-9e6b-4e78-95a0-831ec4fada0a" />.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                "Model - DigitalRune Graphics"
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Content.Pipeline.DRModelProcessor</codeEntityReference>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ModelNode</codeEntityReference>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Processes models. Extends and replaces the XNA Model Processor.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                "Texture - DigitalRune Graphics"
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Content.Pipeline.DRTextureProcessor</codeEntityReference>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <legacyBold>Texture2D</legacyBold>,
+                                <legacyBold>Texture3D</legacyBold>,
+                                <legacyBold>TextureCube</legacyBold>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Processes textures. Extends and replaces the XNA Texture Processor.
+                            </para>
+                        </entry>
+                    </row>
+                </table>
+            </content>
+        </section>
+
+
+        <section address="XNA">
+            <title>XNA content project</title>
+            <content>
+                <para>
+                    The following steps are necessary to build assets using an XNA content project.
+                </para>
+            </content>
+            <sections>
+                <section address="ReferencesXNA">
+                    <title>Preparing a content project</title>
+                    <content>
+                        <para>
+                            The XNA content project needs to reference the DigitalRune content pipeline extensions.
+                        </para>
+                        <list class="ordered">
+                            <listItem>
+                                Create a new or load an existing content project in Visual Studio.
+                            </listItem>
+                            <listItem>
+                                Right-click the content project in Visual Studio and select <ui>Add Reference...</ui>
+                            </listItem>
+                            <listItem>
+                                Select the <ui>Browse</ui> tab and browse to the folder containing the DigitalRune
+                                assemblies for XNA (Windows x86 builds). See <link xlink:href="972bde71-5d0c-46be-8a81-ad0d2cea770a" />.
+                            </listItem>
+                            <listItem>
+                                Select the following files
+                                <list class="bullet">
+                                    <listItem>
+                                        <localUri>DigitalRune.Animation.Content.Pipeline.dll</localUri>
+                                    </listItem>
+                                    <listItem>
+                                        <localUri>DigitalRune.Geometry.Content.Pipeline.dll</localUri>
+                                    </listItem>
+                                    <listItem>
+                                        <localUri>DigitalRune.Graphics.Content.Pipeline.dll</localUri>
+                                    </listItem>
+                                    <listItem>
+                                        <localUri>DigitalRune.Mathematics.Content.Pipeline.dll</localUri>
+                                    </listItem>
+                                </list>
+                                and click <ui>OK</ui>.
+                            </listItem>
+                        </list>
+                        <para>
+                            The DigitalRune content importers and processors are now available in the content project.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="PropertiesXNA">
+                    <title>Adding assets to the content project</title>
+                    <content>
+                        <para>
+                            You can add new assets (models, textures, etc.) to the content project as usual:
+                        </para>
+                        <list class="ordered">
+                            <listItem>
+                                Right-click the content project and select <ui>Add | Existing Item...</ui>
+                            </listItem>
+                            <listItem>
+                                Browse for the asset file and click <ui>Add</ui>.
+                            </listItem>
+                        </list>
+                        <para>
+                            For most assets the XNA content importers and processors are pre-selected in the
+                            <ui>Properties</ui> window. Do the following to change the content importers or
+                            processors:
+                        </para>
+                        <list class="ordered">
+                            <listItem>
+                                Select the asset in the content project.
+                            </listItem>
+                            <listItem>
+                                Right-click the asset and select <ui>Properties</ui> to open the <ui>Properties</ui>
+                                window.
+                            </listItem>
+                            <listItem>
+                                In the <ui>Properties</ui> window search for the properties <ui>Content Importer</ui>
+                                and <ui>Content Processor</ui> and select the appropriate DigitalRune importers and
+                                processors.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="MonoGame">
+            <title>MonoGame content project</title>
+            <content>
+                <para>
+                    The following steps are necessary to build assets using MonoGame.
+                </para>
+            </content>
+            <sections>
+                <section address="ReferencesMonoGame">
+                    <title>Preparing a content project</title>
+                    <content>
+                        <para>
+                            The MonoGame content project needs to reference the DigitalRune content pipeline extensions.
+                        </para>
+                        <list class="ordered">
+                            <listItem>
+                                Start the MonoGame Content Pipeline Tool: <localUri>&lt;DIGITALRUNE_FOLDER&gt;\Tools\Pipeline.cmd</localUri>
+                            </listItem>
+                            <listItem>
+                                Create a new or open an existing MonoGame content project.
+                            </listItem>
+                            <listItem>
+                                Select the content project (root node) in the tree view.
+                            </listItem>
+                            <listItem>
+                                In the <ui>Properties</ui> pane select <ui>References</ui> and click the
+                                <ui>...</ui> button.
+                            </listItem>
+                            <listItem>
+                                Add references to the following DigitalRune assemblies:
+                                <list class="bullet">
+                                    <listItem>
+                                        <localUri>DigitalRune.Animation.Content.Pipeline.dll</localUri>
+                                    </listItem>
+                                    <listItem>
+                                        <localUri>DigitalRune.Geometry.Content.Pipeline.dll</localUri>
+                                    </listItem>
+                                    <listItem>
+                                        <localUri>DigitalRune.Graphics.Content.Pipeline.dll</localUri>
+                                    </listItem>
+                                    <listItem>
+                                        <localUri>DigitalRune.Mathematics.Content.Pipeline.dll</localUri>
+                                    </listItem>
+                                </list>
+                                You need to select the DigitalRune assemblies for MonoGame (Windows).
+                                See <link xlink:href="972bde71-5d0c-46be-8a81-ad0d2cea770a" />.
+                            </listItem>
+                        </list>
+                        <para>
+                            The additional content importers and processors of DigitalRune Graphics are now available
+                            in the content project.
+                        </para>
+                    </content>
+                </section>
+
+
+                <section address="PropertiesMonoGame">
+                    <title>Adding assets to the content project</title>
+                    <content>
+                        <para>
+                            You can add new assets (models, textures, etc.) to the content project as usual:
+                        </para>
+                        <list class="ordered">
+                            <listItem>
+                                Select <ui>Edit | Add | Existing Item...</ui>.
+                            </listItem>
+                            <listItem>
+                                Browse for the asset file and click <ui>Open</ui>.
+                            </listItem>
+                        </list>
+                        <para>
+                            For most assets the MonoGame content importers and processors are pre-selected in the
+                            <ui>Properties</ui> pane. Do the following to change the content importers or
+                            processors:
+                        </para>
+                        <list class="ordered">
+                            <listItem>
+                                Select the asset in the tree view.
+                            </listItem>
+                            <listItem>
+                                In the <ui>Properties</ui> pane search for the properties <ui>Importer</ui>
+                                and <ui>Processor</ui> and select the appropriate DigitalRune importers and
+                                processors.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

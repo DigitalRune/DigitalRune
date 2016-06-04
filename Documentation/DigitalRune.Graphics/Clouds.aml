@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="695a2c07-5da8-4cf8-a508-5a7f6a29e5c8" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="Video">
+            <title>Video</title>
+            <content>
+                <para>The following video demonstrates features of the cloud system:</para>
+                <list class="nobullet">
+                    <listItem>
+                        <para>
+                            <externalLink>
+                                <linkText>Video: Procedural Cloud Layer</linkText>
+                                <linkUri>https://www.youtube.com/watch?v=kF4l3gCtgck</linkUri>
+                            </externalLink>
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Clouds">
+            <title>Defining clouds</title>
+            <content>
+                <para>
+                    A
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.CloudLayerNode</codeEntityReference>
+                    can be used to add clouds to a scene. The clouds are rendered as a 2D layer in the sky.
+                </para>
+                <para>
+                    The structure of the clouds is defined by a cloud texture in
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.CloudMap</codeEntityReference>.
+                    The cloud texture stores the transmittance of the sky (see
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.CloudMap.Texture</codeEntityReference>
+                    for more information). It is possible to set an artist-defined texture (see
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.BasicCloudMap</codeEntityReference>)
+                    or dynamically generate a cloud texture at runtime (see
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.LayeredCloudMap</codeEntityReference>).
+                    (The clouds in the video use a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.LayeredCloudMap</codeEntityReference>).
+                    consisting of 8 octaves of noise.)
+                </para>
+                <para>
+                    The texture coordinates of a layered cloud map can be scrolled to create clouds moving in the wind.
+                    The cloud map can also be animated to simulate simple formation and dissipation of clouds.
+                    The
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.LayeredCloudMap.Coverage</codeEntityReference>
+                    of the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.LayeredCloudMap</codeEntityReference>
+                    can be used to transition from a clear to an overcast sky.
+                </para>
+                <mediaLink>
+                    <caption placement="after">Class Diagram: Clouds</caption>
+                    <image xlink:href="ClassDiagramGraphicsClouds"/>
+                </mediaLink>
+                <para>
+                    The following example shows how to add a cloud layer to a scene.
+                </para>
+                <code language="c#" title="Example (C#)">
+                    <![CDATA[
+// The cloud map defines the settings for generating a cloud texture.
+var cloudMap = new LayeredCloudMap
+{
+  Density = 15,
+  Coverage = 0.5f,
+  Size = 2048,
+};
+// The cloud is built from 8 octaves of static noise.
+var scale = CreateScale(0.2f);  // Scale the noise to generate bigger clouds patches.
+cloudMap.Layers[0] = new CloudMapLayer(null, scale * CreateScale(1), -0.5f, 1.0f, 0);
+cloudMap.Layers[1] = new CloudMapLayer(null, scale * CreateScale(1.7f), -0.5f, 1.0f / 2.0f, 0);
+cloudMap.Layers[2] = new CloudMapLayer(null, scale * CreateScale(3.97f), -0.5f, 1.0f / 4.0f, 0);
+cloudMap.Layers[3] = new CloudMapLayer(null, scale * CreateScale(8.1f), -0.5f, 1.0f / 8.0f, 0);
+cloudMap.Layers[4] = new CloudMapLayer(null, scale * CreateScale(16, 17), -0.5f, 1.0f / 16.0f, 0);
+cloudMap.Layers[5] = new CloudMapLayer(null, scale * CreateScale(32, 31), -0.5f, 1.0f / 32.0f, 0);
+cloudMap.Layers[6] = new CloudMapLayer(null, scale * CreateScale(64, 67), -0.5f, 1.0f / 64.0f, 0);
+cloudMap.Layers[7] = new CloudMapLayer(null, scale * CreateScale(128, 127), -0.5f, 1.0f / 64.0f, 0);
+
+// Add a new CloudLayerNode to the scene.
+var cloudLayerNode = new CloudLayerNode(cloudMap)
+{
+  SkyCurvature = 0.9f,
+  TextureMatrix = CreateScale(0.5f),  // Stretch the texture by 2X.
+  ForwardScatterExponent = 10,
+  ForwardScatterScale = 10f,
+  ForwardScatterOffset = 0.3f,
+  NumberOfSamples = 16,
+  HorizonFade = 0.03f,
+};
+scene.Children.Add(_cloudLayerNode);
+          ]]>
+                </code>
+                <para>
+                    <legacyBold>CreateScale</legacyBold> in the example above is a helper method that creates a
+                    texture matrix.
+                </para>
+                <code language="c#" title="Example (C#)">
+                    <![CDATA[
+/// <summary>
+/// Creates the texture matrix for scaling texture coordinates.
+/// </summary>
+/// <param name="s">The uniform scale factor.</param>
+/// <returns>The texture matrix.</returns>
+public static Matrix33F CreateScale(float s)
+{
+  return CreateScale(s, s);
+}
+
+/// <summary>
+/// Creates the texture matrix for scaling the texture coordinates.
+/// </summary>
+/// <param name="su">The scale factor for u texture coordinates.</param>
+/// <param name="sv">The scale factor for v texture coordinates.</param>
+/// <returns>The texture matrix.</returns>
+public static Matrix33F CreateScale(float su, float sv)
+{
+  return new Matrix33F(
+    su, 0, 0,
+    0, sv, 0,
+    0, 0, 1);
+}
+          ]]>
+                </code>
+                <para>
+                    Clouds are lit by sunlight and ambient light. The settings need to be updated
+                    by the game logic.
+                </para>
+                <code language="c#" title="Example (C#)">
+                    <![CDATA[
+// Read light values from light nodes or environment model.
+cloudLayerNode.SunDirection = sunDirection;
+cloudLayerNode.SunLight = sunlight;
+cloudLayerNode.AmbientLight = ambientLight;
+          ]]>
+                </code>
+                <para>
+                    The cloud texture can be animated or used to render cloud shadows. These and other topics
+                    are demonstrated in the included sample projects.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Rendering">
+            <title>Rendering clouds</title>
+            <content>
+                <para>
+                    A
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.CloudLayerNode</codeEntityReference>
+                    is a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SkyNode</codeEntityReference>
+                    and it is rendered by the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SkyRenderer</codeEntityReference>
+                    like all other
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SkyNode</codeEntityReference>s.
+                </para>
+                <para>
+                    Clouds are lit by the sun and ambient light settings of the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.CloudLayerNode</codeEntityReference>.
+                    Clouds in front of the sun show forward scattering.
+                </para>
+                <para>
+                    To create cloud shadows, the cloud map texture can be used as the texture of the
+                    directional light which represents the sun. The sun occlusion can also be computed
+                    by the renderer and is stored in the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.CloudLayerNode</codeEntityReference>.
+                    This value can be used, for example, to reduce lens flare effects when the sun is occluded.
+                </para>
+                <para>
+                    Cloud textures are created by a separate renderer, the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.CloudMapRenderer</codeEntityReference>.
+                    (The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.CloudMapRenderer</codeEntityReference>
+                    only creates the cloud textures for
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.LayeredCloudMap</codeEntityReference>s.
+                    It does not render the clouds into the sky.)
+                </para>
+            </content>
+            <sections>
+                <section address="CloudMapRenderer">
+                    <title>CloudMapRenderer</title>
+                    <content>
+                        <para>
+                            Cloud textures can be generates using a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.CloudMapRenderer</codeEntityReference>.
+                            The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.CloudMapRenderer</codeEntityReference>
+                            is a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneNodeRenderer</codeEntityReference>
+                            which handles <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.CloudLayerNode</codeEntityReference>s.
+                            If a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.CloudLayerNode</codeEntityReference>
+                            references a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.LayeredCloudMap</codeEntityReference>,
+                            the renderer creates the cloud texture and stores the result in the cloud map.
+                        </para>
+                        <para>
+                            Cloud textures are usually generated at the start of the <legacyBold>Draw</legacyBold>-method,
+                            before the scene is rendered:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+// Generate the cloud textures of CloudLayerNodes.
+cloudMapRenderer.Render(cloudNodes, context);
+
+// Render scene...
+          ]]>
+                        </code>
+                        <alert class="tip">
+                            <para>
+                                It is not necessary to call the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.CloudMapRenderer</codeEntityReference>
+                                in every frame. Static cloud textures only need to be updated when the cloud map is
+                                changed. Dynamic, slow moving clouds can updated every second frame - or even less frequent.
+                            </para>
+                        </alert>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

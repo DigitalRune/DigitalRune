@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="975dcbca-5c87-4f33-a372-0cfe7f50cebe" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This topic gives an overview of types which can be used to render the background of a
+                3D scene.
+            </para>
+            <para>
+                Sky in games is usually rendered using a static cube map texture and skybox.
+                Static skyboxes are supported in DigitalRune Graphics. Additionally, you can
+                create dynamic skies for day-night cycles including: stars, sun, moons and planets
+                (including phase), sky (based on user-defined colors for maximal artistic control
+                or using physically-based simulation for maximum realism).
+            </para>
+            <para>
+                Additionally, DigitalRune Graphics reduces the work necessary to configure a
+                dynamic sky by providing the following values automatically for any time and
+                any place on Earth:
+                positions of the sun, moon and stars, star brightness, moon phase,
+                direct and ambient light (intensity + color) caused by the sun and the moon,
+                and fog colors.
+            </para>
+            <para>
+                Games do not have to use these real-world values, but it helps to have
+                them as a reference.
+            </para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="Video">
+
+            <title>Video</title>
+            <content>
+                <para>The following video demonstrates features of the sky rendering system:</para>
+                <list class="nobullet">
+                    <listItem>
+                        <para>
+                            <externalLink>
+                                <linkText>Video: Sky Rendering</linkText>
+                                <linkUri>http://www.youtube.com/watch?v=RCx0mybKI78</linkUri>
+                            </externalLink>
+                        </para>
+                    </listItem>
+                </list>
+                <para>
+                    The sky in this example consists of a Milky Way cube map,
+                    the 9110 brightest stars, the moon, the sun, and sky colors created
+                    using atmospheric scattering.
+                    Positions of sky objects, direct light, indirect light and fog colors
+                    are computed automatically. Post-processing is used to add noise and
+                    a physically-based blue-shift during night.
+                </para>
+                <para>
+                    Following video demonstrates the cloud rendering
+                    (see also <link xlink:href="695a2c07-5da8-4cf8-a508-5a7f6a29e5c8" />):
+                </para>
+
+                <list class="nobullet">
+                    <listItem>
+                        <para>
+                            <externalLink>
+                                <linkText>Video: Procedural Cloud Layer</linkText>
+                                <linkUri>https://www.youtube.com/watch?v=kF4l3gCtgck</linkUri>
+                            </externalLink>
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="General">
+            <title>Defining sky</title>
+            <content>
+                <para>
+                    The class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SkyNode</codeEntityReference>
+                    is a scene node and the base class for all sky classes.
+                </para>
+                <mediaLink>
+                    <caption placement="after">Class Diagram: Sky</caption>
+                    <image xlink:href="ClassDiagramGraphicsSceneGraphSky"/>
+                </mediaLink>
+                <para>
+                    Several sky nodes can be added to scene. The property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.SkyNode.DrawOrder</codeEntityReference>
+                    can be used to define the order in which the sky nodes are rendered.
+                    A complex sky can for example consist of (from back to front):
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SkyboxNode</codeEntityReference>
+                        showing the milky way and the night sky colors,
+                    </listItem>
+                    <listItem>
+                        a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.StarfieldNode</codeEntityReference>
+                        which draws the brightest stars,
+                    </listItem>
+                    <listItem>
+                        a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SkyObjectNode</codeEntityReference>
+                        which draws the sun,
+                    </listItem>
+                    <listItem>
+                        a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SkyObjectNode</codeEntityReference>
+                        which draws the moon including the moon phase,
+                    </listItem>
+                    <listItem>
+                        a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ScatteringSkyNode</codeEntityReference>
+                        which adds the sky colors.
+                    </listItem>
+                    <listItem>
+                        a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.CloudLayerNode</codeEntityReference>
+                        which adds clouds.
+                    </listItem>
+                </list>
+                <alert class="tip">
+                    <para>
+                        In most applications, the sky changes only very slowly.
+                        If rendering several sky nodes in each frame is too expensive,
+                        the sky nodes can be rendered into a single cube map, and in each frame, only this cube
+                        map is rendered as the skybox.
+                        Meanwhile, an updated sky can be rendered into a second cube map. This background
+                        update can be distributed over several frames, and then the cube maps are swapped.
+                    </para>
+                </alert>
+            </content>
+            <sections>
+                <section address="SkyboxNode">
+                    <title>SkyboxNode</title>
+                    <content>
+                        <para>
+                            A
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SkyboxNode</codeEntityReference>
+                            can be used to render the background with a single cube map texture.
+                        </para>
+                        <alert class="important">
+                            <para>
+                                Due to limitations on certain mobile platforms it is recommended to
+                                <legacyBold>disable mipmaps</legacyBold> of skybox textures:
+                            </para>
+                            <list class="bullet">
+                                <listItem>
+                                    <para>
+                                        Select the skybox texture in the content project.
+                                    </para>
+                                </listItem>
+                                <listItem>
+                                    <para>
+                                        Right-click the texture and select <ui>Properties</ui> to open the <ui>Properties</ui>
+                                        window.
+                                    </para>
+                                </listItem>
+                                <listItem>
+                                    <para>
+                                        In the <ui>Properties</ui> window search for the property <ui>Content Processor</ui>
+                                        and set <ui>Generate Mipmaps</ui> to <ui>False</ui>.
+                                    </para>
+                                </listItem>
+                            </list>
+                        </alert>
+                    </content>
+                </section>
+
+                <section address="SkyObjectNode">
+                    <title>SkyObjectNode</title>
+                    <content>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SkyObjectNode</codeEntityReference>
+                            can be used to render a quad that shows a planet/moon texture and up to two "glows". The glow is
+                            rendered in the shader, it is similar to the specular highlight of a Phong shaded material.
+                            The sky object node can be used to render the sun disk: no texture, 1 glow with a high "glow exponent"
+                            to create the sun disk, 1 glow with a low "glow exponent" for a smooth highlight around the sun.
+                        </para>
+                        <mediaLink>
+                            <image xlink:href="Sky-Sun"/>
+                        </mediaLink>
+                        <para>
+                            The moon can rendered with a moon texture and optional glow. The moon phase does not need to be
+                            baked into the texture. When the sun direction is set the phase is computed automatically in
+                            the shader.
+                        </para>
+                        <mediaLink>
+                            <image xlink:href="Sky-Moon"/>
+                        </mediaLink>
+                    </content>
+                </section>
+
+                <section address="StarfieldNode">
+                    <title>StarfieldNode</title>
+                    <content>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.StarfieldNode</codeEntityReference>
+                            renders a list of stars as anti-aliased points.
+                            Stars could be created using a random generator, but arbitrary star positions and brightness
+                            values look unnatural. It is preferable to import the actual positions and brightness values
+                            from a star catalog [1]. The <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />
+                            shows how to load the values of the 9110 brightest stars from a file.
+                        </para>
+                    </content>
+                </section>
+
+
+                <section address="ScatteringSkyNode">
+                    <title>ScatteringSkyNode</title>
+                    <content>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ScatteringSkyNode</codeEntityReference>
+                            defines a sky which colors are computed using atmospheric scattering.
+                            This sky node has a few properties that define the appearance of the sky. These values
+                            can be tweaked to get a clear sky, a hazy sky, or even the atmosphere of an alien planet.
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ScatteringSkyNode</codeEntityReference>
+                            can also estimate direct sunlight, indirect light and fog colors that match the configured sky.
+                        </para>
+                    </content>
+                </section>
+
+
+                <section address="GradientSkyNode">
+                    <title>GradientSkyNode and GradientTextureSkyNode</title>
+                    <content>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.GradientSkyNode</codeEntityReference>
+                            provides a simple method to define a sky. It takes several user-defined colors and interpolates
+                            these colors across the sky.
+                        </para>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.GradientTextureSkyNode</codeEntityReference>
+                            is more complex and allows artists to create completely user-defined day-night cycles. This
+                            method is similar to the approach described by Stephen McAuley [2]. You need to create two
+                            input textures, which define the colors in the direction of the sun and opposite to the sun.
+                            For example:
+                        </para>
+                        <mediaLink>
+                            <image xlink:href="Sky-Gradient-Front"/>
+                        </mediaLink>
+                        <mediaLink>
+                            <image xlink:href="Sky-Gradient-Back"/>
+                        </mediaLink>
+                        <para>
+                            The x axis represents the time of day (from midnight to midnight). Each column in the
+                            textures is a vertical color gradient for a specific time of day. The renderer chooses a
+                            column in each texture and uses these gradients for the sky. The first image defines the
+                            colors from horizon to zenith in the direction of the sun. The second image defines the
+                            colors from horizon to zenith opposite the sun. All other sky colors are interpolated from
+                            these two gradients.
+                        </para>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.GradientSkyNode</codeEntityReference>
+                            and the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.GradientTextureSkyNode</codeEntityReference>
+                            both support the CIE Sky Model. This CIE standard defines brightness distributions (only
+                            intensities, no color) that match real world sky conditions. Applying these models helps
+                            to give the sky a realistic luminance distribution.
+                        </para>
+                    </content>
+                </section>
+
+
+                <section address="CloudLayerNode">
+                    <title>CloudLayerNode</title>
+                    <content>
+                        <para>
+                            The class
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.CloudLayerNode</codeEntityReference>
+                            can be used render clouds. See <link xlink:href="695a2c07-5da8-4cf8-a508-5a7f6a29e5c8" />.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Rendering">
+            <title>Rendering sky</title>
+            <content>
+                <para>
+                    This section explains how to render
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SkyNode</codeEntityReference>s
+                    (skyboxes, sky objects, atmospheric scattering, clouds, etc.).
+                </para>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SkyRenderer</codeEntityReference>
+                    is a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneNodeRenderer</codeEntityReference>
+                    which handles <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SkyNode</codeEntityReference>s.
+                    Per default, it can handle all built-in sky nodes (see <link xlink:href="975dcbca-5c87-4f33-a372-0cfe7f50cebe" />).
+                </para>
+                <para>
+                    The sky is usually rendered after all opaque objects:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Render opaque objects...
+          
+// Render a SkyNodes.
+skyRenderer.Render(skyNodes, context);
+
+// Render alpha-blended objects...
+          ]]>
+                </code>
+                <para>
+                    If fog is rendered using the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.FogRenderer</codeEntityReference>,
+                    the sky can be rendered before the fog. In this case the sky is fogged as well. This is suitable
+                    for dense fog near the camera which hides the sky. The sky can also be rendered after the fog,
+                    in which case the sky is not obscured by the fog. This can be used to create "aerial perspective",
+                    where object in the distance shift towards the fog color but the sky is fully visible.
+                </para>
+                <para>
+                    Since the class is derived from
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneRenderer</codeEntityReference>
+                    new custom
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneNodeRenderer</codeEntityReference>
+                    can be added to its
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Rendering.SceneRenderer.Renderers</codeEntityReference>
+                    collection to handle new custom
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SkyNode</codeEntityReference>s.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Subtopics">
+            <title>Subtopics</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        <link xlink:href="695a2c07-5da8-4cf8-a508-5a7f6a29e5c8" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="e3826476-e1c8-4ac7-8304-bb2f5bd3e532" />
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="References">
+            <title>References</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        [1] Bright Star Catalogue, Wikipedia,
+                        <externalLink>
+                            <linkText>http://en.wikipedia.org/wiki/Bright_Star_Catalogue</linkText>
+                            <linkUri>http://en.wikipedia.org/wiki/Bright_Star_Catalogue</linkUri>
+                        </externalLink>
+                    </listItem>
+                    <listItem>
+                        [2] Stephen McAuley: Calibrating Lighting and Materials in Far Cry 3, SIGGRAPH 2012,
+                        <externalLink>
+                            <linkText>http://blog.stevemcauley.com/2012/09/09/calibrating-lighting-and-materials-in-far-cry-3/</linkText>
+                            <linkUri>http://blog.stevemcauley.com/2012/09/09/calibrating-lighting-and-materials-in-far-cry-3/</linkUri>
+                        </externalLink>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

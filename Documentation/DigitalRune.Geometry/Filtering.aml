@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="16449523-c2f2-4c86-9dde-720716beaebb" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This section introduces methods for collision filtering.</para>
+            <autoOutline />
+        </introduction>
+
+        <section address="Filters">
+            <title>Collision filtering</title>
+            <content>
+                <para>
+                    Per default, all collision objects collide with all other collision objects.
+                    It is often useful or required to disable collisions between collision objects
+                    or certain groups of collision objects. Examples:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Two objects in a computer game describe <legacyItalic>static</legacyItalic> scenery,
+                        like two walls. It is not necessary to compute the contacts between this
+                        two objects. For this case, all static objects could be assigned to
+                        a collision group that should not collide with itself.
+                    </listItem>
+                    <listItem>
+                        Objects can pass through each other, for example, in many games
+                        avatars can walk through each other like ghosts. In this case the collision
+                        between the avatar collision objects should be disabled.
+                    </listItem>
+                    <listItem>
+                        In physics simulation two objects can be attached two each other using
+                        "joints". Most of the time the two connected objects should not
+                        collide with each other.
+                    </listItem>
+                </list>
+                <para>
+                    To disable all collision for an individual collision object the collision object can be
+                    disabled (see property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.CollisionObject.Enabled</codeEntityReference>).
+                </para>
+                <para>
+                    The collision detection further uses filters at two points in the collision detection
+                    pipeline that define which objects can collide with each other and what contacts are computed.
+                </para>
+                <alert class="caution">
+                    <para>Collision filters are not used in closest-point queries!</para>
+                </alert>
+            </content>
+        </section>
+
+
+        <section address="BroadPhase">
+            <title>Broad phase filter</title>
+            <content>
+                <para>
+                    You can set a broad phase filter using the property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Partitioning.ISpatialPartition`1.Filter</codeEntityReference>
+                    of
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Collisions.CollisionDomain.BroadPhase</codeEntityReference>.
+                    Use the broad phase filter if the filtering rules are simple
+                    and do not change during the runtime of your application. For example,
+                    filtering of collisions between static objects is usually done in the
+                    broad phase.
+                </para>
+                <alert class="caution">
+                    <para>
+                        Do not change the filter rules of a broad phase at runtime!
+                    </para>
+                    <para>
+                        Changing filter rules can invalidate the information that is cached in
+                        the broad phase, which slows down the broad phase. Use a narrow phase filter instead!
+                    </para>
+                </alert>
+            </content>
+        </section>
+
+
+        <section address="NarrowPhase">
+            <title>Narrow phase filter</title>
+            <content>
+                <para>
+                    Narrow phase filters are set using the property
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Collisions.CollisionDetection.CollisionFilter</codeEntityReference>.
+                    Use the narrow phase filter if the filtering rules are complex or can change
+                    during the runtime of your application. For example, if a game character
+                    can drink a magic potion that allows him to go temporarily through walls,
+                    this would be best solved using a narrow phase filter because the filter rules
+                    are complex and subject to change.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Implementations">
+            <title>Filter implementations</title>
+            <content>
+                <para>
+                    Any class that implements
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.IPairFilter`1</codeEntityReference>
+                    of
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.CollisionObject</codeEntityReference>s
+                    can be used as collision filter. DigitalRune Geometry contains two classes that implement
+                    this interface:
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Partitioning.DelegatePairFilter`1</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.CollisionFilter</codeEntityReference>.
+                    The first one calls a user defined callback method to filter collision object pairs.
+                    The second one has an internal table which enables or disables collisions between specific pairs of
+                    collision objects or collision groups (see
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.CollisionObject.CollisionGroup</codeEntityReference>).
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Static">
+            <title>Static objects</title>
+            <content>
+                <para>
+                    Some collision detection libraries or physics libraries have special support
+                    for static objects. Collision objects can be set to "static" which means that
+                    collisions between two static objects are not computed. This improves performance
+                    because a game level typically consists of many static objects.
+                </para>
+                <para>
+                    DigitalRune Geometry has no "IsStatic" property for collision objects because
+                    for some applications it is necessary to compute collisions between "static"
+                    objects. Therefore, the meaning of "IsStatic" depends on the context in which
+                    the collision detection is used.
+                </para>
+                <para>
+                    If a game level consists of many static objects and collisions between static
+                    objects should not be computed, you can use collision filtering to disable
+                    collision between static objects. For example, you can use the convention that
+                    all static objects use
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.CollisionObject.CollisionGroup</codeEntityReference>
+                    0 and dynamic objects use a collision group greater than 0. And in the
+                    collision filter you can disable collisions of group 0 with group 0.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Other">
+            <title>Other filtering methods</title>
+            <content>
+                <para>
+                    Other options to control which objects can collide with which objects
+                    are:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Put objects which should not collide into different collision domains
+                        (This improves performance as well.)
+                    </listItem>
+                    <listItem>
+                        Change the collision algorithm matrix if a pair of shape types should
+                        never collide in a specific application.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <codeEntityReference qualifyHint="true">T:DigitalRune.Geometry.Partitioning.IPairFilter`1</codeEntityReference>
+            <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Partitioning.ISpatialPartition`1.Filter</codeEntityReference>
+            <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Collisions.CollisionDetection.CollisionFilter</codeEntityReference>
+            <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Collisions.CollisionDomain.BroadPhase</codeEntityReference>
+            <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Collisions.CollisionObject.CollisionGroup</codeEntityReference>
+            <link xlink:href="1320df22-cb15-41ba-8c20-0c1d914d6d73" />
+            <link xlink:href="032d766d-8446-472f-9547-06463dfb59d6" />
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

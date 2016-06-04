@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="80150ca3-144d-493e-9741-3587ab95ccdf" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                DigitalRune Graphics extends the XNA content pipeline and provides special content
+                processors for models. This section explains how to load a model.
+            </para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Content">
+            <title>Adding a model to the content project</title>
+            <content>
+                <para>
+                    You can add a model to the content project as usual:
+                </para>
+                <list class="ordered">
+                    <listItem>
+                        Right-click the content project and select <ui>Add | Existing Item...</ui>.
+                    </listItem>
+                    <listItem>
+                        Browse for the model file (e.g. a FBX or X file) and click <ui>Add</ui>.
+                    </listItem>
+                </list>
+                <para>
+                    By default, a model in XNA is processed using the content processor "Model - XNA Framework".
+                    But DigitalRune Graphics uses a more advanced runtime representation and therefore requires
+                    a different content processor:
+                </para>
+                <list class="ordered">
+                    <listItem>
+                        Select the model in the content project.
+                    </listItem>
+                    <listItem>
+                        Right-click the model and select <ui>Properties</ui> to open the <ui>Properties</ui>
+                        window.
+                    </listItem>
+                    <listItem>
+                        In the <ui>Properties</ui> window search for the property <ui>Content Processor</ui>
+                        and select <ui>Model - DigitalRune Graphics</ui> from the combo box.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="XML">
+            <title>Pre-processing settings and materials</title>
+            <content>
+                <para>
+                    At this point the model can already be loaded and rendered. However, it will not use any
+                    special materials and can only be rendered using the XNA <legacyBold>BasicEffect</legacyBold>
+                    or <legacyBold>SkinnedEffect</legacyBold>.
+                    If the game uses an advanced render pipeline, such as a deferred renderer, additional
+                    data needs to be specified.
+                </para>
+                <para>
+                    DigitalRune Graphics uses XML files to define additional data for models:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        The <newTerm>Model Description</newTerm> is an XML file that defines pre-processing
+                        settings and assigns materials to a model. A model description file uses the file
+                        extension <legacyItalic>drmdl</legacyItalic>, for example <legacyItalic>Dude.drmdl</legacyItalic>.
+                        See <link xlink:href="c5deb208-188f-4995-bb6b-c682a3997d40" />
+                    </listItem>
+                    <listItem>
+                        The <newTerm>Material Definition</newTerm> is an XML file that references DirectX
+                        Effects and defines a effect parameters (e.g. colors and textures). A material
+                        definition file uses the file extension <legacyItalic>drmat</legacyItalic>, for
+                        example <legacyItalic>Wood.drmat</legacyItalic>.
+                        See <link xlink:href="9e0c41a1-9e6b-4e78-95a0-831ec4fada0a" />
+                    </listItem>
+                </list>
+                <para>
+                    Take a look at the
+                    <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57">samples</link> included in the
+                    download package.
+                </para>
+            </content>
+        </section>
+
+        <section address="Runtime">
+            <title>Loading a model at runtime</title>
+            <content>
+                <para>
+                    At runtime the model can be loaded just like any other asset in XNA.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Load a model.
+ModelNode myModel = game.Content.Load<ModelNode>("MyModel");
+        ]]>
+                </code>
+            </content>
+        </section>
+
+        <section address="Subtopics">
+            <title>Subtopics</title>
+            <content>
+                <para></para>
+                <list class="nobullet">
+                    <listItem>
+                        <link xlink:href="6cc96ddc-4127-4ec7-889a-19cb71af0d3d" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="c5deb208-188f-4995-bb6b-c682a3997d40" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="1bb7c46b-886a-4cca-a16d-f5f2a16e239f" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="c961412f-43c7-4b82-a68d-b20dd2d5131f" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="6df1c8c2-edd1-4334-b830-70111c175aac" />
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

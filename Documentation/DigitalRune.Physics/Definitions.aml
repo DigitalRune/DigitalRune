@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="6e0b9a08-b1d8-41a3-9ab4-ebf6235abe19" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This topic describes definitions and conventions that are used in DigitalRune Physics.</para>
+        </introduction>
+
+
+        <section address="Conventions">
+            <title>Conventions and definitions</title>
+            <content>
+                <para>
+                    The library uses the following conventions and terms in the documentation and
+                    in the code.
+                </para>
+            </content>
+            <sections>
+                <section>
+                    <title>Math and geometry conventions and definitions</title>
+                    <content>
+                        <para>
+                            DigitalRune Physics is based on
+                            <link xlink:href="2ac58586-0d4f-4625-bf4c-fc32591a5304">DigitalRune Mathematics</link>
+                            and
+                            <link xlink:href="335dc86a-c68d-4d7b-8641-81dd80de5e76" />
+                            and therefore uses the same conventions and definitions. Please read
+                            the documentation of these libraries.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Units">
+                    <title>Units</title>
+                    <content>
+                        <para>
+                            The units of measurement (for length, time and mass) can be chosen by the user of the library.
+                            DigitalRune Physics does not impose which units of measurement should be used.
+                            It works for with any system of units as long as the units are used consistently
+                            throughout the application.
+                        </para>
+                        <para>
+                            However, the library contains default values for all simulation
+                            settings. The default values are based on a typical action game scenario using
+                            the SI standard units (m, s, kg, ... see
+                            <externalLink>
+                                <linkText>International System of Units</linkText>
+                                <linkUri>http://en.wikipedia.org/wiki/International_System_of_Units</linkUri>
+                                <linkTarget>_blank</linkTarget>
+                            </externalLink>).
+                            It is strongly recommended to use the standard units. The default values need to be adjusted
+                            if another system of units (for example: inches, pounds, ...) is used.
+                        </para>
+                        <para>
+                            Angles are measured in radians.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

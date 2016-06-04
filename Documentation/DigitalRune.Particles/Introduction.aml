@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="5044112e-c86d-4d85-87d0-b567a0361c21" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <mediaLink>
+                <image xlink:href="LogoParticles"/>
+            </mediaLink>
+            <para>
+                <application>DigitalRune Particles</application> is a CPU-based particle system
+                library for .NET, Mono and XNA. It enables developers to add visual effects to
+                their applications and games. Unlike existing particle engines, DigitalRune Particles
+                does not use a limited, predefined particle definition. Instead, new types of particles
+                can be defined on the fly. Developers have the freedom to design anything from a
+                basic particle effect to nested particle systems with complex behaviors. The library
+                was designed for use in 3D computer graphics, video games and virtual reality
+                applications.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Features">
+            <title>Features</title>
+            <content>
+                <para>
+                    Here is an overview of features in this product.
+                </para>
+            </content>
+            <sections>
+                <section>
+                    <title>General</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Intended and optimized for use in 3D real-time applications
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Particle System</title>
+                    <content>
+                        <para>
+                            The particle system is CPU-based and designed for maximal flexibility:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                Particles can have any number of custom parameters: position, mass, size, velocity, damping, energy, restitution, etc.
+                            </listItem>
+                            <listItem>
+                                Particle systems can have custom, animatable parameters:
+                                For example, an "emission rate" or a "global alpha" influencing particles
+                                and nested particle systems.
+                            </listItem>
+                            <listItem>
+                                Particle systems can have bounding shapes that can be used to cull particles.
+                            </listItem>
+                            <listItem>
+                                Particle systems can be combined to create complex effects.
+                            </listItem>
+                            <listItem>
+                                Particle systems can be cloned, serialized and loaded using the XNA Content Pipeline.
+                            </listItem>
+                            <listItem>
+                                Multi-threaded update of particle systems
+                            </listItem>
+                            <listItem>
+                                Resource pooling with automatic recycling of particle systems
+                            </listItem>
+                            <listItem>
+                                And more...
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Particle effectors</title>
+                    <content>
+                        <para>
+                            Particle effectors update particles or manipulate particle systems. The library
+                            and the included sample applications offer several predefined effector types:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                Create particle bursts or emit particles at animatable emission rates.
+                            </listItem>
+                            <listItem>
+                                Initialize particle parameters using random value distributions: uniform
+                                intervals, Gaussian distributions, points on line segments, spheres, boxes,
+                                user-defined distribution, etc.
+                            </listItem>
+                            <listItem>
+                                Emit particles on a triangle mesh.
+                            </listItem>
+                            <listItem>
+                                Fade particles or whole particle systems in/out.
+                            </listItem>
+                            <listItem>
+                                Animate particles using linear interpolation or configurable functions.
+                            </listItem>
+                            <listItem>
+                                Move/rotate/accelerate particles.
+                            </listItem>
+                            <listItem>
+                                Let particles bounce off objects.
+                            </listItem>
+                            <listItem>
+                                Animate particle textures.
+                            </listItem>
+                            <listItem>
+                                Recycle dead particle systems.
+                            </listItem>
+                            <listItem>
+                                Or implement your own particle behaviors.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Particle rendering</title>
+                    <content>
+                        <para>
+                            The library is graphics engine independent. Particles can be rendered using
+                            <link xlink:href="0a8eb9ca-74ae-4746-9289-93d909b07e22" />
+                            or a custom renderer. Rendering can make use of:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                Depth-sorting of particle systems and particles
+                            </listItem>
+                            <listItem>
+                                State-sorting and batching of particle systems to minimize render state changes
+                            </listItem>
+                            <listItem>
+                                Texture atlases and animated particle textures
+                            </listItem>
+                            <listItem>
+                                Configurable blend states
+                            </listItem>
+                            <listItem>
+                                Configurable billboard types: screen-aligned, view plane-aligned,
+                                viewpoint-oriented, axial or custom billboard orientations
+                            </listItem>
+                            <listItem>
+                                Ribbon rendering (a.k.a. line rendering, trail rendering)
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Namespaces">
+            <title>Namespaces</title>
+            <content>
+                <para>
+                    Following namespaces belong to DigitalRune Particles:
+                </para>
+                <list class="nobullet">
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Particles</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Particles.Effectors</codeEntityReference>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Subtopics">
+            <title>Subtopics</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        <link xlink:href="6f2fd7a2-0d47-4a6d-a833-14b1fe62e0a9" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="7fffe522-a53c-4944-979f-8646dc41ac9a" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="678bfb4e-070d-4322-80d6-3367d6fdec68" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="25e7a7a0-265e-4c12-9e41-be23852b39cf" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="b113ef19-247b-4731-b704-1f4855dccfc0" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="ab3315a0-7863-4311-abb5-b0ae31198a06" />
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

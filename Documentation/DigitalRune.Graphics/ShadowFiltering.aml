@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="bed07eb7-0d10-40f3-93e8-c823a787b6a7" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This articles explains shadow filtering in DigitalRune Graphics.</para>
+            <autoOutline/>
+            <mediaLink>
+                <caption placement="after">Figure: Reference scene "palm tree with shadow"</caption>
+                <image xlink:href="Shadow-Reference"/>
+            </mediaLink>
+        </introduction>
+
+
+        <section address="Resolution">
+            <title>Shadow map resolution</title>
+            <content>
+                <para>
+                    The resolution of the shadow map (property
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.Shadow.PreferredSize</codeEntityReference>)
+                    is the most important parameter. This parameter has
+                    the biggest influence on quality and performance.
+                </para>
+                <mediaLink>
+                    <image xlink:href="Shadow-Resolution"/>
+                </mediaLink>
+                <para>
+                    16-bit shadow maps have been sufficient in all test cases. Therefore, the property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Shadow.Prefer16Bit</codeEntityReference>
+                    is now set by default.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Filtering">
+            <title>Shadow map filtering</title>
+            <content>
+                <para>
+                    Without any sort of filtering the shadow shows strong aliasing. Individual
+                    shadow map texels are clearly visible in the image above. A pixel is either
+                    fully lit or completely in shadow.
+                </para>
+                <para>
+                    <newTerm>Percentage closer filtering (PCF)</newTerm> can be applied to
+                    reduce aliasing. Instead of taking a single sample the shadow map is sampled
+                    multiple times in a small radius around the original sample position. The
+                    results of these shadow tests are averaged, which means that a pixel can be
+                    partially shadowed.
+                </para>
+                <alert class="note">
+                    <para>
+                        Shadow filtering is applied by the
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.ShadowMaskRenderer</codeEntityReference>
+                        (see also <link xlink:href="a3f49f80-226e-4a6b-b13a-dbf673b41438" />).
+                        If you use forward rendering, you have to implement shadow filtering in the
+                        forward rendering shader and you are free to implement any filtering
+                        method you prefer.
+                    </para>
+                </alert>
+                <para>
+                    The property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.CascadedShadow.NumberOfSamples</codeEntityReference>
+                    determines the quality of the PCF:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.CascadedShadow.NumberOfSamples</codeEntityReference>
+                        = 0 … Shadow map filtering disabled.
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.CascadedShadow.NumberOfSamples</codeEntityReference>
+                        = 1 … Only a single samples is taken, but a random offset is applied to the sample.
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.CascadedShadow.NumberOfSamples</codeEntityReference>
+                        > 1 … Multiple samples are taken (jittered PCF).
+                    </listItem>
+                </list>
+                <mediaLink>
+                    <image xlink:href="Shadow-Number-Of-Samples"/>
+                </mediaLink>
+                <para>
+                    We have tried different PCF sample patterns. Jittered PCF samples (using a
+                    rotated Poisson disk) seemed to be the most versatile method.
+                </para>
+                <para>
+                    Even without PCF and only one jittered sample (
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.CascadedShadow.NumberOfSamples</codeEntityReference>
+                    = 1), the look of the shadows improve. Jittered sampling is very useful
+                    if the shadows are blurred with a screen space blur (see
+                    <link xlink:href="a3f49f80-226e-4a6b-b13a-dbf673b41438" />).
+                </para>
+                <para>
+                    We use a jitter pattern which is stable in world space. This means the
+                    random jitter offset depends on the world space position of the shadowed
+                    pixel and not on the screen space position. This reduces shadow flickering
+                    from the filter pattern when the camera is moving. The size of the noise
+                    pattern is controlled by the property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.CascadedShadow.JitterResolution</codeEntityReference>.
+                    If
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.CascadedShadow.JitterResolution</codeEntityReference>
+                    is too small, you get large visible dots instead of a fine noise pattern.
+                    If it is too large, the shadow edges will be noisy if the camera is too far away.
+                </para>
+                <para>
+                    The property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.CascadedShadow.FilterRadius</codeEntityReference>
+                    determines the area around the original sample where the additional samples
+                    are taken.
+                </para>
+                <mediaLink>
+                    <image xlink:href="Shadow-Filter-Radius"/>
+                </mediaLink>
+                <para>
+                    The value is specified in texels (of the shadow map). A large filter radius
+                    reduces aliasing further and creates a softer, "out of focus" look. –
+                    However, a large filter radius creates more shadow acne
+                    (see <link xlink:href="3f4d959e-9c98-4a97-8d85-7a73c26145d7" />).
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

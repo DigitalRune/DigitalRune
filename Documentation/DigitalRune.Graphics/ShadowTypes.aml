@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="8666619e-60d7-436e-8a0f-b3d982f0dca7" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Definition">
+            <title>Defining shadows</title>
+            <content>
+                <para>
+                    All lights (except ambient lights) can cast shadows. Shadow computations are
+                    expensive, therefore shadows are disabled by default. Shadows can be
+                    enabled per light node by assigning a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Shadow</codeEntityReference>
+                    type to the
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.SceneGraph.LightNode.Shadow</codeEntityReference>
+                    property.
+                </para>
+                <mediaLink>
+                    <caption placement="after">Class Diagram: Shadows</caption>
+                    <image xlink:href="ClassDiagramGraphicsShadows"/>
+                </mediaLink>
+                <para>
+                    DigitalRune Graphics supports the following shadow types.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="StandardShadow">
+            <title>StandardShadow</title>
+            <content>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.StandardShadow</codeEntityReference>
+                    uses a regular shadow map. This type of shadow can be assigned to
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Spotlight</codeEntityReference>
+                    nodes and
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.ProjectorLight</codeEntityReference>
+                    nodes.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="CubeMapShadow">
+            <title>CubeMapShadow</title>
+            <content>
+                <para>
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.CubeMapShadow</codeEntityReference>
+                    uses a cube map to create an omnidirectional shadow. This type of
+                    shadow can be assigned to
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PointLight</codeEntityReference>
+                    nodes.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="CascadedShadow">
+            <title>CascadedShadow</title>
+            <content>
+                <para>
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.CascadedShadow</codeEntityReference>
+                    describes a Cascaded Shadow Map (CSM), also known as Parallel Split
+                    Shadow Map (PSSM). Up to 4 shadow maps are used to create a shadow
+                    that can cover large distances. This type of shadow can be assigned to
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.DirectionalLight</codeEntityReference>
+                    nodes – usually the light node representing the sun.
+                </para>
+                <alert class="note">
+                    <para>
+                        Terminology: The word "cascade" actually means "a series of stages".
+                        However, it is common to use the term "cascade" to describe an individual
+                        "slice" of the CSM instead of the whole series of slices. A
+                        "slice" is also called "cascade interval" or "sub-frustum".
+                    </para>
+                    <para>
+                        The term "split" can refer to the border between two slices
+                        (4 slices = 3 splits) or to the slices. Therefore, the term
+                        "split" has to be used with care.
+                    </para>
+                </alert>
+                <para>
+                    The property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.CascadedShadow.Distances</codeEntityReference>
+                    defines the split distances in world units. This enables full control
+                    over the split distribution. Split distances can also be computed
+                    automatically as a mix of linear and logarithmic splitting using
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.CascadedShadow.ComputeSplitDistances(System.Single,System.Single,System.Int32,System.Single)</codeEntityReference>.
+                </para>
+                <para>
+                    Shadow maps usually don't cover the whole visible area, which means
+                    the max shadow distance is less than the camera far distance. Shadows
+                    fade out near the max shadow range. This can be controlled using
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.CascadedShadow.FadeOutRange</codeEntityReference>.
+                </para>
+                <para>
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.CascadedShadow.ShadowFog</codeEntityReference>
+                    defines the amount of shadow for all parts of the scene which are
+                    outside the max shadow range. In most games, the scene beyond the max
+                    shadow range receives full directional light (= no shadows). However,
+                    in some scenes, e.g. if the player is inside a dark wood, you might
+                    want to treat all parts outside the shadow range as partially shadowed
+                    to create a darker scene.
+                </para>
+                <para>
+                    To compute each shadow map an orthographic projection is fitted to the
+                    partial camera frustum of the cascade. The near plane of this
+                    orthographic projection should be moved as close as possible
+                    to the cascade – but not too close in order to catch any shadow casters
+                    in front of the cascade.
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.CascadedShadow.MinLightDistance</codeEntityReference>
+                    defines the minimum allowed distance of the shadow projection near
+                    plane from the cascade. For example, if
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.CascadedShadow.MinLightDistance</codeEntityReference>
+                    is 100, then all birds and mountains will throw shadows if they are
+                    either inside the camera frustum or outside the camera frustum but
+                    within 100 units. Birds and mountains farther than 100 units might
+                    not throw shadows.
+                </para>
+                <para>
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.CascadedShadow.CascadeSelection</codeEntityReference>
+                    defines which shadow maps are selected when the shader reads
+                    the shadow maps.
+                    <codeEntityReference qualifyHint="false">F:DigitalRune.Graphics.ShadowCascadeSelection.Fast</codeEntityReference>
+                    selects the cascades based on the z distance. This is fast but does
+                    not make the best use of the computed shadow maps.
+                </para>
+                <mediaLink>
+                    <image xlink:href="Shadow-Cascade-Selection-Fast"/>
+                </mediaLink>
+                <para>
+                    The cascade transitions appear on horizontal lines in front of the
+                    camera. The transition is close to the camera.
+                </para>
+                <para>
+                    <codeEntityReference qualifyHint="false">F:DigitalRune.Graphics.ShadowCascadeSelection.Best</codeEntityReference>
+                    is slower but makes optimal use of the rendered shadow maps. It
+                    checks the shadow map coordinates of each pixel to pick the best shadow map.
+                </para>
+                <mediaLink>
+                    <image xlink:href="Shadow-Cascade-Selection-Best"/>
+                </mediaLink>
+                <para>
+                    The resolution near the camera has increased. Cascade transition
+                    are still visible along straight lines but the lines are not
+                    horizontal in front of the camera.
+                </para>
+                <para>
+                    <codeEntityReference qualifyHint="false">F:DigitalRune.Graphics.ShadowCascadeSelection.BestDithered</codeEntityReference>
+                    uses a dither pattern to hide cascade transitions: In a small
+                    interval near the cascade transition, shadowed pixels randomly
+                    sample the best or the next-best cascade.
+                </para>
+                <mediaLink>
+                    <image xlink:href="Shadow-Cascade-Selection-Best-Dithered"/>
+                </mediaLink>
+                <para>
+                    To hide the cascade transition even more, you could interpolate
+                    both shadow maps. This requires to sample both shadow maps for
+                    each pixel – whereas the dither method has to sample only one
+                    shadow map.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="CompositeShadow">
+            <title>CompositeShadow</title>
+            <content>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.CompositeShadow</codeEntityReference>
+                    can be used to combine multiple shadows maps for one light source.
+                    For example, you can combine several shadow for the sun light to
+                    improve visual quality or performance:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                            A
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.CascadedShadow</codeEntityReference>
+                            creates detailed shadows of dynamic objects over a small distance.
+                    </listItem>
+                    <listItem>
+                            Another
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.CascadedShadow</codeEntityReference>
+                            creates shadows of static objects over a large distance.
+                    </listItem>
+                    <listItem>
+                            A variance shadow map creates soft shadows of distant hills
+                            and skyscrapers.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Custom">
+            <title>Custom shadow map types</title>
+            <content>
+                <para>
+                    Developers can add new types of shadow maps, if necessary. The
+                    <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />
+                    demonstrates how to create custom shadow map types, such as
+                    <newTerm>Variance Shadow Maps (VSM)</newTerm>.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

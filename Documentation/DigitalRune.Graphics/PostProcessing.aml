@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="924e5123-9ed9-4db7-bd0c-2ec8589985ed" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                Image post-processing is the task of improving or altering the scene image after it was
+                rendered.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="PostProcessor">
+            <title>What is a post-processor?</title>
+            <content>
+                <para>
+                    The namespace <codeEntityReference qualifyHint="true">N:DigitalRune.Graphics.PostProcessing</codeEntityReference>
+                    contains a variety of post-process filters (base class <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PostProcessing.PostProcessor</codeEntityReference>).
+                </para>
+                <para>
+                    A post-processor in DigitalRune Graphics is simply a class that performs an operation on
+                    one (or more) textures and writes the result to a render target:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Define source texture (= input) and render target (= output).
+context.SourceTexture = sourceTexture;
+context.RenderTarget = renderTarget;
+context.Viewport = new Viewport(0, 0, renderTarget.Width, renderTarget.Height);
+
+// Apply post-processing.
+postProcessor.Process(context);
+        ]]>
+                </code>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.RenderContext</codeEntityReference>
+                    is used to define the input texture, the output render target and the viewport in the
+                    output render target.
+                    The method <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.PostProcessing.PostProcessor.Process(DigitalRune.Graphics.RenderContext)</codeEntityReference>
+                    reads the specified source texture, performs the post-process operation and writes the result
+                    to the specified viewport in the render target (or the back buffer if the render target is
+                    <codeInline>null</codeInline>).
+                </para>
+                <para>
+                    Certain post-processors require additional parameters. For example, the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PostProcessing.DepthOfFieldFilter</codeEntityReference>
+                    expects that the depth buffer of the current scene is set in the render context (property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.GBuffer0</codeEntityReference>).
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PostProcessing.ObjectMotionBlur</codeEntityReference>
+                    requires a texture containing the motion vectors of the scene stored in
+                    <codeInline>RenderContext.Data[RenderContextKeys.VelocityBuffer]</codeInline>.
+                    Make sure to read the documentation of the individual post-processors.
+                </para>
+            </content>
+        </section>
+
+        <section address="Nesting">
+            <title>Nesting of post-processors</title>
+            <content>
+                <para>
+                    Post-process operations can be nested: A post-processor can internally use other
+                    post-processors.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Chaining">
+            <title>Chaining of post-processors</title>
+            <content>
+                <para>
+                    Modern games usually perform a series of post-process operation on the scene image.
+                    Post-process operation can be linked together using a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PostProcessing.PostProcessorChain</codeEntityReference>.
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PostProcessing.PostProcessorChain</codeEntityReference>
+                    is a collection of post-processors that are executed in sequence. The output of the
+                    previous post-processor is the input of the next post-processor in the list.
+                </para>
+                <para>
+                    To change the image format (e.g. size or surface format) within the post-processor chain, post-processors have a
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.PostProcessing.PostProcessor.DefaultTargetFormat</codeEntityReference>
+                    property. For example, this is used by the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PostProcessing.HdrFilter</codeEntityReference>
+                    to convert a <legacyBold>HdrBlendable</legacyBold> input texture to an LDR <legacyBold>Color</legacyBold>
+                    (R8G8B8A8) texture.
+                </para>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PostProcessing.PostProcessorChain</codeEntityReference>
+                    is derived from <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PostProcessing.PostProcessor</codeEntityReference>
+                    and can be treated the same way as any other post-processor.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="RenderStates">
+            <title>Render states and alpha blending</title>
+            <content>
+                <para>
+                    Post-processors use the rasterizer state <legacyBold>CullNone</legacyBold> and the
+                    depth-stencil state <legacyBold>None</legacyBold> (depth-buffer disabled). It is not
+                    necessary to set the rasterize state or the depth-stencil state before calling a
+                    post-processor.
+                </para>
+                <para>
+                    Post-processors in a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PostProcessing.PostProcessorChain</codeEntityReference>
+                    use the blend state <legacyBold>Opaque</legacyBold>.
+                    When a single post-processor is executed, the blend state must be set explicitly.
+                    Most post-processors require a blend state of <legacyBold>Opaque</legacyBold> but some
+                    post-processors can be used with different blend states. For example, the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PostProcessing.CopyFilter</codeEntityReference>
+                    can be used to blend a source texture to the current render target:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+context.SourceTexture = sourceTexture;
+context.RenderTarget = renderTarget;
+context.Viewport = new Viewport(0, 0, renderTarget.Width, renderTarget.Height);
+device.BlendState = GraphicsHelper.BlendStateMultiply;
+_copyFilter.Process(context);
+        ]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="SSAO">
+            <title>Screen-Space Ambient Occlusion (SSAO)</title>
+            <content>
+                <para>
+                    <newTerm>Screen-Space Ambient Occlusion</newTerm> (SSAO) is a real-time approximation
+                    technique for <newTerm>ambient occlusion</newTerm>, which is implemented as a post-process
+                    filter (see <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PostProcessing.SsaoFilter</codeEntityReference>).
+                </para>
+                <para>
+                    SSAO can be applied to the final scene image. However, in a deferred lighting pipeline the
+                    it is usually applied directly to the diffuse light buffer (before the material pass).
+                    See the <localUri>DeferredLightingSample</localUri> for more information.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

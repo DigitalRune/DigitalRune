@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="6643e7a7-230b-43a8-ab8e-ec47a1613cbd" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>Here is a collection of frequently asked questions, common problems and solutions.</para>
+            <autoOutline>2</autoOutline>
+        </introduction>
+
+
+        <section address="TransparentScreen">
+            <title>My UIScreen hides graphics behind it. How can I make a UIScreen transparent?</title>
+            <content>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIScreen</codeEntityReference>
+                    class has a
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Background</codeEntityReference>
+                    property which defines the color used to fill the background of the whole screen. You can
+                    set this color to transparent, for example:
+                </para>
+                <code language="cs">
+                    myScreen.Background = new Color(0, 0, 0, 0);
+                </code>
+            </content>
+        </section>
+
+
+        <section address="TextBoxScroll">
+            <title>How can I scroll a TextBox using code?</title>
+            <content>
+                <para>
+                    Just move the caret. The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.TextBox</codeEntityReference>
+                    will scroll automatically to make the caret visible. For example, to scroll to the
+                    end:
+                </para>
+                <code language="cs">
+                    myTextBox.CaretIndex = myTextBox.Text.Length;
+                </code>
+                <para>
+                    A more complicated way is to get the scroll bar and manipulate it:
+                    After the text box was loaded (e.g. shown on the screen), get the contained scroll bar:
+
+                </para>
+                <code language="cs">
+                    <![CDATA[
+scrollBar = myTextBox.GetDescendants(false)  // GetDescendants() is an extension method of the UIHelper class.
+                     .OfType<ScrollBar>()
+                     .First();
+scrollBar.Value = scrollBar.Maximum;
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="WindowDrag">
+            <title>Window dragging does not work if window is not left/top aligned</title>
+            <content>
+                <para>
+                    This is a limitation of the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.Window</codeEntityReference>
+                    drag implementation. It only works for the default
+                    left/top alignment. The current system supports following window positioning scenarios:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        If the window uses left/top alignment, you can use
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Game.UI.Controls.UIControl.X</codeEntityReference>
+                        and
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Game.UI.Controls.UIControl.Y</codeEntityReference>
+                        to position the window. Dragging and resizing works.
+                    </listItem>
+
+                    <listItem>
+                        If the window uses any other alignment, do not use
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Game.UI.Controls.UIControl.X</codeEntityReference>
+                        and
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Game.UI.Controls.UIControl.Y</codeEntityReference>.
+                        Instead use
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Game.UI.Controls.UIControl.Margin</codeEntityReference>
+                        to position the window. Do not allow dragging/resizing in this mode (set
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Game.UI.Controls.Window.CanResize</codeEntityReference>
+                        and
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Game.UI.Controls.Window.CanDrag</codeEntityReference>
+                        to false).
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="ButtonClick">
+            <title>How can I programmatically raise the Button.Click event?</title>
+            <content>
+                <para>
+                    If you want to raise the
+                    <codeEntityReference qualifyHint="false">E:DigitalRune.Game.UI.Controls.ButtonBase.Click</codeEntityReference>
+                    event of a button from "outside" the button code, you can get the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.ButtonBase.IsClicked</codeEntityReference>
+                    property and set it to true:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+var isClickedProperty = myButton.Properties.Get<bool>(ButtonBase.IsClickedPropertyId);
+isClickedProperty.Value = true;
+]]>
+                </code>
+                <para>
+                    When the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.ButtonBase.IsClicked</codeEntityReference>
+                    property changes to true, it triggers the
+                    <codeEntityReference qualifyHint="false">E:DigitalRune.Game.UI.Controls.ButtonBase.Click</codeEntityReference>
+                    event. You could also trigger the
+                    <codeEntityReference qualifyHint="false">E:DigitalRune.Game.UI.Controls.ButtonBase.Click</codeEntityReference>
+                    event directly:
+
+                </para>
+                <code language="cs">
+                    <![CDATA[
+var clickEvent = myButton.Events.Get<EventArgs>(Button.ClickEventId);
+clickEvent.Raise();
+]]>
+                </code>
+            </content>
+        </section>
+
+
+
+        <section address="Export">
+            <title>How can I export/import GUI controls?</title>
+            <content>
+                <para>
+                    You can use the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.LayoutSerializer</codeEntityReference>
+                    class to load controls from an XML file. The class does not support serialization into an
+                    XML file yet. You have to create this part yourself. Use .NET reflection to enumerate the
+                    class properties of the controls and create an XML that is compatible to the XML required
+                    by the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.LayoutSerializer</codeEntityReference>.
+                </para>
+                <para>
+                    References:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        An example XML file is contained in the ControlsSample of the DgiitalRune Samples.
+                    </listItem>
+                    <listItem>
+                        If you have access to the Premium Downloads, check out the source code of the
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.LayoutSerializer</codeEntityReference>
+                        class.
+                    </listItem>
+                </list>
+                <para>
+                    Some more tips:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        You only need to write the properties into the XML that are read/write-able. (Do not
+                        write read-only properties.)
+                    </listItem>
+                    <listItem>
+                        Do not write properties that have their default value.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

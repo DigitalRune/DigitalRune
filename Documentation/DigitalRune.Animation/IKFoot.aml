@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="147a6b63-6353-40c9-a902-e842759e3eee" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This topic discusses the
+                <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.TwoJointIKSolver</codeEntityReference>.
+                This IK solver can be used to control an arm or a leg.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Video">
+            <title>Sample and video</title>
+            <content>
+                <para>
+                    The <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" /> contain an example
+                    which demonstrates how to use the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.TwoJointIKSolver</codeEntityReference>
+                    for foot placement.
+                    Here is a video of this sample:
+                </para>
+                <list class="nobullet">
+                    <listItem>
+                        <para>
+                            <externalLink>
+                                <linkText>Video: Foot IK</linkText>
+                                <linkUri>
+                                    http://www.youtube.com/watch?v=z-JpNCPUS2U
+                                </linkUri>
+                            </externalLink>
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Description">
+            <title>Description</title>
+            <content>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.TwoJointIKSolver</codeEntityReference>
+                    affects three bones of a character. In the example above: upper leg, lower leg and foot.
+                </para>
+                <para>
+                    The first bone (upper leg) can rotate freely. The second bone (lower leg) is fixed to the
+                    first bone with a hinge joint (knee), which rotates around a single axis. The rotation
+                    angle can be limited.
+                </para>
+                <para>
+                    (Note that upper leg and lower leg can each consist of several bones. The IK solver keeps
+                    the rotations of any intermediate bones constant.)
+                </para>
+                <para>
+                    The orientation of the third bone (foot) can be kept constant by the IK solver, or it can
+                    be changed to match a certain target orientation. This can be used to properly place a
+                    foot on a sloped surface.
+                </para>
+                <para>
+                    The IK solver requires the ground position and optionally the target orientation of the
+                    last bone as input. Typically, a ray-cast is made for each foot to determine the ground
+                    distance and the normal vector of the surface. The foot orientation can be derived from
+                    the normal vector.
+                </para>
+                <para>
+                    One application of a foot IK solver is, obviously, to place the feet exactly on the
+                    ground to avoid hovering feet or feet penetrating the ground.
+                </para>
+                <para>
+                    Another interesting application is to reduce "foot sliding". Foot sliding can appear when
+                    key frames are interpolated or when animations are blended: A foot should stay firmly on
+                    the ground, but instead it slides laterally over the ground. To avoid foot sliding we
+                    need to know in which animation frames the foot should stay on the ground. While these
+                    frames are playing, we use the foot IK to glue the foot to a certain position on the
+                    ground.
+                </para>
+                <para>
+                    You can find more details in the example’s source code.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

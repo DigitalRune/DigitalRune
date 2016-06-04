@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="ea2eddc5-2628-4671-83cd-33fe38daaf4e" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                The resource pool implementation in the DigitalRune Base (see
+                <codeEntityReference qualifyHint="false">T:DigitalRune.ResourcePool`1</codeEntityReference>)
+                can be used to create a pool of objects that can be reused at runtime.
+            </para>
+            <para>
+                When we start to design a class library we usually don’t care about
+                resource pooling. Only when the major parts of the API and the internal
+                algorithms are done we start to measure performance and profile memory
+                usage. When we started optimizing DigitalRune Geometry and Physics we
+                realized that some objects needed to be pooled in order to avoid garbage
+                on Xbox 360 and Windows Phone 7. So a few types had to be made reusable.
+            </para>
+            <para>
+                The following pattern has proven very handy for turning a normal object
+                into a pooled object.
+            </para>
+        </introduction>
+
+
+        <section address="Reusable">
+            <title>Making an object reusable</title>
+            <content>
+                <para>
+                    Let’s assume we have the following type:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+public class MyObject
+{
+  public MyObject(object param1, object param2)
+  {
+    // Initialize instance.
+    ...
+  }
+
+  // Field, properties, methods, etc.
+  ...
+}
+]]>
+                </code>
+                <para>
+                    To make the type reusable we add a local resource pool and add
+                    <legacyBold>Create</legacyBold>/<legacyBold>Recycle</legacyBold> methods:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+public class MyObject
+{
+  private static readonly ResourcePool<MyObject> Pool =
+    new ResourcePool<MyObject>(() => new MyObject(), null, null);
+    
+  private MyObject()
+  {
+  }
+    
+  public static MyObject Create(object param1, object param2)
+  {
+    var obj = Pool.Obtain();
+    
+    // Initialize instance.
+    ...
+    
+    return obj;
+  }
+  
+  public void Recycle()
+  {
+    // Clean up instance.
+    ...
+    
+    Pool.Recycle(this);
+  }
+  
+  // Field, properties, methods, etc.
+  ...
+}
+]]>
+                </code>
+                <para>
+                    The new version is very similar to the first version. The original
+                    constructor is removed. This way we automatically get compiler errors
+                    in all places where the type is used. That’s great because now we know
+                    where we need to add the <legacyBold>Create</legacyBold>/<legacyBold>Recycle</legacyBold> calls.
+                </para>
+                <para>
+                    Instead of creating an object with
+                </para>
+                <code language="c#">
+                    var myObject = new MyObject(param1, param2);
+                </code>
+                <para>
+                    we now need to write
+                </para>
+                <code language="c#">
+                    var myObject = MyObject.Create(param1, param2);
+                </code>
+                <para>
+                    That’s not too bad - the usage is very similar. The caller does not need
+                    to have a reference to the resource pool from where the object is taken.
+                    Note also that the default constructor is private. This prevents others
+                    (or ourselves) from accidentally creating new instances and bypassing
+                    the resource pooling.
+                </para>
+                <para>
+                    The owner of the new object can at some point call
+                </para>
+                <code language="c#">
+                    myObject.Recycle();
+                </code>
+                <para>
+                    to reset and recycle the instance. Again, the caller does not need to
+                    have a reference to the actual resource pool which is very handy.
+                </para>
+                <para>
+                    So overall, this pattern has proven to be very useful. The object is
+                    now reusable and the impact on existing code is minimal.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <link xlink:href="9e2a4144-69e9-4bf2-8cea-79713eb91490" />
+            <codeEntityReference qualifyHint="true">T:DigitalRune.ResourcePool`1</codeEntityReference>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

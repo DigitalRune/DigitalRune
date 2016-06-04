@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="492d3089-3c0f-43a5-b068-417fcd8f91e3" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This section shows how to safely compare floating-point numbers.</para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Numeric">
+            <title>The class Numeric</title>
+            <content>
+                <para>
+                    This library contains a class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Numeric</codeEntityReference>
+                    that supports proper comparison of floating-point values. The comparisons
+                    are performed by checking if two values differ by less than a tolerance value epsilon.
+                    (Note: The class <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Numeric</codeEntityReference>
+                    is part of the <legacyItalic>DigitalRune.dll</legacyItalic> not the <legacyItalic>DigitalRune.Mathematics.dll</legacyItalic>.)
+                </para>
+                <para>
+                    Following code shows a simple example where comparison with <codeInline>==</codeInline>
+                    is not desired.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Lets do some arbitrary calculations.
+float a = (float)Math.PI;
+float b = (float)Math.Sqrt(a);
+float c = (float)Math.Sqrt(b);
+float d = c * c * c * c;
+
+// --> d should be equal to a, but because of limited precision and numerical errors a != d.
+if (a == d)
+  Console.WriteLine("a == d");
+else
+  Console.WriteLine("a != d");     // This message is written. :-(
+
+// Comparison methods in Numeric allow a small error.
+if (Numeric.AreEqual(a, d))
+  Console.WriteLine("Numeric.AreEqual(a, d) is true.");  // This message is written. :-)
+else
+  Console.WriteLine("Numeric.AreEqual(a, d) is false.");
+]]>
+                </code>
+                <para>
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Numeric</codeEntityReference>
+                    has several other methods for comparison of floating-point numbers (single or double precision).
+                </para>
+            </content>
+
+
+            <sections>
+                <section>
+                    <title>Epsilon values</title>
+                    <content>
+                        <para>
+                            The values
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Mathematics.Numeric.EpsilonF</codeEntityReference>
+                            and
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Mathematics.Numeric.EpsilonD</codeEntityReference>
+                            in
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Numeric</codeEntityReference>
+                            define the allowed error for the numerical comparison methods for single-
+                            and double-precision floating-point numbers.
+                            These values are used
+                            in the methods of
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Numeric</codeEntityReference>
+                            - unless the method allows to specify a different epsilon as a method parameter.
+                        </para>
+                        <para>
+                            These epsilon values have been optimized for typical 3D simulations and
+                            games - including 3D collision detection and rigid body physics simulation.
+                        </para>
+                    </content>
+                </section>
+                <section>
+                    <title>Common pitfalls</title>
+                    <content>
+                        <para>
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Mathematics.Numeric.EpsilonF</codeEntityReference>
+                            is used for single-precision floating-point numbers.
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Mathematics.Numeric.EpsilonD</codeEntityReference>
+                            is used for double-precision floating-point numbers.
+                            One common mistake is to invoke a method that uses the wrong epsilon value:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+float myFloat = ...;
+bool result1 = Numeric.AreEqual(myFloat, Math.Cos(0.3f)));        // Warning: This uses EpsilonD because Math.Cos() returns double!
+bool result2 = Numeric.AreEqual(myFloat, (float)Math.Cos(0.3f))); // This uses EpsilonF!
+]]>
+                        </code>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section>
+            <title>Floating-point numbers in other types</title>
+            <content>
+                <para>
+                    Several types implement the comparison operators (<codeInline>==</codeInline>,
+                    <codeInline>!=</codeInline>, <codeInline>&gt;=</codeInline>, etc. in C#), for example:
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Algebra.Vector3F</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Algebra.Matrix44F</codeEntityReference>.
+                    These overloaded operations compare the floating-point values directly (without using an
+                    epsilon tolerance). In addition to the equality operators most types have methods, like
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Mathematics.Algebra.Vector3F.AreNumericallyEqual(DigitalRune.Mathematics.Algebra.Vector3F,DigitalRune.Mathematics.Algebra.Vector3F)</codeEntityReference>,
+                    that perform comparisons using an epsilon tolerance.
+                </para>
+                <para>
+                    This example compares two vectors:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Define a vector.
+Vector3F v0 = new Vector3F(1000, 2000, 3000);
+
+// Define a rotation quaternion that rotates 360° around the x axis.
+QuaternionF rotation = QuaternionF.CreateRotationX(MathHelper.ToRadians(360));
+
+// Rotate v0.
+Vector3F v1 = rotation.Rotate(v0);
+
+// The rotated vector v1 should be identical to v0 because a 360° rotation should not
+// change the vector. - But due to numerical errors v0 and v1 are not equal.
+if (v0 == v1)
+  Console.WriteLine("Vectors are equal.");
+else
+  Console.WriteLine("Vectors are not equal.");   // This message is written. :-(
+
+// With Vector3F.AreNumericallyEqual() we can check if two vectors are equal when we allow
+// a small numeric tolerance.
+if (Vector3F.AreNumericallyEqual(v0, v1))
+  Console.WriteLine("Vectors are numerically equal."); // This message is written. :-)
+else
+  Console.WriteLine("Vectors are not numerically equal.");
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

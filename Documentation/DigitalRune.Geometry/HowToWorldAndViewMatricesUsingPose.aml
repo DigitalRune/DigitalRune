@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="9a927200-8841-4c76-94bc-29c5633c5d38" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        This section explains how a <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Pose</codeEntityReference>
+        can be used to define a World or a View transformation matrix.
+      </para>
+      <autoOutline/>
+    </introduction>
+
+
+    <section address="Namespaces">
+      <title>Add DigitalRune namespaces</title>
+      <content>
+        <para>
+          The following example will use data types and helper methods from DigitalRune Geometry and
+          Mathematics. The following namespaces must be imported for these examples
+          at the beginning of the source code files:
+        </para>
+        <code language="c#">
+          <![CDATA[
+using DigitalRune.Geometry;
+using DigitalRune.Mathematics.Algebra;
+]]>
+        </code>
+      </content>
+    </section>
+
+
+    <section address="World">
+      <title>World matrix</title>
+      <content>
+        <para>
+          When a model is created in a 3D modeler, it is modeled relative to the
+          origin. That is, the vertices of the model are defined in local space
+          (also known as model space or object space).
+        </para>
+        <para>
+          In a game the model needs to be positioned in the world. In XNA you could
+          implement something like this:
+        </para>
+        <code language="c#">
+          <![CDATA[
+// A visual object in a game.
+class GameObject
+{
+  // The XNA Model that represents the object.
+  public Model Model { get; set; }
+
+  // The position and orientation of the model in world space.
+  public Pose Pose { get; set; }
+
+  ...
+}
+]]>
+        </code>
+        <para>
+          <legacyBold>Pose</legacyBold> defines the transformation that converts the
+          <legacyBold>Model</legacyBold> from local space to world space. When rendering
+          the object the pose can be directly assigned to the world matrix of the
+          <legacyBold>Effect</legacyBold> used for rendering. (Remember: A pose can be cast
+          to an XNA <legacyBold>Matrix</legacyBold>.)
+        </para>
+        <code language="c#">
+          <![CDATA[
+basicEffect.World = gameObject.Pose;
+]]>
+        </code>
+      </content>
+    </section>
+
+
+    <section address="View">
+      <title>View matrix</title>
+      <content>
+        <para>
+          Similarly a camera in an XNA game could be defined like this:
+        </para>
+        <code language="c#">
+          <![CDATA[
+// A camera in a game.
+class Camera
+{
+  // The position and orientation of the camera in world space.
+  public Pose Pose { get; set; }
+
+  // The projection matrix.
+  public Matrix44F Projection { get; set; }
+
+  ...
+}
+]]>
+        </code>
+        <para>
+          Now, to render objects we need the view transformation matrix. The view
+          matrix transforms an object from world space into view space. The view
+          space is the local space of the camera – the camera is in the origin and
+          all objects are relative to the camera.
+        </para>
+        <para>
+          How is the view matrix related to <legacyBold>Camera.Pose</legacyBold>?
+          <legacyBold>Camera.Pose</legacyBold> transforms the camera from its local
+          space to world space. The view matrix transforms objects from world space
+          to the local space of that camera. Therefore: <legacyBold>Camera.Pose</legacyBold>
+          is the inverse of the view matrix!
+        </para>
+        <para>
+          To render an object you need to assign the inverse of <legacyBold>Pose</legacyBold>
+          to the <legacyBold>Effect</legacyBold> used for rendering:
+        </para>
+        <code language="c#">
+          <![CDATA[
+basicEffect.View = camera.Pose.Inverse;
+]]>
+        </code>
+      </content>
+    </section>
+
+
+    <section address="Camera">
+      <title>Controlling a camera</title>
+      <content>
+        <para>
+          In many games the player is able to control the camera directly. If the
+          player presses "forward", the camera should move forward along the viewing
+          direction.
+        </para>
+        <para>
+          How can we compute the forward direction? In the local space of the camera
+          the x-axis points to the right, the y-axis points up and the z-axis points
+          towards the viewer. Hence "forward" is (0, 0, –1). To move a camera forward
+          in the world we need to transform this direction into world space.
+        </para>
+        <code language="c#">
+          <![CDATA[
+Vector3F forward = camera.Pose.ToWorldDirection(Vector3F.Forward);
+]]>
+        </code>
+        <para>
+          That’s it! Now we can move the camera along the viewing direction.
+        </para>
+        <code language="c#">
+          <![CDATA[
+// Move the camera 10 units in the viewing direction.
+Pose pose = camera.Pose;
+pose.Position += 10 * forward;
+camera.Pose = pose;
+]]>
+        </code>
+      </content>
+    </section>
+
+
+    <relatedTopics>
+      <link xlink:href="d995ee69-0650-4993-babd-1cdb1fd8fd7a" />
+    </relatedTopics>
+
+  </developerConceptualDocument>
+</topic>

@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="4f8d2843-e46a-44cf-ba8d-c58fb8d9302d" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This article covers how shadow maps are created.</para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="ShadowMapRenderer">
+            <title>ShadowMapRenderer</title>
+            <content>
+                <para>
+                    DigitalRune Graphics provides the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.ShadowMapRenderer</codeEntityReference>
+                    for creating shadow maps.
+                </para>
+                <para>
+                    Shadow maps are created by calling
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.Rendering.SceneRenderer.Render(System.Collections.Generic.IList{DigitalRune.Graphics.SceneGraph.SceneNode},DigitalRune.Graphics.RenderContext,DigitalRune.Graphics.Rendering.RenderOrder)</codeEntityReference>.
+                    For example:
+                </para>
+                <code language="cs">
+                    // Select render pass (required by MeshRenderer).
+                    context.RenderPass = "ShadowMap";
+                    // Render shadow maps for the specified list of light nodes.
+                    shadowMapRenderer.Render(sceneNodes, context);
+                </code>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.ShadowMapRenderer</codeEntityReference>
+                    takes a list of scene nodes and looks for
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LightNode</codeEntityReference>s
+                    with a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Shadow</codeEntityReference>.
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LightNode</codeEntityReference>s
+                    are sorted based on the shadow map type. Then the shadow maps are rendered: For each
+                    shadow map, the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.ShadowMapRenderer</codeEntityReference>
+                    prepares a render target and sets the required states. It fetches all shadow casters
+                    (meshes, etc.) and renders them into the render target. The resulting shadow maps are
+                    stored in
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.Shadow.ShadowMap</codeEntityReference>.
+                </para>
+                <para>
+                    This method is usually called once per frame – but it is also possible to reuse shadow
+                    maps from previous frames (see
+                    <newTerm>Shadow Map Caching</newTerm>
+                    below).
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Types">
+            <title>Shadow map types</title>
+            <content>
+                <para>
+                    The built-in renderer supports
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.StandardShadow</codeEntityReference>s,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.CubeMapShadow</codeEntityReference>s,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.CascadedShadow</codeEntityReference>s and
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.CompositeShadow</codeEntityReference>s.
+                    Support for other shadow types can be added by implementing a new renderer and adding
+                    it to the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Rendering.SceneRenderer.Renderers</codeEntityReference>
+                    collection of the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.ShadowMapRenderer</codeEntityReference>.
+                    (See <newTerm>VarianceShadowMapSample</newTerm> in the
+                    <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />.)
+                </para>
+            </content>
+        </section>
+
+
+
+        <section address="Callback">
+            <title>Render callback</title>
+            <content>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.Rendering.ShadowMapRenderer.RenderCallback</codeEntityReference>
+                    can be used to define which shadows casters are selected and how they are rendered. If
+                    no render callback is set, a default implementation will be used.
+                </para>
+                <para>
+                    The callback can be set when the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.ShadowMapRenderer</codeEntityReference>
+                    is created. Here is an example (similar to the default implementation):
+                </para>
+                <code language="cs">
+                    <![CDATA[
+meshRenderer = new MeshRenderer();
+shadowMapRenderer = new ShadowMapRenderer(context =>
+{
+  var query = context.Scene.Query<ShadowCasterQuery>(context.CameraNode, context);
+  if (query.ShadowCasters.Count == 0)
+    return false;
+    
+  meshRenderer.Render(query.ShadowCasters, context);
+  return true;
+});]]>
+                </code>
+                <para>
+                    In this implementation
+                    <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Graphics.SceneGraph.Scene.Query``1(DigitalRune.Graphics.SceneGraph.SceneNode,DigitalRune.Graphics.RenderContext)</codeEntityReference>
+                    is called to get all scene nodes that intersect the camera frustum. (Note: When the
+                    render callback is executed,
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.RenderContext.CameraNode</codeEntityReference>
+                    is a camera representing the light source and not the player.)
+                </para>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ShadowCasterQuery</codeEntityReference>
+                    checks the scene node flags
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.SceneGraph.SceneNode.CastsShadows</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.SceneGraph.SceneNode.IsShadowCasterCulled</codeEntityReference>.
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.SceneNode.CastsShadows</codeEntityReference>
+                    determines whether a scene node can cast any shadows.
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.SceneNode.IsShadowCasterCulled</codeEntityReference>
+                    might be set when occlusion culling is enabled. It indicates whether the shadow is
+                    visible from the player's point of view or whether the shadow is occluded. The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ShadowCasterQuery</codeEntityReference>
+                    also evaluates LOD nodes.
+                </para>
+                <para>
+                    Then a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.MeshRenderer</codeEntityReference>
+                    is used to render the shadow casters into the shadow map.
+                </para>
+                <para>
+                    A user-defined render callback can use a different method to select shadow casters and can
+                    use other renderers to draw objects into the shadow map.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Shaders">
+            <title>Shadow map shaders</title>
+            <content>
+                <para>
+                    In the first examples the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.RenderPass</codeEntityReference>
+                    is set to
+                    "ShadowMap"
+                    before
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.Rendering.SceneRenderer.Render(System.Collections.Generic.IList{DigitalRune.Graphics.SceneGraph.SceneNode},DigitalRune.Graphics.RenderContext,DigitalRune.Graphics.Rendering.RenderOrder)</codeEntityReference>
+                    of the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.ShadowMapRenderer</codeEntityReference>
+                    is called. That means, the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.MeshRenderer</codeEntityReference>
+                    in the render callback uses the
+                    "ShadowMap"
+                    pass to render meshes into the shadow map. This render pass must be present in the
+                    material (.drmat file) of the mesh, for example:
+                </para>
+                <code language="xml">
+                    <![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Material>
+  <Pass Name="Default" Effect="SkinnedEffect" Profile="Any">
+    …
+  </Pass>
+  
+  <!-- Render pass which renders a mesh into a shadow map. -->
+  <Pass Name="ShadowMap" Effect="DigitalRune/Materials/ShadowMapSkinned" Profile="HiDef" /> 
+  
+  <Pass Name="GBuffer" Effect="DigitalRune/Materials/GBufferNormalSkinned" Profile="HiDef">
+    …
+  </Pass>
+  <Pass Name="Material" Effect="DigitalRune/Materials/MaterialSkinned" Profile="HiDef">
+    …
+  </Pass>
+</Material>]]>
+                </code>
+                <para>
+                    Meshes without a "ShadowMap" pass will be ignored and won't be rendered into the shadow
+                    map. DigitalRune Graphics contains several predefined effects for rendering shadow maps,
+                    supporting alpha-tests, mesh skinning and morphing.
+                </para>
+                <para>
+                    The depth that is written to the shadow map is the normalized light space z value (=
+                    distance to the shadow near plane) – except for omnidirectional shadow maps of point lights,
+                    where the depth value is the normalized linear distance to the point light. For cascaded
+                    shadow maps triangles in front of the cascade are clamped to 0 to make better use of the
+                    available depth map precision. This is called "pancaking". When using pancaking we found
+                    that 16-bit shadow maps are usually enough. (The property
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.Shadow.Prefer16Bit</codeEntityReference>
+                    is set by default.)
+                </para>
+                <para>
+                    The "ShadowMap" effects (.fx files) define whether front faces (= triangles facing the
+                    light source) or back faces are rendered into the shadow map. The predefined
+                    "ShadowMap" effects render front faces.
+                </para>
+                <para>
+                    Some games render back faces, which has the advantage of moving shadow acne problems to
+                    the back of a mesh. Back faces are usually not facing the light, hence they are dark and
+                    acne is less of a problem. When rendering back faces, shadow bias values must be negative.
+                    Avoiding shadow acne by rendering back faces does not work for thin meshes, such as
+                    alpha-tested grass. (In the end, we did not find any relevant benefits of rendering back
+                    faces and chose to render front faces as the default.)
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Caching">
+            <title>Shadow map caching</title>
+            <content>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Shadow</codeEntityReference>
+                    class stores the shadow map (property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Shadow.ShadowMap</codeEntityReference>)
+                    and all necessary information (e.g. the light's view and projection matrix) for reuse in
+                    the next frame. That means, it is not necessary to update all shadow maps every frame.
+                </para>
+                <para>
+                    Further, the flag
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.CascadedShadow.IsCascadeLocked</codeEntityReference>
+                    can be used to "lock" individual cascades of a cascaded shadow map. Locked cascades will
+                    not be updated by the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.ShadowMapRenderer</codeEntityReference>,
+                    the cached shadow map will be reused until the cascade is unlocked.
+                </para>
+                <para>
+                    Shadow map caching can be used to improve performance. For example:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Reuse shadow maps from the previous frames if there are no moving objects in the light.
+                    </listItem>
+                    <listItem>
+                        Update shadow maps of distant lights less frequently.
+                    </listItem>
+                    <listItem>
+                        Update distant cascades less frequently.
+                    </listItem>
+                    <listItem>
+                        Do not update all shadow maps in the same frame. Distribute the update of different
+                        shadow maps or cascades over several frames.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Recycling">
+            <title>Recycling shadow maps</title>
+            <content>
+                <para>
+                    To support shadow map caching, shadow maps are not recycled automatically. When the
+                    shadow maps are no longer required, they must be recycled manually:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+foreach (var node in sceneNodes)
+{
+  var lightNode = node as LightNode;
+  if (lightNode != null && lightNode.Shadow != null)
+  {
+    renderTargetPool.Recycle(lightNode.Shadow.ShadowMap);
+    lightNode.Shadow.ShadowMap = null;
+  }
+}
+]]>
+                </code>
+                <para>
+                    If a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.CompositeShadow</codeEntityReference>
+                    is used, you have to enumerate the child shadows:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+if (shadow is CompositeShadow)
+    foreach(var child in shadow.Shadows)
+      … recycle shadow map …
+]]>
+                </code>
+                <para>
+                    When shadow map caching is not used, it is usually best to recycle the shadow maps each
+                    frame as soon as they are no longer needed.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

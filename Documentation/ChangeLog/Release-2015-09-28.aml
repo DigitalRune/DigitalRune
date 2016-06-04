@@ -1,0 +1,466 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="240673a0-ceae-4678-8b70-18765b58fd74" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="ReleaseNotes">
+            <title>Release notes</title>
+            <content>
+            </content>
+            <sections>
+                <section address="Terrain">
+                    <title>Terrain rendering</title>
+                    <content>
+                        <para>
+                            DigitalRune Graphics now includes support for large-scale, tile-based terrains
+                            using height fields. The terrain system is designed to cover anything from
+                            small game worlds up to large terrain databases.
+                        </para>
+                        <mediaLink>
+                            <caption placement="after">
+                                Figure 1: Terrain sample consisting of 2 x 2 tiles with 1024 m x 1024 m each
+                            </caption>
+                            <image xlink:href="Terrain"/>
+                        </mediaLink>
+                        <para>
+                            Features:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                Continuous level of detail (no mesh preprocessing, no hardware tessellation required)
+                            </listItem>
+                            <listItem>
+                                Materials using diffuse maps, specular maps, normal maps, height maps
+                            </listItem>
+                            <listItem>
+                                Customizable effects (including parallax occlusion mapping)
+                            </listItem>
+                            <listItem>
+                                Flexible material blending (blend maps, height-based, slope-based, etc.) using any number of layers
+                            </listItem>
+                            <listItem>
+                                Collision detection
+                            </listItem>
+                            <listItem>
+                                Decal rendering
+                            </listItem>
+                            <listItem>
+                                Roads
+                            </listItem>
+                            <listItem>
+                                Procedural terrains
+                            </listItem>
+                            <listItem>
+                                Holes
+                            </listItem>
+                        </list>
+                        <mediaLink>
+                            <caption placement="after">
+                                Figure 2: Blood decal on terrain
+                            </caption>
+                            <image xlink:href="Terrain-Decal"/>
+                        </mediaLink>
+                        <mediaLink>
+                            <caption placement="after">
+                                Figure 3: Road carved into terrain
+                            </caption>
+                            <image xlink:href="Terrain-Road"/>
+                        </mediaLink>
+                        <para>
+                            For more details, check out the new terrain samples and the <link xlink:href="46f261f5-750c-4df5-99e2-b6a289f15098" />
+                            chapter.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="UWP">
+                    <title>Windows 10: Universal Windows Platform</title>
+                    <content>
+                        <para>
+                            This release adds builds and samples for the Universal Windows Platform (UWP).
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Unity">
+                    <title>Unity game engine</title>
+                    <content>
+                        <para>
+                            The license requirements for the Unity game engine have been relaxed: Previously, a
+                            DigitalRune Engine Professional license was required to use the DigitalRune libraries
+                            in Unity. From now on Indie and Professional licenses work with Unity. (If you own
+                            a DigitalRune Indie license: You can use your existing DigitalRune license key in
+                            the Unity project.)
+                        </para>
+                    </content>
+                </section>
+
+                <section address="DRMDL">
+                    <title>Importing DRMDL files</title>
+                    <content>
+                        <para>
+                            When importing a model for use in the DigitalRune Engine, two files are required:
+                            The model (e.g. the FBX file) and the model description (the DRMDL file). The model
+                            description is an XML file that contains preprocessing settings and references the
+                            material to be used.
+                        </para>
+                        <para>
+                            To import the model, the FBX file needs to be added to an XNA or MonoGame content project.
+                            Due to certain limitations in the XNA content pipeline it was not possible to add the
+                            .drmdl file directly to the content project. This has been solved in the new release:
+                            Instead of adding the FBX file to the content project, it is now possible to directly
+                            add the DRMDL file to the content project.
+                        </para>
+                        <para>
+                            This seemingly minor change solves a long standing problem with the XNA content pipeline:
+                            To import a model multiple times, the model had to be duplicated on disk. Now, multiple
+                            DRMDL files can reference the same model. The model can be imported/processed multiple
+                            times with different settings.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="ChangeLog">
+            <title>Change log</title>
+            <content>
+            </content>
+            <sections>
+                <section address="General">
+                    <title>General</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                NEW: Builds for Window 10 - Universal Windows Platform (UWP).
+                            </listItem>
+                            <listItem>
+                                NEW: Microsoft.Practices.ServiceLocation.dll updated from version 1.2 to 1.3.
+                            </listItem>
+                            <listItem>
+                                NEW: DigitalRune libraries built for Unity game engine can now be used with Indie licenses. (Previously a Professional license was required.)
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Base">
+                    <title>DigitalRune Base 1.18</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                NEW:
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Collections.NamedObjectCollection`1</codeEntityReference>
+                                now raises
+                                <codeEntityReference qualifyHint="false">E:DigitalRune.Collections.NamedObjectCollection`1.CollectionChanged</codeEntityReference>
+                                events.
+                            </listItem>
+                            <listItem>
+                                NEW: Methods
+                                <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Collections.NamedObjectCollection`1.InsertRange(System.Int32,System.Collections.Generic.IEnumerable{`0})</codeEntityReference>
+                                and
+                                <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Collections.NamedObjectCollection`1.RemoveRange(System.Int32,System.Int32)</codeEntityReference>
+                                added to
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Collections.NamedObjectCollection`1</codeEntityReference>
+                            </listItem>
+                            <listItem>
+                                FIX:
+                                <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Collections.NotifyingCollection`1.RemoveItem(System.Int32)</codeEntityReference>
+                                is not called when calling
+                                <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Collections.NotifyingCollection`1.RemoveRange(System.Int32,System.Int32)</codeEntityReference>.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Mathematics">
+                    <title>DigitalRune Mathematics 1.13.1</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                CHANGE: Minor performance improvements.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Geometry">
+                    <title>DigitalRune Geometry 1.18</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                <para>
+                                    NEW:
+                                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.HeightField</codeEntityReference>
+                                    now uses a 1-dimensional array. See new height field properties:
+                                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Shapes.HeightField.Samples</codeEntityReference>,
+                                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Shapes.HeightField.NumberOfSamplesX</codeEntityReference>,
+                                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Shapes.HeightField.NumberOfSamplesZ</codeEntityReference>.
+                                </para>
+                                <para>
+                                    <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Shapes.HeightField.Array</codeEntityReference>
+                                    (<codeInline>float[,]</codeInline>) is obsolete. Instead, the height field data should
+                                    be set using a 1-dimensional array.
+                                    Please note: The property
+                                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Shapes.HeightField.Array</codeEntityReference>
+                                    can still be used - but don't forget to call
+                                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Geometry.Shapes.HeightField.Invalidate</codeEntityReference>
+                                    if the data in
+                                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Shapes.HeightField.Array</codeEntityReference>
+                                    is changed after the
+                                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.HeightField</codeEntityReference>
+                                    was created.
+                                </para>
+                            </listItem>
+                            <listItem>
+                                NEW:
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.HeightField</codeEntityReference>
+                                can have a local origin (see
+                                <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Shapes.HeightField.OriginX</codeEntityReference>,
+                                <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Shapes.HeightField.OriginZ</codeEntityReference>).
+                            </listItem>
+                            <listItem>
+                                NEW: Support for holes in height fields (using NaN values in the height array).
+                            </listItem>
+                            <listItem>
+                                NEW:
+                                <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Geometry.GeometryHelper.MergeDuplicatePositions(System.Collections.Generic.IList{DigitalRune.Mathematics.Algebra.Vector3F},System.Single)</codeEntityReference>
+                                added.
+                            </listItem>
+                            <listItem>
+                                FIX: Cloned
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.ConeShape</codeEntityReference>s
+                                had correct
+                                <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Shapes.ConeShape.Radius</codeEntityReference>
+                                and
+                                <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Shapes.ConeShape.Height</codeEntityReference>
+                                but derived properties (e.g. AABB) were incorrect.
+                            </listItem>
+                            <listItem>
+                                Minor other improvements.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Particles">
+                    <title>DigitalRune Particles 1.4.1</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                FIX: Particle systems with reference frame
+                                <codeEntityReference qualifyHint="false">F:DigitalRune.Particles.ParticleReferenceFrame.World</codeEntityReference>
+                                should not be scaled when the particle system node has a scale.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Graphics">
+                    <title>DigitalRune Graphics 1.0</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                NEW: Terrain rendering. See <link xlink:href="46f261f5-750c-4df5-99e2-b6a289f15098" /> for more details.
+                            </listItem>
+                            <listItem>
+                                NEW: Method overload
+                                <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.SceneGraph.ScatteringSkyNode.GetFogColor(System.Int32,System.Single)</codeEntityReference>
+                                with elevation angle parameter added.
+                            </listItem>
+                            <listItem>
+                                NEW: The tag <legacyBold>GenerateTangentFrames</legacyBold> can now be set per model, per mesh, and
+                                per submesh in the model description (.drmdl file).
+                            </listItem>
+                            <listItem>
+                                NEW: Added support for adding .drmdl files directly to content project.
+                            </listItem>
+                            <listItem>
+                                NEW: The DigitalRune model processor now runs vertex cache optimizations on the meshes - a feature previously missing in MonoGame.
+                            </listItem>
+                            <listItem>
+                                NEW: DigitalRune texture processor supports new surface formats, which have been added to
+                                the MonoGame content pipeline: PVRTC1 2bpp/4bpp for iOS, ETC1 for Android
+                            </listItem>
+                            <listItem>
+                                NEW: Property
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.RenderContext.Object</codeEntityReference>
+                                added. (Stores current data object during rendering.)
+                            </listItem>
+                            <listItem>
+                                NEW: Effect parameter semantics <codeEntityReference qualifyHint="true">F:DigitalRune.Graphics.Effects.DefaultEffectParameterSemantics.NaN</codeEntityReference>
+                                and <codeEntityReference qualifyHint="true">F:DigitalRune.Graphics.Effects.SceneEffectParameterSemantics.LodCameraPosition</codeEntityReference>
+                                added.
+                            </listItem>
+                            <listItem>
+                                NEW:
+                                <codeEntityReference qualifyHint="true">F:DigitalRune.Graphics.GraphicsHelper.RasterizerStateCullClockwise</codeEntityReference>,
+                                <codeEntityReference qualifyHint="true">F:DigitalRune.Graphics.GraphicsHelper.RasterizerStateCullCounterClockwise</codeEntityReference>,
+                                <codeEntityReference qualifyHint="true">F:DigitalRune.Graphics.GraphicsHelper.RasterizerStateCullNone</codeEntityReference>
+                                added. Identical to built-in rasterizer states in XNA, except that
+                                <legacyBold>MultiSampleAntiAliasing</legacyBold>
+                                is set to false, which improves line rendering when MSAA is disabled.
+                                <codeEntityReference qualifyHint="true">F:DigitalRune.Graphics.GraphicsHelper.RasterizerStateWireFrame</codeEntityReference>
+                                now also sets
+                                <legacyBold>MultiSampleAntiAliasing</legacyBold> = false.
+                                The
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.DebugRenderer</codeEntityReference>
+                                uses the new rasterizer states to produce cleaner lines.
+                            </listItem>
+                            <listItem>
+                                NEW: Method <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Graphics.NoiseHelper.GetNoiseTexture(DigitalRune.Graphics.IGraphicsService,System.Int32,System.Int32)</codeEntityReference>
+                                added.
+                            </listItem>
+                            <listItem>
+                                CHANGE:
+                                <localUri>Forward.fx</localUri> is now more customizable. Features (diffuse texture,
+                                specular texture, opacity texture, vertex colors, etc.) can be turned on or off
+                                using preprocessor directives.
+                            </listItem>
+                            <listItem>
+                                CHANGE: Improved height fog rendering. If height fog was combined with distance fog and camera was
+                                in a low position, the skybox could get fogged ignoring the fog distance values
+                                (<codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.Fog.Start</codeEntityReference>,
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.Fog.End</codeEntityReference>).
+                            </listItem>
+                            <listItem>
+                                CHANGE: Improved normal and tangent frame calculations.
+                            </listItem>
+                            <listItem>
+                                CHANGE: DigitalRune texture processor automatically resizes textures to power-of-two or
+                                multiple-of-four, if required by the output format.
+                            </listItem>
+                            <listItem>
+                                CHANGE: Water rendering: Improved projected grid resolution when camera is near water
+                                surface and looking horizontally. Minor other improvements.
+                            </listItem>
+                            <listItem>
+                                REMOVE:
+                                <codeEntityReference qualifyHint="true">F:DigitalRune.Graphics.RenderContextKeys.Shadow</codeEntityReference>
+                                is now marked as obsolete. The current shadow map can be found in
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.RenderContext.Object</codeEntityReference>
+                                when the shadow map is being rendered.
+                            </listItem>
+                            <listItem>
+                                FIX: Fog with high height falloff could result in no fog or NaN values caused by numerical errors.
+                            </listItem>
+                            <listItem>
+                                FIX: Bounding shape of
+                                ParticleSystemNode
+                                needs to ignore scale if the reference frame is
+                                <codeEntityReference qualifyHint="false">F:DigitalRune.Particles.ParticleReferenceFrame.World</codeEntityReference>.
+                            </listItem>
+                            <listItem>
+                                FIX: AMD DX9 graphics driver crash on Win8.1 caused by cloud layer.
+                            </listItem>
+                            <listItem>
+                                FIX: Effect parameter bindings were not created for arrays in MonoGame.
+                            </listItem>
+                            <listItem>
+                                FIX: Minor pixel artifacts at the border of last shadow cascade.
+                                (Problem appears only in Direct3D 11 on NVIDIA Geforce cards.)
+                            </listItem>
+                            <listItem>
+                                FIX: No
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.OceanWaves</codeEntityReference>
+                                were rendered if
+                                <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.OceanWaves.EnableCpuQueries</codeEntityReference>
+                                was false.
+                            </listItem>
+                            <listItem>
+                                Minor other improvements.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Game">
+                    <title>DigitalRune Game 1.3</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                NEW:
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GameObjectCollection</codeEntityReference>
+                                now raises
+                                <codeEntityReference qualifyHint="false">E:DigitalRune.Collections.NamedObjectCollection`1.CollectionChanged</codeEntityReference>
+                                events.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="GameUI">
+                    <title>DigitalRune Game UI 1.6.1</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                FIX: Auto-generated key map contained wrong characters for Portuguese (and maybe other) keyboard layouts.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Samples">
+                    <title>Samples</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                NEW: Windows 10 samples.
+                            </listItem>
+                            <listItem>
+                                NEW: Terrain samples (see graphics samples).
+                            </listItem>
+                            <listItem>
+                                NEW: CustomCommandSample added (see Game UI samples.
+                            </listItem>
+                            <listItem>
+                                NEW: Added more properties to <legacyBold>FogObject</legacyBold>:
+                                <legacyBold>ApplyFogToSky</legacyBold>, <legacyBold>AttachToCamera</legacyBold>
+                            </listItem>
+                            <listItem>
+                                NEW: Added fog properties to <legacyBold>DynamicSkyObject</legacyBold>.
+                            </listItem>
+                            <listItem>
+                                CHANGE: When a model is used multiple times, the DRMDL files are added to the content
+                                project instead of the FBX file. The DRMDL files reference the same FBX file,
+                                which reduces the required disk space.
+                            </listItem>
+                            <listItem>
+                                CHANGE: Changed slider ranges in <legacyBold>FogObject</legacyBold> GUI.
+                            </listItem>
+                            <listItem>
+                                CHANGE: Removed use of obsolete property
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Shapes.HeightField.Array</codeEntityReference>.
+                            </listItem>
+                            <listItem>
+                                FIX: Minor fixes in parallax occlusion mapping sample.
+                                Light direction tangent was not normalized. Mip level checks must use
+                                &lt; instead of &lt;=
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="MonoGame">
+                    <title>MonoGame</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                CHANGE: Retarget MonoGame Windows 8 project from Windows 8.0 to Windows 8.1.
+                            </listItem>
+                            <listItem>
+                                FIX: <legacyBold>VertexStride</legacyBold> was not set in
+                                <legacyBold>VertexContent</legacyBold>
+                                if a model contains only a position vertex channel.
+                            </listItem>
+                            <listItem>
+                                FIX: Mesh tangent space was not computed correctly.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

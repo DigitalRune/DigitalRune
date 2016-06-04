@@ -1,0 +1,716 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="c52ad0a8-b0b5-4579-9b22-745ab486e2d4" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        The DigitalRune libraries include third-party software.
+      </para>
+      <autoOutline/>
+    </introduction>
+
+
+    <section address="General">
+      <title>General</title>
+      <content>
+        <list class="bullet">
+          <listItem>
+            <para>
+              This product uses the <legacyItalic>Microsoft.Patterns.ServiceLocation.dll</legacyItalic>
+              from
+              <externalLink>
+                <linkText>Prism</linkText>
+                <linkUri>http://msdn.microsoft.com/en-us/library/dd458809.aspx</linkUri>
+              </externalLink>
+              which is licensed under the
+              <link xlink:href="#MsPL">Microsoft Public License (Ms-PL)</link>.
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              This product uses
+              <externalLink>
+                <linkText>DotNetZip</linkText>
+                <linkUri>http://dotnetzip.codeplex.com/</linkUri>
+              </externalLink>
+              which is licensed under the <link xlink:href="#MsPL">Microsoft Public License (Ms-PL)</link>.
+            </para>
+          </listItem>
+        </list>
+      </content>
+    </section>
+
+
+    <section address="Base">
+      <title>DigitalRune Base</title>
+      <content>
+        <para></para>
+        <list class="bullet">
+          <listItem>
+            <para>
+              Class <legacyBold>HashSet&lt;T&gt;</legacyBold> for the .NET Compact Framework
+              is based on
+              <externalLink>
+                <linkText>Mono</linkText>
+                <linkUri>https://github.com/mono/mono</linkUri>
+              </externalLink>
+              which is licensed under the MIT License.
+            </para>
+            <quote>
+              Copyright (C) 2007 Novell, Inc (http://www.novell.com)
+            </quote>
+            <quote>
+              Permission is hereby granted, free of charge, to any person
+              obtaining a copy of this software and associated documentation
+              files (the "Software"), to deal in the Software without
+              restriction, including without limitation the rights to use,
+              copy, modify, merge, publish, distribute, sublicense, and/or sell
+              copies of the Software, and to permit persons to whom the
+              Software is furnished to do so, subject to the following
+              conditions:
+            </quote>
+            <quote>
+              The above copyright notice and this permission notice shall be
+              included in all copies or substantial portions of the Software.
+            </quote>
+            <quote>
+              THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+              EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+              OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+              NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+              HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+              WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+              FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+              OTHER DEALINGS IN THE SOFTWARE.
+            </quote>
+          </listItem>
+          <listItem>
+            <para>
+              Classes <legacyBold>Collection</legacyBold> and
+              <legacyBold>KeyedCollection</legacyBold> for the Unity build are based on
+              <externalLink>
+                <linkText>Mono</linkText>
+                <linkUri>https://github.com/mono/mono</linkUri>
+              </externalLink>
+              which is licensed under the MIT License.
+            </para>
+            <quote>
+              Copyright (C) 2005 Novell, Inc (http://www.novell.com)
+            </quote>
+            <quote>
+              Copyright (C) 2005 David Waite
+            </quote>
+            <quote>
+              Copyright (C) 2011 Xamarin, Inc (http://www.xamarin.com)
+            </quote>
+            <quote>
+              Permission is hereby granted, free of charge, to any person obtaining
+              a copy of this software and associated documentation files (the
+              "Software"), to deal in the Software without restriction, including
+              without limitation the rights to use, copy, modify, merge, publish,
+              distribute, sublicense, and/or sell copies of the Software, and to
+              permit persons to whom the Software is furnished to do so, subject to
+              the following conditions:
+            </quote>
+            <quote>
+              The above copyright notice and this permission notice shall be
+              included in all copies or substantial portions of the Software.
+            </quote>
+            <quote>
+              THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+              EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+              MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+              NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+              LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+              OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+              WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+            </quote>
+          </listItem>
+          <listItem>
+            <para>
+              Portions of the code are based on
+              <externalLink>
+                <linkText>ParallelTasks</linkText>
+                <linkUri>http://paralleltasks.codeplex.com/</linkUri>
+              </externalLink>
+              which is licensed under the <link xlink:href="#MsPL">Microsoft Public License (Ms-PL)</link>.
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              The table of prime numbers in the <codeEntityReference qualifyHint="false">T:DigitalRune.PrimeHelper</codeEntityReference>
+              is copied from the
+              <externalLink>
+                <linkText>cern.colt</linkText>
+                <linkUri>http://trac.mpich.org/projects/mpich/browser/mpich2/trunk/src/mpe2/src/slog2sdk/src/cern/colt/map/PrimeFinder.java?rev=9050</linkUri>
+              </externalLink>
+              package which is licensed under the Colt License Agreement.
+            </para>
+            <quote>
+              Copyright (c) 1999 CERN - European Organization for Nuclear Research.
+            </quote>
+            <quote>
+              Permission to use, copy, modify, distribute and sell this software and
+              its documentation for any purpose is hereby granted without fee, provided
+              that the above copyright notice appear in all copies and that both that
+              copyright notice and this permission notice appear in supporting
+              documentation. CERN makes no representations about the suitability of
+              this software for any purpose. It is provided "as is" without expressed
+              or implied warranty.
+            </quote>
+          </listItem>
+          <listItem>
+            <para>
+              Class
+              <codeEntityReference qualifyHint="false">T:DigitalRune.Text.StringBuilderExtensions</codeEntityReference>
+              is based on the
+              <externalLink>
+                <linkText>Performance Measuring Sample</linkText>
+                <linkUri>http://create.msdn.com/en-US/education/catalog/sample/performance_sample</linkUri>
+              </externalLink>
+              which is licensed under the
+              <link xlink:href="#MsPL">Microsoft Public License (Ms-PL)</link>.
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              The weak event and weak event handlers are based on code from Daniel
+              Grunwald's article
+              <externalLink>
+                <linkText>Weak Events in C#</linkText>
+                <linkUri>http://www.codeproject.com/KB/cs/WeakEvents.aspx</linkUri>
+              </externalLink>
+              which is licensed under the MIT License.
+            </para>
+            <quote>
+              Copyright (c) 2008 Daniel Grunwald
+            </quote>
+            <quote>
+              Permission is hereby granted, free of charge, to any person
+              obtaining a copy of this software and associated documentation
+              files (the "Software"), to deal in the Software without
+              restriction, including without limitation the rights to use,
+              copy, modify, merge, publish, distribute, sublicense, and/or sell
+              copies of the Software, and to permit persons to whom the
+              Software is furnished to do so, subject to the following
+              conditions:
+            </quote>
+            <quote>
+              The above copyright notice and this permission notice shall be
+              included in all copies or substantial portions of the Software.
+            </quote>
+            <quote>
+              THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+              EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+              OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+              NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+              HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+              WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+              FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+              OTHER DEALINGS IN THE SOFTWARE.
+            </quote>
+          </listItem>
+          <listItem>
+            <para>
+              Portions of the code are based on the
+              <externalLink>
+                <linkText>WPF Toolkit</linkText>
+                <linkUri>http://wpf.codeplex.com/</linkUri>
+              </externalLink>
+              which is licensed under the <link xlink:href="#MsPL">Microsoft Public License (Ms-PL)</link>.
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              Portions of the code are based on
+              <externalLink>
+                <linkText>DotNetZip</linkText>
+                <linkUri>http://dotnetzip.codeplex.com/</linkUri>
+              </externalLink>
+              which is licensed under the <link xlink:href="#MsPL">Microsoft Public License (Ms-PL)</link>.
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              The managed ZLIB code in DotNetZip is based on jzlib:
+            </para>
+            <quote>
+              Copyright (c) 2000,2001,2002,2003 ymnk, JCraft,Inc. All rights reserved.
+            </quote>
+            <quote>
+              Redistribution and use in source and binary forms, with or without
+              modification, are permitted provided that the following conditions are met:
+            </quote>
+            <quote>
+              1. Redistributions of source code must retain the above copyright notice,
+              this list of conditions and the following disclaimer.
+            </quote>
+            <quote>
+              2. Redistributions in binary form must reproduce the above copyright
+              notice, this list of conditions and the following disclaimer in
+              the documentation and/or other materials provided with the distribution.
+            </quote>
+            <quote>
+              3. The names of the authors may not be used to endorse or promote products
+              derived from this software without specific prior written permission.
+            </quote>
+            <quote>
+              THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED WARRANTIES,
+              INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+              FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL JCRAFT,
+              INC. OR ANY CONTRIBUTORS TO THIS SOFTWARE BE LIABLE FOR ANY DIRECT, INDIRECT,
+              INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+              LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+              OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+              LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+              NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+              EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+            </quote>
+          </listItem>
+          <listItem>
+            <para>
+              jzlib is based on zlib-1.1.3:
+            </para>
+            <quote>
+              Copyright (C) 1995-2004 Jean-loup Gailly and Mark Adler
+            </quote>
+            <quote>
+              The ZLIB software is provided 'as-is', without any express or implied
+              warranty.  In no event will the authors be held liable for any damages
+              arising from the use of this software.
+            </quote>
+            <quote>
+              Permission is granted to anyone to use this software for any purpose,
+              including commercial applications, and to alter it and redistribute it
+              freely, subject to the following restrictions:
+            </quote>
+            <quote>
+              1. The origin of this software must not be misrepresented; you must not
+              claim that you wrote the original software. If you use this software
+              in a product, an acknowledgment in the product documentation would be
+              appreciated but is not required.
+              2. Altered source versions must be plainly marked as such, and must not be
+              misrepresented as being the original software.
+              3. This notice may not be removed or altered from any source distribution.
+            </quote>
+            <quote>
+              Jean-loup Gailly jloup@gzip.org
+              Mark Adler madler@alumni.caltech.edu
+            </quote>
+          </listItem>
+          <!--<listItem>
+            <para>
+              Internal cryptography and MD5 code is based on code from
+              <externalLink>
+                <linkText>The Legion of the Bouncy Castle</linkText>
+                <linkUri>http://www.bouncycastle.org</linkUri>
+              </externalLink>
+              which is licensed under the Bouncy Castle License:
+            </para>
+            <quote>
+              Copyright (c) 2000-2009 The Legion Of The Bouncy Castle (http://www.bouncycastle.org)
+            </quote>
+            <quote>
+              Permission is hereby granted, free of charge, to any person obtaining a copy of this
+              software and associated documentation files (the "Software"), to deal in the
+              Software without restriction, including without limitation the rights to use,
+              copy, modify, merge, publish, distribute, sub license, and/or sell copies of the
+              Software, and to permit persons to whom the Software is furnished to do so, subject
+              to the following conditions:
+            </quote>
+            <quote>
+              The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+            </quote>
+            <quote>
+              THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+              INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+              PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+              LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+              OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+              DEALINGS IN THE SOFTWARE.
+            </quote>
+          </listItem>-->
+        </list>
+      </content>
+    </section>
+
+
+    <section address="Windows">
+      <title>DigitalRune Windows Base</title>
+      <content>
+
+        <list class="bullet">
+          <listItem>
+            <para>
+              The FrameworkPropertyMetadata for Silverlight is based on the implementation by Dr. WPF. See
+              <externalLink>
+                <linkText>http://drwpf.com/blog/2010/05/05/value-coercion-for-the-masses/</linkText>
+                <linkUri>http://drwpf.com/blog/2010/05/05/value-coercion-for-the-masses/</linkUri>
+              </externalLink>.
+            </para>
+            <quote>
+              Copyright (c) 2010, Dr. WPF
+            </quote>
+            <quote>
+              All rights reserved.
+            </quote>
+            <quote>
+              Redistribution and use in source and binary forms, with or without
+              modification, are permitted provided that the following conditions are met:
+            </quote>
+            <quote>
+              Redistributions of source code must retain the above copyright
+              notice, this list of conditions and the following disclaimer.
+            </quote>
+            <quote>
+              Redistributions in binary form must reproduce the above copyright
+              notice, this list of conditions and the following disclaimer in the
+              documentation and/or other materials provided with the distribution.
+            </quote>
+            <quote>
+              The name Dr. WPF may not be used to endorse or promote products
+              derived from this software without specific prior written permission.
+            </quote>
+            <quote>
+              THIS SOFTWARE IS PROVIDED BY Dr. WPF ``AS IS'' AND ANY
+              EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+              WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+              DISCLAIMED. IN NO EVENT SHALL Dr. WPF BE LIABLE FOR ANY
+              DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+              (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+              LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+              ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+              (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+              SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+            </quote>
+          </listItem>
+          <listItem>
+            <para>
+              The SetterValueBindingHelper is based on the helper class written by David Anson
+              and licensed under the <link xlink:href="#MsPL">Microsoft Public License (Ms-PL)</link>.
+              See
+              <externalLink>
+                <linkText>http://blogs.msdn.com/b/delay/archive/2009/11/02/as-the-platform-evolves-so-do-the-workarounds-better-settervaluebindinghelper-makes-silverlight-setters-better-er.aspx</linkText>
+                <linkUri>http://blogs.msdn.com/b/delay/archive/2009/11/02/as-the-platform-evolves-so-do-the-workarounds-better-settervaluebindinghelper-makes-silverlight-setters-better-er.aspx</linkUri>
+              </externalLink>
+            </para>
+          </listItem>
+        </list>
+      </content>
+    </section>
+
+
+    <section address="Framework">
+      <title>DigitalRune Windows Framework</title>
+      <content>
+        <list class="bullet">
+          <listItem>
+            <para>
+              This Help class is based on a blog post by Pete O'Hanlon. See
+              <externalLink>
+                <linkText>http://peteohanlon.wordpress.com/2009/05/01/easy-help-with-wpf/</linkText>
+                <linkUri>http://peteohanlon.wordpress.com/2009/05/01/easy-help-with-wpf/</linkUri>
+              </externalLink>.
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              The project CommandSinkBinding is based on the implementation by Josh Smith which is licensed under the
+              <externalLink>
+                <linkText>Code Project Open License (CPOL)</linkText>
+                <linkUri>http://www.codeproject.com/info/cpol10.aspx</linkUri>
+              </externalLink>.
+              See
+              <externalLink>
+                <linkText>http://www.codeproject.com/KB/WPF/VMCommanding.aspx</linkText>
+                <linkUri>http://www.codeproject.com/KB/WPF/VMCommanding.aspx</linkUri>
+              </externalLink>.
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              The PropertyObserver is based on the class proposed by Josh Smith. See
+              <externalLink>
+                <linkText>http://joshsmithonwpf.wordpress.com/2009/07/11/one-way-to-avoid-messy-propertychanged-event-handling/</linkText>
+                <linkUri>http://joshsmithonwpf.wordpress.com/2009/07/11/one-way-to-avoid-messy-propertychanged-event-handling/</linkUri>
+              </externalLink>.
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              The multi-key gestures are based on the blog entry by Kent Boogaart. See
+              <externalLink>
+                <linkText>http://kentb.blogspot.com/2009/03/multikeygesture.html</linkText>
+                <linkUri>http://kentb.blogspot.com/2009/03/multikeygesture.html</linkUri>
+              </externalLink>.
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              The DragDropBehavior is based on the blog post by Bea Stollnitz. See
+              <externalLink>
+                <linkText>http://www.beacosta.com/blog/?p=53</linkText>
+                <linkUri>http://www.beacosta.com/blog/?p=53</linkUri>
+              </externalLink>.
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              Portions of the code are based on the Caliburn Micro framework (see
+              <externalLink>
+                <linkText>http://caliburnmicro.codeplex.com/</linkText>
+                <linkUri>http://caliburnmicro.codeplex.com/</linkUri>
+              </externalLink>)
+              which is licensed under the MIT License (MIT).
+            </para>
+
+
+            <quote>
+              Copyright (c) 2010 Blue Spire Consulting, Inc.
+            </quote>
+            <quote>
+              Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+              associated documentation files (the "Software"), to deal in the Software without restriction,
+              including without limitation the rights to use, copy, modify, merge, publish, distribute,
+              sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+              furnished to do so, subject to the following conditions:
+            </quote>
+            <quote>
+              The above copyright notice and this permission notice shall be included in all copies or
+              substantial portions of the Software.
+            </quote>
+            <quote>
+              THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+              NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+              NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+              DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+              OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+            </quote>
+
+          </listItem>
+          <listItem>
+            <para>
+              Portions of the code are based on the MVVM Light Toolkit (see
+              <externalLink>
+                <linkText>http://mvvmlight.codeplex.com/</linkText>
+                <linkUri>http://mvvmlight.codeplex.com/</linkUri>
+              </externalLink>)
+              by Laurent Bugnion which is licensed under the MIT License (MIT).
+            </para>
+
+
+            <quote>
+              Copyright (c) 2009 Laurent Bugnion (GalaSoft), laurent@galasoft.ch
+            </quote>
+            <quote>
+              Permission is hereby granted, free of charge, to any person obtaining
+              a copy of this software and associated documentation files (the "Software"),
+              to deal in the Software without restriction, including without limitation
+              the rights to use, copy, modify, merge, publish, distribute, sublicense,
+              and/or sell copies of the Software, and to permit persons to whom the
+              Software is furnished to do so, subject to the following conditions:
+            </quote>
+            <quote>
+              The above copyright notice and this permission notice shall be included
+              in all copies or substantial portions of the Software.
+            </quote>
+            <quote>
+              THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+              OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+              FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+              THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+              OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+              ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+              OTHER DEALINGS IN THE SOFTWARE.
+            </quote>
+          </listItem>
+          <listItem>
+            <para>
+              Portions of the code are based on the Nito MVVM (WPF) Library (see
+              <externalLink>
+                <linkText>http://nitomvvm.codeplex.com/</linkText>
+                <linkUri>http://nitomvvm.codeplex.com/</linkUri>
+              </externalLink>)
+              which is licensed under the New BSD License.
+            </para>
+
+            <quote>
+              Copyright (c) 2009, Nito Programs
+              All rights reserved.
+            </quote>
+            <quote>
+              Redistribution and use in source and binary forms, with or without
+              modification, are permitted provided that the following conditions are met:
+            </quote>
+            <quote>
+              1. Redistributions of source code must retain the above copyright notice, this
+              list of conditions and the following disclaimer.
+            </quote>
+            <quote>
+              2. Redistributions in binary form must reproduce the above copyright notice,
+              this list of conditions and the following disclaimer in the documentation
+              and/or other materials provided with the distribution.
+            </quote>
+            <quote>
+              3. Neither the name of Nito Programs nor the names of its contributors may be
+              used to endorse or promote products derived from this software without
+              specific prior written permission.
+            </quote>
+            <quote>
+              THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+              AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+              IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+              ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+              LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+              CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+              SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+              INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+              CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+              ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+              POSSIBILITY OF SUCH DAMAGE.
+            </quote>
+          </listItem>
+          <listItem>
+            <para>
+              Portions of the code are based on the "WPF MVVM Helper Library" by Mark Smith
+              (see
+              <externalLink>
+                <linkText>http://mvvmhelpers.codeplex.com/</linkText>
+                <linkUri>http://mvvmhelpers.codeplex.com/</linkUri>
+              </externalLink>)
+              which is licensed under the MIT License (MIT).
+            </para>
+
+            <quote>
+              Copyright (c) 2008-2010 JulMar Technology, Inc,
+            </quote>
+            <quote>
+              Permission is hereby granted, free of charge, to any person obtaining
+              a copy of this software and associated documentation files (the "Software"),
+              to deal in the Software without restriction, including without limitation
+              the rights to use, copy, modify, merge, publish, distribute, sublicense,
+              and/or sell copies of the Software, and to permit persons to whom the
+              Software is furnished to do so, subject to the following conditions:
+            </quote>
+            <quote>
+              The above copyright notice and this permission notice shall be included
+              in all copies or substantial portions of the Software.
+            </quote>
+            <quote>
+              THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+              OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+              FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+              THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+              OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+              ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+              OTHER DEALINGS IN THE SOFTWARE.
+            </quote>
+          </listItem>
+          <listItem>
+            <para>
+              Portions of the code are based on the &quot;patterns &amp; practices Composite Application Guidance for WPF and Silverlight&quot;
+              (PRISM) which is licensed under the
+              <externalLink>
+                <linkText>Microsoft patterns and practices license</linkText>
+                <linkUri>http://compositewpf.codeplex.com/license</linkUri>
+              </externalLink>.
+            </para>
+
+          </listItem>
+          <listItem>
+            <para>
+              The CommandReference class is based on the WPF Model-View-ViewModel Toolkit
+              (<externalLink>
+                <linkText>http://wpf.codeplex.com/Wiki/View.aspx?title=WPF%20Model-View-ViewModel%20Toolkit</linkText>
+                <linkUri>http://wpf.codeplex.com/Wiki/View.aspx?title=WPF%20Model-View-ViewModel%20Toolkit</linkUri>
+              </externalLink>) which is licensed under the <link xlink:href="#MsPL">Microsoft Public License (Ms-PL)</link>.
+            </para>
+          </listItem>
+        </list>
+      </content>
+    </section>
+
+
+
+    <section address="Appendix">
+      <title>Appendix</title>
+      <content>
+        <para>Here are the license texts for reference. Read the credits above to learn where these licenses apply.</para>
+      </content>
+      <sections>
+        <section address="MsPL">
+          <title>Microsoft Public License (Ms-PL)</title>
+          <content>
+            <quote>
+              This license governs use of the accompanying software. If you use the software, you accept this
+              license. If you do not accept the license, do not use the software.
+            </quote>
+            <quote>
+              1. Definitions
+            </quote>
+            <quote>
+              The terms "reproduce," "reproduction," "derivative works," and "distribution" have the same
+              meaning here as under U.S. copyright law.
+            </quote>
+            <quote>
+              A "contribution" is the original software, or any additions or changes to the software.
+            </quote>
+            <quote>
+              A "contributor" is any person that distributes its contribution under this license.
+            </quote>
+            <quote>
+              "Licensed patents" are a contributor's patent claims that read directly on its contribution.
+            </quote>
+            <quote>
+              2. Grant of Rights
+            </quote>
+            <quote>
+              (A) Copyright Grant- Subject to the terms of this license, including the license conditions and
+              limitations in section 3, each contributor grants you a non-exclusive, worldwide, royalty-free
+              copyright license to reproduce its contribution, prepare derivative works of its contribution, and
+              distribute its contribution or any derivative works that you create.
+            </quote>
+            <quote>
+              (B) Patent Grant- Subject to the terms of this license, including the license conditions and
+              limitations in section 3, each contributor grants you a non-exclusive, worldwide, royalty-free
+              license under its licensed patents to make, have made, use, sell, offer for sale, import, and/or
+              otherwise dispose of its contribution in the software or derivative works of the contribution in
+              the software.
+            </quote>
+            <quote>
+              3. Conditions and Limitations
+            </quote>
+            <quote>
+              (A) No Trademark License- This license does not grant you rights to use any contributors' name,
+              logo, or trademarks.
+            </quote>
+            <quote>
+              (B) If you bring a patent claim against any contributor over patents that you claim are infringed
+              by the software, your patent license from such contributor to the software ends automatically.
+            </quote>
+            <quote>
+              (C) If you distribute any portion of the software, you must retain all copyright, patent,
+              trademark, and attribution notices that are present in the software.
+            </quote>
+            <quote>
+              (D) If you distribute any portion of the software in source code form, you may do so only under
+              this license by including a complete copy of this license with your distribution. If you
+              distribute any portion of the software in compiled or object code form, you may only do so under a
+              license that complies with this license.
+            </quote>
+            <quote>
+              (E) The software is licensed "as-is." You bear the risk of using it. The contributors give no
+              express warranties, guarantees or conditions. You may have additional consumer rights under your
+              local laws which this license cannot change. To the extent permitted under your local laws, the
+              contributors exclude the implied warranties of merchantability, fitness for a particular purpose
+              and non-infringement.
+            </quote>
+          </content>
+        </section>
+      </sections>
+    </section>
+
+
+
+  </developerConceptualDocument>
+</topic>

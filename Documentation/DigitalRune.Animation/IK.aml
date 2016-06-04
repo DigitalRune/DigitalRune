@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="64fa1edd-5392-421b-b647-6379fea78318" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                DigitalRune Animation supports various Inverse Kinematics (IK) methods
+                that can be used to procedurally transform a skeleton.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="IK">
+            <title>Inverse kinematics (IK)</title>
+            <content>
+                <para>
+                    Inverse kinematics (IK) is used to procedurally transforms the bones of
+                    a skeleton in order to achieve a desired pose. For instance, a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.LookAtIKSolver</codeEntityReference>
+                    rotates a bone (e.g. a head) to look into a desired direction. A
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.TwoJointIKSolver</codeEntityReference>
+                    can be used to bend/stretch a leg so that it touches the ground, or to make
+                    an arm reach a certain target.
+                </para>
+                <para>
+                    Typical IK tasks are:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Let the character head turn to look at a target position.
+                    </listItem>
+                    <listItem>
+                        Let an arm reach for a target.
+                    </listItem>
+                    <listItem>
+                        Manipulate a leg, so that the foot touches the ground exactly.
+                    </listItem>
+                    <listItem>
+                        Manipulate a leg so that its ground position does not change to remove "foot sliding" in animations.
+                    </listItem>
+                </list>
+                <para>
+                    DigitalRune Animations supports various IK methods:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.LookAtIKSolver</codeEntityReference>:
+                        Can be used to make a bone look at or point at a target position.
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.TwoJointIKSolver</codeEntityReference>:
+                        Manipulates two bones connected by a hinge joint (including hinge limits). This can be used for arm and leg IK.
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.ClosedFormIKSolver</codeEntityReference>:
+                        Manipulates a bone chain with an arbitrary number of bones. Limits are not supported.
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.CcdIKSolver</codeEntityReference>:
+                        Manipulates a bone chain with an arbitrary number of bones. This method is iterative and supports limits.
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.JacobianTransposeIKSolver</codeEntityReference>:
+                        Manipulates a bone chain with an arbitrary number of bones. This method is iterative and supports limits.
+                    </listItem>
+                </list>
+                <para>
+                    See base class <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.IKSolver</codeEntityReference>
+                    and the derived class for more information.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="ClassDiagram">
+            <title>Class diagram</title>
+            <content>
+                <mediaLink>
+                    <image xlink:href="ClassDiagramAnimationCharacterIK"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Sample">
+            <title>Sample</title>
+            <content>
+                <para>
+                    The character animation samples (see <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />)
+                    contains several IK samples.
+                </para>
+                <mediaLink>
+                    <caption placement="after" lead="Screenshot">CharacterAnimationSample: A character looking at a target using Inverse Kinematics</caption>
+                    <image xlink:href="CharacterAnimationSample-LookAt"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Tips">
+            <title>General inverse kinematic tips</title>
+            <content>
+                <para>Here are some general thoughts on solving IK problems:</para>
+                <list class="bullet">
+                    <listItem>
+                        If possible, solve the problem manually using math, geometry and trigonometry.
+                        Simple 2-bone chains can be solved using the
+                        <externalLink>
+                            <linkText>Law of Cosines</linkText>
+                            <linkUri>http://en.wikipedia.org/wiki/Law_of_cosines</linkUri>
+                        </externalLink>.
+                    </listItem>
+                    <listItem>
+                        If you can solve at least part of the problem manually, do this. This will help the
+                        IK solver to find a better/more stable/faster solution. For example: Rotate the root
+                        bone to manually align a bone chain and then use an IK solver to compute the remaining angles.
+                    </listItem>
+                    <listItem>
+                        Use a specialized IK solver, e.g.
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.LookAtIKSolver</codeEntityReference>
+                        or
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Character.TwoJointIKSolver</codeEntityReference>,
+                        if applicable.
+                    </listItem>
+                    <listItem>
+                        Otherwise use general IK solvers.
+                    </listItem>
+                    <listItem>
+                        Use physics simulation for very complex chains or constraints – or use physics if you
+                        are more familiar with our physics API compared to our animation API.
+                        The DigitalRune samples contain an "IKPhysicsSample", which shows how to use physics
+                        simulation to solve a complex IK problem.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Subtopics">
+            <title>Subtopics</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        <link xlink:href="e6f0e7fc-85dd-4722-af1b-dcba453f9418" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="147a6b63-6353-40c9-a902-e842759e3eee" />
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

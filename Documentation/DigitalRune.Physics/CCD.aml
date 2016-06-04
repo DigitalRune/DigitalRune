@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="b52c86be-d31e-4c6f-9892-331af87a0703" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This section explains how Continuous Collision Detection (CCD) is used in the physics simulation.
+            </para>
+        </introduction>
+        
+
+        <section address="CCD">
+            <title>Continuous Collision Detection (CCD)</title>
+            <content>
+                <para>
+                    The purpose of <newTerm>Continuous Collision Detection</newTerm> (CCD) is to detect collisions of fast moving objects that would otherwise be missed.
+                    The opposite of CCD is Discrete Collision Detection which only checks for collision at one position
+                    for each frame. Collisions between the old position and new position are not detected.
+                    Example: A bullet (e.g. a small sphere shape) is fired at a wall. In one frame the bullet is in
+                    front of the wall. In the next frame the bullet is behind the wall without touching it. If this
+                    happens Discrete Collision Detection does not report a collision. This problem is known as "tunneling".
+                    CCD is more expensive, but detects nearly all collisions. (CCD is not perfect. For example, some collisions
+                    that occur because of rotational movement can still be missed. But such cases are usually
+                    rare and not noticeable.)
+                    See also <link xlink:href="cd2fc090-d3fd-4a0f-a7d3-1759241c8545" />.
+                </para>
+                <para>
+                    The physics simulation supports CCD. If CCD is enabled, the simulation uses a strategy
+                    called "Motion Clamping" to deal with fast moving objects: In each time step fast
+                    moving objects are only moved to their first time of impact, so that a collision is
+                    detected in the next time step. This is obviously not physically correct because the
+                    fast moving object moves a smaller distance than it should - but for fast objects like
+                    bullets it is more important to detect all collisions and it is not noticeable that
+                    the movement distance is clamped.
+                </para>
+                <para>
+                    The CCD settings of the simulation can be changed in
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Settings.MotionSettings</codeEntityReference>
+                    (see <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Simulation.Settings</codeEntityReference>).
+                    CCD is only performed for rigid bodies that have a velocity beyond a
+                    certain threshold and if CCD is enabled for the body
+                    (see <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.RigidBody.CcdEnabled</codeEntityReference>).
+                    CCD can be globally enabled or disabled. Further, a predicate method
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Settings.MotionSettings.CcdFilter</codeEntityReference>
+                    can be specified to control when CCD is used. This predicate method can be used
+                    to filter unimportant CCD tests (e.g. player vs. debris particles) and
+                    make sure that CCD is only performed for game critical tests (e.g. player vs. wall).
+                </para>
+                <alert class="tip">
+                    <para>
+                        More general information about CCD can be found in the following article:
+                        <link xlink:href="138fc8fe-c536-40e0-af6b-0fb7e8eb9623" />
+                    </para>
+                </alert>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.RigidBody.CcdEnabled</codeEntityReference>
+            <codeEntityReference qualifyHint="true">T:DigitalRune.Physics.Settings.MotionSettings</codeEntityReference>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

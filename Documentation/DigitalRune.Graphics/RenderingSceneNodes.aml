@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="0d6d2221-c9da-4aa7-bee4-4d2bacae9bc4" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="SceneNodeRenderer">
+            <title>SceneNodeRenderers</title>
+            <content>
+                <para>
+                    Scene nodes that are marked as "renderable" (see property <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.SceneGraph.SceneNode.IsRenderable</codeEntityReference>)
+                    can be rendered. A
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneNodeRenderer</codeEntityReference>
+                    (base class) renders scene nodes.
+                    DigitalRune Graphics provides
+                    several scene node renderers. Each renderer handles one or more types of scene nodes. For
+                    example:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.MeshRenderer</codeEntityReference>
+                        handles <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshNode</codeEntityReference>s.
+                    </listItem>
+                    <listItem>
+                        The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.DecalRenderer</codeEntityReference>
+                        handles <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.DecalNode</codeEntityReference>s.
+                    </listItem>
+                    <listItem>
+                        The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.BillboardRenderer</codeEntityReference>
+                        handles <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.BillboardNode</codeEntityReference>s
+                        and <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ParticleSystemNode</codeEntityReference>s.
+                    </listItem>
+                    <listItem>
+                        etc.
+                    </listItem>
+                </list>
+                <para>
+                    Usually the graphics are rendered into the current render target. However, some
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneNodeRenderer</codeEntityReference>s
+                    render into a different render target, for example:
+                    the
+                    like
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        The
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.ShadowMapRenderer</codeEntityReference>
+                        renders into the shadow maps (<codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.Shadow.ShadowMap</codeEntityReference>).
+                    </listItem>
+                    <listItem>
+                        The
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.CloudMapRenderer</codeEntityReference>
+                        renders into the cloud map textures (<codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.CloudMap.Texture</codeEntityReference>).
+                    </listItem>
+                    <listItem>
+                        etc.
+                    </listItem>
+                </list>
+                <para>
+                    Custom scene node renderers can be added when needed. See <link xlink:href="578746ac-7e3c-42b5-b9c9-6900714c966e" />.
+                </para>
+                <para>
+                    Scene node renderers need to be called explicitly in the graphics screen that renders a scene graph -
+                    renderers are not called automatically!
+                </para>
+            </content>
+        </section>
+
+
+        <section address="SceneRenderer">
+            <title>SceneRenderer</title>
+            <content>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneRenderer</codeEntityReference>
+                    is a special type of scene node renderer. The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneRenderer</codeEntityReference>
+                    is a collection of other scene node renderers, i.e. it can be used to combine different
+                    scene node renderers into a single instance.
+                </para>
+                <code language="c#" title="Example (C#): Create a renderer that handles meshes, billboards, and particles.">
+                    <![CDATA[
+sceneRenderer = new SceneRenderer();
+sceneRenderer.Renderers.Add(new MeshRenderer());
+sceneRenderer.Renderers.Add(new BillboardRenderer(graphicsService, 2048));
+          ]]>
+                </code>
+                <para>
+                    The main purpose of the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneRenderer</codeEntityReference>
+                    is to correctly sort scene nodes and automatically dispatch them in batches to the correct
+                    renderer.
+                </para>
+                <para>
+                    Example: Transparent (alpha-blended) objects need to be rendered back-to-front. That means
+                    the scene nodes need to be sorted by depth. Then depending on the type the scene nodes
+                    need to be passed to the correct renderer. The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshNode</codeEntityReference>s
+                    need to be passed to the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.MeshRenderer</codeEntityReference>,
+                    the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.BillboardNode</codeEntityReference>s
+                    need to be passed to the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.BillboardRenderer</codeEntityReference>,
+                    etc. The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneRenderer</codeEntityReference>
+                    takes care of this.
+                </para>
+                <code language="c#" title="Example (C#): Render transparent (alpha-blended) scene nodes">
+                    <![CDATA[
+// Set render states.
+graphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
+graphicsDevice.DepthStencilState = DepthStencilState.DepthRead;
+graphicsDevice.BlendState = BlendState.AlphaBlend;
+
+// Select render pass.
+context.RenderPass = "AlphaBlend";
+
+// Render a list of scene nodes (mesh nodes, billboard nodes, ...).
+sceneRenderer.Render(sceneNodes, context, RenderOrder.BackToFront);
+
+// Optional: If one of the meshes uses floating-point texture, it might be 
+// necessary to reset the texture stage. Otherwise, the subsequent code may 
+// throw an exception in XNA.
+graphicsDevice.ResetTextures();
+          ]]>
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

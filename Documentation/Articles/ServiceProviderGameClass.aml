@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="36504333-0933-40d6-bc90-f7c840fcc1f8" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <alert class="caution">
+                <para>
+                    This article discusses how you can use the Service Provider pattern to create a simple, clean
+                    Game class in XNA. Please note, the example code uses an obsolete service provider
+                    implementation. Have a look a the DigitalRune <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" /> to see
+                    the most recent implementation.
+                </para>
+            </alert>
+            <para>
+                In all XNA games you have to create your own Game class that derives from the Game base class.
+                Here is a pattern in which we use the service provider pattern to create a clear structure
+                for our game class.
+            </para>
+            <para>
+                In many XNA games and samples the Game class does a lot of stuff and is maybe the most
+                complex class of the application. This makes the source code difficult to understand and
+                hard to re-use. We suggest two things to improve this:
+            </para>
+            <list class="bullet">
+                <listItem>
+                    Use separate managers for the game’s sub-systems (e.g. graphics, physics, UI, …) and
+                    make these sub-systems accessible using the service provider pattern.
+                </listItem>
+
+                <listItem>
+                    Separate game-specific game logic and drawing from the Game class.
+                </listItem>
+            </list>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Example">
+            <title>Example</title>
+            <content>
+                <para>
+                    Here is an example for a Game which uses several sub-systems (input, graphics, physics, GUI,
+                    game objects for game logic).
+                </para>
+                <code language="cs">
+                    <![CDATA[
+public class MyGame : Game {
+  private GraphicsManager _graphicsManager;
+  private PhysicsManager _physicsManager;
+  private UIManager _uiManager;
+  private InputManager _inputManager;
+  private GameObjectManager _gameObjectManager;
+
+  public MyGame() {
+    _graphicsManager = new GraphicsManager(this)
+    {
+      PreferredBackBufferWidth = 854,
+      PreferredBackBufferHeight = 480,
+      SynchronizeWithVerticalRetrace = false
+    };
+    Content.RootDirectory = "Content";
+    IsMouseVisible = true;
+    IsFixedTimeStep = true;
+  }
+  
+  protected override void Initialize() {
+    // ----- Initialize Services.
+    ServiceManager.GlobalServices = Services;
+
+    Services.AddService(typeof(IGraphicsService), _graphicsManager);
+
+    _physicsManager = new PhysicsManager();
+    Services.AddService(typeof(IPhysicsService), _physicsManager);
+
+    _inputManager = new InputManager(false);
+    Services.AddService(typeof(IInputService), _inputManager);
+
+    _uiManager = new UIManager(this, _inputManager);
+    Services.AddService(typeof(IUIService), _uiManager);
+
+    _gameObjectManager = new GameObjectManager();
+    Services.AddService(typeof(IGameObjectService), _gameObjectManager);
+
+    // ----- Add GameComponents
+    Components.Add(new MyGameComponent(this));
+
+    base.Initialize();
+  }
+
+  protected override void Update(GameTime gameTime) {
+    float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+    _inputManager.Update(deltaTime);
+    base.Update(gameTime);
+    _uiManager.Update(deltaTime);
+    _gameObjectManager.Update(deltaTime);
+    _physicsManager.Update(deltaTime);
+  }
+}]]>
+                </code>
+                <para>
+                    This is it. The private fields define the sub-systems:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        GraphicsManager is derived from the XNA GraphicsDeviceManager class.
+                    </listItem>
+                    <listItem>
+                        PhysicsManager takes care of the physics simulation.
+                    </listItem>
+                    <listItem>
+                        UIManager manages UI controls (windows, text boxes, buttons, etc.)
+                    </listItem>
+                    <listItem>
+                        InputManager manages input devices (keyboard, mouse, detecting key/button presses
+                        and double clicks, key/button repetition, etc.)
+                    </listItem>
+                    <listItem>
+                        GameObjectManager manages game objects (the player camera, the 3D boxes, etc.)
+                    </listItem>
+                </list>
+                <para>
+                    The constructor is similar to most other XNA samples.
+                </para>
+                <para>
+                    The Initialize() method does following things:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                            Store the service provider in a global variable (ServiceManager.GlobalServices).
+                    </listItem>
+                    <listItem>
+                        Create the managers and register their services.
+                    </listItem>
+                    <listItem>
+                        Add one or more GameComponents that defines the game logic and rendering of the game.
+                    </listItem>
+                </list>
+                <para>
+                    The Update method updates the sub-systems.
+                </para>
+                <para>
+                    A few important takeaways:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        The Game class does not define any new public properties or methods.
+                    </listItem>
+                    <listItem>
+                        It clearly defines which services will be available.
+                    </listItem>
+                    <listItem>
+                            It clearly tells in which order the services are updated in each frame -
+                            which is very important, especially if you use a physics simulation or if you want to
+                            parallelize this game loop later on.
+                    </listItem>
+                    <listItem>
+                        All the custom game logic and drawing is separated into a game component.
+                    </listItem>
+                    <listItem>
+                            The game does not even override the Draw method! MyGameComponent is a
+                            DrawableGameComponent and is responsible for the drawing code.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Conclusion">
+            <title>Conclusion</title>
+            <content>
+                <para>
+                    Use the service-manager pattern to structure your subsystems. Separate custom game
+                    logic and custom rendering from the main game class. This is one possible design that we
+                    have used recently and it has helped to make our code easier to read and to maintain.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

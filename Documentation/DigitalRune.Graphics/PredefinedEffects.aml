@@ -1,0 +1,1901 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="fda15306-d5dc-449c-850d-82227359d35b" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                DigitalRune Graphics contains several predefined effects (see also
+                <link xlink:href="2631164b-0b8b-47b2-9cda-f7923d7518f4" />).
+                This topic contains a list of all included effects.
+            </para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="About">
+            <title>About predefined effects</title>
+            <content>
+                <para>
+                    The effects listed in this topic can be used to render models.
+                    (This topic does not contain effects used for post-processing or other render passes.)
+                </para>
+                <para>
+                    Supported features:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Diffuse color/texture
+                    </listItem>
+                    <listItem>
+                        Specular color/texture
+                    </listItem>
+                    <listItem>
+                        Specular power
+                    </listItem>
+                    <listItem>
+                        Morphing (up to 5 morph targets)
+                    </listItem>
+                    <listItem>
+                        Mesh skinning (up to 72 bones)
+                    </listItem>
+                    <listItem>
+                        Normal map
+                    </listItem>
+                    <listItem>
+                        Emissive map (The emissive mask is stored in the alpha channel of the specular texture.)
+                    </listItem>
+                    <listItem>
+                        Alpha test (The alpha mask is stored in the alpha channel of the diffuse texture.)
+                    </listItem>
+                    <listItem>
+                        Screen-door transparency
+                    </listItem>
+                </list>
+                <para>
+                    The tables below list the supported combinations. New variants or combinations can be added
+                    as needed. The existing effects can also be used as a reference implementation for writing
+                    custom effects. The source code of these effects is included in the DigitalRune Engine.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="GBuffer">
+            <title>G-buffer pass</title>
+            <content>
+                <para>
+                    In the "GBuffer" pass a light pre-pass renderer renders the models into the G-Buffer. The
+                    G-buffer stores depth, normal, and specular power of each pixel. The following effects can
+                    be used for the G-buffer pass:
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Effect</para>
+                            </entry>
+                            <entry>
+                                <para>Morphing</para>
+                            </entry>
+                            <entry>
+                                <para>Mesh Skinning</para>
+                            </entry>
+                            <entry>
+                                <para>Normal Map</para>
+                            </entry>
+                            <entry>
+                                <para>Alpha Test</para>
+                            </entry>
+                            <entry>
+                                <para>Screen-Door Transparency</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/GBuffer</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/GBufferSkinned</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/GBufferMorphSkinned</para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/GBufferNormal</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/GBufferNormalSkinned</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/GBufferNormalMorphSkinned</para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/GBufferAlphaTest</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/GBufferAlphaTestNormal</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/GBufferTransparent</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/GBufferNormalTransparent</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                    </row>
+                </table>
+                <para>
+                    These effects use the following effect parameters:
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Parameter</para>
+                            </entry>
+                            <entry>
+                                <para>Type</para>
+                            </entry>
+                            <entry>
+                                <para>Description</para>
+                            </entry>
+                            <entry>
+                                <para>Used By</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>SpecularPower</para>
+                        </entry>
+                        <entry>
+                            <para>float</para>
+                        </entry>
+                        <entry>
+                            <para>The specular power (a.k.a. specular exponent).</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                GBuffer,
+                                GBufferAlphaTest,
+                                GBufferSkinned,
+                                GBufferMorphSkinned,
+                                GBufferNormal,
+                                GBufferAlphaTestNormal,
+                                GBufferNormalSkinned,
+                                GBufferMorphNormalSkinned,
+                                GBufferNormalTransparent,
+                                GBufferTransparent
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DiffuseTexture</para>
+                        </entry>
+                        <entry>
+                            <para>Texture</para>
+                        </entry>
+                        <entry>
+                            <para>The diffuse texture (RGB) with alpha (A).</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                GBufferAlphaTest,
+                                GBufferAlphaTestNormal
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>NormalTexture</para>
+                        </entry>
+                        <entry>
+                            <para>Texture</para>
+                        </entry>
+                        <entry>
+                            <para>The normal map.</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                GBufferNormal,
+                                GBufferAlphaTestNormal,
+                                GBufferNormalSkinned,
+                                GBufferMorphNormalSkinned,
+                                GBufferNormalTransparent,
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>ReferenceAlpha</para>
+                        </entry>
+                        <entry>
+                            <para>float</para>
+                        </entry>
+                        <entry>
+                            <para>The reference alpha for alpha testing.</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                GBufferAlphaTest,
+                                GBufferAlphaTestNormal,
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>InstanceAlpha</para>
+                        </entry>
+                        <entry>
+                            <para>float</para>
+                        </entry>
+                        <entry>
+                            <para>The opacity value for screen-door transparency.</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                GBufferNormalTransparent,
+                                GBufferTransparent
+                            </para>
+                        </entry>
+                    </row>
+                </table>
+            </content>
+        </section>
+
+
+        <section address="Material">
+            <title>Material pass (deferred lighting)</title>
+            <content>
+                <para>
+                    In the "Material" pass a light pre-pass renderer combines the material properties
+                    (diffuse color, specular color, etc.) with the light information (diffuse light,
+                    specular light) stored in the light buffer. The following effects can be used for
+                    the Material pass:
+                </para>
+
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Effect</para>
+                            </entry>
+                            <entry>
+                                <para>Morphing</para>
+                            </entry>
+                            <entry>
+                                <para>Mesh Skinning</para>
+                            </entry>
+                            <entry>
+                                <para>Alpha Test</para>
+                            </entry>
+                            <entry>
+                                <para>Emissive Map</para>
+                            </entry>
+                            <entry>
+                                <para>Screen-Door Transparency</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/Material</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/MaterialSkinned</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/MaterialMorphSkinned</para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/MaterialAlphaTest</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/MaterialAlphaTestEmissive</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/MaterialEmissive</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/MaterialEmissiveSkinned</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/MaterialTransparent</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                    </row>
+                </table>
+
+                <para>
+                    These effects use the following effect parameters:
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Parameter</para>
+                            </entry>
+                            <entry>
+                                <para>Type</para>
+                            </entry>
+                            <entry>
+                                <para>Description</para>
+                            </entry>
+                            <entry>
+                                <para>Used By</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>DiffuseColor</para>
+                        </entry>
+                        <entry>
+                            <para>float3</para>
+                        </entry>
+                        <entry>
+                            <para>The diffuse material color.</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Material,
+                                MaterialAlphaTest,
+                                MaterialAlphaTestEmissive,
+                                MaterialEmissive,
+                                MaterialEmissiveSkinned,
+                                MaterialMorphSkinned
+                                MaterialSkinned,
+                                MaterialTransparent
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>SpecularColor</para>
+                        </entry>
+                        <entry>
+                            <para>float3</para>
+                        </entry>
+                        <entry>
+                            <para>The specular material color.</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Material,
+                                MaterialAlphaTest,
+                                MaterialAlphaTestEmissive,
+                                MaterialEmissive,
+                                MaterialEmissiveSkinned,
+                                MaterialMorphSkinned
+                                MaterialSkinned,
+                                MaterialTransparent
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>EmissiveColor</para>
+                        </entry>
+                        <entry>
+                            <para>float3</para>
+                        </entry>
+                        <entry>
+                            <para>The emissive material color.</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                MaterialAlphaTestEmissive,
+                                MaterialEmissive,
+                                MaterialEmissiveSkinned,
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DiffuseTexture</para>
+                        </entry>
+                        <entry>
+                            <para>Texture</para>
+                        </entry>
+                        <entry>
+                            <para>The diffuse texture (RGB) with optional alpha (A).</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Material,
+                                MaterialAlphaTest,
+                                MaterialAlphaTestEmissive,
+                                MaterialEmissive,
+                                MaterialEmissiveSkinned,
+                                MaterialMorphSkinned
+                                MaterialSkinned,
+                                MaterialTransparent
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>SpecularTexture</para>
+                        </entry>
+                        <entry>
+                            <para>Texture</para>
+                        </entry>
+                        <entry>
+                            <para>The specular texture (RGB) with optional emissive mask (A).</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Material,
+                                MaterialAlphaTest,
+                                MaterialAlphaTestEmissive,
+                                MaterialEmissive,
+                                MaterialEmissiveSkinned,
+                                MaterialMorphSkinned
+                                MaterialSkinned,
+                                MaterialTransparent
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>ReferenceAlpha</para>
+                        </entry>
+                        <entry>
+                            <para>float</para>
+                        </entry>
+                        <entry>
+                            <para>The reference alpha for alpha testing.</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                MaterialAlphaTest,
+                                MaterialAlphaTestEmissive,
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>InstanceAlpha</para>
+                        </entry>
+                        <entry>
+                            <para>float</para>
+                        </entry>
+                        <entry>
+                            <para>The opacity value for screen-door transparency.</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                MaterialTransparent
+                            </para>
+                        </entry>
+                    </row>
+                </table>
+            </content>
+        </section>
+
+        <section address="ShadowMap">
+            <title>Shadow map pass</title>
+            <content>
+                <para>
+                    In the "ShadowMap" pass the shadow-casting models are rendered into the shadow map.
+                    The following effects can be used for the shadow map pass:
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Effect</para>
+                            </entry>
+                            <entry>
+                                <para>Morphing</para>
+                            </entry>
+                            <entry>
+                                <para>Mesh Skinning</para>
+                            </entry>
+                            <entry>
+                                <para>Alpha Test</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/ShadowMap</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/ShadowMapSkinned</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/ShadowMapMorphSkinned</para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/ShadowMapAlphaTest</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/ShadowMapAlphaTestSkinned</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                    </row>
+                </table>
+                <para>
+                    These effects use the following effect parameters:
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Parameter</para>
+                            </entry>
+                            <entry>
+                                <para>Type</para>
+                            </entry>
+                            <entry>
+                                <para>Description</para>
+                            </entry>
+                            <entry>
+                                <para>Used By</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>DiffuseTexture</para>
+                        </entry>
+                        <entry>
+                            <para>Texture</para>
+                        </entry>
+                        <entry>
+                            <para>The diffuse texture (RGB) and alpha mask (A).</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                ShadowMapAlphaTest,
+                                ShadowMapAlphaTestSkinned
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>ReferenceAlpha</para>
+                        </entry>
+                        <entry>
+                            <para>float</para>
+                        </entry>
+                        <entry>
+                            <para>The reference alpha for alpha testing.</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                ShadowMapAlphaTest,
+                                ShadowMapAlphaTestSkinned
+                            </para>
+                        </entry>
+                    </row>
+                </table>
+            </content>
+        </section>
+
+
+        <section address="Forward">
+            <title>Alpha-blend pass and forward rendering</title>
+            <content>
+                <para>
+                    The "AlphaBlend" pass uses normal forward rendering to render models which can be transparent.
+                    The following effects can be used for forward rendering and alpha-blending:
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Effect</para>
+                            </entry>
+                            <entry>
+                                <para>Description</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/Forward</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Renders a model with diffuse and specular texture. The effect supports
+                                1 ambient light, 1 one directional light and 1 fog effect.
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/ForwardTwoSided</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Renders a model with diffuse and specular texture. The effect supports
+                                1 ambient light, 1 one directional light and 1 fog effect. The model is rendered in
+                                two passes: First the back-sides are rendered, then the front-sides are
+                                rendered.
+                            </para>
+                        </entry>
+                    </row>
+                </table>
+                <para>
+                    These effects use the following effect parameters:
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Parameter</para>
+                            </entry>
+                            <entry>
+                                <para>Type</para>
+                            </entry>
+                            <entry>
+                                <para>Description</para>
+                            </entry>
+                            <entry>
+                                <para>Used By</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>DiffuseColor</para>
+                        </entry>
+                        <entry>
+                            <para>float3</para>
+                        </entry>
+                        <entry>
+                            <para>The diffuse material color.</para>
+                        </entry>
+                        <entry>
+                            <para>Forward, ForwardTwoSided</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>SpecularColor</para>
+                        </entry>
+                        <entry>
+                            <para>float3</para>
+                        </entry>
+                        <entry>
+                            <para>The specular material color.</para>
+                        </entry>
+                        <entry>
+                            <para>Forward, ForwardTwoSided</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>SpecularPower</para>
+                        </entry>
+                        <entry>
+                            <para>float</para>
+                        </entry>
+                        <entry>
+                            <para>The specular power (a.k.a. specular exponent).</para>
+                        </entry>
+                        <entry>
+                            <para>Forward, ForwardTwoSided</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DiffuseTexture</para>
+                        </entry>
+                        <entry>
+                            <para>Texture</para>
+                        </entry>
+                        <entry>
+                            <para>The diffuse texture (RGB) and alpha (A).</para>
+                        </entry>
+                        <entry>
+                            <para>Forward, ForwardTwoSided</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>SpecularTexture</para>
+                        </entry>
+                        <entry>
+                            <para>Texture</para>
+                        </entry>
+                        <entry>
+                            <para>The specular texture.</para>
+                        </entry>
+                        <entry>
+                            <para>Forward, ForwardTwoSided</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>Alpha</para>
+                        </entry>
+                        <entry>
+                            <para>float</para>
+                        </entry>
+                        <entry>
+                            <para>The opacity of the mesh.</para>
+                        </entry>
+                        <entry>
+                            <para>Forward, ForwardTwoSided</para>
+                        </entry>
+                    </row>
+                </table>
+            </content>
+        </section>
+
+
+        <section address="Occluder">
+            <title>Occluder pass</title>
+            <content>
+                <para>
+                    The "Occluder" pass is a special pass that is used to render meshes into the occlusion
+                    buffer for occlusion culling. An example is given in:
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.OcclusionBuffer</codeEntityReference>
+                </para>
+                <alert class="warning">
+                    <para>
+                        Most meshes are too complex to be used as occluders. It is recommended to use occlusion
+                        proxies (see class <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Occluder</codeEntityReference>)
+                        instead.
+                    </para>
+                </alert>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Effect</para>
+                            </entry>
+                            <entry>
+                                <para>Mesh Skinning</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/Occluder</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/OccluderSkinned</para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                    </row>
+                </table>
+                <para>
+                    These effects do not require effect parameters.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="MatCap">
+            <title>MatCap effects</title>
+            <content>
+                <para>
+                    Material capture effects ("MatCap") render an object by sampling a surface material texture
+                    using the normal vector.
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Effect</para>
+                            </entry>
+                            <entry>
+                                <para>Mesh Skinning</para>
+                            </entry>
+                            <entry>
+                                <para>Normal Map</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/Matcap</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/MatcapSkinned</para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/MatcapNormal</para>
+                        </entry>
+                        <entry>
+                            <para></para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Materials/MatcapNormalSkinned</para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                        <entry>
+                            <para>X</para>
+                        </entry>
+                    </row>
+                </table>
+                <para>
+                    These effects use the following effect parameters:
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Parameter</para>
+                            </entry>
+                            <entry>
+                                <para>Type</para>
+                            </entry>
+                            <entry>
+                                <para>Description</para>
+                            </entry>
+                            <entry>
+                                <para>Used By</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>MatcapTexture</para>
+                        </entry>
+                        <entry>
+                            <para>Texture</para>
+                        </entry>
+                        <entry>
+                            <para>The material capture texture.</para>
+                        </entry>
+                        <entry>
+                            <para>Matcap, MatcapNormal, MatcapNormalSkinned, MatcapSkinned</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>NormalTexture</para>
+                        </entry>
+                        <entry>
+                            <para>Texture</para>
+                        </entry>
+                        <entry>
+                            <para>The normal map.</para>
+                        </entry>
+                        <entry>
+                            <para>MatcapNormal, MatcapNormalSkinned</para>
+                        </entry>
+                    </row>
+                </table>
+            </content>
+        </section>
+
+
+
+        <section address="StockEffects">
+            <title>XNA stock effects</title>
+            <content>
+                <para>
+                    The XNA stock effects are also supported:
+                </para>
+            </content>
+            <sections>
+                <section address="AlphaTestEffect">
+                    <title>AlphaTestEffect</title>
+                    <content>
+                        <para>
+                            The XNA
+                            <externalLink>
+                                <linkText>AlphaTestEffect</linkText>
+                                <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.alphatesteffect.aspx</linkUri>
+                            </externalLink>.
+                        </para>
+                        <para>
+                            This effect uses the following effect parameters:
+                        </para>
+                        <table>
+                            <tableHeader>
+                                <row>
+                                    <entry>
+                                        <para>Parameter</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Type</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Description</para>
+                                    </entry>
+                                </row>
+                            </tableHeader>
+                            <row>
+                                <entry>
+                                    <para>Alpha</para>
+                                </entry>
+                                <entry>
+                                    <para>float</para>
+                                </entry>
+                                <entry>
+                                    <para>The material alpha.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>DiffuseColor</para>
+                                </entry>
+                                <entry>
+                                    <para>float3</para>
+                                </entry>
+                                <entry>
+                                    <para>The diffuse material color.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>Texture</para>
+                                </entry>
+                                <entry>
+                                    <para>Texture</para>
+                                </entry>
+                                <entry>
+                                    <para>The diffuse texture.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>ReferenceAlpha</para>
+                                </entry>
+                                <entry>
+                                    <para>int</para>
+                                </entry>
+                                <entry>
+                                    <para>The reference alpha for alpha testing.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>VertexColorEnabled</para>
+                                </entry>
+                                <entry>
+                                    <para>bool</para>
+                                </entry>
+                                <entry>
+                                    <para>A value indicating whether vertex colors are enabled.</para>
+                                </entry>
+                            </row>
+                        </table>
+                    </content>
+                </section>
+                <section address="BasicEffect">
+                    <title>BasicEffect</title>
+                    <content>
+                        <para>
+                            The XNA
+                            <externalLink>
+                                <linkText>BasicEffect</linkText>
+                                <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.basiceffect.aspx</linkUri>
+                            </externalLink>.
+                        </para>
+                        <para>
+                            This effect uses the following effect parameters:
+                        </para>
+                        <table>
+                            <tableHeader>
+                                <row>
+                                    <entry>
+                                        <para>Parameter</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Type</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Description</para>
+                                    </entry>
+                                </row>
+                            </tableHeader>
+                            <row>
+                                <entry>
+                                    <para>Alpha</para>
+                                </entry>
+                                <entry>
+                                    <para>float</para>
+                                </entry>
+                                <entry>
+                                    <para>The material alpha.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>DiffuseColor</para>
+                                </entry>
+                                <entry>
+                                    <para>float3</para>
+                                </entry>
+                                <entry>
+                                    <para>The diffuse material color.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>EmissiveColor</para>
+                                </entry>
+                                <entry>
+                                    <para>float3</para>
+                                </entry>
+                                <entry>
+                                    <para>The emissive material color.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>SpecularColor</para>
+                                </entry>
+                                <entry>
+                                    <para>float3</para>
+                                </entry>
+                                <entry>
+                                    <para>The specular material color.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>SpecularPower</para>
+                                </entry>
+                                <entry>
+                                    <para>float</para>
+                                </entry>
+                                <entry>
+                                    <para>The specular power (a.k.a. specular exponent).</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>Texture</para>
+                                </entry>
+                                <entry>
+                                    <para>Texture</para>
+                                </entry>
+                                <entry>
+                                    <para>The diffuse texture.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>VertexColorEnabled</para>
+                                </entry>
+                                <entry>
+                                    <para>bool</para>
+                                </entry>
+                                <entry>
+                                    <para>A value indicating whether vertex colors are enabled.</para>
+                                </entry>
+                            </row>
+                        </table>
+                    </content>
+                </section>
+                <section address="DualTextureEffect">
+                    <title>DualTextureEffect</title>
+                    <content>
+                        <para>
+                            The XNA
+                            <externalLink>
+                                <linkText>DualTextureEffect</linkText>
+                                <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.dualtextureeffect.aspx</linkUri>
+                            </externalLink>.
+                        </para>
+                        <para>
+                            This effect uses the following effect parameters:
+                        </para>
+                        <table>
+                            <tableHeader>
+                                <row>
+                                    <entry>
+                                        <para>Parameter</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Type</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Description</para>
+                                    </entry>
+                                </row>
+                            </tableHeader>
+                            <row>
+                                <entry>
+                                    <para>Alpha</para>
+                                </entry>
+                                <entry>
+                                    <para>float</para>
+                                </entry>
+                                <entry>
+                                    <para>The material alpha.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>DiffuseColor</para>
+                                </entry>
+                                <entry>
+                                    <para>float3</para>
+                                </entry>
+                                <entry>
+                                    <para>The diffuse material color.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>Texture</para>
+                                </entry>
+                                <entry>
+                                    <para>Texture</para>
+                                </entry>
+                                <entry>
+                                    <para>The base texture.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>Texture2</para>
+                                </entry>
+                                <entry>
+                                    <para>Texture</para>
+                                </entry>
+                                <entry>
+                                    <para>The overlay texture.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>VertexColorEnabled</para>
+                                </entry>
+                                <entry>
+                                    <para>bool</para>
+                                </entry>
+                                <entry>
+                                    <para>A value indicating whether vertex colors are enabled.</para>
+                                </entry>
+                            </row>
+                        </table>
+                    </content>
+                </section>
+                <section address="EnvironmentMapEffect">
+                    <title>EnvironmentMapEffect</title>
+                    <content>
+                        <para>
+                            The XNA
+                            <externalLink>
+                                <linkText>EnvironmentMapEffect</linkText>
+                                <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.environmentmapeffect.aspx</linkUri>
+                            </externalLink>.
+                        </para>
+                        <para>
+                            This effect uses the following effect parameters:
+                        </para>
+                        <table>
+                            <tableHeader>
+                                <row>
+                                    <entry>
+                                        <para>Parameter</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Type</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Description</para>
+                                    </entry>
+                                </row>
+                            </tableHeader>
+                            <row>
+                                <entry>
+                                    <para>Alpha</para>
+                                </entry>
+                                <entry>
+                                    <para>float</para>
+                                </entry>
+                                <entry>
+                                    <para>The material alpha.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>DiffuseColor</para>
+                                </entry>
+                                <entry>
+                                    <para>float3</para>
+                                </entry>
+                                <entry>
+                                    <para>The diffuse material color.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>EmissiveColor</para>
+                                </entry>
+                                <entry>
+                                    <para>float3</para>
+                                </entry>
+                                <entry>
+                                    <para>The emissive material color.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>EnironmentMapSpecular</para>
+                                </entry>
+                                <entry>
+                                    <para>float3</para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        The specular light color which is multiplied by the environment map alpha and
+                                        added to the material. (Used to simulate specular highlights.)
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>EnvironmentMapAmount</para>
+                                </entry>
+                                <entry>
+                                    <para>float</para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        The amount of the environment map color that will be blended with the base texture.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>FresnelFactor</para>
+                                </entry>
+                                <entry>
+                                    <para>float</para>
+                                </entry>
+                                <entry>
+                                    <para>The Fresnel factor used for environment map blending.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>Texture</para>
+                                </entry>
+                                <entry>
+                                    <para>Texture</para>
+                                </entry>
+                                <entry>
+                                    <para>The diffuse texture.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>EnvironmentMap</para>
+                                </entry>
+                                <entry>
+                                    <para>TextureCube</para>
+                                </entry>
+                                <entry>
+                                    <para>The environment map texture.</para>
+                                </entry>
+                            </row>
+                        </table>
+                    </content>
+                </section>
+                <section address="SkinnedEffect">
+                    <title>SkinnedEffect</title>
+                    <content>
+                        <para>
+                            The XNA
+                            <externalLink>
+                                <linkText>SkinnedEffect</linkText>
+                                <linkUri>http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.graphics.skinnedeffect.aspx</linkUri>
+                            </externalLink>.
+                        </para>
+                        <para>
+                            This effect uses the following effect parameters:
+                        </para>
+                        <table>
+                            <tableHeader>
+                                <row>
+                                    <entry>
+                                        <para>Parameter</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Type</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Description</para>
+                                    </entry>
+                                </row>
+                            </tableHeader>
+                            <row>
+                                <entry>
+                                    <para>Alpha</para>
+                                </entry>
+                                <entry>
+                                    <para>float</para>
+                                </entry>
+                                <entry>
+                                    <para>The material alpha.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>DiffuseColor</para>
+                                </entry>
+                                <entry>
+                                    <para>float3</para>
+                                </entry>
+                                <entry>
+                                    <para>The diffuse material color.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>EmissiveColor</para>
+                                </entry>
+                                <entry>
+                                    <para>float3</para>
+                                </entry>
+                                <entry>
+                                    <para>The emissive material color.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>SpecularColor</para>
+                                </entry>
+                                <entry>
+                                    <para>float3</para>
+                                </entry>
+                                <entry>
+                                    <para>The specular material color.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>SpecularPower</para>
+                                </entry>
+                                <entry>
+                                    <para>float</para>
+                                </entry>
+                                <entry>
+                                    <para>The specular power (a.k.a. specular exponent).</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>Texture</para>
+                                </entry>
+                                <entry>
+                                    <para>Texture</para>
+                                </entry>
+                                <entry>
+                                    <para>The diffuse texture.</para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>WeightsPerVertex</para>
+                                </entry>
+                                <entry>
+                                    <para>int</para>
+                                </entry>
+                                <entry>
+                                    <para>The number of skinning weights per vertex (max 4).</para>
+                                </entry>
+                            </row>
+                        </table>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Decals">
+            <title>Decal effects</title>
+            <content>
+                <para>
+                    Decals are similar to models. They are also rendered using materials. However, decals need
+                    to be rendered with different vertex and pixel shaders and therefore require different effects.
+                </para>
+                <para>
+                    The following effects can be used for decals:
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Effect</para>
+                            </entry>
+                            <entry>
+                                <para>Description</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Decals/GBuffer</para>
+                        </entry>
+                        <entry>
+                            <para>Equivalent to DigitalRune/Materials/GBuffer.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Decals/GBufferAlphaTest</para>
+                        </entry>
+                        <entry>
+                            <para>Equivalent to DigitalRune/Materials/GBufferAlphaTest.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Decals/GBufferAlphaTestNormal</para>
+                        </entry>
+                        <entry>
+                            <para>Equivalent to DigitalRune/Materials/GBufferAlphaTestNormal.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Decals/GBufferNormal</para>
+                        </entry>
+                        <entry>
+                            <para>Equivalent to DigitalRune/Materials/GBufferNormal.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Decals/Material</para>
+                        </entry>
+                        <entry>
+                            <para>Equivalent to DigitalRune/Materials/Material.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Decals/MaterialAlphaTest</para>
+                        </entry>
+                        <entry>
+                            <para>Equivalent to DigitalRune/Materials/MaterialAlphaTest.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Decals/MaterialAlphaTestEmissive</para>
+                        </entry>
+                        <entry>
+                            <para>Equivalent to DigitalRune/Materials/MaterialAlphaTestEmissive.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>DigitalRune/Decals/MaterialEmissive</para>
+                        </entry>
+                        <entry>
+                            <para>Equivalent to DigitalRune/Materials/MaterialEmissive.</para>
+                        </entry>
+                    </row>
+                </table>
+            </content>
+        </section>
+
+
+        <section address="example">
+            <title>Example usage</title>
+            <content>
+                <para>
+                    Here is an example which shows how these effects can be used in a
+                    material definition file.
+                </para>
+                <code language="xml">
+                    <![CDATA[
+<?xml version="1.0" encoding="utf-8"?>
+<Material>
+  <Pass Name="Default" Effect="SkinnedEffect" Profile="Any">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="SpecularColor" Value="0.1,0.1,0.1" />
+    <Parameter Name="SpecularPower" Value="10" />
+    <Texture Name="Texture" File="upBodyC.tga" />
+  </Pass>
+  <Pass Name="ShadowMap" Effect="DigitalRune/Materials/ShadowMapSkinned" Profile="HiDef" />
+  <Pass Name="GBuffer" Effect="DigitalRune/Materials/GBufferNormalSkinned" Profile="HiDef">
+    <Parameter Name="SpecularPower" Value="10" />
+    <Texture Name="NormalTexture" Format="Normal" File="upBodyN.tga" />
+  </Pass>
+  <Pass Name="Material" Effect="DigitalRune/Materials/MaterialSkinned" Profile="HiDef">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="SpecularColor" Value="1,1,1" />
+    <Texture Name="DiffuseTexture" File="upBodyC.tga" />
+    <Texture Name="SpecularTexture" File="upBodyS.tga" />
+  </Pass>
+</Material>]]>
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

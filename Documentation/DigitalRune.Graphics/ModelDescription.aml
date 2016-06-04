@@ -1,0 +1,939 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="c5deb208-188f-4995-bb6b-c682a3997d40" revisionNumber="1">
+      <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+            <introduction>
+                  <para>
+                        This topic describes the purpose and structure of the <newTerm>model description</newTerm>
+                        (*.drmdl file).
+                  </para>
+                  <autoOutline>1</autoOutline>
+            </introduction>
+
+
+            <section address="DRMDL">
+                  <title>Model description (*.drmdl file)</title>
+                  <content>
+                        <para>
+                              The <newTerm>model description</newTerm> is an XML file with the file extension
+                              ".drmdl" or ".xml". It provides settings for processing a model and assigns
+                              materials to each submesh.
+                        </para>
+                        <para>
+                              Example:
+                        </para>
+                        <code language="xml" title="Model description: MyCharacter.drmdl">
+                              <![CDATA[
+<?xml version="1.0" encoding="utf-8"?>
+
+<Model File="MyCharacter.fbx"
+       AabbMinimum="-1,-0.2,-1"
+       AabbMaximum="1,2,1"
+       GenerateTangentFrames="True"
+       Scale="0.02">
+  <Mesh Name="Body">
+    <Submesh Material="Skin.drmat" />
+    <Submesh Material="Cloth.drmat" />
+  </Mesh>
+  <Mesh Name="Hat">
+    <Submesh Material="Hat.drmat" />
+  </Mesh>
+  <Animations ScaleCompression="0.01" 
+              RotationCompression="1" 
+              TranslationCompression="0.01">
+  </Animations>
+</Model>]]>
+                        </code>
+                        <para>
+                              When a model (e.g. a FBX file) is included in a content project, the DigitalRune
+                              model processor searches for a model description in the current folder.
+                              It looks for a file with the same name and the extension ".drmdl" or ".xml".
+                              For example, if the path of the model is <localUri>"Assets\Models\Dude.fbx"</localUri>
+                              the model description must be stored as <localUri>"Assets\Models\Dude.drmdl"</localUri>.
+                        </para>
+                        <para>
+                              If a model description is found, the model processor uses these settings for
+                              processing the model. If no matching model description is found, it uses the default settings.
+                        </para>
+                        <para>
+                              In most cases the model (e.g. the FBX file) is added to content project. But when
+                              using model descriptions it is also possible to add the *.drmdl files instead of
+                              the models to the content project. The model description references the actual model
+                              using the <codeInline>File</codeInline> attribute as shown above. Adding the model
+                              descriptions instead of the model to the content project has the following advantages:
+                        </para>
+                        <list class="bullet">
+                              <listItem>
+                                    The model description can reference the model using an absolute or relative path.
+                                    The model can be stored in a different folder.
+                              </listItem>
+                              <listItem>
+                                    In XNA it is usually not possible to import the same model multiple times.
+                                    Multiple model descriptions can reference the same model. That means, it is
+                                    possible to import and process the same model multiple times with different
+                                    settings.
+                              </listItem>
+                        </list>
+                  </content>
+            </section>
+
+
+            <section address="Model">
+                  <title>&lt;Model&gt;</title>
+                  <content>
+                        <para>
+                              The <codeInline>Model</codeInline> element has the following attributes:
+                        </para>
+                        <table>
+                              <tableHeader>
+                                    <row>
+                                          <entry>
+                                                <para>Attribute</para>
+                                          </entry>
+                                          <entry>
+                                                <para>Description</para>
+                                          </entry>
+                                          <entry>
+                                                <para>Example</para>
+                                          </entry>
+                                    </row>
+                              </tableHeader>
+                              <row>
+                                    <entry>
+                                          <para>File</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                Optional: The path and name of the model file.
+                                          </para>
+                                          <para>
+                                                This attribute is only relevant when the .drmdl file is included in the
+                                                content project instead of the actual model. The content pipeline will
+                                                import the specified model as described
+                                                <link xlink:href="c5deb208-188f-4995-bb6b-c682a3997d40#Import">
+                                                      below
+                                                </link>.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>File="Dude.fbx"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>AabbMaximum</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                Optional: The maximum corner for the axis-aligned bounding box (AABB) of the whole
+                                                model.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>AabbMaximum="2,2.5,1</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>AabbMinimum</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                Optional: The maximum corner for the axis-aligned bounding box (AABB) of the whole
+                                                model. If both <codeInline>AabbMaximum</codeInline> and <codeInline>AabbMinimum</codeInline>
+                                                are set, the default bounding shapes of all meshes are replaced with the specified
+                                                AABB.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>AabbMinimum="-2,-0.5,-1"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>GenerateTangentFrames</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                Optional: If enabled, binormals and tangents are generated for all meshes. (Existing
+                                                binormals and tangents remain unchanged - existing data is never removed or replaced.)
+                                          </para>
+                                          <para>
+                                                Allowed values are <codeInline>True</codeInline> and <codeInline>False</codeInline>.
+                                          </para>
+                                          <para>
+                                                The default value is <codeInline>False</codeInline>.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>GenerateTangentFrames="True"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>Importer</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                Optional: The type name of the content importer.
+                                          </para>
+                                          <para>
+                                                This attribute is only relevant when the .drmdl file is included in the
+                                                content project instead of the actual model. The .drmdl file references
+                                                the actual model and the content pipeline will import the model using the
+                                                specified importer.
+                                          </para>
+                                          <para>
+                                                If the attribute is missing, the content pipeline will choose the default
+                                                content importer based on the file extension of the model.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>Importer="FbxImporter"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>MaxDistance</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                Optional: The maximal distance up to which the model will be rendered.
+                                          </para>
+                                          <para>
+                                                See property <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.SceneGraph.SceneNode.MaxDistance</codeEntityReference>.
+                                          </para>
+                                          <para>
+                                                The default value is <codeInline>0</codeInline>, which means that distance culling
+                                                is disabled.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>MaxDistance="1000"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>PremultiplyVertexColors</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                Optional: If enabled, the vertex colors are converted to premultiplied alpha format.
+                                          </para>
+                                          <para>
+                                                Allowed values are <codeInline>True</codeInline> and <codeInline>False</codeInline>.
+                                          </para>
+                                          <para>
+                                                The default value is <codeInline>True</codeInline>.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>PremultiplyVertexColors="False"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>RotationX</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                Optional: A rotation angle in degrees. The model is rotated by the specified number
+                                                of degrees around the z-axis.
+                                          </para>
+                                          <para>
+                                                The default value is 0.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>RotationX="90"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>RotationY</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                Optional: A rotation angle in degrees. The model is rotated by the specified number
+                                                of degrees around the y-axis.
+                                          </para>
+                                          <para>
+                                                The default value is 0.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>RotationY="-90"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>RotationZ</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                Optional: A rotation angle in degrees. The model is rotated by the specified number
+                                                of degrees around the z-axis.
+                                          </para>
+                                          <para>
+                                                The default value is 0.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>RotationZ="180"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>Scale</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                Optional: A uniform scale factor, which is applied to the model.
+                                          </para>
+                                          <para>
+                                                The default value is 1.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>Scale="0.1"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>SwapWindingOrder</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                Optional: If enabled, the winding order of the faces is swapped.
+                                          </para>
+                                          <para>
+                                                Allowed values are <codeInline>True</codeInline> and <codeInline>False</codeInline>.
+                                          </para>
+                                          <para>
+                                                The default value is <codeInline>False</codeInline>.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>SwapWindingOrder="True"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                        </table>
+                        <para>
+                              The <codeInline>Model</codeInline> element may have one or more <codeInline>Mesh</codeInline>
+                              elements and an optional <codeInline>Animations</codeInline> element.
+                        </para>
+                  </content>
+            </section>
+
+
+            <section address="Mesh">
+                  <title>&lt;Mesh&gt;</title>
+                  <content>
+                        <para>
+                              The model descriptions usually has one <codeInline>Mesh</codeInline> element per mesh in
+                              the original model. The <codeInline>Name</codeInline> attribute needs to be set to match
+                              the element with a mesh of the model. The <codeInline>Mesh</codeInline> element is used
+                              to specify processing options for the meshes and to assign materials to the submeshes.
+                        </para>
+                        <para>
+                              The <codeInline>Mesh</codeInline> element is optional. If it is not specified, then the
+                              material processor tries to assign material using the texture names. For example, if an
+                              imported submesh uses a texture called <localUri>Wood.tga</localUri>, it will try to find
+                              a material definition file <localUri>Wood.drmat</localUri> in the folder that contains
+                              the texture. If a material definition is found, it is assigned to the submesh. If no material
+                              definition is found, the submesh will use the default material stored in the model.
+                        </para>
+                        <para>
+                              The <codeInline>Mesh</codeInline> element has the following attributes:
+                        </para>
+                        <table>
+                              <tableHeader>
+                                    <row>
+                                          <entry>
+                                                <para>Attribute</para>
+                                          </entry>
+                                          <entry>
+                                                <para>Description</para>
+                                          </entry>
+                                          <entry>
+                                                <para>Example</para>
+                                          </entry>
+                                    </row>
+                              </tableHeader>
+                              <row>
+                                    <entry>
+                                          <para>Name</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                The name of the mesh.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>Name="Body"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>GenerateTangentFrames</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                Optional: Specifies whether binormals and tangents are generated for this mesh.
+                                                (Existing binormals and tangents remain unchanged - existing data is never removed
+                                                or replaced.)
+                                          </para>
+                                          <para>
+                                                Allowed values are <codeInline>True</codeInline> and <codeInline>False</codeInline>.
+                                          </para>
+                                          <para>
+                                                The default value is <codeInline>False</codeInline>.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>GenerateTangentFrames="True"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>LodDistance</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                The LOD distance at which the mesh will be rendered. Only relevant if the mesh
+                                                belongs to a LOD group.
+                                          </para>
+                                          <para>
+                                                The default value is <codeInline>0</codeInline>.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>LodDistance="50"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>MaxDistance</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                Optional: The maximal distance up to which the mesh will be rendered.
+                                          </para>
+                                          <para>
+                                                See property <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.SceneGraph.SceneNode.MaxDistance</codeEntityReference>.
+                                          </para>
+                                          <para>
+                                                The default value is <codeInline>0</codeInline>, which means that distance culling
+                                                is disabled.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>MaxDistance="1000"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                        </table>
+                        <para>
+                              The <codeInline>Mesh</codeInline> element may contain one or more
+                              <codeInline>Submesh</codeInline> elements.
+                        </para>
+                  </content>
+            </section>
+
+
+            <section address="Submesh">
+                  <title>&lt;Submesh&gt;</title>
+                  <content>
+                        <para>
+                              The <codeInline>Submesh</codeInline> element assigns a material to each submesh. The order
+                              of the <codeInline>Submesh</codeInline> elements needs to match the order of the submeshes
+                              in the original model!
+                        </para>
+                        <para>
+                              The <codeInline>Submesh</codeInline> element has the following attributes:
+                        </para>
+                        <table>
+                              <tableHeader>
+                                    <row>
+                                          <entry>
+                                                <para>Attribute</para>
+                                          </entry>
+                                          <entry>
+                                                <para>Description</para>
+                                          </entry>
+                                          <entry>
+                                                <para>Example</para>
+                                          </entry>
+                                    </row>
+                              </tableHeader>
+                              <row>
+                                    <entry>
+                                          <para>GenerateTangentFrames</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                Optional: Specifies whether binormals and tangents are generated for this mesh.
+                                                (Existing binormals and tangents remain unchanged - existing data is never removed
+                                                or replaced.)
+                                          </para>
+                                          <para>
+                                                Allowed values are <codeInline>True</codeInline> and <codeInline>False</codeInline>.
+                                          </para>
+                                          <para>
+                                                The default value is <codeInline>False</codeInline>.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>GenerateTangentFrames="True"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>Material</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                The path of the material definition (*.drmat file).
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>Material="RustyMetal.drmat"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                        </table>
+                  </content>
+            </section>
+
+
+            <section address="Animations">
+                  <title>&lt;Animations&gt;</title>
+                  <content>
+                        <para>
+                              Any animations included in the model are automatically pre-processed and imported into the
+                              DigitalRune Graphics engine. The <codeInline>Animations</codeInline> element can be used
+                              to define further pre-processing options for animations.
+                        </para>
+                        <para>
+                              The <codeInline>Animations</codeInline> element has the following attributes.
+                        </para>
+                        <table>
+                              <tableHeader>
+                                    <row>
+                                          <entry>
+                                                <para>Attribute</para>
+                                          </entry>
+                                          <entry>
+                                                <para>Description</para>
+                                          </entry>
+                                          <entry>
+                                                <para>Examples</para>
+                                          </entry>
+                                    </row>
+                              </tableHeader>
+                              <row>
+                                    <entry>
+                                          <para>MergeFiles</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                Optional: A list of animation files, which are merged to the current model.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>MergeFiles="idle.fbx;run.fbx;jump.fbx"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>ScaleCompression</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                Optional: Enables key frame compression. The value is the max. allowed scale error
+                                                of the compressed animation.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>ScaleCompression="0.01"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>RotationCompression</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                Optional: Enables key frame compression. The value is the max. allowed rotation
+                                                error (in degrees) of the compressed animation.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>RotationCompression="3"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>TranslationCompression</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                Optional: Enables key frame compression. The value is the max. allowed translation
+                                                error of the compressed animation.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>TranslationCompression="0.001"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>AddLoopFrame</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                Optional: Adds a copy of the first key frame at the end of the
+                                                animation. This ensures that cyclic animations transition
+                                                smoothly when the last key frame is reached.
+                                          </para>
+                                          <para>
+                                                When an animation is played back with
+                                                <codeEntityReference qualifyHint="true">F:DigitalRune.Animation.LoopBehavior.Cycle</codeEntityReference>
+                                                or <codeEntityReference qualifyHint="true">F:DigitalRune.Animation.LoopBehavior.CycleOffset</codeEntityReference>
+                                                the first key frame needs to match the last key frame.
+                                                <codeInline>AddLoopFrame="True"</codeInline> inserts copy of the
+                                                first key frame at time = <legacyItalic>duration</legacyItalic>.
+                                                Existing key frames at time = <legacyItalic>duration</legacyItalic>
+                                                are overwritten.
+                                          </para>
+                                          <para>
+                                                Allowed values are <codeInline>True</codeInline> and <codeInline>False</codeInline>.
+                                          </para>
+                                          <para>
+                                                The default value is <codeInline>False</codeInline>.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>AddLoopFrame="True"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                        </table>
+                  </content>
+                  <sections>
+                        <section address="AnimationCompression">
+                              <title>Animation compression</title>
+                              <content>
+                                    <para>
+                                          Key frame animations can be memory intensive at runtime - in particular if the
+                                          exported animations store values for every frame. Animation compression can be applied
+                                          to reduce the memory requirements at runtime.
+                                    </para>
+                                    <para>
+                                          Animation compression is a lossy type of compression. The quality of the resulting
+                                          animation can be controlled by setting the attributes
+                                          <codeInline>ScaleCompression</codeInline>,
+                                          <codeInline>RotationCompression</codeInline>, and
+                                          <codeInline>TranslationCompression</codeInline>.
+                                    </para>
+                                    <para>
+                                          Note, all three attributes have to be set to enable animation compression. For Example:
+                                    </para>
+                                    <code language="xml">
+                                          <![CDATA[
+<?xml version="1.0" encoding="utf-8"?>
+
+<Model File="Character.fbx">
+  <Mesh Name="Body">
+    <Submesh Material="Skin.drmat" />
+    <Submesh Material="Cloth.drmat" />
+  </Mesh>
+  <Animations ScaleCompression="0.01" RotationCompression="1" TranslationCompression="0.01" />
+</Model>]]>
+                                    </code>
+                              </content>
+                        </section>
+                  </sections>
+            </section>
+
+
+            <section address="Animation">
+                  <title>&lt;Animation&gt;</title>
+                  <content>
+                        <para>
+                              The <codeInline>Animations</codeInline> element can contain <codeInline>Animation</codeInline>
+                              elements, which can be used to split the animation.
+                        </para>
+                        <para>
+                              The <codeInline>Animation</codeInline> element has the following attributes.
+                        </para>
+                        <table>
+                              <tableHeader>
+                                    <row>
+                                          <entry>
+                                                <para>Attribute</para>
+                                          </entry>
+                                          <entry>
+                                                <para>Description</para>
+                                          </entry>
+                                          <entry>
+                                                <para>Examples</para>
+                                          </entry>
+                                    </row>
+                              </tableHeader>
+                              <row>
+                                    <entry>
+                                          <para>Name</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                The name of the animation.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>Name="Walk"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>StartTime</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                The start of the animation in seconds.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>StartTime="0.0"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>EndTime</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                The end of the animation in seconds.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>EndTime="5.0"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>StartFrame</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                The start frame (zero-based index) of the animation.
+                                                The frame rate needs to be specified in the parent &lt;Animations&gt; tag.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>StartFrame="0"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>EndFrame</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                The end frame (zero-based index) of the animation.
+                                                The frame rate needs to be specified in the parent &lt;Animations&gt; tag.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>EndFrame="24"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                              <row>
+                                    <entry>
+                                          <para>AddLoopFrame</para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                Optional: Adds a copy of the first key frame at the end of the
+                                                animation. This ensures that cyclic animations transition
+                                                smoothly when the last key frame is reached.
+                                          </para>
+                                          <para>
+                                                When an animation is played back with
+                                                <codeEntityReference qualifyHint="true">F:DigitalRune.Animation.LoopBehavior.Cycle</codeEntityReference>
+                                                or <codeEntityReference qualifyHint="true">F:DigitalRune.Animation.LoopBehavior.CycleOffset</codeEntityReference>
+                                                the first key frame needs to match the last key frame.
+                                                <codeInline>AddLoopFrame="True"</codeInline> inserts copy of the
+                                                first key frame at time = <legacyItalic>duration</legacyItalic>.
+                                                Existing key frames at time = <legacyItalic>duration</legacyItalic>
+                                                are overwritten.
+                                          </para>
+                                          <para>
+                                                Setting <codeInline>AddLoopFrame</codeInline> here overrides
+                                                the settings in the &lt;Animations&gt; tag.
+                                    </para>
+                                          <para>
+                                                Allowed values are <codeInline>True</codeInline> and <codeInline>False</codeInline>.
+                                          </para>
+                                          <para>
+                                                The default value is <codeInline>False</codeInline>.
+                                          </para>
+                                    </entry>
+                                    <entry>
+                                          <para>
+                                                <codeInline>AddLoopFrame="True"</codeInline>
+                                          </para>
+                                    </entry>
+                              </row>
+                        </table>
+                  </content>
+                  <sections>
+                        <section address="MultipleAnimations">
+                              <title>Multiple animations per model</title>
+                              <content>
+                                    <para>
+                                          The current Autodesk FBX exporter only supports a single animation take per FBX file.
+                                          There are two ways to export and load a model with multiple animations:
+                                    </para>
+                                    <list class="ordered">
+                                          <listItem>
+                                                <para>
+                                                      <legacyBold>Merge animation files</legacyBold>
+                                                </para>
+                                                <para>
+                                                      The first solution is to export the animations into different FBX files. Animations
+                                                      stored in external files can be merged to the model during pre-processing using
+                                                      the <codeInline>MergeFiles</codeInline> attribute.
+                                                </para>
+                                                <code language="xml">
+                                                      <![CDATA[
+<?xml version="1.0" encoding="utf-8"?>
+
+<Model File="Character.fbx">
+  <Mesh Name="Body">
+    <Submesh Material="Skin.drmat" />
+    <Submesh Material="Cloth.drmat" />
+  </Mesh>
+  <Animations MergeFiles="idle.fbx;walk.fbx;run.fbx;jump.fbx;turn.fbx" />
+</Model>]]>
+                                                </code>
+                                          </listItem>
+                                          <listItem>
+                                                <para>
+                                                      <legacyBold>Split animation</legacyBold>
+                                                </para>
+                                                <para>
+                                                      The second solution is to concatenate all animations into a single animation take
+                                                      and export the animation take as part of the model. <codeInline>Animation</codeInline>
+                                                      tags can be used to split the take during pre-processing into individual animations.
+                                                </para>
+                                                <code language="xml">
+                                                      <![CDATA[
+<?xml version="1.0" encoding="utf-8"?>
+
+<Model File="Character.fbx">
+  <Mesh Name="Body">
+    <Submesh Material="Skin.drmat" />
+    <Submesh Material="Cloth.drmat" />
+  </Mesh>
+  <Animations Framerate="24"> <!-- Framerate attribute is only required if start and end are specified in 'frames'. -->      
+    <Animation Name="Idle" StartTime="0" EndTime="1.0"/>   <!-- Start and end specified in seconds. -->
+    <Animation Name="Walk" StartFrame="24" EndFrame="60"/> <!-- Start end end specified in frames. -->
+    ...
+    
+  </Animations>
+</Model>]]>
+                                                </code>
+                                          </listItem>
+                                    </list>
+                                    <para>
+                                          Note that either the first or the second approach can be used to import multiple
+                                          animations. But it is not possible to mix both approaches.
+                                    </para>
+                              </content>
+                        </section>
+                  </sections>
+            </section>
+
+
+            <section address="Auto">
+                  <title>Automatic creation of missing model description files</title>
+                  <content>
+                        <para>
+                              The DigitalRune model content processor will automatically create a default model
+                              description (*.drmdl file) if it cannot find any. You can edit this file to set
+                              the desired processing options and to assign materials to submeshes.
+                        </para>
+                        <alert class="note">
+                              <para>
+                                    The automatic generation of missing model descriptions can be turned off using a
+                                    property of the content processor.
+                              </para>
+                        </alert>
+                  </content>
+            </section>
+
+
+            <relatedTopics>
+                  <externalLink>
+                        <linkText>"Merging animation files", by Shawn Hargreaves</linkText>
+                        <linkAlternateText>"Merging animation files", by Shawn Hargreaves</linkAlternateText>
+                        <linkUri>http://blogs.msdn.com/b/shawnhar/archive/2010/06/18/merging-animation-files.aspx</linkUri>
+                  </externalLink>
+            </relatedTopics>
+
+      </developerConceptualDocument>
+</topic>

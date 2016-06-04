@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="384f6645-8a25-488c-9a08-47662266a552" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This section explains basic usage information and conventions used in DigitalRune Mathematics.</para>
+            <alert class="tip">
+                <para>
+                    More general information about math conventions can be found in the following article:
+                    <link xlink:href="38879706-9d39-4f03-838f-26b7f14b9878" />
+                </para>
+            </alert>
+        </introduction>
+
+
+        <section>
+            <title>Coordinate system</title>
+            <content>
+                <para>
+                    The standard <phrase>right-handed</phrase> coordinate system is used.
+                </para>
+            </content>
+        </section>
+
+
+        <section>
+            <title>Vector notation and matrix multiplications</title>
+            <content>
+                <para>
+                    The library uses <phrase>column vectors</phrase>, which means that transformations
+                    are applied in the following order: <math>
+                        v' = M<subscript>2</subscript> · M<subscript>1</subscript> · v
+                    </math>.
+                    (The transformation of matrix <math>
+                        M<subscript>1</subscript>
+                    </math> is applied
+                    before <math>
+                        M<subscript>2</subscript>
+                    </math>.)
+                </para>
+            </content>
+        </section>
+
+
+        <section>
+            <title>Comparing floating-point values</title>
+            <content>
+                <para>
+                    This library contains a class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Numeric</codeEntityReference>
+                    that supports proper comparison of floating-point values. The comparisons
+                    are performed by checking if two values differ by less than a tolerance value epsilon.
+                    (Note: The class <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Numeric</codeEntityReference>
+                    is part of the <legacyItalic>DigitalRune.dll</legacyItalic> not the <legacyItalic>DigitalRune.Mathematics.dll</legacyItalic>.)
+                </para>
+                <para>
+                    Several types overload the comparison operators (<codeInline>==</codeInline>,
+                    <codeInline>!=</codeInline>, <codeInline>&gt;=</codeInline>, etc. in C#), for example:
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Algebra.Vector3F</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Algebra.Matrix44F</codeEntityReference>.
+                    These overloaded operations compare the floating-point values directly (without using an
+                    epsilon tolerance). In addition to the equality operators most types have methods, like
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Mathematics.Algebra.Vector3F.AreNumericallyEqual(DigitalRune.Mathematics.Algebra.Vector3F,DigitalRune.Mathematics.Algebra.Vector3F)</codeEntityReference>,
+                    that perform comparisons using an epsilon tolerance.
+                </para>
+            </content>
+        </section>
+
+
+        <section>
+            <title>Naming conventions</title>
+            <content>
+            </content>
+            <sections>
+                <section>
+                    <title>Single- and double-precision floating-point types</title>
+                    <content>
+                        <para>
+                            Several types exist in a single-precision version (data type:
+                            <codeEntityReference qualifyHint="false">T:System.Single</codeEntityReference>)
+                            and a double-precision version (data type:
+                            <codeEntityReference qualifyHint="false">T:System.Double</codeEntityReference>).
+                            Single-precision types have the postfix <codeInline>F</codeInline>.
+                            Double-precision types have the postfix <codeInline>D</codeInline>.
+                            For example:
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Algebra.Vector3F</codeEntityReference>
+                            is a 3-dimensional vector with single-precision.
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Algebra.Vector3D</codeEntityReference>
+                            is a 3-dimensional vector with double-precision.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+        <section>
+            <title>Units</title>
+            <content>
+                <para>
+                    The default unit for angle is <phrase>radian</phrase> (not <phrase>degree</phrase>). Use
+                    <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Mathematics.MathHelper.ToRadians(System.Single)</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Mathematics.MathHelper.ToDegrees(System.Single)</codeEntityReference>
+                    to convert between <phrase>radians</phrase> and <phrase>degrees</phrase>.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

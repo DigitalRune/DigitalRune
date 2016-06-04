@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="38879706-9d39-4f03-838f-26b7f14b9878" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                Do you multiply matrices and quaternions from the left or from the right? Do you use a
+                left-handed or a right handed coordinate system? How do you define the
+                front side of a triangle? What units of measurement do you use? – This article explores the
+                math conventions that we use and a few more helpful details...
+            </para>
+            <autoOutline>2</autoOutline>
+        </introduction>
+
+
+        <section address="Conventions">
+            <title>DigitalRune conventions</title>
+            <content>
+                <para>
+                    The conventions we use in our game libraries are documented in our user documentation:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <link xlink:href="384f6645-8a25-488c-9a08-47662266a552">
+                            DigitalRune Mathematics - Definitions and Conventions
+                        </link>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="7945ac67-dffc-4197-9fbf-58a9b68c0ea1">
+                            DigitalRune Geometry - Definitions and Conventions
+                        </link>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="6e0b9a08-b1d8-41a3-9ab4-ebf6235abe19">
+                            DigitalRune Physics - Definitions and Conventions
+                        </link>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Coordinates">
+            <title>Coordinate system</title>
+            <content>
+                <para>
+                    We use a standard right-handed coordinate system. Hopefully, everyone is familiar with the
+                    <externalLink>
+                        <linkText>Right-Hand Rule</linkText>
+                        <linkUri>http://en.wikipedia.org/wiki/Right_hand_rule</linkUri>
+                    </externalLink>.
+                    The x-axis is our right axis, the y-axis is our up axis, and the z-axis
+                    points to the camera, which means "forward" is –z. To help us with everyday coordinate
+                    system troubles, we use following tool:
+                    <externalLink>
+                        <linkText>3D Programmer’s Best Friend</linkText>
+                        <linkUri>http://www.digitalrune.com/Support/Blog/tabid/719/EntryId/42/3D-Programmers-Best-Friend.aspx</linkUri>
+                    </externalLink>
+                </para>
+            </content>
+        </section>
+
+
+        <section address="FrontFace">
+            <title>Counter-clockwise orientation and outward pointing normals</title>
+            <content>
+                <para>
+                    If an observer is looking at a front side of a triangle face, the vertices (v0, v1, v2)
+                    are oriented counter-clockwise. Face normals are computed using
+                    (v1 – v0) x (v2 – v0) and point "outwards". In other words: If an observer is looking at
+                    the front side, the normal points to the viewer.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Units">
+            <title>Units</title>
+            <content>
+                <para>
+                    For many game libraries it is not relevant which units of measurement are used. This is
+                    not exactly true for all game libraries, especially not for game physics libraries because
+                    physics libraries often rely on finely tuned constants. They have default values that
+                    assume that the properties of a physics engine are in a certain range. Therefore, we use
+                    SI standard units for our game objects (m, s, kg, ... see
+                    <externalLink>
+                        <linkText>International System of Units</linkText>
+                        <linkUri>http://en.wikipedia.org/wiki/International_System_of_Units</linkUri>
+                    </externalLink>).
+                    Angles are measured in radians.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Multiplication">
+            <title>
+                Order of matrix and quaternion multiplications
+            </title>
+            <content>
+            </content>
+            <sections>
+                <section address="Matrix">
+                    <title>Matrices</title>
+                    <content>
+                        <para>
+                            In our libraries, matrices are multiplied from the left (pre-multiplication).
+                            That means:
+                        </para>
+                        <para>
+                            <legacyItalic> v' = M2 · M1 · v</legacyItalic>
+                        </para>
+                        <para>
+                            The transformation of M1 is applied before the transformation of M2. The order depends
+                            on whether
+                            <legacyItalic>column vectors</legacyItalic>
+                            or
+                            <legacyItalic>row vectors</legacyItalic> are used. We have settled on column vectors,
+                            which means that we have no other choice than multiplying the matrices from the left side.
+                        </para>
+                        <para>
+                            In my experience, column vectors are usually preferred by math and physics guys.
+                            Whereas, row vectors are preferred by graphics guys. Even in our small team we are
+                            divided on this issue but have agreed on column vectors. The same order is used in
+                            OpenGL. Other libraries and APIs use post-multiplication, like XNA, DirectX or OpenSceneGraph.
+                        </para>
+                    </content>
+                </section>
+                <section address="Quaternions">
+                    <title>Quaternions</title>
+                    <content>
+                        <para>
+                            Quaternions are multiplied in the same order:
+                        </para>
+                        <para>
+                            <legacyItalic>q' = q2 · q1</legacyItalic>
+                        </para>
+                        <para>
+                            q' represents the rotation q1 followed by the rotation q2.
+                        </para>
+                        <alert class="important">
+                            <para>
+                                <legacyItalic>
+                                    <legacyBold>Important XNA note:</legacyBold> In XNA matrices and quaternions use a
+                                    different order of multiplication! That means, XNA uses the same quaternion
+                                    multiplication order as we do – but it uses the other order for matrix multiplication.
+                                    In contrast, DirectX and Managed DirectX use the same order for matrices and quaternions.
+                                </legacyItalic>
+                            </para>
+                        </alert>
+                        <para>
+                        </para>
+                    </content>
+                </section>
+                <section address="ChangeOrder">
+                    <title>Changing the multiplication order</title>
+                    <content>
+                        <para>
+                            Since we are often dealing with libraries that are not under our control, or we are
+                            reading scientific papers that use the
+                            <legacyItalic>other</legacyItalic>
+                            multiplication order, we need to be able
+                            to switch between them. In the simplest case, we just
+                            <legacyItalic>
+                                transpose all matrices, change
+                                the order of the matrix and multiply from the other side
+                            </legacyItalic>.
+                            But can we follow this rule
+                            blindly for all kinds of equations? - When in doubt, I think of vectors as matrices
+                            with only 1 row or column and apply matrix rules:
+                        </para>
+                        <para>
+                            Using our math book we can find a few rules, like:
+                        </para>
+                        <para>
+                            (A · B)<superscript>T</superscript> = B<superscript>T</superscript> · A<superscript>T</superscript>
+                        </para>
+                        <para>
+                            Given following equation with two matrices and two column vectors,
+                        </para>
+                        <para>
+                            v' = M2 · M1 · v
+                        </para>
+                        <para>
+                            we transpose the whole equation:
+                        </para>
+                        <para>
+                            v’<superscript>T</superscript> = (M2 · M1 · v)<superscript>T</superscript>
+                        </para>
+                        <para>
+                            → v’<superscript>T</superscript> = ((M2 · M1) · v)<superscript>T</superscript>
+                        </para>
+                        <para>
+                            → v’<superscript>T</superscript> = v<superscript>T</superscript> · (M2 · M1)<superscript>T</superscript>
+                        </para>
+                        <para>
+                            → v’<superscript>T</superscript>= v<superscript>T</superscript> · M1<superscript>T</superscript> · M2<superscript>T</superscript>
+                        </para>
+                        <para>
+                            Note that v<superscript>T</superscript> is a row vector. We have just converted the equation from OpenGL style to
+                            XNA style using mathematics.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Best">
+            <title>Which convention is the best?</title>
+            <content>
+                <para>
+                    I have worked with left-handed and right-handed coordinates systems, inward and outward
+                    pointing normals, different units, pre- and post-multiplied matrices… and personally I do
+                    not care. My only wish is: If your are a software developer or scientific author, please
+                    <legacyItalic>document</legacyItalic>
+                    which convention you are following and do not assume that everyone is
+                    automatically using the same.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

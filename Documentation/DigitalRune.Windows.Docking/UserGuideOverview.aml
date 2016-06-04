@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="438875af-16d8-4aad-8fd6-f2d135b9f99e" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>This section explains the basic parts of a docking window application.</para>
+      <autoOutline/>
+    </introduction>
+
+
+    <section address="DockControl">
+      <title>DockControl</title>
+      <content>
+        <para>
+          The <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockControl</codeEntityReference>
+          is the main control that contains all docked windows.
+          It is usually placed in the center of the application's main window.
+          The control is empty by default and shows the empty workspace.
+        </para>
+        <mediaLink>
+          <caption placement="after" lead="Figure 1">An application with an empty workspace.</caption>
+          <image xlink:href="DockControl"/>
+        </mediaLink>
+      </content>
+    </section>
+
+
+    <section address="DockWindows">
+      <title>DockWindow</title>
+      <content>
+        <para>
+          The dockable windows are called
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockWindow</codeEntityReference>s.
+          They can be docked inside
+          the DockControl. Each DockWindow contains a header tab which by default
+          shows the icon and the title of the window.
+        </para>
+        <mediaLink>
+          <caption placement="after" lead="Figure 2">A single DockWindow docked inside the main window.</caption>
+          <image xlink:href="DockWindow"/>
+        </mediaLink>
+      </content>
+    </section>
+
+
+    <section address="DockPane">
+      <title>DockPane</title>
+      <content>
+        <para>
+          DockWindows can be docked next to each other. Or they can be docked at
+          the same position where they share the same space. The workspace is
+          divided into so called
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockPane</codeEntityReference>s.
+          DockPanes are similar to tab controls
+          - they contain one or more DockWindows.
+        </para>
+        <mediaLink>
+          <caption placement="after" lead="Figure 3">Three DockPanes inside the main window.</caption>
+          <image xlink:href="DockPanes"/>
+        </mediaLink>
+        <para>
+          The header panel of the DockPane contains several buttons:
+        </para>
+        <list class="bullet">
+          <listItem>
+            <para>
+              Window List: The Window List button opens a context menu which allows the
+              user to select the active window from the pane. (Selecting the window
+              using the Window List menu has the same effect as directly clicking the
+              tab of the window. However, when too many windows are docked inside a pane,
+              the pane overflows and not all tabs are visible. In this case the Window
+              List menu is the only way to select some windows.)
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              Auto-Hide: The Auto-Hide button allows the user to hide the pane including all windows.
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              Close: The Close button closes the pane's currently active window.
+            </para>
+          </listItem>
+        </list>
+        <mediaLink>
+          <caption placement="after" lead="Figure 4">DockPane buttons: Window List, Auto-hide and Close.</caption>
+          <image xlink:href="DockPaneButtons"/>
+        </mediaLink>
+      </content>
+    </section>
+
+
+    <section address="FloatingWindows">
+      <title>FloatingWindow</title>
+      <content>
+        <para>
+          DockWindows can also be inside FloatingWindows. A FloatingWindow is a child
+          window of the main window. An application can have several FloatingWindows.
+          Each FloatingWindow can contain one or more DockPanes with DockWindows.
+        </para>
+        <mediaLink>
+          <caption placement="after" lead="Figure 5">Windows docked inside a FloatingWindow.</caption>
+          <image xlink:href="FloatingWindow"/>
+        </mediaLink>
+      </content>
+    </section>
+
+
+    <section address="AutoHide">
+      <title>Auto-hide</title>
+      <content>
+        <para>
+          DockPanes can be hidden by clicking the Auto-Hide button (the DockPane
+          button with the pin symbol). When they are 'unpinned' the DockWindows are
+          minimized and shown as a tab at a border of the main window. This
+          functionality is called 'Auto-hide'. Auto-hide windows pop up automatically
+          when the mouse cursor hovers over the tab or when the tab is clicked. The
+          disappear automatically when another window is selected. By clicking the
+          Auto-Hide button again the DockWindows are re-docked at their previous position
+          in the layout.
+        </para>
+        <mediaLink>
+          <caption placement="after" lead="Figure 6">A DockWindow in auto-hide mode.</caption>
+          <image xlink:href="AutoHidePanes"/>
+        </mediaLink>
+      </content>
+    </section>
+
+
+    <relatedTopics>
+      <link xlink:href="c829d353-ff2c-48ba-847d-5a78b8f5a403" />
+      <link xlink:href="af0e3dd1-df9f-437d-be9e-673c926ca76c" />
+    </relatedTopics>
+
+  </developerConceptualDocument>
+</topic>

@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="9310f251-0432-4588-bf95-8d9c854c99ee" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                DigitalRune Mathematics contains a version that supports the
+                Microsoft XNA Framework (see also
+                <link xlink:href="972bde71-5d0c-46be-8a81-ad0d2cea770a" />).
+                This section explains XNA-specific issues.
+            </para>
+        </introduction>
+
+
+        <section address="Differences">
+            <title>Differences</title>
+            <content>
+                <para>
+                    Both, DigitalRune Mathematics and the Microsoft XNA Framework use a
+                    <phrase>right-handed</phrase> coordinate system. But vectors, matrices, and quaternions are used differently:
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry></entry>
+                            <entry>
+                                <para>DigitalRune Mathematics</para>
+                            </entry>
+                            <entry>
+                                <para>Microsoft XNA Framework</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>Coordinate system</para>
+                        </entry>
+                        <entry>
+                            <para>right-handed</para>
+                        </entry>
+                        <entry>
+                            <para>right-handed</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>Vector notation</para>
+                        </entry>
+                        <entry>
+                            <para>column vectors</para>
+                        </entry>
+                        <entry>
+                            <para>row vectors</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>Matrix notation</para>
+                        </entry>
+                        <entry>
+                            <para>A matrix in DigitalRune Mathematics is the transpose of the matrix in XNA.</para>
+                        </entry>
+                        <entry>
+                            <para>A matrix in XNA is the transpose of the matrix in DigitalRune Mathematics.</para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>Matrix multiplication</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                A coordinate vector is transformed by using <phrase>pre-multiplication</phrase>
+                                (also known as multiplication on the left):
+                                <math>v' = M · v</math>
+                            </para>
+                            <para>
+                                Transformations are concatenated by using <phrase>pre-multiplication</phrase>:
+                                <math>
+                                    M<subscript>12</subscript> = M<subscript>2</subscript> · M<subscript>1</subscript>
+                                </math>.
+                                (Order is from right to left, <math>
+                                    M<subscript>1</subscript>
+                                </math> is applied before
+                                <math>
+                                    M<subscript>2</subscript>
+                                </math>.)
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                A coordinate vector is transformed by using <phrase>post-multiplication</phrase>
+                                (also known as multiplication on the right): <math>v' = v · M</math>
+                            </para>
+                            <para>
+                                Transformations are concatenated by using <phrase>post-multiplication</phrase>:
+                                <math>
+                                    M<subscript>12</subscript> = M<subscript>1</subscript> · M<subscript>2</subscript>
+                                </math>.
+                                (Order is from left to right, <math>
+                                    M<subscript>1</subscript>
+                                </math> is applied before
+                                <math>
+                                    M<subscript>2</subscript>
+                                </math>. The matrices are transposed.)
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>Quaternion notation</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <math>
+                                    (<legacyBold>w</legacyBold>, x, y, z)
+                                </math>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <math>
+                                    (x, y, z, <legacyBold>w</legacyBold>)
+                                </math>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>Quaternion multiplication</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Quaternions are concatenated using the following order:
+                                <math>
+                                    q<subscript>12</subscript> = q<subscript>2</subscript> · q<subscript>1</subscript>
+                                </math>.
+                                (Order is from right to left,
+                                <math>
+                                    q<subscript>1</subscript>
+                                </math> is applied before
+                                <math>
+                                    q<subscript>2</subscript>
+                                </math>.)
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Quaternions are concatenated using the following order:
+                                <math>
+                                    q<subscript>12</subscript> = q<subscript>2</subscript> · q<subscript>1</subscript>
+                                </math>.
+                                (Order is from right to left,
+                                <math>
+                                    q<subscript>1</subscript>
+                                </math> is applied before
+                                <math>
+                                    q<subscript>2</subscript>
+                                </math>.)
+                            </para>
+                        </entry>
+                    </row>
+                </table>
+                <para>
+                    The matrix, vector and quaternion types contain methods to convert from or to the
+                    equivalent XNA types. For example:
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Algebra.Vector3F</codeEntityReference> has the methods
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Mathematics.Algebra.Vector3F.ToXna</codeEntityReference> /
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Mathematics.Algebra.Vector3F.FromXna(Microsoft.Xna.Framework.Vector3)</codeEntityReference>
+                    or the explicit cast operators
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Mathematics.Algebra.Vector3F.op_Explicit(DigitalRune.Mathematics.Algebra.Vector3F)~Microsoft.Xna.Framework.Vector3</codeEntityReference> /
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Mathematics.Algebra.Vector3F.op_Explicit(Microsoft.Xna.Framework.Vector3)~DigitalRune.Mathematics.Algebra.Vector3F</codeEntityReference>.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="ContentPipeline">
+            <title>Content pipeline projects</title>
+            <content>
+                <para>
+                    If any types of DigitalRune Mathematics (such as
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Algebra.Vector3F</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Algebra.Matrix44F</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Algebra.QuaternionF</codeEntityReference>,
+                    etc.) are used in an <newTerm>XNA content pipeline extension library</newTerm>:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Add references to the following DLLs to your the content pipeline extension library:
+                        <list class="bullet">
+                            <listItem>
+                                <localUri>DigitalRune.dll</localUri>
+                            </listItem>
+                            <listItem>
+                                <localUri>DigitalRune.Mathematics.dll</localUri>
+                            </listItem>
+                            <listItem>
+                                <localUri>DigitalRune.Mathematics.Content.Pipeline.dll</localUri>
+                            </listItem>
+                        </list>
+                    </listItem>
+                    <listItem>
+                        For all <newTerm>XNA content projects</newTerm> that use the content pipeline extension library,
+                        add references to the following DLLs to the content projects:
+                        <list class="bullet">
+                            <listItem>
+                                <localUri>DigitalRune.Mathematics.Content.Pipeline.dll</localUri>
+                            </listItem>
+                        </list>
+                    </listItem>
+                </list>
+                <para>
+                    The <localUri>DigitalRune.Mathematics.Content.Pipeline.dll</localUri> contains
+                    <codeEntityReference qualifyHint="false">T:Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler.ContentTypeWriter</codeEntityReference>s
+                    which ensure that the data types of DigitalRune Mathematics are properly serialized. Be
+                    sure to use the XNA-specific builds of the DLLs (see
+                    <link xlink:href="972bde71-5d0c-46be-8a81-ad0d2cea770a"/>).
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <link xlink:href="972bde71-5d0c-46be-8a81-ad0d2cea770a" />
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

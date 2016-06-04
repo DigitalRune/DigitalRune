@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="126b4c8b-7f0a-4530-9e6b-081703fb74dd" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        The purpose of the animation system is to animate other object and properties, i.e.
+        to change their values over time in a controlled fashion.
+      </para>
+      <para>
+        Animations can be applied to objects that implement the interface
+        <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableObject</codeEntityReference>
+        or properties that implement <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableProperty`1</codeEntityReference>.
+      </para>
+      <alert class="note">
+        <para>
+          All objects of the <link xlink:href="309293e8-f2d6-4308-8c85-3f4726f92244">DigitalRune Game Object System</link>
+          and all UI controls of <link xlink:href="a5a463da-de2e-432f-bf7d-07206aaca634">DigitalRune Game UI</link>
+          already implement the interfaces <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableObject</codeEntityReference>
+          and <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableProperty`1</codeEntityReference>.
+        </para>
+        <para>
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GameObject</codeEntityReference>s and
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIControl</codeEntityReference>s
+          implement <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableObject</codeEntityReference>.
+          These objects can be animated directly by the animation system.
+        </para>
+        <para>
+          A <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GameProperty`1</codeEntityReference>
+          can be cast to <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableProperty`1</codeEntityReference>
+          by calling <codeEntityReference qualifyHint="true">M:DigitalRune.Game.GameProperty`1.AsAnimatable</codeEntityReference>.
+          This can be necessary if an animation should be applied directly to a specific property.
+        </para>
+      </alert>
+    </introduction>
+
+
+    <section address="Properties">
+      <title>Animatable properties</title>
+      <content>
+        <para>
+          There are several helper classes that provide implementations of the interface
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableProperty`1</codeEntityReference>,
+          so in most cases it is not necessary to implement this interface directly.
+        </para>
+      </content>
+      <sections>
+
+        <section address="AnimatableProperty">
+          <title>AnimatableProperty&lt;T&gt;</title>
+          <content>
+            <para>
+              The helper class <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.AnimatableProperty`1</codeEntityReference>
+              can be used to create a new (stand-alone) animatable property. It is basically just a container
+              storing a value.
+            </para>
+            <code language="c#">
+              <![CDATA[
+// Create new property which can be animated.
+AnimatableProperty<Vector3F> position = new AnimatableProperty<Vector3F>();
+
+// The AnimatableProperty<T> is just a wrapper over a another type.
+position.Value = new Vector3F(1.0f, 2.0f, 3.0f);
+]]>
+            </code>
+          </content>
+        </section>
+
+        <section address="DelegateAnimatableProperty">
+          <title>DelegateAnimatableProperty&lt;T&gt;</title>
+          <content>
+            <para>
+              The <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.DelegateAnimatableProperty`1</codeEntityReference>
+              is a helper class can be used to make an existing field or property accessible
+              for the animation system. It does not directly store a value, instead it stores
+              two callbacks that read or write the value.
+            </para>
+            <para>
+              For example, imagine an existing class that represents a Sprite:
+            </para>
+            <code language="c#">
+              <![CDATA[
+public class Sprite
+{
+  public Color Color { get; set; }
+  public Vector2 Position { get; set; }
+  public Texture2D Texture { get; set; }
+}
+]]>
+            </code>
+            <para>
+              In order to animate the Position, the property needs to be wrapped using a
+              <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.DelegateAnimatableProperty`1</codeEntityReference>:
+            </para>
+            <code language="c#">
+              <![CDATA[
+// Lets create a new Sprite.
+var sprite = new Sprite();
+
+// To animate the Sprite's position, we need to create an IAnimatableProperty<Vector2>.
+var animatablePosition = new DelegateAnimatableProperty<Vector2>(
+  () => sprite.Position,     // A getter that reads the value.
+  v => sprite.Position = v); // A setter that writes the value.
+]]>
+            </code>
+          </content>
+        </section>
+
+        <section address="Values">
+          <title>Background information: base values vs. animation values</title>
+          <content>
+            <para>
+              A property needs to implement <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableProperty`1</codeEntityReference>
+              in order to be animated. The interface has two main properties:
+              <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.IAnimatableProperty`1.BaseValue</codeEntityReference>
+              and <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.IAnimatableProperty`1.AnimationValue</codeEntityReference>.
+              That means, an animatable property can have a <newTerm>base value</newTerm> and an
+              <newTerm>animation value</newTerm>.
+            </para>
+            <para>
+              <legacyBold>Base Value:</legacyBold> The base value is the value of the property that is valid when no animations
+              are active. The base value is optional - not all properties that implement
+              <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableProperty`1</codeEntityReference>
+              need to have a base value. The properties
+              <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.IAnimatableProperty.HasBaseValue</codeEntityReference>
+              and <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.IAnimatableProperty`1.BaseValue</codeEntityReference>
+              need to be set by the object that implements the interface. The animation system reads the
+              base value but does not change it. The base value is used by certain types of animations:
+              For example, additive animations will add the result of the animations to the base value value.
+              Another example are "From-To-Animations": If only the "To" value is defined then the animation
+              will animate from the base value of the property to the "To" value defined in the animation.
+            </para>
+            <para>
+              <legacyBold>Animation Value:</legacyBold> The animation value of the property is determined
+              by the animations that are controlling the property. The properties
+              <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.IAnimatableProperty.IsAnimated</codeEntityReference>
+              and <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.IAnimatableProperty`1.AnimationValue</codeEntityReference>
+              are set by the animations system and should be treated as read-only.
+              <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.IAnimatableProperty.IsAnimated</codeEntityReference>
+              is <codeInline>true</codeInline> when an animation is active; <codeInline>false</codeInline>
+              indicates that no animations are active. In this case the base value, if available, should
+              be treated as the effective value of the property.
+            </para>
+            <para>
+              Note that not all types that implement <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableProperty`1</codeEntityReference>
+              have a base value. Some implementations such as
+              <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.AnimatableProperty`1</codeEntityReference>
+              do, some implementations such as
+              <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.DelegateAnimatableProperty`1</codeEntityReference>
+              don't! If a property stores a base value and all animations are stopped, the property value
+              reverts to the base value. If the property does not have a base value and all
+              animations are stopped, the property value retains the most recent animation value.
+            </para>
+            <para>
+              Properties that do not store a base value, only an animation value, are sometimes
+              called "pure animated properties".
+            </para>
+            <para>
+              Users never have to deal with the interface <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableProperty`1</codeEntityReference>
+              directly - except when they want to implement their own type of animatable property.
+            </para>
+          </content>
+        </section>
+      </sections>
+    </section>
+
+
+    <section address="AnimatableObject">
+      <title>Animatable objects</title>
+      <content>
+        <para>
+          The interface <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableObject</codeEntityReference>
+          indicates that an object has properties that implement
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableProperty`1</codeEntityReference>.
+          Objects that implement <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableObject</codeEntityReference>
+          have several advantages: Animations that affect multiple properties can be
+          group together as one animation ("storyboard"). A complex storyboard can be
+          treated as a single animation.
+        </para>
+        <para>
+          Here is an example that shows how a class that implements
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimatableObject</codeEntityReference>
+          could look like. In this example the color and position of a sprite can be animated.
+        </para>
+        <code language="c#">
+          <![CDATA[
+public class AnimatableSprite : IAnimatableObject
+{
+  private readonly AnimatableProperty<Color> _color = new AnimatableProperty<Color>();
+  private readonly AnimatableProperty<Vector2> _position = new AnimatableProperty<Vector2>();
+  
+  public string Name { get; set; }
+  
+  public Color Color
+  { 
+    get { return _color.Value; }
+    set { _color.Value = value; } 
+  }
+  
+  public Vector2 Position 
+  { 
+    get { return _position.Value; }
+    set { _position.Value = value; } 
+  }
+  
+  public Texture2D Texture { get; set; }
+  
+  public IEnumerable<IAnimatableProperty> GetAnimatedProperties()
+  {
+    yield return _color;
+    yield return _position;
+  }
+
+  public IAnimatableProperty<T> GetAnimatableProperty<T>(string name)
+  {
+    switch (name)
+    {
+      case "Color":
+        return _animatableColor as IAnimatableProperty<T>;
+      case "Position":
+        return _animatablePosition as IAnimatableProperty<T>;
+      default:
+        return null;
+    }
+  }  
+}
+]]>
+        </code>
+      </content>
+    </section>
+
+
+    <relatedTopics>
+    </relatedTopics>
+    
+  </developerConceptualDocument>
+</topic>

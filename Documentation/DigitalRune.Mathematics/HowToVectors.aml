@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="e3ea796c-f78d-4a57-8cb4-cb065513c928" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This section shows simple examples of how to calculate with vectors and matrices.</para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Namespaces">
+            <title>Add DigitalRune.Mathematics namespaces</title>
+            <content>
+                <para>
+                    Vector and matrix types belong to the namespace
+                    <codeEntityReference>N:DigitalRune.Mathematics.Algebra</codeEntityReference>.
+                    The following examples will also use the type
+                    <codeEntityReference>T:DigitalRune.Mathematics.MathHelper</codeEntityReference>
+                    from the namespace
+                    <codeEntityReference>N:DigitalRune.Mathematics</codeEntityReference>.
+                    These namespace must be imported at the beginning of the source code file:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+using DigitalRune.Mathematics;
+using DigitalRune.Mathematics.Algebra;
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Quaternion">
+            <title>Rotate a vector using a quaternion</title>
+            <content>
+                <para>
+                    Next, we show how to rotate a vector around a given axis.
+                </para>
+                <para>
+                    We define a vector <codeInline>v</codeInline> and a rotation axis:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+Vector3F v = new Vector3F(1, 2, 3);
+Vector3F rotationAxis = Vector3F.UnitZ;
+]]>
+                </code>
+                <para>
+                    <codeInline>v</codeInline> is initialized as a vector <math>(1, 2, 3)</math>.
+                    The vector <codeInline>rotationAxis</codeInline> is equal to the
+                    z unit vector <math>(0, 0, 1)</math>.
+                </para>
+                <para>
+                    Now, we can define a quaternion that rotates the vectors <math>30°</math>
+                    around the rotation axis.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+float rotationAngle = MathHelper.ToRadians(30);
+QuaternionF rotation = QuaternionF.CreateRotation(rotationAxis, rotationAngle);
+]]>
+                </code>
+                <para>
+                    Finally, we use the quaternion to rotate the vector <codeInline>v</codeInline>:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+Vector3F vRotated = rotation.Rotate(v);
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Matrix">
+            <title>Rotate a vector using a matrix</title>
+            <content>
+                <para>
+                    The same vector rotation as above can be achieved with a rotation matrix,
+                    like this:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+Vector3F v = new Vector3F(1, 2, 3);
+Vector3F rotationAxis = Vector3F.UnitZ;
+
+float rotationAngle = MathHelper.ToRadians(50);
+Matrix33F rotation = Matrix33F.CreateRotation(rotationAxis, rotationAngle);
+
+Vector3F vRotated = rotation * v;
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Comparison">
+            <title>Comparing vectors</title>
+            <content>
+                <para>It is often necessary to compare vectors. In this example we create two vectors:</para>
+                <code language="c#">
+                    <![CDATA[
+Vector3F v0 = new Vector3F(1000, 2000, 3000);
+
+QuaternionF rotation = QuaternionF.CreateRotationX(MathHelper.ToRadians(360));
+Vector3F v1 = rotation.Rotate(v0);
+]]>
+                </code>
+                <para>
+                    The vector <codeInline>v1</codeInline> is created by rotating <codeInline>v0</codeInline>
+                    by 360° around the x-axis, which should result in the same vector. We can use
+                    the equality operator to compare the vectors:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+if (v0 == v1)
+  Console.WriteLine("Vectors are equal.");
+else
+  Console.WriteLine("Vectors are not equal.");
+]]>
+                </code>
+                <para>
+                    This piece of code will output the message
+                </para>
+                <computerOutput>Vectors are not equal.</computerOutput>
+                <para>
+                    The vectors
+                    are considered not equal because the numerical errors in the rotation caused
+                    <codeInline>v1</codeInline> to be <codeInline>(1000, 1999.99951, 3000.00049)</codeInline>
+                    instead of <codeInline>(1000, 2000, 3000)</codeInline>.
+                    Numerical errors are inevitable. Therefore, we can use following code
+                    to check for equality with a numerical tolerance:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+if (Vector3F.AreNumericallyEqual(v0, v1))
+  Console.WriteLine("Vectors are equal.");
+else
+  Console.WriteLine("Vectors are not equal.")
+]]>
+                </code>
+                <para>
+                    This will output the message:
+                </para>
+                <computerOutput>Vectors are equal.</computerOutput>
+                <para>
+                    Other vector, matrix and quaternion types have similar methods for robust
+                    value comparison.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

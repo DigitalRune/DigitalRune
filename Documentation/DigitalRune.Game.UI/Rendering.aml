@@ -1,0 +1,680 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="bb35e0b0-49d5-4847-b7f8-f5a1bb467fbb" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This article describes how UI controls are drawn to the screen.
+            </para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="Start">
+            <title>Where does the rendering start?</title>
+            <content>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIScreen</codeEntityReference>
+                    is the root of the visual tree. It implements <legacyBold>IDrawable</legacyBold> (the
+                    XNA interface) which means it has a
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIScreen.Draw(System.TimeSpan)</codeEntityReference>
+                    method. This method must be called in each frame to draw the controls. The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.UIManager</codeEntityReference>
+                    does not draw the controls! Therefore, you must not forget to call
+                    <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIScreen.Draw(System.TimeSpan)</codeEntityReference>.
+                    You can call the method where ever it fits into your render pipeline. As the
+                    <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />
+                    show you can also render the whole screen into an off-screen render target.
+                </para>
+                <para>
+                    <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIScreen.Draw(System.TimeSpan)</codeEntityReference>
+                    calls
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.Render(DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>,
+                    which renders the screen and recursively calls the
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.Render(DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>
+                    methods of all controls in the visual tree.
+                </para>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIScreen</codeEntityReference>
+                    owns a UI renderer (interface
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Rendering.IUIRenderer</codeEntityReference>)
+                    which is used by the controls to define the visual style and to do the actual rendering.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="UIControl">
+            <title>Rendering-specific members of the UIControl</title>
+            <content>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIControl</codeEntityReference>
+                    has several properties and methods related to the rendering. The
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.Render(DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>
+                    method is obviously one of them. This method is called by the UI system when the
+                    control should be rendered. It checks if the control is visible (property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.IsVisible</codeEntityReference>),
+                    if the control is not completely transparent (property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Opacity</codeEntityReference>)
+                    and if the actual control size is larger than 0 – otherwise there is no need to render
+                    the control.
+                </para>
+                <para>
+                    If the control must be rendered,
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.Render(DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>
+                    calls
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.OnRender(DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>
+                    to do the real work. The
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.OnRender(DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>
+                    method can be overridden in derived controls classes. The base implementation simply
+                    calls the UI renderer of the current screen:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+protected virtual void OnRender(float deltaTime)
+{
+  Screen.Renderer.Render(this, deltaTime);
+}
+]]>
+                </code>
+                <para>
+                    It is not necessary that the
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.OnRender(DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>
+                    methods of custom controls call the renderer to draw the control. Instead, custom
+                    controls can do the drawing right there in this method using, for example, the normal
+                    XNA <legacyBold>SpriteBatch</legacyBold>.
+                    This makes it very easy to quickly add new custom controls.
+                </para>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIControl</codeEntityReference>
+                    further has a few properties that should be used by the renderer or the custom
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.OnRender(DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>
+                    implementation: the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Background</codeEntityReference>
+                    color, the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Foreground</codeEntityReference>
+                    color, the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Font</codeEntityReference>
+                    name and the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Opacity</codeEntityReference>
+                    of the whole control.
+                </para>
+            </content>
+            <sections>
+                <section address="RenderTransform">
+                    <title>The RenderTransform</title>
+                    <content>
+                        <para>
+                            Each
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIControl</codeEntityReference>
+                            has a
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.RenderTransform</codeEntityReference>.
+                            This is a transformation that is composed of
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.RenderScale</codeEntityReference>,
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.RenderRotation</codeEntityReference>,
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.RenderTranslation</codeEntityReference> and
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.RenderTransformOrigin</codeEntityReference>.
+                            Each property can be animated individually to scale, rotate and translate the control
+                            to create visual effects and transitions – have a look at the
+                            <legacyItalic>UIAnimationSample</legacyItalic>
+                            of the <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />.
+                        </para>
+                        <para>
+                            The property
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.HasRenderTransform</codeEntityReference>
+                            is true if the control is scaled, rotated or translated. It is false, if the render
+                            transform is the identity transform that does nothing.
+                        </para>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.RenderTransform</codeEntityReference>
+                            is also considered by the control input handling. That means, it is possible to
+                            click a rotated and scaled button. But the
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.RenderTransform</codeEntityReference>
+                            is not used in the layout process. A scaled/rotated/translated control
+                            does not influence the layout. For example, a scaled control does not get
+                            more space in a stack panel. The rendered control may overlap other controls.
+                        </para>
+                    </content>
+                </section>
+                <section address="RendererInfo">
+                    <title>InvalidateVisual, IsVisualValid and RendererInfo</title>
+                    <content>
+                        <para>
+                            The property
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.RendererInfo</codeEntityReference>
+                            can be used by the renderer (or the custom
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.OnRender(DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>
+                            method) to cache any information it likes to store with the control. The property
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.IsVisualValid</codeEntityReference>
+                            is automatically set to true after the control was rendered (assuming that the
+                            renderer has updated the cached information in
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.RendererInfo</codeEntityReference>).
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.IsVisualValid</codeEntityReference>
+                            is reset when
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.InvalidateMeasure</codeEntityReference>,
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.InvalidateArrange</codeEntityReference> or
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.InvalidateVisual</codeEntityReference>
+                            are called. Controls that influence the control size (e.g.
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Width</codeEntityReference>),
+                            the layout arrangement (e.g.
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.HorizontalAlignment</codeEntityReference>)
+                            or the visual appearance (e.g.
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Foreground</codeEntityReference>)
+                            call the invalidate methods automatically. The renderer can check
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.IsVisualValid</codeEntityReference>
+                            to determine if it can reuse the cached info in
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.RendererInfo</codeEntityReference>.
+                        </para>
+                    </content>
+                </section>
+                <section address="VisualState">
+                    <title>VisualState</title>
+                    <content>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.VisualState</codeEntityReference>
+                            property is a simple string that tells the renderer (or the custom
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.OnRender(DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>
+                            method) in which state the control currently is. The base implementation of this
+                            property is simple:
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+public virtual string VisualState
+{
+  get { return ActualIsEnabled ? "Default" : "Disabled"; }
+}
+]]>
+                        </code>
+                        <para>
+                            The rendering code can check this property and, for example, draw a disabled button
+                            using different button texture. Other controls can override this property to define
+                            more states. For example, here is the
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.VisualState</codeEntityReference>
+                            property of a button:
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+public override string VisualState
+{
+  get  
+  {    
+    if (!ActualIsEnabled)      
+      return "Disabled";     
+ 
+    if (IsDown)
+      return "Pressed";
+  
+    if (IsMouseOver)
+      return "MouseOver";
+  
+    if (IsFocused)
+      return "Focused";
+  
+    return "Default";
+  }
+}
+]]>
+                        </code>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="IUIRenderer">
+            <title>Interface IUIRenderer</title>
+            <content>
+                <para>
+                    The properties discussed above define the visual appearance of the control. The real
+                    rendering is separated from the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIControl</codeEntityReference>
+                    code. This is the purpose of the interface
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Rendering.IUIRenderer</codeEntityReference>.
+                </para>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIScreen</codeEntityReference>
+                    is the root of the control hierarchy. When a screen is created it takes the renderer as
+                    a parameter in the constructor. For example:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+// Load a UI theme, which defines the appearance and default values of UI controls.
+var content = new ContentManager(Game.Services, "NeoforceTheme");
+Theme theme = content.Load<Theme>("ThemeRed");
+
+// Create a UI renderer, which uses the theme info to renderer UI controls.
+UIRenderer renderer = new UIRenderer(Game, theme);
+
+// Create a UIScreen and add it to the UI service. The screen is the root of the 
+// tree of UI controls. Each screen can have its own renderer.
+_screen = new UIScreen("Menu", renderer);
+_uiService.Screens.Add(_screen);
+]]>
+                </code>
+                <para>
+                    To draw the GUI,
+                    <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIScreen.Draw(System.TimeSpan)</codeEntityReference>
+                    must be called.
+                    <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIScreen.Draw(System.TimeSpan)</codeEntityReference>
+                    calls
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.Render(DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>.
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.Render(DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>
+                    calls
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.OnRender(DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>
+                    which in turn lets the renderer do the work using
+                    <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Game.UI.Rendering.IUIRenderer.Render(DigitalRune.Game.UI.Controls.UIControl,DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>.
+                    When the renderer draws a control, it calls
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.Render(DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>
+                    of all child controls. This way,
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.Render(DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>
+                    of each control in the control tree is executed. Each child control
+                    can decide in its
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.OnRender(DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>
+                    method if it wants to call
+                    <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Game.UI.Rendering.IUIRenderer.Render(DigitalRune.Game.UI.Controls.UIControl,DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>
+                    or do the drawing manually.
+                </para>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Rendering.IUIRenderer</codeEntityReference>
+                    manages a single <legacyBold>SpriteBatch</legacyBold>, which is used to batch all
+                    sprite batch draw calls. The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIScreen</codeEntityReference>
+                    will call
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Rendering.IUIRenderer.BeginBatch</codeEntityReference>
+                    to start the batch (using <legacyBold>SpriteBatch.Begin</legacyBold>).
+                    Rendering code can use the sprite batch to draw textures and text.
+                    Please note:
+                    Whenever the render state is changed
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Rendering.IUIRenderer.EndBatch</codeEntityReference>
+                    must be called to commit the current batch. Don't forget this if you implement
+                    custom rendering code.
+                </para>
+            </content>
+            <sections>
+                <section address="Styles">
+                    <title>Control styles and templates</title>
+                    <content>
+                        <para>
+                            We strive to separate control logic from rendering. The control classes define the
+                            control logic (e.g. how a check box behaves), and the exchangeable
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Rendering.IUIRenderer</codeEntityReference>
+                            defines the visual appearance.
+                            But in order to fully control the visual appearance, the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Rendering.IUIRenderer</codeEntityReference>
+                            must be able to supply default values for properties, like
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Foreground</codeEntityReference>
+                            color,
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Width</codeEntityReference>,
+                            etc. And here is how it works:
+                        </para>
+                        <para>
+                            Each
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIControl</codeEntityReference>
+                            has a
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Style</codeEntityReference>
+                            property. This is simply a string; usually equal to the control name.
+                        </para>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Rendering.IUIRenderer</codeEntityReference>
+                            has a dictionary called
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Rendering.IUIRenderer.Templates</codeEntityReference>.
+                            This dictionary stores an initialized
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIControl</codeEntityReference>
+                            instance for each style name. The template instances provide the default vales for
+                            controls.
+                        </para>
+                        <para>
+                            When a control is loaded (= added to the visual tree), it locates the template
+                            instance for its current style in
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Rendering.IUIRenderer.Templates</codeEntityReference>
+                            and sets its own
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.GameObject.Template</codeEntityReference>
+                            property to this instance.
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.GameObject.Template</codeEntityReference>
+                            is a property of the game object system. (See
+                            <link xlink:href="be9dad32-1e3f-4361-9cbe-9874e2225049" />
+                            to read more about game objects and templates.) Whenever a control has not set a
+                            local property value, it uses the property value of the template object. This way you
+                            can, for example, quickly change the appearance of all
+                            buttons simply by changing the values of the template.
+                        </para>
+                        <para>
+                            The templates are created on demand: If
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Game.UI.Rendering.IUIRenderer.Templates</codeEntityReference>
+                            does not contain a template for a given style, then a new empty instance is created.
+                            All properties of this instance are initialized with the values provided by the
+                            <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Game.UI.Rendering.IUIRenderer.GetAttribute``1(System.String,System.String,``0@)</codeEntityReference>
+                            method. The default
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Rendering.IUIRenderer</codeEntityReference>
+                            implementation (class
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Rendering.UIRenderer</codeEntityReference>)
+                            reads the <legacyItalic>Theme.xml</legacyItalic> file and returns these values in
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Rendering.IUIRenderer.GetAttribute``1(System.String,System.String,``0@)</codeEntityReference>
+                            (see <link xlink:href="44fe138f-8897-48c6-8ed6-c41bafd7853f" />).
+                            This way, the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Rendering.IUIRenderer</codeEntityReference>
+                            can define the default values for control properties.
+                        </para>
+                        <para>
+                            Here is a concrete example that demonstrate the power of styles. The full code (except
+                            comments) for a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.MenuItem</codeEntityReference>
+                            looks like this:
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+public class MenuItem : ButtonBase
+{
+  static MenuItem()
+  {
+    OverrideDefaultValue(typeof(MenuItem), FocusWhenMouseOverPropertyId, true);
+  }
+ 
+  public MenuItem()
+  {
+    Style = "MenuItem";
+  }
+}
+]]>
+                        </code>
+                        <para>
+                            It is simply a button (base class
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.ButtonBase</codeEntityReference>).
+                            Per default it gets input focus when the mouse is over the menu item (the
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.OverrideDefaultValue``1(System.Type,System.Int32,``0)</codeEntityReference>
+                            call). The style is set to "MenuItem" in the constructor. Since the menu item style is
+                            different from the style of a normal button, the control gets very different property
+                            values than a normal button, and the renderer will render this control in a totally
+                            different way.
+                        </para>
+                        <para>
+                            Using styles, the control code can focus on the control logic. And the renderer has
+                            full control over how the control should appear.
+                        </para>
+                        <para>
+                            To apply a new style to an already loaded control, the control must first be removed
+                            from the visual tree and afterwards added back again to the visual tree.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="UIRenderer">
+            <title>Class UIRenderer</title>
+            <content>
+                <para>
+                    The class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Rendering.UIRenderer</codeEntityReference>
+                    is the default implementation of the interface
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Rendering.IUIRenderer</codeEntityReference>.
+                    It implements the necessary interface members and adds a few new ones. It uses an
+                    XML file to define the control styles, see <link xlink:href="44fe138f-8897-48c6-8ed6-c41bafd7853f" />.
+                    <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Game.UI.Rendering.UIRenderer.GetAttribute``1(System.String,System.String,``0@)</codeEntityReference>
+                    uses this <legacyItalic>Theme.xml</legacyItalic> file to define the default values
+                    of control properties.
+                </para>
+            </content>
+            <sections>
+                <section address="Callbacks">
+                    <title>The render callbacks and the render context</title>
+                    <content>
+                        <para>
+                            Controls can call
+                            <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Game.UI.Rendering.IUIRenderer.Render(DigitalRune.Game.UI.Controls.UIControl,DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>
+                            to draw the control – this is the main purpose of the UI renderer. When
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Rendering.UIRenderer.Render(DigitalRune.Game.UI.Controls.UIControl,DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>
+                            is called, the UI renderer clears the area of the control with its background color,
+                            precomputes a few values and stores them in a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIRenderContext</codeEntityReference>
+                            instance.
+                        </para>
+                        <para>
+                            The render context contains the following information:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                the control that should be drawn,
+                            </listItem>
+                            <listItem>
+                                the current time step size (for animation timing),
+                            </listItem>
+                            <listItem>
+                                the foreground color,
+                            </listItem>
+                            <listItem>
+                                the effective opacity, which is the opacity of the control multiplied by the
+                                opacities of all parent controls,
+                            </listItem>
+                            <listItem>
+                                the effective render transform, which is the combination of the control's render
+                                transform and the render transforms of all parent controls, and
+                            </listItem>
+                            <listItem>
+                                the
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Rendering.ThemeState</codeEntityReference>
+                                that is associated with the current visual state
+                                (<codeEntityReference qualifyHint="true">P:DigitalRune.Game.UI.Controls.UIControl.VisualState</codeEntityReference>e)
+                                of the control.
+                            </listItem>
+                        </list>
+                        <para>
+                            This render context is then handed to a <newTerm>render callback</newTerm>. A render
+                            callback is a method that is stored in the
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Game.UI.Rendering.UIRenderer.RenderCallbacks</codeEntityReference>
+                            dictionary. The style name of the control defines which render callback should be
+                            used (the style is the key of the dictionary). Actually there are only very few
+                            render callbacks necessary to render all built-in controls. The render callback
+                            dictionary is initialized like this:
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+RenderCallbacks = new Dictionary<string, Action<UIRenderContext>>();
+RenderCallbacks.Add("UIControl", RenderUIControl);
+RenderCallbacks.Add("TextBlock", RenderTextBlock);
+RenderCallbacks.Add("Image", RenderImageControl);
+RenderCallbacks.Add("Slider", RenderSlider);
+RenderCallbacks.Add("ProgressBar", RenderProgressBar);
+RenderCallbacks.Add("Console", RenderConsole);
+RenderCallbacks.Add("ContentControl", RenderContentControl);
+RenderCallbacks.Add("TextBox", RenderTextBox);
+]]>
+                        </code>
+                        <para>
+                            Styles inherit from each other. This inheritance is defined in the
+                            <legacyItalic>Theme.xml</legacyItalic>. If there is no render callback for a given
+                            style, then the render callback of the parent style is used. The style "UIControl"
+                            is the base for all styles, therefore the method
+                            <legacyBold>RenderUIControl</legacyBold>
+                            <!--<codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Rendering.UIRenderer.RenderUIControl(DigitalRune.Game.UI.Controls.UIControl,DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>-->
+                            is the fallback rendering method for all controls.
+                        </para>
+                        <para>
+                            A few examples:
+                        </para>
+                        <para>
+                            There is no render callback for buttons. The style "Button" inherits from "ButtonBase"
+                            which inherits from "ContentControl". The method
+                            <legacyBold>RenderContentControl</legacyBold>
+                            <!--<codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Rendering.UIRenderer.RenderContentControl(DigitalRune.Game.UI.Controls.UIControl,DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>-->
+                            is used to draw buttons.
+                        </para>
+                        <para>
+                            Scroll bars have following style hierarchy: "ScrollBar" –> "RangeBase" –> "UIControl".
+                            The method
+                            <legacyBold>RenderUIControl</legacyBold>
+                            <!--<codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Rendering.UIRenderer.RenderUIControl(DigitalRune.Game.UI.Controls.UIControl,DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>-->
+                            is used to render scroll bars.
+                        </para>
+                        <para>
+                            Let’s have a look at one of these methods. Here is
+                            <legacyBold>RenderContentControl</legacyBold>
+                            <!--<codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Rendering.UIRenderer.RenderContentControl(DigitalRune.Game.UI.Controls.UIControl,DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>-->
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+private void RenderContentControl(UIRenderContext context)
+{
+  var contentControl = context.Control as ContentControl;
+  if (contentControl == null || contentControl.Content == null || !contentControl.ClipContent)
+  {
+    // No content or no clipping - render as normal "UIControl".
+    RenderUIControl(context);
+    return;
+  }
+ 
+  // Background images.
+  RenderImages(context, false);
+ 
+  EndBatch();
+ 
+  // Render Content and clip with scissor rectangle.
+  var originalScissorRectangle = GraphicsDevice.ScissorRectangle;
+  var scissorRectangle = context.RenderTransform.Transform(contentControl.ContentBounds).ToRectangle(true);
+  GraphicsDevice.ScissorRectangle = Rectangle.Intersect(scissorRectangle, originalScissorRectangle);
+ 
+  BeginBatch();
+  contentControl.Content.Render(context.DeltaTime);
+  EndBatch();
+ 
+  GraphicsDevice.ScissorRectangle = originalScissorRectangle;
+ 
+  BeginBatch();
+ 
+  // Visual children except Content.
+  foreach (var child in context.Control.VisualChildren)
+    if (contentControl.Content != child)
+      child.Render(context.DeltaTime);
+ 
+  // Overlay images.
+  RenderImages(context, true);
+}
+]]>
+                        </code>
+                        <para>
+                            If a content control does not contain a content or does not clip the content, the
+                            <legacyBold>RenderContentControl</legacyBold>
+                            <!--<codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Rendering.UIRenderer.RenderContentControl(DigitalRune.Game.UI.Controls.UIControl,DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>-->
+                            method calls
+                            <legacyBold>RenderUIControl</legacyBold>
+                            <!--<codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Rendering.UIRenderer.RenderUIControl(DigitalRune.Game.UI.Controls.UIControl,DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference>-->
+                            to do the job. Otherwise, it renders the background images using
+                            <codeInline>RenderImages(context, false)</codeInline>.
+                            This call renders all images for the current visual state that are defined in
+                            <legacyItalic>Theme.xml</legacyItalic> and are not marked as overlay images in the XML.
+                        </para>
+                        <para>
+                            Then the current sprite batch is committed by calling
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Rendering.UIRenderer.EndBatch</codeEntityReference>.
+                            This is very important because, next, a scissors rectangle is set. This scissors
+                            rectangle is used to clip the content. Since this changes the render state of the
+                            graphics device, we must not forget to call
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Rendering.UIRenderer.EndBatch</codeEntityReference>
+                            to finish the current sprite batch with the current render settings.
+                        </para>
+                        <para>
+                            The render transform of the render context is used to compute the correct rectangle.
+                            This is necessary because the control could be scaled or translated. (Side note: The
+                            current clipping mechanism uses the hardware scissors rectangle and therefore does
+                            not support clipping rotated controls.) The
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.RenderTransform</codeEntityReference>
+                            also offers very useful draw method that calls the sprite batch to do the drawing
+                            with the correct scaling, rotation and translation parameters.
+                        </para>
+                        <para>
+                            Then the content (which is another
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIControl</codeEntityReference>)
+                            is rendered. And after that the visual children of the control are rendered. For
+                            example, a window is a content control and its icon image, caption text block and
+                            close button are the visual children of the window control.
+                            Finally, the overlay images (e.g. transparent glow images) are rendered on top of
+                            everything else. The sprite batch is not committed. It is left active, so that the
+                            next control can add its images to the batch.
+                        </para>
+                    </content>
+                </section>
+                <section address="CustomCallback">
+                    <title>Custom render callbacks</title>
+                    <content>
+                        <para>
+                            If you want to implement custom rendering for an existing control or a new control,
+                            you have to do the following:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                Add the description of your style to the <legacyItalic>Theme.xml</legacyItalic>.
+                            </listItem>
+                            <listItem>
+                                Add a render callback with your custom rendering code to the
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Game.UI.Rendering.UIRenderer.RenderCallbacks</codeEntityReference>
+                                dictionary.
+                            </listItem>
+                            <listItem>
+                                Set the
+                                <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Style</codeEntityReference>
+                                of a control to the new style, and it will use the new render code.
+                            </listItem>
+                        </list>
+                        <para>
+                            Have a look at the existing <legacyItalic>Theme.xml</legacyItalic> files and the DigitalRune Game UI source code
+                            for reference. It is best to start by copying existing render callback code and start
+                            from there.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+        <section address="Custom">
+            <title>Customizing the render process</title>
+            <content>
+                <para>
+                    To summarize: There are several ways to customize the appearance and rendering of
+                    controls:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        If the default
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Rendering.UIRenderer</codeEntityReference>
+                        is used: Change the styles in the UI theme (see <link xlink:href="44fe138f-8897-48c6-8ed6-c41bafd7853f" />).
+                    </listItem>
+                    <listItem>
+                        If the default
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Rendering.UIRenderer</codeEntityReference>
+                        is used: Add a new render method to the
+                        <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Rendering.UIRenderer.RenderCallbacks</codeEntityReference>
+                        of the
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Rendering.UIRenderer</codeEntityReference>
+                        if custom drawing code is necessary.
+                    </listItem>
+                    <listItem>
+                        Use your own 
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Rendering.IUIRenderer</codeEntityReference> 
+                        instead of the 
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Rendering.UIRenderer</codeEntityReference>.
+                    </listItem>
+                    <listItem>
+                        Override 
+                        <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.OnRender(DigitalRune.Game.UI.Controls.UIRenderContext)</codeEntityReference> 
+                        of a UI control.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

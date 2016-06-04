@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="7fbfaba5-af8d-4bf7-b5c3-6c084e1bfc54" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This topic gives a brief overview on interoperability with Windows Forms, the Windows
+                Presentation Foundation (WPF) and the Universal Windows Platform (UWP).
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Overview">
+            <title>Interoperability overview</title>
+            <content>
+                <para>
+                    The namespace
+                    <codeEntityReference qualifyHint="true">N:DigitalRune.Graphics.Interop</codeEntityReference>
+                    provides controls that allow to present 3D graphics in regular Windows Forms, WPF and
+                    UWP applications. The interoperability classes were specifically designed to 
+                    enable the following scenarios:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        The application is a regular Windows Forms, WPF or UWP project. 3D graphics 
+                        can be presented in one or several controls in the application. 
+                    </listItem>
+                    <listItem>
+                        The application is an XNA project. The game can run normally inside the 
+                        default game window. The user can switch between windowed (desktop) and 
+                        full-screen mode. From the running game, the user can switch to a game 
+                        editor which is hosted inside a Windows Forms or WPF window. The game editor 
+                        allows one or more independent views on the game world. While the game 
+                        editor is visible, the game can keep running uninterrupted.
+                    </listItem>
+                </list>
+                <alert class="tip">
+                    <para>
+                        For more details take a look at the various <legacyItalic>Interop</legacyItalic> samples for Windows 
+                        Forms, WPF and UWP.
+                    </para>
+                </alert>
+            </content>
+        </section>
+
+
+        <section address="Start">
+            <title>Launching a Windows Forms or WPF window</title>
+            <content>
+                <para>
+                    The following examples show how to start an external window, such as a game editor, from
+                    an XNA game.
+                </para>
+                <para>
+                    The following example shows how to open a Windows Form.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Create a new Windows Forms window.
+var form = new MyForm() { GraphicsServices = _graphicsManager };
+
+// Make the window visible.
+form.Show();
+            ]]>
+                </code>
+                <para>
+                    The following example shows to open a WPF window.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+var window = new WpfWindow { GraphicsService = _graphicsManager };
+
+// Allow WPF window to receive keyboard events from Windows Forms.
+ElementHost.EnableModelessKeyboardInterop(window);
+
+window.Show();
+            ]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Host">
+            <title>Presenting 3D graphics inside a Windows Forms, WPF or UWP control</title>
+            <content>
+                <para>
+                    A control that shows a 3D scene of the XNA game is called a <newTerm>presentation target</newTerm>.
+                    The namespace includes following presentation target controls which can be added inside
+                    Windows Forms, WPF or UWP windows.
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Interop.FormsPresentationTarget</codeEntityReference>
+                        (for Windows Forms)
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Interop.ElementPresentationTarget</codeEntityReference>
+                        (for WPF, using the .NET <legacyBold>WindowsFormsHost</legacyBold> class internally)
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Interop.D3DImagePresentationTarget</codeEntityReference>
+                        (for WPF, only in MonoGame, using the .NET <legacyBold>D3DImage</legacyBold> class internally)
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Interop.SwapChainPresentationTarget</codeEntityReference>
+                        (for UWP)
+                    </listItem>
+                </list>
+                <para>
+                    Presentation targets need to be registered in the graphics service (see property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.IGraphicsService.PresentationTargets</codeEntityReference>).
+                    The following examples shows how to register and unregister presentation targets of a WPF
+                    window.
+                </para>
+                <code language="xaml">
+                    <![CDATA[
+<Window x:Class="MyApplication.MyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dr="http://schemas.digitalrune.com/windows">
+  <Grid>
+      <!--  A WPF presentation target into which XNA graphics can be rendered:  -->
+      <dr:ElementPresentationTarget x:Name="PresentationTarget" />
+    </Grid>
+  </Grid>
+</Window>
+]]>
+                </code>
+                <code language="c#">
+                    <![CDATA[
+using System;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Input;
+using DigitalRune.Graphics;
+using DigitalRune.Graphics.Interop;
+
+namespace InteropSample
+{
+  // A WPF window with a presentation target for 3D graphics.
+  public partial class MyWindow
+  {
+    public IGraphicsService GraphicsService { get; set; }
+
+    public WpfWindow()
+    {
+      InitializeComponent();
+      Loaded += OnLoaded;
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs eventArgs)
+    {
+      // Register render targets.
+      if (GraphicsService != null)
+        GraphicsService.PresentationTargets.Add(PresentationTarget);
+    }
+
+    protected override void OnClosing(CancelEventArgs eventArgs)
+    {
+      // Unregister render targets.
+      if (GraphicsService != null)
+        GraphicsService.PresentationTargets.Remove(PresentationTarget);
+
+      base.OnClosing(eventArgs);
+    }
+  }
+}
+]]>
+                </code>
+                <para>
+                    The graphics service can render a scene into the registered presentation targets. 
+                    In XNA game projects this is usually done in the <legacyBold>Draw</legacyBold>-method 
+                    of the XNA <legacyBold>Game</legacyBold> class.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+protected override void Draw(GameTime gameTime)
+{
+  // Update graphics service.
+  _graphicsManager.Update(gameTime.ElapsedGameTime);
+
+  foreach (var presentationTarget in _graphicsManager.PresentationTargets)
+  {
+    // Prepare scene (camera, etc.) for presentation target.
+    ...
+
+    // Render scene into presentation target.
+    _graphicsManager.Render(presentationTarget);
+  }
+
+  // Render scene into back buffer.
+  _graphicsManager.Render(false);
+
+  base.Draw(gameTime);
+}]]>
+                </code>
+                <para>
+                    In regular Windows Forms, WPF or UWP applications a custom "game loop" can be
+                    created which handles the rendering of 3D graphics. Have a look at the included
+                    <legacyItalic>Interop</legacyItalic> samples for more details.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Caveats">
+            <title>Caveats</title>
+            <content>
+                <para>
+                    The XNA <legacyBold>Mouse</legacyBold> class does not work in some interoperability
+                    scenarios. In this case you can read normal Windows Forms, WPF or UWP mouse events to handle
+                    mouse input.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="WpfEnvironment">
+            <title>Class WpfEnvironment</title>
+            <content>
+                <alert class="note">
+                    <para>
+                        The class
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Interop.WpfEnvironment</codeEntityReference>
+                        is obsolete. It is not required anymore to use
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Interop.WpfEnvironment</codeEntityReference>
+                        for WPF interoperability.
+                    </para>
+                </alert>
+                <para>
+                    The class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Interop.WpfEnvironment</codeEntityReference>
+                    is a helper class that provides an execution environment for a WPF window that runs on
+                    a separate thread inside a Windows Forms application (such as the XNA game).
+                </para>
+                <para>
+                    The following examples shows to open a WPF window using the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Interop.WpfEnvironment</codeEntityReference>.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// The WpfEnvironment class create a separate thread which runs the WPF windows.
+// (Redundant calls of Startup() are no problem.)
+WpfEnvironment.Startup(Window.Handle);
+
+// From the WpfEnvironment class we can get the Dispatcher. We can use it to 
+// execute actions on the WPF thread. 
+WpfEnvironment.Dispatcher.Invoke((Action)(() =>
+{
+  var window = new MyWindow() { GraphicsServices = _graphicsManager };
+  window.Show();
+}));]]>
+                </code>
+                <para>
+                    When the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Interop.WpfEnvironment</codeEntityReference>
+                    is used, Windows Forms and XNA runs on one thread, WPF runs on another thread.
+                    Care needs to be taken to avoid any cross-thread issues. All operations which manipulates
+                    the WPF controls must be executed on the WPF thread using
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.Interop.WpfEnvironment.Dispatcher</codeEntityReference>,
+                    as shown in the example above. All operations which manipulate the state of Windows Forms
+                    controls or XNA must be executed on the Windows Forms thread. The following examples shows
+                    how to register and unregister presentation targets of a WPF window. The operations are
+                    explicitly invoked on the Windows Forms thread.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+using System;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Input;
+using DigitalRune.Graphics;
+using DigitalRune.Graphics.Interop;
+
+namespace InteropSample
+{
+  // A WPF window with a presentation target for 3D graphics.
+  public partial class MyWindow
+  {
+    public IGraphicsService GraphicsService { get; set; }
+
+    public WpfWindow()
+    {
+      InitializeComponent();
+      Loaded += OnLoaded;
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs eventArgs)
+    {
+      // Register render targets.
+      WpfEnvironment.Form.BeginInvoke((Action)(() =>
+      {
+        if (GraphicsService != null)
+          GraphicsService.PresentationTargets.Add(PresentationTarget);
+      }));
+    }
+
+    protected override void OnClosing(CancelEventArgs eventArgs)
+    {
+      // Unregister render targets.
+      WpfEnvironment.Form.BeginInvoke((Action)(() =>
+      {
+        if (GraphicsService != null)
+          GraphicsService.PresentationTargets.Remove(PresentationTarget);
+      }));
+
+      base.OnClosing(eventArgs);
+    }
+  }
+}
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

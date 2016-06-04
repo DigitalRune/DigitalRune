@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="101938c1-f02f-4224-b64e-a95774668df8" revisionNumber="1">
+    <developerWalkthroughDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This topic will show how to define a 3-dimensional path and how to move
+                along the path with a defined speed.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Definition">
+            <title>Defining a 3D path</title>
+            <content>
+                <para>
+                    A 3-dimensional path is a piecewise curve that is defined by several key points.
+                    Key points define the path positions for a given path <newTerm>parameter</newTerm>.
+                    Between the key points the path positions are interpolated using spline curves.
+                    Paths can be used, for example, to define a way that an object should follow when it is
+                    animated.
+                </para>
+                <para>
+                    Let's create a 3-dimensional path using the class
+                    <codeEntityReference>T:DigitalRune.Mathematics.Interpolation.Path3F</codeEntityReference>:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+Path3F path = new Path3F();
+path.Add(new Path3FKey { Parameter = 0, Point = new Vector3F(5, 20, 0), Interpolation = SplineInterpolation.CatmullRom });
+path.Add(new Path3FKey { Parameter = 1, Point = new Vector3F(10, 150, 10), Interpolation = SplineInterpolation.CatmullRom });
+path.Add(new Path3FKey { Parameter = 2, Point = new Vector3F(200, 200, 20), Interpolation = SplineInterpolation.CatmullRom });
+path.Add(new Path3FKey { Parameter = 3, Point = new Vector3F(300, 250, 30), Interpolation = SplineInterpolation.CatmullRom });
+path.Add(new Path3FKey { Parameter = 4, Point = new Vector3F(400, 112, 40), Interpolation = SplineInterpolation.CatmullRom });
+path.Add(new Path3FKey { Parameter = 5, Point = new Vector3F(300, 52, 20), Interpolation = SplineInterpolation.CatmullRom });
+path.Add(new Path3FKey { Parameter = 6, Point = new Vector3F(5, 20, 0), Interpolation = SplineInterpolation.CatmullRom });
+
+path.SmoothEnds = true;
+]]>
+                </code>
+                <para>
+                    The path is created and several <newTerm>path key</newTerm> are added. Each path key
+                    is associated with a path parameter. The path key defines the position for a path parameter
+                    and it defines the spline type that is used to interpolate positions between
+                    this path key and the subsequent path key.
+                </para>
+                <para>
+                    When a path is used the path parameter is the input and a position on the
+                    path is the desired output. In this example, the path parameter starts at 0
+                    and ends at 6. The path keys define the path position for the parameter
+                    values 0, 1, 2, 3, 4, 5 and 6. Between this parameter values the path
+                    positions are interpolated with the defined spline types. For example,
+                    the path position for parameter 0.5 is somewhere between (5, 20, 0)
+                    and (10, 150, 10). To get the path position we can call
+                </para>
+                <code language="c#">
+                    <![CDATA[
+Vector3F p0 = path.GetPoint(0f);   // p0 == (5, 20, 0)
+Vector3F p1 = path.GetPoint(0.5f); // p1 is between (5, 20, 0) and (10, 150, 10)
+]]>
+                </code>
+                <para>
+                    In this example, the last path key is identical to the first path key to create
+                    a <newTerm>closed</newTerm> path. <codeInline>path.SmoothEnds</codeInline>
+                    is set, to make sure that the path is smooth where the first and the last
+                    path key meet.
+                </para>
+                <para>
+                    Next, we define how the path should behave if the path parameter is not
+                    in the range <math>[0, 6]</math>:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+path.PreLoop = CurveLoopType.Cycle;
+path.PostLoop = CurveLoopType.Cycle;
+]]>
+                </code>
+                <para>
+                    This creates a smooth "looping" behavior. For example, the path position for parameter 6.5
+                    is equal to the path position for parameter 0.5.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Parameterization">
+            <title>Parameterizing a path by length</title>
+            <content>
+                <para>
+                    The path that we have defined can be used to translate an object. We can start
+                    with parameter 0 at position (5, 20, 0) and increase the parameter to get the
+                    next positions on the path. The problem with this approach is that the path
+                    parameter is not linearly proportional to the distance along the path. If an object
+                    is animated by using this parameter, it will move with an undefined speed.
+                </para>
+                <para>
+                    It would be easier if the parameter for each path key is identical
+                    to the distance of the path keys from the beginning of the path.
+                    This can be achieved by calling:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+path.ParameterizeByLength(10, 0.01f);
+]]>
+                </code>
+                <para>
+                    This method changes the path parameters. The length parameterization is an
+                    iterative process and the method arguments <codeInline>(10, 0.01f)</codeInline>
+                    define the desired accuracy (see
+                    <codeEntityReference>M:DigitalRune.Mathematics.Interpolation.Path3F.ParameterizeByLength(System.Int32,System.Single)</codeEntityReference>
+                    ).
+                    Before the call the path parameters
+                    at the path keys where 0, 1, 2, 3, 4, 5, 6. After the call the path parameters
+                    at the path keys are identical to the length of the path from the start
+                    to the path key. For example, the parameter of the first path key is now
+                    0 (same as before) and the parameter at the last path key is now equal to the
+                    length of the whole path.
+                </para>
+                <para>
+                    Now, the path parameter at the path keys is equal to the path length. But between
+                    the path keys the path parameter varies in a way that is not linearly proportional
+                    to the path length - because of the nature of the Catmull-Rom splines which are used
+                    in this example. To get the path position for a given path length, for example 100, we can call
+                </para>
+                <code language="c#">
+                    <![CDATA[
+Vector3F p = path.GetPoint(path.GetParameterFromLength(100, 10, 0.01f));
+]]>
+                </code>
+                <para>
+                    <codeEntityReference>M:DigitalRune.Mathematics.Interpolation.Path3F.GetParameterFromLength(System.Single,System.Int32,System.Single)</codeEntityReference>
+                    computes the approximate path parameter that gives us the path position where
+                    the path is 100 long.
+                    See
+                    <codeEntityReference>M:DigitalRune.Mathematics.Interpolation.Path3F.GetParameterFromLength(System.Single,System.Int32,System.Single)</codeEntityReference>
+                    for more details.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Move">
+            <title>Moving along the path</title>
+            <content>
+                <para>
+                    The path can be used to move an object along the path. Because the path was
+                    parameterized by length, we can control the speed of the movement on the path.
+                </para>
+                <para>
+                    To get the start position on the path call:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+float parameter = 0;
+Vector3F startPosition = path.GetPoint(0);
+]]>
+                </code>
+                <para>
+                    To get the next position for a given <codeInline>speed</codeInline>:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+parameter += speed * time;
+Vector3F nextPosition = path.GetPoint(path.GetParameterFromLength(parameter, 10, 0.01f));
+]]>
+                </code>
+                <para>
+                    <codeInline>time</codeInline> is the time difference since the last path position
+                    was computed, for example, <codeInline>1.0f/60.0f</codeInline> if the object
+                    should be animated with 60 frames per second.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Tips">
+            <title>Tips</title>
+            <content></content>
+            <sections>
+                <section>
+                    <title>Improving performance</title>
+                    <content>
+                        <para>
+                            <codeEntityReference>M:DigitalRune.Mathematics.Interpolation.Path3F.GetParameterFromLength(System.Single,System.Int32,System.Single)</codeEntityReference>
+                            is a costly operation that should not be called too often. To improve performance it is recommended
+                            to create a second approximate path from the first path. The keys of the approximate
+                            path are created by sampling the exact path at constant intervals:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+float pathLength = path[path.Count - 1].Parameter;  // Length of the exact path.
+
+Path3F approximatePath = new Path3F()
+{
+  SmoothEnds = true,
+  PreLoop = CurveLoopType.Cycle,
+  PostLoop = CurveLoopType.Cycle
+};
+
+const int NumberOfSamples = 100;
+for (int i = 0; i <= NumberOfSamples; i++)
+{
+  float distance = pathLength * i / NumberOfSamples;
+  float parameter = path.GetParameterFromLength(distance, 10, 0.01f);
+  Vector3F point = path.GetPoint(parameter);
+  approximatePath.Add(new Path3FKey { Parameter = distance, Point = point, Interpolation = SplineInterpolation.CatmullRom });
+}
+]]>
+                        </code>
+                        <para>
+                            Moving along this path with <codeInline>Vector3F nextPosition = approximatePath.GetPoint(parameter);</codeInline>
+                            is faster and the difference to the exact path is not noticeable if the
+                            number of samples is high enough.
+                        </para>
+                    </content>
+                </section>
+                <section>
+                    <title>Looking into the movement direction</title>
+                    <content>
+                        <para>
+                            <codeEntityReference>M:DigitalRune.Mathematics.Interpolation.Path3F.GetTangent(System.Single)</codeEntityReference>
+                            defines the movement direction for a given path parameter. If an object that
+                            is moving along the path is rotated so that it "looks" into the tangent direction,
+                            then the orientation of the object follows the path smoothly.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerWalkthroughDocument>
+</topic>

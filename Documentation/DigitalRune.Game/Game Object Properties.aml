@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="08a99230-99dd-416b-9f58-1d00a4dfddea" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This section describes game object properties.
+            </para>
+            <autoOutline>2</autoOutline>
+        </introduction>
+
+
+        <section address="Properties">
+            <title>Game object properties</title>
+            <content>
+                <para>
+                    <legacyItalic>Game object properties</legacyItalic> (also called <legacyItalic>ports</legacyItalic>,
+                    <legacyItalic>signals</legacyItalic>, or <legacyItalic>attributes</legacyItalic>)
+                    extend the functionality of common language runtime (CLR) properties.
+                    The game object properties are represented by the type
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GameProperty`1</codeEntityReference>.
+                    The game object properties of a particular game object are listed in
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Game.GameObject.Properties</codeEntityReference>.
+                </para>
+            </content>
+
+            <sections>
+                <section address="Creation">
+                    <title>Creating a game object property</title>
+                    <content>
+                        <para>
+                            A new game object property can be defined by calling the static method
+                            <codeEntityReference qualifyHint="true">M:DigitalRune.Game.GameObject.CreateProperty``1(System.String,System.String,System.String,``0)</codeEntityReference>.
+                            For example:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+GamePropertyMetadata<float> metadata = GameObject.CreateProperty<float>(
+  "X",                       // The name of the property.
+  "Common",                  // The category (for use in game editors).
+  "Defines the x-position.", // The description.
+  0.0f);                     // The default value.
+]]>
+                        </code>
+                        <para>
+                            Once this method is called, the game object property is globally defined.
+                            If this method is called a second time with the same properties, it will
+                            not create a new game object property. Instead it will only return the
+                            metadata of the previous call. There cannot be multiple game object properties
+                            with the same name and type!
+                        </para>
+                        <para>
+                            The metadata of any game object property can be queried by calling
+                            <codeEntityReference qualifyHint="true">M:DigitalRune.Game.GameObject.GetPropertyMetadata``1(System.String)</codeEntityReference>
+                            where game object properties can be identified by
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                the automatically assigned ID stored in the metadata (see
+                                <codeEntityReference qualifyHint="false">P:DigitalRune.Game.GamePropertyMetadata`1.Id</codeEntityReference>),
+                                or
+                            </listItem>
+                            <listItem>
+                                by name and value type.
+                            </listItem>
+                        </list>
+                        <para>
+                            Either of these ways uniquely identifies a game object property.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Read">
+                    <title>Reading a game object property</title>
+                    <content>
+                        <para>
+                            Once a game object property is defined it can be set and queried on any game
+                            object. There are multiple ways to get the value of a game object property:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+var gameObject = new GameObject();
+
+// Method #1: Get value by name from game object.
+float x = gameObject.GetValue<float>("X");
+
+// Method #2: Get value by metadata from game object.
+x = gameObject.GetValue<float>(metadata);
+
+// Method #3: Get value by ID from game object.
+x = gameObject.GetValue<float>(metadata.Id);
+
+// Method #4: First get GameProperty<T> from game object. 
+//            Then get the value from the GameProperty<T>.
+GameProperty<float> property = gameObject.Properties.Get<float>("X");
+x = property.Value;
+]]>
+                        </code>
+                        <para>
+                            Note that the game object property will return the default value as defined in
+                            the metadata if the property was never set on the object. (If the game object
+                            has template, the property will return the value of the template. See
+                            <link xlink:href="be9dad32-1e3f-4361-9cbe-9874e2225049"/>.)
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Write">
+                    <title>Writing a game object property</title>
+                    <content>
+                        <para>
+                            Setting the value of a game object property is similar:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+var gameObject = new GameObject();
+
+// Method #1: Set value by name.
+gameObject.SetValue("X", 10.0f);
+
+// Method #2: Set value by metadata.
+gameObject.SetValue(metadata, 10.0f);
+
+// Method #3: Set value by ID.
+gameObject.SetValue(metadata.Id, 10.0f);
+
+// Method #4: First get GameProperty<T> from game object. 
+//            Then set the value of the GameProperty<T>.
+GameProperty<float> property = gameObject.Properties.Get<float>("X");
+property.Value = 10.0f;
+]]>
+                        </code>
+                        <para>
+                            The above described methods for reading or writing game object properties
+                            are basically equivalent.
+                        </para>
+                        <para>
+                            In the last method a <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GameProperty`1</codeEntityReference>
+                            is acquired. This object is a handle to the property of a particular game object. Other objects
+                            can store a <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GameProperty`1</codeEntityReference>
+                            directly if they regularly need to read or change the property of a game object. When the object
+                            stores the <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GameProperty`1</codeEntityReference>
+                            it is not necessary to also keep a reference to the game object that owns the property.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Wrapping">
+                    <title>Wrapping a game object property</title>
+                    <content>
+                        <para>
+                            In some cases it is convenient to wrap a game object property using a standard
+                            CLR property. Here is an example that shows how to define a game object property
+                            in a class and wrap it using a CLR property:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+public class MyGameObject : GameObject
+{
+  /// <summary> 
+  /// The ID of the <see cref="X"/> game object property.
+  /// </summary>
+  public static readonly int XPropertyId = 
+    CreateProperty<float>("X", "Common", "Defines the x-position.", 0.0f).Id;
+
+  /// <summary>
+  /// Gets or sets the x-position. This is a game object property.
+  /// </summary>
+  /// <value>The x-position.</value>
+  public float X
+  {
+    get { return GetValue<float>(XPropertyId); }
+    set { SetValue(XPropertyId, value); }
+  }
+
+  ...
+}]]>
+                        </code>
+                        <para>
+                            The game object property can then be used like any other CLR property.
+                            (This pattern is extensively used in the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIControl</codeEntityReference>s
+                            of the <link xlink:href="a5a463da-de2e-432f-bf7d-07206aaca634"/> library.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Coercion">
+                    <title>Value coercion</title>
+                    <content>
+                        <para>
+                            A <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GameProperty`1</codeEntityReference>
+                            has a <codeEntityReference qualifyHint="false">E:DigitalRune.Game.GameProperty`1.Changing</codeEntityReference>
+                            event which is raised when the value is about to be changed. This
+                            event can be used for value coercion. The <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GamePropertyEventArgs`1</codeEntityReference>
+                            passed to the event handler contain the current value of the property (see
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.GamePropertyEventArgs`1.OldValue</codeEntityReference>)
+                            and the new value which is about to be set (see <codeEntityReference qualifyHint="false">P:DigitalRune.Game.GamePropertyEventArgs`1.NewValue</codeEntityReference>).
+                            The event handler can override the new value by setting the
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.GamePropertyEventArgs`1.CoercedValue</codeEntityReference>.
+                            For example:
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+var valueProperty = slider1.Properties.Get<float>("Value");
+valueProperty.Changing += (s, e) =>
+{
+  if (e.CoercedValue < slider2.Value)
+    e.CoercedValue = slider2.Value;
+  if (e.CoercedValue > slider3.Value)
+    e.CoercedValue = slider3.Value;
+};
+]]>
+                        </code>
+                    </content>
+                </section>
+
+                <section address="Change">
+                    <title>Change notification</title>
+                    <content>
+                        <para>
+                            A <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GameProperty`1</codeEntityReference>
+                            has a <codeEntityReference qualifyHint="false">E:DigitalRune.Game.GameProperty`1.Changed</codeEntityReference>
+                            which is raised when the value of the property has changed. Other objects
+                            can attach an event handler to this event to listen for changes.
+                            The event handler will receive a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GamePropertyEventArgs`1</codeEntityReference>
+                            which contains the previous value of the property (see <codeEntityReference qualifyHint="false">P:DigitalRune.Game.GamePropertyEventArgs`1.OldValue</codeEntityReference>)
+                            and the new value (see <codeEntityReference qualifyHint="false">P:DigitalRune.Game.GamePropertyEventArgs`1.NewValue</codeEntityReference>).
+                        </para>
+                        <alert class="caution">
+                            <para>
+                                An event handler of a <codeEntityReference qualifyHint="false">E:DigitalRune.Game.GameProperty`1.Changed</codeEntityReference>
+                                event of a property should not change the value of the property. This
+                                leads to nested <codeEntityReference qualifyHint="false">E:DigitalRune.Game.GameProperty`1.Changed</codeEntityReference>
+                                event calls and might have unexpected results. Value coercion can be
+                                done in the <codeEntityReference qualifyHint="false">E:DigitalRune.Game.GameProperty`1.Changing</codeEntityReference>
+                                event using the <codeEntityReference qualifyHint="false">P:DigitalRune.Game.GamePropertyEventArgs`1.CoercedValue</codeEntityReference>
+                                property of the <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GamePropertyEventArgs`1</codeEntityReference>.
+                            </para>
+                        </alert>
+
+                    </content>
+                </section>
+
+                <section address="Connect">
+                    <title>Connecting game object properties</title>
+                    <content>
+                        <para>
+                            Game object properties have a property
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.GameProperty`1.Change</codeEntityReference>,
+                            which is an event handler. This event handler can be connected with the
+                            <codeEntityReference qualifyHint="false">E:DigitalRune.Game.GameProperty`1.Changed</codeEntityReference>
+                            event of another property. This is very useful to connect game object properties
+                            of different game objects. Changing one property automatically updates the
+                            connected properties.
+                            Here is an example:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+// mySlider is game object that represents a slider GUI control.
+// myAvatar is a game object that represents the avatar of the player.
+// Connect the "Value" game object property of the slider with the "Height" game object 
+// property of the avatar. This way the slider automatically changes the avatar height.
+GameProperty<float> sliderValue = mySlider.Properties.Get<float>("Value");
+GameProperty<float> avatarHeight = myAvatar.Get<float>("Height");
+sliderValue.Changed += avatarHeight.Change;
+
+// Uncomment following line to create a two-way connection.
+//avatarHeight.Changed += sliderValue.Change;
+]]>
+                        </code>
+                    </content>
+                </section>
+
+                <section address="Limitations">
+                    <title>Limitations</title>
+                    <content>
+                        <para>Read-only properties are not supported.</para>
+                    </content>
+                </section>
+
+                <section address="types">
+                    <title>Mismatched property value types</title>
+                    <content>
+                        <para>
+                            Properties are identified by their name and type. That means that
+                            a game object can have two or more properties with the same name, as long
+                            as the types are different. It is important to match the value types
+                            exactly when setting property values. Following examples show that the
+                            type of the properties matter:
+                        </para>
+
+                        <code language="c#">
+                            <![CDATA[
+gameObject.SetValue("X", 10);                   // Setting the integer "X" property.
+gameObject.SetValue("X", 20.0f);                // Setting the float "X" property
+int intX = gameObject.GetValue<int>("X");       // Returns 10!
+float floatX = gameObject.GetValue<float>("X"); // Returns 20.0f!
+]]>
+                        </code>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="BestPractices">
+            <title>Best practices</title>
+            <content>
+                <para>
+                    The <codeEntityReference qualifyHint="false">P:DigitalRune.Game.GameEventMetadata`1.Description</codeEntityReference>
+                    of a game object property should use a general wording.
+                    For example, the description of the bool "IsEnabled" property could read:
+                    "Indicates whether this object is enabled."
+                </para>
+                <para>
+                    It should not read: "Indicates whether this GuiControl is enabled."
+                </para>
+                <para>
+                    Reason: All game objects that want to have a bool "IsEnabled" property (e.g. the "PointLight" and the "GuiButton")
+                    share the same property metadata. There can only be one description that
+                    should fit all possible uses of the bool "IsEnabled" property.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Performance">
+            <title>Performance considerations</title>
+            <content>
+                <para>
+                    Accessing game object properties is not as fast as accessing CLR fields or properties -
+                    although the overhead is neglectable in most case. Here are some tips to minimize the
+                    performance impact.
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Accessing game object properties using their ID or the
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GameProperty`1</codeEntityReference>
+                        are the fastest methods. Looking up a game object property by
+                        name is not as fast.
+                    </listItem>
+                    <listItem>
+                        Instead of reading a game object property multiple times in a method,
+                        read the game object property once and store the result in a local variable.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="e316a87e-0cdb-4c6b-bcb0-a2e66004c26f" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline>1</autoOutline>
+            <!--<para></para>-->
+        </introduction>
+
+
+        <section address="Light">
+            <title>Lights</title>
+            <content>
+                <para>
+                    DigitalRune Graphics supports the following types of light sources
+                    (which are derived from the base class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Light</codeEntityReference>):
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.AmbientLight</codeEntityReference>
+                        represents ambient light (indirect light).
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.DirectionalLight</codeEntityReference>
+                        represents an infinitely distant light source that emits light in single direction. Typically
+                        used to model sun light in an outdoor scene.
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PointLight</codeEntityReference>
+                        is an omnidirectional light source with a limited range.
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Spotlight</codeEntityReference>
+                        represents spotlight with a cone-shaped falloff.
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.ProjectorLight</codeEntityReference>
+                        projects a texture using an orthographic or perspective projection.
+                        The projector light is similar to a spotlight, except that it does not have a cone-shaped
+                        falloff. Note that a projector light can be used to simulate a spotlight, by baking the
+                        spotlight falloff into the projected texture.
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.ImageBasedLight</codeEntityReference>
+                        uses an environment cube map to add diffuse lighting and specular lighting (reflections).
+                    </listItem>
+                </list>
+                <para>
+                    The light types define the properties of a light source, but not its position or direction.
+                    Lights are positioned within a scene by creating a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LightNode</codeEntityReference>.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Add an ambient light.
+var ambientLight = new AmbientLight
+{
+  Color = new Vector3F(0.9f, 0.9f, 1f),
+  Intensity = 0.15f
+};
+var ambientLightNode = new LightNode(ambientLight) { Name = "Ambient" };
+scene.Children.Add(ambientLightNode);
+
+// Add a directional light.
+var sunLight = new DirectionalLight
+{
+  Color = new Vector3F(1, 0.9607844f, 0.9078432f),
+  DiffuseIntensity = 0.4f,
+  SpecularIntensity = 0.4f
+};
+var sunLightNode = new LightNode(sunLight)
+{
+  Name = "Sun",
+  PoseWorld = new Pose(QuaternionF.CreateRotation(Vector3F.Forward, new Vector3F(-0.5265408f, -0.5735765f, -0.6275069f))),
+  Shadow = new CascadedShadow()
+};
+scene.Children.Add(sunLightNode);
+        ]]>
+                </code>
+            </content>
+            <sections>
+                <section address="Volumes">
+                    <title>Bounding shapes and clip volumes</title>
+                    <content>
+                        <para>
+                            Lights have a shape (see property <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Light.Shape</codeEntityReference>).
+                            The shape defines the space that is lit by the light source. The shape depends on the
+                            type of light. For example, a point light has a <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.SphereShape</codeEntityReference>
+                            where the radius of the sphere matches the range of the light. Some light types, such
+                            as the ambient light, can have a custom (user-defined) shape. The shape is used as a
+                            bounding shape for culling and other internal optimizations. It is <legacyBold>not</legacyBold>
+                            used to clip the light: If the bounding shape of a mesh touches the bounding shape of the light,
+                            then the whole mesh is lit - not only the overlapping parts!
+                        </para>
+                        <para>
+                            The <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.LightNode.Clip</codeEntityReference>
+                            property of a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LightNode</codeEntityReference>
+                            can be used to define a clip volume. A clip geometry is an <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.IGeometricObject</codeEntityReference>
+                            (e.g. a <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.GeometricObject</codeEntityReference>
+                            or another <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SceneNode</codeEntityReference>)
+                            which defines the volume that can be lit by this light. Objects outside the clip geometry
+                            are not lit. This property can be used, for example, to avoid that a light inside a room
+                            illuminates objects in the neighbor room, without using shadow mapping.
+                        </para>
+                    </content>
+                </section>
+                <section address="HDR">
+                    <title>LDR vs. HDR</title>
+                    <content>
+                        <para>
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.AmbientLight.Color</codeEntityReference>
+                            and <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.AmbientLight.Intensity</codeEntityReference>
+                            of a light are separate properties, so the values can be adjusted independently.
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.AmbientLight.HdrScale</codeEntityReference>
+                            is an additional factor. This factors is applied to color and intensity when high dynamic range (HDR)
+                            lighting is enabled.
+                        </para>
+                        <para>
+                            If the scene is going to be presented with a LDR renderer and a HDR renderer, it is recommended
+                            to first adjust <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.AmbientLight.Color</codeEntityReference>
+                            and <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.AmbientLight.Intensity</codeEntityReference>
+                            for LDR output - leave <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.AmbientLight.HdrScale</codeEntityReference>
+                            at 1. Then the HDR scale can be adjusted for HDR output.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="ClassDiagram">
+            <title>Class diagram</title>
+            <content>
+                <mediaLink>
+                    <caption placement="after">Class Diagram: Lights</caption>
+                    <image xlink:href="ClassDiagramGraphicsLights"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

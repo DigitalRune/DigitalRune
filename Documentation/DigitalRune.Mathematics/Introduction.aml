@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="2ac58586-0d4f-4625-bf4c-fc32591a5304" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <mediaLink>
+                <image xlink:href="LogoMathematics"/>
+            </mediaLink>
+            <para>
+                <application>DigitalRune Mathematics</application> is a .NET class library containing
+                types and algorithms to solve mathematical problems.
+                The library was designed for use in computer graphics, video games and
+                virtual reality applications.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Features">
+            <title>Features</title>
+            <content>
+                <para>
+                    Here is an overview of features in this product.
+                </para>
+            </content>
+            <sections>
+                <section>
+                    <title>General</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Intended and optimized for use in 3D real-time applications
+                            </listItem>
+                            <listItem>
+                                Robust floating-point comparisons
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Algebra</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                General vectors and matrices
+                            </listItem>
+                            <listItem>
+                                Specialized vectors and matrices for: 2D, 3D, 4D
+                            </listItem>
+                            <listItem>
+                                Quaternion algebra
+                            </listItem>
+                            <listItem>
+                                Matrix decompositions: Cholesky decomposition, Eigenvalue decomposition,
+                                LU decomposition, QR decomposition, Singular Value Decomposition (SVD)
+                            </listItem>
+                            <listItem>
+                                Iterative solver for systems of linear equations: Jacobi method,
+                                Gauss-Seidel method, SOR method
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Analysis</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Numerical integration: Trapezoidal integrator, Simpson integrator, Romberg integrator
+                            </listItem>
+                            <listItem>
+                                Numerical integration of ordinary differential equations:
+                                Explicit Euler integrator, Midpoint integrator, Runge-Kutta integrator
+                            </listItem>
+                            <listItem>
+                                Root finding algorithms: Bisection method, Regula falsi method,
+                                Newton-Raphson method, Improved Newton-Raphson method
+                            </listItem>
+                            <listItem>
+                                Fast Fourier Transform (FFT)
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Interpolation</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                General interpolation:
+                                <list class="bullet">
+                                    <listItem>
+                                        Step interpolation
+                                    </listItem>
+                                    <listItem>
+                                        N-dimensional linear interpolation
+                                    </listItem>
+                                    <listItem>
+                                        Cosine interpolation
+                                    </listItem>
+                                    <listItem>
+                                        Polynomial interpolation
+                                    </listItem>
+                                    <listItem>
+                                        Quaternion interpolation: linear (LERP), spherical linear (SLERP), spherical quadrangle (SQUAD)
+                                    </listItem>
+                                </list>
+                            </listItem>
+                            <listItem>
+                                Scattered interpolation: Shepard's method, interpolation using Radial Basis Functions (RBF)
+                            </listItem>
+                            <listItem>
+                                Interpolation curves (splines):
+                                <list class="bullet">
+                                    <listItem>
+                                        Basic spline curves: step, linear, Bézier, B-spline, Cardinal, Catmull-Rom, Hermite
+                                    </listItem>
+                                    <listItem>
+                                        Piecewise curves: 2D paths, 3D paths, animation curves
+                                    </listItem>
+                                    <listItem>
+                                        Length-parameterization of curves
+                                    </listItem>
+                                </list>
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Statistics</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Various statistical distributions
+                            </listItem>
+                            <listItem>
+                                Principal component analysis (PCA)
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Namespaces">
+            <title>Namespaces</title>
+            <content>
+                <para>
+                    Following namespaces belong to DigitalRune.Mathematics:
+                </para>
+                <list class="nobullet">
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Mathematics</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Mathematics.Algebra</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Mathematics.Algebra.Design</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Mathematics.Analysis</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Mathematics.Content</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Mathematics.Content.Pipeline</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Mathematics.Interpolation</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Mathematics.Statistics</codeEntityReference>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+        <section address="Subtopics">
+            <title>Subtopics</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        <link xlink:href="384f6645-8a25-488c-9a08-47662266a552"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="8c6f4ed6-3d35-4c23-9f64-aa823200e78b" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="9310f251-0432-4588-bf95-8d9c854c99ee"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="1f324567-e502-496a-a1ca-bdc232611133"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="ae58c8d2-5792-4560-9c28-93e8db73f059"/>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

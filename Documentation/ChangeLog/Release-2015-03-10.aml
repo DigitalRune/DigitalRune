@@ -1,0 +1,468 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="09e8a719-2ba7-485f-a2e9-d8225fa8392f" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+        <section address="ReleaseNotes">
+            <title>Release Notes</title>
+            <content>
+            </content>
+            <sections>
+                <section address="iOS">
+                    <title>iOS, Windows Store, Windows Phone</title>
+                    <content>
+                        <para>
+                            The assemblies have been updated to support the new Xamarin.iOS API and the Windows
+                            Store API. The assemblies for Xamarin.iOS are now built for the Xamarin.iOS Unified
+                            API. The assemblies for Windows Store and Windows Phone have been updated to support
+                            Windows 8.1 and universal apps.
+                        </para>
+                    </content>
+                </section>
+                <section address="IBL">
+                    <title>Image-based lighting (moving towards PBR)</title>
+                    <content>
+                        <para>
+                            <legacyItalic>Physically-based rendering (PBR)</legacyItalic> is becoming the new
+                            norm for interactive graphics.
+                            This release adds one new features which is an important step towards PBR:
+                            <legacyItalic>image-based lighting (IBL)</legacyItalic>. With PBR most materials
+                            (e.g. shiny metals, diffuse materials at
+                            grazing angles) reflect the environment. Image-based lighting uses environment maps to
+                            create these reflections.
+                        </para>
+                        <para>
+                            The new class
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.ImageBasedLight</codeEntityReference>
+                            can be used to define global or local environment maps for a scene. Material shaders
+                            are mostly unchanged:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                Forward rendered materials can use the standard environment map semantics. The
+                                effect binding system will automatically select the closest
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.ImageBasedLight</codeEntityReference>
+                                and set the environment map as the effect parameter.
+                            </listItem>
+                            <listItem>
+                                Deferred materials automatically reflect the environment map. In this case the
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.ImageBasedLight</codeEntityReference>
+                                is simply another type of light source, which is rendered into the light buffers.
+                                The material's diffuse and specular coefficients define the amount of light that
+                                is reflected. The specular power determines the glossiness of reflection. You do
+                                not need to change the material shaders!
+                            </listItem>
+                        </list>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.ImageBasedLight</codeEntityReference>
+                            currently uses standard cube maps. Cube maps can be loaded via the content pipeline
+                            or generated dynamically at runtime.
+                        </para>
+                        <para>
+                            We have added 2 new samples
+                            (<legacyItalic>ImageBasedLightingSample</legacyItalic> and
+                            <legacyItalic>CathedralSample</legacyItalic>) which demonstrate how to generate
+                            environment maps at runtime and how to apply image-based lighting. Below is a
+                            screenshot showing the
+                            Sibenik Cathedral.
+                            In this example image-based lights are used to add reflections.
+                        </para>
+                        <para>
+                            The image-based lights can also be used to influence diffuse lighting (to add bounce
+                            light) or to replace the normal ambient lighting.
+                        </para>
+                        <para>
+                            Here are some screenshots of the CathedralSample:
+                        </para>
+                        <mediaLink>
+                            <caption placement="after">
+                                Figure 1: Sibenik Cathedral without IBL (top) and with IBL (bottom). Without IBL
+                                pure metals simply appear black.
+                            </caption>
+                            <image xlink:href="IBL-01"/>
+                        </mediaLink>
+                        <mediaLink>
+                            <caption placement="after">
+                                Figure 2: Sibenik Cathedral without IBL (top) and with IBL (bottom). Note how the
+                                IBL adds a diffuse, red light bounce at the altar area.
+                            </caption>
+                            <image xlink:href="IBL-02"/>
+                        </mediaLink>
+                    </content>
+                </section>
+                <section address="Batching">
+                    <title>Static batching and hardware instancing</title>
+                    <content>
+                        <para>
+                            Another question which we address in this release is:
+                            <legacyItalic>How to render a large number of meshes efficiently?</legacyItalic>
+                        </para>
+                        <para>
+                            One option is to merge several mesh nodes into one to reduce the per-object overhead.
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.MeshHelper</codeEntityReference>
+                            now provides functions to merge meshes at runtime.
+                        </para>
+                        <para>
+                            Another option is to use hardware instancing. The DigitalRune
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.MeshRenderer</codeEntityReference>
+                            already supports hardware instancing: When mesh nodes are rendered, it gathers all
+                            instances of one mesh and sends them to the GPU using a single draw call to reduce overhead.
+                        </para>
+                        <para>
+                            However, if you add many individual mesh nodes to a scene, there is still a
+                            significant overhead per-object. This release includes a new class
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshInstancingNode`1</codeEntityReference>
+                            which is derived from
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshNode</codeEntityReference>.
+                            It allows to group lots of instances into one scene node. Rendering a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshInstancingNode`1</codeEntityReference>
+                            is extremely fast because the instance-data buffers need to be created only once and
+                            not per frame.
+                        </para>
+                        <para>
+                            The new
+                            <legacyItalic>BatchingSample</legacyItalic> demonstrates these new features.
+                        </para>
+                    </content>
+                </section>
+                <section address="Vegetation">
+                    <title>Vegetation</title>
+                    <content>
+                        <para>
+                            The new
+                            VegetationSample
+                            uses the
+                            MeshInstancingNode
+                            to draw large quantities of grass, bushes and trees. It also shows how to
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                animate plants on the GPU to make them sway in the wind,
+                            </listItem>
+                            <listItem>
+                                add a simple subsurface scattering/translucency effect for leaves,
+                            </listItem>
+                            <listItem>
+                                blend between different levels of detail,
+                            </listItem>
+                            <listItem>
+                                fade instances in/out.
+                            </listItem>
+                        </list>
+                        <mediaLink>
+                            <caption placement="after">VegetationSample</caption>
+                            <image xlink:href="Vegetation-Sample"/>
+                        </mediaLink>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+        <section address="ChangeLog">
+            <title>Change log</title>
+            <content>
+            </content>
+            <sections>
+                <section address="General">
+                    <title>General</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                NEW: iOS libraries are now built for the Xamarin.iOS Unified API.
+                            </listItem>
+                            <listItem>
+                                NEW: Windows Store and Windows Phone builds updated to Windows Store 8.1 Universal Apps.
+                                <markup>
+                                    <br/>
+                                </markup>
+                                The folder <legacyItalic>References/WindowsPhone</legacyItalic> has been removed.
+                                The assemblies for Windows Store 8.1 Universal Apps (Windows + Windows Phone) can
+                                be found in <legacyItalic>References/.NETCore</legacyItalic>.
+                            </listItem>
+                            <listItem>
+                                NEW: Added new folders <legacyItalic>References/Android</legacyItalic> and
+                                <legacyItalic>References/iOS</legacyItalic> with builds which do not require
+                                MonoGame.
+                            </listItem>
+                            <listItem>
+                                FIX: "InvalidProgramException: Invalid IL code…" error in Mono caused by code obfuscation.
+                            </listItem>
+                            <listItem>
+                                Many other internal improvements.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Base">
+                    <title>DigitalRune Base 1.17</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                REMOVE: Clipboard support was removed for Windows Store Universal Apps.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Animation">
+                    <title>DigitalRune Animation 1.4</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                FIX: Possible endless loops if several animated properties have the same hash code.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Graphics">
+                    <title>DigitalRune Graphics 1.0beta</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                NEW: Support for static batching and hardware instancing:
+                                <list class="bullet">
+                                    <listItem>
+                                        NEW: Static batching support using
+                                        <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Graphics.MeshHelper.Merge(System.Collections.Generic.IEnumerable{DigitalRune.Graphics.SceneGraph.SceneNode})</codeEntityReference>.
+                                    </listItem>
+                                    <listItem>
+                                        NEW: Static hardware instancing support using the new
+                                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshInstancingNode`1</codeEntityReference>.
+                                    </listItem>
+                                    <listItem>
+                                        NEW: Vertex struct
+                                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.InstanceData</codeEntityReference> added.
+                                    </listItem>
+                                    <listItem>
+                                        NEW: <legacyItalic>Forward.fx</legacyItalic> supports hardware instancing.
+                                    </listItem>
+                                    <listItem>
+                                        CHANGE: When using hardware instancing, SceneNodeType is now a regular effect parameter.
+                                        <markup>
+                                            <br/>
+                                        </markup>
+                                        Previous solution: SceneNodeType was part of the mesh instance data. It was stored
+                                        in a vertex stream register. SceneNodeType and InstanceColor occupied the same register,
+                                        which meant that either SceneNodeType or InstanceColor could be passed to the shader,
+                                        but not both parameters at the same time.
+                                        <markup>
+                                            <br/>
+                                        </markup>
+                                        New solution: SceneNodeType is a regular effect parameter (= shader constant). Shaders
+                                        can now use SceneNodeType and InstanceColor at the same time.
+                                        <markup>
+                                            <br/>
+                                        </markup>
+                                        This change affects <legacyItalic>GBuffer.fx</legacyItalic>.
+                                    </listItem>
+                                </list>
+                            </listItem>
+                            <listItem>
+                                NEW: Image-based lighting for diffuse and specular reflections using environment maps:
+                                <list class="bullet">
+                                    <listItem>
+                                        NEW: Class
+                                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.ImageBasedLight</codeEntityReference> added.
+                                    </listItem>
+                                    <listItem>
+                                        NEW: Property
+                                        <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.SceneGraph.LightQuery.ImageBasedLights</codeEntityReference> added.
+                                    </listItem>
+                                    <listItem>
+                                        NEW: Added effect parameter semantics for environment maps:
+                                        <codeEntityReference qualifyHint="false">F:DigitalRune.Graphics.Effects.SceneEffectParameterSemantics.EnvironmentMap</codeEntityReference>,
+                                        <codeEntityReference qualifyHint="false">F:DigitalRune.Graphics.Effects.SceneEffectParameterSemantics.EnvironmentMapSize</codeEntityReference>,
+                                        <codeEntityReference qualifyHint="false">F:DigitalRune.Graphics.Effects.SceneEffectParameterSemantics.EnvironmentMapDiffuse</codeEntityReference>,
+                                        <codeEntityReference qualifyHint="false">F:DigitalRune.Graphics.Effects.SceneEffectParameterSemantics.EnvironmentMapSpecular</codeEntityReference>,
+                                        <codeEntityReference qualifyHint="false">F:DigitalRune.Graphics.Effects.SceneEffectParameterSemantics.EnvironmentMapMatrix</codeEntityReference>,
+                                        <codeEntityReference qualifyHint="false">F:DigitalRune.Graphics.Effects.SceneEffectParameterSemantics.EnvironmentMapRgbmMax</codeEntityReference>.
+                                    </listItem>
+                                    <listItem>
+                                        NEW:
+                                        <legacyItalic>ForwardEnv.fx</legacyItalic> supports forward rendering with an
+                                        environment map with RGBM encoding specified by the new
+                                        <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.ImageBasedLight</codeEntityReference>
+                                        class.
+                                    </listItem>
+                                </list>
+                            </listItem>
+                            <listItem>
+                                NEW:
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SceneCaptureNode</codeEntityReference>s
+                                can now be rotated to capture cube maps which are not aligned with the world axes.
+                                <markup>
+                                    <br/>
+                                </markup>
+                                Previously cube maps were aligned with the world axes. Now it is possible to specify
+                                a rotated camera to capture a rotated cube map. The
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneCaptureRenderer</codeEntityReference>
+                                uses the orientation of
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.SceneGraph.SceneCaptureNode.CameraNode</codeEntityReference>
+                                when capturing cube maps.
+                            </listItem>
+                            <listItem>
+                                NEW: Vertex struct
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.VertexPositionNormalColorTexture</codeEntityReference>
+                                added.
+                            </listItem>
+                            <listItem>
+                                NEW: DigitalRune Model Processor logs warning if a mesh name in a DRMDL is invalid.
+                            </listItem>
+                            <listItem>
+                                NEW:
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.EffectPassBinding</codeEntityReference>
+                                implements IEquatable.
+                            </listItem>
+                            <listItem>
+                                CHANGE: [iOS] DigitalRune Texture Processor automatically falls back to
+                                <legacyBold>Color</legacyBold> format if size is not supported by PVRTC compressor.
+                            </listItem>
+                            <listItem>
+                                CHANGE: Type of first parameter in
+                                <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Graphics.Rendering.DebugRenderer.DrawTriangles(DigitalRune.Geometry.Meshes.ITriangleMesh,DigitalRune.Geometry.Pose,DigitalRune.Mathematics.Algebra.Vector3F,Microsoft.Xna.Framework.Color,System.Boolean,System.Boolean)</codeEntityReference>
+                                changed from
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Meshes.TriangleMesh</codeEntityReference>
+                                to
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Meshes.ITriangleMesh</codeEntityReference>.
+                            </listItem>
+                            <listItem>
+                                FIX: Possible
+                                <codeEntityReference qualifyHint="false">T:System.NullReferenceException</codeEntityReference>
+                                in
+                                <codeEntityReference qualifyHint="true" autoUpgrade="false">M:DigitalRune.Graphics.GraphicsManager.Render(DigitalRune.Graphics.Interop.IPresentationTarget,System.Collections.Generic.IList{DigitalRune.Graphics.GraphicsScreen})</codeEntityReference>.
+                            </listItem>
+                            <listItem>
+                                FIX: Possible
+                                <codeEntityReference qualifyHint="false">T:System.NullReferenceException</codeEntityReference>
+                                in
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.DebugRenderer</codeEntityReference>
+                                if
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.TriangleMeshShape</codeEntityReference>
+                                is rendered and then invalidated.
+                            </listItem>
+                            <listItem>
+                                FIX: Effects which support skinning or morphing must not use hardware instancing.
+                                <markup>
+                                    <br/>
+                                </markup>
+                                In the last release we forgot to disable hardware instancing in effects which use morphing.
+                            </listItem>
+                            <listItem>
+                                FIX:
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.PostProcessing.LuminanceFilter</codeEntityReference>
+                                filters bad color values of the source image.
+                                <markup>
+                                    <br/>
+                                </markup>
+                                Before this fix a bad value in a render target (e.g. NaN or infinite) could create a
+                                permanently black output image.
+                            </listItem>
+                            <listItem>
+                                FIX: Possible
+                                <legacyBold>NullReferenceException</legacyBold>
+                                when a
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshNode</codeEntityReference>
+                                uses an effect with skinning but
+                                <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.MeshNode.SkeletonPose</codeEntityReference>
+                                is not set.
+                            </listItem>
+                            <listItem>
+                                FIX:
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LodGroupNode</codeEntityReference>
+                                did not compute correct bounding shape if its pose or scale was not identity.
+                            </listItem>
+                            <listItem>
+                                FIX:
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LodGroupNode</codeEntityReference>
+                                did not compute correct bounding shape for some cases where a level had an infinite bounding shape.
+                            </listItem>
+                            <listItem>
+                                FIX: Throw meaningful exception message if an array effect parameter binding uses more
+                                array elements than the effect supports.
+                            </listItem>
+                            <listItem>
+                                Minor other improvements.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="GameUI">
+                    <title>DigitalRune Game UI 1.6</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                NEW:
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.TextBox</codeEntityReference>
+                                uses the new MonoGame <legacyBold>KeyboardInput</legacyBold> class on phones and Windows Store apps.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Samples">
+                    <title>Samples</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                NEW: ImageBasedLightingSample.
+                            </listItem>
+                            <listItem>
+                                NEW: CathedralSample.
+                            </listItem>
+                            <listItem>
+                                NEW: BatchingSample.
+                            </listItem>
+                            <listItem>
+                                NEW: VegetationSample.
+                            </listItem>
+                            <listItem>
+                                NEW: XNA-Kinect sample project replaced by MonoGame-Windows-Kinect samples project.
+                            </listItem>
+                            <listItem>
+                                CHANGE: Windows Store sample changed to XAML-based MonoGame template.
+                            </listItem>
+                            <listItem>
+                                CHANGE: Removed use of Segoe UI Mono and Miramote in sprite fonts.
+                                (These fonts come with XNA Game Studio. They are not included in Windows or MonoGame.)
+                            </listItem>
+                            <listItem>
+                                FIX: Camera was disabled in Xbox avatar samples.
+                            </listItem>
+                            <listItem>
+                                FIX: Some UI samples could not be switched with gamepad only.
+                            </listItem>
+                            <listItem>
+                                Minor other improvements.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="MonoGame">
+                    <title>MonoGame</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                CHANGE: MonoGame.Framework.Net.dll is not required anymore by DigitalRune libraries and
+                                samples.
+                            </listItem>
+                            <listItem>
+                                REMOVE: MonoGameContentProcessor assembly removed. Use the new MonoGame content pipeline instead!
+                            </listItem>
+                            <listItem>
+                                Several other improvements.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="12ff9049-3aea-4b01-affe-3aa37eea9ce2" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                The <newTerm>CloudQuadSample</newTerm> (see
+                <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />)
+                shows how to render clouds using textured quads.
+                This article explains how the sample was created.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Overview">
+            <title>Overview</title>
+            <content>
+                <para>
+                    DigitalRune Graphics supports procedural cloud layers. <newTerm>Cloud quads</newTerm>
+                    provide a much simpler technique for cloud rendering:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        An artist creates a cloud texture.
+                    </listItem>
+                    <listItem>
+                        This texture is applied to transparent quads/billboards in the sky.
+                    </listItem>
+                    <listItem>
+                        A custom shader fakes cloud lighting.
+                    </listItem>
+                </list>
+                <para>
+                    The result looks like this:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Cloud-Quad-01"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Texture">
+            <title>Cloud texture</title>
+            <content>
+                <para>
+                    First, a cloud" texture was created using Photoshop.
+                    The texture was created like this: Use "Render Clouds". Add some bright spots
+                    with a brush. Erase some parts. Blur the image a few times.
+                </para>
+                <mediaLink>
+                    <caption>Cloud-Quad-Texture</caption>
+                    <image xlink:href="Cloud-Quad-Texture"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Quad">
+            <title>Rendering quads</title>
+            <content>
+                <para>
+                    Next, a simple quad was created in Blender and exported as a FBX model.
+                    Then a new material was created. Here is the DigitalRune material (.drmat) file:
+                </para>
+                <code language="xml">
+                    <![CDATA[
+<?xml version="1.0" encoding="utf-8"?>
+<Material>
+  <Pass Name="AlphaBlend" Effect="Cloud.fx" Profile="HiDef">
+    <Parameter Name="SampleDistance" Value="0.02" />
+    <Parameter Name="ScatterParameters" Value="10, 5, 0.3" />
+    <Parameter Name="DensityScale" Value="1" />
+    <Parameter Name="Alpha" Value="1" />
+    <Texture Name="DensityTexture" File="Cloud.png" Format="Color" />
+  </Pass>
+</Material>
+]]>
+                </code>
+                <para>
+                    This material uses the custom shader described below. All parameters in this file are
+                    effect parameters of Cloud.fx (included in the sample).
+                </para>
+                <para>
+                    At runtime, the model is loaded and added to the scene several times using random
+                    positions, scaling and orientations.
+                </para>
+                <mediaLink>
+                    <caption placement="after">Screenshot showing cloud quads</caption>
+                    <image xlink:href="Cloud-Quad-02"/>
+                </mediaLink>
+                <para>
+                    The quads are automatically rendered together with all other alpha-blended meshes
+                    in the "AlphaBlend" render pass of the deferred lighting graphics screen –
+                    no need to change the render pipeline.
+                </para>
+                <para>
+                    To save fill-rate and improve performance, we could
+                    <externalLink>
+                        <linkText>trim the billboards</linkText>
+                        <linkUri>http://www.humus.name/index.php?page=Comments&amp;ID=266</linkUri>
+                    </externalLink>.
+                    Since the clouds are alpha-blended meshes, we are not restricted to quads; cloud
+                    meshes can have any shape.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Lighting">
+            <title>Cloud shader and lighting</title>
+            <content>
+                <para>
+                    The shader used for these clouds is similar to the shader used for the
+                    procedural cloud layer of DigitalRune Graphics. It uses sun direction,
+                    sun light and ambient light of the sky to simulate cloud lighting.
+                </para>
+                <para>
+                    Here are more screenshots with random cloud positions and different lighting
+                    conditions (still the same texture):
+                </para>
+                <mediaLink>
+                    <image xlink:href="Cloud-Quad-03"/>
+                </mediaLink>
+                <mediaLink>
+                    <image xlink:href="Cloud-Quad-04"/>
+                </mediaLink>
+                <para>
+                    The shader tints clouds with the sun light color (white/yellow/red depending on
+                    time-of-day) in the direction of the sun. On the opposite side the clouds use more of
+                    the ambient sky color (light blue).
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Advantages">
+            <title>Advantages</title>
+            <content>
+                <para>
+                    This technique is not as sophisticated as the built-in procedural cloud layer rendering,
+                    but it has some advantages:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        It is simple.
+                    </listItem>
+                    <listItem>
+                        No special game engine render code needed.
+                    </listItem>
+                    <listItem>
+                        The artist has absolute control over the shape of the clouds. She can
+                        create textures for different cloud types or use pictures of real clouds.
+                    </listItem>
+                    <listItem>
+                        The cloud meshes can be positioned randomly or manually by the level designer.
+                    </listItem>
+                </list>
+                <para>
+                    For more details, please check out the sample source code.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

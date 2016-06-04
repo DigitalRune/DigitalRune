@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="4c3588bf-0b84-4a29-8261-1dec48594c66" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                The <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.AnimationManager</codeEntityReference>
+                is the core of the animation system. It manages, updates and applies all
+                running animations. A game usually has one instance of this class which is updated in
+                the main game loop.
+            </para>
+        </introduction>
+
+
+        <section address="Initialization">
+            <title>Initialization</title>
+            <content>
+                <para>
+                    Creation and initialization of the animation manager is straight forward.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Create a new animation manager.
+AnimationManager animationManager = new AnimationManager();
+]]>
+                </code>
+                <para>
+                    Optionally, it is possible to enable or disable support for multithreading. When multithreading is
+                    enabled all animations are evaluated in parallel. The workload is automatically distributed among
+                    all available CPU cores. Multithreading is enabled by default. See property
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Animation.AnimationManager.EnableMultithreading</codeEntityReference>
+                    for more information.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Optional: Enable or disable multithreading support. (Enabled by default.)
+animationManager.EnableMultithreading = true;
+]]>
+                </code>
+                <para>
+                    Support for multithreading can be enabled or disabled at any point at runtime.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Update">
+            <title>Update</title>
+            <content>
+                <para>
+                    All active animations are registered by the animation manager. The method
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Animation.AnimationManager.Update(System.TimeSpan)</codeEntityReference>
+                    needs to be called regularly, usually once per frame, to update all animations.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Progress all animations by the given time.
+// (deltaTime is the elapsed time since the last update.)
+animationManager.Update(deltaTime);
+]]>
+                </code>
+                <para>
+                    The <codeEntityReference qualifyHint="true">M:DigitalRune.Animation.AnimationManager.Update(System.TimeSpan)</codeEntityReference>
+                    method is the part were the animation manager does most of its work.
+                </para>
+                <para>
+                    <legacyBold>Important:</legacyBold> The <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.AnimationManager.Update(System.TimeSpan)</codeEntityReference>
+                    method does not yet write the animation results to the objects that are being animated.
+                    Instead the new animation values are cached by the animations system. The method
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Animation.AnimationManager.ApplyAnimations</codeEntityReference>
+                    needs to be called to write the animation results.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Apply the new animation values to the objects and properties that
+// are being animated.
+animationManager.ApplyAnimations();
+]]>
+                </code>
+                <para>
+                    By separating the <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.AnimationManager.Update(System.TimeSpan)</codeEntityReference>
+                    and the <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.AnimationManager.ApplyAnimations</codeEntityReference>
+                    logic it is possible to run the update parallel to other game services (such as AI, graphics, physics, etc.).
+                </para>
+                <para>
+                    It is not allowed to start or stop animations while they are being updated.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="AnimationService">
+            <title>Animation service</title>
+            <content>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.AnimationManager</codeEntityReference>
+                    implements the interface <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimationService</codeEntityReference>.
+                    This interface exposes all methods required to start and stop animations.
+                    All game components that need to start or stop animations need to have access
+                    to this interface.
+                </para>
+                <para>
+                    One solution to make the service globally available is to store the animation manager
+                    in a global variable. A more elegant solution is to put the interface into a service
+                    provider ("service locator") which is globally available. The following is an example
+                    of a stripped-down XNA Game class.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+public class Game1 : Game
+{
+  private AnimationManager _animationManager;
+
+  protected override void Initialize()
+  {
+    // Best practice: The services are stored in Game.Services to make them 
+    // accessible for all game components.
+
+    // Add the animation service.
+    _animationManager = new AnimationManager();
+    Services.AddService(typeof(IAnimationService), _animationManager);
+
+    ...
+
+    base.Initialize();
+  }
+
+
+  protected override void Update(GameTime gameTime)
+  {
+    TimeSpan deltaTime = gameTime.ElapsedGameTime;
+
+    // Game logic.
+    ...
+
+    // Update the game components.
+    base.Update(gameTime);
+
+    // Update the animations.
+    _animationManager.Update(deltaTime);
+
+    // Apply the animations.
+    _animationManager.ApplyAnimations();
+  }
+}
+]]>
+                </code>
+                <alert class="note">
+                    <para>
+                        In the example above the animations are updated after the game logic and all game
+                        components have been updated. Note that this is just one possible example! It is
+                        also possible to update the animations at a different point of the game loop.
+                    </para>
+                    <para>
+                        Also, the method <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.AnimationManager.ApplyAnimations</codeEntityReference>
+                        does not necessarily need to be called immediately after <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.AnimationManager.Update(System.TimeSpan)</codeEntityReference>.
+                    </para>
+                </alert>
+                <para>
+                    Tip: In the example above the interface
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimationService</codeEntityReference>
+                    is registered as a service in <legacyBold>Game.Services</legacyBold>. Other game components
+                    can retrieve the service from the service provider if necessary.
+                    Here is an example:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Fetch the animation service from the game's service provider.
+var animationService = (IAnimationService)Game.Services.GetService(typeof(IAnimationService));
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

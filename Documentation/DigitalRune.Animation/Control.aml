@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="de13b766-a75f-4320-9928-4f9fa2bdc967" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This topic explains some general concepts and contains information about starting, stopping and controlling animations.
+            </para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="AnimationService">
+            <title>Animation service</title>
+            <content>
+                <para>
+                    The interface <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimationService</codeEntityReference>
+                    (implemented by the <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.AnimationManager</codeEntityReference>)
+                    exposes all methods required to start new animations (see method
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.IAnimationService.StartAnimation(DigitalRune.Animation.ITimeline,DigitalRune.Animation.IAnimatableProperty)</codeEntityReference>
+                    and its overloads) and stop running animations (see method
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.IAnimationService.StopAnimation(DigitalRune.Animation.IAnimatableProperty)</codeEntityReference>
+                    and its overloads).
+                </para>
+                <para>
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.IAnimationService.IsAnimated(DigitalRune.Animation.IAnimatableProperty)</codeEntityReference>
+                    is a method that allows to query whether an object or property is currently being animated.
+                </para>
+                <para>
+                    When a new animation is started the animated properties do not change immediately.
+                    Animation values are only updated and applied when the methods
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.AnimationManager.Update(System.TimeSpan)</codeEntityReference>
+                    and <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.AnimationManager.ApplyAnimations</codeEntityReference>
+                    of the animation manager are called. But in certain cases the animated
+                    properties should change immediately. In this case the method
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.IAnimationService.UpdateAndApplyAnimation(DigitalRune.Animation.IAnimatableProperty)</codeEntityReference>
+                    (or one of its overloads) can be called. This method instantly evaluates all
+                    animations that affect the specified objects or properties and applies the new
+                    animation values.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="AnimationData">
+            <title>Timelines, animations and animation instances</title>
+            <content>
+                <para>
+                    The animation system differentiates between <newTerm>timelines</newTerm>,
+                    <newTerm>animations</newTerm> and <newTerm>animation instances</newTerm>.
+                    (Note: These are no official terms - they are only used by DigitalRune Animation.
+                    The term <newTerm>animation</newTerm> is used very loosely throughout this
+                    documentation and can usually mean any of the above.)
+                </para>
+            </content>
+            <sections>
+
+                <section address="Timelines">
+                    <title>Timelines</title>
+                    <content>
+                        <para>
+                            A timeline defines when an animation starts and how long it is active.
+                            It is defined by the interface <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.ITimeline</codeEntityReference>.
+                            Anything that implements <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.ITimeline</codeEntityReference>
+                            can be played back by the animation system. The most important types that
+                            implement this interface are <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.TimelineClip</codeEntityReference>
+                            and <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.TimelineGroup</codeEntityReference>.
+                            These types of animations do not compute an animation value themselves. Instead
+                            they only <legacyItalic>arrange</legacyItalic> other animations.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Animations">
+                    <title>Animations</title>
+                    <content>
+                        <para>
+                            An animation is a type that returns an actual animation value. An animation is represented
+                            by the interface <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimation`1</codeEntityReference>.
+                            (Note that <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimation`1</codeEntityReference>
+                            extends <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.ITimeline</codeEntityReference>.)
+                        </para>
+                    </content>
+                </section>
+
+                <section address="AnimationInstances">
+                    <title>Animation instances</title>
+                    <content>
+                        <para>
+                            When animations are started <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.AnimationInstance</codeEntityReference>s
+                            are created. An animation instance maintains the runtime state (such as the current animation time)
+                            of the animations. See <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.AnimationInstance</codeEntityReference>
+                            for more information.
+                        </para>
+                        <para>
+                            Each animation controller has a property <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.AnimationController.AnimationInstance</codeEntityReference>
+                            which points to its root animation instance.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="AnimationController">
+            <title>Animation controller</title>
+            <content>
+                <para>
+                    Every time a new animation is started an
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.AnimationController</codeEntityReference>
+                    is returned. The animation controller is a lightweight handle (struct) that allows to
+                    interactively control the associated animation instances.
+                </para>
+                <para>
+                    An animation controller can also be created explicitly by calling the method
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.AnimationManager.CreateController(DigitalRune.Animation.ITimeline,DigitalRune.Animation.IAnimatableProperty)</codeEntityReference>
+                    of the animation service. In this case the animations are assigned to the specified objects
+                    and properties, but the animations do not start immediately.
+                </para>
+                <para>
+                    The animation controller allows to start (see method <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.AnimationController.Start</codeEntityReference>)
+                    and stop (see method <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.AnimationController.Stop</codeEntityReference>)
+                    animations, pause (see method <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.AnimationController.Pause</codeEntityReference>)
+                    and resume (see method <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.AnimationController.Resume</codeEntityReference>)
+                    the animation timing, change the playback speed (see property <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.AnimationController.Speed</codeEntityReference>),
+                    query the state (see property <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.AnimationController.State</codeEntityReference>)
+                    of an animation, adjust the animation time (see property <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.AnimationController.Time</codeEntityReference>),
+                    and more.
+                </para>
+                <para>
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.AnimationController.UpdateAndApply</codeEntityReference>
+                    can be called to immediately evaluate and apply the animations associated with
+                    the given animation controller.
+                </para>
+            </content>
+            <sections>
+
+                <section address="State">
+                    <title>Animation state</title>
+                    <content>
+                        <para>
+                            Timelines have a <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.ITimeline.FillBehavior</codeEntityReference>.
+                            The fill behavior determines what happens when the duration of the animation is exceeded.
+                            When it is set to <codeEntityReference qualifyHint="false">F:DigitalRune.Animation.FillBehavior.Hold</codeEntityReference>
+                            then the animation holds its last animation value. This animation value is
+                            returned until the animation is stopped manually.
+                            When the fill behavior is <codeEntityReference qualifyHint="false">F:DigitalRune.Animation.FillBehavior.Stop</codeEntityReference>
+                            then the animation system automatically removes the animation once the duration is exceeded.
+                        </para>
+                        <para>
+                            Each animation instance stores its current state (see property
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.AnimationController.State</codeEntityReference>).
+                            The possible animation states are:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                <para>
+                                    <codeEntityReference qualifyHint="false">F:DigitalRune.Animation.AnimationState.Delayed</codeEntityReference>:
+                                    This indicates that start of the animation has been delayed and the animation does
+                                    not yet return any values. (This happens when an animation is wrapped by a
+                                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.TimelineClip</codeEntityReference>
+                                    or an <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.AnimationClip`1</codeEntityReference>
+                                    which defines a delay.)
+                                </para>
+                            </listItem>
+                            <listItem>
+                                <para>
+                                    <codeEntityReference qualifyHint="false">F:DigitalRune.Animation.AnimationState.Playing</codeEntityReference>:
+                                    The animation is active and it produces an animation value.
+                                </para>
+                            </listItem>
+                            <listItem>
+                                <para>
+                                    <codeEntityReference qualifyHint="false">F:DigitalRune.Animation.AnimationState.Filling</codeEntityReference>:
+                                    The duration of the animation is exceeded and the animation repeats the last
+                                    animation value because the fill behavior is set to
+                                    <codeEntityReference qualifyHint="false">F:DigitalRune.Animation.FillBehavior.Hold</codeEntityReference>.
+                                </para>
+                            </listItem>
+                            <listItem>
+                                <para>
+                                    <codeEntityReference qualifyHint="false">F:DigitalRune.Animation.AnimationState.Stopped</codeEntityReference>:
+                                    The animation is halted and does not produce any values. An animation is stopped either if
+                                    it has not been started yet or if its duration has exceeded and the fill behavior
+                                    is set to <codeEntityReference qualifyHint="false">F:DigitalRune.Animation.FillBehavior.Stop</codeEntityReference>.
+                                    Animation that are stopped are automatically removed from the animation system.
+                                </para>
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section address="Timing">
+                    <title>Animation timing</title>
+                    <content>
+                        <para>
+                            Each animation instance stores the current animation time (see property
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.AnimationController.Time</codeEntityReference>).
+                            Note that the animation state, described above, does not indicate whether
+                            the animation timing is active or not. I.e. whether the animation time is progressing
+                            or not. The animation timing can be paused and resumed by calling
+                            <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.AnimationController.Pause</codeEntityReference>
+                            and <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.AnimationController.Resume</codeEntityReference>.
+                            Pausing an animation won't affect the <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.AnimationController.State</codeEntityReference>.
+                            Use the property <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.AnimationController.IsPaused</codeEntityReference>
+                            to check whether the animation timing is paused or not.
+                        </para>
+                        <para>
+                            The speed at which the animation time advances can be manipulated by changing
+                            the speed ratio (see property <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.AnimationController.Speed</codeEntityReference>).
+                            Setting the speed ratio to 0 also effectively pauses the animation, but this
+                            does not set <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.AnimationController.IsPaused</codeEntityReference>
+                            to <codeInline>true</codeInline>.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="AutoRecycling">
+                    <title>Resource pooling and auto-recycling</title>
+                    <content>
+                        <para>
+                            Animation instances are pooled objects: They are stored in an internal resource
+                            pool and reused whenever possible in order to avoid unnecessary memory
+                            allocations at runtime. There are two ways to recycle animation instances:
+                            manual recycling and auto-recycling.
+                        </para>
+                        <para>
+                            <legacyBold>Manual Recycling:</legacyBold> When an animation controller is
+                            no longer needed the associated animation instance can be recycled by explicitly
+                            calling the method <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.AnimationController.Recycle</codeEntityReference>.
+                            When this method is called the animation controller becomes invalid and can
+                            no longer be used.
+                        </para>
+                        <para>
+                            <legacyBold>Auto-Recycling:</legacyBold> Animations are automatically removed
+                            from the animation system when they stop. The animation system can be instructed
+                            to automatically recycle animation instances when they are removed. This is done
+                            by calling <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.AnimationController.AutoRecycle</codeEntityReference>
+                            or by setting the property <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.AnimationController.AutoRecycleEnabled</codeEntityReference>.
+                            For example:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+// Play an animation. Automatically recycle the associated animation
+// instances once the animation stops.
+var controller = animationService.StartAnimation(animation, property);
+controller.AutoRecycle();
+
+// Or, the short version:
+animationService.StartAnimation(animation, property).AutoRecycle()
+]]>
+                        </code>
+                        <para>
+                            Note that the <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.AnimationController</codeEntityReference>
+                            itself is only a light-weight handle that does not allocate memory on the managed heap.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Transitions">
+            <title>Animation transitions</title>
+            <content>
+                <para>
+                    When starting a new animation, either with <codeEntityReference qualifyHint="true">M:DigitalRune.Animation.IAnimationService.StartAnimation(DigitalRune.Animation.ITimeline,DigitalRune.Animation.IAnimatableProperty,DigitalRune.Animation.Transitions.AnimationTransition)</codeEntityReference>
+                    or with <codeEntityReference qualifyHint="true">M:DigitalRune.Animation.AnimationController.Start(DigitalRune.Animation.Transitions.AnimationTransition)</codeEntityReference>,
+                    an <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Transitions.AnimationTransition</codeEntityReference>
+                    can be specified. Animation transitions control how new animations interact
+                    with already existing animations. This is relevant if multiple animations are
+                    applied to the same objects or properties. In this case the animation system
+                    needs to know whether to replace existing animations or whether to combine
+                    new animations with already existing animations. The class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.AnimationTransitions</codeEntityReference>
+                    is a collection of predefined animation transitions.
+                </para>
+                <para>
+                    The default behavior is <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.AnimationTransitions.SnapshotAndReplace</codeEntityReference>:
+                    The animation system takes a snapshot of any currently running animations
+                    and then replaces the existing animations with the new animation. The snapshot
+                    of the animation value is then passed to the new animation as an input
+                    parameter. (Some animations - not all - make use of this input parameter. A
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.FromToByAnimation`1</codeEntityReference>,
+                    for example, can be configured to animate from the snapshot value to another
+                    value.)
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Start a new animation using Snapshot-And-Replace.
+animationService.StartAnimation(animation, property, AnimationTransitions.SnapshotAndReplace());
+]]>
+                </code>
+                <para>
+                    The <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.AnimationTransitions.Replace</codeEntityReference>
+                    transitions can be used to replace all previously running animations or
+                    to replace one particular animation.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Start a new animation and replace all existing animations that affect
+// the specified property.
+animationService.StartAnimation(animation, property, AnimationTransitions.Replace());
+]]>
+                </code>
+                <para>
+                    Some transitions (such as <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.AnimationTransitions.Replace(System.TimeSpan)</codeEntityReference>)
+                    allow to specify a transition time: In this case the new animations slowly fade
+                    in over the specified duration. The result is a "fade-in" or a "cross-fade"
+                    between existing animations and the new animations.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Start a new animation using a cross-fade of 0.5 seconds.
+TimeSpan crossFadeDuration = TimeSpan.FromSeconds(0.5);
+animationService.StartAnimation(animation, property, AnimationTransitions.Replace(crossFadeDuration));
+]]>
+                </code>
+                <para>
+                    The transition <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.AnimationTransitions.Compose</codeEntityReference>
+                    combines new animations with existing animations by building so called
+                    "animation composition chains".
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Start a new animation adding them to the animation composition chain
+// of the specified property.
+animationService.StartAnimation(animation, property, AnimationTransitions.Compose());
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Composition">
+            <title>Animation composition chains and animation weights</title>
+            <content>
+                <para>
+                    When animations are started using <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.AnimationTransitions.Compose</codeEntityReference>
+                    the animations are combined using <newTerm>animation composition chains</newTerm>.
+                    The animation system manages an animation composition chain for every property that
+                    is being animated.
+                </para>
+                <para>
+                    An animation composition chain stores all animation instances that affect a certain
+                    property. All animation instances are evaluated in the order in which they were added
+                    to the composition chain. The first animation instance receives the property's base
+                    value as its input. Every animation instance combines its output with the output
+                    of the previous stage in the animation composition chain. Additive animations, for
+                    example, can add their animation value to the output of the previous stage.
+                </para>
+                <para>
+                    All animation instances have an <newTerm>animation weight</newTerm> (see property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.AnimationInstance.Weight</codeEntityReference>).
+                    The animation weight is basically a factor that defines the intensity of the
+                    animation. An animation applies the animation weight when it combines its output
+                    with the output of the previous stage. (If the animation is the first or only
+                    animation of a composition chain it combines its value with the base value of the
+                    property that is being animated.)
+                </para>
+                <para>
+                    The default value of the animation weights is 1 which means that 100% of the
+                    animation is applied, usually overriding any previous stage in an animation composition
+                    chain. A value of 0.75 means that result is a weighted combination of the previous
+                    stage (25%) and the output of the current animation (75%). A value of 0 basically
+                    disables the output of the current animation.
+                </para>
+                <para>
+                    Note that the animation weights themselves are animatable properties! That means
+                    animation weights can be animated. This can be useful to manually fade animations
+                    in or out. (The animation system internally also animates the animation weights
+                    when it fades animations in or out.)
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="9d38663a-2ce9-48c5-b9a8-0a07326e0290" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This section describes game object events.
+            </para>
+            <autoOutline>2</autoOutline>
+        </introduction>
+
+
+        <section address="Events">
+            <title>Game object events</title>
+            <content>
+                <para>
+                    <legacyItalic>Game object events</legacyItalic> (also called <legacyItalic>ports</legacyItalic>
+                    or <legacyItalic>signals</legacyItalic>) extend the functionality of common
+                    language runtime (CLR) events. The game object events are represented by the type
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.GameEvent`1</codeEntityReference>.
+                    The game object events of a particular game object are listed in
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Game.GameObject.Events</codeEntityReference>.
+                </para>
+            </content>
+            <sections>
+
+                <section address="Creation">
+                    <title>Creating a game object event</title>
+                    <content>
+                        <para>
+                            A new game object event can be defined by calling the static method
+                            <codeEntityReference qualifyHint="true">M:DigitalRune.Game.GameObject.CreateEvent``1(System.String,System.String,System.String,``0)</codeEntityReference>.
+                            For example:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+GameEventMetadata<EventArgs> metadata = GameObject.CreateEvent(
+  "Click",                              // The name of the event.
+  "Interaction",                        // The category (for use in game editors).
+  "Occurs when the object is clicked.", // The description.
+  EventArgs.Empty);                     // The default event args.
+]]>
+                        </code>
+                        <para>
+                            Once this method is called, the game object event is globally defined.
+                            If this method is called a second time with the same properties, it will
+                            not create a new game object event. Instead it will only return the
+                            metadata of the previous call. There cannot be multiple game object events
+                            with the same name and type of event arguments!
+                        </para>
+                        <para>
+                            The metadata of any game object event can be queried by calling
+                            <codeEntityReference qualifyHint="true">M:DigitalRune.Game.GameObject.GetEventMetadata``1(System.String)</codeEntityReference>
+                            where game object events can be identified by
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                the automatically assigned ID stored in the metadata (see
+                                <codeEntityReference qualifyHint="false">P:DigitalRune.Game.GameEventMetadata`1.Id</codeEntityReference>),
+                                or
+                            </listItem>
+                            <listItem>
+                                by name and type of the event args.
+                            </listItem>
+                        </list>
+                        <para>
+                            Either of these ways uniquely identifies a game object event.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="EventHandling">
+                    <title>Handling a game object event</title>
+                    <content>
+                        <para>
+                            The following examples shows how an event handler can be attached to
+                            a game object event.
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+GameObject gameObject = new GameObject();
+
+GameEvent<EventArgs> click = gameObject.Events.Get<EventArgs>("Click");
+click.Event += OnGameObjectClicked;
+]]>
+                        </code>
+                        <para>
+                            Note, the member <codeInline>OnGameObjectClicked</codeInline> in the
+                            example can be any method with the <codeInline>EventHandler&lt;EventArgs&gt;</codeInline>
+                            signature.
+                        </para>
+                        <para>
+                            Detaching an event handler from a game object event is similarly easy.
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+GameEvent<EventArgs> click = gameObject.Events.Get<EventArgs>("Click");
+click.Event -= OnGameObjectClicked;
+]]>
+                        </code>
+                    </content>
+                </section>
+
+                <section address="Raising">
+                    <title>Raising a game object event</title>
+                    <content>
+                        <para>
+                            The <codeEntityReference qualifyHint="false">M:DigitalRune.Game.GameEvent`1.Raise</codeEntityReference>
+                            method needs to be called to raise a game object event.
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+GameEvent<EventArgs> click = gameObject.Events.Get<EventArgs>("Click");
+
+// Method #1: Raise the event using the default event args as specified in 
+//            the metadata.
+click.Raise();
+
+// Method #2: Raise the event and explicitly specify the event args.
+click.Raise(EventArgs.Empty);
+]]>
+                        </code>
+                    </content>
+                </section>
+
+                <section address="Wrapping">
+                    <title>Wrapping a game object event</title>
+                    <content>
+                        <para>
+                            In some cases it is convenient to wrap a game object event using a standard
+                            CLR event. Here is an example that shows how to define a game object event
+                            in a class and wrap it using a CLR event:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+public class ClickableObject : GameObject
+{
+  /// <summary> 
+  /// The ID of the <see cref="Click"/> game object event.
+  /// </summary>
+  public static readonly int ClickEventId = 
+    CreateEvent("Click", "Interaction", "Occurs when the object is clicked.", EventArgs.Empty).Id;
+    
+  /// <summary>
+  /// Occurs when the object is clicked. This is a game object event.
+  /// </summary>
+  public event EventHandler<EventArgs> Click
+  {
+    add
+    {
+      var click = Events.Get<EventArgs>(ClickEventId);
+      click.Event += value;
+    }
+    remove
+    {
+      var click = Events.Get<EventArgs>(ClickEventId);
+      click.Event -= value;
+    }
+  }
+
+  ...
+}]]>
+                        </code>
+                        <para>
+                            The game object event can then be used like any other CLR event.
+                            (This pattern is extensively used in the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIControl</codeEntityReference>s
+                            of the <link xlink:href="a5a463da-de2e-432f-bf7d-07206aaca634"/> library.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Connecting">
+                    <title>Connecting game object events</title>
+                    <content>
+                        <para>
+                            Game object events have a property
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.GameEvent`1.RaiseOnEvent</codeEntityReference>,
+                            which is an event handler. This event handler can be connected with
+                            another game object event.
+                            This is very useful to connect game object events
+                            of different game objects. When one event is raised, the connected event
+                            is raised automatically.
+                            Here is an example:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+// myButton is game object that represents a GUI button that can be clicked.
+// myMachine is a game object that represents an object that starts its operation
+// when its "Start" event is raised.
+// Connect the "Click" game object event of the button with the "Start" game object 
+// event of myMachine. This way a button click automatically starts myMachine.
+GameEvent<EventArgs> buttonClick = myButton.Events.Get<EventArgs>("Click");
+GameEvent<EventArgs> machineStart = myMachine.Events.Get<EventArgs>("Start");
+buttonClick.Event += machineStart.RaiseOnEvent;
+]]>
+                        </code>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

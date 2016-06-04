@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="d995ee69-0650-4993-babd-1cdb1fd8fd7a" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                Positioning objects in 3D space is essential in games. This section introduces
+                a type called <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Pose</codeEntityReference>
+                that describes the position and orientation of an object.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Pose">
+            <title>What is a Pose?</title>
+            <content>
+                <para>
+                    DigitalRune Geometry provides a value type called
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Pose</codeEntityReference>.
+                    A pose describes a position (see <codeEntityReference qualifyHint="false">F:DigitalRune.Geometry.Pose.Position</codeEntityReference>)
+                    and an orientation (see <codeEntityReference qualifyHint="false">F:DigitalRune.Geometry.Pose.Orientation</codeEntityReference>)
+                    in 3D space. It is very similar to a transformation matrix: Both are used
+                    to describe a transformation in space. When using transformation matrices
+                    we usually use the terms "rotation" and "translation". When using a
+                    pose we use the terms "orientation" and "position". But that’s just a subtle
+                    difference – it pretty much means the same.
+                </para>
+                <para>
+                    A pose can be used to describe the position and orientation of any object
+                    in a 3D space: shapes, rigid bodies, characters, cameras, etc.
+                </para>
+
+                <alert class="note">
+                    <para>
+                        One might ask, why is this type <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Pose</codeEntityReference>
+                        in DigitalRune Geometry and not in DigitalRune Mathematics? The reason is
+                        that the types in DigitalRune Mathematics have no particular meaning. A
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Algebra.Vector3F</codeEntityReference>
+                        might be a position, a direction, or something completely different. Similarly, a
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Algebra.Matrix44F</codeEntityReference>
+                        can be used for all sorts of things. Whereas, in DigitalRune Geometry deals
+                        with geometric objects in 3D space. Here, vectors and matrices have a particular
+                        meaning - hence we have wrapped them and created a type called
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Pose</codeEntityReference>.
+                    </para>
+                </alert>
+
+                <para>
+                    Working with matrices is notoriously difficult and error-prone: Do I
+                    have to multiply the matrices from the right or from the left? Do I
+                    need to multiply with the matrix or the inverse matrix? Is the translation
+                    stored the last column or row in 4x4 matrix? Etc.
+                </para>
+                <para>
+                    Pose was designed to make common tasks in game development easier - and
+                    to avoid headaches while coding.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Reasons">
+            <title>Reasons for using Pose</title>
+            <content>
+                <para>
+                    The type <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Pose</codeEntityReference>
+                    is highly optimized for its particular purpose:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Pose is a value type (struct), so in general there is no need to
+                        worry about memory allocations on the heap ("garbage").
+                    </listItem>
+                    <listItem>
+                        A single pose requires 48 bytes - that's less memory than a matrix in XNA.
+                    </listItem>
+                    <listItem>
+                        Concatenating (multiplying) two poses is faster than concatenating two
+                        transformation matrices.
+                    </listItem>
+                    <listItem>
+                        Transforming a vector using a pose is faster than multiplying a vector with a 4x4 matrix.
+                    </listItem>
+                    <listItem>
+                        Inverting a Pose is much faster than inverting a 4x4 matrix.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Examples">
+            <title>How to use a Pose?</title>
+            <content>
+                <para>
+                    Here are some examples showing how to define a pose.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Create a new Pose that contains no translation and no rotation.
+Pose pose = Pose.Identity;
+
+// Create a Pose that defines a position of (1, 2, 3).
+pose = new Pose(new Vector3F(1, 2, 3));
+
+// Create a Pose that defines an orientation of 30° around the x-axis.
+pose = new Pose(Matrix33F.CreateRotationX(MathHelper.ToRadians(30)));
+
+// Or, using QuaternionF instead of Matrix33F.
+pose = new Pose(QuaternionF.CreateRotationX(MathHelper.ToRadians(30)));
+
+// A Pose can be manipulated directly using its fields ‘Position’ and ‘Orientation’:
+// Let's move the object 10 units in y direction.
+pose.Position += new Vector3F(0, 10, 0);
+
+// Or, let's rotate the object 10° further around the z-axis.
+pose.Orientation = Matrix33F.CreateRotationZ(MathHelper.ToRadians(10)) * pose.Orientation;
+]]>
+                </code>
+                <para>
+                    Once a pose is defined, it can be use to transform objects.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Let's transform a point from local space to world space.
+var pointLocal = new Vector3F(1, 0, 0);
+var pointWorld = pose.ToWorldPosition(pointLocal);
+
+// Let's transform a direction from local space to world space.
+var directionLocal = Vector3F.Forward;
+var directionWorld = pose.ToWorldDirection(directionLocal);
+]]>
+                </code>
+
+                <alert class="note">
+                    <para>
+                        Note the postfixes "local" and "world". That’s a convention we use
+                        internally to describe the space a variable is defined in.
+                    </para>
+                </alert>
+
+                <code language="c#">
+                    <![CDATA[
+// Of course, we can also transform objects from world space to local space.
+pointLocal = pose.ToLocalPosition(pointWorld);
+directionLocal = pose.ToLocalDirection(directionWorld);
+]]>
+                </code>
+                <para>
+                    A pose can also be used similarly to a 4x4 transformation matrix.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// We can multiply a Vector4F directly with a Pose instead of a Matrix44F.
+var pLocal = new Vector4F(1, 0, 0, 1); // The position (1, 0, 0) in homogeneous coordinates.
+var pWorld = pose * pLocal;
+]]>
+                </code>
+                <para>
+                    Different poses can be combined just as one would concatenate transformation
+                    matrices. It is also possible to compute the inverse transformation of a pose:
+                </para>
+
+                <code language="c#">
+                    <![CDATA[
+// Let's concatenate two Poses by multiplying them - just as we would to with matrices.
+var pose3 = pose2 * pose1;
+
+// Just like with matrices we can also compute the inverse of a Pose.
+var inversePose = pose.Inverse;
+]]>
+                </code>
+                <para>
+                    A pose also provides implicit cast operators to convert a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Pose</codeEntityReference>
+                    to a <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Algebra.Matrix44F</codeEntityReference>
+                    or an XNA <legacyBold>Matrix</legacyBold>.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Let's convert a Pose to a Matrix.
+Matrix worldMatrix = pose;
+
+// That's useful, for example, when we have defined the pose of a Model in XNA.
+// To render the Model we have to assign the world transformation matrix of the
+// Model to the Effect used for rendering.
+basicEffect.World = pose;
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Pitfalls">
+            <title>WARNING: Common pitfall when working with value types such as Vector3, Matrix, Pose</title>
+            <content>
+                <para>
+                    There are two common pitfalls when working with value types such as
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Pose</codeEntityReference>.
+                </para>
+            </content>
+            <sections>
+                <section address="DefaultConstructor">
+                    <title>Beware of the default constructor</title>
+                    <content>
+                        <para>
+                            The default constructor of <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Pose</codeEntityReference>
+                            sets all fields to 0 - it does not create a valid transformation! Instead, you should set the pose to
+                            <codeEntityReference qualifyHint="false">F:DigitalRune.Geometry.Pose.Identity</codeEntityReference>.
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+Pose p1 = new Pose();    // WARNING: Not a valid transformation!
+Pose p2 = Pose.Identity; // Valid transformation!
+]]>
+                        </code>
+                    </content>
+                </section>
+
+                <section address="Properties">
+                    <title>Watch out for properties</title>
+                    <content>
+                        <para>
+                            Let's assume you have an object with a property <legacyBold>Pose</legacyBold>:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+class MyObject
+{
+  public Pose Pose { get; set; }
+
+  // ...
+}
+]]>
+                        </code>
+                        <para>
+                            Now, if you want to update the position you can't just assign a new vector.
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+// Warning: This should give squiggly lines in Visual Studio.
+myObject.Pose.Position = new Vector3F(1, 2, 3);
+]]>
+                        </code>
+                        <para>
+                            Above line is not working as expected because the getter of the property
+                            actually returns a copy of the pose. You always have to assign the new pose
+                            as a whole:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+// Here's the right way to do it:
+myObject.Pose = new Pose(new Vector3F(1, 2, 3), myObject.Pose.Orientation);
+]]>
+                        </code>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+            <link xlink:href="9a927200-8841-4c76-94bc-29c5633c5d38" />
+            <codeEntityReference qualifyHint="true">T:DigitalRune.Geometry.Pose</codeEntityReference>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

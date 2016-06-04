@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="37998b1f-50ba-460f-97cd-74eadbda486e" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                Axes and scales are used to convert data values into screen coordinates.
+            </para>
+            <!-- <autoOutline /> -->
+        </introduction>
+
+
+        <section address="Axes">
+            <title>Axis</title>
+            <content>
+                <para>
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.Axis</codeEntityReference>
+                    is a control that renders an axis including axis line, major ticks, minor ticks,
+                    tick labels and axis label. It also converts between screen coordinates and data values.
+                </para>
+                <para>
+                    The property <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Charts.Axis.Orientation</codeEntityReference>
+                    defines whether a horizontal axis (x-axis) or a vertical axis (y-axis) is drawn.
+                    The property <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Charts.Axis.Scale</codeEntityReference>
+                    defines the value range of an axis.
+                </para>
+            </content>
+        </section>
+        
+        <section address="Scales">
+            <title>Scales</title>
+            <content>
+                <para>
+                    The class <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.AxisScale</codeEntityReference>
+                    (abstract base class) defines the value range of an axis. The following axis scales 
+                    are included in the charts library:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.LinearScale</codeEntityReference>
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.LogScale</codeEntityReference>
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.DateTimeScale</codeEntityReference>
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.TextScale</codeEntityReference>
+                        </para>
+                    </listItem>
+                </list>
+                <para>
+                    Custom scales can be added by implementing a new type derived from
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Charts.AxisScale</codeEntityReference>.
+                </para>
+                <para>
+                    In MVVM the axis scale is usually provided by the view model and bound to the
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Windows.Charts.Axis.Scale</codeEntityReference>
+                    property. (The base class AxisScale implements INotifyPropertyChanged.)
+                </para>
+            </content>
+        </section>
+        
+        
+        <relatedTopics></relatedTopics>
+        
+    </developerConceptualDocument>
+</topic>

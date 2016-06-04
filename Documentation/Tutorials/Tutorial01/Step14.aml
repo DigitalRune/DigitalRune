@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="68c9f201-aa9c-4b7f-bf96-a57893faddfe" revisionNumber="1">
+    <developerConceptualDocument
+      xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                While we are modifying the graphics screen, we could add post-processing to apply
+                some full-screen image filters.
+            </para>
+        </introduction>
+
+
+        <section address="HiDef">
+            <title>Change graphics profile to HiDef</title>
+            <content>
+                <para>
+                    Some advanced effects are only available for the <newTerm>HiDef</newTerm> graphics profile.
+                </para>
+                <list class="ordered">
+                    <listItem>
+                        In the <ui>Solution Explorer</ui> right-click the <localUri>MyGame</localUri> project.
+                    </listItem>
+                    <listItem>
+                        Select <ui>Properties…</ui>
+                    </listItem>
+                    <listItem>
+                        Select the XNA game studio tab and set the Game Profile to <newTerm>HiDef</newTerm>.
+                        <mediaLink>
+                            <image xlink:href="Tutorial-01-22"/>
+                        </mediaLink>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="PostProcessing">
+            <title>Add post-processing</title>
+            <content>
+                <para>
+                    This requires more changes in <localUri>MyGraphicsScreen.cs</localUri>:
+                </para>
+                <code language="c#" title="MyGraphicsScreen.cs">
+                    <![CDATA[
+…
+using DigitalRune.Graphics.PostProcessing;                                              // NEW
+…
+
+namespace MyGame
+{
+    public class MyGraphicsScreen : GraphicsScreen
+    {
+        private MeshRenderer _meshRenderer;
+        private BillboardRenderer _billboardRenderer;
+        private SkyRenderer _skyRenderer;
+        private PostProcessorChain _postProcessors;                                     // NEW
+
+        …
+
+        public MyGraphicsScreen(IGraphicsService graphicsService)
+          : base(graphicsService)
+        {
+            _meshRenderer = new MeshRenderer();
+            _billboardRenderer = new BillboardRenderer(graphicsService, 2048);
+            _skyRenderer = new SkyRenderer(graphicsService);
+
+            _postProcessors = new PostProcessorChain(graphicsService);                  // NEW
+            _postProcessors.Add(new SharpeningFilter(graphicsService));                 // NEW
+            _postProcessors.Add(new GrainFilter(graphicsService));                      // NEW
+
+            var spriteFont = graphicsService.Content.Load<SpriteFont>("SpriteFont1");
+            DebugRenderer = new DebugRenderer(graphicsService, spriteFont);
+
+            Scene = new Scene();
+        }
+
+        …
+
+        protected override void OnRender(RenderContext context)
+        {
+            var screenRenderTarget = context.RenderTarget;                              // NEW
+            var screenViewport = context.Viewport;                                      // NEW
+
+            var graphicsDevice = GraphicsService.GraphicsDevice;
+
+            var intermediateRenderTarget = GraphicsService.RenderTargetPool.Obtain2D(   // NEW
+                new RenderTargetFormat(                                                 // NEW
+                    context.Viewport.Width,                                             // NEW
+                    context.Viewport.Height,                                            // NEW
+                    false,                                                              // NEW
+                    SurfaceFormat.Color,                                                // NEW
+                    DepthFormat.Depth24Stencil8));                                      // NEW
+     
+            graphicsDevice.SetRenderTarget(intermediateRenderTarget);                   // NEW
+            context.RenderTarget = intermediateRenderTarget;                            // NEW
+            context.Viewport = graphicsDevice.Viewport;                                 // NEW
+            
+            graphicsDevice.Clear(Color.CornflowerBlue);
+
+            context.CameraNode = CameraNode;
+            context.Scene = Scene;
+
+            // Frustum Culling: Get all the scene nodes that intersect the camera frustum.
+            var query = Scene.Query<CameraFrustumQuery>(context.CameraNode, context);
+
+            // Render opaque meshes that are visible from the camera
+            graphicsDevice.DepthStencilState = DepthStencilState.Default;
+            graphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
+            graphicsDevice.BlendState = BlendState.Opaque;
+            graphicsDevice.SamplerStates[0] = SamplerState.AnisotropicWrap;
+            context.RenderPass = "Default";
+            _meshRenderer.Render(query.SceneNodes, context);
+            context.RenderPass = null;
+
+            _skyRenderer.Render(query.SceneNodes, context);
+
+            graphicsDevice.DepthStencilState = DepthStencilState.DepthRead;
+            _billboardRenderer.Render(query.SceneNodes, context, RenderOrder.BackToFront);
+
+            context.SourceTexture = intermediateRenderTarget;                           // NEW
+            context.RenderTarget = screenRenderTarget;                                  // NEW
+            context.Viewport = screenViewport;                                          // NEW
+            _postProcessors.Process(context);                                           // NEW
+            context.SourceTexture = null;                                               // NEW
+
+            DebugRenderer.Render(context);
+
+            GraphicsService.RenderTargetPool.Recycle(intermediateRenderTarget);         // NEW
+            context.Scene = null;
+            context.CameraNode = null;
+        }
+    }
+}
+                    ]]>
+                </code>
+                <para>
+                    This code creates a <legacyBold>PostProcessorChain</legacyBold>. The
+                    <legacyBold>PostProcessorChain</legacyBold> is a collection of post-process filters which are executed in sequence.
+                    Two post-processors are added to the <legacyBold>PostProcessorChain</legacyBold>: A
+                    <legacyBold>SharpeningFilter</legacyBold> and a <legacyBold>GrainFilter</legacyBold>.
+                </para>
+                <para>
+                    <legacyBold>OnRender</legacyBold> becomes more complex. The post-processors are
+                    image filters. Therefore, we have to render the scene into an render target instead
+                    of the default back buffer.
+                </para>
+                <para>
+                    First, we remember the orginal render target and viewport:
+                </para>
+                <code language="c#">
+                    var screenRenderTarget = context.RenderTarget;
+                    var screenViewport = context.Viewport;
+                </code>
+                <para>
+                    Usually the <legacyBold>context.Viewport</legacyBold> is the whole screen and
+                    <legacyBold>context.RenderTarget</legacyBold> is null, which means we are rendering
+                    into the back buffer. However, in complex rendering scenarios (e.g. several stacked
+                    graphics screen) this could be different.
+                </para>
+                <para>
+                    Next, an intermediate render target is created. The <legacyBold>RenderTargetPool</legacyBold>
+                    manages a pool of render targets. We use the pool to get the intermediate render target
+                </para>
+                <para>
+                    The immediate render target is set on the graphics device. After changing the render
+                    target, we update the information in the render context:
+                </para>
+                <code language="c#">
+                    graphicsDevice.SetRenderTarget(intermediateRenderTarget);
+                    context.RenderTarget = intermediateRenderTarget;
+                    context.Viewport = graphicsDevice.Viewport;
+                </code>
+                <para>
+                    All subsequent render operations (rendering meshes, sky and billboards) draw into
+                    the intermediate render target.
+                </para>
+                <para>
+                    Then we call the post-processors:
+                </para>
+                <code language="c#">
+                    context.SourceTexture = intermediateRenderTarget;
+                    context.RenderTarget = screenRenderTarget;
+                    context.Viewport = screenViewport;
+                    _postProcessors.Process(context);
+                    context.SourceTexture = null;
+                </code>
+                <para>
+                    The post-processors read the intermediate render target and write the result into
+                    the final render target.
+                </para>
+                <para>
+                    At the end of <legacyBold>OnRender</legacyBold>, we return the render target to the
+                    pool. The render target will be reused in the next frame. (Alternatively, we could
+                    also call <legacyBold>intermediateRenderTarget.Dispose()</legacyBold> to free the
+                    memory. This is very important. If we do not recycle or dispose our render targets
+                    after use, we could run into out-of-memory problems!)
+                </para>
+                <para>
+                    It is also good practice to restore any information that was changed in the render context.
+                </para>
+                <para>
+                    What happens if we run the game? We get a <legacyBold>ContentLoadException</legacyBold>:
+                    <legacyItalic>
+                        Error loading "DigitalRune\XXX". File not found.
+                    </legacyItalic>
+                </para>
+                <mediaLink>
+                    <image xlink:href="Tutorial-01-23"/>
+                </mediaLink>
+                <para>
+                    We will fix this in the next step.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Next">
+            <title>Next</title>
+            <content>
+                <para>
+                    <link xlink:href="b035aaae-87fb-48c6-86de-e30024ec9a89" />
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

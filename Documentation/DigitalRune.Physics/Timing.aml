@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="c4a491c9-bc08-48fa-b85f-7bac2e78e295" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This section describes the internal timing of the simulation.</para>
+        </introduction>
+
+
+        <section address="General">
+            <title>General</title>
+            <content>
+                <alert class="caution">
+                    <para>
+                        Time values should be specified as
+                        <codeEntityReference qualifyHint="false">T:System.TimeSpan</codeEntityReference>s
+                        for optimal accuracy.
+                    </para>
+                    <para>
+                        Warning: Do not use the method <codeEntityReference qualifyHint="true">M:System.TimeSpan.FromSeconds(System.Double)</codeEntityReference>
+                        to convert a floating-point value to a
+                        <codeEntityReference qualifyHint="false">T:System.TimeSpan</codeEntityReference>.
+                        The method will round the time value to milliseconds. Fractions of milliseconds
+                        will be lost!
+                    </para>
+                    <code language="cs">
+                        <![CDATA[
+// Do not use:
+TimeSpan deltaTime = TimeSpan.FromSeconds(1.0 / 30.0); // Inaccurate!
+
+// Instead specify time values in ticks:
+TimeSpan deltaTime = new TimeSpan((long)(1.0 / 30.0 * TimeSpan.TicksPerSecond));
+
+// Or write:
+TimeSpan deltaTime = new TimeSpan(333333);
+]]>
+                    </code>
+                </alert>
+                <para>
+                    Each call of
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Physics.Simulation.Update(System.TimeSpan)</codeEntityReference>
+                    advances the simulation state by a given time step. Internally, the time
+                    step specified in the parameter of
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Physics.Simulation.Update(System.TimeSpan)</codeEntityReference>
+                    is divided into <legacyItalic>sub time steps</legacyItalic> (also called
+                    <legacyItalic>internal time steps</legacyItalic>) of constant size.
+                    This constant size is defined in
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Settings.TimingSettings.FixedTimeStep</codeEntityReference>.
+                    That means, if the user calls
+                </para>
+                <code language="cs">
+                    <![CDATA[
+TimeSpan deltaTime = new TimeSpan(333333); // 1/30 s
+Simulation.Update(deltaTime)
+]]>
+                </code>
+                <para>
+                    and
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.Settings.TimingSettings.FixedTimeStep</codeEntityReference>
+                    is 1/60 s (default), the simulation will internally perform two sub time steps with 1/60 s.
+                </para>
+                <para>
+                    If the user calls
+                </para>
+                <code language="cs">
+                    <![CDATA[
+TimeSpan deltaTime = new TimeSpan(83333); // 1/120 s
+Simulation.Update(deltaTime)
+]]>
+                </code>
+                <para>
+                    the simulation will perform no simulation update because the time step is less than
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.Settings.TimingSettings.FixedTimeStep</codeEntityReference>.
+                    But the time is not "lost". When the user calls
+                </para>
+                <code language="cs">
+                    <![CDATA[
+TimeSpan deltaTime = new TimeSpan(83333); // 1/120 s
+Simulation.Update(deltaTime)
+]]>
+                </code>
+                <para>
+                    the next time, the simulation will make a single time step with 1/60 s.
+                    - It is allowed to use variable time parameters for each
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Physics.Simulation.Update(System.TimeSpan)</codeEntityReference>
+                    call. The simulation class makes sure that all simulation updates use fixed time steps
+                    internally and that overall no simulation time is lost.
+                </para>
+                <para>
+                    The simulation has a property
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Simulation.Time</codeEntityReference>
+                    which contains the actual simulation time. This time is the sum of all
+                    sub time steps that have been simulated. The property
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Simulation.TargetTime</codeEntityReference>
+                    contains the target time to which the simulation should advance. This time
+                    is the sum of all sub time steps plus any accumulated time.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="FixedStepSize">
+            <title>The influence of the time step size</title>
+            <content>
+                <para>
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Settings.TimingSettings.FixedTimeStep</codeEntityReference>
+                    defines the size of one sub time step. The default value is 1/60 seconds (60 Hz).
+                    Increasing the time step size makes the simulation faster, but less stable.
+                    Decreasing the time step size makes the simulation slower, more accurate
+                    and more stable (higher stacks of boxes are possible, less jittering, less
+                    interpenetrations of objects).
+                </para>
+            </content>
+        </section>
+
+
+        <section address="MaxNumberOfSteps">
+            <title>Limiting the max number of sub time steps</title>
+            <content>
+                <para>
+                    The number of time steps per
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Physics.Simulation.Update(System.TimeSpan)</codeEntityReference>
+                    call is actually limited by
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Settings.TimingSettings.MaxNumberOfSteps</codeEntityReference>.
+                    This is necessary to avoid a typical problem in game physics where too many
+                    objects cause the frame rate to go to zero until the game freezes (<legacyItalic>spiral of death</legacyItalic>).
+                </para>
+                <para>
+                    Here is an example: There are too many physical objects in the game. One frame
+                    of the game took 0.016 ms to compute. The simulation is called with <codeInline>Update(0.016)</codeInline>
+                    and it performs 1 time step internally. Because there are too many objects,
+                    this time step took longer and the frame took 0.034 ms to compute. In the next
+                    frame <codeInline>Update(0.034)</codeInline> is called and the simulation performs 2 time steps
+                    internally - which takes even more time... Each frame the simulation must make
+                    more internal time steps to keep up with the elapsed time and eventually the frame
+                    rate of the game will go towards 0. To avoid this scenario the maximal number of
+                    allowed sub time steps is limited. Practically this means that when this limit
+                    is reached, time is lost and the simulation moves objects in slow motion.
+                    Slow motion at a low frame rate is better than exact motion at 0 frames per second.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="SubTimeStepFinished">
+            <title>Sampling simulation results and the SubTimeStepFinished event</title>
+            <content>
+                <para>
+                    In the simplest case the game loop (or the main loop of the application)
+                    and the simulation use the same fixed time steps. The game logic
+                    updates simulation objects, then
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Physics.Simulation.Update(System.TimeSpan)</codeEntityReference>
+                    is called. Then the game loop reads the simulation results, updates the simulation objects and
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Physics.Simulation.Update(System.TimeSpan)</codeEntityReference>
+                    is called again. And so forth.
+                </para>
+                <para>
+                    If the time step of the game loop is larger than the fixed time step of the simulation,
+                    then the simulation will make several sub time steps in one
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Physics.Simulation.Update(System.TimeSpan)</codeEntityReference>
+                    call. The game loop will not see the intermediate results of the sub time step. For example,
+                    the
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Simulation.CollisionDomain</codeEntityReference>
+                    will display the final state of the simulation. Any intermediate collision are not visible.
+                </para>
+                <para>
+                    In some cases this can be a problem: For example if the game loop wants to
+                    play sound effects for all collisions. Therefore, the simulation
+                    raises the
+                    <codeEntityReference qualifyHint="true">E:DigitalRune.Physics.Simulation.SubTimeStepFinished</codeEntityReference>
+                    event after each internal sub time step. The game loop can handle
+                    this event, for example, to check the collision domain to see the intermediate
+                    simulation results.
+                </para>
+                <para>
+                    Any event handler of the
+                    <codeEntityReference qualifyHint="true">E:DigitalRune.Physics.Simulation.SubTimeStepFinished</codeEntityReference>
+                    event should be a light-weight method that does not manipulate the simulation
+                    objects. The method should only query the simulation results and cache them for later use after
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Physics.Simulation.Update(System.TimeSpan)</codeEntityReference>
+                    has finished.	This is recommended because in a modern game loop, the physics
+                    engine will be updated parallel to other game modules (like audio or graphics).
+                </para>
+                <para>
+                    If the game loop is updated with smaller time step than the fixed time step
+                    of the simulation, then it can happen that the simulation does nothing in
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Physics.Simulation.Update(System.TimeSpan)</codeEntityReference>
+                    and no
+                    <codeEntityReference qualifyHint="true">E:DigitalRune.Physics.Simulation.SubTimeStepFinished</codeEntityReference>
+                    event is raised.
+                    (<codeEntityReference qualifyHint="true">M:DigitalRune.Physics.Simulation.Update(System.TimeSpan)</codeEntityReference>
+                    will only accumulate the time until enough time for a fixed time step has elapsed.)
+                </para>
+            </content>
+        </section>
+
+
+        <section address="VariableTimeStep">
+            <title>Running the simulation with a variable time step</title>
+            <content>
+                <para>
+                    Physics simulations should use a fixed time step. Using variable time steps is not recommended,
+                    and therefore DigitalRune Physics does not contain a direct option to switch to
+                    a variable time step mode. Nevertheless, it still possible to force the simulation to use
+                    a variable time step: Simply set
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Settings.TimingSettings.FixedTimeStep</codeEntityReference>
+                    to the current elapsed time (must be &gt; 0) before each
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Physics.Simulation.Update(System.TimeSpan)</codeEntityReference>
+                    call.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Reading">
+            <title>Recommended reading</title>
+            <content>
+                <para>
+                    For more in-depth information about physics simulations and time stepping, read the
+                    excellent article
+                    <externalLink>
+                        <linkText>"Fix Your Timestep!"</linkText>
+                        <linkUri>http://gafferongames.com/game-physics/fix-your-timestep/</linkUri>
+                    </externalLink>, by Glenn Fiedler.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Settings.TimingSettings</codeEntityReference>
+            <externalLink>
+                <linkText>Fix Your Timestep!, by Glenn Fiedler</linkText>
+                <linkUri>http://gafferongames.com/game-physics/fix-your-timestep/</linkUri>
+            </externalLink>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

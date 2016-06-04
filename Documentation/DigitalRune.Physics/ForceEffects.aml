@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="1e6a58ee-1cfd-4e71-8afc-afff720bb53d" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This section explains how to use forces to influence objects in the simulation.</para>
+        </introduction>
+
+
+        <section address="Forces">
+            <title>Forces and rigid bodies</title>
+            <content>
+                <para>
+                    Forces can be applied to rigid bodies. Forces will cause an acceleration
+                    of rigid bodies (Remember: <legacyItalic>Force = Mass ∙ Acceleration</legacyItalic>).
+                    Forces only influence <legacyItalic>dynamic</legacyItalic> bodies.
+                    <legacyItalic>Static</legacyItalic> and <legacyItalic>kinematic</legacyItalic> bodies are not influenced by forces.
+                </para>
+                <para>
+                    To apply a force directly to a rigid body the class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.RigidBody</codeEntityReference>
+                    has several force-related methods:
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Physics.RigidBody.AddForce(DigitalRune.Mathematics.Algebra.Vector3F)</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Physics.RigidBody.AddTorque(DigitalRune.Mathematics.Algebra.Vector3F)</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Physics.RigidBody.ClearForces</codeEntityReference>,
+                    etc.
+                </para>
+                <para>
+                    All forces/torques set with the AddForce/AddTorque methods are accumulated
+                    and act during the next time step of the simulation.
+                    At the end of the time step all forces set with AddForce/AddTorque
+                    are automatically cleared. - If a constant force should be applied
+                    for a longer period, the force must be re-added with AddForce/AddTorque
+                    after each simulation update.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="ForceEffects">
+            <title>Forces effects</title>
+            <content>
+                <para>
+                    Force effects are classes derived from
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.ForceEffects.ForceEffect</codeEntityReference>
+                    that affect multiple rigid bodies.
+                    Force effects can be added to the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Simulation</codeEntityReference>:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+Simulation simulation = new Simulation();
+...
+
+// Add a gravity force field and a damping effect.
+simulation.ForceEffects.Add(new Gravity());
+simulation.ForceEffects.Add(new Damping());
+...
+]]>
+                </code>
+                <para>
+                    The simulation will automatically call all force effect instances in a
+                    time step to apply forces to the rigid bodies. Examples of force effects are:
+                    gravity, damping, explosions, tornadoes, etc. The force effects that
+                    come with DigitalRune Physics can be found in
+                    <codeEntityReference qualifyHint="true">N:DigitalRune.Physics.ForceEffects</codeEntityReference>.
+                </para>
+                <para>
+                    The force effects
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.ForceEffects.Gravity</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.ForceEffects.Damping</codeEntityReference>
+                    are two important force effects that are used in almost all games. Gravity pulls objects
+                    to the ground. Without gravity all objects are weightless and float around
+                    as in outer space. Damping models a simply form of air resistance and makes
+                    sure that moving bodies will slow down. As in the example code above,
+                    these two effects are needed in all games (unless it is a space game or
+                    a game with specialized gravity forces).
+                </para>
+                <para>
+                    Force effects in <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Simulation.ForceEffects</codeEntityReference>
+                    are applied in each time step until they are removed from the collection. Some force effects, such as
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.ForceEffects.Explosion</codeEntityReference>,
+                    automatically remove themselves after a certain duration. (See the descriptions of the
+                    force effects.)
+                </para>
+            </content>
+        </section>
+
+
+        <section address="ForceFields">
+            <title>Force fields</title>
+            <content>
+                <para>
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.ForceEffects.ForceField</codeEntityReference>s
+                    are specialized force effects that act on all objects in an
+                    <newTerm>area of effect</newTerm>
+                    (see <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.ForceEffects.ForceField.AreaOfEffect</codeEntityReference>).
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.ForceEffects.Gravity</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.ForceEffects.Damping</codeEntityReference>
+                    are such force fields.
+                </para>
+                <para>
+                    The area of effect can be defined using any object that implements the interface
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.ForceEffects.IAreaOfEffect</codeEntityReference>.
+                    The standard implementations are:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.ForceEffects.GlobalAreaOfEffect</codeEntityReference>:
+                            The force field applies forces to all bodies in the simulation.
+                    </listItem>
+                    <listItem>
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.ForceEffects.ListAreaOfEffect</codeEntityReference>:
+                            The force field applies forces to all bodies in a given list.
+                    </listItem>
+                    <listItem>
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.ForceEffects.GeometricAreaOfEffect</codeEntityReference>:
+                            The force field applies forces to all bodies that collide with a given collision object.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Custom">
+            <title>Creating custom forces effects and force fields</title>
+            <content>
+                <para>
+                    It is very easy to create new force effects. Please, have a look at the
+                    <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57">Samples</link>
+                    and read the class documentation of
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.ForceEffects.ForceEffect</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.ForceEffects.ForceField</codeEntityReference>.
+                </para>
+                <para>
+                    Here, is how the gravity effect could be implemented:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+public class Gravity : ForceField
+{
+  public override void Apply(RigidBody body)
+  {
+    AddForce(body, new Vector3F(0, -9.81f, 0) * body.MassFrame.Mass);
+  }
+}
+]]>
+                </code>
+                <para>
+                    When implementing a custom force effect  it is important to note that
+                    force effect classes use the <legacyBold>AddForce</legacyBold>/<legacyBold>AddTorque</legacyBold>
+                    methods of the base class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.ForceEffects.ForceEffect</codeEntityReference>.
+                    They must not use the <legacyBold>AddForce</legacyBold>/<legacyBold>AddTorque</legacyBold> methods of the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.RigidBody</codeEntityReference>
+                    directly.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <link xlink:href="949c8038-6118-4a54-9767-1011c281f439" />
+            <codeEntityReference qualifyHint="true">N:DigitalRune.Physics.ForceEffects</codeEntityReference>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

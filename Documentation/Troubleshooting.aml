@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="217d4dfb-9ec6-4250-abc0-aaa22140da56" revisionNumber="1">
+    <developerTroubleshootingDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>Here is a collection of frequently asked questions, common problems and solutions.</para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="Setup">
+            <title>Setup and first steps</title>
+            <content>
+            </content>
+            <sections>
+                <section address="AdSDK">
+                    <title>Installation of Window Phone SDK 7.1.1 fails.</title>
+                    <content>
+                        <para>
+                            The setup of the Windows Phone SDK 7.1.1 fails if a newer version of the Microsoft Advertising SDK
+                            for Windows Phone is already installed on the system.
+                        </para>
+                        <para>
+                            Solution:
+                        </para>
+                        <list class="ordered">
+                            <listItem>
+                                Download the latest version of the
+                                <externalLink>
+                                    <linkText>Microsoft Advertising SDK for Windows Phone 8</linkText>
+                                    <linkUri>http://www.microsoft.com/en-us/download/details.aspx?id=8729</linkUri>
+                                </externalLink>.
+                            </listItem>
+                            <listItem>
+                                Remove the previous installation by running the setup. (If the Ad SDK on the PC is older,
+                                then install latest version first, and then run the setup again to uninstall it.)
+                            </listItem>
+                            <listItem>
+                                Install the Windows Phone SDK 7.1.1.
+                            </listItem>
+                            <listItem>
+                                Re-install the latest version of Microsoft Advertising SDK for Windows Phone.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+
+                <section address="Windows8">
+                    <title>Installation of XNA Game Studio or Windows Phone SDK fails on Windows 8.</title>
+                    <content>
+                        <para>
+                            See
+                            <externalLink>
+                                <linkText>How to work around a possible XNA Game Studio or Windows Phone SDK install failure on Windows 8 by Aaron Stebner</linkText>
+                                <linkUri>http://blogs.msdn.com/b/astebner/archive/2012/02/29/10274694.aspx</linkUri>
+                            </externalLink>
+                        </para>
+                    </content>
+                </section>
+
+                <section address="XNA">
+                    <title>Error "Object reference not set to an instance of an object" when loading sample.</title>
+                    <content>
+                        <para>
+                            Solution: Try to reinstall XNA.
+                        </para>
+                        <para>
+                            For more information see:
+                            <externalLink>
+                                <linkText>Object reference not set to an instance of an object error when trying to open project or create new project in VS2010 using XNA 4.0</linkText>
+                                <linkUri>http://social.msdn.microsoft.com/Forums/vstudio/en-US/6689aad1-c82f-4d31-a437-d0b3639bf65e/object-reference-not-set-to-an-instance-of-an-object-error-when-trying-to-open-project-or-create-new?forum=csharpgeneral</linkUri>
+                            </externalLink>.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Unblock">
+                    <title>Error loading pipeline assembly "..\References\XNA\Windows\x86\DigitalRune.xyz.dll".</title>
+                    <content>
+                        <para>
+                            When .NET libraries are downloaded from the web, they are treated as assemblies from a network
+                            location. This results in a reduced set of privileges on the local machine.
+                        </para>
+                        <para>
+                            Solution: Unblock the ZIP package before extracting the files. See
+                            <link xlink:href="46419cff-2a6e-4d81-84e4-051800b9727b" /> instructions.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="MonoGame">
+                    <title>Error loading pipeline assembly "MonoGameContentProcessors, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"</title>
+                    <content>
+                        <para>
+                            This error message may appear when trying to build content for MonoGame.
+                        </para>
+                        <para>
+                            Solution: According to
+                            <externalLink>
+                                <linkText>https://monogame.codeplex.com/discussions/362886</linkText>
+                                <linkUri>https://monogame.codeplex.com/discussions/362886</linkUri>
+                            </externalLink>
+                            you need to have
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Windows Phone SDK 7.1</linkText>
+                                    <linkUri>http://www.microsoft.com/en-us/download/details.aspx?id=27570</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <externalLink>
+                                    <linkText>Windows Phone SDK 7.1.1</linkText>
+                                    <linkUri>http://www.microsoft.com/en-us/download/details.aspx?id=29233</linkUri>
+                                </externalLink>
+                            </listItem>
+                        </list>
+                        <para>
+                            installed. Older version of XNA Game Studio do not work and will cause this error.
+                        </para>
+                    </content>
+                </section>
+
+
+                <section address="d3dcompiler">
+                    <title>﻿﻿﻿Unable to load DLL 'd3dcompiler_43.dll'.</title>
+                    <content>
+                        <para>
+                            Solution: Install the latest
+                            <externalLink>
+                                <linkText>DirectX Runtime</linkText>
+                                <linkUri>http://www.microsoft.com/en-us/download/details.aspx?id=35</linkUri>
+                            </externalLink>.
+                        </para>
+                    </content>
+                </section>
+
+
+                <section address="FirstChance">
+                    <title>A first chance exception of type 'X' occurred in Y.dll</title>
+                    <content>
+                        <para>
+                            Depending on your Visual Studio settings, you might see
+                            <legacyItalic>first chance</legacyItalic> exception
+                            messages in the Visual Studio Output window. For example:
+                            <legacyItalic>
+                                A first chance exception of type 'System.IO.FileNotFoundException' occurred in mscorlib.ni.dll
+                            </legacyItalic>. This message is printed even if the code properly catches and handles
+                            the exception. Therefore, this message does not necessarily indicate a problem.
+                        </para>
+                        <para>
+                            Sometimes exceptions cannot be avoided in .NET. For example, some storage APIs do not
+                            allow to check if a file exists, and the only way to check if the file exists is to
+                            try to access the file and catch an exception if it doesn't exist.
+                        </para>
+                        <para>
+                            Whether the debugger breaks on first chance exceptions can be configured in the
+                            <legacyBold>Visual Studio | Debug | Exceptions…</legacyBold> dialog.
+                            If <legacyBold>Visual Studio | Options | Debugging | General | Enable Just My Code</legacyBold>
+                            is enabled, the debugger will not handle or log first chance exceptions in third-party DLLs.
+                        </para>
+                    </content>
+                </section>
+
+            </sections>
+        </section>
+
+
+        <section address="Content">
+            <title>Content</title>
+            <content>
+            </content>
+            <sections>
+                <section address="MGFX">
+                    <title>Cannot load effect: Wrong MGFX file version!</title>
+                    <content>
+                        <para>
+                            This error occurs when an effect built for XNA is loaded in MonoGame.
+                        </para>
+                        <para>
+                            Solution: Check if the content processor is set to "MonoGame Effect" in the content project and
+                            rebuild the content.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Env">
+                    <title>InvalidOperationException: Cannot find content processor "MGEffectProcessor".</title>
+                    <content>
+                        <para>
+                            This exception may be thrown when trying to build an XNA project.
+                        </para>
+                        <para>
+                            Solution: Check whether the environment variable <environmentVariable>"MONOGAME_PLATFORM"</environmentVariable>
+                            is set on the system. If so, remove the environment variable.
+                        </para>
+                        <para>
+                            This environment variable causes the content pipeline to build the content for a MonoGame
+                            platform instead of XNA. The environment variable is set and removed automatically when
+                            a MonoGame project is built. However, if the build of the MonoGame project fails, the
+                            environment variable may not be removed. This subsequently causes problems when an XNA
+                            project is built.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="ModelScale">
+                    <title>What is the recommended scale for 3D models?</title>
+                    <content>
+                        <para>
+                            We recommend using the
+                            <externalLink>
+                                <linkText>SI standard units</linkText>
+                                <linkUri>http://en.wikipedia.org/wiki/International_System_of_Units</linkUri>
+                            </externalLink>.
+                            For length: 1 unit = 1 meter
+                            (Currently all constants in our libraries are using the SI standard units. If you
+                            prefer a different system of units, you need to adjust the constants in the libraries
+                            and in the samples.)
+                        </para>
+                        <para>
+                            Some models in our samples are modeled with a different scale. We correct the scale by
+                            settings the Scale parameter of the Model content processor (in the VS Properties
+                            window).
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Misc">
+            <title>Miscellaneous</title>
+            <content>
+            </content>
+            <sections>
+                <section address="Multithreading">
+                    <title>How to enable/disable multithreading</title>
+                    <content>
+                        <para>
+                            Most DigitalRune services support multithreading to exploit all available
+                            CPU cores. By default, multithreading is enabled if the system has more
+                            than one CPU cores.
+                        </para>
+                        <para>
+                            To control multithreading explicitly, use the <legacyBold>EnableMultithreading</legacyBold>
+                            properties:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Animation.AnimationManager.EnableMultithreading</codeEntityReference>
+                            </listItem>
+                            <listItem>
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Collisions.CollisionDomain.EnableMultithreading</codeEntityReference>
+                            </listItem>
+                            <listItem>
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Meshes.ConvexDecomposition.EnableMultithreading</codeEntityReference>
+                            </listItem>
+                            <listItem>
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.Rendering.OcclusionBuffer.EnableMultithreading</codeEntityReference>
+                            </listItem>
+                            <listItem>
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Particles.ParticleSystem.EnableMultithreading</codeEntityReference>
+                            </listItem>
+                            <listItem>
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Particles.ParticleSystemManager.EnableMultithreading</codeEntityReference>
+                            </listItem>
+                            <listItem>
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.SceneGraph.Scene.EnableMultithreading</codeEntityReference>
+                            </listItem>
+                            <listItem>
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Settings.SimulationSettings.EnableMultithreading</codeEntityReference>
+                            </listItem>
+                        </list>
+                        <para>
+                            Multithreading can be enabled/disabled at runtime.
+                        </para>
+                        <para>
+                            Tip: Search the documentation for "multithreading" or "EnableMultithreading" to
+                            find all related topics.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Arithmetic">
+                    <title>Error: Overflow or underflow in the arithmetic operation.</title>
+                    <content>
+                        <para>
+                            Problem: A <codeEntityReference qualifyHint="false">T:System.Math</codeEntityReference> method
+                            unexpectedly throws an <codeEntityReference qualifyHint="false">T:System.ArithmeticException</codeEntityReference>
+                            ("Overflow or underflow in the arithmetic operation."). This exception may
+                            originate in user code or in one of the DigitalRune libraries.
+                        </para>
+                        <para>
+                            Solution: The problem is usually not caused by the DigitalRune libraries.
+                            The problem is most likely caused by a native third-party library, which
+                            has set the C floating-point math package into a state that is incompatible
+                            with .NET. To resolve the problem call <codeInline>_fpreset</codeInline> as described here:
+                            <externalLink>
+                                <linkText>"Overflow or underflow in the arithmetic operation" on StackOverflow</linkText>
+                                <linkUri>http://stackoverflow.com/questions/2407040/overflow-or-underflow-in-the-arithmetic-operation-wpf-specific-issue</linkUri>
+                            </externalLink>
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Optimization">
+                    <title>Why is feature X slow / not optimized?</title>
+                    <content>
+                        <para>
+                            If you are using a feature of the DigitalRune Engine and it is not fast enough, let
+                            us know. Many problems can be improved using some simple performance tips.
+                            Also, if you tell us how the engine is used and which parts can be bottlenecks, we can
+                            try to optimize these parts in future releases.
+                        </para>
+                        <para>
+                            Please note that we spend a lot of time profiling and optimizing the DigitalRune
+                            Engine.
+                            However, our libraries are <legacyItalic>general purpose</legacyItalic>
+                            libraries, which means, they are sometimes not as efficient as a simple highly
+                            optimized library which has only a single purpose. For example: The DigitalRune
+                            Geometry library supports collision detection with closest-point queries, mirrored
+                            objects, many different shape types, and many other edge cases. These features make the
+                            engine powerful and simple to use - but it can add a performance overhead.
+                        </para>
+                        <para>
+                            In addition, the engine is optimized for typical usage in 3D simulations and games.
+                            For example, the collision detection and physics simulation are designed for typical
+                            gaming scenarios (regarding shape types, number of objects, etc). The API is
+                            flexible and can be used for wildly different scenarios (e.g. large scale simulations,
+                            ray-tracing, etc.) - but the engine might need minor modifications to optimally
+                            support scenarios which we have not anticipated.
+                        </para>
+                        <para>
+                            If you need maximal performance, you can also download the source code and
+                            optimize the code for your specific use case.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerTroubleshootingDocument>
+</topic>

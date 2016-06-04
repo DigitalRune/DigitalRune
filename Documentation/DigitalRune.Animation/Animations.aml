@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="c3cf4f80-807c-412a-894f-b77313d88184" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This topic gives an overview over the available types of animations.</para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="FromToByAnimations">
+            <title>From/To/By animations</title>
+            <content>
+                <para>
+                    From/To/By animations (see <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.FromToByAnimation`1</codeEntityReference>
+                    and derived classes) are animations that create a transition from a start
+                    value to an end value.
+                </para>
+                <para>
+                    The transition between start and end value can be controlled using various
+                    easing functions (see property <codeEntityReference qualifyHint="false">P:DigitalRune.Animation.FromToByAnimation`1.EasingFunction</codeEntityReference>).
+                </para>
+                <mediaLink>
+                    <image xlink:href="ClassDiagramFromToByAnimations"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="KeyFrameAnimations">
+            <title>Key frame animations</title>
+            <content>
+                <para>
+                    Key frame animations (see <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.KeyFrameAnimation`1</codeEntityReference>
+                    and derived classes) animate a value base on a set of predefined key frames.
+                </para>
+                <mediaLink>
+                    <image xlink:href="ClassDiagramKeyFrameAnimations"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="AnimationCurves">
+            <title>Curve-based animation</title>
+            <content>
+                <para>
+                    Curve-based animations are similar to key frame animations except that the
+                    types of animations provide exact control over the type of interpolation which
+                    is applied between key frames. Curve-based animations support a wide range of
+                    interpolation types including spline-based interpolation.
+                </para>
+            </content>
+            <sections>
+                <section address="Curves">
+                    <title>Animation curves</title>
+                    <content>
+                        <para>
+                            An animation curve (see <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Curve2FAnimation</codeEntityReference>)
+                            provides exact control over a floating-point value.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Paths">
+                    <title>Path animations</title>
+                    <content>
+                        <para>
+                            Path Animations (see <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Path2FAnimation</codeEntityReference>
+                            and <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Path3FAnimation</codeEntityReference>)
+                            allow to move an object along a 2D or 3D path. A path is defined by a set of
+                            path keys. The path segments between path keys can be defined using a wide
+                            range of interpolation types including spline-based interpolation.
+                        </para>
+                        <mediaLink>
+                            <image xlink:href="ClassDiagramAnimationCurves"/>
+                        </mediaLink>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="CompositeAnimation">
+            <title>Composite animations</title>
+            <content>
+                <para>
+                    Composite Animations are animations which are composed of other animations.
+                    A <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Vector3FAnimation</codeEntityReference>,
+                    for example, could be composed of three
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Curve2FAnimation</codeEntityReference>s
+                    where each animation controls one floating-point component of the vector.
+                </para>
+                <mediaLink>
+                    <image xlink:href="ClassDiagramCompositeAnimations"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Compositing">
+            <title>Animation clips, timeline clips and timeline groups</title>
+            <content>
+                <para>
+                    An <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.AnimationClip`1</codeEntityReference>
+                    is an animation that plays a clip (a certain interval) from another animation.
+                    It can be also be used to cycle an existing animation: See <link xlink:href="ecded02d-1df8-43e5-9987-e840bbd4ae00" />
+                </para>
+                <para>
+                    A <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.TimelineClip</codeEntityReference>
+                    is a more general variant of an <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.AnimationClip`1</codeEntityReference>.
+                    An <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.AnimationClip`1</codeEntityReference>
+                    can only be used for animations that implement <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimation`1</codeEntityReference>,
+                    whereas a <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.TimelineClip</codeEntityReference>
+                    can be used for anything that implements <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.ITimeline</codeEntityReference>.
+                    For example, a <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.TimelineClip</codeEntityReference>
+                    can be used to play a clip from another <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.TimelineGroup</codeEntityReference>.
+                </para>
+                <para>
+                    A <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.TimelineGroup</codeEntityReference>
+                    can be used to group other timelines and animations together, thus creating a
+                    single "storyboard".
+                </para>
+            </content>
+        </section>
+
+
+        <section address="BlendGroups">
+            <title>Blend groups (n-blend animations)</title>
+            <content>
+                <para>
+                    A <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.BlendGroup</codeEntityReference>
+                    can be used to smoothly blend between animations with different durations.
+                    This is particularly useful in character animation: Imagine a "Walk" cycle
+                    and a "Run" cycle for a character. Both animation cycles have a different
+                    length. In order to smoothly transition from "Walk" to "Run", both animations
+                    can be put into a <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.BlendGroup</codeEntityReference>.
+                </para>
+                <para>
+                    A <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.BlendGroup</codeEntityReference>
+                    can be used to blend between any number of animations.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Custom">
+            <title>Creating custom animations</title>
+            <content>
+                <para>
+                    It is possible to extend DigitalRune Animation with custom animation types.
+                    The abstract base class <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.Animation`1</codeEntityReference>
+                    provides common base functionality for animation types and new animation types
+                    can derive from this class. But it is not necessary to use this class. New animation
+                    types can also implement the interfaces
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.ITimeline</codeEntityReference>
+                    or
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimation`1</codeEntityReference>
+                    directly.
+                    Animation types that <legacyItalic>arrange</legacyItalic> other animations,
+                    like
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.TimelineClip</codeEntityReference>
+                    or
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.TimelineGroup</codeEntityReference>,
+                    must implement
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.ITimeline</codeEntityReference>.
+                    Animation types that compute an animation value must implement the
+                    more specialized interface
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimation`1</codeEntityReference>.
+                </para>
+                <para>
+                    The <legacyItalic>AnimationSample</legacyItalic>
+                    (see <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />) includes examples that show how to
+                    create new animation types.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

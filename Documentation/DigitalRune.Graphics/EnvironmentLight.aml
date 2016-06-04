@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="1683bd3a-951a-4e79-b43e-ed0f3ee00e31" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <alert class="warning">
+                <para>
+                    The <localUri>EnvironmentLightSample</localUri> is outdated.
+                    Image-based lighting (IBL) is now an integrated part of DigitalRune Graphics.
+                    See IBL examples for more information.
+                </para>
+            </alert>
+            <para>
+                The <localUri>EnvironmentLightSample</localUri> (see
+                <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />) shows how to implement a new
+                light type which adds environment map reflections to all materials in the scene.
+                This article provides additional background information and explanations.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Screenshot">
+            <title>Screenshot</title>
+            <content>
+                <para>
+                    Here are some screenshots from the new EnvironmentLightSample. Several objects show
+                    reflections. (The reflected environment map is the same as the sky box.)
+                </para>
+                <mediaLink>
+                    <caption placement="after">
+                        Screenshot: The spheres, cubes, ground and armor of the dude reflect the environment
+                        map.
+                    </caption>
+                    <image xlink:href="EnvironmentLight"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Traditional">
+            <title>Traditional approach: Environment mapping using new materials</title>
+            <content>
+                <para>
+                    The usual method to add environment mapping is:
+                </para>
+                <list class="ordered">
+                    <listItem>
+                        Create a new HLSL effect which implements environment mapping.
+                    </listItem>
+                    <listItem>
+                            Assign this effect to a mesh. In the DigitalRune Engine, you do this by editing
+                            the DigitalRune material file (*.drmat) of a model.
+                    </listItem>
+                </list>
+                <para>
+                    This is approach is cumbersome because you need to create many variants of
+                    the effect (env map, env map + skinned, env map + normal map + alpha test, ...) and
+                    manually assign the effect to meshes.
+                </para>
+                <para>
+                    Deferred lighting allows a more efficient solution because lighting and shading
+                    are decoupled.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Deferred">
+            <title>Deferred lighting approach: Environment mapping using a new light type</title>
+            <content>
+                <para>
+                    Deferred rendering allows us to use a more practical method. The EnvironmentLightSample
+                    shows how to implement a new light type and a renderer for the light. The new light type
+                    adds environment map reflections to all deferred materials. Even glossy reflections
+                    can be created using the mipmaps of the environment map. For this approach you need
+                    to understand a few basic observations:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <legacyBold>Deferred lighting decouples light accumulation and material rendering:</legacyBold>
+                            In a deferred rendering pipeline we can create new light types without changing
+                            material shaders (except forward rendered, alpha-blended materials). To add a
+                            custom light type, you only need to write a new
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Light</codeEntityReference>
+                            class and a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneNodeRenderer</codeEntityReference>
+                            which handles
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.LightNode</codeEntityReference>s
+                            with the custom
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Light</codeEntityReference>
+                            type.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Reflections = indirect specular lighting:</legacyBold>
+                            An environment map basically captures the light that falls onto an object from all
+                            directions. This light does not only affect special, user-selected materials - all
+                            materials reflect this light! The specular color of a material defines how much of
+                            this light should be reflected and whether the reflected light is tinted.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Mipmap levels can be used to create glossy reflections. </legacyBold>
+                            The specular power (a.k.a. specular exponent, roughness, smoothness, glossiness,
+                            shininess, etc.) of a material defines how sharp the reflected image should be.
+                            Mirror-like materials have a very high specular power. Dull, diffuse materials have a
+                            low specular power. The mipmap levels of the environment map contain increasingly
+                            blurred versions of the original image. To create glossy (blurry) reflections, we
+                            can sample higher mipmap levels of the environment map. McGuire et al.[1] have
+                            recently shown how to compute the required mipmap level for a given specular power.
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="References">
+            <title>References</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                            [1] M. McGuire, D. Evangelakos, J. Wilcox, S. Donow, M. Mara: Plausible Blinn-Phong
+                            Reflection of Standard Cube MIP-Maps. Technical report CSTR201301, Williams College
+                            Department of Computer Science,
+                            <externalLink>
+                                <linkText>http://graphics.cs.williams.edu/papers/EnvMipReport2013/</linkText>
+                                <linkUri>http://graphics.cs.williams.edu/papers/EnvMipReport2013/</linkUri>
+                            </externalLink>.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+        
+        <relatedTopics>
+        </relatedTopics>
+        
+    </developerConceptualDocument>
+</topic>

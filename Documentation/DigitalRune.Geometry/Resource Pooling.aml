@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="4a3324b2-fc11-41bf-bb16-1e8ab644f1c4" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This section describes the kind of resource pooling that is used in DigitalRune Geometry.</para>
+        </introduction>
+
+
+        <section address="ResourcePooling">
+            <title>Resource pooling</title>
+            <content>
+                <para>
+                    The current version of the .NET Compact Framework has some limitations compared to the full version
+                    of the .NET Framework. In particular, it does not support generational garbage collection. A run of
+                    the garbage collector on the Xbox 360 or on the Windows Phone 7 typically has a higher latency than
+                    in Windows and can lead to significant frame rate drops.
+                </para>
+                <para>
+                    Therefore, it is crucial to reduce the amount of memory that is allocated at runtime to avoid too
+                    frequent garbage collections. A strategy to reduce memory allocations is
+                    <legacyItalic>resource pooling</legacyItalic>. When using a resource pool (see class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.ResourcePool`1</codeEntityReference>) objects
+                    are acquired from the pool instead of being newly allocated on the managed heap. When an object is no
+                    longer used it is returned to the resource pool for later reuse.
+                </para>
+                <alert class="note">
+                    <para>
+                        You can use the class <codeEntityReference qualifyHint="false">T:DigitalRune.ResourcePool`1</codeEntityReference>
+                        in your own application to minimize memory allocations.
+                    </para>
+                </alert>
+            </content>
+            <sections>
+                <section address="Geometry">
+                    <title>Resource pooling in DigitalRune Geometry</title>
+                    <content>
+                        <para>
+                            DigitalRune Geometry extensively uses resource pools to avoid unnecessary memory allocations. The
+                            types <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.ContactSet</codeEntityReference>
+                            and <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.Contact</codeEntityReference>
+                            are now automatically recycled and reused.
+                        </para>
+                        <alert class="caution">
+                            <para>
+                                You should not store direct references to objects of type
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.ContactSet</codeEntityReference>
+                                and <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.Contact</codeEntityReference>
+                                that were automatically created by the collision detection. These objects can be recycled and
+                                reused between updates of the collision detection - so the references might become invalid.
+                            </para>
+                            <para>
+                                In general it is not necessary to keep references to these types of objects.
+                            </para>
+                        </alert>
+                    </content>
+                </section>
+
+                <section address="ThreadSafety">
+                    <title>Thread-safety</title>
+                    <content>
+                        <para>
+                            The class <codeEntityReference qualifyHint="false">T:DigitalRune.ResourcePool`1</codeEntityReference>
+                            provided by the <link xlink:href="dc44c3a5-8545-4253-9da1-62258a00607c"/> is thread-safe.
+                            It is safe to access the same resource pool from multiple threads simultaneously.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="More">
+                    <title>More information</title>
+                    <content>
+                        <para>
+                            Please read <link xlink:href="9e2a4144-69e9-4bf2-8cea-79713eb91490">
+                                Resource Pooling (DigialRune Base library)
+                            </link>
+                            for detailed information about resource pools.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

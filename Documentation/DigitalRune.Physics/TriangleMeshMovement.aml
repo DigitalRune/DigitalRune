@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="cb1a3d03-4603-4086-aaea-f91de81e7d8a" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This topic discusses a common problem that occurs when rigid bodies move over
+                a static triangle mesh and factors which influence the triangle mesh interactions.
+            </para>
+        </introduction>
+
+
+        <section address="Problem">
+            <title>Problem</title>
+            <content>
+                <para>
+                    In my game I am rolling a small ball down a large, curved ramp which is a
+                    triangle mesh imported from a FBX file.  Consider a ball rolling down a
+                    half-pipe. The problem is that although the ramp has a lot of faces on the curve,
+                    the ball will often bounce off the surface unnaturally.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Solution">
+            <title>Solution</title>
+            <content>
+                <para>
+                    Unnatural bounces at triangle edges can have several causes and here are a few things you
+                    can try:
+                </para>
+            </content>
+            <sections>
+                <section address="ContactWelding">
+                    <title>Contact welding</title>
+                    <content>
+                        <para>
+                            Bounces can be caused by bad normal vectors at triangle edges. Enable contact
+                            welding for the mesh:
+                        </para>
+                        <code language="cs">
+                            triangleShapeMesh.EnableContactWelding = true;
+                        </code>
+                        <para>
+                            and make the welding more aggressive by setting the welding limit to 1. This is a
+                            static property of the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.Algorithms.TriangleMeshAlgorithm</codeEntityReference>
+                            class:
+                        </para>
+                        <code language="cs">
+                            TriangleMeshAlgorithm.WeldingLimit = 1f;
+                        </code>
+                        <para>
+                            Contact welding improves the contact normal vectors at triangle edges.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="SphereContacts">
+                    <title>Perfect sphere contacts</title>
+                    <content>
+                        <para>
+                            Normally, when a sphere touches another object, the contact normal vector points in
+                            the direction from the sphere center to the contact. When contact welding is used,
+                            the contact positions can be a bit off. - But small errors can cause visible bounces.
+                            We can correct this with a custom contact filter:
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+public class MyContactFilter : IContactFilter 
+{ 
+  private ContactReducer _defaultContactFilter = new ContactReducer(); 
+  
+  public void Filter(ContactSet contactSet) 
+  { 
+    // Call the default contact filter. 
+    _defaultContactFilter.Filter(contactSet); 
+  
+    // Abort if there are no contacts in this contact set. 
+    if (contactSet.Count == 0) 
+      return; 
+  
+    // If this is a sphere vs. * contact set, then we correct the position of the  
+    // contact point to make sure that the contact position is in line with the sphere center. 
+  
+    var sphere = contactSet.ObjectA.GeometricObject.Shape as SphereShape; 
+    if (sphere != null) 
+    { 
+      float radius = sphere.Radius; 
+  
+      foreach(var contact in contactSet) 
+        contact.Position = contactSet.ObjectA.GeometricObject.Pose.Position + contact.Normal * (radius - contact.PenetrationDepth / 2); 
+           
+      return; 
+    } 
+  
+    sphere = contactSet.ObjectB.GeometricObject.Shape as SphereShape; 
+    if (sphere != null) 
+    { 
+      float radius = sphere.Radius; 
+      foreach (var contact in contactSet) 
+        contact.Position = contactSet.ObjectB.GeometricObject.Pose.Position - contact.Normal * (radius - contact.PenetrationDepth / 2); 
+    } 
+  } 
+}
+]]>
+                        </code>
+                        <para>
+                            Set this filter with:
+                        </para>
+                        <code language="cs">
+                            simulation.CollisionDomain.CollisionDetection.ContactFilter = new MyContactFilter();
+                        </code>
+                        <para>
+                            Usually, when you use contact welding and this contact filter, you get a very smooth
+                            movement. If this does not help, here are a few more things you can try:
+                        </para>
+                    </content>
+                </section>
+                <section address="Friction">
+                    <title>Lower friction</title>
+                    <content>
+                        <para>
+                            Try to use a lower friction. If the friction is lower, the spheres can glide more
+                            smoothly over bumps.
+                        </para>
+                    </content>
+                </section>
+                <section address="PenDepth">
+                    <title>Allowed penetration depth</title>
+                    <content>
+                        <para>
+                            Try to lower the allowed penetration depth. For example:
+                        </para>
+                        <code language="cs">
+                            simulation.Settings.Constraints.AllowedPenetration = 0.001f;
+                        </code>
+                        <para>
+                            If this parameter is high (which is not good in your case), then the sphere will sink
+                            more into the triangle surface. And when it rolls to a triangle edge, it will
+                            perceive the neighbor edge as a small upwards step.
+                        </para>
+                    </content>
+                </section>
+                <section address="Gravity">
+                    <title>Gravity</title>
+                    <content>
+                        <para>
+                            When the gravity is high, small bumps can have a higher impact. Try to use a lower
+                            gravity, for example:
+                        </para>
+                        <code language="cs">
+                            simulation.ForceEffects.Add(new Gravity() { Acceleration = new Vector3F(0, -5, 0)});
+                        </code>
+                    </content>
+                </section>
+                <section address="HeightField">
+                    <title>Height field instead of triangle mesh</title>
+                    <content>
+                        <para>
+                            Try to use a height field instead of a triangle mesh - if your scenario allows to
+                            use a height field.
+                        </para>
+                    </content>
+                </section>
+                <section address="Triangles">
+                    <title>Distorted triangles</title>
+                    <content>
+                        <para>
+                            If your triangles are very distorted (one side is small relative to the other sides),
+                            subdivide your mesh to create more regular triangles. Very long, distorted shapes
+                            will create high numerical errors in many collision detection and physics algorithms.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

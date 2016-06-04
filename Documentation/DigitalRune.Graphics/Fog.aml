@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="0bc6a222-64d5-4642-a2b6-241e9017c873" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                A fog effect blends the normal scene color with a fog color. The blend factor is
+                proportional to the distance from the camera. Fog can be used to simulate haze and aerial
+                perspective. It can also be used to hide objects beyond a certain distance.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Definition">
+            <title>Defining fog</title>
+            <content>
+                <para>
+                    To add a fog effect to a scene, a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.FogNode</codeEntityReference>
+                    must be added. The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.FogNode</codeEntityReference>
+                    references a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Fog</codeEntityReference>
+                    instance which defines the fog settings. Fog affects the whole scene.
+                </para>
+                <mediaLink>
+                    <image xlink:href="ClassDiagramGraphicsFog"/>
+                </mediaLink>
+                <para>
+                    The fog can be configured to create a distance-based fog:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Distance-Fog"/>
+                </mediaLink>
+                <para>
+                    The fog can also depend on the height:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Height-Fog"/>
+                </mediaLink>
+                <para>
+                    The y-position of the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.FogNode</codeEntityReference>
+                    defines the "base level" of the fog layer. The y-position of the node can be changed to move
+                    the height-based fog up/down.
+                </para>
+                <para>
+                    You can add more than one
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.FogNode</codeEntityReference>
+                    to a scene to combine fog effects.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Rendering">
+            <title>Rendering fog</title>
+            <content>
+                <para>
+                    In forward rendering, the fog is applied when the models are rendered. That means,
+                    the models use a single effect which computes the shading and applies the fog color.
+                    For example, the XNA stock effects support distance-based fog (but they do not
+                    support height-based fog or more than one fog effect per scene).
+                </para>
+                <para>
+                    In deferred rendering, the fog can be applied in a separate rendering step using the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.FogRenderer</codeEntityReference>.
+                    The advantage is that the effects used to render the meshes do not need to handle fog, but
+                    this does not work for alpha-blended meshes.
+                </para>
+                <para>
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.FogRenderer</codeEntityReference>
+                    is a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneNodeRenderer</codeEntityReference>
+                    which handles <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.FogNode</codeEntityReference>s.
+                    The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.FogRenderer</codeEntityReference>
+                    works only if a valid depth buffer is set in the render
+                    context (property <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.GBuffer0</codeEntityReference>).
+                </para>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.FogRenderer</codeEntityReference>
+                    is usually rendered after all opaque objects:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Render opaque objects...
+          
+// Render fog.
+fogRenderer.Render(fogNodes, context);
+
+// Render alpha-blended objects...
+          ]]>
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

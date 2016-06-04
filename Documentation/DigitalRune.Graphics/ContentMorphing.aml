@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="c961412f-43c7-4b82-a68d-b20dd2d5131f" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>A mesh may include morph targets, which can be imported using the content pipeline.</para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+        <section address="MorphTargets">
+            <title>Morph targets</title>
+            <content>
+                <para>
+                    A <newTerm>morph target</newTerm> is variation of the base mesh. Morph targets are typically
+                    used for facial animation. The base mesh defines the neutral expression and the morph targets
+                    define expression such as "smile", "frown", "eyes closed", etc. The base mesh and the morph
+                    targets need to have the same structure, i.e. the same number of vertices stored in the same
+                    order. At runtime the renderer can interpolate (mix) base mesh and morph targets to create
+                    complex facial animations. Other uses of morph targets include "corrective shapes", "damage
+                    states", etc.
+                </para>
+                <para>
+                    Most modeling tools support morph targets (also called "blend shapes" or "shape keys").
+                    Certain model formats, such as FBX, can store morph targets directly. However, the standard
+                    XNA model importer cannot import these elements directly.
+                </para>
+                <para>
+                    Morph targets need to be exported as regular meshes which are linked ("parented") to the
+                    base mesh.
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <externalLink>
+                            <linkText>Linking/Parenting in Blender</linkText>
+                            <linkUri>http://wiki.blender.org/index.php/Doc:2.6/Manual/Modeling/Objects/Groups_and_Parenting</linkUri>
+                        </externalLink>
+                    </listItem>
+                    <listItem>
+                        <externalLink>
+                            <linkText>Linking/Parenting in 3ds Max</linkText>
+                            <linkUri>http://docs.autodesk.com/3DSMAX/16/ENU/3ds-Max-Help/files/GUID-D5446135-7734-4F9A-A1A1-3564FB89147B.htm</linkUri>
+                        </externalLink>
+                    </listItem>
+                </list>
+                <para>
+                    In addition the morph targets need to be called "MORPH_<legacyItalic>name</legacyItalic>"
+                    where <legacyItalic>name</legacyItalic> is the name of the morph target at runtime. (The
+                    prefix "MORPH_" will be automatically removed by the model processor.)
+                </para>
+                <para>
+                    The following patterns are also supported: "<legacyItalic>name</legacyItalic>_MORPH",
+                    "MORPHTARGET_<legacyItalic>name</legacyItalic>", "<legacyItalic>name</legacyItalic>_MORPHTARGET",
+                    "BLENDSHAPE_<legacyItalic>name</legacyItalic>", "<legacyItalic>name</legacyItalic>_BLENDSHAPE".
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Example">
+            <title>Example</title>
+            <content>
+                <para>
+                    The following model is used in the <localUri>FacialAnimationSample</localUri>.
+                </para>
+                <mediaLink>
+                    <caption placement="after" lead="Figure">Model with morph targets</caption>
+                    <image xlink:href="SintelMorphTargets"/>
+                </mediaLink>
+                <para>
+                    The model on the top left is the base mesh. The remaining models are morph targets, which
+                    are linked ("parented") to the base mesh. The morph targets are called:
+                    "MORPH_EYE-closed", "MORPH_MOUTH-smile", "MORPH_MOUTH-e", ...
+                </para>
+                <para>
+                    At runtime the morph targets can be access as "EYE-closed", "MOUTH-smile", "MOUTH-e", ...
+                </para>
+                <para>
+                    For example:
+                </para>
+                <code language="c#" title="Activate a morph target">
+                    <![CDATA[
+// Show the morph target named "MOUTH-smile".
+meshNode.MorphWeights["MOUTH-smile"] = 1.0f;
+              ]]>
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

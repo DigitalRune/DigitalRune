@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="fae52e31-ede2-451e-b107-e42db486d69c" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This section explains the concept of simulation islands.</para>
+        </introduction>
+
+
+        <section address="Islands">
+            <title>Simulation islands</title>
+            <content>
+                <alert class="note">
+                    <para>
+                        This information is only relevant for advanced users. In general,
+                        it is not needed to deal with simulation islands directly and
+                        users can safely ignore this simulation detail.
+                    </para>
+                </alert>
+                <para>
+                    In each frame the simulation creates different batches of bodies and constraints
+                    that can be simulated independently. Such a batch is called
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.SimulationIsland</codeEntityReference>.
+                    Every time rigid bodies can influence each other via constraints (contacts
+                    or joints), they belong to the same island.
+                </para>
+                <para>
+                    Islands can only sleep as a whole. It is not possible that some bodies in
+                    an island are sleeping and others are awake. If one object is awake, all
+                    objects are awake because the movement of the active body can propagate to
+                    the other bodies. In unfortunate configurations a jittering body can
+                    keep a whole island awake.
+                </para>
+                <para>
+                    Static or kinematic rigid bodies are not managed in islands. They are not
+                    part of another island and they are not in their own island. Islands only
+                    contain dynamic rigid bodies. (But constraints between dynamic and non-dynamic
+                    bodies are managed in the islands.)
+                </para>
+                <para>
+                    Simulation islands can be accessed via the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.Simulation.IslandManager</codeEntityReference>
+                    property of the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Simulation</codeEntityReference>.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <codeEntityReference qualifyHint="true">T:DigitalRune.Physics.SimulationIsland</codeEntityReference>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

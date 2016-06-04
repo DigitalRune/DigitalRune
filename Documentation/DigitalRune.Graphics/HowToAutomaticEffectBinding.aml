@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="c2b20686-df99-4d21-b5b6-fd7d58a5f407" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                DigitalRune Graphics automatically creates bindings for the most common parameters in DirectX
+                Effect files. This topic demonstrates how to add support for new types of parameters.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Problem">
+            <title>Problem</title>
+            <content>
+                <para>
+                    Let's assume that the graphics engine needs to support a new type of effect parameter.
+                    A new material needs a random value. The effect parameter is of type
+                    <codeInline>float</codeInline> and the value should always lie between 0 and 1. The value should
+                    be evaluated "per instance". That means, each mesh instance should use a different value
+                    in the shader.
+                </para>
+                <para>
+                    The effect parameter may be declared in different ways in the effect files (.fx). The
+                    parameter name may be <codeInline>"RandomValue"</codeInline>. For example:
+                </para>
+                <code language="none">
+                    float RandomValue;
+                </code>
+                <para>
+                    Or the effect parameter can have a semantic <codeInline>"RANDOMVALUE"</codeInline>. For
+                    example:
+                </para>
+                <code language="none">
+                    float Value : RANDOMVALUE;
+                </code>
+                <para>
+                    In either case, the engine should automatically recognize the effect parameter and set a
+                    random value at runtime.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Solution">
+            <title>Solution</title>
+            <content>
+                <para>
+                    First, a new
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.IEffectInterpreter</codeEntityReference>
+                    needs to be implemented:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+using System;
+using DigitalRune.Graphics.Effects;
+using Microsoft.Xna.Framework.Graphics;
+
+namespace MyGame
+{
+  class CustomEffectInterpreter : IEffectInterpreter
+  {
+    public EffectTechniqueDescription GetDescription(Effect effect, EffectTechnique technique)
+    {
+      return null;
+    }
+
+    public EffectParameterDescription GetDescription(Effect effect, EffectParameter parameter)
+    {
+      // This method is called for each effect parameter when a new effect is loaded.
+      // Let's look for float parameters that are named "RandomValue" or have a semantic
+      // "RandomValue".
+      if (parameter.ParameterClass == EffectParameterClass.Scalar 
+          && parameter.ParameterType == EffectParameterType.Single
+          && (string.Equals(parameter.Name, "RandomValue", StringComparison.OrdinalIgnoreCase)
+             || string.Equals(parameter.Semantic, "RandomValue", StringComparison.OrdinalIgnoreCase)))
+      {
+        // Parameter found. Let's set a new effect parameter description.        
+        return new EffectParameterDescription(parameter, "RandomValue", 0, EffectParameterHint.PerInstance);
+      }
+
+      return null;
+    }
+  }
+}
+          ]]>
+                </code>
+                <para>
+                    Second, a new
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.IEffectBinder</codeEntityReference>
+                    needs to be implemented:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+using System;
+using System.Collections.Generic;
+using DigitalRune.Graphics;
+using DigitalRune.Graphics.Effects;
+using Microsoft.Xna.Framework.Graphics;
+
+namespace MyGame
+{
+  class CustomEffectBinder : IEffectBinder
+  {
+    private static Random Random = new Random(12345);
+
+    public EffectTechniqueBinding GetBinding(Effect effect)
+    {
+      return null;
+    }
+
+    public EffectParameterBinding GetBinding(Effect effect, EffectParameter parameter, IDictionary<string, object> opaqueData)
+    {    
+      var description = effect.GetParameterDescriptions()[parameter];
+      if (description.Semantic == "RandomValue")
+        return new DelegateParameterBinding<float>(effect, parameter, GetRandomValue);
+
+      return null;
+    }
+
+    private static float GetRandomValue(DelegateParameterBinding<float> binding, RenderContext context)
+    {
+      return (float)Random.NextDouble();
+    }
+  }
+}
+          ]]>
+                </code>
+                <para>
+                    The effect interpreter and binder need to be registered in the graphics service:
+                </para>
+                <code language="c#">
+                    _graphicsManager.EffectInterpreters.Insert(0, new CustomEffectInterpreter());
+                    _graphicsManager.EffectBinders.Insert(0, new CustomEffectBinder());
+                </code>
+                <para>
+                    Now, whenever a new effect is loaded, the new effect interpreter is called and searches
+                    for the new type of parameter. If a matching parameter is found, a new parameter
+                    description is set.
+                </para>
+                <para>
+                    Once all effect parameters are identified, the new effect binder is called. It searches
+                    for a parameter with the newly created description. If a matching parameter is found, it
+                    creates a new parameter binding.
+                </para>
+                <para>
+                    During rendering the effect parameter binding is evaluated for each visible mesh node.
+                    The binding creates a random number and sets the parameter value.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <link xlink:href="ba1be841-af9c-41a4-8348-0b6bd92efdd9" />
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

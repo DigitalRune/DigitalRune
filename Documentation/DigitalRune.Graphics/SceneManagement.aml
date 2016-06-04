@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="4d8c922f-60cb-4b92-a22c-03c9e8816712" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This topic discusses how the content of a graphics scene is defined.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Data">
+            <title>Graphics objects</title>
+            <content>
+                <para>
+                    The namespace
+                    <codeEntityReference qualifyHint="true">N:DigitalRune.Graphics</codeEntityReference>
+                    contains various types which define
+                    <legacyItalic>graphics objects</legacyItalic> (also called
+                    <legacyItalic>data objects</legacyItalic>)
+                    which can be rendered onto the screen, for example:
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Mesh</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Billboard</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Sprite</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Figure</codeEntityReference>,
+                    ...
+                </para>
+                <para>
+                    There are also many objects which might not be visible itself, but which define how
+                    the other objects appear, for example
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Camera</codeEntityReference> and
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Light</codeEntityReference>.
+                </para>
+                <para>
+                    These classes define graphics objects, but they usually do not define how these
+                    objects are positioned in a scene.
+                </para>
+            </content>
+        </section>
+
+        <section address="SceneNodes">
+            <title>Scene graph</title>
+            <content>
+                <para>
+                    A
+                    <link xlink:href="c6170a88-b013-46b8-9183-d2efe06b9fc4" />
+                    (namespace
+                    <codeEntityReference qualifyHint="true">N:DigitalRune.Graphics.SceneGraph</codeEntityReference>)
+                    defines how graphics objects are organized in a scene.
+                    The scene graph
+                    is a tree-like structure. It has a root element, which implements
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.IScene</codeEntityReference>.
+                    It contains scene nodes which are derived from the class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SceneNode</codeEntityReference>.
+                </para>
+                <para>
+                    Scene nodes usually only store the information for positioning a graphics object within a
+                    3D scene. For example: A
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.MeshNode</codeEntityReference>
+                    (scene node) references a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Mesh</codeEntityReference>
+                    (graphics object). Graphics objects, like the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Mesh</codeEntityReference>,
+                    can be shared between scene nodes.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="SceneQueries">
+            <title>Scene queries</title>
+            <content>
+                <para>
+                    The scene graph can also be used to quickly find scene nodes that match a certain criterion,
+                    for example: All scene nodes which are visible by the current camera.
+                    These search operations are called
+                    <link xlink:href="52bcba79-48f5-45f4-a5e8-288b0ca34d0c" />.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Subtopics">
+            <title>Subtopics</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        <link xlink:href="c6170a88-b013-46b8-9183-d2efe06b9fc4" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="52bcba79-48f5-45f4-a5e8-288b0ca34d0c" />
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

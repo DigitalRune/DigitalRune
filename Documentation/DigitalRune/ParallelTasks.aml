@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="09d39ddf-c826-4943-aac8-2ef9e16e5a12" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                The DigitalRune Base library supports running multiple tasks in parallel. This section explains
+                how to utilize multithreading in your application.
+            </para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="General">
+            <title>General information</title>
+            <content>
+                <para>
+                    The namespace <codeEntityReference qualifyHint="true">N:DigitalRune.Threading</codeEntityReference>
+                    and the class <codeEntityReference qualifyHint="false">T:DigitalRune.Threading.Parallel</codeEntityReference>
+                    provides support for concurrency to run multiple task in parallel and automatically balance work
+                    across all available processors. The implementation is a replacement for Microsoft's
+                    <externalLink>
+                        <linkText>Task Parallel Library</linkText>
+                        <linkUri>http://msdn.microsoft.com/en-us/library/dd460717</linkUri>
+                    </externalLink>
+                    which is not yet supported by the .NET Compact Framework. The class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Threading.Parallel</codeEntityReference>
+                    provides a lightweight and cross-platform implementation. The library supports Windows,
+                    Silverlight, Windows Phone 7, and Xbox 360).
+                </para>
+                <para>
+                    The API has similarities to Microsoft's Task Parallel Library, but it is not identical. The
+                    names in the namespace <codeEntityReference qualifyHint="true">N:DigitalRune.Threading</codeEntityReference>
+                    conflict with the types of the namespace <codeEntityReference qualifyHint="true">N:System.Threading.Tasks</codeEntityReference>.
+                    This is on purpose as only one solution for concurrency should be used in an application.
+                    The library has been optimized for the .NET Compact Framework: Only the absolute minimum of
+                    memory is allocated at runtime.
+                </para>
+                <para>
+                    The DigitalRune libraries make extensive use of the class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Threading.Parallel</codeEntityReference>.
+                    We highly recommend, that if you need support for multithreading in your application, you
+                    should take advantage of this class. (Using different solutions for concurrency can reduce
+                    performance.)
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Tasks">
+            <title>Tasks</title>
+            <content>
+                <para>
+                    A task is an asynchronous operation which is started, for example, by calling
+                    <codeEntityReference qualifyHint="true" autoUpgrade="false">M:DigitalRune.Threading.Parallel.Start(System.Action)</codeEntityReference>.
+                    The method returns a handle of type <codeEntityReference qualifyHint="false">T:DigitalRune.Threading.Task</codeEntityReference>.
+                    This handle can be used to query the status of the asynchronous operation (see property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Threading.Task.IsComplete</codeEntityReference>).
+                    The method <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Threading.Task.Wait</codeEntityReference>
+                    can be called to wait until the operation has completed.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Start a method call on another thread:
+// DoSomeWork can either be an Action delegate, or an object which implements IWork.
+Task task = Parallel.Start(DoSomeWork);
+
+// Do something else on this thread for a while.
+DoSomethingElse();
+
+// Wait for the task to complete. This ensures that after this call returns, the 
+// task has finished.
+task.Wait();        
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Futures">
+            <title>Futures</title>
+            <content>
+                <para>
+                    A future is an asynchronous operation that returns a value. A future is created, for example,
+                    by calling <codeEntityReference qualifyHint="true" autoUpgrade="false">M:DigitalRune.Threading.Parallel.Start``1(System.Func{``0})</codeEntityReference>
+                    and specifying a function that computes a value. The method returns a handle of type
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Threading.Task`1</codeEntityReference>,
+                    which is similar to <codeEntityReference qualifyHint="false">T:DigitalRune.Threading.Task</codeEntityReference>.
+                    The result of a future can be queried by calling <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Threading.Task`1.GetResult</codeEntityReference>.
+                    Note that <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Threading.Task`1.GetResult</codeEntityReference>
+                    can only be called once - the handle becomes invalid after the first call!
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Task<T> is similar to Task, but you can retrieve a result from it.
+Task<double> piTask = Parallel.Start(CalculatePi);
+
+// Do something else for a while.
+DoSomethingElse();
+
+// Retrieve the result. The caller will block until the task has completed. 
+// GetResult() can only be called once!
+double pi = piTask.GetResult();
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="BackgroundTask">
+            <title>Background tasks</title>
+            <content>
+                <para>
+                    Long running operations which may block (i.e. wait for I/O operation to finish) should be
+                    scheduled as background tasks. Background tasks are created by using the method
+                    <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Threading.Parallel.StartBackground(System.Action)</codeEntityReference>.
+                    Background tasks will not be scheduled using the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Threading.Parallel.Scheduler</codeEntityReference>
+                    (see below). Instead the class <codeEntityReference qualifyHint="false">T:DigitalRune.Threading.Parallel</codeEntityReference>
+                    manages an additional pool of threads that are used for background tasks. The processor
+                    affinity of these threads is not set automatically. The background tasks will usually run on
+                    the same hardware thread where the background thread was created first or run last. The
+                    processor affinity can be set manually from within the task by calling
+                    <externalLink>
+                        <linkText>Thread.SetProcessorAffinity</linkText>
+                        <linkUri>http://msdn.microsoft.com/en-us/library/system.threading.thread.setprocessoraffinity.aspx</linkUri>
+                    </externalLink>.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Begin loading some files in the background.
+Parallel.StartBackground(LoadFiles);
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Exceptions">
+            <title>Exception handling</title>
+            <content>
+                <para>
+                    The tasks executed asynchronously can raise exceptions. The exceptions are stored internally
+                    and a <codeEntityReference qualifyHint="false">T:DigitalRune.Threading.TaskException</codeEntityReference>
+                    containing these exceptions is thrown when
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Threading.Task.Wait</codeEntityReference>
+                    is called.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="CompletionCallbacks">
+            <title>Completion callbacks</title>
+            <content>
+                <para>
+                    It is possible to specify a completion callbacks when starting a new tasks. For example, see
+                    method <codeEntityReference qualifyHint="true" autoUpgrade="false">M:DigitalRune.Threading.Parallel.Start(System.Action,System.Action)</codeEntityReference>.
+                    The completion callbacks are executed after the corresponding tasks have completed.
+                    Completion callbacks are executed regardless of whether tasks have completed successfully
+                    or have thrown an exception.
+                </para>
+                <para>
+                    <legacyBold>Important:</legacyBold> The callbacks are not executed immediately! Instead, the method
+                    <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Threading.Parallel.RunCallbacks</codeEntityReference>
+                    needs to be called explicitly - usually on the main thread - to invoke the callbacks.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Loops">
+            <title>Parallel loops</title>
+            <content>
+                <para>
+                    The following demonstrates how a for-loop can be executed in parallel.
+                </para>
+                <code language="csharp">
+                    <![CDATA[
+// Sequential loop:
+for (int i = 0; i < count; i++)
+{
+  DoWork(i);
+}
+
+// Same loop, but each iteration may happen in parallel on a different thread.
+Parallel.For(0, count, i =>
+{
+  DoWork(i);
+});
+]]>
+                </code>
+                <para>
+                    The following demonstrates how a foreach-loop can be executed in parallel.
+                </para>
+                <code language="csharp">
+                    <![CDATA[
+// Sequential loop:
+foreach (var item in list)
+{
+  DoWork(item);
+}
+
+// Same loop, but each iteration may happen in parallel on a different thread.
+Parallel.ForEach(list, item =>
+{
+  DoWork(item);
+});
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Scheduling">
+            <title>Task scheduling</title>
+            <content>
+                <para>
+                    The number of threads used for parallelization is determined by the task scheduler (see
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Threading.Parallel.Scheduler</codeEntityReference>).
+                    The task scheduler creates a number of threads and distributes the tasks among these worker
+                    threads. The default task scheduler is a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Threading.WorkStealingScheduler</codeEntityReference>
+                    that creates one thread per CPU core on Windows and 3 threads on Xbox 360 (on the hardware
+                    threads 3, 4, and 5). The number of worker threads can be specified in the constructor of
+                    the <codeEntityReference qualifyHint="false">T:DigitalRune.Threading.WorkStealingScheduler</codeEntityReference>.
+                </para>
+                <para>
+                    The property <codeEntityReference qualifyHint="false">P:DigitalRune.Threading.Parallel.Scheduler</codeEntityReference>
+                    can be changed at runtime. The default task scheduler can be replaced with another task
+                    scheduler (e.g. with a <codeEntityReference qualifyHint="false">T:DigitalRune.Threading.WorkStealingScheduler</codeEntityReference>
+                    that uses a different number of tasks, or with a custom
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Threading.ITaskScheduler</codeEntityReference>).
+                    Replacing a task scheduler will affect all future tasks that have not yet been scheduled.
+                    However, it is highly recommended to use the default scheduler or specify the scheduler
+                    only once at the startup of the application.
+                </para>
+            </content>
+            <sections>
+                <section>
+                    <title>Processor affinity</title>
+                    <content>
+                        <para>
+                            In the .NET Compact Framework for Xbox 360 the processor affinity determines the processors
+                            on which a thread runs. Setting the processor affinity in Windows has no effect.
+                        </para>
+                        <para>
+                            The processor affinity is defined as an array using the property
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Threading.Parallel.ProcessorAffinity</codeEntityReference>.
+                            Each entry in the array specifies the hardware thread that the corresponding worker
+                            thread will use. The default value is <codeInline>{ 3, 4, 5, 1 }</codeInline>. The
+                            default task scheduler reads this array and assigns the worker threads to the specified
+                            hardware threads. (See also
+                            <externalLink>
+                                <linkText>Thread.SetProcessorAffinity</linkText>
+                                <linkUri>http://msdn.microsoft.com/en-us/library/system.threading.thread.setprocessoraffinity.aspx</linkUri>
+                            </externalLink>
+                            in the MSDN Library to find out more.)
+                        </para>
+                        <para>
+                            <legacyBold>Important:</legacyBold> The processor affinity needs to be set before any
+                            parallel tasks are created or before a new
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Threading.WorkStealingScheduler</codeEntityReference>
+                            is created. Changing the processor affinity afterwards has no effect.
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+// Configure the class Parallel to use the hardware threads 3 and 4 on the Xbox 360.
+// (Note: Setting the processor affinity has no effect on Windows.)
+Parallel.ProcessorAffinity = new[] { 3, 4 };
+
+// Create task scheduler that uses 2 worker threads.
+Parallel.Scheduler = new WorkStealingScheduler(2);
+
+// Note: Above code is usually run at the start of an application. It is not recommended to 
+// change the processor affinity or the task scheduler at runtime of the application.
+              ]]>
+                        </code>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Credits">
+            <title>Credits</title>
+            <content>
+                <para>
+                    The implementation is based on the ParallelTasks library (see
+                    <externalLink>
+                        <linkText>http://paralleltasks.codeplex.com/</linkText>
+                        <linkUri>http://paralleltasks.codeplex.com/</linkUri>
+                    </externalLink>)
+                    which is licensed under the <link xlink:href="http://paralleltasks.codeplex.com/license">Microsoft Public License (Ms-PL)</link>.
+                </para>
+            </content>
+        </section>
+
+
+        <section>
+            <content>
+                <alert class="tip">
+                    <para>
+                        More background information about multithreading can be found in following article:
+                        <link xlink:href="a1ed955a-5ac6-411c-a098-14f34845b1bf" />
+                    </para>
+                </alert>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <codeEntityReference qualifyHint="true">N:DigitalRune.Threading</codeEntityReference>
+            <codeEntityReference qualifyHint="false">T:DigitalRune.Threading.Parallel</codeEntityReference>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

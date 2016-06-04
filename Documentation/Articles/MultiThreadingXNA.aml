@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="a1ed955a-5ac6-411c-a098-14f34845b1bf" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <alert class="note">
+                <para>
+                    This article was originally posted on the
+                    <token>Blog</token>:
+                    <externalLink>
+                        <linkText>Multithreading in XNA (2011-03-23)</linkText>
+                        <linkUri>http://www.digitalrune.com/Support/Blog/tabid/719/EntryId/89/DigitalRune-Helper-Library-Multithreading-in-XNA.aspx</linkUri>
+                    </externalLink>.
+                    It contains background information for users who want to
+                    know more about the history and internals of the DigitalRune Engine.
+                    Please note, that some of this information could be outdated.
+                </para>
+            </alert>
+            <para>
+                The .NET Framework 4 contains the Task Parallel Library (TPL). It introduces the concept of
+                tasks. Tasks represent asynchronous operations that can be executed concurrently. Developers
+                no longer have to manage threads or thread pool work items directly. The library provides a
+                higher-level API for writing multithreaded application or games. The only negative thing we
+                can say about the TPL is that it is not supported on the .NET Compact Framework and is
+                therefore not available on the Xbox 360 (or the WP7).
+            </para>
+            <para>
+                When we added multithreading support for our libraries, we looked for an easy-to-use,
+                cross-platform threading library. After evaluating a lot of solutions we found
+                the
+                <externalLink>
+                    <linkText>ParallelTasks</linkText>
+                    <linkUri>http://paralleltasks.codeplex.com/</linkUri>
+                </externalLink>
+                library on
+                <externalLink>
+                    <linkText>CodePlex</linkText>
+                    <linkUri>http://www.codeplex.com/</linkUri>
+                </externalLink>. The library is a lightweight replacement for the
+                TPL. It offers all relevant features such as
+            </para>
+            <list class="bullet">
+                <listItem>
+                    <legacyItalic>tasks</legacyItalic> and <legacyItalic>futures</legacyItalic>,
+                </listItem>
+                <listItem>
+                    parallel for-loops and foreach-loops,
+                </listItem>
+                <listItem>
+                    work-stealing for automatic load-balancing,
+                </listItem>
+                <listItem>
+                    and is optimized for the .NET Compact Framework!
+                </listItem>
+            </list>
+            <para>
+                Kudos to
+                <externalLink>
+                    <linkText>Aphid</linkText>
+                    <linkUri>http://www.codeplex.com/site/users/view/Aphid</linkUri>
+                </externalLink>
+                who has done a great job!
+            </para>
+            <para>
+                The library is open source (Ms-PL) and we have integrated the library into the DigitalRune
+                Base Library. We have made a few changes and improvements: We fixed some issues with
+                contention in the task scheduler and made a few optimizations for PC and Xbox 360. These
+                changes have been contributed back to the original ParallelTasks project.
+            </para>
+            <para>
+                In the following we want to show a few examples where task-based multithreading has helped
+                to boost the performance of our libraries.
+            </para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Geometry">
+            <title>Multithreading in DigitalRune Geometry</title>
+            <content>
+                <para>
+                    A
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.CollisionDomain</codeEntityReference>
+                    in DigitalRune Geometry manages a set of collision objects. In
+                    <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Geometry.Collisions.CollisionDomain.Update(System.TimeSpan)</codeEntityReference>
+                    the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.CollisionDomain</codeEntityReference>
+                    determines all collisions between those objects. The method consists of two parts: The
+                    "broad phase" and the "narrow phase". The broad phase yields pairs of objects. It returns
+                    all pairs of objects where the axis-aligned bounding boxes overlap. This is necessary to
+                    quickly sort out objects that don’t collide.
+                </para>
+                <para>
+                    The narrow phase is the computationally expensive part. It iterates over all pairs of
+                    objects and determines whether the objects collide. It computes the penetration depth,
+                    the normal vector and other properties of a contact point. The method basically looks like this:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+private void NarrowPhase(float deltaTime)
+{
+  // Notes: 
+  //  - CandidatePairs is the collection of pairs returned by the broad phase.
+  //  - ContactSets is the resulting collection of colliding objects.
+  ContactSets.Clear();
+  foreach (var pair in CandidatePairs)
+  {
+    // Fetch the appropriate collision algorithm and compute the contacts 
+    // between the pair of objects.
+    CollisionDetection.AlgorithmMatrix[pair].UpdateContacts(pair, deltaTime);
+
+    // 'pair' now contains all required information: Whether the objects collide 
+    // and where the objects intersect.
+    // If we have found a collision, add it to the results.
+    if (pair.HaveContact)
+    {
+      ContactSets.Add(pair);
+    }
+  }
+}
+]]>
+                </code>
+                <para>
+                    Now, to speed things up we can perform the computations of all collisions in parallel.
+                    The necessary changes are quite simple:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+private void NarrowPhase(float deltaTime)
+{
+  // Note: 
+ //  - CandidatePairs is the collection of pairs returned by the broad phase.
+ //  - ContactSets is the resulting collection of pairs of colliding objects.
+  ContactSets.Clear();
+  Parallel.ForEach(CandidatePairs, pair =>
+  {
+    // Fetch the appropriate collision algorithm and compute the contacts 
+   // between the pair of objects.
+   CollisionDetection.AlgorithmMatrix[pair].UpdateContacts(pair, deltaTime);
+  });
+
+  foreach (var pair in CandidatePairs)
+  {
+    // If we have found a collision, add it to the results.
+   if (pair.HaveContact)
+    {
+      ContactSets.Add(pair);
+    }
+  }
+}
+]]>
+                </code>
+                <para>
+                    We split the foreach loop in two parts: A parallel loop that computes the collisions and
+                    a sequential loop that adds the results to a collection. The sequential loop is necessary
+                    because the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.CollisionDomain.ContactSets</codeEntityReference>
+                    collection is not thread-safe.
+                </para>
+                <para>
+                    To be honest, the actual code in DigitalRune Geometry is more complex - we have greatly
+                    simplified the code. But the required steps to parallelize the code are the same. This
+                    examples shows how easy it is to execute code in parallel using the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Threading.Parallel</codeEntityReference>
+                    class. As a developer you no longer have to manage threads or jobs directly.
+                </para>
+                <para>
+                    Now, the really difficult part is that data structures and algorithms in the parallel loop
+                    need to be thread-safe. In our case we had to ensure the following:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                            The collision algorithms must be stateless. ('Stateless' in this case means that the
+                            collision algorithms do not store intermediate results in member variables because one
+                            instance of a collision algorithm might be used simultaneously in multiple threads.)
+                    </listItem>
+                    <listItem>
+                            The objects that are tested for collision must not be modified during the test. (An
+                            object might be tested against multiple other objects at the same time.)
+                    </listItem>
+                    <listItem>
+                            And, we had to make sure that the
+                            <link xlink:href="9e2a4144-69e9-4bf2-8cea-79713eb91490">resource pools</link>
+                            used in the collision algorithms are also fast and thread-safe.
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Physics">
+            <title>Multithreading in DigitalRune Physics</title>
+            <content>
+                <para>
+                    The central object in DigitalRune Physics is the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Simulation</codeEntityReference>.
+                    It manages all simulated bodies, forces, constraints, etc. The simulation needs to be
+                    updated by calling
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Physics.Simulation.Update(System.TimeSpan)</codeEntityReference>.
+                    The method checks how much time has passed and progresses the simulation by a number of
+                    fixed sized steps. One such step is called a <legacyItalic>sub time step</legacyItalic>.
+                </para>
+                <para>
+                    Here is what the multithreaded version of a sub time step looks like:
+                </para>
+                <code language="cs" title=" ">
+                    <![CDATA[
+private void SubTimeStep(float fixedTimeStep)
+{
+  // Run the collision detection.
+  UpdateContacts();
+
+  // Compute forces and torques.
+  EvaluateForces();
+
+  // Update velocities.
+  Parallel.For(0, RigidBodies.Count, UpdateVelocity);
+
+  // Find simulation islands.
+  IslandManager.Update();
+
+  // Update simulation islands.
+  Parallel.For(0, IslandManager.Islands.Count, SolveIsland);
+
+  // Update positions and orientations.
+  Parallel.For(0, RigidBodies.Count, UpdatePose);
+
+  // CCD motion clamping.
+  DoCcdMotionClamping();
+
+  // Advance simulation time.
+  Time += TimeSpan.FromSeconds(fixedTimeStep);
+
+  // Raise SubTimeStepFinished event.
+  OnSubTimeStepFinished(EventArgs.Empty); 
+}
+]]>
+                </code>
+                <para>
+                    The first method updates the internal collision domain which runs on multiple threads as
+                    shown above. Then there are several for-loops that we have parallelized using
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Threading.Parallel</codeEntityReference>.
+                    The methods called in the for-loops (e.g.
+                    <legacyBold>UpdateVelocity</legacyBold>) are simple delegates of type
+                    <legacyBold>Action&lt;int&gt;</legacyBold>. The method receives the loop index and
+                    performs the required action on the object with the given index.
+                </para>
+                <para>
+                    Again, we have omitted some minor details. But in this case the actual code in
+                    DigitalRune Physics looks pretty much as the code above. Pretty simple, right? There is
+                    no hidden magic here. (Well, there is quite a lot of magic involved, but it is all neatly
+                    wrapped in the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Threading.Parallel</codeEntityReference>
+                    class.)
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Summary">
+            <title>Summary</title>
+            <content>
+                <para>
+                    To speed up our libraries on multi-core systems we had to identify tasks that can run in
+                    parallel and then distribute them across multiple threads. Writing a multithreaded game in
+                    .NET/XNA can be relatively easy using the right tools. In our case "task-based multithreading"
+                    was a perfect fit. By the way, it is also quite simple to run the physics code as a task
+                    parallel to other game services, like graphics, AI, input, networking, etc. - so that all
+                    your CPU cores get their share of the work. This is demonstrated in the DigitalRune
+                    <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

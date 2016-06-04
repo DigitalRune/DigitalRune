@@ -1,0 +1,571 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="143af493-329d-408f-975d-e63625646f2f" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This article discusses how to simulate vehicles, like cars.
+            </para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="Methods">
+            <title>Simulation methods</title>
+            <content>
+                <para>
+                    There are 2 common ways to implement car physics:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <legacyBold>Constraint Car:</legacyBold>
+                        </para>
+                        <para>
+                            The <legacyItalic>ConstraintCarSample</legacyItalic> in the
+                            <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" /> shows how to
+                            implement a very basic
+                            <newTerm>constraint car</newTerm>,
+                            where a car is created using rigid bodies and constraints. The chassis is a
+                            box and the wheels are cylindrical bodies. The wheels are connected to the
+                            chassis using constraints
+                            (<codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Constraints.HingeJoint</codeEntityReference>s
+                            for the rear-wheels,
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Constraints.Hinge2Joint</codeEntityReference>s
+                            for the steerable front-wheels). The wheel rotation is controlled using motor
+                            constraints.
+                        </para>
+                        <para>
+                            This works in principle but has a few disadvantages: We would need more complex
+                            joints to simulate suspension. The sliding behavior of wheels is different from
+                            standard rigid bodies. Real wheels aren’t rigid bodies. We have a lot of constraints
+                            that have to be configured very carefully. Etc. - For action games a different
+                            simulation method is much simpler and more customizable:
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Ray-cast Car:</legacyBold>
+                        </para>
+                        <para>
+                            In a <newTerm>ray-cast car</newTerm> the chassis is a rigid body, but the wheels are
+                            only short rays that sample the ground. In the simulation, there are no cylindrical
+                            shapes or rigid bodies for the wheels. The wheels are only rendered as part
+                            of the visual model. A ray-cast car is simpler, more efficient and gives us a lot of tuning options.
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Vehicle">
+            <title>Vehicle classes</title>
+            <content>
+                <para>
+                    The class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Specialized.Vehicle</codeEntityReference>
+                    implements a
+                    <newTerm>ray-cast car</newTerm> which
+                    can be used to simulate vehicles, like racing cars, with a variable number
+                    of
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Specialized.Wheel</codeEntityReference>s.
+                </para>
+                <mediaLink>
+                    <caption>DigitalRune.Physics.Specialized (Vehicles)</caption>
+                    <image xlink:href="ClassDiagramPhysicsSpecializedVehicles"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Sample">
+            <title>VehicleSample</title>
+            <content>
+                <para>
+                    The <legacyItalic>VehicleSample</legacyItalic> (see
+                    <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />) shows how
+                    to use vehicle physics.
+                </para>
+                <mediaLink>
+                    <caption placement="after" lead="Screenshot">Screenshot of the Vehicle Sample</caption>
+                    <image xlink:href="SampleVehicle"/>
+                </mediaLink>
+                <para>
+                    Here is a video of the vehicle sample:
+                </para>
+                <list class="nobullet">
+                    <listItem>
+                        <para>
+                            <externalLink>
+                                <linkText>Video: Vehicle Physics</linkText>
+                                <linkUri>https://www.youtube.com/watch?v=u0kZiti67h4</linkUri>
+                            </externalLink>
+                        </para>
+                    </listItem>
+                </list>
+                <para>
+                    This section describes the vehicle implementation of the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Specialized.Vehicle</codeEntityReference>
+                    class and how it is used in the
+                    <legacyItalic>VehicleSample</legacyItalic>.
+                </para>
+            </content>
+            <sections>
+                <section address="Chassis">
+                    <title>The chassis</title>
+                    <content>
+                        <para>
+                            We use a single rigid body for the chassis of the car. You can use a
+                            simple box or a composite shape consisting of two boxes (lower car part + upper car
+                            part) as the shape. If you use a more detailed car model, it is better to use the
+                            convex hull of the mesh vertices as the shape because triangle meshes are not
+                            optimal for collision detection.
+                        </para>
+                        <para>
+                            The original car model used in the sample has about 10,000 vertices – its
+                            convex hull about 500 vertices. That’s still quite a lot of vertices. Therefore
+                            we simplified the convex hull: Our convex hull generator allows to set an upper
+                            limit for the allowed number of vertices. In our example we set an upper limit of
+                            max. 64 vertices. The simplified convex hull has less vertices than the original
+                            convex hull. However, it is also slightly bigger. That’s the disadvantage of
+                            a simplified convex hull.
+                        </para>
+                        <para>
+                            The convex hull worked quite well in most cases. Except in uneven terrain the
+                            car chassis could hit a hump in the ground and stop the car. The mesh of our
+                            sports car was too close to the ground for some uneven off-road parts in our
+                            level. To give the car a bit more freedom, we shrank the convex hull shape by
+                            a small factor (using a negative skin with of –4 cm).
+                        </para>
+                        <para>
+                            In the sample the chassis shape is created like this:
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+// 1. Extract the vertices from the car model.
+TriangleMesh mesh = TriangleMesh.FromModel(_car);
+
+// 2. (Optional) Create simplified convex hull from mesh.
+DcelMesh convexHull = GeometryHelper.CreateConvexHull(
+mesh.Vertices, 64, -0.04f);
+
+// 3. Create convex polyhedron using the vertices of the 
+// convex hull.
+ConvexPolyhedron chassisShape = new ConvexPolyhedron(
+convexHull.Vertices.Select(v => v.Position));
+]]>
+                        </code>
+                    </content>
+                </section>
+
+                <section address="Mass">
+                    <title>The mass frame</title>
+                    <content>
+                        <para>
+                            The mass frame defines the center of mass of a rigid body. Normally, a physics
+                            engine computes the center of mass automatically from the given shape. For the
+                            chassis, the automatically computed
+                            <newTerm>center of mass (COM)</newTerm> is not optimal because
+                            it assumes a uniform density in the whole chassis. Therefore, we adjust the position
+                            of the COM manually. And we apply another trick: We artificially place the
+                            COM lower to the ground. It can even be outside of the shape under the ground!
+                            Lowering the COM makes the car more stable. Cars with a high COM are unstable in
+                            tight curves and tend to overturn.
+                            Here is how we create the mass frame and the final rigid body for the chassis:
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+// The mass properties of the car. We use a mass of 800 kg.
+MassFrame mass = MassFrame.FromShapeAndMass(
+chassisShape, Vector3F.One, 800, 0.1f, 1);
+Pose pose = mass.Pose;
+pose.Position.Y -= 0.5f; // Lower the center of mass.
+pose.Position.Z = -0.5f; // Center should be below the driver.
+mass.Pose = pose;
+
+RigidBody chassis = new RigidBody(chassisShape, mass, material);
+]]>
+                        </code>
+                    </content>
+                </section>
+
+                <section address="Material">
+                    <title>Material</title>
+                    <content>
+                        <para>
+                            For the material: We use a standard material with standard restitution and
+                            friction values. The material is only important when the car chassis slides along
+                            walls or the ground in crashes.
+                        </para>
+                    </content>
+                </section>
+                <section address="Wheels">
+                    <title>Wheels</title>
+                    <content>
+                        <para>
+                            We create a ray for each wheel. The ray of a wheel starts where the suspension is
+                            fixed to the chassis. It shoots down and its length is the suspension length plus
+                            the wheel radius. These rays are used to detect the ground distance and the normal
+                            vector of the ground in each frame. And in each frame we have to apply 3 forces per
+                            wheel:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                suspensions force,
+                            </listItem>
+                            <listItem>
+                                side force
+                            </listItem>
+                            <listItem>
+                                and forward force.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section address="Suspension">
+                    <title>Suspension</title>
+                    <content>
+                        <para>
+                            The suspension is modeled as simple damped spring that has a spring constant
+                            (<newTerm>suspension stiffness</newTerm>) and a damping constant
+                            (<newTerm>suspension damping</newTerm>). Actually, we use two different damping
+                            coefficients: one when the suspension is compressing (higher) and another one when
+                            the suspension is extending (lower than the compression damping). The current
+                            suspension length is
+                            <legacyItalic>hit distance of the ray - wheel radius</legacyItalic>. We
+                            assume that the suspension spring is at rest when it is fully extended. The
+                            suspension force in pseudo code is
+                        </para>
+                        <para>
+                            <legacyItalic>
+                                suspensionForce = stiffness * (restLength – currentLength) + damping * (previousLength – currentLength) / deltaTime
+                            </legacyItalic>
+                        </para>
+                        <para>
+                            This force is applied to the chassis at the position where the wheel touches the
+                            ground. And an equal but opposite force is applied to the ground.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="SideForce">
+                    <title>Side force</title>
+                    <content>
+                        <para>
+                            The goal of the side force is to stop any sideways motion of the wheel. We
+                            compute a vector in the ground plane that is orthogonal to the current rolling
+                            direction. Then we compute the force that is necessary to stop the sideways motion
+                            of the chassis at the wheel ground position.
+                        </para>
+                        <para>
+                            The side force is computed but not applied immediately.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="ForwardForce">
+                    <title>Forward force</title>
+                    <content>
+                        <para>
+                            The forward force is applied to the chassis at the wheel ground position. It acts
+                            in the forward direction of the wheel and lies in the ground plane. This
+                            force accelerates the car (user steps onto the gas pedal) or decelerates the car
+                            (braking).
+                        </para>
+                        <para>
+                            The forward force is further divided into the motor force and the brake force.
+                            The motor force increases when the user presses the forward button. It decreases and
+                            can get negative when the user presses the backwards button. The motor force returns
+                            to 0 when the user does not press the forward or backward buttons.
+                        </para>
+                        <para>
+                            The brake force is set to a constant value when the user presses the handbrake button.
+                            If the motor force is larger than the brake force, then we use the difference as
+                            the magnitude of our forward force. If the brake force is larger, then we cannot
+                            simply use the brake force value as the magnitude of the forward force. The brake
+                            force could be too large and accelerate the car into the opposite direction -
+                            especially when the car is at rest. To compute the exact brake force, we compute
+                            the force that would stop any car motion in the forward direction. Then we limit
+                            this force by the current brake force.
+                        </para>
+                        <para>
+                            After that we know the magnitude of the forward force – but we do not apply this
+                            force yet.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Sliding">
+                    <title>Sliding</title>
+                    <content>
+                        <para>
+                            The computed forward and side forces are ideal, in the sense that the wheel is not
+                            sliding. But sliding a.k.a. drifting is one of the fun parts of racing games and we
+                            need to model this too.
+                        </para>
+                        <para>
+                            When an object is pushed tangential to the ground, a friction force acts against the
+                            movement. This friction force is limited by
+                        </para>
+                        <para>
+                            <legacyItalic>maxFrictionForce = frictionCoefficient * normalForce</legacyItalic>
+                        </para>
+                        <para>
+                            For each wheel, we assume a constant friction coefficient. And we already know the
+                            normal force: It is simply the suspension force computed earlier. This
+                            maxFrictionForce limits the possible forward and side forces. We sum up the
+                            forward force (in forward direction) and the side force (in side direction) and
+                            get the sum force that lies in the ground plane. When the magnitude of this force
+                            is larger than the maxFrictionForce, the wheel is sliding and we clamp the
+                            magnitude to the maxFrictionForce. The clamped force is applied to the chassis
+                            at the wheel ground position.
+                        </para>
+                        <para>
+                            We further compute the so-called
+                            <newTerm>skid energy</newTerm>, which is the
+                            <externalLink>
+                                <linkText>energy of friction [1]</linkText>
+                                <linkUri>http://en.wikipedia.org/wiki/Friction#Energy_of_friction</linkUri>
+                            </externalLink>
+                            when the car is
+                            sliding. This information can be used to control skid sounds or rendering of
+                            tire marks.
+                        </para>
+                        <para>
+                            One important aspect of this sliding model is that forward force and side force
+                            are summed up before they are clamped. That means, the side force is indirectly
+                            limited by the current forward force. For example, if the car is at rest, it is
+                            hard to push the car sideways. But if the car is accelerating or decelerating, the
+                            maximal side force is reduced. In other words: Drive at a high speed in a curve and
+                            hit the handbrake, the braking wheels will start to slide.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="WheelRotation">
+                    <title>Wheel rotation</title>
+                    <content>
+                        <para>
+                            Our wheels are only rays, still we have to compute a wheel rotation for visual
+                            wheel models. We simply compute the linear point velocity of the chassis at the
+                            wheel ground position in the forward direction (in the ground plane). The angular
+                            velocity of the wheel is then
+                        </para>
+                        <code language="cs">
+                            wheel.AngularVelocity = forwardVelocity / wheel.Radius;
+                        </code>
+                        <para>
+                            and the rotation angle is
+                        </para>
+                        <code language="cs">
+                            wheel.RotationAngle += wheel.AngularVelocity * deltaTime;
+                        </code>
+                        <para>
+                            You might want to change this. For example: Immediately stop the wheel rotation
+                            when the handbrake is active – for a dramatic effect.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Steering">
+                    <title>Steering</title>
+                    <content>
+                        <para>
+                            To steer the car, we set the steering angle of the wheels. The steering angle
+                            defines the forward direction in which the forward force is applied. (The side
+                            force is always normal to the forward force.) The steering angle changes when
+                            the user presses the steering buttons (e.g. the left/right arrow keys on the
+                            keyboard). The steering angle does not change instantly. Instead, it changes over
+                            time until it reaches the maximal allowed steering angle. When the user
+                            is not pressing a steering button, the steering angle goes back to 0.
+                        </para>
+                        <para>
+                            For very high speeds it is advisable to reduce the maximal allowed steering
+                            angles – small angles will suffice and keep the car controllable.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Tuning">
+                    <title>Tuning</title>
+                    <content>
+                        <para>
+                            Good car physics needs a lot of tuning and also depends on the type of game.
+                            Following parameters should be considered for tuning:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                Suspension stiffness and damping: Use a high stiffness for sports cars and a
+                                lower stiffness for off-road cars and normal cars.
+                            </listItem>
+                            <listItem>
+                                Center of mass position: Shifting the COM can significantly change the
+                                driving behavior.
+                            </listItem>
+                            <listItem>
+                                Wheel friction: Use different friction for front and rear wheels to create
+                                oversteering or understeering behavior.
+                            </listItem>
+                            <listItem>
+                                Motor forces and braking forces: Tune the maximal forces and decide where to
+                                apply the forces (front-wheel drive vs. rear-wheel drive vs. all-wheel drive).
+                            </listItem>
+                            <listItem>
+                                Roll reduction: This a parameter that we haven’t discussed so far. When it is
+                                0, the wheel side forces are applied at the wheel ground position. When it
+                                is > 0, the side force are applied on a higher position. This makes the car
+                                more stable in curves. It reduces the sideways tilt in curves or the chance
+                                that the car will overturn. Changing this parameter can also have significant
+                                effects.
+                            </listItem>
+                            <listItem>
+                                Gravity: Maybe use a higher gravity for the car.
+                            </listItem>
+                            <listItem>
+                                Extra yaw torques (or angular impulses) can be applied to improve turning and
+                                create artificial sliding behavior.
+                            </listItem>
+                            <listItem>
+                                Use extra damping forces if the car is too unstable.
+                            </listItem>
+                            <listItem>
+                                Change the wheel friction depending on the current wheel velocity to create
+                                the perfect drifting behavior.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section address="Extensions">
+                    <title>Possible extensions</title>
+                    <content>
+                        <para>
+                            The implemented car physics can be improved in several aspects:
+                            (The vehicle source code is available for licensees!)
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                Consider gears and transmission when computing the wheel motor forces.
+                            </listItem>
+                            <listItem>
+                                Use more ray casts per wheel instead of only a single ray. Or, use a
+                                <newTerm>linear shape cast</newTerm> with the cylinder shape.
+                                (A linear cast or shape cast is similar to a ray cast, but
+                                where a ray cast shoots a single point, a shape cast shoots a larger shape and
+                                computes the first time of impact. In
+                                DigitalRune.Geometry this can be done using
+                                <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Geometry.Collisions.CollisionDetection.GetTimeOfImpact(DigitalRune.Geometry.Collisions.CollisionObject,DigitalRune.Geometry.Pose,DigitalRune.Geometry.Collisions.CollisionObject,DigitalRune.Geometry.Pose,System.Single)</codeEntityReference>
+                                queries.)
+                            </listItem>
+                            <listItem>
+                                Use hard constraints when the suspension is at its minimum length. Currently,
+                                when the car falls with a high velocity, the wheels can sink into the ground.
+                                The suspension force is not high enough to prevent this. For this case we could
+                                add a constraint (e.g. a
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Constraints.LinearLimit</codeEntityReference>)
+                                that is active when the suspension is max compressed.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section address="Camera">
+                    <title>Car camera</title>
+                    <content>
+                        <para>
+                            In a third-person view the camera can be fixed behind the car. This is used in
+                            our sample but does not look very dynamic. A spring-based chase camera, like in
+                            the <externalLink>
+                                <linkText>AppHub Chase Camera sample</linkText>
+                                <linkUri>http://xbox.create.msdn.com/en-US/education/catalog/sample/chasecamera</linkUri>
+                            </externalLink>,
+                            could look better. Or, compute the camera direction
+                            as a linear interpolation of the current car orientation and the current
+                            driving direction.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Alternatives">
+            <title>Alternative vehicle implementation</title>
+            <content>
+                <para>
+                    The <legacyItalic>ConstraintVehicleSample</legacyItalic> (see
+                    <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />) contains an
+                    alternative vehicle physics implementation. The new implementation is very
+                    similar to the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Specialized.Vehicle</codeEntityReference>
+                    class described above. It also uses rays to represent the wheels, but instead of
+                    a force effect it uses constraints which model the wheel forces.
+                </para>
+                <para>
+                    Using constraints is more difficult than applying forces. However, they improve
+                    stability. For example, when a stiff spring is modeled with forces, the simulation
+                    will easily become unstable. Constraints can be used to model stable springs [2].
+                </para>
+                <para>
+                    The alternative car physics implementation provides the following benefits:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Stable springs, which means that this implementation can be used with very
+                        rigid wheel suspensions.
+                    </listItem>
+                    <listItem>
+                        No sliding on slopes. (The other car implementation slides down on slopes. To park a
+                        car on slopes you need to use some tricks.)
+                    </listItem>
+                    <listItem>
+                        Braking wheels do not rotate.* – This is a simple change, which only affects the
+                        visuals and not the actual simulation. In the previous implementation the wheels
+                        rotate as long as the car is moving. Simply stopping the wheels while user presses
+                        the brake button is a good feedback and visually more interesting.
+                    </listItem>
+                    <listItem>
+                        A broad phase filter disables collision detection for static geometry.* This avoids
+                        some unnecessary collision computations and contact data and thereby
+                        improves performance.
+                    </listItem>
+                </list>
+                <para>
+                    *The last two changes could also easily be added to the old vehicle sample.
+                </para>
+                <para>
+                    The disadvantage of the new implementation is that it is probably more difficult to
+                    understand; hence, more difficult to adapt.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="References">
+            <title>References</title>
+            <content>
+                <para>
+                    [1] "Energy of Friction", Wikipedia,
+                    <externalLink>
+                        <linkText>http://en.wikipedia.org/wiki/Friction#Energy_of_friction</linkText>
+                        <linkUri>http://en.wikipedia.org/wiki/Friction#Energy_of_friction</linkUri>
+                    </externalLink>
+                </para>
+                <para>
+                    [2] Erin Catto: "Soft Constraints – Reinventing the Spring", GDC 2011,
+                    <externalLink>
+                        <linkText>http://code.google.com/p/box2d/downloads/detail?name=GDC2011_Catto_Erin_Soft_Constraints.pdf</linkText>
+                        <linkUri>http://code.google.com/p/box2d/downloads/detail?name=GDC2011_Catto_Erin_Soft_Constraints.pdf</linkUri>
+                    </externalLink>
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

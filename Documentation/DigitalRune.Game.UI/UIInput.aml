@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="b6cd5e3b-0bfa-4edb-8ad4-3abe5b47a071" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This article describes how the UI controls handle input.
+            </para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="Focus">
+            <title>Input focus</title>
+            <content>
+                <para>
+                    <newTerm>Focus management</newTerm> decides which control handles the user
+                    <newTerm>input first</newTerm>. For example, if the user clicks a text box with the
+                    mouse, the text box gets the input focus. When keyboard keys or game pad buttons are
+                    pressed, the focused control can handle the keys first. The focused control should also
+                    use a visual state to tell the user that it has the focus. Here are some examples:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        A text box that has input focus uses keyboard key presses to add character to
+                        its text. It has a visual state called "Focused". If this state is active, the UI
+                        renderer draws a blinking caret in the text box.
+                    </listItem>
+                    <listItem>
+                        A button that has input focus checks the ENTER or SPACE keys and the game pad A
+                        button. It has a visual state called "Focused". If this state is active, the UI
+                        renderer adds a glow effect to the button.
+                    </listItem>
+                </list>
+                <para>
+                    The user can move the focus from one control to another control using the keyboard arrow
+                    keys, the left thumb stick or the D-pad on the game pad.
+                </para>
+                <para>
+                    The focus is managed by the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.FocusManager</codeEntityReference>
+                    class. Each
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIScreen</codeEntityReference>
+                    has a reference to a focus manager. The focus manager can be exchanged. You might want
+                    to inherit from
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.FocusManager</codeEntityReference>
+                    to change how the focus moves when keyboard arrow keys are pressed. The method
+                    <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Game.UI.FocusManager.OnMoveFocus(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Collections.Generic.List{DigitalRune.Game.UI.Controls.UIControl})</codeEntityReference>
+                    can be overridden to customize the focus movement. This might be necessary for radial
+                    GUI layouts or other complex layouts. The default implementation works best for
+                    grid-like control layouts.
+                </para>
+                <para>
+                    A
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIControl</codeEntityReference>
+                    has several properties and methods for focus management:
+                </para>
+                <para>
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.IsFocused</codeEntityReference>
+                    indicates whether the control currently has the input focus.
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.IsFocusWithin</codeEntityReference>
+                    indicates whether the control or a child control has the focus. For example, if a
+                    text box in a window has the input focus, then the text box sets the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.IsFocused</codeEntityReference>
+                    and the window sets the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.IsFocusWithin</codeEntityReference>
+                    flag.
+                </para>
+                <para>
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.Focus</codeEntityReference>
+                    moves the input focus to the control – but only if the control is
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Focusable</codeEntityReference> .
+                    Controls that handle input, like buttons, text boxes, sliders, are focusable per default.
+                    Passive controls, like images or text blocks, are not focusable per default. There are a
+                    few special cases, for example, a window has a
+                    <newTerm>close button</newTerm> (the small X button in the upper right corner).
+                    This is a button but
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.Focusable</codeEntityReference>
+                    is set to <codeInline>false</codeInline> – the user cannot move the focus to this button.
+                </para>
+                <para>
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.FocusWhenMouseOver</codeEntityReference>
+                    can be set to true if the control should receive the focus automatically when the
+                    mouse cursor hovers over the control. Menu items in a context menu and items in a
+                    drop-down box set this flag. This flag can also be useful for button in a
+                    start screen menu.
+                </para>
+                <para>
+                    <newTerm>Focus scopes</newTerm>
+                    define the region in which the focus can move. Windows have set the flag
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.IsFocusScope</codeEntityReference>
+                    and this enables focus movement between child controls inside the window. When the
+                    focus is moved using keyboard or game pad input, it can only move to another control
+                    inside the same focus scope.
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.IsFocusScope</codeEntityReference>
+                    could also be set on other controls, e.g. pages in a tab control or the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIScreen</codeEntityReference>
+                    itself – but  that depends on the application.
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.AutoUnfocus</codeEntityReference>
+                    determines if the input focus should be removed from all controls if the user clicks
+                    the empty space of a focus scope.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="MouseOver">
+            <title>Mouse-over state</title>
+            <content>
+                <para>
+                    When the mouse is moved over a control, the control should react and indicate that
+                    the user can interact with this control. Therefore, most interactive controls have a
+                    "MouseOver" visual state. For example, buttons can draw a glow effect when the mouse
+                    hovers over the button.
+                </para>
+                <para>
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.IsMouseOver</codeEntityReference>
+                    indicates if the mouse cursor is over the control or over any child control.
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.IsMouseDirectlyOver</codeEntityReference>
+                    indicates if the mouse cursor is over the control and not over a child control. – Imagine
+                    the mouse is over the
+                    close button of a window:
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.IsMouseOver</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.IsMouseDirectlyOver</codeEntityReference>
+                    are true for the close button;
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.IsMouseOver</codeEntityReference>
+                    is true for the window but
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.IsMouseDirectlyOver</codeEntityReference>
+                    is false.
+                </para>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIScreen</codeEntityReference>
+                    also keeps track of the control where
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.IsMouseDirectlyOver</codeEntityReference>
+                    is set – see property
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Game.UI.Controls.UIScreen.ControlUnderMouse</codeEntityReference>.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Routing">
+            <title>Input routing</title>
+            <content>
+                <para>
+                    GUI controls are managed in a tree-like structure, the
+                    <newTerm>visual tree</newTerm>. The root of the tree is a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIScreen</codeEntityReference>
+                    control and each control can have child controls (<newTerm>visual children</newTerm>).
+                    Input handling is started by the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.UIManager</codeEntityReference>
+                    when
+                    <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Game.UI.UIManager.Update(System.TimeSpan)</codeEntityReference>
+                    is executed in the game loop. Each control has an
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.OnHandleInput(DigitalRune.Game.UI.Controls.InputContext)</codeEntityReference>
+                    method. To handle the input, the whole visual tree is traversed calling
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.OnHandleInput(DigitalRune.Game.UI.Controls.InputContext)</codeEntityReference>
+                    of each control. This traversal starts at the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIScreen</codeEntityReference>.
+                    In
+                    <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.OnHandleInput(DigitalRune.Game.UI.Controls.InputContext)</codeEntityReference>
+                    each control let’s the child control with the input focus (if there is any) handle the
+                    input first. Then the other children can handle input and finally the control itself.
+                </para>
+                <para>
+                    Each control has the flag
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.IsEnabled</codeEntityReference>.
+                    If this is set to false, the control (including its children) will skip input handling.
+                    (The read-only flag
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIControl.ActualIsEnabled</codeEntityReference>
+                    indicates if a control and all its visual ancestors are enabled.) The screen has an
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.UIScreen.InputEnabled</codeEntityReference>
+                    flag that can be set to false to skip input handling for the entire visual tree.
+                </para>
+            </content>
+            <sections>
+                <section address="Context">
+                    <title>Input context</title>
+                    <content>
+                        <para>
+                            The screen builds an
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.InputContext</codeEntityReference>
+                            instance that gets passed to each control during input handling. This context
+                            provides a few very useful pieces of information, most notably the property
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.InputContext.MousePosition</codeEntityReference>.
+                            This is the mouse position <legacyItalic>relative to the control</legacyItalic>
+                            considering any render transformation that may be applied to the control. That means,
+                            the control can read the
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.InputContext.MousePosition</codeEntityReference>
+                            input and use it as if it was not scaled/rotated/translated. In contrast,
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.InputContext.ScreenMousePosition</codeEntityReference>
+                            is the absolute mouse position on the screen.
+                        </para>
+                        <para>
+                            The input context is also useful to hand down information to visual children.
+                            For example, each control can set the
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.InputContext.AllowedPlayer</codeEntityReference>
+                            property to determine from which game pad it reads input. The allowed player is
+                            part of the input context because each control needs to know the allowed player
+                            of ancestors in the visual tree. Usually controls accept input from any game pad.
+                            But in some cases (e.g. split screen games), you might want to create a window
+                            that accepts only input from player 1 and not from player 2.
+                        </para>
+                    </content>
+                </section>
+                <section address="Hit">
+                    <title>Hit testing</title>
+                    <content>
+                        <para>
+                            Each control has a virtual method
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.HitTest(DigitalRune.Game.UI.Controls.UIControl,DigitalRune.Mathematics.Algebra.Vector2F)</codeEntityReference>.
+                            This method is called during the input handling to check if the mouse is over the
+                            control. Per default, the hit test method returns true if the mouse is over the
+                            rectangular area
+                            (<codeEntityReference qualifyHint="true">P:DigitalRune.Game.UI.Controls.UIControl.ActualBounds</codeEntityReference>)
+                            of the control.
+                        </para>
+                        <para>
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.HitTest(DigitalRune.Game.UI.Controls.UIControl,DigitalRune.Mathematics.Algebra.Vector2F)</codeEntityReference>
+                            is also called to determine if the mouse is over a child control and this information
+                            is stored in
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Game.UI.Controls.InputContext.IsMouseOver</codeEntityReference>
+                            and passed to the child control. This is important for controls that clip the space
+                            of the child controls, like a scroll viewer. For example, a control could be
+                            outside the visible viewport of a scroll viewer. By checking
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.UI.Controls.InputContext.IsMouseOver</codeEntityReference>
+                            of the input context the control sees that mouse cannot be over this control because
+                            the mouse is either not over the parent control, or the control is clipped by the
+                            parent control.
+                        </para>
+                        <para>
+                            You can override
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.HitTest(DigitalRune.Game.UI.Controls.UIControl,DigitalRune.Mathematics.Algebra.Vector2F)</codeEntityReference>
+                            in custom controls to create round buttons or other non-rectangular clickable areas.
+                        </para>
+                    </content>
+                </section>
+                <section address="Preemption">
+                    <title>Input preemption</title>
+                    <content>
+                        <para>
+                            When a control handles keyboard input, it must let the other controls and other
+                            game logic know that the key presses have been handled. Here are a few examples:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                A window contains a multi-line text box and a button where
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Game.UI.Controls.Button.IsDefault</codeEntityReference>
+                                is true (this means the button is activated when the user presses ENTER if
+                                the focus is within the window). If the text box has input focus and the user
+                                presses ENTER, then the key press is handled by the text box and a newline is
+                                created in the text box. In this case the button should not react to the ENTER press.
+                            </listItem>
+                            <listItem>
+                                If there are several windows overlapping and the mouse is clicked in the
+                                top-most window, then the windows below must know that the mouse click was
+                                already handled. (You cannot click <legacyItalic>through</legacyItalic> a window.)
+                            </listItem>
+                        </list>
+                        <para>
+                            For this, the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.Input.IInputService</codeEntityReference>
+                            has several flags:
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.Input.IInputService.IsKeyboardHandled</codeEntityReference>,
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.Input.IInputService.IsMouseOrTouchHandled</codeEntityReference>,
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.Input.IInputService.IsGamePadHandled(DigitalRune.Game.Input.LogicalPlayerIndex)</codeEntityReference>
+                            and
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Game.Input.IInputService.IsAccelerometerHandled</codeEntityReference>.
+                            These flags can be read to see if the input from this device has already been
+                            handled by someone else in this frame. Controls or other game logic objects that
+                            handle input from a device should set the flags accordingly, to let other objects
+                            know that device input has been handled.
+                        </para>
+                        <para>
+                            Some controls can also simply ignore these flags and handle the input
+                            nevertheless; for example, a context menu will always close when ESCAPE is pressed –
+                            no matter if any other object handles ESCAPE too.
+                        </para>
+                    </content>
+                </section>
+                <section address="Custom">
+                    <title>Custom input handling</title>
+                    <content>
+                        <para>
+                            To customize the input handling, you can derive a class from an existing control
+                            class and override
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.OnHandleInput(DigitalRune.Game.UI.Controls.InputContext)</codeEntityReference>.
+                            Don’t forget to call
+                            <codeInline>base.OnHandleInput(context);</codeInline>
+                            because this lets the visual children do the input handling. The basic structure of
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.OnHandleInput(DigitalRune.Game.UI.Controls.InputContext)</codeEntityReference>
+                            is
+                        </para>
+                        <code language="cs">
+                            <![CDATA[
+protected override void OnHandleInput(InputContext context)
+{
+  // Do some stuff before the child control handle input.
+  ...
+   
+  // Call base class, which also calls child controls.
+  base.OnHandleInput(context);
+ 
+  // Do some stuff after the child controls have handled input.
+  ...
+}
+]]>
+                        </code>
+                        <para>
+                            Any code before
+                            <codeInline>base.OnHandleInput(context)</codeInline>
+                            acts before the child controls have a chance to handle input.
+                            This is used, for example, by the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.Window</codeEntityReference>
+                            class: If the user is currently dragging the window with the mouse, then the
+                            window sets
+                            IInputService.IsMouseOrTouchHandled
+                            to true before
+                            <codeInline>base.OnHandleInput(context)</codeInline>.
+                            This lets the child controls know that they should ignore mouse input.
+                        </para>
+                        <para>
+                            There are also two
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Game.UI.Controls.UIControl</codeEntityReference>
+                            events that you can attach to instead of overriding
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.OnHandleInput(DigitalRune.Game.UI.Controls.InputContext)</codeEntityReference>:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                <codeEntityReference qualifyHint="false">E:DigitalRune.Game.UI.Controls.UIControl.InputProcessing</codeEntityReference>
+                                is raised before
+                                <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.OnHandleInput(DigitalRune.Game.UI.Controls.InputContext)</codeEntityReference>
+                                is called.
+                            </listItem>
+                            <listItem>
+                                <codeEntityReference qualifyHint="false">E:DigitalRune.Game.UI.Controls.UIControl.InputProcessed</codeEntityReference>
+                                is raised after
+                                <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Game.UI.Controls.UIControl.OnHandleInput(DigitalRune.Game.UI.Controls.InputContext)</codeEntityReference>
+                                is called.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

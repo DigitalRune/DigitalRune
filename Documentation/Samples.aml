@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="dde51686-4f07-4c54-95d4-756ec929cb57" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                Several example applications are distributed with the DigitalRune Engine.
+                All samples are included with source code and detailed comments.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="where">
+            <title>Where can I find the samples?</title>
+            <content>
+                <para>
+                    The samples are included in the DigitalRune Engine download package. Have a look at
+                    <link xlink:href="972bde71-5d0c-46be-8a81-ad0d2cea770a" /> to learn where the example
+                    projects are located.
+                </para>
+                <para>
+                    For more samples and help, check out these additional resources:
+                    <link xlink:href="a84f32c0-ea2c-473e-9b5c-4afa4fcecb58" />.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="screenshots">
+            <title>Screenshots</title>
+            <content>
+                <para>
+                    Here is a collection of screenshots from the sample applications.
+                </para>
+                <para>
+                    (Please note that this collection represents only a small part of the included samples.
+                    The sample projects are regularly updated and these screenshots might be outdated.)
+                </para>
+                <mediaLink>
+                    <caption placement="after">ODE Integration Example</caption>
+                    <image xlink:href="OdeIntegratorExample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Curves Example</caption>
+                    <image xlink:href="CurveExample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Path Example</caption>
+                    <image xlink:href="PathExample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Scattered Interpolation Example</caption>
+                    <image xlink:href="ScatteredInterpolationExample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Distributions Example</caption>
+                    <image xlink:href="DistributionsExample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">PCA Example</caption>
+                    <image xlink:href="PcaExample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Closest Points Between Different Geometric Objects</caption>
+                    <image xlink:href="CollisionDetectionSample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Convex Hull and Oriented Bounding Box</caption>
+                    <image xlink:href="ConvexHullSample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Picking Example</caption>
+                    <image xlink:href="PickingSample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Bird's Eye View Showing Scene and Camera Frustum</caption>
+                    <image xlink:href="FrustumCullingSampleTop"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Camera View</caption>
+                    <image xlink:href="FrustumCullingSampleCamera"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Example of a Character Controller</caption>
+                    <image xlink:href="CharacterControllerSample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Mass Collisions Example</caption>
+                    <image xlink:href="MassCollisionsSample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Continuous Collision Detection Example</caption>
+                    <image xlink:href="CCDSample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">XNA Content Pipeline Samples</caption>
+                    <image xlink:href="XNAContentPipelineSample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Creating and destroying a wall of boxes</caption>
+                    <image xlink:href="SampleWall"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Using different shapes</caption>
+                    <image xlink:href="SampleShapes"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Different material properties</caption>
+                    <image xlink:href="SampleMaterials"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">A custom gravity force effect</caption>
+                    <image xlink:href="SampleGravity"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">
+                        A rope/chain with debug visualization of bounding boxes (red),
+                        contacts and islands (yellow)
+                    </caption>
+                    <image xlink:href="SampleRope"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">A suspension bridge</caption>
+                    <image xlink:href="SampleBridge"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">
+                        A height field that was created with an XNA Content Processor.
+                    </caption>
+                    <image xlink:href="Sample-HeightField"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">
+                        A large triangle mesh that was created with an XNA Content Processor.
+                    </caption>
+                    <image xlink:href="Sample-LargeTriangleMesh"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">
+                        Performance test: A height field with over 1000 rigid bodies.
+                    </caption>
+                    <image xlink:href="Sample-Performance"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">PhysicsSample for the Windows Phone 7</caption>
+                    <image xlink:href="Sample-WP7"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">RagdollSample for the Windows Phone 7</caption>
+                    <image xlink:href="Sample-WP7-Ragdoll"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Avatar Samples</caption>
+                    <image xlink:href="SampleAvatarRagdoll"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Character Controller Sample</caption>
+                    <image xlink:href="SampleCharacter"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Vehicle Sample</caption>
+                    <image xlink:href="SampleVehicle"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">ParticlesSample: A campfire</caption>
+                    <image xlink:href="ParticlesSampleCampfire"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">ParticlesSample: A flame jet</caption>
+                    <image xlink:href="ParticlesSampleFlamejet"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">ParticlesSample: A waterfall</caption>
+                    <image xlink:href="ParticlesSampleWaterfall"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">ParticlesSample: Ribbon rendering</caption>
+                    <image xlink:href="ParticlesSampleRibbon"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Basic Animations using DigitalRune Animation</caption>
+                    <image xlink:href="AnimationSample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Character skeletons are displayed for debugging</caption>
+                    <image xlink:href="CharacterAnimationSample-SkeletonInfo"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Motion retargeting using the SkeletonMapper class</caption>
+                    <image xlink:href="CharacterAnimationSample-SkeletonMappping"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">A character looking at a target using Inverse Kinematics</caption>
+                    <image xlink:href="CharacterAnimationSample-LookAt"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">An animated Xbox LIVE Avatar</caption>
+                    <image xlink:href="AvatarSample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">A mesh and its bounding shapes</caption>
+                    <image xlink:href="MeshNodeSample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Debug rendering</caption>
+                    <image xlink:href="DebugRendererSample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Stock Effects Sample</caption>
+                    <image xlink:href="StockEffectsSample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Deferred Lighting Sample</caption>
+                    <image xlink:href="DeferredLightingSample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Post-Processing Sample: Color grading</caption>
+                    <image xlink:href="ColorGradingSample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Post-Processing Sample: Depth of Field effect</caption>
+                    <image xlink:href="DepthOfFieldSample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Post-Processing Sample: Motion blur</caption>
+                    <image xlink:href="MotionBlurSample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Interop Sample: Display graphics in WPF window</caption>
+                    <image xlink:href="InteropSample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">An animated game menu with several states</caption>
+                    <image xlink:href="GameStateSample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Controls rendered using Aero theme</caption>
+                    <image xlink:href="ControlsSample-Aero"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Controls rendered using Neoforce theme</caption>
+                    <image xlink:href="ControlsSample-Neoforce"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Game menu in Xbox 360 game</caption>
+                    <image xlink:href="GameMenuSample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Rendering an interactive GUI in a 3D scene</caption>
+                    <image xlink:href="InGameUISample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">GUI Controls on Windows Phone 7</caption>
+                    <image xlink:href="WindowsPhoneSample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Animated GUI using DigitalRune Game UI and Animation</caption>
+                    <image xlink:href="UIAnimationSample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">A custom tree view control</caption>
+                    <image xlink:href="CustomControlSample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">An animated game menu with several states</caption>
+                    <image xlink:href="GameStateSample"/>
+                </mediaLink>
+                <mediaLink>
+                    <caption placement="after">Windows with stretched images and with tiling images</caption>
+                    <image xlink:href="TilingSample"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

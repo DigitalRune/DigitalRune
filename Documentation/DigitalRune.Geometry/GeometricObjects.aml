@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="ed50b52b-a4d4-4192-bc72-0061085466d5" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This section introduces the concept of shapes and geometric objects.</para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Geometry">
+            <title>Defining objects with shape and position</title>
+            <content></content>
+            <sections>
+                <section address="Shape">
+                    <title>Defining a shape</title>
+                    <content>
+                        <para>
+                            The class <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.Shape</codeEntityReference>
+                            defines the space that is occupied by an object. Several classes
+                            derived from <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.Shape</codeEntityReference>
+                            let you define a range of different shapes. For example:
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.BoxShape</codeEntityReference>,
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.SphereShape</codeEntityReference>,
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.PlaneShape</codeEntityReference>,
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.HeightField</codeEntityReference>,
+                            etc. See <codeEntityReference qualifyHint="true">N:DigitalRune.Geometry.Shapes</codeEntityReference>
+                            or <link xlink:href="639ca389-0db9-4ab0-86ee-676062d26b9a" /> for a list of available
+                            shapes.
+                        </para>
+                        <para>
+                            Shapes are defined in the local coordinate system of the owning object (also known as
+                            <newTerm>local space</newTerm>, <newTerm>object space</newTerm> or <newTerm>body space</newTerm>).
+                            Most shapes, like spheres, boxes or capsules, do not have a position or orientation.
+                            They are centered and axis-aligned at the origin of the local space. This is because
+                            these shapes are typically defined only by parameters that describe their
+                            dimension ("width", "height", "radius", etc.).
+                        </para>
+                        <para>
+                            Some shapes, like points, triangles or rays, are typically defined using position and
+                            orientation vectors ("Vertex0", "Origin", "Direction", etc.). Thus, they can be easily
+                            positioned in local space.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Complex">
+                    <title>Defining complex shapes</title>
+                    <content>
+                        <para>
+                            Several shape classes can be used to build new shapes from simpler shapes, for example:
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.CompositeShape</codeEntityReference>,
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.ConvexHullOfPoints</codeEntityReference>,
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.ConvexHullOfShapes</codeEntityReference>,
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.MinkowskiSumShape</codeEntityReference>,
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.TransformedShape</codeEntityReference>.
+                            Here are a few examples of new shapes that can be created:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                A filled convex polygon or polyhedron can be defined with a
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.ConvexHullOfPoints</codeEntityReference>.
+                            </listItem>
+                            <listItem>
+                                A "hammer" like shape can be created with
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.CompositeShape</codeEntityReference>
+                                by combining a cylinder and a box.
+                            </listItem>
+                            <listItem>
+                                The <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.MinkowskiSumShape</codeEntityReference>
+                                creates a new shape by "adding" existing shapes using an operation called
+                                "Minkowski Sum". For example, the Minkowski Sum of a box and a sphere creates a box with rounded edges.
+                            </listItem>
+                            <listItem>
+                                A <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.TransformedShape</codeEntityReference>
+                                can be used to create a shape that has an offset or rotation in local space.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section address="Pose">
+                    <title>Positioning an object</title>
+                    <content>
+                        <para>
+                            The type <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Pose</codeEntityReference>
+                            plays a central role in DigitalRune Geometry. The type is used to
+                            describe the position and orientation of an object in the world. Whenever
+                            transformations are applied to a geometric object, they are applied in the following order:
+                        </para>
+                        <list class="ordered">
+                            <listItem>
+                                <legacyBold>Scale:</legacyBold> First the scale is applied to the shape of a geometric object.
+                            </listItem>
+                            <listItem>
+                                <legacyBold>Rotate:</legacyBold> Then the object is rotated around its local origin.
+                            </listItem>
+                            <listItem>
+                                <legacyBold>Translate:</legacyBold> Then the object is moved to its position in world space.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section address="GeometricObject">
+                    <title>Geometric objects</title>
+                    <content>
+                        <para>
+                            The interface
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.IGeometricObject</codeEntityReference>
+                            defines an object that has a shape and a pose. Objects that implement
+                            this interface can be used with DigitalRune Geometry. The type
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.GeometricObject</codeEntityReference>
+                            is the default implementation of this interface. You can use
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.GeometricObject</codeEntityReference>
+                            directly, or write your own classes that inherit from
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.GeometricObject</codeEntityReference>
+                            or implement <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.IGeometricObject</codeEntityReference>.
+                            Henceforth, we use the term <newTerm>geometric object</newTerm> to refer
+                            to an object with a shape and a pose.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="shape">
+            <title>Shape structures vs. shape classes</title>
+            <content>
+                <para>
+                    The namespace
+                    <codeEntityReference qualifyHint="true">N:DigitalRune.Geometry.Shapes</codeEntityReference>
+                    contains types for shapes. Specifically, there are structures for basic
+                    shapes
+                    (<codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.Aabb</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.Line</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.Ray</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.Triangle</codeEntityReference>
+                    etc.) and classes for shapes
+                    (<codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.LineShape</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.LineSegmentShape</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.RayShape</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.TriangleShape</codeEntityReference>
+                    etc.).
+                    The structure types are lightweight types that can be used for local computations
+                    and when allocation of heap memory should be avoided.
+                    The class types derive from the base class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.Shape</codeEntityReference>
+                    and must be used when the shape of a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.IGeometricObject</codeEntityReference>
+                    should be defined.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Scale">
+            <title>Using scaling</title>
+            <content>
+                <para>
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.IGeometricObject</codeEntityReference>s
+                    have a
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.IGeometricObject.Scale</codeEntityReference>
+                    property that can be used to scale shapes. Scaling is always applied to
+                    a shape before the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.IGeometricObject.Pose</codeEntityReference>
+                    (position and orientation) is applied.
+                </para>
+                <para>
+                    Scaling can be applied to all shapes with following exceptions:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Non-uniform scaling cannot be used with
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.CompositeShape</codeEntityReference>s
+                        if any of the
+                        <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Shapes.CompositeShape.Children</codeEntityReference>
+                        of the composite shape is rotated.
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.HeightField</codeEntityReference>s
+                        currently do not support a negative scaling.
+                    </listItem>
+                </list>
+                <para>
+                    Sometimes positions and directions are given in the <legacyItalic>local space</legacyItalic>
+                    of a geometric objects (for example
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.Contact.PositionALocal</codeEntityReference>
+                    of a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.Contact</codeEntityReference>).
+                    This <legacyItalic>local space</legacyItalic> is the space where the scaling
+                    is already applied but the pose of the geometric object was not yet applied.
+                    In other words, the local space of a geometric object and the world space
+                    differ by the translation and rotation defined in the pose. The scaling is
+                    treated as if it is part of the shape.
+                </para>
+                <para>
+                    For example: Geometric object A has a pose, a sphere shape with radius 2
+                    and no scaling. Geometric object B has the same pose as A, a sphere shape
+                    with radius 1 and a uniform scale of (2, 2, 2). The local space of A and
+                    B is identical because the scale is treated as if it is a part of the shape.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Memleaks">
+            <title>Memory leaks in geometric objects</title>
+            <content>
+                <para>
+                    Each
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.IGeometricObject</codeEntityReference>
+                    handles the
+                    <codeEntityReference qualifyHint="true">E:DigitalRune.Geometry.Shapes.Shape.Changed</codeEntityReference>
+                    event of its shape. That means, the shape has to store a reference to the geometric object.
+                    This can lead to problems ("life extension bugs" a.k.a "memory leaks") because it may
+                    prevent the geometric object from being garbage collected. For example, if several
+                    geometric objects share the same shape, then the shape stores references to all
+                    geometric objects. If one of the geometric objects is not needed anymore, the shape
+                    might prevent it from being garbage collected.
+                </para>
+                <para>
+                    Therefore, if a shape is still needed but a geometric object is not needed anymore,
+                    the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.GeometricObject.Shape</codeEntityReference>
+                    property should be set to
+                    <codeEntityReference qualifyHint="true">F:DigitalRune.Geometry.Shapes.Shape.Empty</codeEntityReference>
+                    or
+                    <codeEntityReference qualifyHint="true">F:DigitalRune.Geometry.Shapes.Shape.Infinite</codeEntityReference>.
+                    These are special immutable shapes that will never raise
+                    <codeEntityReference qualifyHint="true">E:DigitalRune.Geometry.Shapes.Shape.Changed</codeEntityReference>
+                    events and therefore they do not store a strong reference to the geometric object.
+                    Those shapes will never prevent a geometric object from being garbage collected.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <link xlink:href="d22b1398-60bd-43a8-ac6e-b74375b11433" />
+            <link xlink:href="639ca389-0db9-4ab0-86ee-676062d26b9a" />
+            <codeEntityReference qualifyHint="true">N:DigitalRune.Geometry</codeEntityReference>
+            <codeEntityReference qualifyHint="true">N:DigitalRune.Geometry.Shapes</codeEntityReference>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

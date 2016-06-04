@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="dc07e943-fc57-4c45-bcc2-3dbc1f436272" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This section contains a collection of best practices and tips for stable simulations and a
+                reference of recommended literature.
+            </para>
+            <para>
+                Rigid body dynamics is a complex topic and it takes time and a lot of experiments
+                to fully understand the physics simulation. It is easy to make a fast but unstable
+                simulation. It is easy to make a stable but slow simulation. Making it stable
+                and fast at the same time requires experience. Here is a collection
+                of tips to improve the stability of physics simulations.
+            </para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="Sleeping">
+            <title>Tweak the sleeping settings</title>
+            <content>
+                <para>
+                    Tweak the sleeping settings in
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Settings.SleepingSettings</codeEntityReference>.
+                    Sleeping can be very helpful to increase performance and stability because
+                    it can deactivate small jittering objects. On the other hand it can cause
+                    problems when objects start to sleep too early. Typical example: A stack of boxes
+                    should fall but freezes in an unnatural tilted angle.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Damping">
+            <title>Use damping</title>
+            <content>
+                <para>
+                    Use a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.ForceEffects.Damping</codeEntityReference>
+                    force effect to damp the velocities of the rigid bodies.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Gravity">
+            <title>Lower the gravity</title>
+            <content>
+                <para>
+                    Use lower gravity for stable stacking. Stacks of boxes are more stable if a low
+                    gravity acceleration is used. If stacking is important and a low gravity
+                    (objects will fall slower) can be tolerated by the game audience, try to use
+                    a smaller gravity value, for example:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+Simulation.ForceEffects.Add(new Gravity() { Acceleration = new Vector3F(0, -5f, 0) }); // 5 m/s² instead of 9.81 m/s²
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Mass">
+            <title>Use small mass ratio</title>
+            <content>
+                <para>
+                    Use small mass ratios. The mass of the lightest dynamic object compared
+                    to the heaviest dynamic object should be around 1:10.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Restitution">
+            <title>Use low restitution</title>
+            <content>
+                <para>
+                    Use small restitution values. Large restitution values creates a lot of
+                    bouncing and it is favorable to have a simulation where objects come to
+                    rest very quickly.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Iterations">
+            <title>Tweak the number of constraint iterations</title>
+            <content>
+                <para>
+                    Tweak the number of constraint iterations in
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Settings.ConstraintSettings</codeEntityReference>.
+                    The constraint solver uses an iterative algorithm. Increase the number
+                    of constraints to create more stable simulations (especially visible in stacks
+                    of rigid bodies). Decrease the number to reduce the simulation time at
+                    the cost of stability.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Conflicts">
+            <title>Avoid conflicting constraints</title>
+            <content>
+                <para>
+                    Avoid conflicting constraints: If constraints enforce incompatible goals
+                    the simulation will get unstable. Motors should be disabled
+                    when they would violate another constraint. For example, a velocity
+                    motor should be deactivated when the allowed limit of another constraint
+                    is reached.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Lock">
+            <title>Use LockRotation instead of constraints</title>
+            <content>
+                <para>
+                    If a rigid body should not rotate (relative to world space), the properties
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.LockRotationX</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.LockRotationY</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.LockRotationZ</codeEntityReference>
+                    can be used instead of constraints.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="TimeStep">
+            <title>Tweak the time step size</title>
+            <content>
+                <para>
+                    Tweak the time step size in
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Settings.TimingSettings</codeEntityReference>.
+                    Decreasing the time step size makes the simulation more stable, but one
+                    simulation update will take significantly longer. Increasing the time step
+                    size reduces the simulation time but can cause more instabilities.
+                </para>
+                <para>
+                    For debugging, set the simulation time step size to a small value, for example:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+Simulation.Settings.Timing.FixedTimeStep = 0.001f;    // 1 ms.
+Simulation.Settings.Timing.MaxNumberOfSteps = 100;    // A large value.
+]]>
+                </code>
+                <para>
+                    A small time step is bad for performance, but helps to check if any simulation
+                    problems and instabilities are related to the current time step size.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Remove">
+            <title>Remove objects outside the area of interest</title>
+            <content>
+                <para>
+                    Remove objects from the simulation when they leave the area of interest:
+                    If a tree falls in a forest and no one is around to observe it, is its physical behavior
+                    realistic? - In most games, the answer is: Nobody cares. Therefore, try to remove objects
+                    that only cost simulation time and are not relevant for the gameplay anymore.
+                </para>
+            </content>
+        </section>
+        <section address="Scale">
+            <title>Check the scale of the shapes</title>
+            <content>
+                <para>
+                    All objects should have an extent around 1 because the simulation settings are optimized for this case
+                    (which is the most useful case in games). Standard simulation settings cannot simulate very small objects
+                    (e.g. 0.01 units sphere diameter). Try to scale your whole scene so that your ball is for example 1 unit
+                    in diameter. Increase the gravity if the object fall speed appears to slow.
+                </para>
+            </content>
+        </section>
+
+
+        <section  address="Filter">
+            <title>Use collision filtering</title>
+            <content>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.Simulation.CollisionDomain</codeEntityReference>
+                    of the simulation contains a collision object for each rigid
+                    body. You can also add other collision objects to the collision domain
+                    (e.g. to create trigger volumes). Per default, the collision domain of the
+                    physics simulation computes collisions between all collision objects.
+                    The simulation only needs collision information involving dynamic rigid bodies.
+                    It is recommended to use collision filters to avoid the
+                    computation of unnecessary collision information. (See also
+                    <link xlink:href="bc000d5a-cac9-49f1-9a18-a26b17faa8e9#cd">The Simulation - Collision Detection</link>)
+                </para>
+                <para>
+                    Applications should set the
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Collisions.CollisionObject.CollisionGroup</codeEntityReference>
+                    property of a collision object and use this to filter collisions.
+                    (Collision groups are simple integer IDs and the meaning is application
+                    specific.)
+                </para>
+                <para>
+                    The collision domain computes collision information between non-moving
+                    bodies only once and caches this information. Nevertheless, on less powerful
+                    systems, like the Xbox 360, it can still improve performance to filter
+                    collisions between static bodies. This can be done in a broad phase
+                    filter based on collision groups, or with a simple filter like this:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+_simulation.CollisionDomain.BroadPhase.Filter = 
+  new DelegatePairFilter<CollisionObject>(
+    pair =>
+    {
+      var bodyA = pair.First.GeometricObject as RigidBody;
+      if (bodyA == null || bodyA.MotionType != MotionType.Static)
+        return true;
+ 
+      var bodyB = pair.Second.GeometricObject as RigidBody;
+      if (bodyB == null || bodyB.MotionType != MotionType.Static)
+        return true;
+ 
+      return false;   // Do not compute collisions between two static bodies.
+    });		      
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Piles">
+            <title>Avoid piles and stacks</title>
+            <content>
+                <para>
+                    In general, games should avoid physics scenarios where many objects are
+                    in a pile or stacked. For example, a wall with 100 bodies is much harder and slower to
+                    simulate than 100 scattered bodies.
+                    See also <link xlink:href="fae52e31-ede2-451e-b107-e42db486d69c"/>.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Positions">
+            <title>Choose good start positions</title>
+            <content>
+                <para>
+                    Do not initialize bodies in start positions that create conflicts, e.g. one body
+                    partially stuck in another body.
+                </para>
+                <para>
+                    One method to find good start positions offline is: Set up the bodies. Simulate for
+                    a few time steps until the bodies come to rest. Save the resting position and
+                    use this position to initialize the bodies in the game.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Sample">
+            <title>Test in the physics samples</title>
+            <content>
+                <para>
+                    If a simulation scenario does not work in your game, try to test it in the
+                    <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />.
+                    The physics samples provide the basic setup for a simulation.
+                    If a simulation scenario works in a physics sample but not in another game,
+                    then there is probably a problem with the simulation settings or the order
+                    of operations in the game.
+                </para>
+                <para>
+                    The samples have other features that help to debug a simulation:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <legacyBold>Automatic drawing of bodies:</legacyBold>
+                            Rigid bodies are drawn automatically. If you don't see a body, the collision
+                            object is probably not where it should be
+                            or the scale is wrong and the player camera is inside the body.
+                            Also, triangle meshes are one sided; the rendered side is the "solid" side. Maybe
+                            the triangle winding order of a mesh must be reversed.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Drawing contact information:</legacyBold>
+                            Press 'C' to enable rendering of contact information (positions and normals).
+                            Are there contacts between two penetrating bodies? Do the contact normals
+                            point into valid directions?
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Single-stepping:</legacyBold>
+                            Press 'P' to pause a simulation and then press 'T' to advance the simulation by
+                            a single time step.
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Literature">
+            <title>Recommended literature</title>
+            <content>
+                <para>
+                    A free introduction into game physics and rigid body dynamics can be found here:
+                    <externalLink>
+                        <linkText>A Unified Framework for Rigid Body Dynamics</linkText>
+                        <linkUri>http://www.digitalrune.com/Support/Blog/tabid/719/EntryId/27/Thesis-ndash-A-Unified-Framework-for-Rigid-Body-Dynamics.aspx</linkUri>
+                    </externalLink>.
+                </para>
+                <para>
+                    Many helpful topics and links can be found in the
+                    <externalLink>
+                        <linkText>DigitalRune Blog</linkText>
+                        <linkUri>http://www.digitalrune.com/Support/Blog.aspx</linkUri>
+                    </externalLink>.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="bb688846-e718-492f-ad79-d5a310c38565" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        This section explains the basics that are required to create own docking window applications.
+      </para>
+      <autoOutline/>
+    </introduction>
+
+
+    <section address="References">
+      <title>Adding DigitalRune Docking Windows to a project</title>
+      <content>
+        <para>
+          Before types of this library can be used in a .NET project, references
+          to the required assemblies must be added. These are:
+        </para>
+        <list class="bullet">
+          <listItem>
+            <para>
+              <localUri>DigitalRune.dll</localUri>,
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              <localUri>DigitalRune.Windows.dll</localUri> and
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              <localUri>DigitalRune.Windows.Docking.dll</localUri>
+            </para>
+          </listItem>
+        </list>
+        <para>
+          See <link xlink:href="972bde71-5d0c-46be-8a81-ad0d2cea770a" /> to learn
+          where these files are located.
+        </para>
+        <para>
+          To add an assembly reference in Visual Studio in a C# project, follow
+          these steps:
+        </para>
+        <list class="bullet">
+          <listItem>
+            <para>
+              Open the <ui>Solution Explorer</ui> in Visual Studio
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              Find the folder <localUri>References</localUri> of the project.
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              Right-click the folder <localUri>References</localUri> and choose
+              <ui>Add Reference...</ui>
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              In the tab <ui>Browse</ui> find the folder containing the required
+              assemblies.
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              Select the required assembly and click <ui>OK</ui>
+            </para>
+          </listItem>
+        </list>
+      </content>
+    </section>
+
+
+    <section address="Import">
+      <title>Importing types and markup</title>
+      <content>
+        <para>
+          To import the required types in a source code file add the following
+          <legacyBold>using</legacyBold> directives to the file.
+        </para>
+        <code language="c#">
+          <![CDATA[
+using DigitalRune;
+using DigitalRune.Windows;
+using DigitalRune.Windows.Docking;
+]]>
+        </code>
+        <para>
+          To import the required markup in XAML add the following <legacyBold>xmlns</legacyBold>
+          attribute:
+        </para>
+        <code language="xaml">
+          <![CDATA[
+<Window x:Class="MySample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        ...
+        xmlns:dr="http://schemas.digitalrune.com/windows"
+        ...>
+        
+</Window>
+          ]]>
+        </code>
+      </content>
+    </section>
+
+
+    <section address="IDockable">
+      <title>The interface IDockable</title>
+      <content>
+        <para>
+          The common interface for all dockable objects is
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.IDockable</codeEntityReference>.
+        </para>
+        <mediaLink>
+          <caption placement="after" lead="Figure 1">The IDockable interface and related types.</caption>
+          <image xlink:href="ClassDiagramIDockable"/>
+        </mediaLink>
+        <para>
+          Visible dockable objects have 1 of 3 possible states:
+        </para>
+        <list class="bullet">
+          <listItem>
+            <para>
+              <codeEntityReference qualifyHint="false">F:DigitalRune.Windows.Docking.DockState.AutoHide</codeEntityReference>
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              <codeEntityReference qualifyHint="false">F:DigitalRune.Windows.Docking.DockState.Docked</codeEntityReference>
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              <codeEntityReference qualifyHint="false">F:DigitalRune.Windows.Docking.DockState.Floating</codeEntityReference>
+            </para>
+          </listItem>
+        </list>
+        <para>
+          The dockable objects have properties that define the position and size of the object
+          in the different states:
+          <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Docking.IDockable.DockWidth</codeEntityReference>,
+          <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Docking.IDockable.DockHeight</codeEntityReference>,
+          <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Docking.IDockable.FloatingTop</codeEntityReference>,
+          etc.
+        </para>
+        <para>
+          A <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Docking.IDockable.DockHint</codeEntityReference>
+          is automatically created
+          and stores the last known docking position. When non-docked dockable object
+          is docked, the object tries to dock at the last known docking position. For example: A docking window
+          is docked at the right border of the application and is moved into a floating window. If the same
+          docking window is re-docked (for example by calling <codeEntityReference qualifyHint="false">M:DigitalRune.Windows.Docking.IDockable.Dock</codeEntityReference>)
+          it again docks to the right border of the application.
+        </para>
+        <para>
+          The <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Docking.IDockable.DockHint</codeEntityReference>
+          is used internally and should not be manipulated directly. To change the dock state of a dockable object
+          the <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.IDockable</codeEntityReference>
+          interface provides the following methods:
+          <codeEntityReference qualifyHint="false">M:DigitalRune.Windows.Docking.IDockable.AutoHide</codeEntityReference>,
+          <codeEntityReference qualifyHint="false">M:DigitalRune.Windows.Docking.IDockable.Dock</codeEntityReference>,
+          <codeEntityReference qualifyHint="false">M:DigitalRune.Windows.Docking.IDockable.Float</codeEntityReference>,
+          <codeEntityReference qualifyHint="false">M:DigitalRune.Windows.Docking.IDockable.Close</codeEntityReference>,
+          <codeEntityReference qualifyHint="false">M:DigitalRune.Windows.Docking.IDockable.Show</codeEntityReference>.
+        </para>
+        <para>
+          See <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.IDockable</codeEntityReference>
+          for more information.
+        </para>
+      </content>
+    </section>
+
+
+    <section address="Controls">
+      <title>WPF controls</title>
+      <content>
+        <para>
+          Following WPF controls implement the docking features:
+        </para>
+        <mediaLink>
+          <caption placement="after" lead="Figure 2">WPF controls with docking capabilities.</caption>
+          <image xlink:href="ClassDiagramDockElements"/>
+        </mediaLink>
+        <para>
+          The <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockControl</codeEntityReference>
+          is the host control for all dockable objects. It needs to be added to the window which should contain
+          docking windows - usually the application's main window.
+        </para>
+        <para>
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.FloatingWindow</codeEntityReference>s
+          are child windows that host dockable objects outside of the main window.
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.FloatingWindow</codeEntityReference>s
+          are controlled by the
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockControl</codeEntityReference>.
+        </para>
+        <para>
+          The dockable objects need to be hosted by either the
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockControl</codeEntityReference>
+          or a <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.FloatingWindow</codeEntityReference>.
+          There are four types that implement the interface
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.IDockable</codeEntityReference>:
+        </para>
+        <list class="bullet">
+          <listItem>
+            <para>
+              <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockWindow</codeEntityReference>
+              is a <codeEntityReference qualifyHint="false">T:System.Windows.Controls.ContentControl</codeEntityReference>
+              that represents a dockable window, for instance a document window or a tool window.
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockPane</codeEntityReference>
+              is an <codeEntityReference qualifyHint="false">T:System.Windows.Controls.ItemsControl</codeEntityReference>
+              that contains one or more
+              <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockWindow</codeEntityReference>s.
+              The <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockPane</codeEntityReference>
+              functions similar to a tab control.
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockSplitPanel</codeEntityReference>
+              is a panel that can contain other
+              <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockSplitPanel</codeEntityReference>s,
+              <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockZone</codeEntityReference>s
+              and
+              <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockPane</codeEntityReference>s.
+              The panel arranges its children horizontally or vertically depending on its
+              <codeEntityReference qualifyHint="false">P:DigitalRune.Windows.Docking.DockSplitPanel.Orientation</codeEntityReference>.
+              Splitters are added between the children to enable resizing by the user.
+            </para>
+          </listItem>
+          <listItem>
+            <para>
+              <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockZone</codeEntityReference>
+              is a special element that can only be added inside the main window - it cannot be added to a
+              <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.FloatingWindow</codeEntityReference>.
+              The <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockZone</codeEntityReference>
+              defines a fixed area where windows can be docked. Most applications contain one
+              <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockZone</codeEntityReference>
+              inside the <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockControl</codeEntityReference>
+              that represents the workspace where the documents of the application are shown.
+              New docking windows that are shown without explicitly specifying a target position, are automatically docked
+              inside this <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockZone</codeEntityReference>.
+              (If a <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockControl</codeEntityReference>
+              is empty a default <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockZone</codeEntityReference>
+              will be added automatically.)
+            </para>
+          </listItem>
+        </list>
+      </content>
+    </section>
+
+
+    <section address="DockControl">
+      <title>Adding a DockControl to a WPF application</title>
+      <content>
+        <para>
+          To add host docking window in an application a
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockControl</codeEntityReference>
+          must be added to the main window. For example:
+        </para>
+        <code language="xaml">
+          <![CDATA[
+<dr:DockControl x:Name="MyDockControl"/>
+          ]]>
+        </code>
+        <para>
+          Complex window layouts can be defined directly in XAML. See <link xlink:href="d509413a-d4f7-4763-8457-ed142decc96d"/>.
+        </para>
+      </content>
+    </section>
+
+    <section address="DockWindow">
+      <title>Creating a DockWindow</title>
+      <content>
+        <para>
+          Following example shows how to create a new
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockWindow</codeEntityReference>
+          in code:
+        </para>
+        <code language="c#">
+          <![CDATA[
+// Create a new custom DockWindow.
+DockWindow dockWindow = new DockWindow
+{
+  // We must tell the DockWindow in which DockControl it should dock.
+  DockControl = MyDockControl,
+
+  // The Icon and Title are shown in the tab of the DockWindow.
+  Icon = new BitmapImage(new Uri("pack://application:,,,/SampleApplication;component/Resources/SolutionIcon.png")),
+  Title = "Solution Explorer",
+
+  // The DockWindow is a content control. It can contain any application specific content.
+  Content = new MySolutionExplorerControl(),
+};
+]]>
+        </code>
+        <para>
+          After the
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockWindow</codeEntityReference>
+          instance is created it is not yet visible. To show the window
+          one of the methods
+          <codeEntityReference qualifyHint="false">M:DigitalRune.Windows.Docking.IDockable.AutoHide</codeEntityReference>,
+          <codeEntityReference qualifyHint="false">M:DigitalRune.Windows.Docking.IDockable.Dock</codeEntityReference>,
+          <codeEntityReference qualifyHint="false">M:DigitalRune.Windows.Docking.IDockable.Float</codeEntityReference>,
+          <codeEntityReference qualifyHint="false">M:DigitalRune.Windows.Docking.IDockable.Close</codeEntityReference> or
+          <codeEntityReference qualifyHint="false">M:DigitalRune.Windows.Docking.IDockable.Show</codeEntityReference>
+          must be called.
+          To dock the window in the default
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.DockZone</codeEntityReference>
+          call:
+        </para>
+        <code language="c#">
+          <![CDATA[
+dockWindow.Dock();
+]]>
+        </code>
+        <para>
+          For example, to show the window in a
+          <codeEntityReference qualifyHint="false">T:DigitalRune.Windows.Docking.FloatingWindow</codeEntityReference>
+          call:
+        </para>
+        <code language="c#">
+          <![CDATA[
+dockWindow.Float();
+]]>
+        </code>
+      </content>
+    </section>
+
+
+    <relatedTopics>
+      <link xlink:href="c829d353-ff2c-48ba-847d-5a78b8f5a403" />
+      <link xlink:href="3c6a0645-fc4f-46a8-869f-1c3f2431bfda" />
+      <link xlink:href="99353552-6552-4910-8645-9d7ede864b06"/>
+      <link xlink:href="972bde71-5d0c-46be-8a81-ad0d2cea770a" />
+      <codeEntityReference qualifyHint="true">N:DigitalRune.Windows.Docking</codeEntityReference>
+    </relatedTopics>
+
+  </developerConceptualDocument>
+</topic>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="ecded02d-1df8-43e5-9987-e840bbd4ae00" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This topic explains how to cycle (loop) an existing animation.</para>
+        </introduction>
+
+
+        <section address="Cycle">
+            <title>Creating a cyclic animation</title>
+            <content>
+                <para>
+                    Most animations, such a <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.FromToByAnimation`1</codeEntityReference>
+                    or <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.KeyFrameAnimation`1</codeEntityReference>,
+                    do not automatically support cycling (looping). If these types of animations
+                    should be looped, an <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.AnimationClip`1</codeEntityReference>
+                    needs to be used:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Create a simple color animation.
+ColorKeyFrameAnimation animation = new ColorKeyFrameAnimation
+colorAnimation.KeyFrames.Add(new KeyFrame<Color>(TimeSpan.FromSeconds(0), Color.Red));
+colorAnimation.KeyFrames.Add(new KeyFrame<Color>(TimeSpan.FromSeconds(1), Color.Green));
+colorAnimation.KeyFrames.Add(new KeyFrame<Color>(TimeSpan.FromSeconds(3), Color.Blue));
+colorAnimation.KeyFrames.Add(new KeyFrame<Color>(TimeSpan.FromSeconds(4), Color.Red));
+
+// Use an AnimationClip<T> to turn the 4 second colorAnimation into 
+// an animation that loops forever.
+_cyclicAnimation = new AnimationClip<Color>(animation)
+{
+  LoopBehavior = LoopBehavior.Cycle,
+  Duration = TimeSpan.MaxValue,
+};
+]]>
+                </code>
+                <para>
+                    Note that the first key frame and the last key frame ("loop key") should have
+                    the identical values in order to achieve smooth transitions between cycles.
+                </para>
+                <para>
+                    An <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.AnimationClip`1</codeEntityReference>
+                    can be used to cycle animations that implement
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimation`1</codeEntityReference>.
+                    A <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.TimelineClip</codeEntityReference>
+                    is a more general variant that can be used to cycle anything that implements
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.ITimeline</codeEntityReference>.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

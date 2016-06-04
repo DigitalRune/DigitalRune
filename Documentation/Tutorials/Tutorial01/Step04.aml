@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="26ebc8f3-4778-4979-a217-1d85e2c5ae31" revisionNumber="1">
+    <developerConceptualDocument
+      xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+        </introduction>
+
+
+        <section address="GraphicsService">
+            <title>Add the graphics service</title>
+            <content>
+                <para>
+                    Let's create an instance of the DigitalRune
+                    <legacyBold>GraphicsManager</legacyBold> and register it in the service container.
+                    In the <legacyBold>Game1.Draw</legacyBold> method, we remove the
+                    <legacyBold>GraphicsDevice.Clear</legacyBold> call, update the graphics service
+                    and let it do the rendering.
+                </para>
+                <code language="c#" title="Game1.cs">
+                    <![CDATA[
+…
+using DigitalRune.Graphics;                                                                   // NEW
+…
+
+namespace MyGame
+{
+    …
+    public class Game1 : Microsoft.Xna.Framework.Game
+    {
+        …
+        private GraphicsManager _graphicsManager;                                             // NEW
+        …
+        
+        protected override void Initialize()
+        {
+            _services = new ServiceContainer();
+            ServiceLocator.SetLocatorProvider(() => _services);
+
+            _services.Register(typeof(IGraphicsDeviceService), null, _graphicsDeviceManager); // NEW
+            _services.Register(typeof(GraphicsDeviceManager), null, _graphicsDeviceManager);  // NEW
+
+            Content = new ContentManager(_services, "Content");                               // NEW
+
+            _inputManager = new InputManager(false);
+            _services.Register(typeof(IInputService), null, _inputManager);
+
+            _graphicsManager = new GraphicsManager(GraphicsDevice, Window, Content);          // NEW
+            _services.Register(typeof(IGraphicsService), null, _graphicsManager);             // NEW
+
+            Components.Add(new MyGameComponent(this));
+
+            base.Initialize();
+        }
+        
+        …
+        
+        protected override void Draw(GameTime gameTime)
+        {
+            //GraphicsDevice.Clear(Color.CornflowerBlue);                                     // REMOVE
+
+            _graphicsManager.Update(gameTime.ElapsedGameTime);                                // NEW
+            _graphicsManager.Render(false);                                                   // NEW
+
+            base.Draw(gameTime);
+        }
+    }
+}
+
+                    ]]>
+                </code>
+                <para>
+                    As you can see, we also add the XNA graphics device manager to the service container.
+                    Please note that <legacyBold>IGraphicsDeviceService</legacyBold> and
+                    <legacyBold>GraphicsDeviceManager</legacyBold> are XNA types.
+                    <legacyBold>IGraphicsService</legacyBold> and <legacyBold>GraphicsManager</legacyBold>
+                    are DigitalRune types.
+                </para>
+                <para>
+                    We also create a new default content manager for the game:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+Content = new ContentManager(_services, "Content");
+                    ]]>
+                </code>
+                <para>
+                    This content manager is like the default content manager that is automatically
+                    created by XNA, except that this one uses our own service container.
+                </para>
+                <para>
+                    Run the game and you should see this:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Tutorial-01-04"/>
+                </mediaLink>
+                <para>
+                    If you see this purple color, then you know that nothing in the XNA game is actually
+                    drawing anything into the back buffer.
+                </para>
+                <para>
+                    Let's add a graphics screen to the graphics service.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="GraphicsScreen">
+            <title>Add a graphics screen</title>
+            <content>
+                <para>
+                    Let's add a new item <localUri>MyGraphicsScreen.cs</localUri> to the game project.
+                </para>
+                <code language="c#" title="MyGraphicsScreen.cs">
+                    <![CDATA[
+using System;
+using DigitalRune.Graphics;
+using Microsoft.Xna.Framework;
+
+namespace MyGame
+{
+    public class MyGraphicsScreen : GraphicsScreen
+    {
+        public MyGraphicsScreen(IGraphicsService graphicsService)
+            : base(graphicsService)
+        {
+        }
+
+        protected override void OnUpdate(TimeSpan deltaTime)
+        {
+        }
+
+        protected override void OnRender(RenderContext context)
+        {
+            var graphicsDevice = GraphicsService.GraphicsDevice;
+            graphicsDevice.Clear(Color.CornflowerBlue);
+        }
+    }
+}
+                    ]]>
+                </code>
+                <para>
+                    In <localUri>MyGameComponent.cs</localUri> create an instance of this graphics
+                    screen and add it to the graphics service.
+                </para>
+                <code language="c#" title="MyGameComponent.cs">
+                    <![CDATA[
+using DigitalRune.Game.Input;
+using DigitalRune.Graphics;                                                             // NEW
+using Microsoft.Practices.ServiceLocation;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+
+namespace MyGame
+{
+    public class MyGameComponent : Microsoft.Xna.Framework.GameComponent
+    {
+        private IInputService _inputService;
+        private IGraphicsService _graphicsService;                                      // NEW
+        private MyGraphicsScreen _myGraphicsScreen;                                     // NEW
+
+        public MyGameComponent(Game game)
+            : base(game)
+        {
+            _inputService = ServiceLocator.Current.GetInstance<IInputService>();
+
+            _graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();  // NEW
+            _myGraphicsScreen = new MyGraphicsScreen(_graphicsService);                 // NEW
+            _graphicsService.Screens.Add(_myGraphicsScreen);                            // NEW
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (_inputService.IsDown(Keys.Escape))
+                Game.Exit();
+
+            base.Update(gameTime);
+        }
+    }
+}
+                    ]]>
+                </code>
+                <para>
+                    The rendering is now handled by the DigitalRune graphics service. The graphics
+                    screen defines the render operations. Currently it only clears the screen. That
+                    means, the game will look like this again:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Tutorial-01-02"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Next">
+            <title>Next</title>
+            <content>
+                <para>
+                    Let's add some graphics. Before adding models and complex stuff, it is good to
+                    start with some simple debug graphics.
+                </para>
+                <para>
+                    <link xlink:href="efe7ad45-ea74-4e57-810d-93bc3ef3a28f" />
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

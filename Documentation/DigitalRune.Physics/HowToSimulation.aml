@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="4473ac4f-06c0-4ebb-8eb5-fd6891df21b6" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This section explains how setup and run a basic physics simulation.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Namespaces">
+            <title>Add DigitalRune namespaces</title>
+            <content>
+                <para>
+                    The following example will use types from DigitalRune Mathematics, Geometry and
+                    Physics. The following namespaces must be imported for this example
+                    at the beginning of the source code files:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+using DigitalRune.Geometry;
+using DigitalRune.Geometry.Shapes;
+using DigitalRune.Mathematics.Algebra;
+using DigitalRune.Physics;
+using DigitalRune.Physics.ForceEffects;
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Setup">
+            <title>Setup simulation</title>
+            <content>
+                <para>
+                    Here is a simple example that shows how to setup the simulation and how
+                    to add rigid bodies. The simulation is configured with two force effects:
+                    gravity and damping. These force effects are necessary for most scenarios.
+                </para>
+                <para>
+                    The basic setup:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+Simulation mySimulation = new Simulation();
+
+// Add a gravity force that pulls objects to the ground.
+mySimulation.ForceEffects.Add(new Gravity());
+
+// Add a damping effect that models air resistance and slows objects.
+mySimulation.ForceEffects.Add(new Damping());
+
+// Add a ground plane.
+RigidBody ground = new RigidBody(new PlaneShape(Vector3F.UnitY, 0))
+{
+  Name = "GroundPlane",
+  Pose = Pose.Identity,
+  MotionType = MotionType.Static,  // Ground plane should not move.
+};
+mySimulation.RigidBodies.Add(ground);
+
+// Add a box above the ground with a random orientation.
+RigidBody cube = new RigidBody(new BoxShape(1, 1, 1))
+{
+  Name = "Cube",
+  Pose = new Pose(new Vector3F(0, 2, 0), RandomHelper.Random.NextQuaternionF()),
+};
+mySimulation.RigidBodies.Add(cube);
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Update">
+            <title>Run simulation</title>
+            <content>
+                <para>
+                    In each frame of the game, the simulation must be updated by calling following
+                    method (usually with 60 fps):
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Advance the simulation.
+// deltaTime is the elapsed time since the last simulation update.
+mySimulation.Update(deltaTime);
+]]>
+                </code>
+                <para>
+                    In between updates you can manipulate the simulation in a variety of ways. For example, you can
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Add or remove rigid bodies (see
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Simulation.RigidBodies</codeEntityReference>).
+                    </listItem>
+                    <listItem>
+                        Add or remove force effects that affect all or certain group of
+                        rigid bodies (see
+                        <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.Simulation.ForceEffects</codeEntityReference>).
+                    </listItem>
+                    <listItem>
+                        Add or remove constraints between rigid bodies (see
+                        <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Simulation.Constraints</codeEntityReference>).
+                    </listItem>
+                    <listItem>
+                        Manipulate bodies by applying forces (see <codeEntityReference qualifyHint="true">M:DigitalRune.Physics.RigidBody.AddForce(DigitalRune.Mathematics.Algebra.Vector3F)</codeEntityReference>),
+                        torques (see <codeEntityReference qualifyHint="true">M:DigitalRune.Physics.RigidBody.AddTorque(DigitalRune.Mathematics.Algebra.Vector3F)</codeEntityReference>),
+                        or instantly apply impulses (see <codeEntityReference qualifyHint="true">M:DigitalRune.Physics.RigidBody.ApplyImpulse(DigitalRune.Mathematics.Algebra.Vector3F,DigitalRune.Mathematics.Algebra.Vector3F)</codeEntityReference>).
+                        <markup>
+                            <br/>
+                        </markup>
+                        Bodies can be manipulate directly by setting their linear velocity
+                        (see <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.RigidBody.LinearVelocity</codeEntityReference>),
+                        or angular velocity (see <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.RigidBody.AngularVelocity</codeEntityReference>).
+                        <markup>
+                            <br/>
+                        </markup>
+                        Further, any property such as scale, pose, shape, mass, etc. can be
+                        changed any time between updates.
+                    </listItem>
+                    <listItem>
+                        Read the <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Simulation.ContactConstraints</codeEntityReference>
+                        to see where and with which intensity bodies have collided.
+                    </listItem>
+                    <listItem>
+                        And more...
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

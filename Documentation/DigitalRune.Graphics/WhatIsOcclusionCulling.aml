@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="6679e11b-3057-4a17-822c-6c7e58307687" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Introduction">
+            <title>What is occlusion culling?</title>
+            <content>
+                <para>
+                    <newTerm>Occlusion culling</newTerm> discards objects which are hidden from a certain
+                    point of view. This is achieved by testing the scene nodes against a set of occluders. An
+                    <newTerm>occluder</newTerm> is an object within a scene (such as a wall) that obscures the
+                    view and prevents objects behind it from being seen. Scene nodes that are occluded can be
+                    ignored during rendering.
+                </para>
+                <para>
+                    Occlusion culling effectively reduces the number of objects that need to be rendered, as
+                    demonstrated in the following example.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Example">
+            <title>Example</title>
+            <content>
+                <para>
+                    Each building in this example scene consists of 69 objects. The scene contains over
+                    6900 objects in total.
+                </para>
+                <mediaLink>
+                    <caption placement="after" lead="Figure">Test scene (OcclusionCullingSample)</caption>
+                    <image xlink:href="OcclusionCulling-Scene"/>
+                </mediaLink>
+                <para>
+                    The building walls in this example act as occluders.
+                </para>
+                <mediaLink>
+                    <caption placement="after" lead="Figure">Models (left) and occluders (right)</caption>
+                    <image xlink:href="Occluders"/>
+                </mediaLink>
+                <para>
+                    Objects behind a building are likely to be obscured. In the following screenshot, looking
+                    diagonally across scene, only a fraction of the objects are visible.
+                </para>
+                <mediaLink>
+                    <caption placement="after" lead="Figure">Camera view</caption>
+                    <image xlink:href="OcclusionCulling-Camera"/>
+                </mediaLink>
+                <para>
+                    The top view illustrates the effectiveness of occlusion culling in this example:
+                    The left image shows the entire scene; the right image shows only the visible objects
+                    after occlusion culling.
+                </para>
+                <mediaLink>
+                    <caption placement="after" lead="Figure">Top view of scene. Red lines indicate the viewing frustum.</caption>
+                    <image xlink:href="OcclusionCulling-Top"/>
+                </mediaLink>
+                <para>
+                    Occlusion culling manages to reduces the number of objects from a few thousand down to
+                    a few hundred.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Video">
+            <title>Video</title>
+            <content>
+                <para>
+                    Here is a video which demonstrates occlusion culling:
+                </para>
+                <list class="nobullet">
+                    <listItem>
+                        <para>
+                            <externalLink>
+                                <linkText>Video: Occlusion Culling</linkText>
+                                <linkUri>http://youtu.be/51yifB6zz-Q</linkUri>
+                            </externalLink>
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

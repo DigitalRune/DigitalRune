@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="53f0e8b9-91cc-4d19-ad2d-3413341c27a0" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This topic explains how to immediately apply a new animation value when
+                an animation is started.
+            </para>
+        </introduction>
+
+
+        <section address="UpdateAndApply">
+            <title>Immediately applying an animation value</title>
+            <content>
+                <para>
+                    When a new animation is started the animated properties do not change immediately.
+                    Animation values are only updated and applied when the methods
+                    <codeEntityReference qualifyHint="true">M:DigitalRune.Animation.AnimationManager.Update(System.TimeSpan)</codeEntityReference>
+                    and <codeEntityReference qualifyHint="true">M:DigitalRune.Animation.AnimationManager.ApplyAnimations</codeEntityReference>
+                    are called, which happens usually at some point in the game loop.
+                </para>
+                <para>
+                    But in certain cases the animated properties should change immediately.
+                    In these cases the method <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.IAnimationService.UpdateAndApplyAnimation(DigitalRune.Animation.IAnimatableProperty)</codeEntityReference>
+                    (or one of its overloads in the <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.IAnimationService</codeEntityReference>)
+                    or <codeEntityReference qualifyHint="false">M:DigitalRune.Animation.AnimationController.UpdateAndApply</codeEntityReference>
+                    of the <codeEntityReference qualifyHint="false">T:DigitalRune.Animation.AnimationController</codeEntityReference>
+                    can be called. These methods instantly evaluate all animations that affect
+                    the specified objects or properties and apply the new animation values.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+var animationController = animationService.StartAnimation(animation, property);
+
+// The value of 'property' has not changed yet, because
+// AnimationManager.Update() and AnimationManager.ApplyAnimations()
+// has not been called. Other components that read the value of
+// 'property' will see the original value.
+// But we can force the animation system to evaluate the animation
+// and apply the animation value right away:
+animationController.UpdateAndApply();
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

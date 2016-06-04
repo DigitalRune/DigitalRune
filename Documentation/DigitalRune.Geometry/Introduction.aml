@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="335dc86a-c68d-4d7b-8641-81dd80de5e76" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <mediaLink>
+                <image xlink:href="LogoGeometry"/>
+            </mediaLink>
+            <para>
+                <application>DigitalRune Geometry</application> is a .NET class library
+                containing types and algorithms to solve geometrical problems,
+                in particular <phrase>general purpose collision detection</phrase>.
+                The library was designed for use in computer graphics, video games and
+                virtual reality applications.
+            </para>
+            <autoOutline/>
+        </introduction>
+
+
+        <section address="Features">
+            <title>Features</title>
+            <content>
+                <para>
+                    Here is an overview of features in this product.
+                </para>
+            </content>
+            <sections>
+
+                <section>
+                    <title>General</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Intended and optimized for use in 3D real-time applications
+                            </listItem>
+                            <listItem>
+                                Multithreading support
+                            </listItem>
+                            <listItem>
+                                Extensible: Users can add new shape types, collision algorithms,
+                                collision filters or spatial partitioning methods
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Collision shapes</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Primitives: box, capsule, circle, cone, cylinder, height field, line, line segment,
+                                orthographic view volume, perspective view volume (frustum),
+                                plane, point, ray, rectangle, sphere, triangle
+                            </listItem>
+                            <listItem>
+                                Compound shapes: composites of primitives, convex hull of points, convex hull of shapes,
+                                Minkowski sum, Minkowski difference, triangle mesh
+                            </listItem>
+                            <listItem>
+                                Uniform and non-uniform scaling of shapes
+                            </listItem>
+                            <listItem>
+                                Automatic computation of tight-fitting bounding shapes
+                                (bounding spheres, bounding capsules, oriented bounding boxes and
+                                convex hulls)
+                            </listItem>
+                            <listItem>
+                                Volume computation for all shapes and closed triangle meshes
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Collision detection</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Supported collision queries:
+                                <list class="bullet">
+                                    <listItem>
+                                        Have-contact queries (boolean queries)
+                                    </listItem>
+                                    <listItem>
+                                        Closest-point queries (proximity queries)
+                                    </listItem>
+                                    <listItem>
+                                        Contact queries (intersection queries incl. contact positions,
+                                        normal vectors and penetration depths) and ray casting
+                                    </listItem>
+                                    <listItem>
+                                        Time-of-impact queries (Continuous Collision Detection, CCD)
+                                    </listItem>
+                                </list>
+                            </listItem>
+                            <listItem>
+                                Customizable collision filtering
+                            </listItem>
+                            <listItem>
+                                Broad phase collision detection
+                            </listItem>
+                            <listItem>
+                                Trigger objects
+                            </listItem>
+                            <listItem>
+                                Contact filtering and contact reduction
+                            </listItem>
+                            <listItem>
+                                Persistent contacts and contact caching
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Mesh manipulation</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Mesh representation using doubly-connected edge lists (DCEL)
+                            </listItem>
+                            <listItem>
+                                Convex hull creation and simplification
+                            </listItem>
+                            <listItem>
+                                Automatic approximation of triangle meshes for arbitrary convex shapes (using support map sampling)
+                            </listItem>
+                            <listItem>
+                                Approximate Convex Decomposition (ACD)
+                            </listItem>
+                            <listItem>
+                                ...
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+
+                <section>
+                    <title>Spatial partitioning</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                Axis-aligned bounding box tree
+                            </listItem>
+                            <listItem>
+                                Compressed axis-aligned bounding box tree for memory intense objects
+                            </listItem>
+                            <listItem>
+                                Dynamic axis-aligned bounding box tree for dynamic objects
+                            </listItem>
+                            <listItem>
+                                Adaptive axis-aligned bounding box tree for large deformable meshes
+                            </listItem>
+                            <listItem>
+                                Sweep and Prune method
+                            </listItem>
+                            <listItem>
+                                Dual partition broad-phase method
+                            </listItem>
+                            <listItem>
+                                ...
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Namespaces">
+            <title>Namespaces</title>
+            <content>
+                <para>
+                    Following namespaces belong to DigitalRune.Geometry:
+                </para>
+                <list class="nobullet">
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Geometry</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Geometry.Collisions</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Geometry.Collisions.Algorithms</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Geometry.Content</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Geometry.Content.Pipeline</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Geometry.Meshes</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Geometry.Partitioning</codeEntityReference>
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="true">N:DigitalRune.Geometry.Shapes</codeEntityReference>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Subtopics">
+            <title>Subtopics</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        <link xlink:href="1510119e-5c7c-4ebc-851d-684976c1fb29"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="7945ac67-dffc-4197-9fbf-58a9b68c0ea1"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="d995ee69-0650-4993-babd-1cdb1fd8fd7a"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="ed50b52b-a4d4-4192-bc72-0061085466d5"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="629ec6f3-8533-4ef9-94d0-220ef375387c"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="9df3b4b6-1218-43b8-be9e-319d97a5b9a0"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="4a3324b2-fc11-41bf-bb16-1e8ab644f1c4"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="7af0a749-83f9-437b-88fc-56f70c0c6dd2"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="76e11a96-42a4-495c-b8f8-6164a67d05d5"/>
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="e32cab3b-cc7c-42ee-8ec9-23dd4467edd0" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="3cbb67a9-77ff-44cd-be2a-618e0a2d89df"/>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

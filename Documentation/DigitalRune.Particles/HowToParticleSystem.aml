@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="2deefa98-6d2a-4ada-a51d-95a2625849df" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This article shows how to create a basic particle effect.
+            </para>
+        </introduction>
+
+
+        <section>
+            <title>Creating a simple particle effect</title>
+            <content>
+                <para>
+                    Following extract shows how to configure a basic particle effect. (The full source
+                    code can be found in the <legacyItalic>ParticlesSample</legacyItalic>.)
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Create a new "empty" particle system.
+_particleSystem = new ParticleSystem();
+
+// Names are optional, but very useful for debugging.
+_particleSystem.Name = "MyFirstParticleSystem";
+
+// The particle system uses pre-allocated arrays. We should define an upper limit for
+// the number of particles that can be alive at the same moment.
+_particleSystem.MaxNumberOfParticles = 100;
+      
+// The particle system's Pose defines the position and orientation of the particle system
+// in the world. 
+_particleSystem.Pose = new Pose(new Vector3F(0, 2, 0));
+
+// The properties of the particles in the particle system are defined using 
+// "particle parameters" (in the collection _particleSystem.Parameters).
+// Per default, there is only one parameter: "NormalizedAge" - which is managed
+// by the particle system itself and is the age of a particle in the range 0 - 1.
+      
+// All our particles should live for 1 second after they have been created. Therefore,
+// we add a "uniform" parameter called "Lifetime" and set it to 1.
+var lifetimeParameter = _particleSystem.Parameters.AddUniform<float>("Lifetime");
+lifetimeParameter.DefaultValue = 1f;
+
+// Each particle should have a position value. Therefore, we add a "varying" parameter
+// called "Position". "Varying" means that each particle has its own position value.
+// The particle system will internally allocate a Vector3F array to store all particle
+// positions.
+_particleSystem.Parameters.AddVarying<Vector3F>("Position");
+
+// When particles are created, we want them to appear at a random position in a spherical
+// volume. We add an effector which initializes the particle "Positions" of newly created
+// particles.
+_particleSystem.Effectors.Add(new StartPositionEffector
+{
+  // This effector should initialize the "Position" parameter.
+  // Parameter = "Position",     // "Position" is the default value anyway.
+
+  // The start values should be chosen from this random value distribution:
+  Distribution = new SphereDistribution { OuterRadius = 2 }
+});
+      
+// The particles should slowly fade in and out to avoid sudden appearance and disappearance.
+// We add a varying particle parameter called "Alpha" to store the alpha value per particle.
+_particleSystem.Parameters.AddVarying<float>("Alpha");
+
+// The SingleFadeEffector animates a float parameter from 0 to a target value and back to 0.
+_particleSystem.Effectors.Add(new SingleFadeEffector
+{
+  // If TargetValueParameter is not set, then the target value is 1.
+  //TargetValueParameter = 1,
+
+  // The fade-in/out times are relative to a time parameter. 
+  // By default the "NormalizedAge" of the particles is used.
+  //TimeParameter = "NormalizedAge",
+
+  // The Alpha value should be animated.
+  ValueParameter = "Alpha",
+
+  // The fade-in/out times relative to the normalized age.
+  FadeInStart = 0.0f,
+  FadeInEnd = 0.3f,
+  FadeOutStart = 0.5f,
+  FadeOutEnd = 1.0f,
+});
+
+// Next, we choose a texture for the particles. All particles should use the same
+// texture parameter, which means the parameter can be "uniform". We immediately
+// set this parameter to "LensFlare" which is the asset name of the texture in our 
+// content project.
+var textureParameter = _particleSystem.Parameters.AddUniform<string>("Texture");
+textureParameter.DefaultValue = "LensFlare";
+
+// The particle system should be drawn using additive alpha blending.
+var blendStateParameter = _particleSystem.Parameters.AddUniform<string>("BlendState");
+blendStateParameter.DefaultValue = "Additive";
+
+// Adding the particle system to a ParticleSystemService is optional but very useful
+// because the service will update the particle system each frame.
+ParticleSystemService.ParticleSystems.Add(_particleSystem);
+]]>
+                </code>
+                <para>
+                    To create particles simply call the
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Particles.ParticleSystem.AddParticles(System.Int32)</codeEntityReference>
+                    method.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Add 2 new particles.
+_particleSystem.AddParticles(2);
+]]>
+                </code>
+                <para>
+                    Or add a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Particles.Effectors.StreamEmitter</codeEntityReference>.
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Add an effector that emits particles at a constant rate.
+_particleSystem.Effectors.Add(new StreamEmitter
+{
+  DefaultEmissionRate = 30,
+});
+]]>
+                </code>
+                <para>
+                    This code excerpt showed how to configure a basic particle effect. The
+                    <legacyItalic>ParticlesSample</legacyItalic> (see <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />)
+                    further demonstrates how the particle system service is updated in the game loop and
+                    how the particle effect can be rendered. Check
+                    out the full source for more information.
+                </para>
+                <mediaLink>
+                    <caption placement="after">ParticlesSample: A basic particle effect</caption>
+                    <image xlink:href="ParticlesSampleBasic"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

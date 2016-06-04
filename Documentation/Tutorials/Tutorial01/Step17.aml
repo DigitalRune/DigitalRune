@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="7f0f5338-019d-4ef1-a579-3d99df4e1aa2" revisionNumber="1">
+    <developerConceptualDocument
+      xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                In this last step we will add a completely new render pipeline.
+            </para>
+            <para>
+                Here is a ZIP file with the final result of this tutorial:
+            </para>
+            <list class="nobullet">
+                <listItem>
+                    <externalLink>
+                        <linkText>Tutorial01-Final.zip</linkText>
+                        <linkUri>http://1drv.ms/1u6GLEN</linkUri>
+                    </externalLink>
+                </listItem>
+            </list>
+        </introduction>
+
+
+        <section address="ForwardRendering">
+            <title>
+                Interlude: Forward rendering
+            </title>
+            <content>
+                <para>
+                    The render pipeline is implemented in <legacyBold>MyGraphicsScreen</legacyBold>
+                    and currently looks like this:
+                </para>
+                <code language="c#" title="MyGraphicsScreen.cs">
+                    <![CDATA[
+…
+namespace MyGame
+{
+    public class MyGraphicsScreen : GraphicsScreen
+    {
+        …
+        
+        protected override void OnRender(RenderContext context)
+        {
+            …
+            // Frustum Culling: Get all the scene nodes that intersect the camera frustum.
+            var query = Scene.Query<CameraFrustumQuery>(context.CameraNode, context);
+
+            // Render opaque meshes that are visible from the camera
+            graphicsDevice.DepthStencilState = DepthStencilState.Default;
+            graphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
+            graphicsDevice.BlendState = BlendState.Opaque;
+            graphicsDevice.SamplerStates[0] = SamplerState.AnisotropicWrap;
+            context.RenderPass = "Default";
+            _meshRenderer.Render(query.SceneNodes, context);
+            context.RenderPass = null;
+
+            _skyRenderer.Render(query.SceneNodes, context);
+
+            graphicsDevice.DepthStencilState = DepthStencilState.DepthRead;
+            _billboardRenderer.Render(query.SceneNodes, context, RenderOrder.BackToFront);
+
+            context.SourceTexture = intermediateRenderTarget;
+            context.RenderTarget = screenRenderTarget;
+            context.Viewport = screenViewport;
+            _postProcessors.Process(context);
+            context.SourceTexture = null;
+
+            DebugRenderer.Render(context);
+            …
+        }
+    }
+}
+                    ]]>
+                </code>
+                <para>
+                    The important steps are
+                </para>
+                <list class="ordered">
+                    <listItem>
+                        Get the scene nodes that are visible from the camera (= <newTerm>frustum culling</newTerm>).
+                    </listItem>
+                    <listItem>Render opaque meshes using the render pass "Default".</listItem>
+                    <listItem>Render sky.</listItem>
+                    <listItem>Render billboards and particles.</listItem>
+                    <listItem>Run post-process flters.</listItem>
+                    <listItem>Render debug graphics.</listItem>
+                </list>
+                <para>
+                    Such a render pipeline can be useful for less powerful hardware (e.g. mobile devices).
+                    But several advanced features are lacking:
+                </para>
+                <list class="ordered">
+                    <listItem>High dynamic range (HDR) rendering</listItem>
+                    <listItem>Better materials (e.g. normal mapping)</listItem>
+                    <listItem>Rendering shadows, reflections, lens flares</listItem>
+                    <listItem>Screen space ambient occlusion</listItem>
+                    <listItem>etc.</listItem>
+                </list>
+                <para>
+                    Time to look at a more complex render pipeline.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="DeferredRendering">
+            <title>Add deferred rendering</title>
+            <content>
+                <para>
+                    Let's drop a new graphics screen into the project. This graphics screen was taken
+                    from the DigitalRune samples and I have made only minor modifications. I have added
+                    following files to the project:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Tutorial-01-31"/>
+                </mediaLink>
+                <para>
+                    These files are included in the final ZIP file of this tutorial (see link above).
+                </para>
+                <para>
+                    The new render pipeline is implemented in <legacyBold>DeferredGraphicsScreen</legacyBold>.
+                    To use it we make these changes to <legacyBold>MyGameComponent</legacyBold>:
+                </para>
+                <code language="c#" title="MyGameComponent.cs">
+                    <![CDATA[
+…
+namespace MyGame
+{
+    public class MyGameComponent : Microsoft.Xna.Framework.GameComponent
+    {
+        private IInputService _inputService;
+        private IGraphicsService _graphicsService;
+        //private MyGraphicsScreen _myGraphicsScreen;                                     // Comment out
+        private DeferredGraphicsScreen _myGraphicsScreen;                                 // New
+        private MenuWindow _menuWindow;
+        
+        public MyGameComponent(Game game)
+            : base(game)
+        {
+            _inputService = ServiceLocator.Current.GetInstance<IInputService>();
+
+            _graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
+            
+            //_myGraphicsScreen = new MyGraphicsScreen(_graphicsService);                 // Comment out
+            _myGraphicsScreen = new DeferredGraphicsScreen(ServiceLocator.Current);       // New
+            _graphicsService.Screens.Add(_myGraphicsScreen);
+            ((ServiceContainer)ServiceLocator.Current).Register(typeof(IScene), null, _myGraphicsScreen.Scene);
+            …
+        }
+        …
+                    ]]>
+                </code>
+                <para>
+                    When you run the game, you can see that the models are not rendered.
+                </para>
+                <alert class="tip">
+                    <para>
+                        Sidenote: Normally, if models are not rendered, the first thing I do is to
+                        enable the debug rendering to check bounding boxes, model skeletons, etc.
+                    </para>
+                </alert>
+                <para>
+                    The reason that the models are not rendered is that they need different effects.
+                    For example, the currrent material of the ground model (
+                    <localUri>ground.drmat</localUri>) is:
+                </para>
+                <code language="xml" title="ground.drmat">
+                    <![CDATA[
+<?xml version="1.0" encoding="utf-8"?>
+<Material>
+    <Pass Name="Default" Effect="BasicEffect" Profile="Any">
+        <Parameter Name="Alpha" Value="1" />
+        <Parameter Name="DiffuseColor" Value="0.8,0.8,0.8" />
+        <Parameter Name="EmissiveColor" Value="0,0,0" />
+        <Parameter Name="SpecularColor" Value="0,0,0" />
+        <Parameter Name="SpecularPower" Value="16" />
+        <Parameter Name="VertexColorEnabled" Value="False" />
+        <Texture Name="Texture" File="ground.png" />
+    </Pass>
+</Material>
+                    ]]>
+                </code>
+                <para>
+                    There is one render pass that uses the <legacyBold>BasicEffect</legacyBold> of XNA.
+                    This effect is used when <legacyBold>MyGraphicsScreen </legacyBold> renders the meshes with:
+                </para>
+                <code language="c#">
+                    context.RenderPass = "Default";
+                    _meshRenderer.Render(query.SceneNodes, context);
+                </code>
+                <para>
+                    The <legacyBold>BasicEffect</legacyBold> transforms the meshes and computes the
+                    shading in one pass – this kind of rendering is called <newTerm>forward rendering</newTerm>.
+                </para>
+                <para>
+                    If you look into the <legacyBold>DeferredGraphicsScreen</legacyBold> classes you
+                    will not find a use of the render pass "Default". Several other render passes are used instead, for example:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+context.RenderPass = "ShadowMap";
+ShadowMapRenderer.Render(sceneQuery.Lights, context);
+…
+context.RenderPass = "GBuffer";
+graphicsDevice.DepthStencilState = DepthStencilState.Default;
+graphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
+graphicsDevice.BlendState = BlendState.Opaque;
+_sceneNodeRenderer.Render(sceneNodes, context);
+…
+context.RenderPass = "Material";
+MeshRenderer.Render(sceneQuery.RenderableNodes, context);
+                    ]]>
+                </code>
+                <para>
+                    The graphics screen renders shadow maps for shadows. <newTerm>Deferred lighting</newTerm>
+                    transforms the meshes in the "GBuffer" pass. The transformed geometry is stored in
+                    a render target called the
+                    <externalLink>
+                        <linkText>G-buffer</linkText>
+                        <linkUri>http://en.wikipedia.org/wiki/Deferred_shading</linkUri>
+                    </externalLink>. The shading happens in a separate "Material" pass. If these
+                    render passes are not present in the DRMAT file, then the meshes are not rendered
+                    in the corresponding render passes. We have to update the materials of the models.
+                    Here is the new material of the ground model (<localUri>ground.drmat</localUri>):
+                </para>
+                <code language="xml" title="ground.drmat">
+                    <![CDATA[
+<?xml version="1.0" encoding="utf-8"?>
+<Material>
+    <Pass Name="Default" Effect="BasicEffect" Profile="Any">
+        …
+    </Pass>
+    <Pass Name="ShadowMap" Effect="DigitalRune/Materials/ShadowMap" Profile="HiDef" />
+    <Pass Name="GBuffer" Effect="DigitalRune/Materials/GBuffer" Profile="HiDef">
+        <Parameter Name="SpecularPower" Value="10" />
+    </Pass>
+    <Pass Name="Material" Effect="DigitalRune/Materials/Material" Profile="HiDef">
+        <Parameter Name="DiffuseColor" Value="1,1,1" />
+        <Parameter Name="SpecularColor" Value="0.1,0.1,0.1" />
+        <Texture Name="DiffuseTexture" File="ground.png" />
+    </Pass>
+</Material>
+                    ]]>
+                </code>
+                <para>
+                    The referenced effects are pre-built effects of DigitalRune Graphics – however,
+                    you could also use your own effects.
+                </para>
+                <para>
+                    The materials of all models need to be updated. The correct materials can be found
+                    in the final ZIP file of this tutorial.
+                </para>
+                <para>
+                    One more thing to note is: The animated model needs to use different effects that support mesh skinning:
+                </para>
+                <code language="xml">
+                    <![CDATA[
+<?xml version="1.0" encoding="utf-8"?>
+<Material>
+    <Pass Name="Default" Effect="SkinnedEffect" Profile="Any">
+        …
+    </Pass>
+    <Pass Name="ShadowMap" Effect="DigitalRune/Materials/ShadowMapSkinned" Profile="HiDef" />
+    <Pass Name="GBuffer" Effect="DigitalRune/Materials/GBufferNormalSkinned" Profile="HiDef">
+        …
+    </Pass>
+    <Pass Name="Material" Effect="DigitalRune/Materials/MaterialSkinned" Profile="HiDef">
+        …
+    </Pass>
+</Material>
+                    ]]>
+                </code>
+                <para>
+                    Once the materials are updated, you should see the final result of this tutorial:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Tutorial-01-01"/>
+                </mediaLink>
+                <para>
+                    For more information, about the deferred rendering please check out the source
+                    code of the DigitalRune samples.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+    </developerConceptualDocument>
+</topic>

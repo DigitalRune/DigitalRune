@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="6cc96ddc-4127-4ec7-889a-19cb71af0d3d" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+
+        <introduction>
+            <para>This sections contains some notes about Autodesk FBX files.</para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="FBX">
+            <title>FBX format</title>
+            <content>
+                <para>
+                    Autodesk FBX (file extension .fbx) is a proprietary file format for exchanging 3D
+                    assets. FBX is currently the best choice for importing models and animations into XNA
+                    or MonoGame. However, there are several versions of the FBX format - not all versions
+                    are compatible with XNA or MonoGame!
+                </para>
+                <para>
+                    List of FBX versions (and alternate names in brackets):
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        6.x (FBX 2006, FBX 2009, FBX 2010)
+                    </listItem>
+                    <listItem>
+                        7.1 (FBX 2011)
+                    </listItem>
+                    <listItem>
+                        7.2 (FBX 2012)
+                    </listItem>
+                    <listItem>
+                        7.3 (FBX 2013)
+                    </listItem>
+                    <listItem>
+                        7.4 (FBX 2014)
+                    </listItem>
+                </list>
+                <para>
+                    More important than the file version is the structure of the scene in the FBX file.
+                    The structure depends on the FBX exporter and the export settings being used.
+                </para>
+                <para>
+                    The FBX format stores the units (m, cm, inches, etc.) that are used in the scene.
+                    The default unit used by FBX is cm. Some importers ignore the unit settings
+                    and assume that 1 unit = 1 cm. Therefore it might be necessary to manually
+                    scale the model during import from cm to the correct unit.
+                </para>
+                <para>
+                    The
+                    <externalLink>
+                        <linkText>Autodesk FBX Converter</linkText>
+                        <linkUri>
+                            <![CDATA[http://usa.autodesk.com/adsk/servlet/pc/item?siteID=123112&id=10775920]]>
+                        </linkUri>
+                    </externalLink>
+                    can be used to convert 3D file formats (3DS, DAE, DXF, FBX, OBJ) and to preview
+                    models. It can also convert FBX files between different FBX versions.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="XNA">
+            <title>Importing FBX files in XNA</title>
+            <content>
+                <para>
+                    According to the
+                    <externalLink>
+                        <linkText>MSDN documentation</linkText>
+                        <linkUri>http://msdn.microsoft.com/en-us/library/bb447762.aspx</linkUri>
+                    </externalLink>,
+                    XNA was designed to work with assets exported with the 2006.11 version of the FBX
+                    exporter.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="MonoGame">
+            <title>Importing FBX files in MonoGame</title>
+            <content>
+                <para>
+                    MonoGame uses
+                    <externalLink>
+                        <linkText>Assimp</linkText>
+                        <linkUri>http://assimp.sourceforge.net/</linkUri>
+                    </externalLink>
+                    to import FBX files. The current version of Assimp supports FBX version 7.1 (FBX 2011),
+                    7.2 (FBX 2012), and 7.3 (FBX 2013).
+                </para>
+                <para>
+                    Assimp is not as powerful as the Autodesk FBX SDK - not all FBX features are supported.
+                    Limitations:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        A model cannot have more than one skeleton.
+                    </listItem>
+                    <listItem>
+                        Bone names need to be unique. Bones names must not conflict with other node names.
+                    </listItem>
+                    <listItem>
+                        If the skeleton includes non-deformation bones: Always export the skeleton in bind pose
+                        (rest pose)!
+                    </listItem>
+                    <listItem>
+                        Assimp only reads the key frame values stored in the FBX file. It does not fully
+                        evaluate the scene for animations. This means, all bones that are animated need
+                        to be key-framed!
+                    </listItem>
+                </list>
+                <alert class="tip">
+                    <para>
+                        <externalLink>
+                            <linkText>open3mod</linkText>
+                            <linkUri>http://www.open3mod.com/</linkUri>
+                        </externalLink>
+                        is a 3D model viewer built using Assimp. You can check your exported models
+                        and animations using open3mod. If the model looks okay in open3mod, then
+                        MonoGame should not have any troubles loading the model.
+                    </para>
+                </alert>
+            </content>
+        </section>
+
+
+        <section address="Subtopics">
+            <title>Subtopics</title>
+            <content>
+                <para></para>
+                <list class="nobullet">
+                    <listItem>
+                        <link xlink:href="48064718-39d0-4169-90d7-09cfad8ae1f8" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="6f749972-9cb2-4274-b283-c327ba45e379" />
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <externalLink>
+                <linkText>Autodesk FBX Converter</linkText>
+                <linkUri>
+                    <![CDATA[http://usa.autodesk.com/adsk/servlet/pc/item?siteID=123112&id=10775920]]>
+                </linkUri>
+            </externalLink>
+            <externalLink>
+                <linkText>Assimp - Open Asset Import Library</linkText>
+                <linkUri>http://assimp.sourceforge.net/</linkUri>
+            </externalLink>
+            <externalLink>
+                <linkText>open3mod - Open-Source 3D Viewer built with Assimp</linkText>
+                <linkUri>http://www.open3mod.com/</linkUri>
+            </externalLink>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

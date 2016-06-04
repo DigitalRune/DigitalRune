@@ -1,0 +1,480 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="9fd388c5-bfb4-42ce-aada-32e2dcada3f3" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="ReleaseNotes">
+            <title>Release notes</title>
+            <content>
+            </content>
+            <sections>
+                <section address="MemLeak">
+                    <title>Memory leak in MonoGame</title>
+                    <content>
+                        <para>
+                            A critical memory leak in MonoGame has been fixed. The problem was caused by the following methods:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                VertexBuffer.GetData
+                            </listItem>
+                            <listItem>
+                                IndexBuffer.GetData
+                            </listItem>
+                        </list>
+                        <para>
+                            These methods pinned the data arrays and thereby prevented these objects from being garbage collected.
+                        </para>
+                        <para>
+                            The following DigitalRune methods were affected by this bug:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Geometry.Meshes.TriangleMesh.FromModel(Microsoft.Xna.Framework.Graphics.Model)</codeEntityReference>
+                            </listItem>
+                            <listItem>
+                                <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Graphics.MeshHelper.Merge(DigitalRune.Graphics.Mesh,System.Collections.Generic.IList{DigitalRune.Mathematics.Algebra.Vector3F},System.Collections.Generic.IList{DigitalRune.Geometry.Pose})</codeEntityReference>
+                            </listItem>
+                            <listItem>
+                                <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Graphics.MeshHelper.ToTriangleMesh(DigitalRune.Graphics.Mesh)</codeEntityReference>
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="WBOIT">
+                    <title>Weighted blended order-independent transparency</title>
+                    <content>
+                        <para>
+                            A new sample demonstrates <newTerm>weighted blended order-independent transparency</newTerm>,
+                            which is a technique for rendering transparent objects. In contrast to traditional
+                            alpha blending, it does not require geometry to be rendered in sorted order (back-to-front).
+                        </para>
+                        <para>
+                            Figure 1 shows an opaque tank model (reference), the model rendered with alpha blending (α = 0.8),
+                            and the model rendered with weighted blended order-independent transparency (α = 0.8).
+                            Triangles are submitted unsorted, which results in wrong visibility when using traditional alpha blending.
+                        </para>
+                        <mediaLink>
+                            <caption placement="after">
+                                Figure 1: Opaque model (top), alpha blended transparency (middle), weighted blended
+                                order-independent transparency (bottom).
+                            </caption>
+                            <image xlink:href="WeightedBlendedOITSample"/>
+                        </mediaLink>
+                        <para>
+                            (Note: The shader used during weighted blended order-independent transparency uses a different lighting model, therefore the shading does not match exactly.)
+                        </para>
+                        <para>
+                            For more information:
+                        </para>
+                        <list class="nobullet">
+                            <listItem>
+                                McGuire and Bavoil, Weighted Blended Order-Independent Transparency,
+                                Journal of Computer Graphics Techniques (JCGT), vol. 2, no. 2, 122--141, 2013.
+                                Available online http://jcgt.org/published/0002/02/09/
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Documentation">
+                    <title>Documentation</title>
+                    <content>
+                        <para>
+                            The documentation is now generated using the latest Sandcastle presentation style.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="ChangeLog">
+            <title>Change log</title>
+            <content>
+            </content>
+            <sections>
+                <section address="General">
+                    <title>General</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                CHANGE: Documentation uses latest Sandcastle presentation style.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Geometry">
+                    <title>DigitalRune Geometry 1.17.1</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                CHANGE:
+                                <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Geometry.Meshes.TriangleMesh.FromModel(Microsoft.Xna.Framework.Graphics.Model)</codeEntityReference>
+                                now supports models with 32 bit indices.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Graphics">
+                    <title>DigitalRune Graphics 1.0beta2</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                NEW: Support for processing additional texture formats.
+                                Formats supported in previous release:
+                                <list class="bullet">
+                                    <listItem>
+                                        R32G32B32A32_Float,
+                                    </listItem>
+                                    <listItem>
+                                        R8G8B8A8_UNorm,
+                                    </listItem>
+                                    <listItem>
+                                        R8G8B8A8_UNorm_SRgb,
+                                    </listItem>
+                                    <listItem>
+                                        R8_UNorm,
+                                    </listItem>
+                                    <listItem>
+                                        A8_UNorm,
+                                    </listItem>
+                                    <listItem>
+                                        BC1_UNorm,
+                                    </listItem>
+                                    <listItem>
+                                        BC1_UNorm_SRgb,
+                                    </listItem>
+                                    <listItem>
+                                        BC2_UNorm,
+                                    </listItem>
+                                    <listItem>
+                                        BC2_UNorm_SRgb,
+                                    </listItem>
+                                    <listItem>
+                                        BC3_UNorm,
+                                    </listItem>
+                                    <listItem>
+                                        BC3_UNorm_SRgb,
+                                    </listItem>
+                                    <listItem>
+                                        B8G8R8A8_UNorm,
+                                    </listItem>
+                                    <listItem>
+                                        B8G8R8A8_UNorm_SRgb,
+                                    </listItem>
+                                    <listItem>
+                                        B5G6R5_UNorm*,
+                                    </listItem>
+                                    <listItem>
+                                        B5G5R5A1_UNorm*,
+                                    </listItem>
+                                    <listItem>
+                                        B4G4R4A4_UNorm* (* loading only)
+                                    </listItem>
+                                </list>
+                                Formats added in this release:
+                                <list class="bullet">
+                                    <listItem>
+                                        R32G32B32A32_UInt,
+                                    </listItem>
+                                    <listItem>
+                                        R32G32B32A32_SInt,
+                                    </listItem>
+                                    <listItem>
+                                        R32G32B32_Float,
+                                    </listItem>
+                                    <listItem>
+                                        R32G32B32_UInt,
+                                    </listItem>
+                                    <listItem>
+                                        R32G32B32_SInt,
+                                    </listItem>
+                                    <listItem>
+                                        R32G32_Float,
+                                    </listItem>
+                                    <listItem>
+                                        R32G32_UInt,
+                                    </listItem>
+                                    <listItem>
+                                        R32G32_SInt,
+                                    </listItem>
+                                    <listItem>
+                                        R32_Float,
+                                    </listItem>
+                                    <listItem>
+                                        R32_UInt,
+                                    </listItem>
+                                    <listItem>
+                                        R32_SInt,
+                                    </listItem>
+                                    <listItem>
+                                        R16G16B16A16_Float,
+                                    </listItem>
+                                    <listItem>
+                                        R16G16B16A16_UNorm,
+                                    </listItem>
+                                    <listItem>
+                                        R16G16B16A16_UInt,
+                                    </listItem>
+                                    <listItem>
+                                        R16G16B16A16_SNorm,
+                                    </listItem>
+                                    <listItem>
+                                        R16G16B16A16_SInt,
+                                    </listItem>
+                                    <listItem>
+                                        R16G16_Float,
+                                    </listItem>
+                                    <listItem>
+                                        R16G16_UNorm,
+                                    </listItem>
+                                    <listItem>
+                                        R16G16_UInt,
+                                    </listItem>
+                                    <listItem>
+                                        R16G16_SNorm,
+                                    </listItem>
+                                    <listItem>
+                                        R16G16_SInt,
+                                    </listItem>
+                                    <listItem>
+                                        R16_Float,
+                                    </listItem>
+                                    <listItem>
+                                        R16_UNorm,
+                                    </listItem>
+                                    <listItem>
+                                        R16_UInt,
+                                    </listItem>
+                                    <listItem>
+                                        R16_SNorm,
+                                    </listItem>
+                                    <listItem>
+                                        R16_SInt,
+                                    </listItem>
+                                    <listItem>
+                                        R8G8B8A8_UInt,
+                                    </listItem>
+                                    <listItem>
+                                        R8G8B8A8_SNorm,
+                                    </listItem>
+                                    <listItem>
+                                        R8G8B8A8_SInt,
+                                    </listItem>
+                                    <listItem>
+                                        R8G8_UNorm,
+                                    </listItem>
+                                    <listItem>
+                                        R8G8_UInt,
+                                    </listItem>
+                                    <listItem>
+                                        R8G8_SNorm,
+                                    </listItem>
+                                    <listItem>
+                                        R8G8_SInt,
+                                    </listItem>
+                                    <listItem>
+                                        R8_UInt,
+                                    </listItem>
+                                    <listItem>
+                                        R8_SNorm,
+                                    </listItem>
+                                    <listItem>
+                                        R8_SInt,
+                                    </listItem>
+                                    <listItem>
+                                        A8_UNorm,
+                                    </listItem>
+                                    <listItem>
+                                        B8G8R8X8_UNorm,
+                                    </listItem>
+                                    <listItem>
+                                        B8G8R8X8_UNorm_SRgb
+                                    </listItem>
+                                </list>
+                            </listItem>
+                            <listItem>
+                                NEW: Effect parameter bindings will throw an exception if the value type is
+                                not compatible with effect parameter.
+                                <markup>
+                                    <br/>
+                                </markup>
+                                (Additional checks are necessary because MonoGame does not fully validate
+                                effect parameter values.)
+                            </listItem>
+                            <listItem>
+                                NEW: Properties
+                                <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Effects.EffectBindingException.EffectName</codeEntityReference>
+                                and
+                                <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.Effects.EffectBindingException.EffectParameterName</codeEntityReference>
+                                added to
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.EffectBindingException</codeEntityReference>
+                                to provide additional information when a binding fails.
+                            </listItem>
+                            <listItem>
+                                NEW: <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Interop.FormsPresentationTarget</codeEntityReference>
+                                is now also available in MonoGame.
+                            </listItem>
+                            <listItem>
+                                CHANGE: Presentation targets refactored. It is now possible to implement
+                                custom presentation targets. (Methods
+                                <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Graphics.Interop.IPresentationTarget.BeginRender(DigitalRune.Graphics.RenderContext)</codeEntityReference>
+                                and
+                                <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Graphics.Interop.IPresentationTarget.EndRender(DigitalRune.Graphics.RenderContext)</codeEntityReference>
+                                added.
+                                <legacyBold>IPresentationTarget.Handle</legacyBold> is no longer needed and has been marked as obsolete.)
+                            </listItem>
+                            <listItem>
+                                CHANGE: Conservative shadow caster culling improved.
+                            </listItem>
+                            <listItem>
+                                CHANGE: Some "false positives" removed in progressive shadow caster culling.
+                            </listItem>
+                            <listItem>
+                              CHANGE: Clamp large (infinite) AABBs to camera/light AABB in
+                              <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.OcclusionBuffer</codeEntityReference>.
+                              Automatically handle infinite objects. Improve performance for large objects.
+                            </listItem>
+                            <listItem>
+                                CHANGE: Calculate exact view-normalized distance in
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.OcclusionBuffer</codeEntityReference>.
+                                (Currently shader computes position from AABB instead of scene node origin.)
+                            </listItem>
+                            <listItem>
+                                CHANGE: MeshHelper.ToTriangleMesh now supports meshes with 32 bit indices.
+                            </listItem>
+                            <listItem>
+                                REMOVE: Method <legacyBold>GraphicsManager.Present()</legacyBold> has been marked
+                                as obsolete and will be removed in future version.
+                            </listItem>
+                            <listItem>
+                                FIX: <codeEntityReference qualifyHint="false">T:System.ArgumentNullException</codeEntityReference>
+                                in DigitalRune Model Processor if skinned model is exported without any materials. (XNA only.)
+                            </listItem>
+                            <listItem>
+                                FIX: When a skinned model without textures and without material definition (.drmat file)
+                                is processed, the wrong effect may stored in the .xnb file.
+                            </listItem>
+                            <listItem>
+                                FIX: When skinned model is exported without any materials, a SkinnedEffect is set as default.
+                            </listItem>
+                            <listItem>
+                                FIX: Content processors try to automatically find resources if models contain invalid paths.
+                                (For example, when a FBX file contains an invalid texture file name (path does not exist),
+                                the model processor will search in the content folder and in the current directory for a
+                                matching file.)
+                            </listItem>
+                            <listItem>
+                                FIX: The DigitalRune Texture processor may throw an exception ("Surface format is not supported.")
+                                even if no processing is required.
+                            </listItem>
+                            <listItem>
+                                FIX: Minor floating-point rounding issues in
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SpriteRenderer</codeEntityReference>.
+                            </listItem>
+                            <listItem>
+                                FIX: Effect parameter bindings for XNA stock effects (AlphaTestEffect, BasicEffect, etc.)
+                                fail when using
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Algebra.Vector3F</codeEntityReference>/<codeEntityReference qualifyHint="false">T:DigitalRune.Mathematics.Algebra.Vector4F</codeEntityReference>
+                                instead of
+                                <codeEntityReference qualifyHint="false">T:Microsoft.Xna.Framework.Vector3</codeEntityReference>/<codeEntityReference qualifyHint="false">T:Microsoft.Xna.Framework.Vector4</codeEntityReference>.
+                            </listItem>
+                            <listItem>
+                                FIX: <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.OcclusionBuffer</codeEntityReference>
+                                does not handle partially infinite shapes (e.g. ocean's
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Shapes.PlaneShape</codeEntityReference>)
+                                correctly.
+                            </listItem>
+                            <listItem>
+                                FIX: <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.OcclusionBuffer</codeEntityReference>
+                                did not cull shadow casters that were occluded from the light's point of view when "progressive shadow caster culling" is enabled.
+                            </listItem>
+                            <listItem>
+                                FIX: <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.OcclusionBuffer</codeEntityReference>
+                                may uses wrong <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.SceneNode.MaxDistance</codeEntityReference>
+                                when culling shadow casters.
+                            </listItem>
+                            <listItem>
+                                FIX: Wrong order of gamma correction and premultiplication in <localUri>Billboard.fx</localUri>.
+                            </listItem>
+                            <listItem>
+                                FIX: Wrong opacity when rendering semi-transparent textures with <localUri>Forward.fx</localUri>.
+                                (Premultiplication and gamma correction are calculated in the wrong order, which results in a
+                                low opacity.)
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="Samples">
+                    <title>Samples</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                NEW: <localUri>WeightedBlendedOITSample</localUri> added, which implements
+                                <newTerm>weighted blended order-independent transparency</newTerm>.
+                            </listItem>
+                            <listItem>
+                                CHANGE: <localUri>InteropSample</localUri> (XNA) and <localUri>WpfInteropSample</localUri>
+                                (MonoGame) merged (shared source code).
+                                <markup>
+                                    <br/>
+                                </markup>
+                                The folder <localUri>InteropSample</localUri> now includes two Visual Studio projects:
+                                <localUri>InteropSample-XNA.csproj</localUri> and <localUri>InteropSample-MonoGame.csproj</localUri>.
+                                <markup>
+                                    <br/>
+                                </markup>
+                                The folder <localUri>WpfInteropSample</localUri> has been removed.
+                            </listItem>
+                            <listItem>
+                                FIX: <localUri>WpfInteropSample</localUri> does not end when WPF window
+                                is active and ALT+F4 is pressed. (This bug was introduced by a change in MonoGame.)
+                            </listItem>
+                            <listItem>
+                                FIX: Mesh name not set in <localUri>ProceduralObject.cs</localUri>.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+                <section address="MonoGame">
+                    <title>MonoGame 3.4</title>
+                    <content>
+                        <list class="bullet">
+                            <listItem>
+                                <externalLink>
+                                    <linkText>MonoGame 3.4 Release Notes</linkText>
+                                    <linkUri>http://www.monogame.net/2015/04/29/monogame-3-4/</linkUri>
+                                </externalLink>
+                            </listItem>
+                            <listItem>
+                                <legacyBold>BREAKING CHANGE:</legacyBold> MGFX uses a new preprocessor for
+                                effect files. Include files now need to end with a newline character, otherwise
+                                compilation fails.
+                            </listItem>
+                            <listItem>
+                                <legacyBold>BREAKING CHANGE:</legacyBold> Effect files (.fx) need to be rebuilt.
+                            </listItem>
+                            <listItem>
+                                <legacyBold>CRITICAL FIX:</legacyBold> Memory leak in <legacyBold>VertexBuffer.GetData</legacyBold> and
+                                <legacyBold>IndexBuffer.GetData</legacyBold>.
+                            </listItem>
+                            <listItem>
+                                FIX: It is now possible to import skinned models from FBX files where the root
+                                bone has a transformation pivot.
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

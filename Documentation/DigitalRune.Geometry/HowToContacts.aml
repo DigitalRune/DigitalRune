@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="20035425-d861-43db-91c2-a4b4d30cbc16" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This topic will demonstrate how to use a collision domain to compute contacts
+                between several objects.
+            </para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Namespaces">
+            <title>Add DigitalRune namespaces</title>
+            <content>
+                <para>
+                    The following example will use data types from DigitalRune Geometry and
+                    Mathematics. The following namespaces must be imported at the beginning of
+                    the source code file:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+using DigitalRune.Geometry;
+using DigitalRune.Geometry.Collisions;
+using DigitalRune.Geometry.Shapes;
+using DigitalRune.Mathematics.Algebra;
+using DigitalRune.Mathematics.Statistics;
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Domain">
+            <title>Create a collision domain and collision objects</title>
+            <content>
+                <para>
+                    A collision domain manages a group of collision objects. It is not necessary
+                    to use a collision domain to compute contacts between objects.
+                    <codeEntityReference>T:DigitalRune.Geometry.Collisions.CollisionDetection</codeEntityReference>
+                    can compute this as well. But it is strongly recommended to use a collision
+                    domain because it is much faster. The domain can optimize the contact computation
+                    because all relevant objects must be registered in the domain beforehand
+                    and the domain can re-use old contact information. A collision domain is
+                    created with
+                </para>
+                <code language="c#">
+                    CollisionDomain domain = new CollisionDomain();
+                </code>
+                <para>
+                    Most games will use one collision domain for all collision objects.
+                </para>
+                <para>
+                    Next, we add a couple of box-shaped collision objects with random positions
+                    and random orientations.
+                </para>
+                <code language="cs">
+                    <![CDATA[
+for (int i = 0; i < 100; i++)
+{
+  // Define position/orientation and shape.
+  GeometricObject geometricObject = new GeometricObject()
+  {
+    Shape = new BoxShape(1, 2, 3),
+    Pose = new Pose(RandomHelper.Random.NextVector3F(-20, 20),
+    RandomHelper.Random.NextQuaternionF())),
+  };
+
+  // Create collision object.
+  CollisionObject collisionObject = new CollisionObject(geometricObject);
+
+  // Add collision object to collision domain.
+  domain.CollisionObjects.Add(collisionObject);
+}
+]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="Contacts">
+            <title>Compute contacts</title>
+            <content>
+                <para>
+                    The collision domains computes all contacts by calling
+                </para>
+                <code language="c#">
+                    domain.Update(1.0f / 60.0f);
+                </code>
+                <para>
+                    The method argument is the size of the time step, which is 1/60 s (60 Hz)
+                    for most games. This method is usually called once per frame. After this call
+                    the collision domain contains up-to-date contact information for all collision
+                    objects. Following code enumerates all pairs of touching objects:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+foreach (ContactSet contactSet in domain.ContactSets)
+{
+  // Get touching object pair.
+  CollisionObject objectA = contactSet.ObjectA;
+  CollisionObject objectB = contactSet.ObjectB;
+
+  // Handle contact of the objects, for example:
+  // - play a sound,
+  // - reduce "health" of objects,
+  // - move objects,
+  // - ...
+}
+]]>
+                </code>
+                <para>
+                    The contact set also contains contacts that describe the contact details, including
+                    penetration depth, normal vector, contact position, age of the contact, etc.
+                </para>
+                <para>
+                    If you are only interested in the contact of a specific object or a specific
+                    object pair, you can call:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Check if object 21 touches any other object.
+bool object21HasContact = domain.HasContact(domain.CollisionObjects[21]);
+
+// Check if object 10 touches object 20.
+bool object10And20HaveContact = domain.HaveContact(domain.CollisionObjects[10], domain.CollisionObjects[20]);
+
+// Get all contact sets for object 73.
+// (Each contact set describes the contacts between a pair of collision objects.)
+IEnumerable<ContactSet> contactsWithObject73 = domain.GetContacts(domain.CollisionObjects[73]);
+]]>
+                </code>
+                <alert class="note">
+                    <para>
+                        In a typical main loop of a game the following steps will usually be performed:
+                    </para>
+                    <list class="ordered">
+                        <listItem>
+                            <para>
+                                Get the contacts of the objects from the collision domain.
+                            </para>
+                        </listItem>
+                        <listItem>
+                            <para>
+                                Change the poses of the collision objects according to the contact information.
+                                For example, let objects stop or bounce if they hit a wall.
+                            </para>
+                        </listItem>
+                        <listItem>
+                            <para>
+                                Update the collision domain to compute new contacts.
+                            </para>
+                        </listItem>
+                    </list>
+                </alert>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="bc000d5a-cac9-49f1-9a18-a26b17faa8e9" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>This section explains how to manage a physics simulation.</para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="Simulation">
+            <title>The Simulation class</title>
+            <content>
+                <para>
+                    The class <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Simulation</codeEntityReference>
+                    is the core of the physics library. The simulation manages collections of
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.Simulation.RigidBodies</codeEntityReference>,
+                        which represent static or movable solid objects,
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.Simulation.ForceEffects</codeEntityReference>,
+                        which are effects that apply forces on rigid bodies and create motion (e.g. Gravity), and
+                    </listItem>
+                    <listItem>
+                        <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.Simulation.Constraints</codeEntityReference>,
+                        which restrict the motion of rigid bodies (e.g. contact constraints stop objects from
+                        moving through other solid objects, joints connect bodies, motors create motions, etc.).
+                    </listItem>
+                </list>
+                <para>
+                    Objects in these collections take part in the simulation. All object that should be
+                    simulated need to be added to these collections. Objects that are not added
+                    to these collections are ignored by the simulation.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Settings">
+            <title>Simulation settings</title>
+            <content>
+                <para>
+                    The simulation has several configurable simulation parameters.
+                    These can be changed using the property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.Simulation.Settings</codeEntityReference>
+                    of the simulation. See also
+                    <codeEntityReference qualifyHint="true">N:DigitalRune.Physics.Settings</codeEntityReference>
+                    and
+                    <link xlink:href="370297cf-88c8-4214-ba8a-471fa3533e7b" />.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Advance">
+            <title>Advancing the simulation</title>
+            <content>
+                <para>
+                    To advance the simulation the method
+                    <codeEntityReference qualifyHint="false">M:DigitalRune.Physics.Simulation.Update(System.TimeSpan)</codeEntityReference>
+                    must be called with the time span by which the simulation time should
+                    advance. In <codeEntityReference qualifyHint="false">M:DigitalRune.Physics.Simulation.Update(System.TimeSpan)</codeEntityReference>
+                    the simulation computes forces and moves the rigid
+                    bodies to new positions. One step of the simulation is called a "time step".
+                </para>
+            </content>
+        </section>
+
+
+        <section address="World">
+            <title>The "World" rigid body</title>
+            <content>
+                <para>
+                    The simulation owns a special rigid body:
+                    <codeEntityReference qualifyHint="true">F:DigitalRune.Physics.Simulation.World</codeEntityReference>.
+                    This rigid body represents the "world" of the simulation. This rigid body
+                    is not contained in the
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Simulation.RigidBodies</codeEntityReference>
+                    collection and other bodies do not collide with this body. This body is
+                    used to define the space in which the simulation takes place. Rigid bodies
+                    that leave the space of this rigid body are automatically removed from
+                    the simulation. Per default the shape of the World body is a box that
+                    is 20,000 units long and centered at the world space origin. - If objects
+                    leave this area, they will be removed. A typical scenario is that
+                    an explosion or simulation errors shoot objects into nirvana. When they
+                    leave the 20,000 units area, they are removed to safe simulation time. You
+                    can adjust the shape of the world body to the size of the level or
+                    the "area of interest".
+                </para>
+                <para>
+                    The second function of the World body is to act as an anchor for constraints.
+                    All constraints are two-body constraints and, for example, if you want to
+                    fix a rigid body at a certain position in world space you create a
+                    constraint between the rigid body and the world body.
+                    See <link xlink:href="a91cc376-dcbf-4b86-af7b-869fae861146" />
+                    for more information about constraints.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="CollisionDetection">
+            <title>Collision detection</title>
+            <content>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Simulation</codeEntityReference>
+                    owns a
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.Simulation.CollisionDomain</codeEntityReference>.
+                    Each
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.RigidBody</codeEntityReference>
+                    has a
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.CollisionObject</codeEntityReference>
+                    that represents the collision information of the body and is automatically put into
+                    the collision domain of the simulation that contains the rigid body.
+                    (For these collision objects the property
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Collisions.CollisionObject.GeometricObject</codeEntityReference>
+                    references the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.RigidBody</codeEntityReference>.)
+                </para>
+                <para>
+                    You are free to use the collision domain to perform collision queries.
+                    You can also add custom collision objects into the collision domain - even
+                    objects that aren't rigid bodies. For example, you can add a collision
+                    object to check if rigid bodies or other collision objects enter a
+                    certain area. Or you can perform ray-casts against collision objects.
+                </para>
+                <para>
+                    The collision domain is automatically updated at the begin of a simulation
+                    time step. If
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Settings.SimulationSettings.SynchronizeCollisionDomain</codeEntityReference>
+                    is set, the collision domain is also updated at the end of a simulation
+                    step. This is useful if the game logic makes collision queries and
+                    requires up-to-date collision info.
+                </para>
+                <para>
+                    The property
+                    <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Collisions.Contact.UserData</codeEntityReference>
+                    is used by the simulation to store references to
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Constraints.ContactConstraint</codeEntityReference>
+                    instances. Therefore, the <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Collisions.Contact.UserData</codeEntityReference>
+                    property of contacts between rigid bodies must not be changed.
+                    In other words, the relationship between
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.Contact</codeEntityReference>s
+                    and
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Constraints.ContactConstraint</codeEntityReference>s
+                    is
+                </para>
+                <code language="c#">
+                    <![CDATA[
+myContactConstraint.Contact == myContact
+myContact.UserData == myContactConstraint
+]]>
+                </code>
+            </content>
+            <sections>
+                <section address="Filtering">
+                    <title>Collision filtering</title>
+                    <content>
+                        <para>
+                            By default, the narrow phase filter of the collision detection
+                            (<codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Collisions.CollisionDetection.CollisionFilter</codeEntityReference>,
+                            see also <link xlink:href="16449523-c2f2-4c86-9dde-720716beaebb" />)
+                            is set to an instance of type
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.CollisionFilter</codeEntityReference>.
+                            The filter rules in the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.CollisionFilter</codeEntityReference>
+                            can freely be changed as required by the application.
+                            The whole filter can be replaced too, but
+                            the new filter should implement the interface
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.ICollisionFilter</codeEntityReference>.
+                            If the new
+                            collision filter does not implement
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.ICollisionFilter</codeEntityReference>,
+                            then automatic collision
+                            filtering for constraints does not work (see
+                            <link xlink:href="a91cc376-dcbf-4b86-af7b-869fae861146#other" /> and
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Physics.Constraints.Constraint.CollisionEnabled</codeEntityReference>).
+                            Advanced physics modules like ragdoll physics and vehicle physics might also need a collision
+                            filter that implements
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Geometry.Collisions.ICollisionFilter</codeEntityReference>.
+                        </para>
+                        <para>
+                            By default, no broad phase filter
+                            is set. (See property
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Geometry.Partitioning.ISpatialPartition`1.Filter</codeEntityReference>
+                            of
+                            <codeEntityReference qualifyHint="true">P:DigitalRune.Geometry.Collisions.CollisionDomain.BroadPhase</codeEntityReference>.)
+                        </para>
+                        <para>
+                            To improve the performance of the simulation it is recommended to use the collision filters to
+                            disable collisions between bodies when the collision information is not required.
+                            The simulation does not need collision information between two bodies if both
+                            bodies are kinematic or static. The simulation only uses collision information
+                            involving dynamic bodies to create contact constraints
+                            (see <link xlink:href="a91cc376-dcbf-4b86-af7b-869fae861146#contacts" />).
+                            Therefore, it can be beneficial to set a collision filter that disables
+                            collisions between non-dynamic objects.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Parallel">
+            <title>Parallel simulations</title>
+            <content>
+                <para>
+                    A game that uses game physics usually uses one instance of
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Simulation</codeEntityReference>.
+                    But it is allowed to use several parallel simulation instances. Parallel
+                    simulations can share shape, mass frame or material instances. Rigid bodies,
+                    force effects and constraints cannot be shared between simulations; they belong
+                    to exactly 0 or 1 simulation.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Example">
+            <title>A basic example</title>
+            <content>
+                <para>
+                    Here is a simple example that shows how to setup the simulation and how
+                    to add rigid bodies. The simulation is configured with two force effects:
+                    gravity and damping. These force effects are necessary for most scenarios
+                    and they should always be added - unless you know what you are doing ;-).
+                </para>
+                <para>
+                    The basic setup:
+                </para>
+                <code language="c#">
+                    <![CDATA[
+using DigitalRune.Geometry;
+using DigitalRune.Geometry.Shapes;
+using DigitalRune.Mathematics.Algebra;
+using DigitalRune.Physics;
+using DigitalRune.Physics.ForceEffects;
+
+...
+
+Simulation mySimulation = new Simulation();
+
+// Add a gravity force that pulls objects to the ground.
+mySimulation.ForceEffects.Add(new Gravity());
+
+// Add a damping effect that models air resistance and slows objects.
+mySimulation.ForceEffects.Add(new Damping());
+
+// Add a ground plane.
+RigidBody ground = new RigidBody(new PlaneShape(Vector3F.UnitY, 0))
+{
+  Name = "GroundPlane",
+  Pose = Pose.Identity,
+  MotionType = MotionType.Static,  // Ground plane should not move.
+};
+mySimulation.RigidBodies.Add(ground);
+
+// Add a box above the ground with a random orientation.
+RigidBody cube = new RigidBody(new BoxShape(1, 1, 1))
+{
+  Name = "Cube",
+  Pose = new Pose(new Vector3F(0, 2, 0), RandomHelper.Random.NextQuaternionF()),
+};
+mySimulation.RigidBodies.Add(cube);]]>
+                </code>
+                <para>
+                    In each frame of the game, the simulation must be updated by calling following
+                    method (usually with 60 fps):
+                </para>
+                <code language="c#">
+                    <![CDATA[
+// Advance the simulation.
+// deltaTime is the elapsed time since the last simulation update.
+mySimulation.Update(deltaTime);]]>
+                </code>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

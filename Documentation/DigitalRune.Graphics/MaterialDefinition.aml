@@ -1,0 +1,844 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="9e0c41a1-9e6b-4e78-95a0-831ec4fada0a" revisionNumber="1">
+    <developerConceptualDocument
+      xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                A material defines how a submesh is rendered: Which render passes are supported? Which
+                effects are used? Which effect parameters (e.g. colors and textures) are used?
+                See <link xlink:href="34a7f065-df4f-4f40-8b5c-5f0afee365db" />.
+            </para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="DRMAT">
+            <title>Material Definition (*.drmat File)</title>
+            <content>
+                <para>
+                    The <newTerm>material definition</newTerm> defines a material in DigitalRune Graphics. It
+                    is an XML file that uses the file extension <legacyItalic>drmat</legacyItalic>, for example
+                    <localUri>Wood.drmat</localUri>. Here is an example of a material definition:
+                </para>
+                <code language="xml">
+                    <![CDATA[
+<?xml version="1.0" encoding="utf-8"?>
+
+<Material Name="CustomMaterial">
+  <Pass Name="Default" Effect="BasicEffect" Profile="Any">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="SpecularColor" Value="1,1,1" />
+    <Parameter Name="SpecularPower" Value="100" />
+    <Texture Name="Texture" File="albedo.tga" />
+  </Pass>
+  <Pass Name="ShadowMap" Effect="DigitalRune/Materials/ShadowMap" Profile="HiDef" />
+  <Pass Name="GBuffer" Effect="DigitalRune/Materials/GBufferNormal" Profile="HiDef">
+    <Parameter Name="SpecularPower" Value="100" />
+    <Texture Name="NormalTexture" Format="Normal" File="normal.tga" />
+  </Pass>
+  <Pass Name="Material" Effect="CustomMaterial.fx" Profile="HiDef">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="SpecularColor" Value="1,1,1" />
+    <Parameter Name="CustomParameter" Value="0.95" />
+    <Texture Name="DiffuseTexture" File="albedo.tga" />
+    <Texture Name="SpecularTexture" File="specular.tga" />
+  </Pass>
+</Material>]]>
+                </code>
+                <alert class="note">
+                    <para>
+                        The material definition file is optional. If the model description file is missing or the
+                        model description does not assign a material to a submesh, then the
+                        model content processor searches for a material definition using the texture names.
+                    </para>
+                    <para>
+                        For example, if an imported submesh uses a texture called <localUri>Wood.tga</localUri>,
+                        the model content processor tries to find a material definition file <localUri>Wood.drmat</localUri>
+                        in the folder that contains the texture. If a material definition is found, it is
+                        automatically assigned to the submesh. If no material definition is found, the submesh
+                        will use the default material stored in the model.
+                    </para>
+                    <para>
+                        Material definitions can be changed or overwritten at runtime.
+                    </para>
+                </alert>
+                <para>
+                    Using material definition files has several advantages:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <legacyBold>Complex materials:</legacyBold>
+                            The DigitalRune Graphics engine supports complex render pipelines,
+                            which may involve multiple render passes per model. For example, a light pre-pass
+                            (a.k.a. deferred lighting) render pipeline may start with a "ShadowMap" pass to render
+                            shadow-casting models into shadow maps. In the "GBuffer" pass the model is rendered
+                            into the G-Buffer. Then, after the renderer has lit the scene, the model is rendered
+                            again in the "Material" pass. Each render pass may require a different effect or
+                            different settings. Therefore, a material definition may include one or more render
+                            passes.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Shared materials:</legacyBold>
+                            Materials can be shared between models. At design-time existing
+                            materials can be assigned to new models. At run-time shared materials are only
+                            loaded once and therefore require less resources. Renderers can sort submeshes based
+                            on their materials and thereby reduce the number of required render state changes.
+                        </para>
+                    </listItem>
+                </list>
+                <para>
+                    A material definition defines one or more render passes where each pass can have different
+                    parameters and textures. The names of the render passes and number of render passes
+                    depends on the actual render pipeline implemented in the game. A render pipeline in
+                    DigitalRune Graphics may include any number of passes - including user-defined passes.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Material">
+            <title>&lt;Material&gt;</title>
+            <content>
+                <para>
+                    The <codeInline>Material</codeInline> element is the root node of the XML file. It has the
+                    following attributes:
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Attribute</para>
+                            </entry>
+                            <entry>
+                                <para>Description</para>
+                            </entry>
+                            <entry>
+                                <para>Examples</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>Name</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Optional: The name of the material. Setting a name can be useful to identify a
+                                material at runtime (see property
+                                <codeEntityReference qualifyHint="true">P:DigitalRune.Graphics.Material.Name</codeEntityReference>).
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeInline>Name="MaterialXYZ"</codeInline>
+                            </para>
+                        </entry>
+                    </row>
+                </table>
+                <para>
+                    The <codeInline>Material</codeInline> element may contain one or more <codeInline>Pass</codeInline>
+                    elements.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Pass">
+            <title>&lt;Pass&gt;</title>
+            <content>
+                <para>
+                    The <codeInline>Pass</codeInline> element defines the settings for a specific render
+                    pass.
+                </para>
+                <para>
+                    The <codeInline>Pass</codeInline> element has the following attributes:
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Attribute</para>
+                            </entry>
+                            <entry>
+                                <para>Description</para>
+                            </entry>
+                            <entry>
+                                <para>Examples</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>Name</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The name of the render pass.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeInline>Name="ShadowMap"</codeInline>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>Effect</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The DirectX Effect that is used in this render pass.
+                            </para>
+                            <para>
+                                The value can be:
+                            </para>
+                            <list class="bullet">
+                                <listItem>
+                                    <para>
+                                        One of the XNA stock effects: <codeInline>AlphaTestEffect</codeInline>,
+                                        <codeInline>BasicEffect</codeInline>, <codeInline>DualTextureEffect</codeInline>,
+                                        <codeInline>EnvironmentMapEffect</codeInline>, <codeInline>SkinnedEffect</codeInline>
+                                    </para>
+                                </listItem>
+                                <listItem>
+                                    <para>
+                                        A prebuilt effect asset (see <link xlink:href="fda15306-d5dc-449c-850d-82227359d35b" />).
+                                        In this case the value is the asset name, which is used
+                                        to load the effect at runtime.
+                                    </para>
+                                </listItem>
+                                <listItem>
+                                    <para>
+                                        A custom effect. In this case the value is the path of the effect file (.fx)
+                                        relative to the material definition file.
+                                    </para>
+                                </listItem>
+                            </list>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeInline>Effect="SkinnedEffect"</codeInline>
+                            </para>
+                            <para>
+                                <codeInline>Effect="DigitalRune/DeferredLighting/GBuffer"</codeInline>
+                            </para>
+                            <para>
+                                <codeInline>Effect="../Effects/CustomEffect.fx"</codeInline>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>Profile</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Optional: Defines whether the render pass is designed for a certain graphics profile.
+                                The pass is ignored if it does not match the target profile of the game.
+                            </para>
+                            <para>
+                                Allowed values are:
+                            </para>
+                            <table>
+                                <tableHeader>
+                                    <row>
+                                        <entry>
+                                            <para>Value</para>
+                                        </entry>
+                                        <entry>
+                                            <para>Description</para>
+                                        </entry>
+                                    </row>
+                                </tableHeader>
+                                <row>
+                                    <entry>
+                                        <para>
+                                            <codeInline>Reach</codeInline>
+                                        </para>
+                                    </entry>
+                                    <entry>
+                                        <para>
+                                            The render pass is only processed if the target profile of the game is
+                                            <legacyBold>Reach</legacyBold>.
+                                        </para>
+                                    </entry>
+                                </row>
+                                <row>
+                                    <entry>
+                                        <para>
+                                            <codeInline>HiDef</codeInline>
+                                        </para>
+                                    </entry>
+                                    <entry>
+                                        <para>
+                                            The render pass is only processed if the target profile of the game is
+                                            <legacyBold>HiDef</legacyBold>.
+                                        </para>
+                                    </entry>
+                                </row>
+                                <row>
+                                    <entry>
+                                        <para>
+                                            <codeInline>Any</codeInline>
+                                        </para>
+                                    </entry>
+                                    <entry>
+                                        <para>
+                                            The render pass is always processed.
+                                        </para>
+                                    </entry>
+                                </row>
+                            </table>
+                            <para>
+                                The default value is <codeInline>Any</codeInline>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeInline>Profile="HiDef"</codeInline>
+                            </para>
+                        </entry>
+                    </row>
+                </table>
+                <para>
+                    The <codeInline>Pass</codeInline> element may contain one or more <codeInline>Parameter</codeInline>
+                    and <codeInline>Texture</codeInline> elements.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Parameter">
+            <title>&lt;Parameter&gt;</title>
+            <content>
+                <para>
+                    A DirectX Effect may define one or more effect parameters (shader constants). The Effect
+                    file may define default values for the effect parameter. This default value can be
+                    overridden using the <codeInline>Parameter</codeInline> element.
+                </para>
+                <para>
+                    Currently only the following parameter types can be set in the material definition:
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>HLSL Type</para>
+                            </entry>
+                            <entry>
+                                <para>Example</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>bool</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeInline><![CDATA[<Parameter Name="EnableSkinning" Value="False" />]]></codeInline>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>bool[]</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeInline><![CDATA[<Parameter Name="Flags" Value="False,False,True,False" />]]></codeInline>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>float</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeInline><![CDATA[<Parameter Name="ReferenceAlpha" Value="0.9" />]]></codeInline>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>float2</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeInline><![CDATA[<Parameter Name="Offset" Value="0.5,0.5" />]]></codeInline>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>float3</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeInline><![CDATA[<Parameter Name="UpDirection" Value="0,1,0" />]]></codeInline>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>float4</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeInline><![CDATA[<Parameter Name="Color" Value="1,1,1,0.5" />]]></codeInline>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>float[]</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeInline><![CDATA[<Parameter Name="Values" Value="0,0.1,0.2,0.3,0.4" />]]></codeInline>
+                            </para>
+                        </entry>
+                    </row>
+                </table>
+                <para>
+                    The <codeInline>Name</codeInline> of a parameter is the <legacyBold>case-sensitive</legacyBold>
+                    name as it is declared in the DirectX Effect file (.fx).
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Texture">
+            <title>&lt;Texture&gt;</title>
+            <content>
+                <para>
+                    Textures can be referenced using the <codeInline>Texture</codeInline> element. The element
+                    defines the name, path, and preprocessing settings.
+                </para>
+                <para>
+                    Examples:
+                </para>
+                <code language="xml">
+                    <![CDATA[
+<Texture Name="DiffuseTexture" File="diffuse.tga" />
+<Texture Name="SpecularTexture" File="specular.tga" />
+<Texture Name="AlphaMask" ReferenceAlpha="0.9" ScaleAlphaToCoverage="True" File="mask.tga" />
+<Texture Name="NormalMap" Format="Normal" File="normal.tga" />
+<Texture Name="LookupTable" Format="Color" GenerateMimaps="False" PremultiplyAlpha="False" InputGamma="1.0" OutputGamma="1.0" File="lut.tga" />
+]]>
+                </code>
+                <para>
+                    The <codeInline>Texture</codeInline> element has the following attributes.
+                </para>
+                <table>
+                    <tableHeader>
+                        <row>
+                            <entry>
+                                <para>Attribute</para>
+                            </entry>
+                            <entry>
+                                <para>Description</para>
+                            </entry>
+                            <entry>
+                                <para>Examples</para>
+                            </entry>
+                        </row>
+                    </tableHeader>
+                    <row>
+                        <entry>
+                            <para>Name</para>
+                        </entry>
+                        <entry>
+                            <para>The name of the texture parameter in the Effect file.</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeInline>Name="DiffuseTexture"</codeInline>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>File</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                The path of the source image relative to the material definition. Supported file types:
+                                .bmp, .dds, .dib, .hdr, .jpg, .pfm, .png, .ppm, and .tga.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeInline>File="textures/diffuse.tga"</codeInline>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>Format</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Optional: Determines the surface format of the processed texture.
+                            </para>
+                            <para>
+                                Allowed values are:
+                            </para>
+                            <table>
+                                <tableHeader>
+                                    <row>
+                                        <entry>
+                                            <para>Value</para>
+                                        </entry>
+                                        <entry>
+                                            <para>Description</para>
+                                        </entry>
+                                    </row>
+                                </tableHeader>
+                                <row>
+                                    <entry>
+                                        <para>
+                                            <codeInline>NoChange</codeInline>
+                                        </para>
+                                    </entry>
+                                    <entry>
+                                        <para>
+                                            The texture format of the input texture is not changed by the content processor.
+                                        </para>
+                                    </entry>
+                                </row>
+                                <row>
+                                    <entry>
+                                        <para>
+                                            <codeInline>Color</codeInline>
+                                        </para>
+                                    </entry>
+                                    <entry>
+                                        <para>
+                                            The texture format of the input texture is converted to <legacyBold>SurfaceFormat.Color</legacyBold>
+                                            (32-bit ARGB format with alpha, 8 bits per channel) by the content processor.
+                                        </para>
+                                    </entry>
+                                </row>
+                                <row>
+                                    <entry>
+                                        <para>
+                                            <codeInline>Dxt</codeInline>
+                                        </para>
+                                    </entry>
+                                    <entry>
+                                        <para>
+                                            The texture format of the input texture is converted to an appropriate DXT compression by
+                                            the content processor. If the input texture contains fractional alpha values, it is converted to
+                                            DXT5 format; otherwise it is converted to DXT1.
+                                        </para>
+                                    </entry>
+                                </row>
+                                <row>
+                                    <entry>
+                                        <para>
+                                            <codeInline>Normal</codeInline>
+                                        </para>
+                                    </entry>
+                                    <entry>
+                                        <para>
+                                            The texture format of the input texture is converted to DXT5nm by the content processor.
+                                            This format reduces compression artifacts when storing normal maps. The x-component of
+                                            the normal is stored in the Alpha channel and the y-component is stored in the Green
+                                            channel. The z-component needs to be reconstructed in the pixel shader.
+                                        </para>
+                                    </entry>
+                                </row>
+                                <row>
+                                    <entry>
+                                        <para>
+                                            <codeInline>NormalInvertY</codeInline>
+                                        </para>
+                                    </entry>
+                                    <entry>
+                                        <para>
+                                            Same as <codeInline>Normal</codeInline>, except that the y-component of the normal vector is inverted. (See below.)
+                                        </para>
+                                    </entry>
+                                </row>
+                            </table>
+                            <para>
+                                The default value is <codeInline>Dxt</codeInline>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeInline>Format="NormalInvertY"</codeInline>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>ColorKey</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Optional: Enables color keying. The value is the key color (RGBA as byte values).
+                                All pixels that match the specified color are replaced with transparent black.
+                                Color keying is disabled by default.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeInline>ColorKey="255,0,255,255"</codeInline>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>GenerateMipmaps</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Optional: Generates a full chain of mipmaps for the texture. Already existing mipmaps
+                                are not replaced.
+                            </para>
+                            <para>
+                                Allowed values are: <codeInline>True</codeInline> or <codeInline>False</codeInline>.
+                            </para>
+                            <para>
+                                The default value is <codeInline>True</codeInline>.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeInline>GenerateMipmaps="True"</codeInline>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>InputGamma</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Optional: Specifies the gamma value of the source image.
+                            </para>
+                            <para>
+                                The default value is <codeInline>2.2</codeInline>.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeInline>InputGamma="2.2"</codeInline>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>OutputGamma</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Optional: Specifies the gamma value of the output texture. This value is the gamma
+                                that is expected by the DirectX Effect that reads the texture.
+                            </para>
+                            <para>
+                                The default value is <codeInline>2.2</codeInline>.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeInline>OutputGamma="2.2"</codeInline>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>PremultiplyAlpha</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Optional: If enabled, source image is converted to premultiplied alpha format.
+                            </para>
+                            <para>
+                                Allowed values are: <codeInline>True</codeInline> or <codeInline>False</codeInline>.
+                            </para>
+                            <para>
+                                The default value is <codeInline>True</codeInline>.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeInline>PremultiplyAlpha="False"</codeInline>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>ResizeToPowerOfTwo</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Optional: If enabled, the source image is resized to the next largest power of two.
+                            </para>
+                            <para>
+                                Allowed values are: <codeInline>True</codeInline> or <codeInline>False</codeInline>.
+                            </para>
+                            <para>
+                                The default value is <codeInline>False</codeInline>.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeInline>ResizeToPowerOfTwo="True"</codeInline>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>ReferenceAlpha</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Optional: Specifies the reference alpha value, which is used in the alpha test. This
+                                attribute is only relevant if the source image has an alpha channel, the DirectX
+                                Effect performs an alpha test, GenerateMipmaps and ScaleAlphaToCoverage are enabled.
+                            </para>
+                            <para>
+                                The default value is <codeInline>0.9</codeInline>.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeInline>ReferenceAlpha="0.95"</codeInline>
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>ScaleAlphaToCoverage</para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Optional: Specifies whether the alpha of the mipmaps should be scaled to achieve the
+                                same alpha test coverage as the source images. This attribute is only relevant if
+                                the source image has an alpha channel, the DirectX Effect performs an alpha test,
+                                and GenerateMipmaps is enabled.
+                            </para>
+                            <para>
+                                Allowed values are: <codeInline>True</codeInline> or <codeInline>False</codeInline>.
+                            </para>
+                            <para>
+                                The default value is <codeInline>False</codeInline>.
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <codeInline>ScaleAlphaToCoverage="True"</codeInline>
+                            </para>
+                        </entry>
+                    </row>
+                </table>
+            </content>
+            <sections>
+                <section address="AlphaMasks">
+                    <title>Alpha masks</title>
+                    <content>
+                        <para>
+                            Textures can have an alpha channel, which can be used for alpha testing or alpha
+                            blending. However, textures with alpha require special treatment. The problem is
+                            described here in more detail:
+                            <externalLink>
+                                <linkText>"Computing Alpha Mipmaps", by Ignacio Castaño (The Witness Blog)</linkText>
+                                <linkAlternateText>"Computing Alpha Mipmaps", by Ignacio Castaño (The Witness Blog)</linkAlternateText>
+                                <linkUri>http://the-witness.net/news/2010/09/computing-alpha-mipmaps/</linkUri>
+                            </externalLink>
+                        </para>
+                        <para>
+                            The required correction described in the article can be enabled by setting the attributes
+                            <codeInline>ReferenceAlpha</codeInline> and <codeInline>ScaleAlphaToCoverage</codeInline>.
+                        </para>
+                        <para>
+                            Example:
+                        </para>
+                        <code language="xml">
+                            <![CDATA[
+<Texture Name="DiffuseWithAlphaTexture" ReferenceAlpha="0.9" ScaleAlphaToCoverage="True" File="albedo_mask.tga" />
+]]>
+                        </code>
+                        <para>
+                            The <codeInline>ReferenceAlpha</codeInline> needs to be the value, which is used for
+                            alpha testing in the DirectX Effect. If the reference alpha value is unknown, use a
+                            value close to 1.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="NormalMaps">
+                    <title>Normal maps</title>
+                    <content>
+                        <para>
+                            Different content creation tools can use different tangent space bases when creating
+                            normal maps. Depending on the content creation tool you need to encode the normal map
+                            using either <codeInline>Format="Normal"</codeInline> or <codeInline>Format="NormalInvertY"</codeInline>.
+                        </para>
+                        <para>
+                            For example, consider a normal map containing two truncated pyramids. Here are the
+                            resulting normal maps using two different tangent space bases.
+                        </para>
+                        <mediaLink>
+                            <caption>Format="Normal"</caption>
+                            <image xlink:href="FormatNormal"/>
+                        </mediaLink>
+                        <mediaLink>
+                            <caption>Format="NormalInvertY"</caption>
+                            <image xlink:href="FormatNormalInvertY"/>
+                        </mediaLink>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+        <section address="AutomaticCreation">
+            <title>Automatic creation of missing material definition files</title>
+            <content>
+                <para>
+                    The DigitalRune model content processor will automatically create a default material
+                    definition (*.drmat) file if it cannot find any. The material definition is placed
+                    in the same folder as the texture of the submesh and uses the file name of the texture.
+                    For example, if a submesh uses a texture called <localUri>Wood.tga</localUri>, the model
+                    content processor creates a default material definition file <localUri>Wood.drmat</localUri>
+                    in the folder that contains the texture. You can edit this file to set the desired material
+                    properties.
+                </para>
+                <alert class="note">
+                    <para>
+                        If the imported submesh does not use any textures, no default material definition is created.
+                    </para>
+                    <para>
+                        The automatic generation of missing model descriptions can be turned off using a
+                        property of the content processor.
+                    </para>
+                </alert>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <externalLink>
+                <linkText>"What Is a Profile? (Reach vs. HiDef Comparison)", MSDN article</linkText>
+                <linkAlternateText>"What Is a Profile? (Reach vs. HiDef Comparison)", MSDN article</linkAlternateText>
+                <linkUri>http://msdn.microsoft.com/en-us/library/ff604995.aspx</linkUri>
+            </externalLink>
+            <externalLink>
+                <linkText>"Computing Alpha Mipmaps", by Ignacio Castaño (The Witness Blog)</linkText>
+                <linkAlternateText>"Computing Alpha Mipmaps", by Ignacio Castaño (The Witness Blog)</linkAlternateText>
+                <linkUri>http://the-witness.net/news/2010/09/computing-alpha-mipmaps/</linkUri>
+            </externalLink>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

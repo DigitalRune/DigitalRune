@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="f782dc86-40e9-45c1-869a-4baf86e28ed9" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                A <newTerm>decal</newTerm> is a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Material</codeEntityReference>
+                projected onto other geometry. Static decals can be used to add variety to a scene:
+                posters on walls, dirt on objects, puddles on the floor, etc. Dynamic decals can be
+                created by the game logic based on events in the game: bullet holes at a point of impact,
+                blood splatters, foot prints on the ground, tire marks on the street, etc.
+            </para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Deferred">
+            <title>Deferred decals</title>
+            <content>
+                <para>
+                    DigitalRune Graphics implements
+                    <legacyItalic>deferred decal rendering</legacyItalic> (a.k.a.
+                    <legacyItalic>screen space decals</legacyItalic>). This
+                    means decals are rendered by rendering a screen-aligned quad or oriented box. The pixel shader
+                    reconstructs a pixel’s 3D position from the G-buffer and projects the decal textures onto
+                    it.
+                </para>
+
+                <para>
+                    This method has following limitations:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        The decal renderer requires a G-buffer of the scene. The renderer fits perfectly into
+                        any deferred rendering pipeline, but does not work with traditional forward rendering.
+                    </listItem>
+                    <listItem>
+                        Does not work on alpha-blended geometry.
+                    </listItem>
+                    <listItem>
+                        When applied to skinned meshes, decals are not animated/distorted correctly.
+                    </listItem>
+                </list>
+                <para>
+                    For more information about deferred decals see:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Jan Krassnigg: A Deferred Decal Rendering Technique, Game Engine Gems 1, 2011.
+                    </listItem>
+                    <listItem>
+                        <externalLink>
+                            <linkText>Pope Kim: Screen Space Decals in Warhammer 40,000: Space Marine, SIGGRAPH 2012.</linkText>
+                            <linkUri>http://www.popekim.com/2012/10/siggraph-2012-screen-space-decals-in.html</linkUri>
+                        </externalLink>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Definition">
+            <title>Defining decals</title>
+            <content>
+                <para>
+                    A decal is defined using a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.DecalNode</codeEntityReference>.
+                    The visual properties are defined by a decal material (see property
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.DecalNode.Material</codeEntityReference>).
+                </para>
+                <alert class="caution">
+                    <para>
+                        It is not possible to use the same materials for decals as are used for regular meshes.
+                        Decals need to be rendered with special vertex and pixel shaders and therefore require
+                        different <codeEntityReference qualifyHint="false">T:Microsoft.Xna.Framework.Graphics.Effect</codeEntityReference>s
+                        than meshes.
+                    </para>
+                    <para>
+                        See section <link xlink:href="fda15306-d5dc-449c-850d-82227359d35b#Decals">Predefined Effects (Decal Effects)</link>.
+                    </para>
+                </alert>
+                <para>
+                    The properties <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.DecalNode.Width</codeEntityReference>,
+                    <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.DecalNode.Height</codeEntityReference>
+                    and <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.DecalNode.Depth</codeEntityReference>.
+                    define the bounding volume of the decal. The decal material will be projected onto meshes
+                    within this bounding volume.
+                </para>
+                <mediaLink>
+                    <caption placement="after">Class Diagram: Decals</caption>
+                    <image xlink:href="ClassDiagramGraphicsDecals"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Example">
+            <title>Example</title>
+            <content>
+                <para>
+                    The "splattered blood" material in this example consists of 3 textures: diffuse + opacity,
+                    specular and normal map.
+                </para>
+                <mediaLink>
+                    <image xlink:href="Blood-Decal"/>
+                </mediaLink>
+                <para>
+                    The blood decal will be placed on a simple scene.
+                </para>
+                <mediaLink>
+                    <image xlink:href="Decal-Example-01"/>
+                </mediaLink>
+                <para>
+                    A decal node can be represented as a box. (The decal box can be visualized using the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.DebugRenderer</codeEntityReference>.)
+                </para>
+                <mediaLink>
+                    <image xlink:href="Decal-Example-02"/>
+                </mediaLink>
+                <para>
+                    The decal box defines an orthographic projection. The decal textures are projected onto
+                    the scene where the box intersects with the scene geometry.
+                </para>
+                <mediaLink>
+                    <image xlink:href="Decal-Example-03"/>
+                </mediaLink>
+                <para>
+                    Result:
+                </para>
+                <mediaLink>
+                    <image xlink:href="Decal-Example-04"/>
+                </mediaLink>
+                <para>
+                    The material system is very flexible: Since the decal has a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Material</codeEntityReference>
+                    – the same class that is used for regular meshes – it can be rendered using custom effects.
+                    The pre-built effects support diffuse, specular, emissive, normal, and opacity maps.
+                </para>
+                <para>
+                    The following series of screenshots shows a few variations:
+                </para>
+                <mediaLink>
+                    <image xlink:href="DecalModes"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="DecalRendering">
+            <title>Rendering decals</title>
+            <content>
+                <para>
+                    This section explains how to render
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.DecalNode</codeEntityReference>s
+                    using the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.DecalRenderer</codeEntityReference>.
+                </para>
+            </content>
+            <sections>
+                <section address="Renderer">
+                    <title>DecalRenderer</title>
+                    <content>
+                        <para>
+                            The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.DecalRenderer</codeEntityReference>
+                            is a <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneNodeRenderer</codeEntityReference>
+                            which handles <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.DecalNode</codeEntityReference>s.
+                        </para>
+                        <para>
+                            Decals are defined by a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Material</codeEntityReference>.
+                            Similarly to meshes, it may be necessary to render decals in multiple passes. For example,
+                            in the <codeInline>"GBuffer"</codeInline> pass the decal is rendered into the G-buffer and
+                            in the <codeInline>"Material"</codeInline> pass it is rendered into the back buffer. The current
+                            render pass is selected by setting the
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.RenderPass</codeEntityReference>
+                            property in the <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.RenderContext</codeEntityReference>.
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+// Select render pass.
+context.RenderPass = "Material";
+
+// Render a list of decal nodes.
+decalRenderer.Render(decalNodes, context);
+          ]]>
+                        </code>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

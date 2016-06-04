@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="7af0a749-83f9-437b-88fc-56f70c0c6dd2" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                DigitalRune Geometry contains a version that supports the Microsoft XNA Framework (see also
+                <link xlink:href="972bde71-5d0c-46be-8a81-ad0d2cea770a"/>).
+                This section explains XNA-specific issues.
+            </para>
+        </introduction>
+
+
+        <section address="ContentPipeline">
+            <title>Content pipeline projects</title>
+            <content>
+                <para>
+                    If any types of DigitalRune Mathematics or Geometry are used in an
+                    <newTerm>XNA content pipeline extension library</newTerm>:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Add references to the following DLLs to your the content pipeline extension library:
+                        <list class="bullet">
+                            <listItem>
+                                <localUri>DigitalRune.dll</localUri>
+                            </listItem>
+                            <listItem>
+                                <localUri>DigitalRune.Mathematics.dll</localUri>
+                            </listItem>
+                            <listItem>
+                                <localUri>DigitalRune.Geometry.dll</localUri>
+                            </listItem>
+                            <listItem>
+                                <localUri>DigitalRune.Mathematics.Content.Pipeline.dll</localUri>
+                            </listItem>
+                            <listItem>
+                                <localUri>DigitalRune.Geometry.Content.Pipeline.dll</localUri>
+                            </listItem>
+                        </list>
+                    </listItem>
+                    <listItem>
+                        For all <newTerm>XNA content projects</newTerm> that use the content pipeline extension library,
+                        add references to the following DLLs to the content projects:
+                        <list class="bullet">
+                            <listItem>
+                                <localUri>DigitalRune.Mathematics.Content.Pipeline.dll</localUri>
+                            </listItem>
+                            <listItem>
+                                <localUri>DigitalRune.Geometry.Content.Pipeline.dll</localUri>
+                            </listItem>
+                        </list>
+                    </listItem>
+                </list>
+                <para>
+                    The additional DLLs contain
+                    <codeEntityReference qualifyHint="false">T:Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler.ContentTypeWriter</codeEntityReference>s
+                    which ensure that the data types of DigitalRune Mathematics and Geometry are
+                    properly serialized and deserialized. Be sure to use the XNA-specific
+                    builds of the DLLs (see <link xlink:href="972bde71-5d0c-46be-8a81-ad0d2cea770a"/>).
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+            <link xlink:href="972bde71-5d0c-46be-8a81-ad0d2cea770a"/>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

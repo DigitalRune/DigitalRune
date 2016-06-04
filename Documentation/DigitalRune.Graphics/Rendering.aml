@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="6b3a13bc-37b4-4820-9f82-c2364a9ed2eb" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This topic provides information for implementing a rendering pipeline.
+            </para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="General">
+            <title>General</title>
+            <content>
+                <para>
+                    DigitalRune Graphics is in general not limited to a single type of rendering pipeline. The
+                    library can theoretically be used to create
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        a traditional forward renderer,
+                    </listItem>
+                    <listItem>
+                        a light pre-pass renderer (a.k.a. deferred lighting),
+                    </listItem>
+                    <listItem>
+                        a fully deferred renderer,
+                    </listItem>
+                    <listItem>
+                        an ad-hoc renderer,
+                    </listItem>
+                    <listItem>
+                        etc.
+                    </listItem>
+                </list>
+                <para>
+                    The namespace <codeEntityReference qualifyHint="true">N:DigitalRune.Graphics.Rendering</codeEntityReference>
+                    provides renderers which can be used to create a forward or a light pre-pass
+                    renderer. Additional renderers and samples for additional rendering pipelines may be added in the future.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Example">
+            <title>Example render pipeline</title>
+            <content>
+                <para>
+                    The rendering is usually performed in a
+                    <link xlink:href="2e870374-8980-4fbc-9426-1d1a6e2d9766">graphics screen</link>.
+                    Here is an example of a simple render pipeline which can draw opaque meshes,
+                    alpha blended billboards and particles, and debug graphics.
+                    More detailed examples for different render pipelines can be found in the
+                    <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />.
+                </para>
+                <code language="cs">
+                    <![CDATA[
+public sealed class MyGraphicsScreen : GraphicsScreen
+{
+  ...
+
+  protected override void OnRender(RenderContext context)
+  {
+    // Set the current camera and current scene in the render context.
+    context.CameraNode = CameraNode;
+    context.Scene = Scene;
+
+    // Clear background.
+    var graphicsDevice = GraphicsService.GraphicsDevice;
+    graphicsDevice.Clear(BackgroundColor);      
+
+    // Frustum Culling: Get all the scene nodes that intersect the camera frustum.
+    var query = Scene.Query<CameraFrustumQuery>(context.CameraNode, context);
+
+    // Render opaque meshes that are visible from the camera using the "Default" 
+    // render pass of the materials.
+    graphicsDevice.DepthStencilState = DepthStencilState.Default;
+    graphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
+    graphicsDevice.BlendState = BlendState.Opaque;
+    graphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;      
+    context.RenderPass = "Default";
+    _meshRenderer.Render(query.SceneNodes, context);
+    context.RenderPass = null;
+
+    // Render billboards and particles systems using alpha blending.
+    graphicsDevice.DepthStencilState = DepthStencilState.DepthRead;
+    graphicsDevice.RasterizerState = RasterizerState.CullNone;
+    graphicsDevice.BlendState = BlendState.NonPremultiplied;
+    graphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
+    _billboardRenderer.Render(query.SceneNodes, context);
+
+    // Render debug graphics.
+    DebugRenderer.Render(context);
+
+    // Clean up.
+    context.CameraNode = null;
+    context.Scene = null;
+  }
+}]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="DeferredLighting">
+            <title>Deferred lighting (a.k.a. light pre-pass renderer)</title>
+            <content>
+                <para>
+                    The namespace <codeEntityReference qualifyHint="true">N:DigitalRune.Graphics.Rendering</codeEntityReference>
+                    provides classes for implementing a deferred lighting renderer (a.k.a. light pre-pass).
+                </para>
+                <para>
+                    The <localUri>DeferredLightingSample</localUri> demonstrates how to implement a light
+                    pre-pass renderer. Check the source code for more information.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Subtopics">
+            <title>Subtopics</title>
+            <content>
+                <list class="nobullet">
+                    <listItem>
+                        <link xlink:href="ba13b3e9-cf11-4a8d-959d-338de0a4aa81" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="0d6d2221-c9da-4aa7-bee4-4d2bacae9bc4" />
+                    </listItem>
+                    <listItem>
+                        <link xlink:href="1b907017-5904-440d-b5fa-75c75ab60e6b" />
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

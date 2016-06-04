@@ -1,0 +1,596 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="46f261f5-750c-4df5-99e2-b6a289f15098" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                This topic describes how to create a heightfield-based terrain.
+            </para>
+            <autoOutline>1</autoOutline>
+        </introduction>
+      
+
+        <section address="DefiningTerrain">
+            <title>Defining terrain</title>
+            <content>
+                <para>
+                    DigitalRune Graphics uses following types to define terrain:
+                </para>
+                <mediaLink>
+                    <caption placement="after">Class Diagram: Terrain</caption>
+                    <image xlink:href="ClassDiagramGraphicsTerrain"/>
+                </mediaLink>
+            </content>
+            <sections>
+                <section address="TerrainNode">
+                    <title>TerrainNode</title>
+                    <content>
+                        <para>
+                            A
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.TerrainNode</codeEntityReference>
+                            is a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.SceneNode</codeEntityReference>
+                            that represents a terrain in the scene graph.
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.TerrainNode</codeEntityReference>s
+                            are rendered by the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.TerrainRenderer</codeEntityReference>.
+                        </para>
+                        <para>
+                            The terrain data is defined by the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Terrain</codeEntityReference>
+                            class.
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Terrain</codeEntityReference>
+                            instances can be shared, i.e., multiple
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.TerrainNode</codeEntityReference>s
+                            can reference the same
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Terrain</codeEntityReference>
+                            instance.
+                        </para>
+                        <para>
+                            The terrain node is rendered using a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Material</codeEntityReference>
+                            (similar to a normal
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Mesh</codeEntityReference>).
+                            If no custom material is set, a default material is used. The default
+                            material supports the render passes "GBuffer" and "Material" (which are used in the deferred lighting
+                            samples).
+                        </para>
+                        <para>
+                            The default material renders the terrain using height and material information stored in
+                            clipmaps. These clipmaps are explained below.
+                        </para>
+                        <para>
+                            Terrain nodes can be rendered into the shadow maps.
+                            The scene node property
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.SceneNode.CastsShadows</codeEntityReference>
+                            is <codeInline>true</codeInline> by default.
+                            Please note: When using the default
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.ShadowCasterQuery</codeEntityReference>,
+                            terrain nodes are only rendered into the shadow maps of
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.DirectionalLight</codeEntityReference>s.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="Terrain">
+                    <title>Terrain</title>
+                    <content>
+                        <para>
+                            The class
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Terrain</codeEntityReference>
+                            defines a heightfield-based terrain.
+                        </para>
+                        <para>
+                            A terrain is split into one or more
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.TerrainTile</codeEntityReference>s.
+                            The terrain tiles define the geometry and materials of the terrain.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="TerrainTiles">
+                    <title>Terrain tiles</title>
+                    <content>
+                        <para>
+                            A
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.TerrainTile</codeEntityReference>
+                            defines the geometry (height, normals, holes) and materials of a rectangular terrain region.
+                        </para>
+                        <para>
+                            The geometry of the terrain is defined using textures. The
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.TerrainTile.HeightTexture</codeEntityReference>
+                            defines height values (absolute heights in world space) of the terrain.
+                            The
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.TerrainTile.NormalTexture</codeEntityReference>
+                            contains the terrain normal vectors. This texture encodes the
+                            normal vectors like a standard "green-up" normal map. (I.e., the world space +x component of the
+                            normal is stored in the red channel. The world space up (+y) component is stored in the blue
+                            channel. The <legacyItalic>negative</legacyItalic> world space z component is stored
+                            in the green channel.)
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.TerrainTile.HoleTexture</codeEntityReference>
+                            defines holes in the terrain. The texture is used like an alpha mask
+                            texture. If the alpha channel contains 0, then there is a hole in the terrain.
+                        </para>
+                        <para>
+                            All textures should contain mipmaps. Ideally, the mipmaps are
+                            generated using 3 x 3 downsampling instead of the usual 2 x 2 downsampling. - Suitable
+                            textures can be created using the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.TerrainHelper</codeEntityReference>
+                            class.
+                        </para>
+                        <para>
+                            Each tile has a set of material layers (class
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.TerrainLayer</codeEntityReference>)
+                            that define the appearance (dirt, grass, decals, roads). The material layers
+                            are applied (blended) one after the other, which means that a layer can
+                            override previous layers.
+                        </para>
+                        <para>
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.TerrainTile.OriginX</codeEntityReference>
+                            and
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.TerrainTile.OriginZ</codeEntityReference>
+                            define the tile origin in world space - which corresponds to center of the
+                            first texel of the textures.
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.TerrainTile.CellSize</codeEntityReference>
+                            defines the horizontal distance between two height values.
+                            The texture coordinate u is aligned with the positive x-axis. The texture coordinate
+                            v is aligned with the positive z-axis. This means, if the cell/texel size is 1 world space
+                            unit and the texture is 1025 x 513 texels large, then the terrain tile covers the area between
+                            (OriginX, *, OriginZ) and (OriginX + 1024, *, OriginZ + 512).
+                            This also means that two neighboring
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.TerrainTile</codeEntityReference>
+                            should overlap by one texel to avoid gaps!
+                        </para>
+                        <para>
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.TerrainTile.OriginX</codeEntityReference>
+                            and
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.TerrainTile.OriginZ</codeEntityReference>
+                            should always be an integer multiple of the
+                            cell size. For example, if the cell size is 0.5, valid origin values are -0.5, 0,
+                            0.5, 1, etc.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="TerrainLayers">
+                    <title>Terrain layers</title>
+                    <content>
+                        <para>
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.TerrainLayer</codeEntityReference>s
+                            define the materials (detail textures, decals, roads, etc.) of a terrain tile.
+                            The material layers are applied (blended) one after the
+                            other, which means that a layer can override previous layers.
+                        </para>
+                        <para>
+                            For example: The first layer draws a dirt texture that covers the whole tile. The second layer
+                            draws a grass texture, which covers only parts of the tile defined by a blend map. Additional
+                            layers add roads and decals like dirt, leaves, sewer grates, etc.
+                        </para>
+                        <para>
+                            Each terrain tile can have its own set of terrain layers, but they can also share the same
+                            terrain layer instances.
+                        </para>
+                        <para>
+                            There are several default terrain layer types:
+                        </para>
+                        <list class="bullet">
+                            <listItem>
+                                The <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.TerrainMaterialLayer</codeEntityReference>
+                                is the most important terrain layer type. It paints a tiling material
+                                (e.g. a repeating grass texture) onto the terrain. The blending
+                                can be controlled by a blend texture, by terrain height, by terrain slope, etc. 
+                            </listItem>
+                            <listItem>
+                                The 
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.TerrainDecalLayer</codeEntityReference>
+                                can be used to render decals, such as dirt, leaves,
+                                explosion marks, sewer grates, etc. onto the terrain.
+                            </listItem>
+                            <listItem>
+                                The 
+                                <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.TerrainRoadLayer</codeEntityReference>
+                                renders a mesh which represents a road (or road-like structures, e.g. skid marks).
+                                The class contains methods to create road meshes from spline patha, to clamp a 
+                                road to a terrain or to carve a road into a terrain (manipulating the terrain height
+                                values).
+                            </listItem>
+                        </list>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Rendering">
+            <title>Rendering terrain</title>
+            <content>
+                <para>
+                    This section explains how to render
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.TerrainNode</codeEntityReference>s.
+                </para>
+            </content>
+            <sections>
+                <section address="TerrainClipmapRenderer">
+                    <title>Terrain clipmap renderer</title>
+                    <content>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.TerrainClipmapRenderer</codeEntityReference>
+                            is a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneNodeRenderer</codeEntityReference>
+                            that handles
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.TerrainNode</codeEntityReference>s.
+                            It renders into the two clipmaps stored in the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.TerrainNode</codeEntityReference>:
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.TerrainNode.BaseClipmap</codeEntityReference>
+                            and
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.TerrainNode.DetailClipmap</codeEntityReference>.
+                        </para>
+                        <para>
+                            Terrain clipmaps are usually generated at the start of the <legacyBold>Draw</legacyBold>-method,
+                            before the scene is rendered:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+// Update terrain clipmaps.
+terrainClipmapRenderer.Render(terrainNodes, context);
+
+// Render scene...
+          ]]>
+                        </code>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.TerrainClipmapRenderer</codeEntityReference>
+                            uses the geometry and material information defined by the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Terrain</codeEntityReference>,
+                            combines the information (e.g. blends the material detail textures) and caches
+                            the information in the clipmaps.
+                            The renderer updates the clipmaps incrementally when the camera moves.
+                        </para>
+                        <para>
+                            This renderer uses the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Material</codeEntityReference>s
+                            of the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.TerrainTile</codeEntityReference>s
+                            and the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.TerrainLayer</codeEntityReference>s.
+                            The materials need a render pass called "Base" to render into the base clipmap
+                            and a render pass called "Detail" to render into the detail clipmap.
+                            (A material can have render passes for both, "Base" and "Detail".)
+                        </para>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.TerrainNode.BaseClipmap</codeEntityReference>
+                            stores information at the terrain vertex level. It usually
+                            provides height, normal and hole information which define the terrain geometry.
+                            When the default terrain materials are used, the terrain clipmap renderer
+                            uses the materials of the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.TerrainTile</codeEntityReference>s
+                            to render into the base clipmap
+                            which uses the surface format <legacyBold>HalfVector4</legacyBold>.
+                            The base clipmap stores:
+                        </para>
+                        <code title="Content of base clipmap">
+                            <![CDATA[
+terainNode.BaseClipmap.Textures[0]: (absolute terrain height, world space normal x, world space normal z, hole flag)
+]]>
+                        </code>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.TerrainNode.DetailClipmap</codeEntityReference>
+                            stores more detailed information which is used to shade the
+                            terrain. It usually stores detail normals (for normal mapping), diffuse colors, specular
+                            colors, heights (for parallax occlusion mapping) and other material information.
+                            When the default terrain materials are used, the terrain clipmap renderer
+                            uses the materials of the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.TerrainLayer</codeEntityReference>s
+                            to render into the detail clipmap
+                            which consists of several clipmap hierarchies that use the surface format
+                            <legacyBold>Color</legacyBold>. The detail clipmap stores:
+                        </para>
+                        <code title="Content of detail clipmap">
+                            <![CDATA[
+terainNode.DetailClipmap.Textures[0]: (world space detail normal x, world space detail normal z, specular power, hole flag)
+terainNode.DetailClipmap.Textures[1]: (diffuse R, diffuse B, diffuse B, not used)
+terainNode.DetailClipmap.Textures[2]: (specular intensity, height, not used, not used)
+]]>
+                        </code>
+                        <para>
+                            The content of the clipmaps can be changed by using custom materials for the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.TerrainTile</codeEntityReference>s
+                            and
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.TerrainLayer</codeEntityReference>s.
+                            This way, it is possible to store different information, for example, an
+                            "emissive intensity" could be added for glowing terrain.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="TerrainRenderer">
+                    <title>Terrain renderer</title>
+                    <content>
+                        <para>
+                            The
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.TerrainRenderer</codeEntityReference>
+                            is a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.SceneNodeRenderer</codeEntityReference>
+                            that handles
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.TerrainNode</codeEntityReference>s.
+                        </para>
+                        <para>
+                            The terrain is usually rendered before or after the opaque objects of the scene. For example:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+// Render terrain.
+terrainRenderer.Render(terrainNodes, context);
+
+// Render opaque objects...
+          ]]>
+                        </code>
+                        <para>
+                            The renderer draws the terrain using a single mesh (one draw call) which represents
+                            a <newTerm>geometry clipmap</newTerm>. This mesh is represented by the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.TerrainRendererMesh</codeEntityReference>
+                            class. It is not necessary to create a
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.TerrainRendererMesh</codeEntityReference>
+                            manually - it is created automatically by the terrain renderer. However,
+                            the creation of the mesh can take a short moment. Therefore, it is also
+                            possible to control when the mesh is created or to load it from a file.
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.TerrainRendererMesh</codeEntityReference>
+                            can be loaded from file and saved to file using
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.Rendering.TerrainRendererMesh.Load(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.IO.Stream)</codeEntityReference>
+                            and
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.Rendering.TerrainRendererMesh.Save(System.IO.Stream)</codeEntityReference>.
+                            A manually created mesh can be assigned to the
+                            terrain renderer using
+                            <codeEntityReference qualifyHint="false" autoUpgrade="true">M:DigitalRune.Graphics.Rendering.TerrainRenderer.SetMesh(DigitalRune.Graphics.Rendering.TerrainRendererMesh)</codeEntityReference>.
+                        </para>
+                        <para>
+                            The terrain renderer renders terrain nodes using the
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.TerrainNode.Material</codeEntityReference>
+                            of the node.
+                            It is possible to use a custom material to control how the terrain is rendered.
+                            The default material uses clipmaps
+                            (<codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.TerrainNode.BaseClipmap</codeEntityReference>
+                            and
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.SceneGraph.TerrainNode.DetailClipmap</codeEntityReference>).
+                            The clipmaps are created and updated by the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.TerrainClipmapRenderer</codeEntityReference>
+                            - not by the
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.TerrainRenderer</codeEntityReference>.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="LOD">
+                    <title>Level of detail (LOD) and multiple cameras</title>
+                    <content>
+                        <para>
+                            When the terrain is rendered, the terrain mesh and texture resolution depends on the distance
+                            from the camera. When the 
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Rendering.TerrainRenderer</codeEntityReference>
+                            renders the terrain, it uses the
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.LodCameraNode</codeEntityReference>
+                            of the 
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.RenderContext</codeEntityReference>.
+                            (If no
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.LodCameraNode</codeEntityReference>
+                            is set, the normal
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.CameraNode</codeEntityReference>
+                            of the render context is used.)
+                        </para>
+                        <para>
+                            A terrain node should only be rendered for a single camera node because the renderer might
+                            cache camera-dependent LOD data. If a scene contains two camera nodes (e.g. for 2 player
+                            split screen rendering), the 
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Graphics.RenderContext.LodCameraNode</codeEntityReference>
+                            should be one of these two cameras. It could also be a "virtual" camera, 
+                            which is e.g. between both player cameras. 
+                            Switching the cameras within one frame would be inefficient.
+                        </para>
+                        <para>
+                            Alternatively, each camera could use a separate 
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.SceneGraph.TerrainNode</codeEntityReference>
+                            instance. When the image of a camera is rendered only one terrain node 
+                            should be rendered. Several terrain nodes can
+                            reference the same 
+                            <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Terrain</codeEntityReference>
+                            instance.
+                        </para>
+                    </content>
+                </section>
+
+                <section address="effects">
+                    <title>Predefined effects</title>
+                    <content>
+                        <para>
+                            DigitalRune Graphics contains several predefined effects which can be used
+                            in the terrain materials. (See also
+                            <link xlink:href="2631164b-0b8b-47b2-9cda-f7923d7518f4" />).
+                            Following effects can be used in the material of the terrain node:
+                        </para>
+                        <table>
+                            <tableHeader>
+                                <row>
+                                    <entry>
+                                        <para>Effect</para>
+                                    </entry>
+                                    <entry>
+                                        <para>Description</para>
+                                    </entry>
+                                </row>
+                            </tableHeader>
+                            <row>
+                                <entry>
+                                    <para>DigitalRune/Terrain/TerrainGBuffer</para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        Renders the terrain in the G-buffer pass. 
+                                        Holes in the effect are rendered by culling triangles.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>DigitalRune/Terrain/TerrainGBufferHoles</para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        Renders the terrain in the G-buffer pass.
+                                        Holes in the effect are created using texkill/clip in the pixel shader.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>DigitalRune/Terrain/TerrainGBufferPom</para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        Renders the terrain in the G-buffer pass.
+                                        Holes in the effect are rendered by culling triangles.
+                                        The effect supports parallax occlusion mapping.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>DigitalRune/Terrain/TerrainGBufferHolesPom</para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        Renders the terrain in the G-buffer pass. 
+                                        Holes in the effect are created using texkill/clip in the pixel shader.
+                                        The effect supports parallax occlusion mapping.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>DigitalRune/Terrain/TerrainMaterial</para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        Renders the terrain in the Material pass.
+                                        Holes in the effect are rendered by culling triangles.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>DigitalRune/Terrain/TerrainMaterialHoles</para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        Renders the terrain in the Material pass.
+                                        Holes in the effect are created using texkill/clip in the pixel shader.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>DigitalRune/Terrain/TerrainMaterialPom</para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        Renders the terrain in the Material pass.
+                                        Holes in the effect are rendered by culling triangles.
+                                        The effect supports parallax occlusion mapping.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>DigitalRune/Terrain/TerrainMaterialHolesPom</para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        Renders the terrain in the Material pass.
+                                        Holes in the effect are created using texkill/clip in the pixel shader.
+                                        The effect supports parallax occlusion mapping.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>DigitalRune/Terrain/TerrainShadowMap</para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        Renders the terrain into the shadow map.
+                                        Holes in the effect are rendered by culling triangles.
+                                    </para>
+                                </entry>
+                            </row>
+                            <row>
+                                <entry>
+                                    <para>DigitalRune/Terrain/TerrainShadowMapHoles</para>
+                                </entry>
+                                <entry>
+                                    <para>
+                                        Renders the terrain into the shadow map.
+                                        Holes in the effect are created using texkill/clip in the pixel shader.
+                                    </para>
+                                </entry>
+                            </row>
+                        </table>
+                        <para>
+                            You can use following code to create a material for a terrain node:
+                        </para>
+                        <code language="c#">
+                            <![CDATA[
+var shadowMapEffect = content.Load<Effect>("DigitalRune/Terrain/TerrainShadowMap");
+var gBufferEffect = content.Load<Effect>("DigitalRune/Terrain/TerrainGBuffer");
+var materialEffect = content.Load<Effect>("DigitalRune/Terrain/TerrainMaterial");
+var material = new Material
+{
+  { "ShadowMap", new EffectBinding(_graphicsService, shadowMapEffect, null, EffectParameterHint.Material) },
+  { "GBuffer", new EffectBinding(_graphicsService, gBufferEffect, null, EffectParameterHint.Material) },
+  { "Material", new EffectBinding(_graphicsService, materialEffect, null, EffectParameterHint.Material) }
+};
+TerrainNode = new TerrainNode(terrain, material);
+          ]]>
+                        </code>
+                        <para>
+                            Have a look at the terrain samples (see <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />)
+                            for more details.
+                        </para>
+                    </content>
+                </section>
+            </sections>
+        </section>
+
+
+        <section address="Misc">
+            <title>Miscellaneous</title>
+            <content>
+                <para>
+                    The class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.TerrainHelper</codeEntityReference>
+                    contains various methods which help to create and manipulate height maps and other
+                    terrain textures.
+                </para>
+                <para>
+                    The terrain renderers provide several effect parameter bindings for effect
+                    parameters which can be used in the materials of terrain nodes, terrain tiles and
+                    terrain layers. A list of supported effect parameter semantics can be found in the class
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Graphics.Effects.TerrainEffectParameterSemantics</codeEntityReference>.
+                </para>
+                <para>
+                    The rendering system caches terrain information internally to improve
+                    performance. The cache is invalidated automatically when an important property
+                    of a terrain class is changed. However, in some cases it is not possible
+                    to automatically detect these changes, e.g. if the data of a height
+                    texture is changed. In this case it is necessary to manually call the
+                    <legacyBold>Invalidate</legacyBold> method of the appropriate terrain class.
+                </para>
+            </content>
+        </section>
+
+      
+        <relatedTopics>
+        </relatedTopics>
+    </developerConceptualDocument>
+</topic>

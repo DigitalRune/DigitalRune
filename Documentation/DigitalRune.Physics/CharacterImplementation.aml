@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="7cc27ced-9a65-4ddd-8b8e-fa817b7fe6b7" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <autoOutline>1</autoOutline>
+        </introduction>
+
+
+        <section address="Classes">
+            <title>Character controller types</title>
+            <content>
+                <para>
+                    DigitalRune Physics provides two character controller implementations:
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Specialized.KinematicCharacterController</codeEntityReference>
+                    and
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Specialized.DynamicCharacterController</codeEntityReference>.
+                </para>
+                <mediaLink>
+                    <caption placement="after">Class Diagram: DigitalRune.Physics.Specialized (Character Controllers)</caption>
+                    <image xlink:href="ClassDiagramPhysicsSpecializedCharacterControllers"/>
+                </mediaLink>
+                <para>
+                    The kinematic is more expensive and more advanced
+                    implementation. It is modeled as a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.RigidBody</codeEntityReference>,
+                    but the movement (including
+                    sliding, stepping, etc.) is computed outside the physics simulation using only
+                    the collision detection. A kinematic character controller is more complex but allows to tune all
+                    aspects of the character movement.
+                </para>
+                <para>
+                    The dynamic character controller is a faster and simpler implementation.
+                    It is called "dynamic" because the character is modeled as a
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.RigidBody</codeEntityReference>
+                    where velocities are set. The physics simulation automatically computes
+                    the character movement.
+                </para>
+                <para>
+                    For a discussion about the advantages and disadvantages of the different character controller
+                    types, have a look at:
+                    <externalLink>
+                        <linkText>Kinematic vs. Dynamic Character Controllers [1]</linkText>
+                        <linkUri>http://www.digitalrune.com/Support/Blog/tabid/719/EntryId/40/Kinematic-vs-Dynamic-Character-Controllers.aspx</linkUri>
+                    </externalLink>
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Kinematic">
+            <title>Kinematic character controller</title>
+            <content>
+                <para>
+                    This section describes some implementation details of the character controller:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <legacyBold>Capsule shape:</legacyBold>
+                            The character is modeled using an upright, capsule-shaped rigid body.
+                            The rotations of the capsule are locked (see e.g.
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.RigidBody.LockRotationX</codeEntityReference>).
+                            The rigid body is added to the physics simulation. However, the movement is still
+                            computed by <newTerm>slide</newTerm> methods in the character controller.
+                            A capsule shape has the advantage that the lower spherical cap smooths up/down movement when it moves over small obstacles or over stairs. Still, an additional smoothing is desirable in many cases (which is not supported in our character controller example).
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Slide:</legacyBold>
+                            The basic routine in our character controller is called a
+                            <newTerm>slide</newTerm>. It takes a desired position and computes a valid,
+                            non-penetrating position near the desired position like this:
+                        </para>
+                        <para>
+                            The capsule is set to the desired positions and we detect all intersections. The
+                            collision detection returns all contacts at the desired position, including contact
+                            positions, contact normal vectors and penetration depths. Each contact indicates that
+                            we have moved into a solid object - we have reached a limit of the allowed movement space.
+                        </para>
+                        <para>
+                            For each contact found we store a bounding plane that represents that movement limit.
+                            If the capsule touches a wall, the bounding plane is parallel to the wall surface. If
+                            the capsule touches an object like a sphere, the bounding plane is parallel to the
+                            tangential plane at the contact point. All bounding planes together limit the
+                            allowed space in which the capsule can move.
+                        </para>
+                        <para>
+                            Now, that we have a description of the allowed space in which the character can
+                            move, we compute the allowed position closest to the desired position. We do this
+                            by a simple iterative process: If we have no bounding planes or the desired position
+                            is in front of all bounding planes, we are done. If the desired position is behind
+                            a bounding plane, we project the position onto the surface of the bounding plane.
+                            The new position is checked against the next plane. If it is behind the plane
+                            it is projected onto the surface. The new position is checked against the other planes,
+                            and so forth. This is done in a loop until we have found an allowed position in front
+                            of all bounding planes.
+                        </para>
+                        <para>
+                            Once, we have found the new position, we set the capsule to the new position and
+                            detect all intersections. It is possible that we find new bounding planes that we
+                            add to the set of existing bounding planes. We repeat the process above until
+                            we have a new position that does not violate any bounding plane.
+                        </para>
+                        <alert class="note">
+                            <para>
+                                The above problem is very similar to
+                                <externalLink>
+                                    <linkText>Linear Programming</linkText>
+                                    <linkUri>http://en.wikipedia.org/wiki/Linear_programming</linkUri>
+                                </externalLink>. The bounding planes describe the convex polytope of
+                                the feasible space and our objective is to find an allowed position near
+                                the desired position.
+                            </para>
+                        </alert>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Step up:</legacyBold>
+                            The <newTerm>step up</newTerm> operation temporarily changes the current capsule
+                            position: The step height is added and the capsule is moved forward by an amount
+                            proportional to the capsule size. If there are forbidden contacts at this position,
+                            the temporary position changes are undone. If there are no forbidden contacts, the
+                            up-stepping was successful: The new capsule position is the old capsule position
+                            plus the step height.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Step down:</legacyBold>
+                            Down stepping is like a slide to the current position minus the step height -
+                            but the movement is only committed if the movement stops at a position with a
+                            bottom contact. If the capsule does not find a ground contact within the step
+                            height, then the <newTerm>step down</newTerm> operation does nothing because the
+                            character is simply falling.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Move: </legacyBold>
+                            <codeEntityReference qualifyHint="true" autoUpgrade="true">M:DigitalRune.Physics.Specialized.KinematicCharacterController.Move(DigitalRune.Mathematics.Algebra.Vector3F,System.Single,System.Single)</codeEntityReference>
+                            is the public method that is called each frame. It combines all previous methods like
+                            this:
+                            First, we slide to the first obstacle. At this new position we try to step up. If the
+                            this is not successful we finish the slide to the desired position. At the end we try
+                            to step down And done.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Jump maneuverability:</legacyBold>
+                            The controller allows to limit movement changes when the character does not touch the
+                            ground. This is done by linearly interpolating the last movement with the desired
+                            movement. In pseudo code:
+                        </para>
+                        <para>
+                            <legacyItalic>
+                                desiredMovement = Lerp(lastMovement,  desiredMovement, JumpManeuverability);
+                            </legacyItalic>
+                        </para>
+                        <para>
+                            If
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.Specialized.KinematicCharacterController.JumpManeuverability</codeEntityReference>
+                            is 0, the character continues the motion of the last frame. If
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.Specialized.KinematicCharacterController.JumpManeuverability</codeEntityReference>
+                            is 1, the character can instantly change directions.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Pushing objects:</legacyBold>
+                            When the character stands on an object, its weight pushes the supporting object.
+                            This is achieved by applying a downwards-directed impulse to the object. To push
+                            objects horizontally, the character controller applies an impulse that depends on its
+                            current speed.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Moving with moving platforms:</legacyBold>
+                            To move with platforms (e.g. elevators, conveyors), the character checks its ground
+                            contacts and computes the average velocity of all ground contact points. This
+                            velocity is applied to the capsule body and the physics simulation will move the body.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>No continuous collision detection (CCD):</legacyBold>
+                            The collision tests do not use continuous collision detection. That means, if the
+                            character moves a huge distance in one step, collision can be missed. For characters
+                            with normal speeds, this is not a problem. However, if a character should be moved
+                            with an very large speed, it might be better to divide the move into several
+                            smaller moves.
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Dynamic">
+            <title>Dynamic character controller</title>
+            <content>
+                <para>
+                    The
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Specialized.DynamicCharacterController</codeEntityReference>
+                    is much simpler than the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Specialized.KinematicCharacterController</codeEntityReference>.
+                    The goal of this implementation is to show how easy it is to create a basic character
+                    controller using a physics engine. It is also very fast because the movement is
+                    computed by the physics simulation and it lacks the elaborate tests of the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Specialized.KinematicCharacterController</codeEntityReference>.
+                </para>
+                <para>
+                    The character is modeled as an upright, capsule-shaped rigid body.
+                    To move the character
+                    we simply set the velocity of the rigid body and let the physics simulation do the rest.
+                </para>
+                <para>
+                    A short ray is attached to the rigid body to sample the ground below the capsule. This is
+                    necessary to detect forbidden slopes. Further, we make sure that the walking velocity
+                    is always parallel to the ground. For example, when walking down an inclined plane,
+                    the walk velocity must be parallel to the plane. If we would simply set a horizontal
+                    velocity, the capsule would step into empty space and fall down in the next frames.
+                </para>
+                <para>
+                    Since the capsule’s bottom is round, it can automatically slide over small obstacles and
+                    steps. But it cannot smoothly pass high steps.
+                    Compared to the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Specialized.KinematicCharacterController</codeEntityReference>,
+                    the
+                    <codeEntityReference qualifyHint="false">T:DigitalRune.Physics.Specialized.DynamicCharacterController</codeEntityReference>
+                    is fast and simple. But it has several disadvantages:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        Limited control because the movement is done in the physics simulation.
+                    </listItem>
+                    <listItem>
+                        Instabilities when running into slope limits.
+                    </listItem>
+                    <listItem>
+                        Limited stepping abilities.
+                    </listItem>
+                    <listItem>
+                        No support for moving platforms.
+                    </listItem>
+                    <listItem>
+                        No limitation of jump maneuverability.
+                    </listItem>
+                    <listItem>
+                        Etc.
+                    </listItem>
+                </list>
+                <para>
+                    Some of these restrictions are not inherent problems of a dynamic character controller.
+                    They are there to keep the code simple. The source code is available for licensees and
+                    can be extend, e.g. by adding features from the more advanced kinematic character
+                    controller.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Sample">
+            <title>Sample</title>
+            <content>
+                <para>
+                    The <newTerm>CharacterControllerSample</newTerm> (see
+                    <link xlink:href="dde51686-4f07-4c54-95d4-756ec929cb57" />) shows how to use the
+                    character controllers
+                    to let a player move, including: jumping, climbing, pushing objects,
+                    crawling, hanging on ledges, stepping over obstacles and slopes, etc.
+                </para>
+                <mediaLink>
+                    <caption placement="after" lead="Screenshot">Screenshot of the Character Controller Sample</caption>
+                    <image xlink:href="SampleCharacter"/>
+                </mediaLink>
+                <para>
+                    Here is a video of the sample:
+                </para>
+                <list class="nobullet">
+                    <listItem>
+                        <para>
+                            <externalLink>
+                                <linkText>Video: Character Controller Sample</linkText>
+                                <linkUri>https://www.youtube.com/watch?v=LJp2NnKj1X4</linkUri>
+                            </externalLink>
+                        </para>
+                    </listItem>
+                </list>
+                <para>
+                    The sample shows how add several advanced character controller features:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <legacyBold>Dynamic Jump Height:</legacyBold>
+                            The jump height depends on the duration over which the jump button is pressed.
+                            The player can hold the button longer to increase the jump height. The hold time can
+                            be limited (e.g. to 10 frames) to limit the maximal jump height.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Crouch:</legacyBold>
+                            To support ducking/crouching, simply change the height of the capsule. Before standing
+                            up, check if there is enough space for the full-size capsule. If the full-size capsule
+                            would collide with another object, the character remains crouching.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Climbing:</legacyBold>
+                            The character can climb when it touches certain trigger objects.
+                            This could be a ladder or a climbable part of the wall. When the trigger objects
+                            are touched the
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.Specialized.KinematicCharacterController.IsClimbing</codeEntityReference>
+                            flag of the character controller is set. When the flag is set, no gravity is applied
+                            in the character controller and vertical movement is allowed.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyBold>Holding on Ledges:</legacyBold>
+                            The character can hold onto edges of platforms. To find ledges create a
+                            collision object (e.g. a box) and check for collisions in the upper part of the
+                            capsule and in the lower part of the capsule.
+                            If the upper box does not collide and if the lower box collides with an object,
+                            then we assume to have found a ledge and set the
+                            <codeEntityReference qualifyHint="false">P:DigitalRune.Physics.Specialized.KinematicCharacterController.IsClimbing</codeEntityReference>
+                            flag.
+                            This is one possible solution. We could also place extra trigger volumes to
+                            mark ledges - especially if we want to restrict where the player can climb.
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="References">
+            <title>References</title>
+            <content>
+                <para>
+                    [1] "Kinematic vs. Dynamic Character Controllers", DigitalRune Blog,
+                    <externalLink>
+                        <linkText>http://www.digitalrune.com/Support/Blog/tabid/719/EntryId/40/Kinematic-vs-Dynamic-Character-Controllers.aspx</linkText>
+                        <linkUri>http://www.digitalrune.com/Support/Blog/tabid/719/EntryId/40/Kinematic-vs-Dynamic-Character-Controllers.aspx</linkUri>
+                    </externalLink>
+                </para>
+            </content>
+        </section>
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

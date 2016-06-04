@@ -1,0 +1,454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="619b1341-c6a1-4c59-b33d-cc1f799402dc" revisionNumber="1">
+    <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                The service provider pattern is one of my favorite patterns: It creates clean, slick code
+                when used right - but when used in the wrong places it creates libraries that are hard to
+                use, difficult to understand and a nightmare to maintain. In this article we examine the
+                service provider pattern, related concepts, like global variables, services, managers,
+                service providers, contexts and how they can be used in games.
+            </para>
+            <autoOutline />
+        </introduction>
+
+
+        <section address="Problem">
+            <title>The problem</title>
+            <content>
+                <para>The problem is simple:</para>
+                <quote>
+                    I have a piece of code. The code depends on data and functions outside of my own code.
+                    How can my code access the external dependencies?
+                </quote>
+                <para>
+                    Let's work with this practical example:
+                </para>
+                <quote>
+                    I am coding a "Camera" class. The camera can be moved with the WASD keys on the keyboard -
+                    therefore, we need access to the keyboard to test if the WASD keys are pressed.
+                    The camera should move with a constant velocity. If the game uses a variable time step for
+                    each frame, then we need to know the size of the time step for the current frame. With this
+                    information, we can scale the movement in each frame.
+                </quote>
+                <para>
+                    In short:
+                </para>
+                <quote>
+                    Our Camera code depends on external data (time step size) and on an external function that
+                    checks if a keyboard key is pressed. How does the Camera code access the external data and
+                    functions?
+                </quote>
+            </content>
+        </section>
+
+
+        <section address="Global">
+            <title>Global variables and global methods</title>
+            <content>
+                <para>
+                    The simplest solutions is to use global variables and global methods:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+public class Game {
+  // Size of the current time step aka "elapsed time".
+  public static float DeltaTime;  
+  ...
+}
+
+public class InputManager {
+  // Checks if a key is pressed.
+  public static bool IsKeyDown(Keys key) { … }  
+  ...
+}]]>
+                </code>
+                <para>
+                    Everything that our Camera code needs is public and readily available. - This solution is
+                    simple, but has its drawbacks. For example:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        This code is not maintainable because we have hard-coded dependencies. Our camera code
+                        does only work with this specific classes. The classes are not exchangeable.
+                    </listItem>
+                    <listItem>
+                        And what if game components need different "views" of the data? For example what if
+                        the physics system was programmed by someone else and expects the delta time in
+                        milliseconds and the Camera expects the time in seconds?
+                    </listItem>
+                </list>
+                <para>
+                    In XNA a similar solution is used for device input classes in XNA (e.g. the
+                    <legacyBold>Keyboard</legacyBold> class). But the solution looks very clumsy for the
+                    global DeltaTime variable. Let's look for alternatives.
+                </para>
+            </content>
+        </section>
+
+        <section address="Contexts">
+            <title>Method parameters and contexts</title>
+            <content>
+                <para>
+                    We can also pass the required dependencies as parameters to the Camera when it is updated:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+public class Camera : GameComponent {
+  public void Update(float deltaTime, InputManager input) { ... }
+  ...
+}]]>
+                </code>
+                <para>
+                    This looks natural for the time parameter, and in XNA this pattern is used to pass the
+                    time to <legacyBold>GameComponents</legacyBold>.
+                </para>
+                <para>
+                    And what if other game components need more functionality? Should we add more and more
+                    parameters? - Instead, we can group all stuff into one object and call it a
+                    <legacyItalic>Context</legacyItalic>:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+public class UpdateContext {
+  public float DeltaTime;
+  public bool IsGameActive;
+  public InputManager Input;
+  public SpriteBatch SpriteBatch;
+  ...        
+}
+
+public class Camera : GameComponent {
+  public void Update(UpdateContext context) { ... }
+  ...
+}]]>
+                </code>
+                <para>
+                    This has the advantage that the method has only a single parameter. The disadvantage is
+                    that the context must be extended whenever a game component needs a new piece of data or
+                    a new functions. And we have to modify the
+                    GameComponent base class. If we want to use the XNA
+                    GameComponent class or any other third party framework, we cannot
+                    change the signature of the
+                    <legacyBold>Update</legacyBold> method.
+                </para>
+            </content>
+        </section>
+
+        <section address="Properties">
+            <title>Local properties</title>
+            <content>
+                <para>
+                    But even if we use a third party GameComponent base class, we can
+                    add a property very easily:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+public class Camera : GameComponent {
+	public UpdateContext UpdateContext { get; set;}
+	public void Update() { ... }
+	...
+}]]>
+                </code>
+                <para>
+                    This solves the problem, but seems more like workaround. For the user of the camera game
+                    component, it is not obvious that the UpdateContext must be set before each Update call.
+                    It is also not obvious that the UpdateContext is only used by the Update method (and no
+                    other Camera method). Such an API demands a lot of explanation.
+                </para>
+                <para>
+                    Properties are better used for obvious tasks and dependencies. For example, the XNA
+                    GameComponent class has a reference to the Game class that is set in the constructor:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+public class GameComponent {
+  public Game Game { get; }
+  public GameComponent(Game game) { ... }
+  ...
+}]]>
+                </code>
+                <para>
+                    This is a good use for a local property. It makes the data and functionality of the Game
+                    class available for all GameComponents. And the Game is essential for the whole
+                    GameComponent class (not just the Update method).
+                </para>
+            </content>
+        </section>
+
+
+        <section address="Provider">
+            <title>The service provider pattern</title>
+            <content>
+                <para>
+                    A pattern that solves several problems mentioned above is the <legacyItalic>service provider</legacyItalic>
+                    pattern - also called
+                    <externalLink>
+                        <linkText>
+                            <legacyItalic>service locator</legacyItalic> pattern
+                        </linkText>
+                        <linkUri>http://gameprogrammingpatterns.com/service-locator.htmlnormalizedString</linkUri>
+                    </externalLink>.
+                    The .NET Framework provides the interface
+                    <codeEntityReference qualifyHint="false">T:System.IServiceProvider</codeEntityReference>
+                    to support this pattern:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+public interface IServiceProvider {
+  object GetService(Type serviceType);
+}]]>
+                </code>
+                <para>
+                    A service provider is basically a dictionary or a registry that manages a set of objects
+                    that provide certain services. A good naming convention is to call the interface of a
+                    service
+                    <legacyItalic>IXyzService</legacyItalic>.
+                    Most of the time, the class that implements the interface is called
+                    <legacyItalic>XyzManager</legacyItalic>.
+                    For example:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+public interface IInputService {
+  bool IsKeyDown(Keys key);
+  ...
+}
+
+public class InputManager : IInputService {
+  public bool IsKeyDown(Keys key);
+  public void Update();
+  ...
+}]]>
+                </code>
+                <para>
+                    The service interface defines the data and functions that are available to the game
+                    components. The manager class defines additional members, like properties to configure the
+                    manager or the Update method. The module that creates the InputManager (usually the Game
+                    class) is responsible for configuring the manager and for calling Update once per frame.
+                    In this method the manager can do its work - if there is any. Such members are excluded
+                    from the IInputService interface because the interface shows only the member that are
+                    relevant for the clients of the service.
+                </para>
+                <para>
+                    We can put the service provider into a global variable, e.g.
+                </para>
+                <code language="cs">
+                    <![CDATA[
+public class Game {
+  public static IServiceProvider Services { get; }
+}
+]]>
+                </code>
+                <para>
+                    Then the camera can use it like this:
+                </para>
+                <code language="cs">
+                    <![CDATA[
+public class Camera : GameComponent {
+	public void Update() {
+		var gameTimeService = (IGameTimeService)Game.Services.GetService(typeof(IGameTimeService);
+		float deltaTime = gameTimeService.DeltaTime;
+	
+		var inputService = (IInputService)Game.Services.GetService(typeof(IInputService));
+		if (inputService.IsKeyDown(Keys.A))
+	...
+	}
+}
+]]>
+                </code>
+                <para>
+                    We do not have to bloat the GameComponent with properties or parameters for all possible
+                    services. And the dependencies are not hard-coded: The InputService could be a
+                    DefaultInputManager that checks the normal keyboard. It could be a
+                    PlaybackInputManager that plays back recorded key events. Or another InputManager that
+                    reads input from and on-screen keyboard - our Camera class does not care.
+                </para>
+            </content>
+        </section>
+
+        <section address="DependencyInjection">
+            <title>Dependency injection</title>
+            <content>
+                <para>
+                    The service provider pattern belongs to the Inversion of Control (IoC) patterns.
+                    <legacyItalic>Dependency injection</legacyItalic>
+                    is another IoC pattern. You can read more about that in Martin Fowler's article:
+                    <externalLink>
+                        <linkText>http://martinfowler.com/articles/injection.html</linkText>
+                        <linkUri>http://martinfowler.com/articles/injection.html</linkUri>
+                    </externalLink>
+                </para>
+                <para>
+                    Here is a list of dependency injection frameworks for .NET:
+                    <externalLink>
+                        <linkText>http://www.hanselman.com/blog/ListOfNETDependencyInjectionContainersIOC.aspx</linkText>
+                        <linkUri>http://www.hanselman.com/blog/ListOfNETDependencyInjectionContainersIOC.aspx</linkUri>
+                    </externalLink>
+                </para>
+                <para>
+                    Dependency injection has its uses, and we use it too in some of our applications. But I
+                    must admit that I am not a big fan of this pattern and will not go into more details in
+                    this article.
+                </para>
+            </content>
+        </section>
+
+        <section address="WhenToUse">
+            <title>When to use which pattern?</title>
+            <content>
+                <para>
+                    Which pattern should be used in a game? - All of them! And I mean it. We have a game
+                    framework including game editor components where every pattern discussed above is used
+                    (even dependency injection). Each pattern has its place. And here are a few rules that
+                    have served us well in the last years:
+                </para>
+                <list class="bullet">
+                    <listItem>
+                        <para>
+                            <legacyItalic>Avoid global variables.</legacyItalic>
+                            <markup>
+                                <br/>
+                            </markup>
+                            In most games, there should
+                            be only one global variable, and this is the variable that contains the service
+                            provider.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyItalic>Use local properties for obvious relationships.</legacyItalic>
+                            <markup>
+                                <br/>
+                            </markup>
+                            For example, in our Game UI library each UI control has a property
+                            UIControl.UIService.
+                            This demonstrates tight coupling: The
+                            UIControl can only belong to exactly one UIService.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyItalic>Use the context parameter pattern in object hierarchies. </legacyItalic>
+                            <markup>
+                                <br/>
+                            </markup>
+                            For example, controls in our Game UI library are organized in a tree. Each control has
+                            the method UIControl.HandleInput(InputContext inputContext).
+                            The advantage of the context pattern is that each control can modify the
+                            InputContext before it calls HandleInput on its child controls. In our library, each
+                            control can be scaled, rotated and translated and the InputContext is always modified
+                            such that it contains the MousePosition in the local coordinate space of the control.
+                            In other words: IInputService.MousePosition contains the mouse position in screen
+                            coordinates. InputContext.MousePosition contains the mouse position relative to the
+                            unscaled, unrotated, untranslated control.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyItalic>
+                                Use the service provider pattern for game logic and loosely coupled objects.
+                            </legacyItalic>
+                            <markup>
+                                <br/>
+                            </markup>
+                            A game object needs many sub-systems (input, audio, physics, network, graphics, GUI,
+                            diagnostics, storage, configuration, etc.) that can be exposed as services. But not
+                            each game object needs all of them at once. On the game logic level flexibility is
+                            important. It is should also be expected that some services are missing.
+                            Example: A NetworkedCamera can be used to control the camera and sync it over the
+                            network. But even if the INetworkService is missing, the game object can still provide
+                            useful game logic for single-player games.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            Very important:
+                            <legacyItalic>
+                                Do not use the service provider pattern for tightly coupled, specialized
+                                sub-systems.
+                            </legacyItalic>
+                            <markup>
+                                <br/>
+                            </markup>
+                            Sub-systems are usually in a separate library and usability and maintainability are
+                            important. Dependencies should be visible in the API.
+                            For example, controls in our UI library need the IInputService - a button cannot be
+                            clicked without an input device. Missing services should create a compiler error. In
+                            our case, the UIManager needs an InputService as parameter in its constructor:
+                        </para>
+                        <para>
+                            <codeInline>_uiManager = new UIManager(this, _inputManager);</codeInline>
+                        </para>
+                        <para>
+                            If this parameter is missing, the code will not compile. Instead if we use the service
+                            provider pattern here, the code would compile and a ServiceNotFoundException would be
+                            thrown at run-time.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyItalic>Do not use the service provider pattern in performance critical code paths. </legacyItalic>
+                            <markup>
+                                <br/>
+                            </markup>
+                            It is great for game logic but not ok for an inner loop of the physics engine.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            In most applications it is ok to have one global variable that contains the service provider.
+                            <legacyItalic>In some cases, not all code modules should have access to all services.</legacyItalic>
+                        </para>
+                        <para>
+                            Example: A text editor can be extended with plug-ins. The plug-ins can have access to
+                            the IPrintService and the IDocumentService. But, maybe, for security and stability
+                            reasons the plug-ins should not have access to the IConfigurationService.
+                        </para>
+                        <para>
+                            → Use several service providers and make them available using one of the other patterns,
+                            e.g. pass them around as part of a context.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            <legacyItalic>Contexts and service providers are orthogonal patterns.</legacyItalic>
+                            <markup>
+                                <br/>
+                            </markup>
+                            Most of the time, services provide functionality and context parameters provide data.
+                        </para>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            Be careful: <legacyItalic>
+                                The service provider pattern is a system of global variables
+                                in disguise.
+                            </legacyItalic>
+                            <markup>
+                                <br/>
+                            </markup>
+                            However, it gives a better structure and is more maintainable.
+                        </para>
+                    </listItem>
+                </list>
+            </content>
+        </section>
+
+
+        <section address="Conclusion">
+            <title>Conclusion</title>
+            <content>
+                <para>
+                    The service provider pattern is very powerful, but must be used with care.
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>

@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="aa0a6f8f-d355-4188-9d4a-7041160411d1" revisionNumber="1">
+    <developerConceptualDocument
+      xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+
+        <introduction>
+            <para>
+                In this step we will add a particle effect.
+            </para>
+        </introduction>
+
+
+        <section address="ParticleTexture">
+            <title>Add particle texture</title>
+            <content>
+                <list class="ordered">
+                    <listItem>
+                        In the <ui>Solution Explorer</ui> right-click the <localUri>MyGameContent</localUri>
+                        content project.
+                    </listItem>
+                    <listItem>
+                        Select <ui>Add | Existing Item…</ui>
+                    </listItem>
+                    <listItem>
+                        Browse to this folder of the DigitalRune Engine:
+                        <list class="nobullet">
+                            <listItem>
+                                <localUri>
+                                    <![CDATA[<DigitalRune Engine Folder>\Samples\Content\Particles]]>
+                                </localUri>
+                            </listItem>
+                        </list>
+                    </listItem>
+                    <listItem>
+                        <para>
+                            Select <localUri>Smoke.png</localUri> and click <ui>Add</ui>.
+                        </para>
+                    </listItem>
+                </list>
+                <para>
+                    (No special content processor required. Texture can use the default XNA importers and processors.)
+                </para>
+            </content>
+        </section>
+
+
+        <section address="ParticleSystemManager">
+            <title>
+                Add the particle system service
+            </title>
+            <content>
+                <para>
+                    In <localUri>Game1.cs</localUri> add the particle system manager like this:
+                </para>
+                <code language="c#" title="Game1.cs">
+                    <![CDATA[
+…
+using DigitalRune.Particles;                                                                  // NEW
+…
+
+namespace MyGame
+{
+    public class Game1 : Microsoft.Xna.Framework.Game
+    {
+        …
+        private ParticleSystemManager _particleSystemManager;                                 // NEW
+        …
+
+        protected override void Initialize()
+        {
+            …
+            _simulation = new Simulation();
+            _simulation.ForceEffects.Add(new Gravity());
+            _simulation.ForceEffects.Add(new Damping());
+            _services.Register(typeof(Simulation), null, _simulation);
+
+            _particleSystemManager = new ParticleSystemManager();                             // NEW
+            _services.Register(typeof(IParticleSystemService), null, _particleSystemManager); // NEW
+
+            Components.Add(new MyGameComponent(this));
+
+            base.Initialize();
+        }
+
+        protected override void Update(GameTime gameTime)
+        {
+            _inputManager.Update(gameTime.ElapsedGameTime);
+
+            base.Update(gameTime);
+
+            _gameObjectManager.Update(gameTime.ElapsedGameTime);
+
+            _simulation.Update(gameTime.ElapsedGameTime);
+
+            _particleSystemManager.Update(gameTime.ElapsedGameTime);                          // NEW
+
+            _animationManager.Update(gameTime.ElapsedGameTime);
+            _animationManager.ApplyAnimations();
+        }
+        …
+                ]]>
+                </code>
+            </content>
+        </section>
+
+
+        <section address="smoke">
+            <title>
+                Add a smoke effect
+            </title>
+            <content>
+                <para>
+                    Add a new game object <localUri>SmokeObject.cs</localUri>:
+                </para>
+                <code language="c#" title="SmokeObject.cs">
+                    <![CDATA[
+using System;
+using DigitalRune.Game;
+using DigitalRune.Geometry;
+using DigitalRune.Graphics;
+using DigitalRune.Graphics.SceneGraph;
+using DigitalRune.Mathematics;
+using DigitalRune.Mathematics.Algebra;
+using DigitalRune.Mathematics.Statistics;
+using DigitalRune.Particles;
+using DigitalRune.Particles.Effectors;
+using Microsoft.Practices.ServiceLocation;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+namespace MyGame
+{
+    public class SmokeObject : GameObject
+    {
+        private IGraphicsService _graphicsService;
+        private ParticleSystemNode _particleSystemNode;
+
+        protected override void OnLoad()
+        {
+            _graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
+            var game = ServiceLocator.Current.GetInstance<Game>();
+            var scene = ServiceLocator.Current.GetInstance<IScene>();
+            var particleSystemService = ServiceLocator.Current.GetInstance<IParticleSystemService>();
+
+            var ps = new ParticleSystem
+            {
+                Name = "Smoke",
+                MaxNumberOfParticles = 200,
+            };
+            ps.Parameters.AddUniform<float>(ParticleParameterNames.Lifetime).DefaultValue = 5;
+            ps.Effectors.Add(new StreamEmitter 
+            {
+                DefaultEmissionRate = 10,
+            });
+            ps.ReferenceFrame = ParticleReferenceFrame.Local;
+            ps.Parameters.AddVarying<Vector3F>(ParticleParameterNames.Position);
+            ps.Effectors.Add(new StartPositionEffector
+            {
+                Parameter = ParticleParameterNames.Position,
+                DefaultValue = Vector3F.Zero,
+            });
+            ps.Parameters.AddVarying<Vector3F>(ParticleParameterNames.Direction);
+            ps.Effectors.Add(new StartDirectionEffector
+            {
+                Parameter = ParticleParameterNames.Direction,
+                Distribution = new DirectionDistribution { Deviation = 0.5f, Direction = Vector3F.Up },
+            });
+            ps.Parameters.AddVarying<float>(ParticleParameterNames.LinearSpeed);
+            ps.Effectors.Add(new StartValueEffector<float>
+            {
+                Parameter = ParticleParameterNames.LinearSpeed,
+                Distribution = new UniformDistributionF(0.5f, 1),
+            });
+            ps.Effectors.Add(new LinearVelocityEffector());
+            ps.Parameters.AddVarying<float>(ParticleParameterNames.Angle);
+            ps.Effectors.Add(new StartValueEffector<float>
+            {
+                Parameter = ParticleParameterNames.Angle,
+                Distribution = new UniformDistributionF(-ConstantsF.Pi, ConstantsF.Pi),
+            });
+            ps.Parameters.AddVarying<float>(ParticleParameterNames.AngularSpeed);
+            ps.Effectors.Add(new StartValueEffector<float>
+            {
+                Parameter = ParticleParameterNames.AngularSpeed,
+                Distribution = new UniformDistributionF(-2, 2),
+            });
+            ps.Effectors.Add(new AngularVelocityEffector());
+            ps.Parameters.AddVarying<float>("StartSize");
+            ps.Effectors.Add(new StartValueEffector<float>
+            {
+                Parameter = "StartSize",
+                Distribution = new UniformDistributionF(0.1f, 0.5f),
+            });
+            ps.Parameters.AddVarying<float>("EndSize");
+            ps.Effectors.Add(new StartValueEffector<float>
+            {
+                Parameter = "EndSize",
+                Distribution = new UniformDistributionF(2, 4),
+            });
+            ps.Parameters.AddVarying<float>(ParticleParameterNames.Size);
+            ps.Effectors.Add(new SingleLerpEffector
+            {
+                ValueParameter = ParticleParameterNames.Size,
+                StartParameter = "StartSize",
+                EndParameter = "EndSize",
+            });
+            ps.Parameters.AddVarying<float>(ParticleParameterNames.Alpha);
+            ps.Parameters.AddUniform<float>("TargetAlpha").DefaultValue = 1f;
+            ps.Effectors.Add(new SingleFadeEffector
+            {
+                ValueParameter = ParticleParameterNames.Alpha,
+                TargetValueParameter = "TargetAlpha",
+                FadeInStart = 0f,
+                FadeInEnd = 0.2f,
+                FadeOutStart = 0.7f,
+                FadeOutEnd = 1f,
+            });
+
+            ps.Parameters.AddUniform<Texture2D>(ParticleParameterNames.Texture).DefaultValue =
+                game.Content.Load<Texture2D>("Smoke");
+            
+            particleSystemService.ParticleSystems.Add(ps);
+
+            _particleSystemNode = new ParticleSystemNode(ps);
+            _particleSystemNode.PoseWorld = new Pose(new Vector3F(-2, 0, -1));
+            scene.Children.Add(_particleSystemNode);
+        }
+
+        protected override void OnUnload()
+        {
+            var particleSystemService = ServiceLocator.Current.GetInstance<IParticleSystemService>();
+            particleSystemService.ParticleSystems.Remove(_particleSystemNode.ParticleSystem);
+
+            _particleSystemNode.Parent.Children.Remove(_particleSystemNode);
+            _particleSystemNode.Dispose(false);
+            _particleSystemNode = null;
+        }
+
+        protected override void OnUpdate(TimeSpan deltaTime)
+        {
+            _particleSystemNode.Synchronize(_graphicsService);
+        }
+    }
+}
+                    ]]>
+                </code>
+                <para>
+                    This game object creates a new <legacyBold>ParticleSystem</legacyBold> and sets a
+                    lot of particle system parameters and effectors, which define the appearance and
+                    dynamics of the effect. For a more detailed introduction to particle system parameters
+                    and effector, please have a look at the DigitalRune documentation and samples.
+                </para>
+                <para>
+                    At the end of <legacyBold>OnLoad</legacyBold>, a <legacyBold>ParticleSystemNode</legacyBold>
+                    is generated for the particle system and added to the scene.
+                </para>
+                <para>
+                    It is important to understand that the <legacyBold>ParticleSystem</legacyBold> is
+                    an object of the particle system service. The <legacyBold>ParticleSystemNode</legacyBold>
+                    is a scene node which is managed by the graphics system.
+                    <legacyBold>SmokeObject.OnUpdate</legacyBold> has to copy data from the particle
+                    system service to the graphics service – similar to copying the rigid body pose to
+                    the model pose in the <legacyBold>CrateObject</legacyBold>. Particle systems have
+                    a more complex state which is copied with <legacyBold>ParticleSystemNode.Synchronize</legacyBold>.
+                </para>
+                <para>
+                    In <legacyBold>MyGameComponent</legacyBold>, we create an instance of
+                    <legacyBold>SmokeObject</legacyBold>:
+                </para>
+                <code language="c#" title="MyGameComponent.cs">
+                    <![CDATA[
+…
+namespace MyGame
+{
+    public class MyGameComponent : Microsoft.Xna.Framework.GameComponent
+    {
+        …
+
+        public MyGameComponent(Game game)
+            : base(game)
+        {
+            …
+
+            gameObjectService.Objects.Add(new GroundObject());
+            gameObjectService.Objects.Add(new LightsObject());
+            gameObjectService.Objects.Add(new DudeObject());
+            gameObjectService.Objects.Add(new CrateObject());
+            gameObjectService.Objects.Add(new SmokeObject());                     // NEW
+
+            _myGraphicsScreen.DebugRenderer.DrawText("MyGame");
+            _myGraphicsScreen.DebugRenderer.DrawAxes(Pose.Identity, 1, false);
+        }
+        …
+                    ]]>
+                </code>
+                <para>
+                    If we run the game, the particle system is not visible. This happens because, so
+                    far, our render pipeline can only handle meshes and debug graphics.
+                </para>
+            </content>
+        </section>
+
+
+        <section address="BillboardRenderer">
+            <title>Add particle system renderer</title>
+            <content>
+                <para>
+                    The <legacyBold>BillboardRenderer</legacyBold> is a renderer which can draw billboards
+                    and particle systems. We have to add this renderer to <localUri>MyGraphicsScreen.cs</localUri>:
+                </para>
+                <code language="c#" title="MyGraphicsScreen.cs">
+                    <![CDATA[
+…
+namespace MyGame
+{
+    public class MyGraphicsScreen : GraphicsScreen
+    {
+        private MeshRenderer _meshRenderer;
+        private BillboardRenderer _billboardRenderer;                                         // NEW
+
+        …
+
+        public MyGraphicsScreen(IGraphicsService graphicsService)
+            : base(graphicsService)
+        {
+            _meshRenderer = new MeshRenderer();
+            _billboardRenderer = new BillboardRenderer(graphicsService, 2048);                // NEW
+            …
+        }
+ 
+        …
+         
+        protected override void OnRender(RenderContext context)
+        {
+            var graphicsDevice = GraphicsService.GraphicsDevice;
+            graphicsDevice.Clear(Color.CornflowerBlue);
+
+            context.CameraNode = CameraNode;
+            context.Scene = Scene;
+
+            // Frustum Culling: Get all the scene nodes that intersect the camera frustum.
+            var query = Scene.Query<CameraFrustumQuery>(context.CameraNode, context);
+
+            // Render opaque meshes that are visible from the camera
+            graphicsDevice.DepthStencilState = DepthStencilState.Default;
+            graphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
+            graphicsDevice.BlendState = BlendState.Opaque;
+            graphicsDevice.SamplerStates[0] = SamplerState.AnisotropicWrap;
+            context.RenderPass = "Default";
+            _meshRenderer.Render(query.SceneNodes, context);
+            context.RenderPass = null;
+
+            graphicsDevice.DepthStencilState = DepthStencilState.DepthRead;                   // NEW
+            _billboardRenderer.Render(query.SceneNodes, context, RenderOrder.BackToFront);    // NEW
+
+            DebugRenderer.Render(context);
+
+            context.Scene = null;
+            context.CameraNode = null;
+        }
+    }
+}
+                    ]]>
+                </code>
+                <para>
+                    Opaque meshes are rendered first, then billboards and particles (which require
+                    alpha-blending) and finally debug graphics.
+                </para>
+                <mediaLink>
+                    <image xlink:href="Tutorial-01-20"/>
+                </mediaLink>
+            </content>
+        </section>
+
+
+        <section address="Next">
+            <title>Next</title>
+            <content>
+                <para>
+                    <link xlink:href="c060be3d-f85f-4551-838c-6969ab45b0b4" />
+                </para>
+            </content>
+        </section>
+
+
+        <relatedTopics>
+        </relatedTopics>
+
+    </developerConceptualDocument>
+</topic>
