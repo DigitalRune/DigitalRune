@@ -20,6 +20,7 @@ The documentation is available online: [Link](http://digitalrune.github.io/Digit
 
 Please note that the documentation has not been updated for the open source version.
 
+The documentation refers to DigitalRune blog and forum articles. A backup of these articles can be found here: [Link](https://onedrive.live.com/redir?resid=8359C88376649D7A!269&authkey=!AGaB_VAw2gabQgU&ithint=onenote%2c)
 
 ## Notes
 
