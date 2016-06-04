@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune         Namespace: DigitalRune.CommandLine">
+    <Position X="0.5" Y="0.5" Height="0.406" Width="2.262" />
+  </Comment>
+  <Class Name="DigitalRune.CommandLine.CommandLineParser">
+    <Position X="0.5" Y="1.25" Width="2.5" />
+    <Members>
+      <Method Name="CommandLineParser" Hidden="true" />
+      <Method Name="Contains" Hidden="true" />
+      <Method Name="GetApplicationInfo" Hidden="true" />
+      <Method Name="GetSyntaxWithoutBrackets" Hidden="true" />
+      <Field Name="IndentSpacing" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Arguments" Type="DigitalRune.CommandLine.Argument" FixedFromPoint="true">
+      <Path>
+        <Point X="3" Y="3.266" />
+        <Point X="4" Y="3.266" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>QAAgAAAAAAAgAAAAAAAAIAAAAAAAAAABIABAoAAVCAA=</HashCode>
+      <FileName>CommandLineParser.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Arguments" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.CommandLine.Argument">
+    <Position X="4" Y="1.25" Width="2" />
+    <Members>
+      <Method Name="Argument" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAgAAAAAAAAIAQAAAAAAAAAIAAAAAAACAA=</HashCode>
+      <FileName>Arguments\Argument.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.CommandLine.SwitchArgument">
+    <Position X="5.25" Y="4.5" Width="1.5" />
+    <Members>
+      <Field Name="_aliases" Hidden="true" />
+      <Field Name="_shortAliases" Hidden="true" />
+      <Field Name="BadCharacters" Hidden="true" />
+      <Method Name="CompareWithNames" Hidden="true" />
+      <Method Name="CompareWithShortNames" Hidden="true" />
+      <Method Name="GetHelp" Hidden="true" />
+      <Method Name="GetSyntax" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+      <Method Name="SwitchArgument" Hidden="true" />
+      <Method Name="ValidateName" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAgAgAAAAAQAAAQAAEAIAAAAAAAAgYAAAAAAEAACAA=</HashCode>
+      <FileName>Arguments\SwitchArgument.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.CommandLine.ValueArgument&lt;T&gt;">
+    <Position X="2" Y="4.5" Width="1.75" />
+    <Members>
+      <Method Name="GetSyntax" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+      <Method Name="ValueArgument" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAIAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Arguments\ValueArgument.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.CommandLine.SwitchValueArgument&lt;T&gt;">
+    <Position X="5" Y="6.5" Width="2" />
+    <Members>
+      <Field Name="_valueArgument" Hidden="true" />
+      <Method Name="GetHelp" Hidden="true" />
+      <Method Name="GetSyntax" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+      <Method Name="SwitchValueArgument" Hidden="true" />
+    </Members>
+    <AssociationLine Name="ValueArgument" Type="DigitalRune.CommandLine.ValueArgument&lt;T&gt;" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.111" Y="6.5" />
+        <Point X="5.111" Y="5.5" />
+        <Point X="3.75" Y="5.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAEAAAIAAAAAAAAAAAACAAAAAACAA=</HashCode>
+      <FileName>Arguments\SwitchValueArgument.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ValueArgument" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.CommandLine.EnumArgument&lt;T&gt;">
+    <Position X="3" Y="6.5" Width="1.75" />
+    <Members>
+      <Field Name="_namesAndValues" Hidden="true" />
+      <Field Name="_type" Hidden="true" />
+      <Method Name="EnumArgument" Hidden="true" />
+      <Method Name="GetHelp" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AACgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Arguments\EnumArgument.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.CommandLine.BoundedValueArgument&lt;T&gt;">
+    <Position X="0.5" Y="6.5" Width="2.25" />
+    <Members>
+      <Method Name="BoundedValueArgument" Hidden="true" />
+      <Method Name="GetHelp" Hidden="true" />
+      <Method Name="Parse" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAABAAAAAAEAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Arguments\BoundedValueArgument.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.CommandLine.ConsoleHelper">
+    <Position X="8.25" Y="6" Width="2.25" />
+    <Members>
+      <Method Name="AppendLineCentered" Hidden="true" />
+      <Method Name="AppendLineIndented" Hidden="true" />
+      <Field Name="DefaultWindowWidth" Hidden="true" />
+      <Property Name="WindowWidth" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAwAAAQAAQAAAAAAAAQAAAAAAEACCAABAAAAEQAAA=</HashCode>
+      <FileName>ConsoleHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.CommandLine.CommandLineParserException">
+    <Position X="4.25" Y="8" Width="2.25" />
+    <Members>
+      <Method Name="CommandLineParserException" Hidden="true" />
+      <Method Name="GetObjectData" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\CommandLineParserException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.CommandLine.MissingArgumentException">
+    <Position X="3" Y="9.75" Width="2.25" />
+    <Members>
+      <Method Name="GetMessage" Hidden="true" />
+      <Method Name="MissingArgumentException" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\MissingArgumentException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.CommandLine.UnknownArgumentException">
+    <Position X="8.25" Y="9.75" Width="2.25" />
+    <Members>
+      <Method Name="GetMessage" Hidden="true" />
+      <Method Name="UnknownArgumentException" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\UnknownArgumentException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.CommandLine.ParseResult">
+    <Position X="7.75" Y="1.25" Width="1.75" />
+    <Members>
+      <Method Name="ParseResult" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQIAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Results\ParseResult.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ParsedArguments" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.CommandLine.ArgumentResult">
+    <Position X="7.75" Y="2.75" Width="1.75" />
+    <Members>
+      <Method Name="ArgumentResult" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAIAAgAAAAAAA=</HashCode>
+      <FileName>Results\ArgumentResult.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Argument" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.CommandLine.DuplicateArgumentException">
+    <Position X="0.5" Y="9.75" Width="2.25" />
+    <Members>
+      <Method Name="DuplicateArgumentException" Hidden="true" />
+      <Method Name="GetMessage" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\DuplicateArgumentException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.CommandLine.InvalidArgumentValueException">
+    <Position X="5.5" Y="9.75" Width="2.5" />
+    <Members>
+      <Method Name="GetMessage" Hidden="true" />
+      <Method Name="GetObjectData" Hidden="true" />
+      <Method Name="InvalidArgumentValueException" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Exceptions\InvalidArgumentValueException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.CommandLine.ArgumentResult&lt;T&gt;">
+    <Position X="7.75" Y="4" Width="1.75" />
+    <Members>
+      <Method Name="ArgumentResult" Hidden="true" />
+      <Method Name="EnsureValues" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Results\ArgumentResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

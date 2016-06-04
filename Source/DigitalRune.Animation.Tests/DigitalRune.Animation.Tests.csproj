@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9251BCE8-916B-4AA6-9B3F-8805CA993353}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.Animation.Tests</RootNamespace>
+    <AssemblyName>DigitalRune.Animation.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;XNA</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;XNA</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune.Animation\DigitalRune.Animation%28PCL%29.csproj">
+      <Project>{FCA3D67B-A19A-4398-A126-171E5E1217F1}</Project>
+      <Name>DigitalRune.Animation%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Geometry\DigitalRune.Geometry%28PCL%29.csproj">
+      <Project>{8A8FE6D4-0906-4FC3-847C-31387DFDCB2C}</Project>
+      <Name>DigitalRune.Geometry%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Mathematics\DigitalRune.Mathematics%28PCL%29.csproj">
+      <Project>{A5833DE3-70A9-4258-966F-77456D6C7900}</Project>
+      <Name>DigitalRune.Mathematics%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune\DigitalRune.csproj">
+      <Project>{5A0E3C60-1CA9-49D5-84CA-308CB8E3A3B4}</Project>
+      <Name>DigitalRune</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MonoGame\MonoGame.Framework\MonoGame.Framework.Windows.csproj">
+      <Project>{7de47032-a904-4c29-bd22-2d235e8d91ba}</Project>
+      <Name>MonoGame.Framework.Windows</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnimatableObject.cs" />
+    <Compile Include="AnimatableObjectTest.cs" />
+    <Compile Include="Animatables\AnimatablePropertyTest.cs" />
+    <Compile Include="Animatables\DelegateAnimatablePropertyTest.cs" />
+    <Compile Include="AnimationCompositionChainTest.cs" />
+    <Compile Include="AnimationControllerTest.cs" />
+    <Compile Include="AnimationExceptionTest.cs" />
+    <Compile Include="AnimationHelperTest.cs" />
+    <Compile Include="AnimationInstanceCollectionTest.cs" />
+    <Compile Include="AnimationInstanceTest.cs" />
+    <Compile Include="AnimationManagerTest.cs" />
+    <Compile Include="Animations\AnimationTest.cs" />
+    <Compile Include="Animations\Composite Animations\QuaternionFAnimationTest.cs" />
+    <Compile Include="Animations\Composite Animations\SrtAnimationTest.cs" />
+    <Compile Include="Animations\Composite Animations\Vector2FAnimationTest.cs" />
+    <Compile Include="Animations\Composite Animations\Vector3FAnimationTest.cs" />
+    <Compile Include="Animations\Composite Animations\Vector4FAnimationTest.cs" />
+    <Compile Include="Animations\Compositing\AnimationClipTest.cs" />
+    <Compile Include="Animations\Compositing\TimelineClipTest.cs" />
+    <Compile Include="Animations\Compositing\TimelineGroupTest.cs" />
+    <Compile Include="Animations\Curve-Based Animations\Curve2FAnimationTest.cs" />
+    <Compile Include="Animations\Curve-Based Animations\Path2FAnimationTest.cs" />
+    <Compile Include="Animations\Curve-Based Animations\Path3FAnimationTest.cs" />
+    <Compile Include="Animations\From-To-By Animations\QuaternionFFromToByAnimationTest.cs" />
+    <Compile Include="Animations\From-To-By Animations\SingleFromToByAnimationTest.cs" />
+    <Compile Include="Animations\From-To-By Animations\Vector2FFromToByAnimationTest.cs" />
+    <Compile Include="Animations\From-To-By Animations\Vector3FFromToByAnimationTest.cs" />
+    <Compile Include="Animations\From-To-By Animations\Vector4FFromToByAnimationTest.cs" />
+    <Compile Include="Animations\Key-Frame Animations\ColorKeyFrameAnimationTest.cs" />
+    <Compile Include="Animations\Key-Frame Animations\KeyFrameAnimationTest.cs" />
+    <Compile Include="Animations\Key-Frame Animations\KeyFrameCollectionTest.cs" />
+    <Compile Include="Animations\Key-Frame Animations\QuaternionFKeyFrameAnimationTest.cs" />
+    <Compile Include="Animations\Key-Frame Animations\QuaternionKeyFrameAnimationTest.cs" />
+    <Compile Include="Animations\Key-Frame Animations\SingleKeyFrameAnimationTest.cs" />
+    <Compile Include="Animations\Key-Frame Animations\Vector2FKeyFrameAnimationTest.cs" />
+    <Compile Include="Animations\Key-Frame Animations\Vector2KeyFrameAnimationTest.cs" />
+    <Compile Include="Animations\Key-Frame Animations\Vector3FKeyFrameAnimationTest.cs" />
+    <Compile Include="Animations\Key-Frame Animations\Vector3KeyFrameAnimationTest.cs" />
+    <Compile Include="Animations\Key-Frame Animations\Vector4FKeyFrameAnimationTest.cs" />
+    <Compile Include="Animations\Key-Frame Animations\Vector4KeyFrameAnimationTest.cs" />
+    <Compile Include="Animations\NBlendAnimation\BlendGroupTest.cs" />
+    <Compile Include="Character\SkeletonKeyFrameAnimationTest.cs" />
+    <Compile Include="Character\SrtTransformTest.cs" />
+    <Compile Include="Easing\BackEaseTest.cs" />
+    <Compile Include="Easing\BaseEasingFunctionTest.cs" />
+    <Compile Include="Easing\BounceEaseTest.cs" />
+    <Compile Include="Easing\CircleEaseTest.cs" />
+    <Compile Include="Easing\CubicEaseTest.cs" />
+    <Compile Include="Easing\EasingFunctionTest.cs" />
+    <Compile Include="Easing\ElasticEaseTest.cs" />
+    <Compile Include="Easing\ExponentialEaseTest.cs" />
+    <Compile Include="Easing\HermiteEaseTest.cs" />
+    <Compile Include="Easing\LogarithmicEaseTest.cs" />
+    <Compile Include="Easing\PowerEaseTest.cs" />
+    <Compile Include="Easing\QuadraticEaseTest.cs" />
+    <Compile Include="Easing\QuarticEaseTest.cs" />
+    <Compile Include="Easing\QuinticEaseTest.cs" />
+    <Compile Include="Easing\SineEaseTest.cs" />
+    <Compile Include="Helper.cs" />
+    <Compile Include="InvalidAnimationExceptionTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadOnlyAnimationInstanceCollectionTest.cs" />
+    <Compile Include="Traits\ColorTraitsTest.cs" />
+    <Compile Include="Traits\PoseTraitsTest.cs" />
+    <Compile Include="Traits\QuaternionFTraitsTest.cs" />
+    <Compile Include="Traits\QuaternionTraitsTest.cs" />
+    <Compile Include="Traits\SingleTraits.cs" />
+    <Compile Include="Traits\SrtTransformTraitsTest.cs" />
+    <Compile Include="Traits\Vector2FTraits.cs" />
+    <Compile Include="Traits\Vector2Traits.cs" />
+    <Compile Include="Traits\Vector3FTraits.cs" />
+    <Compile Include="Traits\Vector3Traits.cs" />
+    <Compile Include="Traits\Vector4FTraits.cs" />
+    <Compile Include="Traits\Vector4Traits.cs" />
+    <Compile Include="Transitions\AnimationTransitionsTest.cs" />
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

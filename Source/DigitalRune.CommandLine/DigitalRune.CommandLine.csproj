@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F53CCE9A-27A5-46F6-BCD2-EE20E026F5DD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.CommandLine</RootNamespace>
+    <AssemblyName>DigitalRune.CommandLine</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\DigitalRune.CommandLine.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>..\DigitalRune\DigitalRuneRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\DigitalRune.CommandLine.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune\DigitalRune.csproj">
+      <Project>{5A0E3C60-1CA9-49D5-84CA-308CB8E3A3B4}</Project>
+      <Name>DigitalRune</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Arguments\Argument.cs" />
+    <Compile Include="Arguments\BoundedValueArgument.cs" />
+    <Compile Include="Arguments\EnumArgument.cs" />
+    <Compile Include="Arguments\SwitchArgument.cs" />
+    <Compile Include="Arguments\SwitchValueArgument.cs" />
+    <Compile Include="Arguments\ValueArgument.cs" />
+    <None Include="Class Diagrams\CommandLine.cd" />
+    <Compile Include="CommandLineParser.cs" />
+    <Compile Include="ConsoleHelper.cs" />
+    <Compile Include="Exceptions\CommandLineParserException.cs" />
+    <Compile Include="Exceptions\DuplicateArgumentException.cs" />
+    <Compile Include="Exceptions\InvalidArgumentValueException.cs" />
+    <Compile Include="Exceptions\MissingArgumentException.cs" />
+    <Compile Include="Exceptions\UnknownArgumentException.cs" />
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Properties\AssemblyInfo.template" />
+    <Compile Include="Results\ArgumentResult.cs" />
+    <Compile Include="Results\ArgumentResultCollection.cs" />
+    <Compile Include="Results\ParseResult.cs" />
+  </ItemGroup>
+</Project>

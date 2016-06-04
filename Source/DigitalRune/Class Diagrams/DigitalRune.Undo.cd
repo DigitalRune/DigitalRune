@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune Namespace: DigitalRune.Undo">
+    <Position X="0.531" Y="0.5" Height="0.489" Width="1.908" />
+  </Comment>
+  <Class Name="DigitalRune.Undo.UndoBuffer">
+    <Position X="2.75" Y="1.25" Width="1.75" />
+    <Members>
+      <Field Name="_acceptChanges" Hidden="true" />
+      <Field Name="_groupDepth" Hidden="true" />
+      <Field Name="_numberOfOperationsInGroup" Hidden="true" />
+      <Field Name="_sizeLimit" Hidden="true" />
+      <Method Name="AssertNoUndoGroupOpen" Hidden="true" />
+      <Method Name="ClearRedoStack" Hidden="true" />
+      <Method Name="ClearUndoStack" Hidden="true" />
+      <Method Name="EnforceSizeLimit" Hidden="true" />
+      <Property Name="InternalRedoStack" Hidden="true" />
+      <Property Name="InternalUndoStack" Hidden="true" />
+      <Method Name="UndoBuffer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CAoAABADJAAABABAoAAAEAABgAAAAwwEIIAAAIFAADA=</HashCode>
+      <FileName>Undo\UndoBuffer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="DigitalRune.Undo.IUndoableOperation">
+    <Position X="0.5" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgBAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Undo\IUndoableOperation.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

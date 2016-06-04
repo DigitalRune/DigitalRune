@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Composite Animations                       Assembly: DigitalRune.Animation               Namespace: DigitalRune.Animation">
+    <Position X="0.5" Y="0.5" Height="0.658" Width="2.193" />
+  </Comment>
+  <Class Name="DigitalRune.Animation.Vector3Animation">
+    <Position X="7.5" Y="2" Width="1.5" />
+    <Members>
+      <Method Name="GetTotalDuration" Hidden="true" />
+      <Method Name="GetValueCore" Hidden="true" />
+      <Property Name="Traits" Hidden="true" />
+      <Method Name="Vector3Animation" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAgAAAAAAAAAAAAAAAAAAAAAAAYQE=</HashCode>
+      <FileName>Animations\Composite Animations\Vector3Animation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Animation.Vector2FAnimation">
+    <Position X="0.5" Y="2" Width="1.75" />
+    <Members>
+      <Method Name="GetTotalDuration" Hidden="true" />
+      <Method Name="GetValueCore" Hidden="true" />
+      <Property Name="Traits" Hidden="true" />
+      <Method Name="Vector2FAnimation" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAgAAAAAAAAAAAAAAAAAAAAAAAYQA=</HashCode>
+      <FileName>Animations\Composite Animations\Vector2FAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Animation.Vector3FAnimation">
+    <Position X="2.75" Y="2" Width="1.75" />
+    <Members>
+      <Method Name="GetTotalDuration" Hidden="true" />
+      <Method Name="GetValueCore" Hidden="true" />
+      <Property Name="Traits" Hidden="true" />
+      <Method Name="Vector3FAnimation" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAgAAAAAAAAAAAAAAAAAAAAAAAYQE=</HashCode>
+      <FileName>Animations\Composite Animations\Vector3FAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Animation.Vector4Animation">
+    <Position X="5" Y="2" Width="2" />
+    <Members>
+      <Method Name="GetTotalDuration" Hidden="true" />
+      <Method Name="GetValueCore" Hidden="true" />
+      <Property Name="Traits" Hidden="true" />
+      <Method Name="Vector4Animation" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAgAAAAAAAAAAAAAAAAAAAAAAIYQE=</HashCode>
+      <FileName>Animations\Composite Animations\Vector4Animation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Animation.Animation&lt;T&gt;" Collapsed="true">
+    <Position X="4" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABEAAIAAQAAAQgAAEAAEAACAAAAAAAAAAAAAACSA=</HashCode>
+      <FileName>Animations\Animation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Animation.ColorAnimation">
+    <Position X="0.75" Y="7" Width="1.5" />
+    <Members>
+      <Method Name="ColorAnimation" Hidden="true" />
+      <Method Name="GetTotalDuration" Hidden="true" />
+      <Method Name="GetValueCore" Hidden="true" />
+      <Property Name="Traits" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAgAAAAAAAAAAAAAAAAAAAKAEAAQA=</HashCode>
+      <FileName>Animations\Composite Animations\ColorAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Animation.Vector4FAnimation">
+    <Position X="7.5" Y="4.5" Width="1.75" />
+    <Members>
+      <Method Name="GetTotalDuration" Hidden="true" />
+      <Method Name="GetValueCore" Hidden="true" />
+      <Property Name="Traits" Hidden="true" />
+      <Method Name="Vector4FAnimation" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAgAAAAAAAAAAAAAAAAAAAAAAIYQE=</HashCode>
+      <FileName>Animations\Composite Animations\Vector4FAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Animation.Vector2Animation">
+    <Position X="0.5" Y="4.5" Width="1.75" />
+    <Members>
+      <Method Name="GetTotalDuration" Hidden="true" />
+      <Method Name="GetValueCore" Hidden="true" />
+      <Property Name="Traits" Hidden="true" />
+      <Method Name="Vector2Animation" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAgAAAAAAAAAAAAAAAAAAAAAAAYQA=</HashCode>
+      <FileName>Animations\Composite Animations\Vector2Animation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Animation.QuaternionAnimation">
+    <Position X="2.75" Y="4.5" Width="1.75" />
+    <Members>
+      <Method Name="GetTotalDuration" Hidden="true" />
+      <Method Name="GetValueCore" Hidden="true" />
+      <Method Name="QuaternionAnimation" Hidden="true" />
+      <Property Name="Traits" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAgAAAAAAAAAAAAAAAAAAAAAAIYQE=</HashCode>
+      <FileName>Animations\Composite Animations\QuaternionAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Animation.QuaternionFAnimation">
+    <Position X="5" Y="4.5" Width="2" />
+    <Members>
+      <Method Name="GetTotalDuration" Hidden="true" />
+      <Method Name="GetValueCore" Hidden="true" />
+      <Method Name="QuaternionFAnimation" Hidden="true" />
+      <Property Name="Traits" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAgAAAAAAAAAAAAAAAAAAAAAAIYQE=</HashCode>
+      <FileName>Animations\Composite Animations\QuaternionFAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Animation.SrtAnimation">
+    <Position X="2.75" Y="7" Width="1.75" />
+    <Members>
+      <Method Name="GetTotalDuration" Hidden="true" />
+      <Method Name="GetValueCore" Hidden="true" />
+      <Method Name="SrtAnimation" Hidden="true" />
+      <Property Name="Traits" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAIACgAIAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Animations\Composite Animations\SrtAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

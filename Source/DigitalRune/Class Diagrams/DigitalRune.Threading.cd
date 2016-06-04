@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Threading                            Assembly: DigitalRune     Namespace: DigitalRune.Threading">
+    <Position X="0.5" Y="0.5" Height="0.614" Width="2.179" />
+  </Comment>
+  <Class Name="DigitalRune.Threading.WorkStealingScheduler">
+    <Position X="6" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_tasks" Hidden="true" />
+      <Method Name="TryGetTask" Hidden="true" />
+      <Property Name="Workers" Hidden="true" />
+      <Method Name="WorkStealingScheduler" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAQAAAAAAAAAAAEAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Threading\WorkStealingScheduler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Threading.Parallel">
+    <Position X="0.5" Y="1.5" Width="2.5" />
+    <Members>
+      <Field Name="_processorAffinity" Hidden="true" />
+      <Field Name="_scheduler" Hidden="true" />
+      <Field Name="CallbackBuffer" Hidden="true" />
+      <Field Name="TaskListPool" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAACAAAACAABQACAAApCAAAKEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Threading\Parallel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Scheduler" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Threading.TaskException">
+    <Position X="4" Y="4.5" Width="2.25" />
+    <Members>
+      <Method Name="GetObjectData" Hidden="true" />
+      <Method Name="TaskException" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Threading\TaskException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="DigitalRune.Threading.Task&lt;T&gt;">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <Members>
+      <Field Name="_id" Hidden="true" />
+      <Field Name="_task" Hidden="true" />
+      <Field Name="_work" Hidden="true" />
+      <Method Name="Task" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IQgAAAAAAAAAAAAAAABAAAAAAAAAAIAAAEAAAAAAAAA=</HashCode>
+      <FileName>Threading\Task{T}.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="DigitalRune.Threading.Task">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <Members>
+      <Field Name="_valid" Hidden="true" />
+      <Method Name="DoWork" Hidden="true" />
+      <Property Name="ID" Hidden="true" />
+      <Property Name="Item" Hidden="true" />
+      <Method Name="Task" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAQAgAAAAAAAAAAEAAQAAIAAAAAAAQAAAAA=</HashCode>
+      <FileName>Threading\Task.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="DigitalRune.Threading.WorkOptions">
+    <Position X="6.75" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAIKAAAA=</HashCode>
+      <FileName>Threading\WorkOptions.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="DigitalRune.Threading.ITaskScheduler">
+    <Position X="4.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Threading\ITaskScheduler.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Threading.IWork">
+    <Position X="4.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Threading\IWork.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Options" />
+    </ShowAsAssociation>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

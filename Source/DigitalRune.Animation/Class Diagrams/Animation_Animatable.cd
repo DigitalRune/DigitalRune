@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="IAnimatable Interfaces                        Assembly: DigitalRune               Namespace: DigitalRune.Animation">
+    <Position X="0.5" Y="0.5" Height="0.658" Width="2.193" />
+  </Comment>
+  <Comment CommentText="Animatable Types                        Assembly: DigitalRune.Animation       Namespace: DigitalRune.Animation">
+    <Position X="5.75" Y="0.5" Height="0.658" Width="2.193" />
+  </Comment>
+  <Class Name="DigitalRune.Animation.AnimatableProperty&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="1.75" Width="2.5" />
+    <Members>
+      <Field Name="_animationValue" Hidden="true" />
+      <Field Name="_baseValue" Hidden="true" />
+      <Field Name="_isAnimated" Hidden="true" />
+      <Property Name="IAnimatableProperty.AnimationValue" Hidden="true" />
+      <Property Name="IAnimatableProperty.BaseValue" Hidden="true" />
+      <Property Name="IAnimatableProperty.HasBaseValue" Hidden="true" />
+      <Property Name="IAnimatableProperty.IsAnimated" Hidden="true" />
+      <Property Name="IAnimatableProperty&lt;T&gt;.AnimationValue" Hidden="true" />
+      <Property Name="IAnimatableProperty&lt;T&gt;.BaseValue" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAQABoABABEAA=</HashCode>
+      <FileName>Animatables\AnimatableProperty.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Animation.DelegateAnimatableProperty&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="3.5" Width="2.5" />
+    <Members>
+      <Field Name="_isAnimated" Hidden="true" />
+      <Method Name="DelegateAnimatableProperty" Hidden="true" />
+      <Property Name="IAnimatableProperty.AnimationValue" Hidden="true" />
+      <Property Name="IAnimatableProperty.BaseValue" Hidden="true" />
+      <Property Name="IAnimatableProperty.HasBaseValue" Hidden="true" />
+      <Property Name="IAnimatableProperty.IsAnimated" Hidden="true" />
+      <Property Name="IAnimatableProperty&lt;T&gt;.AnimationValue" Hidden="true" />
+      <Property Name="IAnimatableProperty&lt;T&gt;.BaseValue" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAAFAAAAIAAAAgAAAAAAAAAAAAAAAAAAQABAABABAAA=</HashCode>
+      <FileName>Animatables\DelegateAnimatableProperty.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="DigitalRune.Animation.IAnimatableProperty">
+    <Position X="3" Y="1.75" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="DigitalRune.Animation.IAnimatableProperty&lt;T&gt;">
+    <Position X="3" Y="3.75" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="DigitalRune.Animation.IAnimatableObject">
+    <Position X="0.5" Y="1.75" Width="2.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

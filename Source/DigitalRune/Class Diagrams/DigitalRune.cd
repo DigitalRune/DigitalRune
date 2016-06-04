@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="General Helper Classes             Assembly: DigitalRune Namespace: DigitalRune">
+    <Position X="0.5" Y="0.5" Height="0.614" Width="1.815" />
+  </Comment>
+  <Class Name="DigitalRune.EnumHelper">
+    <Position X="0.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EnumHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Singleton&lt;T&gt;">
+    <Position X="5" Y="2.25" Width="1.5" />
+    <Members>
+      <Field Name="_instance" Hidden="true" />
+      <Method Name="Singleton" Hidden="true" />
+      <Field Name="SyncRoot" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAEAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Singleton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.ObjectHelper">
+    <Position X="2.25" Y="4" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAgCAAABAAAACAAAAAAEAAAAABAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>ObjectHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.ReferenceEqualityComparer&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="2.25" Width="2.5" />
+    <Members>
+      <Field Name="_defaultComparer" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAIAgAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>ReferenceEqualityComparer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.PrimeHelper">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <Members>
+      <Method Name="PrimeHelper" Hidden="true" />
+      <Field Name="Primes" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAEAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>PrimeHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Licensing">
+    <Position X="2.75" Y="0.5" Width="1.75" />
+    <Members>
+      <Field Name="SerialNumbers" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Licensing\Licensing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.GlobalSettings">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="_platformID" Hidden="true" />
+      <Field Name="ValidationLevelDebug" Hidden="true" />
+      <Field Name="ValidationLevelDev" Hidden="true" />
+      <Field Name="ValidationLevelDevBasic" Hidden="true" />
+      <Field Name="ValidationLevelInternal" Hidden="true" />
+      <Field Name="ValidationLevelNone" Hidden="true" />
+      <Field Name="ValidationLevelUser" Hidden="true" />
+      <Field Name="ValidationLevelUserHighCheap" Hidden="true" />
+      <Field Name="ValidationLevelUserHighExpensive" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAQAgEBgAAIARAAAAAAAIgAAAAAAAA=</HashCode>
+      <FileName>GlobalSettings.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PlatformID" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="DigitalRune.INamedObject">
+    <Position X="0.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>INamedObjects.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DigitalRune.PlatformID">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAIQAQAAABAAAAAAAEABAAAAAAAEAQgABAAAIAAAAA=</HashCode>
+      <FileName>PlatformID.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

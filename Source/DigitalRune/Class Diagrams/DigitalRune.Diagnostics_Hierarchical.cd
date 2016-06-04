@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Hierarchical Profiler                          Assembly: DigitalRune     Namespace: DigitalRune.Diagnostics">
+    <Position X="0.5" Y="0.5" Height="0.645" Width="2.283" />
+  </Comment>
+  <Class Name="DigitalRune.Diagnostics.HierarchicalProfiler" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.75" />
+    <Members>
+      <Method Name="AppendTime" Hidden="true" />
+      <Property Name="CurrentNode" Hidden="true" />
+      <Method Name="HierarchicalProfiler" Hidden="true" />
+      <Property Name="Stopwatch" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAABAAAAACAABCgAAABggAQBAAAAAAAAIAAAAEAAAAA=</HashCode>
+      <FileName>Diagnostics\Hierarchical\HierarchicalProfiler.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Root" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Diagnostics.HierarchicalProfilerNode">
+    <Position X="3.25" Y="1.5" Width="2.75" />
+    <Members>
+      <Field Name="_numberOfRecursions" Hidden="true" />
+      <Field Name="_startTime" Hidden="true" />
+      <Method Name="Call" Hidden="true" />
+      <Property Name="FirstChild" Hidden="true" />
+      <Method Name="GetSubNode" Hidden="true" />
+      <Method Name="HierarchicalProfilerNode" Hidden="true" />
+      <Property Name="LastChild" Hidden="true" />
+      <Property Name="NextSibling" Hidden="true" />
+      <Method Name="Reset" Hidden="true" />
+      <Method Name="Return" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Parent" Type="DigitalRune.Diagnostics.HierarchicalProfilerNode" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6" Y="1.814" />
+        <Point X="6.25" Y="1.814" />
+        <Point X="6.25" Y="2.128" />
+        <Point X="6" Y="2.128" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.35" Y="0.175" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Children" Type="DigitalRune.Diagnostics.HierarchicalProfilerNode" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6" Y="2.678" />
+        <Point X="6.25" Y="2.678" />
+        <Point X="6.25" Y="3.032" />
+        <Point X="6" Y="3.032" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.331" Y="0.193" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>gCAgQACAIAAQDAQAAEAEQAQAAAAAAAAAAIAAEAAAAAQ=</HashCode>
+      <FileName>Diagnostics\Hierarchical\HierarchicalProfilerNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Profiler" />
+      <Property Name="Parent" />
+      <Property Name="FirstChild" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Children" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

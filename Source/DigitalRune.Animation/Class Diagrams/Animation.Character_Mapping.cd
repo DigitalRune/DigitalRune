@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Skeleton Mapping                               Assembly: DigitalRune.Animation               Namespace: DigitalRune.Animation.Character">
+    <Position X="0.5" Y="0.5" Height="0.627" Width="2.755" />
+  </Comment>
+  <Class Name="DigitalRune.Animation.Character.BoneMapper">
+    <Position X="3.5" Y="1.5" Width="1.75" />
+    <Members>
+      <Method Name="BoneMapper" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAACAAAAAAAAAIAgAAAAAACAAAEAg=</HashCode>
+      <FileName>Character\Skeleton Mapping\BoneMapper.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SkeletonMapper" />
+      <Property Name="Direction" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Animation.Character.UpperBackBoneMapper">
+    <Position X="5.5" Y="4.25" Width="2.25" />
+    <Members>
+      <Field Name="_isDirty" Hidden="true" />
+      <Field Name="_leftShoulderBoneIndexA" Hidden="true" />
+      <Field Name="_leftShoulderBoneIndexB" Hidden="true" />
+      <Field Name="_neckBoneIndexA" Hidden="true" />
+      <Field Name="_neckBoneIndexB" Hidden="true" />
+      <Field Name="_rightShoulderBoneIndexA" Hidden="true" />
+      <Field Name="_rightShoulderBoneIndexB" Hidden="true" />
+      <Field Name="_spineBoneIndexA" Hidden="true" />
+      <Field Name="_spineBoneIndexB" Hidden="true" />
+      <Method Name="CacheDerivedData" Hidden="true" />
+      <Method Name="DoWork" Hidden="true" />
+      <Method Name="OnInvalidate" Hidden="true" />
+      <Method Name="OnMapAToB" Hidden="true" />
+      <Method Name="OnMapBToA" Hidden="true" />
+      <Method Name="UpperBackBoneMapper" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEAAQEAAAAQAAAAAAABkKAAAAAAIDpAACAAAAAAAAAM=</HashCode>
+      <FileName>Character\Skeleton Mapping\UpperBackBoneMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Animation.Character.DirectBoneMapper">
+    <Position X="1.25" Y="4.25" Width="2" />
+    <Members>
+      <Field Name="_boneIndexA" Hidden="true" />
+      <Field Name="_boneIndexB" Hidden="true" />
+      <Field Name="_isDirty" Hidden="true" />
+      <Field Name="_mapAbsoluteTransforms" Hidden="true" />
+      <Field Name="_rotationAToB" Hidden="true" />
+      <Property Name="BoneIndexA" Hidden="true" />
+      <Method Name="CacheDerivedData" Hidden="true" />
+      <Method Name="DirectBoneMapper" Hidden="true" />
+      <Method Name="MapAbsolute" Hidden="true" />
+      <Method Name="MapLocal" Hidden="true" />
+      <Method Name="OnInvalidate" Hidden="true" />
+      <Method Name="OnMapAToB" Hidden="true" />
+      <Method Name="OnMapBToA" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQACEAAAAAAAEAAAADAAAAAAAEICgAAAAACSAgAAAA=</HashCode>
+      <FileName>Character\Skeleton Mapping\DirectBoneMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Animation.Character.SkeletonMapper">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <Members>
+      <Field Name="_rotationOffset" Hidden="true" />
+      <Field Name="_skeletonPoseA" Hidden="true" />
+      <Field Name="_skeletonPoseB" Hidden="true" />
+      <Method Name="Invalidate" Hidden="true" />
+      <Method Name="OnBoneMappersChanged" Hidden="true" />
+      <Method Name="SkeletonMapper" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEwAQAAAAQAAAAAAASAAgIAAAAAAAACAAAAAg=</HashCode>
+      <FileName>Character\Skeleton Mapping\SkeletonMapper.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="BoneMappers" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Animation.Character.ChainBoneMapper">
+    <Position X="3.5" Y="4.25" Width="1.75" />
+    <Members>
+      <Field Name="_directBoneMapper" Hidden="true" />
+      <Field Name="_isDirty" Hidden="true" />
+      <Field Name="_mapFromBindPose" Hidden="true" />
+      <Field Name="_rootBoneIndexA" Hidden="true" />
+      <Field Name="_rootBoneIndexB" Hidden="true" />
+      <Field Name="_tipBoneIndexA" Hidden="true" />
+      <Field Name="_tipBoneIndexB" Hidden="true" />
+      <Method Name="CacheDerivedData" Hidden="true" />
+      <Method Name="ChainBoneMapper" Hidden="true" />
+      <Method Name="OnInvalidate" Hidden="true" />
+      <Method Name="OnMapAToB" Hidden="true" />
+      <Method Name="OnMapBToA" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAACABCAAAABgAICgAgJAAAAAAAACg=</HashCode>
+      <FileName>Character\Skeleton Mapping\ChainBoneMapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="DigitalRune.Animation.Character.BoneMappingDirection">
+    <Position X="6.25" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIgAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Character\Skeleton Mapping\BoneMapper.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

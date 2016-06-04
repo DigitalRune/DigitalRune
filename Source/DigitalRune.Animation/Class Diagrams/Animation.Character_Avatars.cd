@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Xbox LIVE Avatars                                       Assembly: DigitalRune.Animation               Namespace: DigitalRune.Animation.Character">
+    <Position X="0.5" Y="0.5" Height="0.627" Width="2.755" />
+  </Comment>
+  <Class Name="DigitalRune.Animation.Character.AvatarPose">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <Members>
+      <Field Name="_boneNames" Hidden="true" />
+      <Field Name="_boneTransforms" Hidden="true" />
+      <Field Name="_expression" Hidden="true" />
+      <Field Name="_expressionWrapper" Hidden="true" />
+      <Field Name="_readOnlyCollection" Hidden="true" />
+      <Field Name="_skeletonPose" Hidden="true" />
+      <Method Name="AvatarPose" Hidden="true" />
+      <Property Name="BoneNames" Hidden="true" />
+      <Method Name="ConvertToSrt" Hidden="true" />
+      <Method Name="CreateSkeleton" Hidden="true" />
+      <Method Name="IAnimatableObject.GetAnimatableProperty" Hidden="true" />
+      <Method Name="IAnimatableObject.GetAnimatedProperties" Hidden="true" />
+      <Property Name="IAvatarAnimation.BoneTransforms" Hidden="true" />
+      <Property Name="IAvatarAnimation.CurrentPosition" Hidden="true" />
+      <Property Name="IAvatarAnimation.Length" Hidden="true" />
+      <Method Name="IAvatarAnimation.Update" Hidden="true" />
+      <Method Name="Update" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EQQAAAAQACQAAQAAAAgCAAQAAAAgAAAQAABAgAAQBhI=</HashCode>
+      <FileName>Character\AvatarPose.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Expression" />
+      <Property Name="SkeletonPose" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Animation.Character.SkeletonPose" Collapsed="true">
+    <Position X="3.5" Y="2" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>BESVAAAEAAAASAAgEAABIBQAAAFgIMAAAAACIBABABI=</HashCode>
+      <FileName>Character\SkeletonPose.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Animation.AnimationHelper">
+    <Position X="0.5" Y="3.75" Width="1.75" />
+    <Members>
+      <Method Name="Compress" Hidden="true" />
+      <Method Name="CompressSegment" Hidden="true" />
+      <Method Name="ComputeAngularVelocity" Hidden="true" />
+      <Method Name="ComputeError" Hidden="true" />
+      <Method Name="ComputeLinearVelocity" Hidden="true" />
+      <Method Name="GetAncestors" Hidden="true" />
+      <Method Name="GetAnimationTime" Hidden="true" />
+      <Field Name="GetChildren" Hidden="true" />
+      <Method Name="GetCycleOffset" Hidden="true" />
+      <Method Name="GetDescendants" Hidden="true" />
+      <Method Name="GetLeaves" Hidden="true" />
+      <Field Name="GetParent" Hidden="true" />
+      <Method Name="GetRoot" Hidden="true" />
+      <Method Name="GetSelfAndAncestors" Hidden="true" />
+      <Method Name="GetState" Hidden="true" />
+      <Method Name="GetSubtree" Hidden="true" />
+      <Method Name="IsInMirroredOscillation" Hidden="true" />
+      <Method Name="LoopParameter" Hidden="true" />
+      <Method Name="Max" Hidden="true" />
+      <Method Name="SplitSegment" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Animation.AnimationHelper.CompressionContext&lt;T0, T1&gt;" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>AnimationHelper_Compression.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AITCAEAAABAIAAAAAAAAAgAAACAAwBAABAAAAgQQAAE=</HashCode>
+      <FileName>AnimationHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Microsoft.Xna.Framework.GamerServices.AvatarExpression" Collapsed="true">
+    <Position X="3.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Simple Profiler                          Assembly: DigitalRune     Namespace: DigitalRune.Diagnostics">
+    <Position X="0.531" Y="0.5" Height="0.645" Width="2.283" />
+  </Comment>
+  <Class Name="DigitalRune.Diagnostics.Profiler">
+    <Position X="0.5" Y="1.25" Width="2" />
+    <Members>
+      <Field Name="_data" Hidden="true" />
+      <Property Name="Formats" Hidden="true" />
+      <Method Name="Profiler" Hidden="true" />
+      <Property Name="Stopwatch" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQBCAABEBAAQAgoAAAAAAAABAAIEAAAAAAAAA=</HashCode>
+      <FileName>Diagnostics\Simple\Profiler.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Data" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Diagnostics.ProfilerDataCollection">
+    <Position X="3.25" Y="1.25" Width="2.5" />
+    <Members>
+      <Method Name="Dump" Hidden="true" />
+      <Method Name="ProfilerDataCollection" Hidden="true" />
+      <Method Name="Reset" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAgBAAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Diagnostics\Simple\ProfilerDataCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Diagnostics.ProfilerData">
+    <Position X="6" Y="1.25" Width="1.5" />
+    <Members>
+      <Field Name="_startTime" Hidden="true" />
+      <Method Name="AddValue" Hidden="true" />
+      <Method Name="ProfilerData" Hidden="true" />
+      <Method Name="Reset" Hidden="true" />
+      <Method Name="Start" Hidden="true" />
+      <Method Name="Stop" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gCAAAACAICAABAAAAQAAAAQAAAAAAAAAIAACAAAAAAQ=</HashCode>
+      <FileName>Diagnostics\Simple\ProfilerData.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

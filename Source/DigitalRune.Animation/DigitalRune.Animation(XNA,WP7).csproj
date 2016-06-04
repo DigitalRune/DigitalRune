@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{98DE3A7F-25C3-41DD-A38E-904D6690354D}</ProjectGuid>
+    <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">Windows Phone</Platform>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.Animation</RootNamespace>
+    <AssemblyName>DigitalRune.Animation</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaCrossPlatformGroupID>a37de0a5-ce7b-4ab1-af65-35375c1276e0</XnaCrossPlatformGroupID>
+    <XnaOutputType>Library</XnaOutputType>
+    <XapFilename Condition="$(XnaOutputType)=='Game'">$(AssemblyName).xap</XapFilename>
+    <SilverlightManifestTemplate Condition="$(XnaOutputType)=='Game'">Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <XnaWindowsPhoneManifestTemplate Condition="$(XnaOutputType)=='Game'">Properties\WMAppManifest.xml</XnaWindowsPhoneManifestTemplate>
+    <TileImage Condition="$(XnaOutputType)=='Game'">Background.png</TileImage>
+    <TileTitle Condition="$(XnaOutputType)=='Game'">$(AssemblyName)</TileTitle>
+    <SupportedCultures />
+    <XnaRefreshLevel>1</XnaRefreshLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Windows Phone' ">
+    <BaseIntermediateOutputPath>obj\XNA\WindowsPhone\Debug\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\XNA\WindowsPhone\Debug</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>TRACE;DEBUG;WINDOWS_PHONE;WP7;XNA</DefineConstants>
+    <XnaCompressContent>false</XnaCompressContent>
+    <DocumentationFile>bin\XNA\WindowsPhone\Debug\DigitalRune.Animation.xml</DocumentationFile>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Windows Phone' ">
+    <BaseIntermediateOutputPath>obj\XNA\WindowsPhone\Release\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\XNA\WindowsPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE;WINDOWS_PHONE;WP7;XNA</DefineConstants>
+    <XnaCompressContent>false</XnaCompressContent>
+    <DocumentationFile>bin\XNA\WindowsPhone\Release\DigitalRune.Animation.xml</DocumentationFile>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
+  <!--
+      To modify your build process, add your task inside one of the targets below and uncomment it. 
+      Other similar extension points exist, see Microsoft.Common.targets.
+      <Target Name="BeforeBuild">
+      </Target>
+      <Target Name="AfterBuild">
+      </Target>
+    -->
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Graphics">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="mscorlib">
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune.Geometry\DigitalRune.Geometry(XNA,WP7).csproj">
+      <Project>{543AE7AB-6BDB-427B-8265-7E5615F1D876}</Project>
+      <Name>DigitalRune.Geometry(XNA,WP7)</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Mathematics\DigitalRune.Mathematics(XNA,WP7).csproj">
+      <Project>{C30029C7-462F-441B-BD6F-39A1744E7D84}</Project>
+      <Name>DigitalRune.Mathematics(XNA,WP7)</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune\DigitalRune(XNA,WP7).csproj">
+      <Project>{7EBE622E-1560-4D20-8DFB-641745E3EE68}</Project>
+      <Name>DigitalRune(XNA,WP7)</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Animatables\AnimatableProperty.cs" />
+    <Compile Include="Animatables\DelegateAnimatableProperty.cs" />
+    <Compile Include="Animatables\ImmediateAnimatableProperty.cs" />
+    <Compile Include="AnimationCompositionChain.cs" />
+    <Compile Include="AnimationCompositionChainCollection.cs" />
+    <Compile Include="AnimationController.cs" />
+    <Compile Include="AnimationException.cs" />
+    <Compile Include="AnimationHelper.cs" />
+    <Compile Include="AnimationHelper_Compression.cs" />
+    <Compile Include="AnimationInstance.cs" />
+    <Compile Include="AnimationInstanceCollection.cs" />
+    <Compile Include="AnimationInstance{T}.cs" />
+    <Compile Include="AnimationManager.cs" />
+    <Compile Include="Animations\Animation.cs" />
+    <Compile Include="Animations\AnimationState.cs" />
+    <Compile Include="Animations\Composite Animations\ColorAnimation.cs" />
+    <Compile Include="Animations\Composite Animations\QuaternionAnimation.cs" />
+    <Compile Include="Animations\Composite Animations\QuaternionFAnimation.cs" />
+    <Compile Include="Animations\Composite Animations\SrtAnimation.cs" />
+    <Compile Include="Animations\Composite Animations\Vector2Animation.cs" />
+    <Compile Include="Animations\Composite Animations\Vector2FAnimation.cs" />
+    <Compile Include="Animations\Composite Animations\Vector3Animation.cs" />
+    <Compile Include="Animations\Composite Animations\Vector3FAnimation.cs" />
+    <Compile Include="Animations\Composite Animations\Vector4Animation.cs" />
+    <Compile Include="Animations\Composite Animations\Vector4FAnimation.cs" />
+    <Compile Include="Animations\Compositing\AnimationClip.cs" />
+    <Compile Include="Animations\Compositing\TimelineClip.cs" />
+    <Compile Include="Animations\Compositing\TimelineGroup.cs" />
+    <Compile Include="Animations\Curve-Based Animations\AnimationCurve.cs" />
+    <Compile Include="Animations\Curve-Based Animations\Curve2FAnimation.cs" />
+    <Compile Include="Animations\Curve-Based Animations\Path2FAnimation.cs" />
+    <Compile Include="Animations\Curve-Based Animations\Path3FAnimation.cs" />
+    <Compile Include="Animations\Curve-Based Animations\PathAnimation.cs" />
+    <Compile Include="Animations\FillBehavior.cs" />
+    <Compile Include="Animations\From-To-By Animations\ColorFromToByAnimation.cs" />
+    <Compile Include="Animations\From-To-By Animations\FromToByAnimation.cs" />
+    <Compile Include="Animations\From-To-By Animations\QuaternionFFromToByAnimation.cs" />
+    <Compile Include="Animations\From-To-By Animations\QuaternionFromToByAnimation.cs" />
+    <Compile Include="Animations\From-To-By Animations\SingleFromToByAnimation.cs" />
+    <Compile Include="Animations\From-To-By Animations\SrtFromToByAnimation.cs" />
+    <Compile Include="Animations\From-To-By Animations\Vector2FFromToByAnimation.cs" />
+    <Compile Include="Animations\From-To-By Animations\Vector2FromToByAnimation.cs" />
+    <Compile Include="Animations\From-To-By Animations\Vector3FFromToByAnimation.cs" />
+    <Compile Include="Animations\From-To-By Animations\Vector3FromToByAnimation.cs" />
+    <Compile Include="Animations\From-To-By Animations\Vector4FFromToByAnimation.cs" />
+    <Compile Include="Animations\From-To-By Animations\Vector4FromToByAnimation.cs" />
+    <Compile Include="Animations\IAnimation.cs" />
+    <Compile Include="Animations\ITimeline.cs" />
+    <Compile Include="Animations\Key-Frame Animations\AscendingKeyFrameComparer.cs" />
+    <Compile Include="Animations\Key-Frame Animations\AvatarExpressionKeyFrameAnimation.cs" />
+    <Compile Include="Animations\Key-Frame Animations\ColorKeyFrameAnimation.cs" />
+    <Compile Include="Animations\Key-Frame Animations\IKeyFrame.cs" />
+    <Compile Include="Animations\Key-Frame Animations\KeyFrame.cs" />
+    <Compile Include="Animations\Key-Frame Animations\KeyFrameAnimation.cs" />
+    <Compile Include="Animations\Key-Frame Animations\KeyFrameCollection.cs" />
+    <Compile Include="Animations\Key-Frame Animations\QuaternionFKeyFrameAnimation.cs" />
+    <Compile Include="Animations\Key-Frame Animations\QuaternionKeyFrameAnimation.cs" />
+    <Compile Include="Animations\Key-Frame Animations\SingleKeyFrameAnimation.cs" />
+    <Compile Include="Animations\Key-Frame Animations\SrtKeyFrameAnimation.cs" />
+    <Compile Include="Animations\Key-Frame Animations\Vector2FKeyFrameAnimation.cs" />
+    <Compile Include="Animations\Key-Frame Animations\Vector2KeyFrameAnimation.cs" />
+    <Compile Include="Animations\Key-Frame Animations\Vector3FKeyFrameAnimation.cs" />
+    <Compile Include="Animations\Key-Frame Animations\Vector3KeyFrameAnimation.cs" />
+    <Compile Include="Animations\Key-Frame Animations\Vector4FKeyFrameAnimation.cs" />
+    <Compile Include="Animations\Key-Frame Animations\Vector4KeyFrameAnimation.cs" />
+    <Compile Include="Animations\LoopBehavior.cs" />
+    <Compile Include="Animations\NBlendAnimation\AnimatableBlendWeight.cs" />
+    <Compile Include="Animations\NBlendAnimation\BlendAnimation.cs" />
+    <Compile Include="Animations\NBlendAnimation\BlendAnimation{T}.cs" />
+    <Compile Include="Animations\NBlendAnimation\BlendGroup.cs" />
+    <Compile Include="Animations\NBlendAnimation\BlendGroupInstance.cs" />
+    <Compile Include="Character\AnimatableBoneTransform.cs" />
+    <Compile Include="Character\AvatarPose.cs" />
+    <Compile Include="Character\IK\CcdIKSolver.cs" />
+    <Compile Include="Character\IK\ClosedFormIKSolver.cs" />
+    <Compile Include="Character\IK\IKSolver.cs" />
+    <Compile Include="Character\IK\JacobianTransposeIKSolver.cs" />
+    <Compile Include="Character\IK\LookAtIKSolver.cs" />
+    <Compile Include="Character\IK\TwoJointIKSolver.cs" />
+    <Compile Include="Character\NamespaceDoc.cs" />
+    <Compile Include="Character\Skeleton Animations\BoneKeyFrame.cs" />
+    <Compile Include="Character\Skeleton Animations\SkeletonKeyFrameAnimation.cs" />
+    <Compile Include="Character\Skeleton Animations\SkeletonKeyFrameAnimation_Compression.cs" />
+    <Compile Include="Character\Skeleton Mapping\BoneMapper.cs" />
+    <Compile Include="Character\Skeleton Mapping\BoneMapperCollection.cs" />
+    <Compile Include="Character\Skeleton Mapping\ChainBoneMapper.cs" />
+    <Compile Include="Character\Skeleton Mapping\DirectBoneMapper.cs" />
+    <Compile Include="Character\Skeleton Mapping\SkeletonMapper.cs" />
+    <Compile Include="Character\Skeleton Mapping\UpperBackBoneMapper.cs" />
+    <Compile Include="Character\Skeleton.cs" />
+    <Compile Include="Character\SkeletonBoneAccessor.cs" />
+    <Compile Include="Character\SkeletonHelper.cs" />
+    <Compile Include="Character\SkeletonPose.cs" />
+    <Compile Include="Character\SrtTransform.cs" />
+    <Compile Include="Content Pipeline\BlendGroupReader.cs" />
+    <Compile Include="Content Pipeline\DummyTimeline.cs" />
+    <Compile Include="Content Pipeline\KeyFrameCollectionReader.cs" />
+    <Compile Include="Content Pipeline\NamespaceDoc.cs" />
+    <Compile Include="Content Pipeline\SkeletonKeyFrameAnimationReader.cs" />
+    <Compile Include="Content Pipeline\SkeletonReader.cs" />
+    <Compile Include="Content Pipeline\SrtTransformReader.cs" />
+    <Compile Include="Content Pipeline\TimelineGroupReader.cs" />
+    <Compile Include="Easing\BackEase.cs" />
+    <Compile Include="Easing\BounceEase.cs" />
+    <Compile Include="Easing\CircleEase.cs" />
+    <Compile Include="Easing\CubicEase.cs" />
+    <Compile Include="Easing\EasingFunction.cs" />
+    <Compile Include="Easing\EasingMode.cs" />
+    <Compile Include="Easing\ElasticEase.cs" />
+    <Compile Include="Easing\ExponentialEase.cs" />
+    <Compile Include="Easing\HermiteEase.cs" />
+    <Compile Include="Easing\IEasingFunction.cs" />
+    <Compile Include="Easing\LogarithmicEase.cs" />
+    <Compile Include="Easing\NamespaceDoc.cs" />
+    <Compile Include="Easing\PowerEase.cs" />
+    <Compile Include="Easing\QuadraticEase.cs" />
+    <Compile Include="Easing\QuarticEase.cs" />
+    <Compile Include="Easing\QuinticEase.cs" />
+    <Compile Include="Easing\SineEase.cs" />
+    <Compile Include="HandoffBehavior.cs" />
+    <Compile Include="IAnimationCompositionChain.cs" />
+    <Compile Include="IAnimationService.cs" />
+    <Compile Include="InvalidAnimationException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Properties\AssemblyInfo.template" />
+    <Compile Include="ReadOnlyAnimationInstanceCollection.cs" />
+    <Compile Include="Traits\AvatarExpressionTraits.cs" />
+    <Compile Include="Traits\ColorTraits.cs" />
+    <Compile Include="Traits\IAnimationValueTraits.cs" />
+    <Compile Include="Traits\NamespaceDoc.cs" />
+    <Compile Include="Traits\QuaternionFTraits.cs" />
+    <Compile Include="Traits\QuaternionTraits.cs" />
+    <Compile Include="Traits\SingleTraits.cs" />
+    <Compile Include="Traits\SkeletonPoseTraits.cs" />
+    <Compile Include="Traits\SrtTransformTraits.cs" />
+    <Compile Include="Traits\Vector2FTraits.cs" />
+    <Compile Include="Traits\Vector2Traits.cs" />
+    <Compile Include="Traits\Vector3FTraits.cs" />
+    <Compile Include="Traits\Vector3Traits.cs" />
+    <Compile Include="Traits\Vector4FTraits.cs" />
+    <Compile Include="Traits\Vector4Traits.cs" />
+    <Compile Include="Transitions\AnimationTransition.cs" />
+    <Compile Include="Transitions\AnimationTransitions.cs" />
+    <Compile Include="Transitions\ComposeTransition.cs" />
+    <Compile Include="Transitions\FadeInAndComposeTransition.cs" />
+    <Compile Include="Transitions\FadeInAndReplaceAllTransition.cs" />
+    <Compile Include="Transitions\FadeInAndReplaceTransition.cs" />
+    <Compile Include="Transitions\FadeOutTransition.cs" />
+    <Compile Include="Transitions\NamespaceDoc.cs" />
+    <Compile Include="Transitions\ReplaceAllTransition.cs" />
+    <Compile Include="Transitions\ReplaceTransition.cs" />
+    <Compile Include="Transitions\SnapshotAndReplaceAllTransition.cs" />
+  </ItemGroup>
+</Project>

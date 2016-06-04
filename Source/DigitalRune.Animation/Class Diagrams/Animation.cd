@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Base Types                                   Assembly: DigitalRune.Animation               Namespace: DigitalRune.Animation">
+    <Position X="0.5" Y="0.5" Height="0.658" Width="2.193" />
+  </Comment>
+  <Class Name="DigitalRune.Animation.InvalidAnimationException">
+    <Position X="6.5" Y="8.75" Width="2.25" />
+    <Members>
+      <Method Name="InvalidAnimationException" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>InvalidAnimationException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Animation.AnimationInstance">
+    <Position X="8.25" Y="0.75" Width="2" />
+    <Members>
+      <Field Name="_animation" Hidden="true" />
+      <Field Name="_autoRecycleEnabled" Hidden="true" />
+      <Field Name="_children" Hidden="true" />
+      <Field Name="_isPaused" Hidden="true" />
+      <Field Name="_isStateValid" Hidden="true" />
+      <Field Name="_parent" Hidden="true" />
+      <Field Name="_runCount" Hidden="true" />
+      <Field Name="_speedProperty" Hidden="true" />
+      <Field Name="_state" Hidden="true" />
+      <Field Name="_time" Hidden="true" />
+      <Field Name="_weightProperty" Hidden="true" />
+      <Method Name="AddToCompositionChains" Hidden="true" />
+      <Method Name="AdvanceTime" Hidden="true" />
+      <Method Name="AnimationInstance" Hidden="true" />
+      <Method Name="AssignTo" Hidden="true" />
+      <Method Name="CreateChildCollection" Hidden="true" />
+      <Method Name="GetAssignedInstance" Hidden="true" />
+      <Method Name="GetAssignedProperties" Hidden="true" />
+      <Method Name="GetEffectiveWeight" Hidden="true" />
+      <Method Name="IAnimatableObject.GetAnimatableProperty" Hidden="true" />
+      <Method Name="IAnimatableObject.GetAnimatedProperties" Hidden="true" />
+      <Property Name="INamedObject.Name" Hidden="true" />
+      <Method Name="Initialize" Hidden="true" />
+      <Method Name="InvalidateState" Hidden="true" />
+      <Method Name="IsActive" Hidden="true" />
+      <Method Name="IsAssignableTo" Hidden="true" />
+      <Method Name="IsAssignedTo" Hidden="true" />
+      <Property Name="IsRoot" Hidden="true" />
+      <Method Name="Pause" Hidden="true" />
+      <Field Name="Pool" Hidden="true" />
+      <Method Name="RaiseCompletedEvent" Hidden="true" />
+      <Method Name="RemoveFromCompositionChains" Hidden="true" />
+      <Property Name="RequiresCompletedEvent" Hidden="true" />
+      <Method Name="Reset" Hidden="true" />
+      <Method Name="Resume" Hidden="true" />
+      <Property Name="RunCount" Hidden="true" />
+      <Method Name="SetTime" Hidden="true" />
+      <Property Name="SpeedProperty" Hidden="true" />
+      <Method Name="StopSecondaryAnimations" Hidden="true" />
+      <Method Name="UpdateAndApply" Hidden="true" />
+      <Method Name="UpdateState" Hidden="true" />
+      <Property Name="WeightProperty" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Animation" Type="DigitalRune.Animation.ITimeline">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.025" Y="0.072" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ABAwIAIFAkAgJQIIkgBESgATyrBiyEAAAQIgBFgBAQI=</HashCode>
+      <FileName>AnimationInstance.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Animation" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Animation.AnimationHelper">
+    <Position X="3" Y="7.5" Width="3" />
+    <Members>
+      <Method Name="CompressSegment" Hidden="true" />
+      <Method Name="ComputeError" Hidden="true" />
+      <Method Name="GetAnimationTime" Hidden="true" />
+      <Field Name="GetChildren" Hidden="true" />
+      <Method Name="GetCycleOffset" Hidden="true" />
+      <Field Name="GetParent" Hidden="true" />
+      <Method Name="GetState" Hidden="true" />
+      <Method Name="IsInMirroredOscillation" Hidden="true" />
+      <Method Name="LoopParameter" Hidden="true" />
+      <Method Name="Max" Hidden="true" />
+      <Method Name="SplitSegment" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Animation.AnimationHelper.CompressionContext&lt;T0, T1&gt;" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>AnimationHelper_Compression.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AITCAEAAABAIAAAAAAAAAgAAACAAwBAABAAAAgQQAAE=</HashCode>
+      <FileName>AnimationHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Animation.AnimationManager">
+    <Position X="0.5" Y="4" Width="3" />
+    <Members>
+      <Field Name="_completedInstances" Hidden="true" />
+      <Field Name="_compositionChains" Hidden="true" />
+      <Field Name="_deltaTime" Hidden="true" />
+      <Field Name="_incrementalIndex" Hidden="true" />
+      <Field Name="_rootInstances" Hidden="true" />
+      <Field Name="_tempInstances" Hidden="true" />
+      <Field Name="_tempProperties" Hidden="true" />
+      <Field Name="_tempTransitions" Hidden="true" />
+      <Field Name="_transitions" Hidden="true" />
+      <Field Name="_updateAnimationsMethod" Hidden="true" />
+      <Field Name="_updateCompositionChainMethod" Hidden="true" />
+      <Method Name="Add" Hidden="true" />
+      <Method Name="AnimationManager" Hidden="true" />
+      <Method Name="CheckAnimations" Hidden="true" />
+      <Method Name="CreateController" Hidden="true" />
+      <Method Name="GetCompositionChain" Hidden="true" />
+      <Method Name="IncrementalCleanup" Hidden="true" />
+      <Method Name="IsAnimated" Hidden="true" />
+      <Method Name="Remove" Hidden="true" />
+      <Method Name="RemoveBefore" Hidden="true" />
+      <Method Name="StartAnimation" Hidden="true" />
+      <Method Name="StopAnimation" Hidden="true" />
+      <Method Name="StopTransitions" Hidden="true" />
+      <Method Name="UpdateAnimation" Hidden="true" />
+      <Method Name="UpdateAnimations" Hidden="true" />
+      <Method Name="UpdateCompositionChain" Hidden="true" />
+      <Method Name="UpdateCompositionChains" Hidden="true" />
+      <Method Name="UpdateTransitions" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAYwAAAkAAQAAAJBAAAEBAAFACKBAQQEACAAABANBBQ=</HashCode>
+      <FileName>AnimationManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Animation.AnimationTransitions">
+    <Position X="0.5" Y="7.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Transitions\AnimationTransitions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Animation.AnimationException">
+    <Position X="6.5" Y="7.5" Width="2.25" />
+    <Members>
+      <Method Name="AnimationException" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AnimationException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Animation.AnimationInstance&lt;T&gt;">
+    <Position X="8.25" Y="5" Width="2" />
+    <Members>
+      <Field Name="_weakReference" Hidden="true" />
+      <Method Name="AddToCompositionChains" Hidden="true" />
+      <Method Name="AnimationInstance" Hidden="true" />
+      <Method Name="AssignTo" Hidden="true" />
+      <Method Name="CreateChildCollection" Hidden="true" />
+      <Method Name="GetAssignedInstance" Hidden="true" />
+      <Method Name="GetAssignedProperties" Hidden="true" />
+      <Method Name="GetTargetProperty" Hidden="true" />
+      <Method Name="GetValue" Hidden="true" />
+      <Method Name="IsActive" Hidden="true" />
+      <Method Name="IsAssignableTo" Hidden="true" />
+      <Method Name="IsAssignedTo" Hidden="true" />
+      <Field Name="Pool" Hidden="true" />
+      <Method Name="RemoveFromCompositionChains" Hidden="true" />
+      <Method Name="UpdateAndApply" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Animation" Type="DigitalRune.Animation.IAnimation&lt;T&gt;">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.049" Y="0.084" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAIkABAAgACQIBAiEAAAAYAAUAAAAA=</HashCode>
+      <FileName>AnimationInstance{T}.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Animation" />
+    </ShowAsAssociation>
+  </Class>
+  <Struct Name="DigitalRune.Animation.AnimationController">
+    <Position X="5" Y="0.75" Width="1.75" />
+    <Members>
+      <Field Name="_animationInstance" Hidden="true" />
+      <Field Name="_animationManager" Hidden="true" />
+      <Field Name="_id" Hidden="true" />
+      <Method Name="AnimationController" Hidden="true" />
+    </Members>
+    <AssociationLine Name="AnimationInstance" Type="DigitalRune.Animation.AnimationInstance">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.013" Y="0.048" Height="0.182" Width="1.329" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAgBAABCCAAAAIJAAhAAAADACBAAAAAIAAgBAgEAQA=</HashCode>
+      <FileName>AnimationController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AnimationService" />
+      <Property Name="AnimationInstance" />
+      <Property Name="State" />
+    </ShowAsAssociation>
+  </Struct>
+  <Interface Name="DigitalRune.Animation.IAnimationService">
+    <Position X="0.5" Y="1.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABBAAAEAAAAAACAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>IAnimationService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Animation.ITimeline" Collapsed="true">
+    <Position X="11.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABEAAAAAAAAAQAAAEAAAAACAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Animations\ITimeline.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Animation.IAnimation&lt;T&gt;" Collapsed="true">
+    <Position X="11.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Animations\IAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DigitalRune.Animation.AnimationState">
+    <Position X="5" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAIAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Animations\AnimationState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

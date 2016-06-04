@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune               Namespace: DigitalRune.Collections">
+    <Position X="0.5" Y="0.5" Height="0.489" Width="2.223" />
+  </Comment>
+  <Class Name="DigitalRune.Collections.NamedObjectCollection&lt;T&gt;">
+    <Position X="7.75" Y="1.25" Width="2.25" />
+    <Members>
+      <Field Name="_suppressCollectionChangedEvent" Hidden="true" />
+      <Method Name="ClearItems" Hidden="true" />
+      <Method Name="GetKeyForItem" Hidden="true" />
+      <Method Name="InsertItem" Hidden="true" />
+      <Method Name="NamedObjectCollection" Hidden="true" />
+      <Method Name="RemoveItem" Hidden="true" />
+      <Method Name="SetItem" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACAAAABAAMAABBCAAAAAgABAQAAAABAEAAABAIAEAAA=</HashCode>
+      <FileName>Collections\NamedObjectCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Collections.NotifyingCollection&lt;T&gt;">
+    <Position X="0.5" Y="6.25" Width="2" />
+    <Members>
+      <Field Name="_suppressCollectionChangedEvent" Hidden="true" />
+      <Method Name="ClearItems" Hidden="true" />
+      <Method Name="InsertItem" Hidden="true" />
+      <Method Name="NotifyingCollection" Hidden="true" />
+      <Method Name="RemoveItem" Hidden="true" />
+      <Method Name="SetItem" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACAAAABBAMAADBAAAAAAgABAQAAAABAEAAAAAIAEAAA=</HashCode>
+      <FileName>Collections\NotifyingCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Collections.CollectionChangedEventArgs&lt;T&gt;">
+    <Position X="6.25" Y="6.25" Width="2.5" />
+    <Members>
+      <Method Name="CollectionChangedEventArgs" Hidden="true" />
+      <Field Name="Pool" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAABAAAAAAQAAAAAAFACEAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Collections\CollectionChangedEventArgs.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Action" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Collections.WeakCollection&lt;T&gt;">
+    <Position X="5" Y="10.5" Width="2" />
+    <Members>
+      <Field Name="_size" Hidden="true" />
+      <Field Name="_syncRoot" Hidden="true" />
+      <Field Name="_version" Hidden="true" />
+      <Field Name="_weakHandles" Hidden="true" />
+      <Method Name="Add" Hidden="true" />
+      <Method Name="Clear" Hidden="true" />
+      <Method Name="Contains" Hidden="true" />
+      <Property Name="Count" Hidden="true" />
+      <Method Name="GetEnumerator" Hidden="true" />
+      <Method Name="ICollection.CopyTo" Hidden="true" />
+      <Property Name="ICollection.IsSynchronized" Hidden="true" />
+      <Property Name="ICollection.SyncRoot" Hidden="true" />
+      <Method Name="ICollection&lt;T&gt;.CopyTo" Hidden="true" />
+      <Property Name="ICollection&lt;T&gt;.IsReadOnly" Hidden="true" />
+      <Method Name="IEnumerable.GetEnumerator" Hidden="true" />
+      <Method Name="IEnumerable&lt;T&gt;.GetEnumerator" Hidden="true" />
+      <Method Name="Purge" Hidden="true" />
+      <Field Name="PurgeThreshold" Hidden="true" />
+      <Method Name="Remove" Hidden="true" />
+      <Method Name="SetCapacity" Hidden="true" />
+      <Method Name="WeakCollection" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Struct Name="DigitalRune.Collections.WeakCollection&lt;T&gt;.Enumerator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Collections\WeakCollection.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAIAEAAAKAAEIBEQAAAABAQAAAAoAAAEAAAAAgJQAQI=</HashCode>
+      <FileName>Collections\WeakCollection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Collections.SynchronizedNotifyingCollection&lt;T&gt;">
+    <Position X="3" Y="6.25" Width="2.75" />
+    <Members>
+      <Method Name="ClearItems" Hidden="true" />
+      <Method Name="InsertItem" Hidden="true" />
+      <Method Name="RemoveItem" Hidden="true" />
+      <Method Name="SetItem" Hidden="true" />
+      <Method Name="SynchronizedNotifyingCollection" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Collections.SynchronizedNotifyingCollection&lt;T&gt;.ImprovedSynchronizedCollection" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Collections\SynchronizedNotifyingCollection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAABBAIAADBAAAAAAgABAQAAAABAEAAAAAAAAAAA=</HashCode>
+      <FileName>Collections\SynchronizedNotifyingCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Collections.CollectionHelper">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <Members>
+      <Field Name="EmptyWeakReferenceArray" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Collections\CollectionHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Collections.Deque&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="1.25" Width="2" />
+    <Members>
+      <Field Name="_array" Hidden="true" />
+      <Field Name="_head" Hidden="true" />
+      <Field Name="_size" Hidden="true" />
+      <Field Name="_syncRoot" Hidden="true" />
+      <Field Name="_tail" Hidden="true" />
+      <Field Name="_version" Hidden="true" />
+      <Method Name="Deque" Hidden="true" />
+      <Field Name="EmptyArray" Hidden="true" />
+      <Method Name="ICollection.CopyTo" Hidden="true" />
+      <Property Name="ICollection.IsSynchronized" Hidden="true" />
+      <Property Name="ICollection.SyncRoot" Hidden="true" />
+      <Method Name="ICollection&lt;T&gt;.Add" Hidden="true" />
+      <Property Name="ICollection&lt;T&gt;.IsReadOnly" Hidden="true" />
+      <Method Name="ICollection&lt;T&gt;.Remove" Hidden="true" />
+      <Method Name="IEnumerable.GetEnumerator" Hidden="true" />
+      <Method Name="IEnumerable&lt;T&gt;.GetEnumerator" Hidden="true" />
+      <Method Name="IList&lt;T&gt;.Insert" Hidden="true" />
+      <Method Name="IList&lt;T&gt;.RemoveAt" Hidden="true" />
+      <Method Name="SetCapacity" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Struct Name="DigitalRune.Collections.Deque&lt;T&gt;.Enumerator">
+        <Members>
+          <Field Name="_current" Hidden="true" />
+          <Field Name="_deque" Hidden="true" />
+          <Field Name="_index" Hidden="true" />
+          <Field Name="_version" Hidden="true" />
+          <Method Name="Enumerator" Hidden="true" />
+          <Property Name="IEnumerator.Current" Hidden="true" />
+        </Members>
+        <TypeIdentifier>
+          <NewMemberFileName>Collections\Deque.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AEAAMAAACAAUKJAACAAAAAQCIAAKQAAGAAQCCgJRIQI=</HashCode>
+      <FileName>Collections\Deque.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.166" />
+  </Class>
+  <Class Name="DigitalRune.Collections.ChildCollection&lt;TParent, TChild&gt;">
+    <Position X="2.5" Y="1.25" Width="2.25" />
+    <Members>
+      <Field Name="_parent" Hidden="true" />
+      <Method Name="ChildCollection" Hidden="true" />
+      <Method Name="ClearItems" Hidden="true" />
+      <Method Name="InsertItem" Hidden="true" />
+      <Method Name="RemoveItem" Hidden="true" />
+      <Method Name="SetItem" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAIAABBAAAAAAQABQQAAAAAAEAEAAAAQAAAA=</HashCode>
+      <FileName>Collections\ChildCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Collections.PriorityQueue&lt;T&gt;">
+    <Position X="0.5" Y="10.5" Width="1.5" />
+    <Members>
+      <Field Name="_comparer" Hidden="true" />
+      <Field Name="_count" Hidden="true" />
+      <Field Name="_heap" Hidden="true" />
+      <Field Name="_size" Hidden="true" />
+      <Field Name="_syncRoot" Hidden="true" />
+      <Field Name="_version" Hidden="true" />
+      <Method Name="Bitmask" Hidden="true" />
+      <Method Name="Downheap" Hidden="true" />
+      <Method Name="GetLeftChildIndex" Hidden="true" />
+      <Method Name="GetParentIndex" Hidden="true" />
+      <Method Name="ICollection.CopyTo" Hidden="true" />
+      <Property Name="ICollection.IsSynchronized" Hidden="true" />
+      <Property Name="ICollection.SyncRoot" Hidden="true" />
+      <Method Name="ICollection&lt;T&gt;.Add" Hidden="true" />
+      <Property Name="ICollection&lt;T&gt;.IsReadOnly" Hidden="true" />
+      <Method Name="IEnumerable.GetEnumerator" Hidden="true" />
+      <Method Name="IEnumerable&lt;T&gt;.GetEnumerator" Hidden="true" />
+      <Method Name="IndexOf" Hidden="true" />
+      <Field Name="InitialSize" Hidden="true" />
+      <Method Name="PriorityQueue" Hidden="true" />
+      <Method Name="Upheap" Hidden="true" />
+      <Method Name="Validate" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Struct Name="DigitalRune.Collections.PriorityQueue&lt;T&gt;.Enumerator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Collections\PriorityQueue.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AEBAEAAACACEIBAAAAAABhQAIAEKBAAEABCgAAJQJQM=</HashCode>
+      <FileName>Collections\PriorityQueue.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Collections.ReadOnlyWeakCollection&lt;T&gt;">
+    <Position X="5" Y="12.5" Width="2.25" />
+    <Members>
+      <Field Name="_weakCollection" Hidden="true" />
+      <Method Name="Contains" Hidden="true" />
+      <Method Name="CopyTo" Hidden="true" />
+      <Property Name="Count" Hidden="true" />
+      <Method Name="GetEnumerator" Hidden="true" />
+      <Property Name="ICollection.IsSynchronized" Hidden="true" />
+      <Property Name="ICollection.SyncRoot" Hidden="true" />
+      <Method Name="ICollection&lt;T&gt;.Add" Hidden="true" />
+      <Method Name="ICollection&lt;T&gt;.Clear" Hidden="true" />
+      <Method Name="ICollection&lt;T&gt;.CopyTo" Hidden="true" />
+      <Property Name="ICollection&lt;T&gt;.IsReadOnly" Hidden="true" />
+      <Method Name="ICollection&lt;T&gt;.Remove" Hidden="true" />
+      <Method Name="IEnumerable.GetEnumerator" Hidden="true" />
+      <Method Name="IEnumerable&lt;T&gt;.GetEnumerator" Hidden="true" />
+      <Method Name="ReadOnlyWeakCollection" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAEAAIIAAEABAAAAAAAAQAIAAABAAEAAQAAAAQIQI=</HashCode>
+      <FileName>Collections\ReadOnlyWeakCollection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Struct Name="DigitalRune.Collections.Pair&lt;TFirst, TSecond&gt;">
+    <Position X="2.5" Y="12.5" Width="1.75" />
+    <Members>
+      <Field Name="_first" Hidden="true" />
+      <Field Name="_second" Hidden="true" />
+      <Field Name="EqualityComparer1" Hidden="true" />
+      <Field Name="EqualityComparer2" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="operator !=" Hidden="true" />
+      <Method Name="operator ==" Hidden="true" />
+      <Method Name="Pair" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAACABAAAAARAEgAAAAAIAAAAAAIAAAAAAAAAAAiA=</HashCode>
+      <FileName>Collections\Pair2.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="DigitalRune.Collections.Pair&lt;T&gt;">
+    <Position X="2.5" Y="10.5" Width="1.5" />
+    <Members>
+      <Field Name="_first" Hidden="true" />
+      <Field Name="_second" Hidden="true" />
+      <Field Name="EqualityComparer" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="operator !=" Hidden="true" />
+      <Method Name="operator ==" Hidden="true" />
+      <Method Name="Pair" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAQAEgAAAAAIAAAAAAIAAAAAAAAIAAiA=</HashCode>
+      <FileName>Collections\Pair1.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Enum Name="DigitalRune.Collections.CollectionChangedAction">
+    <Position X="9.75" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAIAAAAAAAAAABAAAAAAAAAAAAAAAAABAACA=</HashCode>
+      <FileName>Collections\CollectionChangedAction.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

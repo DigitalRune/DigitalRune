@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Timelines and Animations                 Assembly: DigitalRune.Animation              Namespace: DigitalRune.Animation">
+    <Position X="0.5" Y="0.5" Height="0.61" Width="2.193" />
+  </Comment>
+  <Class Name="DigitalRune.Animation.AnimationClip&lt;T&gt;">
+    <Position X="5.75" Y="6" Width="1.75" />
+    <Members>
+      <Field Name="_duration" Hidden="true" />
+      <Field Name="_speed" Hidden="true" />
+      <Field Name="_targetObject" Hidden="true" />
+      <Field Name="_targetProperty" Hidden="true" />
+      <Method Name="AnimationClip" Hidden="true" />
+      <Method Name="CreateBlendAnimation" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Property Name="FillBehavior" Hidden="true" />
+      <Method Name="GetAnimationTime" Hidden="true" />
+      <Method Name="GetClip" Hidden="true" />
+      <Method Name="GetDefaultDuration" Hidden="true" />
+      <Method Name="GetState" Hidden="true" />
+      <Method Name="GetTotalDuration" Hidden="true" />
+      <Method Name="GetValue" Hidden="true" />
+      <Method Name="GetValueCore" Hidden="true" />
+      <Property Name="IsAdditive" Hidden="true" />
+      <Property Name="TargetObject" Hidden="true" />
+      <Property Name="TargetProperty" Hidden="true" />
+      <Property Name="Traits" Hidden="true" />
+    </Members>
+    <AssociationLine Name="LoopBehavior" Type="DigitalRune.Animation.LoopBehavior" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.5" Y="6.787" />
+        <Point X="8.812" Y="6.787" />
+        <Point X="8.812" Y="5.431" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.089" Y="0.112" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAQABEBALAASAAAQgBAEAAEFAKAIAAAABGAAAAAAKSA=</HashCode>
+      <FileName>Animations\Compositing\AnimationClip.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Animation" />
+      <Property Name="LoopBehavior" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Animation.TimelineClip">
+    <Position X="5.75" Y="1.5" Width="1.75" />
+    <Members>
+      <Field Name="_duration" Hidden="true" />
+      <Field Name="_loopBehavior" Hidden="true" />
+      <Field Name="_speed" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Property Name="FillBehavior" Hidden="true" />
+      <Method Name="GetAnimationTime" Hidden="true" />
+      <Method Name="GetClip" Hidden="true" />
+      <Method Name="GetDefaultDuration" Hidden="true" />
+      <Method Name="GetState" Hidden="true" />
+      <Method Name="GetTotalDuration" Hidden="true" />
+      <Property Name="TargetObject" Hidden="true" />
+      <Method Name="TimelineClip" Hidden="true" />
+    </Members>
+    <AssociationLine Name="LoopBehavior" Type="DigitalRune.Animation.LoopBehavior" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.5" Y="2.998" />
+        <Point X="8.812" Y="2.998" />
+        <Point X="8.812" Y="4" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAQABEAgDAACAAAQABAEAAAFAKAIAAAABHAAAAAAAQA=</HashCode>
+      <FileName>Animations\Compositing\TimelineClip.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Timeline" />
+      <Property Name="LoopBehavior" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Animation.TimelineGroup">
+    <Position X="8" Y="1.5" Width="1.5" />
+    <Members>
+      <Field Name="_timelines" Hidden="true" />
+      <Method Name="Add" Hidden="true" />
+      <Method Name="Clear" Hidden="true" />
+      <Method Name="Contains" Hidden="true" />
+      <Property Name="Count" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Property Name="FillBehavior" Hidden="true" />
+      <Method Name="GetAnimationTime" Hidden="true" />
+      <Method Name="GetEnumerator" Hidden="true" />
+      <Method Name="GetState" Hidden="true" />
+      <Method Name="GetTotalDuration" Hidden="true" />
+      <Method Name="ICollection&lt;ITimeline&gt;.CopyTo" Hidden="true" />
+      <Property Name="ICollection&lt;ITimeline&gt;.IsReadOnly" Hidden="true" />
+      <Method Name="IEnumerable.GetEnumerator" Hidden="true" />
+      <Method Name="IEnumerable&lt;ITimeline&gt;.GetEnumerator" Hidden="true" />
+      <Method Name="IndexOf" Hidden="true" />
+      <Method Name="Insert" Hidden="true" />
+      <Method Name="Remove" Hidden="true" />
+      <Method Name="RemoveAt" Hidden="true" />
+      <Property Name="TargetObject" Hidden="true" />
+      <Property Name="this" Hidden="true" />
+      <Method Name="TimelineGroup" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEIABEAAAAAABBAQCAAGBAQAACAAAABECAAAAABQAQA=</HashCode>
+      <FileName>Animations\Compositing\TimelineGroup.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Animation.BlendGroup">
+    <Position X="10" Y="1.5" Width="2.75" />
+    <Members>
+      <Field Name="_blendAnimations" Hidden="true" />
+      <Field Name="_duration" Hidden="true" />
+      <Field Name="_entries" Hidden="true" />
+      <Field Name="_isDirty" Hidden="true" />
+      <Field Name="_loopBehavior" Hidden="true" />
+      <Field Name="_speed" Hidden="true" />
+      <Field Name="_synchronized" Hidden="true" />
+      <Field Name="_synchronizedDuration" Hidden="true" />
+      <Field Name="_synchronizeDurations" Hidden="true" />
+      <Field Name="_syncRoot" Hidden="true" />
+      <Method Name="Add" Hidden="true" />
+      <Method Name="AdjustTimeline" Hidden="true" />
+      <Method Name="BlendGroup" Hidden="true" />
+      <Method Name="CacheDuration" Hidden="true" />
+      <Method Name="Clear" Hidden="true" />
+      <Method Name="Contains" Hidden="true" />
+      <Property Name="Count" Hidden="true" />
+      <Method Name="CreateBlendAnimations" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Property Name="FillBehavior" Hidden="true" />
+      <Method Name="GetAnimationTime" Hidden="true" />
+      <Method Name="GetDefaultDuration" Hidden="true" />
+      <Method Name="GetEnumerator" Hidden="true" />
+      <Method Name="GetNormalizedWeight" Hidden="true" />
+      <Method Name="GetState" Hidden="true" />
+      <Method Name="GetTimeNormalizationFactor" Hidden="true" />
+      <Method Name="GetTotalDuration" Hidden="true" />
+      <Method Name="IAnimatableObject.GetAnimatableProperty" Hidden="true" />
+      <Method Name="IAnimatableObject.GetAnimatedProperties" Hidden="true" />
+      <Method Name="ICollection&lt;ITimeline&gt;.CopyTo" Hidden="true" />
+      <Property Name="ICollection&lt;ITimeline&gt;.IsReadOnly" Hidden="true" />
+      <Method Name="IEnumerable.GetEnumerator" Hidden="true" />
+      <Method Name="IEnumerable&lt;ITimeline&gt;.GetEnumerator" Hidden="true" />
+      <Property Name="INamedObject.Name" Hidden="true" />
+      <Method Name="IndexOf" Hidden="true" />
+      <Method Name="Insert" Hidden="true" />
+      <Method Name="NormalizeWeights" Hidden="true" />
+      <Method Name="OnTimelineChanged" Hidden="true" />
+      <Method Name="OnWeightChanged" Hidden="true" />
+      <Method Name="Remove" Hidden="true" />
+      <Method Name="RemoveAt" Hidden="true" />
+      <Property Name="TargetObject" Hidden="true" />
+      <Property Name="this" Hidden="true" />
+      <Method Name="Update" Hidden="true" />
+      <Method Name="UpdateDuration" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Struct Name="DigitalRune.Animation.BlendGroup.Entry" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Animations\NBlendAnimation\BlendGroup.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="DigitalRune.Animation.BlendGroup.Enumerator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Animations\NBlendAnimation\BlendGroup.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AEYABMQAqQACBBEQChBEBAQNACEoABBEDBEASBBUASI=</HashCode>
+      <FileName>Animations\NBlendAnimation\BlendGroup.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Animation.Animation&lt;T&gt;">
+    <Position X="10.25" Y="5" Width="2" />
+    <Members>
+      <Method Name="Animation" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAABEAAIAAQAAAQgAAEAAEAACAAAAAAAAAAAAAACSA=</HashCode>
+      <FileName>Animations\Animation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="DigitalRune.Animation.ITimeline">
+    <Position X="3" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAABEAAAAAAAAAQAAAEAAAAACAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Animations\ITimeline.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="FillBehavior" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="DigitalRune.Animation.IAnimation&lt;T&gt;">
+    <Position X="3" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Animations\IAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Animation.IAnimation">
+    <Position X="3" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACCA=</HashCode>
+      <FileName>Animations\IAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DigitalRune.Animation.LoopBehavior">
+    <Position X="8" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAABAAAAAAgAAQAAAAAAAAA=</HashCode>
+      <FileName>Animations\LoopBehavior.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DigitalRune.Animation.AnimationState">
+    <Position X="0.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAIAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Animations\AnimationState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DigitalRune.Animation.FillBehavior">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Animations\FillBehavior.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

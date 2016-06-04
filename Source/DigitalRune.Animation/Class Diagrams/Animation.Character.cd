@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Animation               Namespace: DigitalRune.Animation.Character">
+    <Position X="0.5" Y="0.5" Height="0.481" Width="2.755" />
+  </Comment>
+  <Class Name="DigitalRune.Animation.Character.Skeleton">
+    <Position X="3.25" Y="1.5" Width="2.25" />
+    <Members>
+      <Field Name="AnimatableBoneTransformsPool" Hidden="true" />
+      <Property Name="BindPosesAbsoluteInverse" Hidden="true" />
+      <Property Name="BindPosesRelative" Hidden="true" />
+      <Property Name="BoneNames" Hidden="true" />
+      <Property Name="Bones" Hidden="true" />
+      <Method Name="Initialize" Hidden="true" />
+      <Method Name="Skeleton" Hidden="true" />
+      <Field Name="SkeletonBoneAccessorPool" Hidden="true" />
+      <Field Name="SkeletonPosePool" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Struct Name="DigitalRune.Animation.Character.Skeleton.Bone" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Character\Skeleton.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAQAQAIIgEAQDQAAGAAAAAAAAIAQQBAA=</HashCode>
+      <FileName>Character\Skeleton.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Animation.Character.SkeletonHelper">
+    <Position X="3.25" Y="5.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>EAAIAQAIAAAAQAAAAAAAAAAAAgAAAAQAAAAAAAABAAU=</HashCode>
+      <FileName>Character\SkeletonHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Animation.Character.SkeletonPose">
+    <Position X="6.5" Y="1.5" Width="2.5" />
+    <Members>
+      <Field Name="_animatableBoneTransforms" Hidden="true" />
+      <Field Name="_boneAccessor" Hidden="true" />
+      <Field Name="BoneTransforms" Hidden="true" />
+      <Method Name="EnsureAnimatableProperties" Hidden="true" />
+      <Method Name="EnsureBoneAccessor" Hidden="true" />
+      <Method Name="IAnimatableObject.GetAnimatableProperty" Hidden="true" />
+      <Method Name="IAnimatableObject.GetAnimatedProperties" Hidden="true" />
+      <Property Name="IAnimatableProperty.AnimationValue" Hidden="true" />
+      <Property Name="IAnimatableProperty.BaseValue" Hidden="true" />
+      <Property Name="IAnimatableProperty.HasBaseValue" Hidden="true" />
+      <Property Name="IAnimatableProperty.IsAnimated" Hidden="true" />
+      <Property Name="IAnimatableProperty&lt;SkeletonPose&gt;.AnimationValue" Hidden="true" />
+      <Property Name="IAnimatableProperty&lt;SkeletonPose&gt;.BaseValue" Hidden="true" />
+      <Method Name="Invalidate" Hidden="true" />
+      <Method Name="SkeletonPose" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BESVAAAEAAAASAAgEAABIBQAAAFgIMAAAAACIBABABI=</HashCode>
+      <FileName>Character\SkeletonPose.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Skeleton" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Animation.Character.SkeletonKeyFrameAnimation">
+    <Position X="9.5" Y="1.5" Width="2.75" />
+    <Members>
+      <Field Name="_channels" Hidden="true" />
+      <Field Name="_indices" Hidden="true" />
+      <Field Name="_keyFrames" Hidden="true" />
+      <Field Name="_keyFrameTypes" Hidden="true" />
+      <Field Name="_preprocessData" Hidden="true" />
+      <Field Name="_times" Hidden="true" />
+      <Field Name="_totalDuration" Hidden="true" />
+      <Field Name="_weights" Hidden="true" />
+      <Method Name="CompareKeyFrameTime" Hidden="true" />
+      <Method Name="CompressSegment" Hidden="true" />
+      <Method Name="EnsurePreprocessingData" Hidden="true" />
+      <Method Name="GetAnimationTime" Hidden="true" />
+      <Method Name="GetBoneKeyFrame" Hidden="true" />
+      <Method Name="GetBoneKeyFrames" Hidden="true" />
+      <Method Name="GetBoneTransform" Hidden="true" />
+      <Method Name="GetChannelIndex" Hidden="true" />
+      <Method Name="GetState" Hidden="true" />
+      <Method Name="GetTimeIndex" Hidden="true" />
+      <Method Name="GetTotalDuration" Hidden="true" />
+      <Method Name="IAnimation.CreateBlendAnimation" Hidden="true" />
+      <Method Name="ITimeline.CreateInstance" Hidden="true" />
+      <Method Name="SkeletonKeyFrameAnimation" Hidden="true" />
+      <Method Name="SplitSegment" Hidden="true" />
+      <Method Name="Unfreeze" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Animation.Character.SkeletonKeyFrameAnimation.PreprocessingData" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Character\Skeleton Animations\SkeletonKeyFrameAnimation.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Animation.Character.SkeletonKeyFrameAnimation.CompressionContext" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Character\Skeleton Animations\SkeletonKeyFrameAnimation_Compression.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>IECCEcAAKJMgAAAQgIAEAgEEACCAwIAECAADAIRACRI=</HashCode>
+      <FileName>Character\Skeleton Animations\SkeletonKeyFrameAnimation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Struct Name="DigitalRune.Animation.Character.SrtTransform" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.5" Width="2.25" />
+    <Members>
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="operator !=" Hidden="true" />
+      <Method Name="operator ==" Hidden="true" />
+      <Method Name="SrtTransform" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>iAQAAEAAAQQAJIAGoAoDAgQABBAAAICAYEAAQAAAEiA=</HashCode>
+      <FileName>Character\SrtTransform.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune Namespace: DigitalRune.Storages">
+    <Position X="0.5" Y="0.5" Height="0.489" Width="2.095" />
+  </Comment>
+  <Class Name="DigitalRune.Storages.FileSystemStorage">
+    <Position X="0.5" Y="4.75" Width="1.75" />
+    <Members>
+      <Property Name="DirectorySeparator" Hidden="true" />
+      <Method Name="FileSystemStorage" Hidden="true" />
+      <Method Name="GetRealPath" Hidden="true" />
+      <Method Name="IStorageInternal.TryOpenFile" Hidden="true" />
+      <Method Name="OpenFile" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAEEAAAAABIAAAAA=</HashCode>
+      <FileName>Storages\FileSystemStorage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Storages.Path">
+    <Position X="7" Y="1.75" Width="2" />
+    <Members>
+      <Method Name="Path" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QQAAAAAAAAAAAAAAGAAAAAAAAAAAIAAAAAABIAAAAAA=</HashCode>
+      <FileName>Storages\Path.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Storages.Storage">
+    <Position X="2.5" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAABAAAAAAAEAAAAAABIAAAAA=</HashCode>
+      <FileName>Storages\Storage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Storages.VfsStorage">
+    <Position X="4.5" Y="4.75" Width="1.25" />
+    <Members>
+      <Property Name="DirectorySeparator" Hidden="true" />
+      <Method Name="GetRealPath" Hidden="true" />
+      <Method Name="IStorageInternal.TryOpenFile" Hidden="true" />
+      <Method Name="OpenFile" Hidden="true" />
+      <Method Name="TryOpenFile" Hidden="true" />
+      <Method Name="VfsStorage" Hidden="true" />
+    </Members>
+    <AssociationLine Name="MountInfos" Type="DigitalRune.Storages.VfsMountInfoCollection">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.037" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAgBAAAAAAAAAEAAAAAABIAAAAA=</HashCode>
+      <FileName>Storages\VfsStorage.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MountInfos" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Storages.ZipStorage">
+    <Position X="2.5" Y="4.75" Width="1.75" />
+    <Members>
+      <Field Name="_lock" Hidden="true" />
+      <Field Name="_zipFile" Hidden="true" />
+      <Field Name="_zipStream" Hidden="true" />
+      <Property Name="DirectorySeparator" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="GetRealPath" Hidden="true" />
+      <Method Name="IStorageInternal.TryOpenFile" Hidden="true" />
+      <Method Name="OpenFile" Hidden="true" />
+      <Method Name="TryOpenFile" Hidden="true" />
+      <Method Name="ZipStorage" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAACAAAAAgAAgBAAAAAAAAAEAAAAAEBIRAAgA=</HashCode>
+      <FileName>Storages\ZipStorage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Storages.VfsMountInfo">
+    <Position X="7" Y="6" Width="1.5" />
+    <Members>
+      <Field Name="_mountPoint" Hidden="true" />
+      <Field Name="_storage" Hidden="true" />
+      <Method Name="VfsMountInfo" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAQAggA=</HashCode>
+      <FileName>Storages\VfsMountInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Storages.VfsMountInfoCollection">
+    <Position X="7" Y="4.75" Width="2" />
+    <Members>
+      <Method Name="GetEnumerator" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Storages\VfsMountInfoCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DigitalRune.Storages.IStorage">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAIAAAAA=</HashCode>
+      <FileName>Storages\IStorage.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Storages.IStorageProvider">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Storages\IStorageProvider.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Storage" />
+    </ShowAsAssociation>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

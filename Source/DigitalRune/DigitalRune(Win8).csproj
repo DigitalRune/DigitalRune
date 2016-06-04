@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EAB2CE75-3ED8-4158-A17E-72CFD724AEC4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune</RootNamespace>
+    <AssemblyName>DigitalRune</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile32</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <BaseIntermediateOutputPath>obj\.NETCore\Debug\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\.NETCore\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;DLL_PROJECT;DOTNET;WINRT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <BaseIntermediateOutputPath>obj\.NETCore\Release\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\.NETCore\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;DLL_PROJECT;DOTNET;WINRT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="5a0e3c60-1ca9-49d5-84ca-308cb8e3a3b4" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <ItemGroup>
+    <Compile Include="Animation\IAnimatableObject.cs" />
+    <Compile Include="Animation\IAnimatableProperty.cs" />
+    <Compile Include="Collections\ArrayList.cs" />
+    <Compile Include="Collections\ChildCollection.cs" />
+    <Compile Include="Collections\CollectionChangedAction.cs" />
+    <Compile Include="Collections\CollectionChangedEventArgs.cs" />
+    <Compile Include="Collections\CollectionDebugView.cs" />
+    <Compile Include="Collections\CollectionHelper.cs" />
+    <Compile Include="Collections\DelegateComparer.cs" />
+    <Compile Include="Collections\Deque.cs" />
+    <Compile Include="Collections\EmptyEnumerable.cs" />
+    <Compile Include="Collections\FastBitArray.cs" />
+    <Compile Include="Collections\FastStack.cs" />
+    <Compile Include="Collections\HashSetEx.cs" />
+    <Compile Include="Collections\ListHelper.cs" />
+    <Compile Include="Collections\NamedObjectCollection.cs" />
+    <Compile Include="Collections\NotifyingCollection.cs" />
+    <Compile Include="Collections\Pair1.cs" />
+    <Compile Include="Collections\Pair2.cs" />
+    <Compile Include="Collections\PooledEnumerable.cs" />
+    <Compile Include="Collections\PriorityQueue.cs" />
+    <Compile Include="Collections\ReadOnlyWeakCollection.cs" />
+    <Compile Include="Collections\SynchronizedHashtable.cs" />
+    <Compile Include="Collections\SynchronizedNotifyingCollection.cs" />
+    <Compile Include="Collections\WeakCollection.cs" />
+    <Compile Include="Diagnostics\Hierarchical\HierarchicalProfiler.cs" />
+    <Compile Include="Diagnostics\Hierarchical\HierarchicalProfilerNode.cs" />
+    <Compile Include="Diagnostics\Hierarchical\HierarchicalProfilerSample.cs" />
+    <Compile Include="Diagnostics\ProfileFormatter.cs" />
+    <Compile Include="Diagnostics\Simple\Profiler.cs" />
+    <Compile Include="Diagnostics\Simple\ProfilerData.cs" />
+    <Compile Include="Diagnostics\Simple\ProfilerDataCollection.cs" />
+    <Compile Include="Diagnostics\Simple\ProfilerDataFormat.cs" />
+    <Compile Include="Diagnostics\Simple\ProfilerSample.cs" />
+    <Compile Include="Diagnostics\Stopwatch.cs" />
+    <Compile Include="EnumHelper.cs" />
+    <Compile Include="GlobalSettings.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="INamedObjects.cs" />
+    <Compile Include="Ionic\Crc\CRC32.cs" />
+    <Compile Include="Ionic\Encoding\Iso8859Dash1Encoding.cs" />
+    <None Include="Ionic\Readme.txt" />
+    <Compile Include="Ionic\Zip\EncryptionAlgorithm.cs" />
+    <Compile Include="Ionic\Zip\Exceptions.cs" />
+    <Compile Include="Ionic\Zip\OffsetStream.cs" />
+    <Compile Include="Ionic\Zip\Shared.cs" />
+    <Compile Include="Ionic\Zip\WinZipAes.cs" />
+    <Compile Include="Ionic\Zip\ZipConstants.cs" />
+    <Compile Include="Ionic\Zip\ZipCrypto.cs" />
+    <Compile Include="Ionic\Zip\ZipDirEntry.cs" />
+    <Compile Include="Ionic\Zip\ZipEntry.Extract.cs" />
+    <Compile Include="Ionic\Zip\ZipEntry.Read.cs" />
+    <Compile Include="Ionic\Zip\ZipEntry.cs" />
+    <Compile Include="Ionic\Zip\ZipEntrySource.cs" />
+    <Compile Include="Ionic\Zip\ZipFile.Read.cs" />
+    <Compile Include="Ionic\Zip\ZipFile.cs" />
+    <Compile Include="Ionic\Zip\ZipFile.x-IEnumerable.cs" />
+    <Compile Include="Ionic\Zip\ZipOutputStream.cs" />
+    <Compile Include="Ionic\Zlib\DeflateStream.cs" />
+    <Compile Include="Ionic\Zlib\GZipStream.cs" />
+    <Compile Include="Ionic\Zlib\InfTree.cs" />
+    <Compile Include="Ionic\Zlib\Inflate.cs" />
+    <Compile Include="Ionic\Zlib\Zlib.cs" />
+    <Compile Include="Ionic\Zlib\ZlibBaseStream.cs" />
+    <Compile Include="Ionic\Zlib\ZlibCodec.cs" />
+    <Compile Include="Ionic\Zlib\ZlibConstants.cs" />
+    <Compile Include="Licensing\Licensing.cs" />
+    <Compile Include="Linq\LinqHelper.cs" />
+    <Compile Include="Linq\TreeHelper.cs" />
+    <Compile Include="Mathematics\Numeric.cs" />
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="ObjectHelper.cs" />
+    <Compile Include="PlatformHelper.cs" />
+    <Compile Include="PlatformID.cs" />
+    <Compile Include="Portable.cs" />
+    <Compile Include="PrimeHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Properties\AssemblyInfo.template" />
+    <Compile Include="ReferenceEqualityComparer.cs" />
+    <Compile Include="ResourcePools\IRecyclable.cs" />
+    <Compile Include="ResourcePools\ResourcePool.cs" />
+    <Compile Include="ResourcePools\ResourcePools{T}.cs" />
+    <Compile Include="ResourcePools\ResourcePool{T}.cs" />
+    <Compile Include="Singleton.cs" />
+    <Compile Include="Storages\FileAccess.cs" />
+    <Compile Include="Storages\FileAttributes.cs" />
+    <Compile Include="Storages\FileMode.cs" />
+    <Compile Include="Storages\FileOptions.cs" />
+    <Compile Include="Storages\FileShare.cs" />
+    <Compile Include="Storages\FileSystemStorage.cs" />
+    <Compile Include="Storages\IStorage.cs" />
+    <Compile Include="Storages\IStorageProvider.cs" />
+    <Compile Include="Storages\Path.cs" />
+    <Compile Include="Storages\Storage.cs" />
+    <Compile Include="Storages\StorageHelper.cs" />
+    <Compile Include="Storages\VfsMountInfo.cs" />
+    <Compile Include="Storages\VfsMountInfoCollection.cs" />
+    <Compile Include="Storages\VfsStorage.cs" />
+    <Compile Include="Storages\ZipStorage.cs" />
+    <Compile Include="System\Collection.cs" />
+    <Compile Include="System\HashSet.cs" />
+    <Compile Include="System\KeyedCollection.cs" />
+    <Compile Include="Text\StringBuilderHelper.cs" />
+    <Compile Include="Text\StringHelper.cs" />
+    <Compile Include="Threading\BackgroundWorker.cs" />
+    <Compile Include="Threading\DelegateWork.cs" />
+    <Compile Include="Threading\ITaskScheduler.cs" />
+    <Compile Include="Threading\IWork.cs" />
+    <Compile Include="Threading\LoopWork.cs" />
+    <Compile Include="Threading\Parallel.cs" />
+    <Compile Include="Threading\Parallel_Win8.cs" />
+    <Compile Include="Threading\Task.cs" />
+    <Compile Include="Threading\TaskException.cs" />
+    <Compile Include="Threading\Task_Win8.cs" />
+    <Compile Include="Threading\Task{T}.cs" />
+    <Compile Include="Threading\Task{T}_Win8.cs" />
+    <Compile Include="Threading\WorkItem.cs" />
+    <Compile Include="Threading\WorkOptions.cs" />
+    <Compile Include="Threading\WorkStealingQueue.cs" />
+    <Compile Include="Threading\WorkStealingScheduler.cs" />
+    <Compile Include="Threading\Worker.cs" />
+    <Compile Include="Undo\IUndoableOperation.cs" />
+    <Compile Include="Undo\UndoBuffer.cs" />
+    <Compile Include="Undo\UndoGroup.cs" />
+    <Compile Include="WeakEvents\InternalWeakDelegate.cs" />
+    <Compile Include="WeakEvents\WeakDelegate.cs" />
+    <Compile Include="WeakEvents\WeakDelegate{T}.cs" />
+    <Compile Include="WeakEvents\WeakEvent.cs" />
+    <Compile Include="WeakEvents\WeakEventHandler.cs" />
+    <Compile Include="WeakEvents\WeakMulticastDelegate.cs" />
+    <Compile Include="WeakEvents\WeakMulticastDelegate{T}.cs" />
+    <TargetPlatform Include="Windows, Version=8.1" />
+    <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
+  </ItemGroup>
+</Project>
