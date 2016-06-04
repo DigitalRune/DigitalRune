@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="WindowsFrameworkApp.MultiKeyGestureTest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             xmlns:local="clr-namespace:WindowsFrameworkApp"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Command="{x:Static local:MultiKeyGestureTest.Exit}" />
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Command="{x:Static local:MultiKeyGestureTest.FormatSelection}" />
+                <MenuItem Command="{x:Static local:MultiKeyGestureTest.FormatDocument}" />
+            </MenuItem>
+        </Menu>
+        <Grid>
+            <RichTextBox FontFamily="Consolas">
+
+                <RichTextBox.InputBindings>
+                    <dr:MultiKeyBinding Command="{Binding Extra}" Gesture="Ctrl+K, Ctrl+E, Ctrl+E" />
+                </RichTextBox.InputBindings>
+
+                <FlowDocument>
+                    <Paragraph>TextBox</Paragraph>
+
+                    <Paragraph>Multi-key bindings are:</Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>Ctrl+K, Ctrl+X ............... Exit</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Ctrl+K, Ctrl+F ............... Format Selection</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Ctrl+Shift+K, Ctrl+Shift+D ... Format Document</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Ctrl+K, Ctrl+E, Ctrl+E ....... Extra</Paragraph>
+                        </ListItem>
+                    </List>
+
+                    <Paragraph>Also try normal key bindings such as Ctrl+X, Ctrl+C, Ctrl+V.</Paragraph>
+                </FlowDocument>
+
+            </RichTextBox>
+        </Grid>
+    </DockPanel>
+</UserControl>

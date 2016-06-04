@@ -1,0 +1,165 @@
+﻿<UserControl x:Class="WindowsControlsApp.ExplorerViewTest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:TestApplication="clr-namespace:WindowsControlsApp"
+             xmlns:dr="http://schemas.digitalrune.com/windows">
+
+    <UserControl.Resources>
+        <TestApplication:WallpaperCollection x:Key="Wallpapers" />
+
+        <dr:DoubleToBooleanConverter x:Key="LessOrEqualConverter" Comparison="LessOrEqual" />
+
+        <dr:ExplorerView x:Key="WallpaperView" Mode="List">
+            <dr:ExplorerView.IconTemplate>
+                <DataTemplate DataType="{x:Type TestApplication:Wallpaper}">
+                    <StackPanel x:Name="Stack" Margin="3">
+                        <Image Width="16"
+                               Height="16"
+                               Source="{Binding Image}"
+                               Stretch="Uniform">
+                            <Image.LayoutTransform>
+                                <ScaleTransform ScaleX="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListView}}, Path=View.Scale}" ScaleY="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListView}}, Path=View.Scale}" />
+                            </Image.LayoutTransform>
+                        </Image>
+                        <TextBlock Name="TextLabel"
+                                   Width="96"
+                                   MaxHeight="40"
+                                   Margin="1"
+                                   VerticalAlignment="Center"
+                                   Text="{Binding Name}"
+                                   TextAlignment="Center"
+                                   TextTrimming="WordEllipsis"
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListView}}, Path=View.Scale, Converter={StaticResource LessOrEqualConverter}, ConverterParameter=2.0}" Value="True">
+                            <Setter TargetName="Stack" Property="Orientation" Value="Horizontal" />
+                            <Setter TargetName="Stack" Property="Margin" Value="0" />
+                            <Setter TargetName="TextLabel" Property="TextAlignment" Value="Left" />
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </dr:ExplorerView.IconTemplate>
+
+            <dr:ExplorerView.ListTemplate>
+                <DataTemplate DataType="{x:Type TestApplication:Wallpaper}">
+                    <StackPanel Width="128"
+                                Margin="0"
+                                Orientation="Horizontal">
+                        <Image Width="16"
+                               Height="16"
+                               Source="{Binding Image}"
+                               Stretch="Uniform" />
+                        <TextBlock Name="TextLabel"
+                                   Margin="1"
+                                   VerticalAlignment="Center"
+                                   Text="{Binding Name}"
+                                   TextAlignment="Center"
+                                   TextTrimming="WordEllipsis"
+                                   TextWrapping="WrapWithOverflow" />
+                    </StackPanel>
+                </DataTemplate>
+            </dr:ExplorerView.ListTemplate>
+
+            <dr:ExplorerView.TileTemplate>
+                <DataTemplate DataType="{x:Type TestApplication:Wallpaper}">
+                    <Grid Width="256">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0"
+                               Width="96"
+                               Height="96"
+                               Source="{Binding Image}"
+                               Stretch="Uniform" />
+                        <StackPanel Grid.Column="1"
+                                    Margin="2,0"
+                                    VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Name:" />
+                                <TextBlock Margin="6,0,0,0" Text="{Binding Name}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Dimensions:" />
+                                <TextBlock Margin="6,0,0,0" Text="{Binding Dimensions}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Size:" />
+                                <TextBlock Margin="6,0,0,0" Text="{Binding Size}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </dr:ExplorerView.TileTemplate>
+
+            <GridViewColumn Header="Name">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="20"
+                                   Height="20"
+                                   Source="{Binding Image}"
+                                   Stretch="Uniform" />
+                            <TextBlock Margin="2,0,6,0"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn DisplayMemberBinding="{Binding Dimensions}" Header="Dimensions" />
+            <GridViewColumn DisplayMemberBinding="{Binding Size}" Header="Size" />
+        </dr:ExplorerView>
+
+        <DataTemplate x:Key="HeaderTemplateArrowUp">
+            <DockPanel>
+                <Path Data="M4,8 L12,8 L8,4 L4,8"
+                      DockPanel.Dock="Right"
+                      Fill="gray"
+                      StrokeThickness="1" />
+                <TextBlock HorizontalAlignment="Left" Text="{Binding}" />
+            </DockPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="HeaderTemplateArrowDown">
+            <DockPanel>
+                <Path Data="M4,4 L8,8 L12,4 L4,4"
+                      DockPanel.Dock="Right"
+                      Fill="gray"
+                      StrokeThickness="1" />
+                <TextBlock HorizontalAlignment="Left" Text="{Binding}" />
+            </DockPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+
+
+    <DockPanel>
+        <Grid Margin="6" DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Margin="0,0,6,0" Click="OnButtonClick">
+                <StackPanel Orientation="Horizontal" SnapsToDevicePixels="True">
+                    <TextBlock Margin="0,0,3,0" Text="Mode: " />
+                    <Image Width="16"
+                           Height="16"
+                           Source="{Binding ElementName=WallpaperListView, Path=View.Icon}" />
+                </StackPanel>
+            </Button>
+            <Slider Grid.Column="1"
+                    Maximum="16"
+                    Minimum="1"
+                    Value="{Binding ElementName=WallpaperListView, Path=View.Scale, Mode=TwoWay}" />
+        </Grid>
+        <dr:ListViewEx Name="WallpaperListView"
+                       Margin="6"
+                       ContextMenu="{Binding RelativeSource={RelativeSource Self}, Path=View.Menu}"
+                       GridViewColumnHeader.Click="OnGridViewColumnHeaderClick"
+                       ItemsSource="{StaticResource Wallpapers}"
+                       PreviewMouseWheel="OnListViewMouseWheel"
+                       View="{StaticResource WallpaperView}" />
+    </DockPanel>
+
+</UserControl>

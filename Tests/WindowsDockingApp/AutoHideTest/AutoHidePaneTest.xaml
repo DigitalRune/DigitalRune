@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="WindowsDockingApp.AutoHidePaneTest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             BorderBrush="Black"
+             BorderThickness="1">
+
+    <Grid ClipToBounds="True">
+        <StackPanel MinWidth="180"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <Button Margin="3" Click="OnShowHideAutoHidePane">Show/Hide</Button>
+            <Button Margin="3" Click="OnShowAndFocusAutoHidePane">Show and Focus</Button>
+            <GroupBox Margin="3" Header="AutoHidePane.Dock:">
+                <StackPanel Margin="3">
+                    <RadioButton Checked="OnDockLeft" GroupName="Dock">Left</RadioButton>
+                    <RadioButton Checked="OnDockRight"
+                                 GroupName="Dock"
+                                 IsChecked="True">
+                        Right
+                    </RadioButton>
+                    <RadioButton Checked="OnDockTop" GroupName="Dock">Top</RadioButton>
+                    <RadioButton Checked="OnDockBottom" GroupName="Dock">Bottom</RadioButton>
+                </StackPanel>
+            </GroupBox>
+            <StackPanel Margin="3" Orientation="Horizontal">
+                <TextBlock Text="AutoHidePane.State: " />
+                <TextBlock FontWeight="Bold" Text="{Binding ElementName=MyAutoHidePane, Path=State}" />
+            </StackPanel>
+            <TextBox Margin="3">Dummy TextBox</TextBox>
+        </StackPanel>
+
+        <dr:AutoHidePane x:Name="MyAutoHidePane"
+                         Dock="Right">
+            <Grid>
+                <TextBox x:Name="MyTextBox">Test 1, 2, 3, ...</TextBox>
+            </Grid>
+        </dr:AutoHidePane>
+    </Grid>
+</UserControl>

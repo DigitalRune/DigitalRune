@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="WindowsFrameworkApp.ToggleGroupBehaviorTest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
+    <StackPanel Margin="11" Orientation="Horizontal">
+        <i:Interaction.Behaviors>
+            <dr:ToggleGroupBehavior />
+        </i:Interaction.Behaviors>
+        <StackPanel>
+            <ToggleButton Width="16" dr:ToggleGroupBehavior.Id="Letters">A</ToggleButton>
+            <ToggleButton Width="16" dr:ToggleGroupBehavior.Id="Letters">B</ToggleButton>
+            <ToggleButton Width="16" dr:ToggleGroupBehavior.Id="Letters">C</ToggleButton>
+            <ToggleButton Width="16" dr:ToggleGroupBehavior.Id="Letters">D</ToggleButton>
+            <ToggleButton Width="16" dr:ToggleGroupBehavior.Id="Letters">E</ToggleButton>
+        </StackPanel>
+        <StackPanel Margin="7,0,0,0">
+            <ToggleButton Width="16" dr:ToggleGroupBehavior.Id="Digits">1</ToggleButton>
+            <ToggleButton Width="16" dr:ToggleGroupBehavior.Id="Digits">2</ToggleButton>
+            <ToggleButton Width="16" dr:ToggleGroupBehavior.Id="Digits">3</ToggleButton>
+            <ToggleButton Width="16" dr:ToggleGroupBehavior.Id="Digits">4</ToggleButton>
+            <ToggleButton Width="16" dr:ToggleGroupBehavior.Id="Digits">5</ToggleButton>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

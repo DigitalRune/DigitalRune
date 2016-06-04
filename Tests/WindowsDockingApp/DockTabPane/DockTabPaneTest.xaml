@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="WindowsDockingApp.DockTabPaneTest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dr="http://schemas.digitalrune.com/windows">
+
+    <DockPanel>
+        <StackPanel Margin="5" DockPanel.Dock="Bottom">
+            <StackPanel Orientation="Horizontal">
+                <Button Margin="3" Click="SelectDockTabItem1">Select DockTabItem 1</Button>
+                <Button Margin="3" Click="SelectDockTabItem2">Select DockTabItem 2</Button>
+                <Button Margin="3" Click="SelectDockTabItem3">Select DockTabItem 3</Button>
+            </StackPanel>
+            <StackPanel>
+                <CheckBox Margin="3" IsChecked="{Binding ElementName=DockTabItem1, Path=IsSelected}">Is DockTabItem 1 selected</CheckBox>
+                <CheckBox Margin="3" IsChecked="{Binding ElementName=DockTabItem2, Path=IsSelected}">Is DockTabItem 2 selected</CheckBox>
+                <CheckBox Margin="3" IsChecked="{Binding ElementName=DockTabItem3, Path=IsSelected}">Is DockTabItem 3 selected</CheckBox>
+            </StackPanel>
+        </StackPanel>
+
+        <dr:DockTabPane Margin="7">
+            <dr:DockTabItem x:Name="DockTabItem1">
+                <dr:DockTabItem.Title>DockTabItem 1</dr:DockTabItem.Title>
+                <dr:DockTabItem.ToolTip>This is the tooltip of DockTabItem 1.</dr:DockTabItem.ToolTip>
+                <StackPanel>
+                    <TextBox>Test 1, 2, 3, ...</TextBox>
+                    <TextBox>Test 1, 2, 3, ...</TextBox>
+                    <TextBox>Test 1, 2, 3, ...</TextBox>
+                </StackPanel>
+            </dr:DockTabItem>
+
+            <dr:DockTabItem x:Name="DockTabItem2">
+                <dr:DockTabItem.Title>DockTabItem 2</dr:DockTabItem.Title>
+                <StackPanel>
+                    <TextBox>Second Window...</TextBox>
+                    <TextBox>Second Window...</TextBox>
+                    <TextBox>Second Window...</TextBox>
+                </StackPanel>
+            </dr:DockTabItem>
+
+            <dr:DockTabItem x:Name="DockTabItem3">
+                <dr:DockTabItem.Title>DockTabItem 3</dr:DockTabItem.Title>
+                <StackPanel>
+                    <TextBox>Third Window...</TextBox>
+                    <TextBox>Third Window...</TextBox>
+                    <TextBox>Third Window...</TextBox>
+                </StackPanel>
+            </dr:DockTabItem>
+        </dr:DockTabPane>
+
+    </DockPanel>
+</UserControl>

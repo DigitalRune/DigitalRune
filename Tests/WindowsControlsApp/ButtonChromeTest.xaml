@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="WindowsControlsApp.ButtonChromeTest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             Margin="11">
+    <UserControl.Resources>
+        <Style x:Key="MyButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <dr:ButtonChrome Name="Chrome"
+                                         Background="{TemplateBinding Background}"
+                                         BorderBrush="{TemplateBinding BorderBrush}"
+                                         BorderThickness="{TemplateBinding BorderThickness}"
+                                         RenderMouseOver="{TemplateBinding IsMouseOver}"
+                                         RenderPressed="{TemplateBinding IsPressed}"
+                                         CornerRadius="2.75"
+                                         SnapsToDevicePixels="True">
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Focusable="False"
+                                              RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </dr:ButtonChrome>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="Chrome" Property="RenderDefaulted" Value="True" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="#ADADAD" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel>
+        <TextBlock Margin="3">ButtonChrome:</TextBlock>
+        <dr:ButtonChrome Margin="3"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Content="Without border, background" />
+        <dr:ButtonChrome Margin="3"
+                         Background="Transparent"
+                         Content="Without background" />
+        <dr:ButtonChrome Margin="3"
+                         BorderThickness="0"
+                         Content="Without border" />
+        <dr:ButtonChrome Margin="3" Content="Default" />
+        <dr:ButtonChrome Margin="3"
+                         BorderThickness="1"
+                         Content="Focus)"
+                         RenderDefaulted="True" />
+        <dr:ButtonChrome Margin="3"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Content="Focus without border, background"
+                         RenderDefaulted="True" />
+        <dr:ButtonChrome Margin="3"
+                         Content="MouseOver"
+                         RenderMouseOver="True" />
+        <dr:ButtonChrome Margin="3"
+                         Content="MouseOver (with focus)"
+                         RenderDefaulted="True"
+                         RenderMouseOver="True" />
+        <dr:ButtonChrome Margin="3"
+                         Content="Pressed"
+                         RenderPressed="True" />
+        <StackPanel Orientation="Horizontal">
+            <dr:ButtonChrome Content="Left" Margin ="3" CornerRadius="2.75,0,0,2.75"/>
+            <dr:ButtonChrome Content="Center" Margin ="0,3" CornerRadius="0"/>
+            <dr:ButtonChrome Content="Right" Margin ="3" CornerRadius="0,2.75,2.75,2.0"/>
+        </StackPanel>
+        <Separator Margin="6" />
+
+        <TextBlock Margin="3">Buttons:</TextBlock>
+        <Button Margin="3"
+                Content="Disabled Button"
+                IsEnabled="False"
+                Style="{StaticResource MyButtonStyle}" />
+        <Button Margin="3"
+                Content="Button"
+                Style="{StaticResource MyButtonStyle}" />
+        <Separator Margin="6" />
+
+        <TextBlock Margin="3">Reference Buttons:</TextBlock>
+        <Button Margin="3"
+                Content="Disabled Button"
+                IsEnabled="False" />
+        <Button Margin="3" Content="Button" />
+    </StackPanel>
+</UserControl>

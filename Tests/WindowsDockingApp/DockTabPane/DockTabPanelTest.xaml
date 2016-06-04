@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="WindowsDockingApp.DockTabPanelTest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dr="http://schemas.digitalrune.com/windows">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Border BorderBrush="Black" BorderThickness="1">
+            <dr:DockTabPanel Height="20">
+                <dr:DockTabItem x:Name="DockTabItem1" Title="DockTabItem #1">
+                    <Button Content="Unused Content" />
+                </dr:DockTabItem>
+                <dr:DockTabItem x:Name="DockTabItem2" Title="DockTabItem #2">
+                    <Button Content="Unused Content" />
+                </dr:DockTabItem>
+                <dr:DockTabItem x:Name="DockTabItem3" Title="DockTabItem #3">
+                    <Button Content="Unused Content" />
+                </dr:DockTabItem>
+                <dr:DockTabItem x:Name="DockTabItem4" Title="DockTabItem #4">
+                    <Button Content="Unused Content" />
+                </dr:DockTabItem>
+            </dr:DockTabPanel>
+        </Border>
+        <CheckBox Grid.Row="1"
+                  Margin="0,6,0,0"
+                  IsChecked="{Binding ElementName=DockTabItem1, Path=IsSelected}">
+            DockTabItem1.IsSelected
+        </CheckBox>
+        <CheckBox Grid.Row="2"
+                  Margin="0,3,0,0"
+                  IsChecked="{Binding ElementName=DockTabItem2, Path=IsSelected}">
+            DockTabItem2.IsSelected
+        </CheckBox>
+        <CheckBox Grid.Row="3"
+                  Margin="0,3,0,0"
+                  IsChecked="{Binding ElementName=DockTabItem3, Path=IsSelected}">
+            DockTabItem3.IsSelected
+        </CheckBox>
+        <CheckBox Grid.Row="4"
+                  Margin="0,3,0,0"
+                  IsChecked="{Binding ElementName=DockTabItem4, Path=IsSelected}">
+            DockTabItem4.IsSelected
+        </CheckBox>
+
+    </Grid>
+
+</UserControl>

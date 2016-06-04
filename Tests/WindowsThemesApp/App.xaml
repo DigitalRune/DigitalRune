@@ -1,0 +1,55 @@
+﻿<Application x:Class="WindowsThemesApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             xmlns:v="clr-namespace:WindowsThemesApp.Views"
+             xmlns:vm="clr-namespace:WindowsThemesApp.ViewModels"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/DigitalRune.Windows.Themes;component/Themes/Modern/WindowChrome.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type vm:SystemViewModel}">
+                <dr:DockTabItem Title="{Binding Title}"
+                                DockHeight="{Binding DockHeight}"
+                                DockWidth="{Binding DockWidth}"
+                                Icon="{Binding Icon}"
+                                ToolTip="Tooltip of this DockTabItem">
+                    <v:SystemView />
+                </dr:DockTabItem>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:DigitalRuneViewModel}">
+                <dr:DockTabItem Title="{Binding Title}"
+                                DockHeight="{Binding DockHeight}"
+                                DockWidth="{Binding DockWidth}"
+                                Icon="{Binding Icon}"
+                                ToolTip="Tooltip of this DockTabItem">
+                    <v:DigitalRuneView />
+                </dr:DockTabItem>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:PropertyGridViewModel}">
+                <dr:DockTabItem Title="{Binding Title}"
+                                DockHeight="{Binding DockHeight}"
+                                DockWidth="{Binding DockWidth}"
+                                Icon="{Binding Icon}"
+                                ToolTip="Tooltip of this DockTabItem">
+                    <v:PropertyGridView />
+                </dr:DockTabItem>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:ICSharpDevelopViewModel}">
+                <dr:DockTabItem Title="{Binding Title}"
+                                DockHeight="{Binding DockHeight}"
+                                DockWidth="{Binding DockWidth}"
+                                Icon="{Binding Icon}"
+                                ToolTip="Tooltip of this DockTabItem">
+                    <v:ICSharpDevelopView />
+                </dr:DockTabItem>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

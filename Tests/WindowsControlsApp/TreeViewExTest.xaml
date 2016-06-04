@@ -1,0 +1,160 @@
+﻿<UserControl x:Class="WindowsControlsApp.TreeViewExTest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="11" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <dr:TreeViewEx x:Name="LeftTreeView" Grid.Column="0">
+            <dr:TreeViewItemEx Header="Item 0" />
+            <dr:TreeViewItemEx Header="Item 1" IsExpanded="True">
+                <dr:TreeViewItemEx Header="Item 2" IsSelected="True"/>
+                <dr:TreeViewItemEx Header="Item 3">
+                    <dr:TreeViewItemEx Header="Item 4" />
+                    <dr:TreeViewItemEx Header="Item 5">
+                        <dr:TreeViewItemEx Header="Item 6" />
+                        <dr:TreeViewItemEx Header="Item 7" />
+                        <dr:TreeViewItemEx Header="Item 8" />
+                    </dr:TreeViewItemEx>
+                    <dr:TreeViewItemEx Header="Item 9">
+                        <dr:TreeViewItemEx Header="Item 10" />
+                        <dr:TreeViewItemEx Header="Item 11" />
+                        <dr:TreeViewItemEx Header="Item 12" />
+                    </dr:TreeViewItemEx>
+                    <dr:TreeViewItemEx Header="Item 13">
+                        <dr:TreeViewItemEx Header="Item 14" />
+                        <dr:TreeViewItemEx Header="Item 15" />
+                        <dr:TreeViewItemEx Header="Item 16" />
+                    </dr:TreeViewItemEx>
+                </dr:TreeViewItemEx>
+                <dr:TreeViewItemEx Header="Item 17">
+                    <dr:TreeViewItemEx Header="Item 18" />
+                    <dr:TreeViewItemEx Header="Item 19" />
+                    <dr:TreeViewItemEx Header="Item 20" />
+                </dr:TreeViewItemEx>
+                <dr:TreeViewItemEx Header="Item 21">
+                    <dr:TreeViewItemEx Header="Item 22" />
+                    <dr:TreeViewItemEx Header="Item 23" />
+                    <dr:TreeViewItemEx Header="Item 24" />
+                </dr:TreeViewItemEx>
+            </dr:TreeViewItemEx>
+            <dr:TreeViewItemEx Header="Item 25">
+                <dr:TreeViewItemEx Header="Item 26" />
+                <dr:TreeViewItemEx Header="Item 27">
+                    <dr:TreeViewItemEx Header="Item 28" />
+                    <dr:TreeViewItemEx Header="Item 29" />
+                    <dr:TreeViewItemEx Header="Item 30" />
+                </dr:TreeViewItemEx>
+                <dr:TreeViewItemEx Header="Item 31">
+                    <dr:TreeViewItemEx Header="Item 32" />
+                    <dr:TreeViewItemEx Header="Item 33" />
+                    <dr:TreeViewItemEx Header="Item 34" />
+                </dr:TreeViewItemEx>
+                <dr:TreeViewItemEx Header="Item 35">
+                    <dr:TreeViewItemEx Header="Item 36" />
+                    <dr:TreeViewItemEx Header="Item 37" />
+                    <dr:TreeViewItemEx Header="Item 38" />
+                </dr:TreeViewItemEx>
+            </dr:TreeViewItemEx>
+            <dr:TreeViewItemEx Header="Item 39">
+                <dr:TreeViewItemEx Header="Item 40" />
+                <dr:TreeViewItemEx Header="Item 41">
+                    <dr:TreeViewItemEx Header="Item 42" />
+                    <dr:TreeViewItemEx Header="Item 43" />
+                    <dr:TreeViewItemEx Header="Item 44" />
+                </dr:TreeViewItemEx>
+                <dr:TreeViewItemEx Header="Item 45">
+                    <dr:TreeViewItemEx Header="Item 46" />
+                    <dr:TreeViewItemEx Header="Item 47" />
+                    <dr:TreeViewItemEx Header="Item 48" />
+                </dr:TreeViewItemEx>
+                <dr:TreeViewItemEx Header="Item 49">
+                    <dr:TreeViewItemEx Header="Item 50" />
+                    <dr:TreeViewItemEx Header="Item 51" />
+                    <dr:TreeViewItemEx Header="Item 52" />
+                </dr:TreeViewItemEx>
+            </dr:TreeViewItemEx>
+        </dr:TreeViewEx>
+
+        <dr:TreeViewEx x:Name="RightTreeView" Grid.Column="2">
+            <dr:TreeViewItemEx Header="Item 0" />
+            <dr:TreeViewItemEx Header="Item 1">
+                <dr:TreeViewItemEx Header="Item 2" />
+                <dr:TreeViewItemEx Header="Item 3">
+                    <dr:TreeViewItemEx Header="Item 4" />
+                    <dr:TreeViewItemEx Header="Item 5">
+                        <dr:TreeViewItemEx Header="Item 6" />
+                        <dr:TreeViewItemEx Header="Item 7" />
+                        <dr:TreeViewItemEx Header="Item 8" />
+                    </dr:TreeViewItemEx>
+                    <dr:TreeViewItemEx Header="Item 9">
+                        <dr:TreeViewItemEx Header="Item 10" />
+                        <dr:TreeViewItemEx Header="Item 11" />
+                        <dr:TreeViewItemEx Header="Item 12" />
+                    </dr:TreeViewItemEx>
+                    <dr:TreeViewItemEx Header="Item 13">
+                        <dr:TreeViewItemEx Header="Item 14" />
+                        <dr:TreeViewItemEx Header="Item 15" />
+                        <dr:TreeViewItemEx Header="Item 16" />
+                    </dr:TreeViewItemEx>
+                </dr:TreeViewItemEx>
+                <dr:TreeViewItemEx Header="Item 17">
+                    <dr:TreeViewItemEx Header="Item 18" />
+                    <dr:TreeViewItemEx Header="Item 19" />
+                    <dr:TreeViewItemEx Header="Item 20" />
+                </dr:TreeViewItemEx>
+                <dr:TreeViewItemEx Header="Item 21">
+                    <dr:TreeViewItemEx Header="Item 22" />
+                    <dr:TreeViewItemEx Header="Item 23" />
+                    <dr:TreeViewItemEx Header="Item 24" />
+                </dr:TreeViewItemEx>
+            </dr:TreeViewItemEx>
+            <dr:TreeViewItemEx Header="Item 25">
+                <dr:TreeViewItemEx Header="Item 26" />
+                <dr:TreeViewItemEx Header="Item 27">
+                    <dr:TreeViewItemEx Header="Item 28" />
+                    <dr:TreeViewItemEx Header="Item 29" />
+                    <dr:TreeViewItemEx Header="Item 30" />
+                </dr:TreeViewItemEx>
+                <dr:TreeViewItemEx Header="Item 31">
+                    <dr:TreeViewItemEx Header="Item 32" />
+                    <dr:TreeViewItemEx Header="Item 33" />
+                    <dr:TreeViewItemEx Header="Item 34" />
+                </dr:TreeViewItemEx>
+                <dr:TreeViewItemEx Header="Item 35">
+                    <dr:TreeViewItemEx Header="Item 36" />
+                    <dr:TreeViewItemEx Header="Item 37" />
+                    <dr:TreeViewItemEx Header="Item 38" />
+                </dr:TreeViewItemEx>
+            </dr:TreeViewItemEx>
+            <dr:TreeViewItemEx Header="Item 39">
+                <dr:TreeViewItemEx Header="Item 40" />
+                <dr:TreeViewItemEx Header="Item 41">
+                    <dr:TreeViewItemEx Header="Item 42" />
+                    <dr:TreeViewItemEx Header="Item 43" />
+                    <dr:TreeViewItemEx Header="Item 44" />
+                </dr:TreeViewItemEx>
+                <dr:TreeViewItemEx Header="Item 45">
+                    <dr:TreeViewItemEx Header="Item 46" />
+                    <dr:TreeViewItemEx Header="Item 47" />
+                    <dr:TreeViewItemEx Header="Item 48" />
+                </dr:TreeViewItemEx>
+                <dr:TreeViewItemEx Header="Item 49">
+                    <dr:TreeViewItemEx Header="Item 50" />
+                    <dr:TreeViewItemEx Header="Item 51" />
+                    <dr:TreeViewItemEx Header="Item 52" />
+                </dr:TreeViewItemEx>
+            </dr:TreeViewItemEx>
+        </dr:TreeViewEx>
+
+    </Grid>
+</UserControl>

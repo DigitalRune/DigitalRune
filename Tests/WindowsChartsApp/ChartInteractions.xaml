@@ -1,0 +1,177 @@
+﻿<UserControl x:Class="SampleApplication.ChartInteractions"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             SnapsToDevicePixels="True">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--  ChartStyles.xaml contains data templates and styles.  -->
+                <ResourceDictionary Source="ChartStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <PointCollection x:Key="Data1">
+                <Point X="0" Y="66" />
+                <Point X="1" Y="23" />
+                <Point X="2" Y="55" />
+                <Point X="3" Y="78" />
+                <Point X="4" Y="80" />
+                <Point X="5" Y="100" />
+                <Point X="6" Y="25" />
+                <Point X="7" Y="36" />
+                <Point X="8" Y="24" />
+                <Point X="9" Y="5" />
+            </PointCollection>
+
+            <PointCollection x:Key="Data2">
+                <Point X="0" Y="67" />
+                <Point X="1" Y="54" />
+                <Point X="2" Y="99" />
+                <Point X="3" Y="80" />
+                <Point X="4" Y="60" />
+                <Point X="5" Y="35" />
+                <Point X="6" Y="12" />
+                <Point X="7" Y="56" />
+                <Point X="8" Y="0" />
+                <Point X="9" Y="5" />
+            </PointCollection>
+
+            <PointCollection x:Key="Data3">
+                <Point X="0" Y="23" />
+                <Point X="1" Y="35" />
+                <Point X="2" Y="50" />
+                <Point X="3" Y="45" />
+                <Point X="4" Y="74" />
+                <Point X="5" Y="86" />
+                <Point X="6" Y="56" />
+                <Point X="7" Y="77" />
+                <Point X="8" Y="43" />
+                <Point X="9" Y="28" />
+            </PointCollection>
+
+            <Style x:Key="MajorLineStyle" TargetType="{x:Type Path}">
+                <Setter Property="Stroke" Value="LightBlue" />
+                <Setter Property="StrokeThickness" Value="0.8" />
+            </Style>
+
+            <Style x:Key="MinorLineStyle" TargetType="{x:Type Path}">
+                <Setter Property="Stroke" Value="LightBlue" />
+                <Setter Property="StrokeThickness" Value="0.4" />
+            </Style>
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+
+    <StackPanel>
+        <Grid Margin="0,11,0,11">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <dr:DefaultChartPanel Name="ChartPanel1" Background="Transparent">
+                <dr:DefaultChartPanel.XAxis1Style>
+                    <Style TargetType="{x:Type dr:Axis}">
+                        <Style.Setters>
+                            <Setter Property="AutoScale" Value="False" />
+                            <Setter Property="Scale">
+                                <Setter.Value>
+                                    <dr:LinearScale Range="0,7" />
+                                </Setter.Value>
+                            </Setter>
+                        </Style.Setters>
+                    </Style>
+                </dr:DefaultChartPanel.XAxis1Style>
+                <dr:DefaultChartPanel.YAxis1Style>
+                    <Style TargetType="{x:Type dr:Axis}">
+                        <Style.Setters>
+                            <Setter Property="AutoScale" Value="False" />
+                            <Setter Property="Scale">
+                                <Setter.Value>
+                                    <dr:LinearScale Range="0,100" />
+                                </Setter.Value>
+                            </Setter>
+                        </Style.Setters>
+                    </Style>
+                </dr:DefaultChartPanel.YAxis1Style>
+                <dr:DefaultChartPanel.XAxis2Style>
+                    <Style TargetType="{x:Type dr:Axis}">
+                        <Style.Setters>
+                            <Setter Property="AutoScale" Value="False" />
+                            <Setter Property="Scale">
+                                <Setter.Value>
+                                    <dr:LogScale Range="1e3,1e6" />
+                                </Setter.Value>
+                            </Setter>
+                        </Style.Setters>
+                    </Style>
+                </dr:DefaultChartPanel.XAxis2Style>
+                <dr:DefaultChartPanel.YAxis2Style>
+                    <Style TargetType="{x:Type dr:Axis}">
+                        <Style.Setters>
+                            <Setter Property="AutoScale" Value="False" />
+                            <Setter Property="Scale">
+                                <Setter.Value>
+                                    <dr:DateTimeScale RangeDateTime="03/01/2008, 03/01/2009" />
+                                </Setter.Value>
+                            </Setter>
+                        </Style.Setters>
+                    </Style>
+                </dr:DefaultChartPanel.YAxis2Style>
+                <i:Interaction.Behaviors>
+                    <dr:MouseGuidesBehavior />
+                    <dr:ChartSelectionBehavior IsSelectionRectangleEnabled="True" />
+                    <dr:AxisPanBehavior MouseButton="Middle" />
+                    <dr:AxisZoomBehavior />
+                    <dr:ChartPanBehavior Axes="PrimaryAxes"
+                                         ModifierKeys="Shift"
+                                         MouseButton="Middle" />
+                    <dr:ChartPanBehavior Axes="SecondaryAxes"
+                                         ModifierKeys="Control"
+                                         MouseButton="Middle" />
+                    <dr:ChartPanBehavior Axes="AllAxes" MouseButton="Middle" />
+                    <dr:ChartZoomBehavior Axes="AllAxes" />
+                </i:Interaction.Behaviors>
+
+                <dr:ChartBackground XAxis="{Binding ElementName=ChartPanel1, Path=XAxis1}" YAxis="{Binding ElementName=ChartPanel1, Path=YAxis1}" />
+                <dr:ChartGrid XAxis="{Binding ElementName=ChartPanel1, Path=XAxis1}" YAxis="{Binding ElementName=ChartPanel1, Path=YAxis1}" />
+                <dr:ChartGrid HorizontalMajorLineStyle="{StaticResource MajorLineStyle}"
+                              HorizontalMinorLineStyle="{StaticResource MinorLineStyle}"
+                              VerticalMajorLineStyle="{StaticResource MajorLineStyle}"
+                              VerticalMinorLineStyle="{StaticResource MinorLineStyle}"
+                              XAxis="{Binding ElementName=ChartPanel1, Path=XAxis2}"
+                              YAxis="{Binding ElementName=ChartPanel1, Path=YAxis2}" />
+                <dr:ChartCross XAxis="{Binding ElementName=ChartPanel1, Path=XAxis1}" YAxis="{Binding ElementName=ChartPanel1, Path=YAxis1}" />
+                <dr:LineChart Title="Line chart #1"
+                              DataPointTemplate="{x:Null}"
+                              DataSource="{StaticResource Data1}"
+                              Filled="False"
+                              Style="{StaticResource BlueLineChart}"
+                              XAxis="{Binding ElementName=ChartPanel1, Path=XAxis1}"
+                              YAxis="{Binding ElementName=ChartPanel1, Path=YAxis1}" />
+                <dr:LineChart Title="Line chart #2"
+                              DataSource="{StaticResource Data2}"
+                              Filled="False"
+                              Style="{StaticResource RedLineChart}"
+                              XAxis="{Binding ElementName=ChartPanel1, Path=XAxis1}"
+                              YAxis="{Binding ElementName=ChartPanel1, Path=YAxis1}" />
+                <dr:BarChart Title="Bar chart"
+                             Panel.ZIndex="-1"
+                             DataSource="{StaticResource Data3}"
+                             Style="{StaticResource GreenBarChart}"
+                             XAxis="{Binding ElementName=ChartPanel1, Path=XAxis1}"
+                             YAxis="{Binding ElementName=ChartPanel1, Path=YAxis1}" />
+            </dr:DefaultChartPanel>
+            <dr:Legend Grid.Column="1"
+                       Margin="7,0,0,0"
+                       VerticalAlignment="Top"
+                       Source="{Binding ElementName=ChartPanel1}" />
+        </Grid>
+
+    </StackPanel>
+</UserControl>

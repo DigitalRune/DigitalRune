@@ -1,0 +1,360 @@
+﻿<UserControl x:Class="WindowsThemesApp.Views.SystemView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignWidth="600"
+             mc:Ignorable="d">
+    <Grid Margin="5">
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+            <ScrollViewer.ContextMenu>
+                <ContextMenu>
+                    <TextBox />
+                    <MenuItem Header="MenuItem #1">
+                        <MenuItem.Icon>
+                            <Image Width="16"
+                                   Height="16"
+                                   Source="/Resources/openHS.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="MenuItem #2"
+                              IsCheckable="False"
+                              IsChecked="True"
+                              IsEnabled="True">
+                        <MenuItem Header="SubMenuItem #1" />
+                        <MenuItem Header="SubMenuItem #2">
+                            <MenuItem.Icon>
+                                <Image Width="16"
+                                       Height="16"
+                                       Source="/Resources/openHS.png" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="SubMenuItem #3" />
+                    </MenuItem>
+                    <MenuItem Header="MenuItem #3 (Checked)" IsChecked="True" />
+                    <MenuItem Header="MenuItem #4" />
+                    <MenuItem Header="MenuItem #5" />
+                </ContextMenu>
+            </ScrollViewer.ContextMenu>
+            <ScrollViewer.ToolTip>ToolTip</ScrollViewer.ToolTip>
+
+            <StackPanel Margin="5">
+                <StackPanel Margin="0.5,0,0,0" Orientation="Horizontal">
+                    <Border Width="18"
+                            Height="18"
+                            VerticalAlignment="Top"
+                            BorderBrush="Aquamarine"
+                            BorderThickness="1">
+                        <dr:Icon Width="16"
+                                 Height="16"
+                                 Background="Black"
+                                 Foreground="White">
+                            <dr:Icon.Source>
+                                <dr:MultiColorGlyph FontFamily="/DigitalRune.Windows.Themes;component/Resources/#DigitalRune Icons">
+                                    <dr:MultiColorGlyph.BackgroundGlyph>&#xE005;</dr:MultiColorGlyph.BackgroundGlyph>
+                                    <dr:MultiColorGlyph.ForegroundGlyph>&#xE006;</dr:MultiColorGlyph.ForegroundGlyph>
+                                </dr:MultiColorGlyph>
+                            </dr:Icon.Source>
+                        </dr:Icon>
+                    </Border>
+                    <TextBlock TextOptions.TextRenderingMode="Aliased">DigitalRune Icons</TextBlock>
+                    <TextBlock FontFamily="/DigitalRune.Windows.Themes;component/Resources/#DigitalRune Icons" FontSize="16">&#xE001;</TextBlock>
+                    <TextBlock FontFamily="pack://application:,,,/DigitalRune.Windows.Themes;component/Resources/#DigitalRune Icons" FontSize="16">&#xE002;</TextBlock>
+                    <TextBlock FontFamily="pack://application:,,,/DigitalRune.Windows.Themes;component/Resources/#DigitalRune Icons" FontSize="16">&#xE003;</TextBlock>
+                    <TextBlock FontFamily="pack://application:,,,/DigitalRune.Windows.Themes;component/Resources/#DigitalRune Icons" FontSize="16">&#xE004;</TextBlock>
+                    <TextBlock FontFamily="pack://application:,,,/DigitalRune.Windows.Themes;component/Resources/#DigitalRune Icons"
+                               FontSize="32"
+                               TextOptions.TextRenderingMode="Auto">
+                        &#xE004;
+                    </TextBlock>
+                    <TextBlock FontFamily="pack://application:,,,/DigitalRune.Windows.Themes;component/Resources/#DigitalRune Icons" FontSize="16">&#xE005;</TextBlock>
+                    <TextBlock FontFamily="pack://application:,,,/DigitalRune.Windows.Themes;component/Resources/#DigitalRune Icons" FontSize="16">&#xE006;</TextBlock>
+                    <TextBlock FontFamily="pack://application:,,,/DigitalRune.Windows.Themes;component/Resources/#DigitalRune Icons" FontSize="16">&#xE007;</TextBlock>
+                    <TextBlock FontFamily="pack://application:,,,/DigitalRune.Windows.Themes;component/Resources/#DigitalRune Icons" FontSize="16">&#xE008;</TextBlock>
+                    <TextBlock FontFamily="pack://application:,,,/DigitalRune.Windows.Themes;component/Resources/#DigitalRune Icons" FontSize="16">&#xE009;</TextBlock>
+                    <TextBlock FontFamily="pack://application:,,,/DigitalRune.Windows.Themes;component/Resources/#DigitalRune Icons" FontSize="16">&#xE00A;</TextBlock>
+                    <TextBlock FontFamily="pack://application:,,,/DigitalRune.Windows.Themes;component/Resources/#DigitalRune Icons" FontSize="16">&#xE00B;</TextBlock>
+                    <TextBlock FontFamily="pack://application:,,,/DigitalRune.Windows.Themes;component/Resources/#DigitalRune Icons" FontSize="16">&#xE00C;</TextBlock>
+                    <Grid Background="Transparent">
+                        <TextBlock FontFamily="pack://application:,,,/DigitalRune.Windows.Themes;component/Resources/#DigitalRune Icons"
+                                   FontSize="16"
+                                   Foreground="#FF454545">
+                            &#xE005;
+                        </TextBlock>
+                        <TextBlock FontFamily="pack://application:,,,/DigitalRune.Windows.Themes;component/Resources/#DigitalRune Icons"
+                                   FontSize="16"
+                                   Foreground="#FFBBBBBB">
+                            &#xE006;
+                        </TextBlock>
+                    </Grid>
+                    <Grid Width="18"
+                          Height="18"
+                          Background="#FF0179D7">
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontFamily="pack://application:,,,/DigitalRune.Windows.Themes;component/Resources/#DigitalRune Icons"
+                                   FontSize="16"
+                                   Foreground="#FF454545">
+                            &#xE005;
+                        </TextBlock>
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontFamily="pack://application:,,,/DigitalRune.Windows.Themes;component/Resources/#DigitalRune Icons"
+                                   FontSize="16"
+                                   Foreground="#FFBBBBBB">
+                            &#xE006;
+                        </TextBlock>
+                    </Grid>
+                    <TextBlock>DigitalRune Icons</TextBlock>
+                </StackPanel>
+                <TextBlock Margin="3">TextBlock</TextBlock>
+                <TextBlock Margin="3">
+                    TextBlock with hyperlink
+                    <Hyperlink>http://www.digitalrune.com/</Hyperlink>
+                </TextBlock>
+                <ContentControl>ContentControl</ContentControl>
+                <Button Margin="3">Button</Button>
+                <Button Margin="3" IsEnabled="False">Button (disabled)</Button>
+
+                <CheckBox Margin="3" IsThreeState="True">CheckBox</CheckBox>
+                <CheckBox Margin="3" IsEnabled="False">CheckBox (disabled)</CheckBox>
+                <CheckBox Margin="3"
+                          IsChecked="True"
+                          IsEnabled="False">
+                    CheckBox (disabled, checked)
+                </CheckBox>
+
+                <Separator Margin="3" />
+
+                <RadioButton Margin="3">RadioButton</RadioButton>
+                <RadioButton Margin="3">RadioButton</RadioButton>
+                <RadioButton Margin="3" IsChecked="True">RadioButton (Checked)</RadioButton>
+                <RadioButton Margin="3" IsEnabled="False">RadioButton (Disabled)</RadioButton>
+
+                <ToggleButton Margin="3">ToggleButton</ToggleButton>
+                <ToggleButton Margin="3"
+                              IsChecked="False"
+                              IsEnabled="False">
+                    ToggleButton (Disabled)
+                </ToggleButton>
+
+                <ComboBox Margin="3">
+                    <ComboBoxItem>ComboBoxItem #1</ComboBoxItem>
+                    <ComboBoxItem>ComboBoxItem #2</ComboBoxItem>
+                    <ComboBoxItem IsEnabled="False">ComboBoxItem #3 (Disabled)</ComboBoxItem>
+                    <ComboBoxItem>ComboBoxItem #4</ComboBoxItem>
+                    <ComboBoxItem>ComboBoxItem #5</ComboBoxItem>
+                    <ComboBoxItem>ComboBoxItem #6</ComboBoxItem>
+                </ComboBox>
+                <ComboBox Margin="3"
+                          IsEnabled="False"
+                          SelectedIndex="0">
+                    <ComboBoxItem>ComboBox (Disabled)</ComboBoxItem>
+                </ComboBox>
+
+                <ComboBox Margin="3" IsEditable="True">
+                    <ComboBoxItem>ComboBoxItem #1</ComboBoxItem>
+                    <ComboBoxItem>ComboBoxItem #2</ComboBoxItem>
+                    <ComboBoxItem IsEnabled="False">ComboBoxItem #3 (Disabled)</ComboBoxItem>
+                </ComboBox>
+                <ComboBox Margin="3"
+                          IsEditable="True"
+                          IsEnabled="False"
+                          SelectedIndex="0">
+                    <ComboBoxItem>ComboBox (Disabled, Editable)</ComboBoxItem>
+                </ComboBox>
+
+                <TextBox Margin="3">TextBox</TextBox>
+                <TextBox Margin="3" IsReadOnly="True">TextBox (IsReadOnly)</TextBox>
+                <TextBox Height="100"
+                         Margin="3"
+                         AcceptsReturn="True">
+                    TextBox (Multiline)
+                </TextBox>
+                <TextBox Margin="3" IsEnabled="False">TextBox (Disabled)</TextBox>
+
+                <PasswordBox Margin="3" />
+
+                <Grid Margin="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Label>Label:</Label>
+                    <TextBox Grid.Column="1" VerticalAlignment="Center">TextBox</TextBox>
+                </Grid>
+
+                <Grid Margin="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="32" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Label>Slider:</Label>
+                    <TextBlock Grid.Column="1"
+                               Margin="5,0,5,0"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Center"
+                               Text="{Binding ElementName=Slider, Path=Value, StringFormat=\{0:F2\}}" />
+                    <Slider x:Name="Slider"
+                            Grid.Column="2"
+                            TickPlacement="TopLeft" />
+                </Grid>
+
+                <ProgressBar Margin="3" Value="50" />
+                <ProgressBar Margin="3" IsIndeterminate="True" />
+                <ProgressBar Margin="3"
+                             IsEnabled="False"
+                             Value="50" />
+
+
+                <TabControl Margin="5">
+                    <TabItem Header="TabItem">
+                        <StackPanel>
+                            <TextBlock Margin="0,0,0,7">TextBlock</TextBlock>
+                            <GroupBox Margin="0,0,0,5"
+                                      Header="Content #1"
+                                      Padding="5">
+                                <TextBox>TextBox</TextBox>
+                            </GroupBox>
+                            <RadioButton Margin="3">RadioButton #1</RadioButton>
+                            <RadioButton Margin="3">RadioButton #2</RadioButton>
+                            <RadioButton Margin="3">RadioButton #3</RadioButton>
+                            <Button Margin="0,5,0,0">Button</Button>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="TabItem">Content #2</TabItem>
+                    <TabItem Header="TabItem">Content #3</TabItem>
+                </TabControl>
+
+                <TabControl Margin="5" IsEnabled="False">
+                    <TabItem Header="TabItem">Content #1</TabItem>
+                    <TabItem Header="TabItem">Content #2</TabItem>
+                    <TabItem Header="TabItem">Content #3</TabItem>
+                </TabControl>
+
+                <Expander Margin="3" Header="Expander">
+                    <TextBlock>TextBlock</TextBlock>
+                </Expander>
+                <Expander Margin="3" Header="Expander">
+                    <TextBlock>TextBlock</TextBlock>
+                </Expander>
+                <Expander Margin="3"
+                          Header="Expander"
+                          IsEnabled="False">
+                    <TextBlock>TextBlock</TextBlock>
+                </Expander>
+
+                <Label>TreeView:</Label>
+                <TreeView Height="100">
+                    <TreeViewItem Header="TreeViewItem #1">
+                        <TreeViewItem Header="SubTreeViewItem #1">
+                            <TreeViewItem Header="SubTreeViewItem #1" />
+                            <TreeViewItem Header="SubTreeViewItem #2" />
+                            <TreeViewItem Header="SubTreeViewItem #3" />
+                        </TreeViewItem>
+                        <TreeViewItem Header="SubTreeViewItem #2" />
+                        <TreeViewItem Header="SubTreeViewItem #3" />
+                    </TreeViewItem>
+                    <TreeViewItem Header="TreeViewItem #2">
+                        <TreeViewItem Header="SubTreeViewItem #1" />
+                        <TreeViewItem Header="SubTreeViewItem #2" />
+                        <TreeViewItem Header="SubTreeViewItem #3" />
+                    </TreeViewItem>
+                    <TreeViewItem Header="TreeViewItem #3">
+                        <TreeViewItem Header="SubTreeViewItem #1" />
+                        <TreeViewItem Header="SubTreeViewItem #2" />
+                        <TreeViewItem Header="SubTreeViewItem #3" />
+                    </TreeViewItem>
+                </TreeView>
+
+                <Label>TreeViewEx (DigitalRune):</Label>
+                <dr:TreeViewEx Height="100">
+                    <dr:TreeViewItemEx Header="TreeViewItem #1">
+                        <dr:TreeViewItemEx Header="SubTreeViewItem #1">
+                            <dr:TreeViewItemEx Header="SubTreeViewItem #1" />
+                            <dr:TreeViewItemEx Header="SubTreeViewItem #2" />
+                            <dr:TreeViewItemEx Header="SubTreeViewItem #3" />
+                        </dr:TreeViewItemEx>
+                        <dr:TreeViewItemEx Header="SubTreeViewItem #2" />
+                        <dr:TreeViewItemEx Header="SubTreeViewItem #3" />
+                    </dr:TreeViewItemEx>
+                    <dr:TreeViewItemEx Header="TreeViewItem #2">
+                        <dr:TreeViewItemEx Header="SubTreeViewItem #1" />
+                        <dr:TreeViewItemEx Header="SubTreeViewItem #2" />
+                        <dr:TreeViewItemEx Header="SubTreeViewItem #3" />
+                    </dr:TreeViewItemEx>
+                    <dr:TreeViewItemEx Header="TreeViewItem #3">
+                        <dr:TreeViewItemEx Header="SubTreeViewItem #1" />
+                        <dr:TreeViewItemEx Header="SubTreeViewItem #2" />
+                        <dr:TreeViewItemEx Header="SubTreeViewItem #3" />
+                    </dr:TreeViewItemEx>
+                </dr:TreeViewEx>
+
+                <GroupBox Margin="3" Header="GroupBox">
+                    <TextBlock>TextBlock</TextBlock>
+                </GroupBox>
+
+                <ListBox Height="80"
+                         Margin="3"
+                         SelectionMode="Multiple">
+                    <ListBoxItem>ListBoxItem #1</ListBoxItem>
+                    <ListBoxItem>ListBoxItem #2</ListBoxItem>
+                    <ListBoxItem IsEnabled="False">ListBoxItem #3</ListBoxItem>
+                    <ListBoxItem>ListBoxItem #5</ListBoxItem>
+                    <ListBoxItem>ListBoxItem #6</ListBoxItem>
+                    <ListBoxItem>ListBoxItem #7</ListBoxItem>
+                    <ListBoxItem>ListBoxItem #8</ListBoxItem>
+                </ListBox>
+
+                <dr:ListViewEx x:Name="ListView" Margin="3">
+                    <dr:ListViewEx.View>
+                        <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="ToolTip">
+                            <GridViewColumn Width="100"
+                                            DisplayMemberBinding="{Binding Path=FirstName}"
+                                            Header="First Name" />
+                            <GridViewColumn Width="100" DisplayMemberBinding="{Binding Path=LastName}">
+                                <GridViewColumnHeader>
+                                    Last Name
+                                    <GridViewColumnHeader.ContextMenu>
+                                        <ContextMenu Name="LastNameContextMenu">
+                                            <MenuItem Header="Ascending" />
+                                            <MenuItem Header="Descending" />
+                                        </ContextMenu>
+                                    </GridViewColumnHeader.ContextMenu>
+                                </GridViewColumnHeader>
+                            </GridViewColumn>
+                        </GridView>
+                    </dr:ListViewEx.View>
+                </dr:ListViewEx>
+
+                <Calendar xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                          Margin="20"
+                          DisplayDate="1/1/2009"
+                          DisplayDateEnd="1/31/2009"
+                          IsTodayHighlighted="False"
+                          SelectionMode="MultipleRange">
+
+                    <Calendar.BlackoutDates>
+                        <CalendarDateRange End="1/4/2009" Start="1/2/2009" />
+                        <CalendarDateRange End="1/9/2009" Start="1/9/2009" />
+                        <CalendarDateRange End="1/16/2009" Start="1/16/2009" />
+                        <CalendarDateRange End="1/25/2009" Start="1/23/2009" />
+                        <CalendarDateRange End="1/30/2009" Start="1/30/2009" />
+                    </Calendar.BlackoutDates>
+
+                    <Calendar.SelectedDates>
+                        <sys:DateTime>1/5/2009</sys:DateTime>
+                        <sys:DateTime>1/12/2009</sys:DateTime>
+                        <sys:DateTime>1/14/2009</sys:DateTime>
+                        <sys:DateTime>1/13/2009</sys:DateTime>
+                        <sys:DateTime>1/15/2009</sys:DateTime>
+                        <sys:DateTime>1/27/2009</sys:DateTime>
+                        <sys:DateTime>4/2/2009</sys:DateTime>
+                    </Calendar.SelectedDates>
+                </Calendar>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1644E6F7-68A1-4931-A510-5C64F01A8561}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EditorApp</RootNamespace>
+    <AssemblyName>EditorApp</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Raido.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Windows.Threading, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-XAML.2.2.5\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Source\DigitalRune.Animation.Content.Pipeline\DigitalRune.Animation.Content.Pipeline%28MG,Win%29.csproj">
+      <Project>{461af538-60c1-4bdc-a1b8-60c2750e5bc3}</Project>
+      <Name>DigitalRune.Animation.Content.Pipeline%28MG,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.CommandLine\DigitalRune.CommandLine.csproj">
+      <Project>{f53cce9a-27a5-46f6-bcd2-ee20e026f5dd}</Project>
+      <Name>DigitalRune.CommandLine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Editor.Game\DigitalRune.Editor.Game.csproj">
+      <Project>{4d9e590d-deca-42ef-ba13-73f8d4ed1eb2}</Project>
+      <Name>DigitalRune.Editor.Game</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Editor\DigitalRune.Editor.csproj">
+      <Project>{ed3e54ed-9f94-4777-b09b-2866fae5b881}</Project>
+      <Name>DigitalRune.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Game.UI.Content.Pipeline\DigitalRune.Game.UI.Content.Pipeline%28MG,Win%29.csproj">
+      <Project>{9ab1d52a-7ff5-407b-9920-65dabac6c573}</Project>
+      <Name>DigitalRune.Game.UI.Content.Pipeline%28MG,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Geometry.Content.Pipeline\DigitalRune.Geometry.Content.Pipeline%28MG,Win%29.csproj">
+      <Project>{b7ad9a5b-2dd8-48fe-8e00-65430309d170}</Project>
+      <Name>DigitalRune.Geometry.Content.Pipeline%28MG,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Graphics.Content.Pipeline\DigitalRune.Graphics.Content.Pipeline%28MG,Win%29.csproj">
+      <Project>{686e45de-6daf-4bf0-affc-7a51bf7d98ca}</Project>
+      <Name>DigitalRune.Graphics.Content.Pipeline%28MG,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Mathematics.Content.Pipeline\DigitalRune.Mathematics.Content.Pipeline%28MG,Win%29.csproj">
+      <Project>{3ae1d04a-662d-4411-bb81-95c8655ac05e}</Project>
+      <Name>DigitalRune.Mathematics.Content.Pipeline%28MG,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.ServiceLocation\DigitalRune.ServiceLocation%28PCL%29.csproj">
+      <Project>{4A84FCAF-BDD3-403E-A409-346D8B36564B}</Project>
+      <Name>DigitalRune.ServiceLocation%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Windows.Controls\DigitalRune.Windows.Controls.csproj">
+      <Project>{6c1a27b5-4e09-4b52-ac71-9489ec0353e8}</Project>
+      <Name>DigitalRune.Windows.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Windows.Docking\DigitalRune.Windows.Docking.csproj">
+      <Project>{b39d4f11-6c1f-4f4a-aea9-715832c501cd}</Project>
+      <Name>DigitalRune.Windows.Docking</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Windows.Framework\DigitalRune.Windows.Framework.csproj">
+      <Project>{e3ad7ce4-30a9-42fd-a7af-b25dd8fc6fbd}</Project>
+      <Name>DigitalRune.Windows.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Windows.Themes\DigitalRune.Windows.Themes.csproj">
+      <Project>{8bad82e2-172d-4bb2-915f-bdd9f262ee1f}</Project>
+      <Name>DigitalRune.Windows.Themes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Windows\DigitalRune.Windows.csproj">
+      <Project>{a560721a-6665-4534-80b6-9da1f79b00dd}</Project>
+      <Name>DigitalRune.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune\DigitalRune.csproj">
+      <Project>{5a0e3c60-1ca9-49d5-84ca-308cb8e3a3b4}</Project>
+      <Name>DigitalRune</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\ICSharpCode.AvalonEdit\ICSharpCode.AvalonEdit.csproj">
+      <Project>{6c55b776-26d4-4db3-a6ab-87e783b2f3d1}</Project>
+      <Name>ICSharpCode.AvalonEdit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AppBootstrapper.cs" />
+    <None Include="Class Diagrams\EditorApp.cd" />
+    <Content Include="..\..\Source\DigitalRune.Editor.Game.Content\bin\DigitalRune.Editor.Game.zip">
+      <Link>Content\DigitalRune.Editor.Game.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Source\DigitalRune.Graphics.Content\bin\DigitalRune.zip">
+      <Link>Content\DigitalRune.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Layouts\Presets\Default.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Resource Include="Resources\Raido.ico" />
+    <Page Include="TestExtension\ResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="TestExtension\TestExtension0.cs" />
+    <Page Include="TestExtension\TestOptionsPageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="TestExtension\TestOptionsPageView.xaml.cs">
+      <DependentUpon>TestOptionsPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestExtension\TestOptionsPageViewModel.cs" />
+    <Compile Include="TestExtension\TestPrintDocumentProvider.cs" />
+    <Page Include="TestExtension\TestView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="TestExtension\TestView.xaml.cs">
+      <DependentUpon>TestView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestExtension\TestViewModel.cs" />
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

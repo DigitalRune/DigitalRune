@@ -1,0 +1,1231 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dr="http://schemas.digitalrune.com/windows">
+
+    <!--  Misc Styles  -->
+
+    <Style x:Key="CollapsedPath" TargetType="{x:Type Path}">
+        <Style.Setters>
+            <Setter Property="Visibility" Value="Collapsed" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="CollapsedLabel" TargetType="{x:Type TextBlock}">
+        <Style.Setters>
+            <Setter Property="Visibility" Value="Collapsed" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="CollapsedTitle" TargetType="{x:Type ContentControl}">
+        <Style.Setters>
+            <Setter Property="Visibility" Value="Collapsed" />
+        </Style.Setters>
+    </Style>
+
+
+    <!--  Axis Styles  -->
+
+    <Style x:Key="AutoAxis" TargetType="{x:Type dr:Axis}">
+        <Style.Setters>
+            <Setter Property="AutoScale" Value="True" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="LineOnly" TargetType="{x:Type dr:Axis}">
+        <Style.Setters>
+            <Setter Property="MajorTickLength" Value="0" />
+            <Setter Property="MinorTickLength" Value="0" />
+            <Setter Property="MajorTickStyle" Value="{StaticResource CollapsedPath}" />
+            <Setter Property="MinorTickStyle" Value="{StaticResource CollapsedPath}" />
+            <Setter Property="LabelStyle" Value="{StaticResource CollapsedLabel}" />
+            <Setter Property="TitleStyle" Value="{StaticResource CollapsedTitle}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="HiddenAxis" TargetType="{x:Type dr:Axis}">
+        <Style.Setters>
+            <Setter Property="Visibility" Value="Hidden" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="CollapsedAxis" TargetType="{x:Type dr:Axis}">
+        <Style.Setters>
+            <Setter Property="Visibility" Value="Collapsed" />
+        </Style.Setters>
+    </Style>
+
+
+    <!--  Default brushes  -->
+
+    <!--
+        The following RadialGradientBrush definitions are (c) Copyright Microsoft Corporation.
+        The brushes are subject to the Microsoft Public License (Ms-PL).
+        Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
+        All other rights reserved.
+    -->
+
+    <RadialGradientBrush x:Key="BlueRadialBrush">
+        <RadialGradientBrush.RelativeTransform>
+            <TransformGroup>
+                <ScaleTransform CenterX="0.5"
+                                CenterY="0.5"
+                                ScaleX="2.09"
+                                ScaleY="1.819" />
+                <TranslateTransform X="-0.425" Y="-0.486" />
+            </TransformGroup>
+        </RadialGradientBrush.RelativeTransform>
+        <GradientStop Color="#FFB9D6F7" />
+        <GradientStop Offset="1" Color="#FF284B70" />
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="RedRadialBrush">
+        <RadialGradientBrush.RelativeTransform>
+            <TransformGroup>
+                <ScaleTransform CenterX="0.5"
+                                CenterY="0.5"
+                                ScaleX="2.09"
+                                ScaleY="1.819" />
+                <TranslateTransform X="-0.425" Y="-0.486" />
+            </TransformGroup>
+        </RadialGradientBrush.RelativeTransform>
+        <GradientStop Color="#FFFBB7B5" />
+        <GradientStop Offset="1" Color="#FF702828" />
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="GreenRadialBrush">
+        <RadialGradientBrush.RelativeTransform>
+            <TransformGroup>
+                <ScaleTransform CenterX="0.5"
+                                CenterY="0.5"
+                                ScaleX="2.09"
+                                ScaleY="1.819" />
+                <TranslateTransform X="-0.425" Y="-0.486" />
+            </TransformGroup>
+        </RadialGradientBrush.RelativeTransform>
+        <GradientStop Color="#FFB8C0AC" />
+        <GradientStop Offset="1" Color="#FF5F7143" />
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="YellowRadialBrush">
+        <RadialGradientBrush.RelativeTransform>
+            <TransformGroup>
+                <ScaleTransform CenterX="0.5"
+                                CenterY="0.5"
+                                ScaleX="2.09"
+                                ScaleY="1.819" />
+                <TranslateTransform X="-0.425" Y="-0.486" />
+            </TransformGroup>
+        </RadialGradientBrush.RelativeTransform>
+        <GradientStop Color="#FFFDE79C" />
+        <GradientStop Offset="1" Color="#FFF6BC0C" />
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="IndigoRadialBrush">
+        <RadialGradientBrush.RelativeTransform>
+            <TransformGroup>
+                <ScaleTransform CenterX="0.5"
+                                CenterY="0.5"
+                                ScaleX="2.09"
+                                ScaleY="1.819" />
+                <TranslateTransform X="-0.425" Y="-0.486" />
+            </TransformGroup>
+        </RadialGradientBrush.RelativeTransform>
+        <GradientStop Color="#FFA9A3BD" />
+        <GradientStop Offset="1" Color="#FF382C6C" />
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="MagentaRadialBrush">
+        <RadialGradientBrush.RelativeTransform>
+            <TransformGroup>
+                <ScaleTransform CenterX="0.5"
+                                CenterY="0.5"
+                                ScaleX="2.09"
+                                ScaleY="1.819" />
+                <TranslateTransform X="-0.425" Y="-0.486" />
+            </TransformGroup>
+        </RadialGradientBrush.RelativeTransform>
+        <GradientStop Color="#FFB1A1B1" />
+        <GradientStop Offset="1" Color="#FF50224F" />
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="DarkGreenRadialBrush">
+        <RadialGradientBrush.RelativeTransform>
+            <TransformGroup>
+                <ScaleTransform CenterX="0.5"
+                                CenterY="0.5"
+                                ScaleX="2.09"
+                                ScaleY="1.819" />
+                <TranslateTransform X="-0.425" Y="-0.486" />
+            </TransformGroup>
+        </RadialGradientBrush.RelativeTransform>
+        <GradientStop Color="#FF9DC2B3" />
+        <GradientStop Offset="1" Color="#FF1D7554" />
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="DarkGrayRadialBrush">
+        <RadialGradientBrush.RelativeTransform>
+            <TransformGroup>
+                <ScaleTransform CenterX="0.5"
+                                CenterY="0.5"
+                                ScaleX="2.09"
+                                ScaleY="1.819" />
+                <TranslateTransform X="-0.425" Y="-0.486" />
+            </TransformGroup>
+        </RadialGradientBrush.RelativeTransform>
+        <GradientStop Color="#FFB5B5B5" />
+        <GradientStop Offset="1" Color="#FF4C4C4C" />
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="LightBlueRadialBrush">
+        <RadialGradientBrush.RelativeTransform>
+            <TransformGroup>
+                <ScaleTransform CenterX="0.5"
+                                CenterY="0.5"
+                                ScaleX="2.09"
+                                ScaleY="1.819" />
+                <TranslateTransform X="-0.425" Y="-0.486" />
+            </TransformGroup>
+        </RadialGradientBrush.RelativeTransform>
+        <GradientStop Color="#FF98C1DC" />
+        <GradientStop Offset="1" Color="#FF0271AE" />
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="BrownRadialBrush">
+        <RadialGradientBrush.RelativeTransform>
+            <TransformGroup>
+                <ScaleTransform CenterX="0.5"
+                                CenterY="0.5"
+                                ScaleX="2.09"
+                                ScaleY="1.819" />
+                <TranslateTransform X="-0.425" Y="-0.486" />
+            </TransformGroup>
+        </RadialGradientBrush.RelativeTransform>
+        <GradientStop Color="#FFC1C0AE" />
+        <GradientStop Offset="1" Color="#FF706E41" />
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="CyanRadialBrush">
+        <RadialGradientBrush.RelativeTransform>
+            <TransformGroup>
+                <ScaleTransform CenterX="0.5"
+                                CenterY="0.5"
+                                ScaleX="2.09"
+                                ScaleY="1.819" />
+                <TranslateTransform X="-0.425" Y="-0.486" />
+            </TransformGroup>
+        </RadialGradientBrush.RelativeTransform>
+        <GradientStop Color="#FFADBDC0" />
+        <GradientStop Offset="1" Color="#FF446A73" />
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="DarkBlueRadialBrush">
+        <RadialGradientBrush.RelativeTransform>
+            <TransformGroup>
+                <ScaleTransform CenterX="0.5"
+                                CenterY="0.5"
+                                ScaleX="2.09"
+                                ScaleY="1.819" />
+                <TranslateTransform X="-0.425" Y="-0.486" />
+            </TransformGroup>
+        </RadialGradientBrush.RelativeTransform>
+        <GradientStop Color="#FF2F8CE2" />
+        <GradientStop Offset="1" Color="#FF0C3E69" />
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="GrayRadialBrush">
+        <RadialGradientBrush.RelativeTransform>
+            <TransformGroup>
+                <ScaleTransform CenterX="0.5"
+                                CenterY="0.5"
+                                ScaleX="2.09"
+                                ScaleY="1.819" />
+                <TranslateTransform X="-0.425" Y="-0.486" />
+            </TransformGroup>
+        </RadialGradientBrush.RelativeTransform>
+        <GradientStop Color="#FFDCDCDC" />
+        <GradientStop Offset="1" Color="#FF757575" />
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="WhiteRadialBrush">
+        <RadialGradientBrush.RelativeTransform>
+            <TransformGroup>
+                <ScaleTransform CenterX="0.5"
+                                CenterY="0.5"
+                                ScaleX="2.09"
+                                ScaleY="1.819" />
+                <TranslateTransform X="-0.425" Y="-0.486" />
+            </TransformGroup>
+        </RadialGradientBrush.RelativeTransform>
+        <GradientStop Color="#FFF4F4F4" />
+        <GradientStop Offset="1" Color="#FFB7B7B7" />
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="LightGrayRadialBrush">
+        <RadialGradientBrush.RelativeTransform>
+            <TransformGroup>
+                <ScaleTransform CenterX="0.5"
+                                CenterY="0.5"
+                                ScaleX="2.09"
+                                ScaleY="1.819" />
+                <TranslateTransform X="-0.425" Y="-0.486" />
+            </TransformGroup>
+        </RadialGradientBrush.RelativeTransform>
+        <GradientStop Color="#FFF4F4F4" />
+        <GradientStop Offset="1" Color="#FFA3A3A3" />
+    </RadialGradientBrush>
+
+
+    <!--  Same brushes as above stored in BrushCollection.  -->
+    <dr:IndexedBrushSelector x:Key="DefaultBrushSelector">
+        <RadialGradientBrush>
+            <RadialGradientBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterX="0.5"
+                                    CenterY="0.5"
+                                    ScaleX="2.09"
+                                    ScaleY="1.819" />
+                    <TranslateTransform X="-0.425" Y="-0.486" />
+                </TransformGroup>
+            </RadialGradientBrush.RelativeTransform>
+            <GradientStop Color="#FFB9D6F7" />
+            <GradientStop Offset="1" Color="#FF284B70" />
+        </RadialGradientBrush>
+
+        <RadialGradientBrush>
+            <RadialGradientBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterX="0.5"
+                                    CenterY="0.5"
+                                    ScaleX="2.09"
+                                    ScaleY="1.819" />
+                    <TranslateTransform X="-0.425" Y="-0.486" />
+                </TransformGroup>
+            </RadialGradientBrush.RelativeTransform>
+            <GradientStop Color="#FFFBB7B5" />
+            <GradientStop Offset="1" Color="#FF702828" />
+        </RadialGradientBrush>
+
+        <RadialGradientBrush>
+            <RadialGradientBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterX="0.5"
+                                    CenterY="0.5"
+                                    ScaleX="2.09"
+                                    ScaleY="1.819" />
+                    <TranslateTransform X="-0.425" Y="-0.486" />
+                </TransformGroup>
+            </RadialGradientBrush.RelativeTransform>
+            <GradientStop Color="#FFB8C0AC" />
+            <GradientStop Offset="1" Color="#FF5F7143" />
+        </RadialGradientBrush>
+
+        <RadialGradientBrush>
+            <RadialGradientBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterX="0.5"
+                                    CenterY="0.5"
+                                    ScaleX="2.09"
+                                    ScaleY="1.819" />
+                    <TranslateTransform X="-0.425" Y="-0.486" />
+                </TransformGroup>
+            </RadialGradientBrush.RelativeTransform>
+            <GradientStop Color="#FFFDE79C" />
+            <GradientStop Offset="1" Color="#FFF6BC0C" />
+        </RadialGradientBrush>
+
+        <RadialGradientBrush>
+            <RadialGradientBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterX="0.5"
+                                    CenterY="0.5"
+                                    ScaleX="2.09"
+                                    ScaleY="1.819" />
+                    <TranslateTransform X="-0.425" Y="-0.486" />
+                </TransformGroup>
+            </RadialGradientBrush.RelativeTransform>
+            <GradientStop Color="#FFA9A3BD" />
+            <GradientStop Offset="1" Color="#FF382C6C" />
+        </RadialGradientBrush>
+
+        <RadialGradientBrush>
+            <RadialGradientBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterX="0.5"
+                                    CenterY="0.5"
+                                    ScaleX="2.09"
+                                    ScaleY="1.819" />
+                    <TranslateTransform X="-0.425" Y="-0.486" />
+                </TransformGroup>
+            </RadialGradientBrush.RelativeTransform>
+            <GradientStop Color="#FFB1A1B1" />
+            <GradientStop Offset="1" Color="#FF50224F" />
+        </RadialGradientBrush>
+
+        <RadialGradientBrush>
+            <RadialGradientBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterX="0.5"
+                                    CenterY="0.5"
+                                    ScaleX="2.09"
+                                    ScaleY="1.819" />
+                    <TranslateTransform X="-0.425" Y="-0.486" />
+                </TransformGroup>
+            </RadialGradientBrush.RelativeTransform>
+            <GradientStop Color="#FF9DC2B3" />
+            <GradientStop Offset="1" Color="#FF1D7554" />
+        </RadialGradientBrush>
+
+        <RadialGradientBrush>
+            <RadialGradientBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterX="0.5"
+                                    CenterY="0.5"
+                                    ScaleX="2.09"
+                                    ScaleY="1.819" />
+                    <TranslateTransform X="-0.425" Y="-0.486" />
+                </TransformGroup>
+            </RadialGradientBrush.RelativeTransform>
+            <GradientStop Color="#FFB5B5B5" />
+            <GradientStop Offset="1" Color="#FF4C4C4C" />
+        </RadialGradientBrush>
+
+        <RadialGradientBrush>
+            <RadialGradientBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterX="0.5"
+                                    CenterY="0.5"
+                                    ScaleX="2.09"
+                                    ScaleY="1.819" />
+                    <TranslateTransform X="-0.425" Y="-0.486" />
+                </TransformGroup>
+            </RadialGradientBrush.RelativeTransform>
+            <GradientStop Color="#FF98C1DC" />
+            <GradientStop Offset="1" Color="#FF0271AE" />
+        </RadialGradientBrush>
+
+        <RadialGradientBrush>
+            <RadialGradientBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterX="0.5"
+                                    CenterY="0.5"
+                                    ScaleX="2.09"
+                                    ScaleY="1.819" />
+                    <TranslateTransform X="-0.425" Y="-0.486" />
+                </TransformGroup>
+            </RadialGradientBrush.RelativeTransform>
+            <GradientStop Color="#FFC1C0AE" />
+            <GradientStop Offset="1" Color="#FF706E41" />
+        </RadialGradientBrush>
+
+        <RadialGradientBrush>
+            <RadialGradientBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterX="0.5"
+                                    CenterY="0.5"
+                                    ScaleX="2.09"
+                                    ScaleY="1.819" />
+                    <TranslateTransform X="-0.425" Y="-0.486" />
+                </TransformGroup>
+            </RadialGradientBrush.RelativeTransform>
+            <GradientStop Color="#FFADBDC0" />
+            <GradientStop Offset="1" Color="#FF446A73" />
+        </RadialGradientBrush>
+
+        <RadialGradientBrush>
+            <RadialGradientBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterX="0.5"
+                                    CenterY="0.5"
+                                    ScaleX="2.09"
+                                    ScaleY="1.819" />
+                    <TranslateTransform X="-0.425" Y="-0.486" />
+                </TransformGroup>
+            </RadialGradientBrush.RelativeTransform>
+            <GradientStop Color="#FF2F8CE2" />
+            <GradientStop Offset="1" Color="#FF0C3E69" />
+        </RadialGradientBrush>
+
+        <RadialGradientBrush>
+            <RadialGradientBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterX="0.5"
+                                    CenterY="0.5"
+                                    ScaleX="2.09"
+                                    ScaleY="1.819" />
+                    <TranslateTransform X="-0.425" Y="-0.486" />
+                </TransformGroup>
+            </RadialGradientBrush.RelativeTransform>
+            <GradientStop Color="#FFDCDCDC" />
+            <GradientStop Offset="1" Color="#FF757575" />
+        </RadialGradientBrush>
+
+        <RadialGradientBrush>
+            <RadialGradientBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterX="0.5"
+                                    CenterY="0.5"
+                                    ScaleX="2.09"
+                                    ScaleY="1.819" />
+                    <TranslateTransform X="-0.425" Y="-0.486" />
+                </TransformGroup>
+            </RadialGradientBrush.RelativeTransform>
+            <GradientStop Color="#FFF4F4F4" />
+            <GradientStop Offset="1" Color="#FFB7B7B7" />
+        </RadialGradientBrush>
+
+        <RadialGradientBrush>
+            <RadialGradientBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterX="0.5"
+                                    CenterY="0.5"
+                                    ScaleX="2.09"
+                                    ScaleY="1.819" />
+                    <TranslateTransform X="-0.425" Y="-0.486" />
+                </TransformGroup>
+            </RadialGradientBrush.RelativeTransform>
+            <GradientStop Color="#FFF4F4F4" />
+            <GradientStop Offset="1" Color="#FFA3A3A3" />
+        </RadialGradientBrush>
+    </dr:IndexedBrushSelector>
+
+
+    <!--  Default styles (marker)  -->
+
+    <DataTemplate x:Key="CircleMarker">
+        <Ellipse Width="8"
+                 Height="8"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="SquareMarker">
+        <Rectangle Width="7"
+                   Height="7"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="DiamondMarker">
+        <Path Width="10"
+              Height="10"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              Data="M5,1 9,5 5,9 1,5 Z"
+              Stretch="Uniform" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="LeftFlagMarker">
+        <Path Width="9"
+              Height="12"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Bottom"
+              Data="M0,12 0,0 9,4 0,9 Z"
+              Stretch="UniformToFill">
+            <Path.RenderTransform>
+                <TranslateTransform X="-0.5" />
+            </Path.RenderTransform>
+        </Path>
+    </DataTemplate>
+
+    <DataTemplate x:Key="RightFlagMarker">
+        <Path Width="9"
+              Height="12"
+              HorizontalAlignment="Right"
+              VerticalAlignment="Bottom"
+              Data="M9,12 9,0 0,4 9,9 Z"
+              Stretch="UniformToFill">
+            <Path.RenderTransform>
+                <TranslateTransform X="0.5" />
+            </Path.RenderTransform>
+        </Path>
+    </DataTemplate>
+
+    <DataTemplate x:Key="CrossOrthogonalMarker">
+        <Path Width="10"
+              Height="10"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              Data="M0,3.5 3.5,3.5 3.5,0 6.5,0 6.5,3.5 10,3.5 10,6.5 6.5,6.5 6.5,10 3.5,10 3.5,6.5 0,6.5 Z"
+              Stretch="Uniform" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="CrossDiagonalMarker">
+        <Path Width="9"
+              Height="9"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              Data="M0,2 2,0 4,2 6,0 8,2 6,4 8,6 6,8 4,6 2,8 0,6 2,4 Z"
+              Stretch="Uniform" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="TriangleUpMarker">
+        <Path Width="8"
+              Height="8"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              Data="M5,0 10,10 0,10 Z"
+              Stretch="Fill">
+            <Path.RenderTransform>
+                <TranslateTransform Y="-1" />
+            </Path.RenderTransform>
+        </Path>
+    </DataTemplate>
+
+    <DataTemplate x:Key="TriangleDownMarker">
+        <Path Width="8"
+              Height="8"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              Data="M0,0 10,0 5,10 Z"
+              Stretch="Fill">
+            <Path.RenderTransform>
+                <TranslateTransform Y="1" />
+            </Path.RenderTransform>
+        </Path>
+    </DataTemplate>
+
+
+    <!--  Default data point styles  -->
+
+    <Style x:Key="BlueShape" TargetType="{x:Type Shape}">
+        <Style.Setters>
+            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Fill" Value="{StaticResource BlueRadialBrush}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="RedShape" TargetType="{x:Type Shape}">
+        <Style.Setters>
+            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Fill" Value="{StaticResource RedRadialBrush}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="GreenShape" TargetType="{x:Type Shape}">
+        <Style.Setters>
+            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Fill" Value="{StaticResource GreenRadialBrush}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="YellowShape" TargetType="{x:Type Shape}">
+        <Style.Setters>
+            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Fill" Value="{StaticResource YellowRadialBrush}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="IndigoShape" TargetType="{x:Type Shape}">
+        <Style.Setters>
+            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Fill" Value="{StaticResource IndigoRadialBrush}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="MagentaShape" TargetType="{x:Type Shape}">
+        <Style.Setters>
+            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Fill" Value="{StaticResource MagentaRadialBrush}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="DarkGreenShape" TargetType="{x:Type Shape}">
+        <Style.Setters>
+            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Fill" Value="{StaticResource DarkGreenRadialBrush}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="DarkGrayShape" TargetType="{x:Type Shape}">
+        <Style.Setters>
+            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Fill" Value="{StaticResource DarkGrayRadialBrush}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="LightBlueShape" TargetType="{x:Type Shape}">
+        <Style.Setters>
+            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Fill" Value="{StaticResource LightBlueRadialBrush}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="BrownShape" TargetType="{x:Type Shape}">
+        <Style.Setters>
+            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Fill" Value="{StaticResource BrownRadialBrush}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="CyanShape" TargetType="{x:Type Shape}">
+        <Style.Setters>
+            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Fill" Value="{StaticResource CyanRadialBrush}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="DarkBlueShape" TargetType="{x:Type Shape}">
+        <Style.Setters>
+            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Fill" Value="{StaticResource DarkBlueRadialBrush}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="GrayShape" TargetType="{x:Type Shape}">
+        <Style.Setters>
+            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Fill" Value="{StaticResource GrayRadialBrush}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="WhiteShape" TargetType="{x:Type Shape}">
+        <Style.Setters>
+            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Fill" Value="{StaticResource WhiteRadialBrush}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="LightGrayShape" TargetType="{x:Type Shape}">
+        <Style.Setters>
+            <Setter Property="Stroke" Value="Black" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Fill" Value="{StaticResource LightGrayRadialBrush}" />
+        </Style.Setters>
+    </Style>
+
+
+    <!--  Default styles (bar charts)  -->
+
+    <DataTemplate x:Key="Bar">
+        <Rectangle RadiusX="2" RadiusY="2" />
+    </DataTemplate>
+
+    <Style x:Key="BlueBarChart" TargetType="{x:Type dr:BarChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource Bar}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource BlueShape}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="RedBarChart" TargetType="{x:Type dr:BarChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource Bar}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource RedShape}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="GreenBarChart" TargetType="{x:Type dr:BarChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource Bar}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource GreenShape}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="YellowBarChart" TargetType="{x:Type dr:BarChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource Bar}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource YellowShape}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="IndigoBarChart" TargetType="{x:Type dr:BarChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource Bar}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource IndigoShape}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="MagentaBarChart" TargetType="{x:Type dr:BarChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource Bar}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource MagentaShape}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="DarkGreenBarChart" TargetType="{x:Type dr:BarChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource Bar}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource DarkGreenShape}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="DarkGrayBarChart" TargetType="{x:Type dr:BarChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource Bar}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource DarkGrayShape}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="LightBlueBarChart" TargetType="{x:Type dr:BarChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource Bar}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource LightBlueShape}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="BrownBarChart" TargetType="{x:Type dr:BarChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource Bar}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource BrownShape}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="CyanBarChart" TargetType="{x:Type dr:BarChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource Bar}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource CyanShape}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="DarkBlueBarChart" TargetType="{x:Type dr:BarChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource Bar}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource DarkBlueShape}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="GrayBarChart" TargetType="{x:Type dr:BarChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource Bar}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource GrayShape}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="WhiteBarChart" TargetType="{x:Type dr:BarChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource Bar}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource WhiteShape}" />
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="LightGrayBarChart" TargetType="{x:Type dr:BarChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource Bar}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource LightGrayShape}" />
+        </Style.Setters>
+    </Style>
+
+
+    <!--  Default styles (line charts)  -->
+
+    <Style x:Key="BlueLineChart" TargetType="{x:Type dr:LineChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource CircleMarker}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource BlueShape}" />
+            <Setter Property="LineStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Stroke" Value="{StaticResource BlueRadialBrush}" />
+                            <Setter Property="StrokeThickness" Value="2" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="AreaStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Fill" Value="{StaticResource BlueRadialBrush}" />
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="RedLineChart" TargetType="{x:Type dr:LineChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource CircleMarker}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource RedShape}" />
+            <Setter Property="LineStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Stroke" Value="{StaticResource RedRadialBrush}" />
+                            <Setter Property="StrokeThickness" Value="2" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="AreaStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Fill" Value="{StaticResource RedRadialBrush}" />
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="GreenLineChart" TargetType="{x:Type dr:LineChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource CircleMarker}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource GreenShape}" />
+            <Setter Property="LineStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Stroke" Value="{StaticResource GreenRadialBrush}" />
+                            <Setter Property="StrokeThickness" Value="2" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="AreaStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Fill" Value="{StaticResource GreenRadialBrush}" />
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="YellowLineChart" TargetType="{x:Type dr:LineChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource CircleMarker}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource YellowShape}" />
+            <Setter Property="LineStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Stroke" Value="{StaticResource YellowRadialBrush}" />
+                            <Setter Property="StrokeThickness" Value="2" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="AreaStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Fill" Value="{StaticResource YellowRadialBrush}" />
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+
+    <Style x:Key="IndigoLineChart" TargetType="{x:Type dr:LineChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource CircleMarker}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource IndigoShape}" />
+            <Setter Property="LineStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Stroke" Value="{StaticResource IndigoRadialBrush}" />
+                            <Setter Property="StrokeThickness" Value="2" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="AreaStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Fill" Value="{StaticResource IndigoRadialBrush}" />
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="MagentaLineChart" TargetType="{x:Type dr:LineChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource CircleMarker}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource MagentaShape}" />
+            <Setter Property="LineStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Stroke" Value="{StaticResource MagentaRadialBrush}" />
+                            <Setter Property="StrokeThickness" Value="2" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="AreaStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Fill" Value="{StaticResource MagentaRadialBrush}" />
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="DarkGreenLineChart" TargetType="{x:Type dr:LineChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource CircleMarker}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource DarkGreenShape}" />
+            <Setter Property="LineStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Stroke" Value="{StaticResource DarkGreenRadialBrush}" />
+                            <Setter Property="StrokeThickness" Value="2" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="AreaStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Fill" Value="{StaticResource DarkGreenRadialBrush}" />
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="DarkGrayLineChart" TargetType="{x:Type dr:LineChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource CircleMarker}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource DarkGrayShape}" />
+            <Setter Property="LineStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Stroke" Value="{StaticResource DarkGrayRadialBrush}" />
+                            <Setter Property="StrokeThickness" Value="2" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="AreaStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Fill" Value="{StaticResource DarkGrayRadialBrush}" />
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="LightBlueChart" TargetType="{x:Type dr:LineChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource CircleMarker}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource LightBlueShape}" />
+            <Setter Property="LineStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Stroke" Value="{StaticResource LightBlueRadialBrush}" />
+                            <Setter Property="StrokeThickness" Value="2" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="AreaStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Fill" Value="{StaticResource LightBlueRadialBrush}" />
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="BrownLineChart" TargetType="{x:Type dr:LineChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource CircleMarker}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource BrownShape}" />
+            <Setter Property="LineStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Stroke" Value="{StaticResource BrownRadialBrush}" />
+                            <Setter Property="StrokeThickness" Value="2" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="AreaStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Fill" Value="{StaticResource BrownRadialBrush}" />
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="CyanLineChart" TargetType="{x:Type dr:LineChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource CircleMarker}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource CyanShape}" />
+            <Setter Property="LineStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Stroke" Value="{StaticResource CyanRadialBrush}" />
+                            <Setter Property="StrokeThickness" Value="2" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="AreaStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Fill" Value="{StaticResource CyanRadialBrush}" />
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="DarkBlueLineChart" TargetType="{x:Type dr:LineChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource CircleMarker}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource DarkBlueShape}" />
+            <Setter Property="LineStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Stroke" Value="{StaticResource DarkBlueRadialBrush}" />
+                            <Setter Property="StrokeThickness" Value="2" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="AreaStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Fill" Value="{StaticResource DarkBlueRadialBrush}" />
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="GrayLineChart" TargetType="{x:Type dr:LineChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource CircleMarker}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource GrayShape}" />
+            <Setter Property="LineStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Stroke" Value="{StaticResource GrayRadialBrush}" />
+                            <Setter Property="StrokeThickness" Value="2" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="AreaStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Fill" Value="{StaticResource GrayRadialBrush}" />
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="WhiteLineChart" TargetType="{x:Type dr:LineChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource CircleMarker}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource WhiteShape}" />
+            <Setter Property="LineStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Stroke" Value="{StaticResource WhiteRadialBrush}" />
+                            <Setter Property="StrokeThickness" Value="2" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="AreaStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Fill" Value="{StaticResource WhiteRadialBrush}" />
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="LightGrayLineChart" TargetType="{x:Type dr:LineChart}">
+        <Style.Setters>
+            <Setter Property="DataPointTemplate" Value="{StaticResource CircleMarker}" />
+            <Setter Property="DataPointStyle" Value="{StaticResource LightGrayShape}" />
+            <Setter Property="LineStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Stroke" Value="{StaticResource LightGrayRadialBrush}" />
+                            <Setter Property="StrokeThickness" Value="2" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="AreaStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Setters>
+                            <Setter Property="Fill" Value="{StaticResource LightGrayRadialBrush}" />
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Style.Setters>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+</ResourceDictionary>

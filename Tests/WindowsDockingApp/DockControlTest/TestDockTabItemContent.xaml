@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="WindowsDockingApp.TestDockTabItemContent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             xmlns:local="clr-namespace:WindowsDockingApp"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DataContext="{d:DesignInstance dr:DockTabItemViewModel}"
+             mc:Ignorable="d">
+
+    <ScrollViewer Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+        <StackPanel Margin="5">
+            <TextBlock Text="{Binding Title}" />
+            <TextBox>Test</TextBox>
+            <Button Command="ApplicationCommands.Close" CommandTarget="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=dr:DockTabPane}}">Close</Button>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="100" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0">MinHeight:</Label>
+                <TextBox Grid.Row="0"
+                         Grid.Column="1"
+                         Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TestDockTabItemContent}, Path=MinHeight, Mode=TwoWay}" />
+
+                <Label Grid.Row="1" Grid.Column="0">MinWidth:</Label>
+                <TextBox Grid.Row="1"
+                         Grid.Column="1"
+                         Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TestDockTabItemContent}, Path=MinWidth, Mode=TwoWay}" />
+
+                <Label Grid.Row="2" Grid.Column="0">ActualHeight:</Label>
+                <TextBox Grid.Row="2"
+                         Grid.Column="1"
+                         IsReadOnly="True"
+                         Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TestDockTabItemContent}, Path=ActualHeight, Mode=OneWay}" />
+
+                <Label Grid.Row="3" Grid.Column="0">ActualWidth:</Label>
+                <TextBox Grid.Row="3"
+                         Grid.Column="1"
+                         IsReadOnly="True"
+                         Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TestDockTabItemContent}, Path=ActualWidth, Mode=OneWay}" />
+
+                <Label Grid.Row="4" Grid.Column="0">DockHeight:</Label>
+                <TextBox Grid.Row="4"
+                         Grid.Column="1"
+                         Text="{Binding Path=DockHeight, Mode=TwoWay}" />
+
+                <Label Grid.Row="5" Grid.Column="0">DockWidth:</Label>
+                <TextBox Grid.Row="5"
+                         Grid.Column="1"
+                         Text="{Binding Path=DockWidth, Mode=TwoWay}" />
+
+                <Label Grid.Row="6" Grid.Column="0">DockState:</Label>
+                <TextBox Grid.Row="6"
+                         Grid.Column="1"
+                         IsReadOnly="True"
+                         Text="{Binding Path=DockState, Mode=OneWay}" />
+
+                <Label Grid.Row="7" Grid.Column="0">AutoHideWidth:</Label>
+                <TextBox Grid.Row="7"
+                         Grid.Column="1"
+                         Text="{Binding Path=AutoHideWidth, Mode=TwoWay}" />
+
+                <Label Grid.Row="8" Grid.Column="0">AutoHideHeight:</Label>
+                <TextBox Grid.Row="8"
+                         Grid.Column="1"
+                         Text="{Binding Path=AutoHideHeight, Mode=TwoWay}" />
+
+                <Label Grid.Row="9" Grid.Column="0">LastActivation:</Label>
+                <TextBox Grid.Row="9"
+                         Grid.Column="1"
+                         Text="{Binding Path=LastActivation, Mode=TwoWay}" />
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+
+</UserControl>

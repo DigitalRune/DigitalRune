@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="WindowsDockingApp.DockTabItemTest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dr="http://schemas.digitalrune.com/windows">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Black" BorderThickness="1">
+            <dr:DockTabItem x:Name="DockTabItem1"
+                            Title="Test"
+                            Height="20">
+                <dr:DockTabItem.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Item 1" />
+                        <MenuItem Header="Item 2" />
+                        <MenuItem Header="Item 3" />
+                    </ContextMenu>
+                </dr:DockTabItem.ContextMenu>
+                <Button Content="Unused Content" />
+            </dr:DockTabItem>
+        </Border>
+        <CheckBox Grid.Row="1"
+                  Margin="0,6,0,0"
+                  IsChecked="{Binding ElementName=DockTabItem1, Path=IsEnabled}">
+            IsEnabled
+        </CheckBox>
+        <CheckBox Grid.Row="2"
+                  Margin="0,3,0,0"
+                  IsChecked="{Binding ElementName=DockTabItem1, Path=IsSelected}">
+            IsSelected
+        </CheckBox>
+    </Grid>
+</UserControl>

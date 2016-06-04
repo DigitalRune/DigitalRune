@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="WindowsThemesApp.Views.DigitalRuneView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:specialized="clr-namespace:System.Collections.Specialized;assembly=System"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
+    <Grid Margin="5">
+        <ScrollViewer Padding="11">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label>Reference:</Label>
+                    <Button Margin="3">Button</Button>
+                    <ComboBox Margin="3" SelectedIndex="0">
+                        <ComboBoxItem>ComboBoxItem #1</ComboBoxItem>
+                        <ComboBoxItem>ComboBoxItem #2</ComboBoxItem>
+                        <ComboBoxItem>ComboBoxItem #3</ComboBoxItem>
+                    </ComboBox>
+                    <ComboBox Margin="3"
+                              IsEditable="True"
+                              SelectedIndex="0">
+                        <ComboBoxItem>ComboBoxItem #1</ComboBoxItem>
+                        <ComboBoxItem>ComboBoxItem #2</ComboBoxItem>
+                        <ComboBoxItem>ComboBoxItem #3</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label>DropDownButton:</Label>
+                    <dr:DropDownButton Margin="3">
+                        <dr:DropDownButton.DropDown>
+                            <ContextMenu>
+                                <MenuItem Header="Menu item #1" />
+                                <MenuItem Header="Menu item #2" />
+                                <MenuItem Header="Menu item #3" />
+                            </ContextMenu>
+                        </dr:DropDownButton.DropDown>
+                        DropDown
+                    </dr:DropDownButton>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label>SplitButton:</Label>
+                    <dr:SplitButton Margin="3">
+                        <dr:SplitButton.DropDown>
+                            <ContextMenu>
+                                <MenuItem Header="Menu item #1" />
+                                <MenuItem Header="Menu item #2" />
+                                <MenuItem Header="Menu item #3" />
+                            </ContextMenu>
+                        </dr:SplitButton.DropDown>
+                        SplitButton
+                    </dr:SplitButton>
+                </StackPanel>
+
+                <Label>Auto-complete text box (suggestions start with 't'):</Label>
+                <TextBox Width="200"
+                         Margin="0,0,0,11"
+                         HorizontalAlignment="Left">
+                    <i:Interaction.Behaviors>
+                        <dr:AutoCompleteBehavior>
+                            <dr:AutoCompleteBehavior.Provider>
+                                <dr:AutoCompleteProvider>
+                                    <specialized:StringCollection>
+                                        <sys:String>Test1</sys:String>
+                                        <sys:String>Test2</sys:String>
+                                        <sys:String>Test3</sys:String>
+                                        <sys:String>Test4</sys:String>
+                                        <sys:String>Test5</sys:String>
+                                        <sys:String>Test6</sys:String>
+                                        <sys:String>Test7</sys:String>
+                                        <sys:String>Test8</sys:String>
+                                        <sys:String>Test9</sys:String>
+                                        <sys:String>Test10</sys:String>
+                                        <sys:String>Test11</sys:String>
+                                        <sys:String>Test12</sys:String>
+                                        <sys:String>Test13</sys:String>
+                                        <sys:String>Test14</sys:String>
+                                        <sys:String>Test15</sys:String>
+                                        <sys:String>Test16</sys:String>
+                                        <sys:String>Test17</sys:String>
+                                        <sys:String>Test18</sys:String>
+                                        <sys:String>Test19</sys:String>
+                                        <sys:String>Test20</sys:String>
+                                    </specialized:StringCollection>
+                                </dr:AutoCompleteProvider>
+                            </dr:AutoCompleteBehavior.Provider>
+                        </dr:AutoCompleteBehavior>
+                    </i:Interaction.Behaviors>
+                </TextBox>
+
+                <Label>NumericUpDown:</Label>
+                <StackPanel Margin="0,0,0,11" Orientation="Horizontal">
+                    <TextBox Width="100">Text</TextBox>
+                    <dr:NumericUpDown Width="100" Margin="7,0,0,0" />
+                </StackPanel>
+                <Label>TimeSpanUpDown:</Label>
+                <dr:TimeSpanUpDown Margin="0,0,0,11" />
+                <Label>WatermarkedTextBox:</Label>
+                <dr:WatermarkedTextBox Margin="0,0,0,11" Watermark="Search" />
+                <StackPanel Margin="0,0,0,11" Orientation="Horizontal">
+                    <Label>ColorPicker:</Label>
+                    <Button Click="ShowColorDialog">Show ColorDialog</Button>
+                </StackPanel>
+                <StackPanel Margin="0,0,0,11" Orientation="Horizontal">
+                    <Label>FontDialog:</Label>
+                    <Button Click="ShowFontDialog">Show FontDialog</Button>
+                </StackPanel>
+                <dr:FontChooser Height="400" Margin="0,0,0,11" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

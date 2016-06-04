@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="WindowsControlsApp.ExplorerViewMenuTest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dr="http://schemas.digitalrune.com/windows">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <Button Name="_button0"
+                    Margin="6"
+                    Click="OnButtonClick"
+                    Content="{Binding ElementName=_button0, Path=ContextMenu.Mode}">
+                <Button.ContextMenu>
+                    <dr:ExplorerViewMenu />
+                </Button.ContextMenu>
+            </Button>
+            <StackPanel Margin="6" Orientation="Horizontal">
+                <TextBlock>Icon:</TextBlock>
+                <Image Width="16px"
+                       Height="16px"
+                       SnapsToDevicePixels="True"
+                       Source="{Binding ElementName=_button0, Path=ContextMenu.Icon, Mode=OneWay}" />
+            </StackPanel>
+            <StackPanel Margin="6" Orientation="Horizontal">
+                <TextBlock>Scale:</TextBlock>
+                <TextBlock Text="{Binding ElementName=_button0, Path=ContextMenu.Scale}" />
+            </StackPanel>
+            <StackPanel Margin="6" Orientation="Horizontal">
+                <TextBlock>Slider Position:</TextBlock>
+                <TextBlock Text="{Binding ElementName=_button0, Path=ContextMenu.SliderPosition}" />
+            </StackPanel>
+            <StackPanel Margin="6" Orientation="Horizontal">
+                <TextBlock>View Mode:</TextBlock>
+                <TextBlock Text="{Binding ElementName=_button0, Path=ContextMenu.Mode}" />
+            </StackPanel>
+            <StackPanel Margin="6">
+                <TextBlock>Scale:</TextBlock>
+                <Slider Maximum="16"
+                        Minimum="1"
+                        Value="{Binding ElementName=_button0, Path=ContextMenu.Scale, Mode=TwoWay}" />
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1">
+            <Button Name="_button1"
+                    Margin="6"
+                    Click="OnButtonClick"
+                    Content="{Binding ElementName=_button1, Path=ContextMenu.Mode}">
+                <Button.ContextMenu>
+                    <dr:ExplorerViewMenu />
+                </Button.ContextMenu>
+            </Button>
+            <StackPanel Margin="6" Orientation="Horizontal">
+                <TextBlock>Icon:</TextBlock>
+                <Image Width="16px"
+                       Height="16px"
+                       SnapsToDevicePixels="True"
+                       Source="{Binding ElementName=_button1, Path=ContextMenu.Icon, Mode=OneWay}" />
+            </StackPanel>
+            <StackPanel Margin="6" Orientation="Horizontal">
+                <TextBlock>Scale:</TextBlock>
+                <TextBlock Text="{Binding ElementName=_button1, Path=ContextMenu.Scale}" />
+            </StackPanel>
+            <StackPanel Margin="6" Orientation="Horizontal">
+                <TextBlock>Slider Position:</TextBlock>
+                <TextBlock Text="{Binding ElementName=_button1, Path=ContextMenu.SliderPosition}" />
+            </StackPanel>
+            <StackPanel Margin="6" Orientation="Horizontal">
+                <TextBlock>View Mode:</TextBlock>
+                <TextBlock Text="{Binding ElementName=_button1, Path=ContextMenu.Mode}" />
+            </StackPanel>
+            <StackPanel Margin="6">
+                <TextBlock>Scale:</TextBlock>
+                <Slider Maximum="16"
+                        Minimum="1"
+                        Value="{Binding ElementName=_button1, Path=ContextMenu.Scale, Mode=TwoWay}" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

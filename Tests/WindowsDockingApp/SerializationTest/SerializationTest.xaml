@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="WindowsDockingApp.SerializationTest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:DigitalRune.Windows.Docking.Tests"
+             Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type dr:DockTabItemViewModel}">
+            <dr:DockTabItem Title="{Binding Title}"
+                            DockHeight="{Binding DockHeight}"
+                            DockWidth="{Binding DockWidth}"
+                            Icon="{Binding Icon}">
+                <TextBlock Text="{Binding DockId, TargetNullValue=DockId is null}" />
+            </dr:DockTabItem>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+
+        <dr:DockControl x:Name="DockControl1" Content="{Binding RootPane}">
+            <dr:DockControl.DataContext>
+                <dr:DockControlViewModel x:Name="DockControlViewModel">
+                    <dr:DockControlViewModel.DockStrategy>
+                        <vm:TestDockStrategy />
+                    </dr:DockControlViewModel.DockStrategy>
+                    <dr:DockAnchorPaneViewModel>
+                        <dr:DockSplitPaneViewModel Orientation="Vertical">
+                            <dr:DockSplitPaneViewModel Orientation="Horizontal">
+                                <dr:DockTabPaneViewModel>
+                                    <dr:DockTabItemViewModel Title="DockTabItem1"
+                                                             DockId="DockTabItem1"
+                                                             DockState="Dock" />
+                                    <dr:DockTabItemViewModel Title="DockTabItem2"
+                                                             DockId="DockTabItem2"
+                                                             DockState="Dock" />
+                                </dr:DockTabPaneViewModel>
+                                <dr:DockTabPaneViewModel>
+                                    <dr:DockTabItemViewModel Title="DockTabItem3"
+                                                             DockId="DockTabItem3"
+                                                             DockState="Dock" />
+                                </dr:DockTabPaneViewModel>
+                                <dr:DockTabPaneViewModel>
+                                    <dr:DockTabItemViewModel Title="DockTabItem4"
+                                                             DockId="DockTabItem4"
+                                                             DockState="Dock" />
+                                </dr:DockTabPaneViewModel>
+                            </dr:DockSplitPaneViewModel>
+                            <dr:DockTabPaneViewModel>
+                                <dr:DockTabItemViewModel Title="DockTabItem5"
+                                                         DockId="DockTabItem5"
+                                                         DockState="Dock" />
+                            </dr:DockTabPaneViewModel>
+                        </dr:DockSplitPaneViewModel>
+                    </dr:DockAnchorPaneViewModel>
+                </dr:DockControlViewModel>
+            </dr:DockControl.DataContext>
+        </dr:DockControl>
+
+        <Grid Grid.Row="1" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Button Click="OnSerialize">Serialize</Button>
+            <Button Grid.Row="0"
+                    Grid.Column="1"
+                    Click="OnDeserialize">
+                Deserialize
+            </Button>
+
+            <TextBox Name="TextBox0"
+                     Grid.Row="1"
+                     Grid.Column="0"
+                     HorizontalScrollBarVisibility="Auto"
+                     IsReadOnly="True"
+                     VerticalScrollBarVisibility="Auto" />
+            <TextBox Name="TextBox1"
+                     Grid.Row="1"
+                     Grid.Column="1"
+                     HorizontalScrollBarVisibility="Auto"
+                     IsReadOnly="True"
+                     VerticalScrollBarVisibility="Auto" />
+        </Grid>
+    </Grid>
+</UserControl>

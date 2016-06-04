@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="SampleApplication.CustomChartPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             Width="500"
+             Height="300">
+    
+    <dr:ChartPanel SnapsToDevicePixels="True">
+        <dr:Axis x:Name="XAxis1"
+                 Title="Primary X-Axis"
+                 Length="200"
+                 OriginX="60"
+                 OriginY="260" />
+        <dr:Axis x:Name="YAxis1"
+                 Title="Shared Y-Axis"
+                 LabelsAboveAxis="True"
+                 Length="200"
+                 Orientation="Vertical"
+                 OriginX="40"
+                 OriginY="240" />
+        <dr:ChartBackground XAxis="{Binding ElementName=XAxis1}" YAxis="{Binding ElementName=YAxis1}" />
+        <dr:ChartGrid XAxis="{Binding ElementName=XAxis1}" YAxis="{Binding ElementName=YAxis1}" />
+        <dr:Axis x:Name="XAxis2"
+                 Title="Secondary X-Axis"
+                 Length="200"
+                 OriginX="280"
+                 OriginY="260" />
+        <dr:ChartBackground XAxis="{Binding ElementName=XAxis2}" YAxis="{Binding ElementName=YAxis1}" />
+        <dr:ChartGrid XAxis="{Binding ElementName=XAxis2}" YAxis="{Binding ElementName=YAxis1}" />
+    </dr:ChartPanel>
+    
+</UserControl>

@@ -1,0 +1,153 @@
+﻿<Window x:Class="CustomWindowChromeApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:dr="http://schemas.digitalrune.com/windows"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="Engine - Window Chrome"
+        Width="525"
+        Height="350"
+        Icon="TextEditor.ico"
+        Style="{DynamicResource CustomWindowChrome}"
+        mc:Ignorable="d">
+    <Window.Resources>
+        <!--
+            Drop shadow:
+            To enable the DWM drop shadow effect set:
+            - Window.ResizeMode="CanResize" or "CanResizeWithGrip"
+            - WindowChrome.GlassFrameThickness="0,0,0,1" (not "0,0,0,0").
+            Otherwise, the drop shadow effect disappears.
+            
+            Maximize:
+            To allow maximizing the window set:
+            - WindowState="SingleBorderWindow" (default) or "ThreeDBorderWindow".
+            When WindowState="CanMinimize", the window cannot be maximized.
+            When WindowStyle="None", the window extends below the taskbar.
+            
+            When the window is maximized it extends beyond the visible screen and below the taskbar.
+            - Use a Margin="8" to keep all elements visible.
+            - Increase WindowChrome.CaptionHeight by 8.
+            - Set WindowChrome.GlassFrameThickness="0", otherwise the outer margin will be visible
+            behind the taskbar.
+            
+            Caption height:
+            The effective caption height is
+            - Normal: WindowChrome.CaptionHeight + WindowChrome.ResizeBorderThickness.
+            - Maximized: WindowChrome.CaptionHeight + WindowChrome.ResizeBorderThickness + 8
+        -->
+        <Style x:Key="CustomWindowChrome" TargetType="{x:Type Window}">
+            <Setter Property="AllowsTransparency" Value="False" />
+            <Setter Property="Background" Value="#FFEEEEF2" />
+            <Setter Property="BorderBrush" Value="{x:Static SystemParameters.WindowGlassBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <Grid>
+                            <Border Margin="{TemplateBinding Margin}"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}">
+                                <AdornerDecorator>
+                                    <Grid x:Name="Panel">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <dr:WindowCaptionIcon Margin="9,0,0,0"
+                                                              HorizontalAlignment="Left"
+                                                              VerticalAlignment="Center"
+                                                              Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Icon, Converter={x:Static dr:NullToVisibilityConverter.Instance}}">
+                                            <dr:MultiFrameImage x:Name="Icon"
+                                                                Width="16"
+                                                                Height="16"
+                                                                DisabledOpacity="0.6"
+                                                                Source="{TemplateBinding Icon}" />
+                                        </dr:WindowCaptionIcon>
+                                        <TextBlock x:Name="Title"
+                                                   Grid.Row="0"
+                                                   Grid.Column="1"
+                                                   Margin="9,0,0,0"
+                                                   VerticalAlignment="Center"
+                                                   FontFamily="{x:Static SystemFonts.CaptionFontFamily}"
+                                                   FontSize="{x:Static SystemFonts.CaptionFontSize}"
+                                                   FontStyle="{x:Static SystemFonts.CaptionFontStyle}"
+                                                   FontWeight="{x:Static SystemFonts.CaptionFontWeight}"
+                                                   Text="{TemplateBinding Title}"
+                                                   TextTrimming="CharacterEllipsis" />
+                                        <dr:WindowCaptionButtons Grid.Row="0"
+                                                                 Grid.Column="2"
+                                                                 Height="24"
+                                                                 Margin="5,0,0,0"
+                                                                 HorizontalAlignment="Right"
+                                                                 VerticalAlignment="Stretch" />
+                                        <ContentPresenter Grid.Row="1"
+                                                          Grid.Column="0"
+                                                          Grid.ColumnSpan="3"
+                                                          Margin="{TemplateBinding Padding}" />
+                                    </Grid>
+                                </AdornerDecorator>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsActive" Value="False">
+                                <Setter TargetName="Title" Property="Foreground" Value="#999999" />
+                                <Setter TargetName="Icon" Property="IsEnabled" Value="False" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="WindowChrome.WindowChrome">
+                <Setter.Value>
+                    <WindowChrome CaptionHeight="20"
+                                  CornerRadius="0"
+                                  GlassFrameThickness="0,0,0,1"
+                                  ResizeBorderThickness="4" />
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="WindowState" Value="Maximized">
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Margin" Value="8" />
+                    <Setter Property="WindowChrome.WindowChrome">
+                        <Setter.Value>
+                            <WindowChrome CaptionHeight="32"
+                                          GlassFrameThickness="0,0,0,0"
+                                          ResizeBorderThickness="0" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsActive" Value="False">
+                    <Setter Property="BorderBrush" Value="#999999" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Button HorizontalAlignment="Left" VerticalAlignment="Top">Left, Top</Button>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top">Right, Top</Button>
+        <Button HorizontalAlignment="Left" VerticalAlignment="Bottom">Left, Bottom</Button>
+        <CheckBox x:Name="AeroGlassCheckBox"
+                  Margin="11, 30, 11, 11"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Checked="OnEnableAeroGlass"
+                  IsChecked="False"
+                  Unchecked="OnDisableAeroGlass">
+            Enable aero glass effect (Windows 10)
+        </CheckBox>
+        <!--<Button HorizontalAlignment="Right" VerticalAlignment="Bottom">Right, Bottom</Button>-->
+        <ResizeGrip HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    WindowChrome.ResizeGripDirection="BottomRight" />
+    </Grid>
+</Window>

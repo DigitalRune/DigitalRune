@@ -1,0 +1,96 @@
+<UserControl x:Class="WindowsControlsApp.ColorPickerTest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+
+    <UserControl.Resources>
+
+        <Style TargetType="{x:Type dr:ColorComponentControl}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type dr:ColorComponentControl}">
+                        <dr:ColorSlider1D x:Name="PART_Slider" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type dr:ColorPicker}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type dr:ColorPicker}">
+                        <StackPanel MaxWidth="300" Orientation="Vertical">
+                            <dr:ColorSlider2D x:Name="PART_Slider2D"
+                                              Height="180"
+                                              Margin="0,0,0,4" />
+                            <dr:ColorSlider1D x:Name="PART_Slider1D"
+                                              Height="24"
+                                              Margin="0,0,0,4" />
+                            <dr:ColorComponentControl x:Name="PART_A" Height="24" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0"
+                                           Grid.Column="1"
+                                           Margin="3,0,3,3"
+                                           HorizontalAlignment="Center">
+                                    No Alpha:
+                                </TextBlock>
+                                <TextBlock Grid.Row="0"
+                                           Grid.Column="2"
+                                           Margin="3,0,3,3"
+                                           HorizontalAlignment="Center">
+                                    With Alpha:
+                                </TextBlock>
+                                <TextBlock Grid.Row="1"
+                                           Grid.Column="0"
+                                           Margin="0,3,3,3"
+                                           VerticalAlignment="Center">
+                                    Old:
+                                </TextBlock>
+                                <TextBlock Grid.Row="2"
+                                           Grid.Column="0"
+                                           Margin="0,3,3,3"
+                                           VerticalAlignment="Center">
+                                    New:
+                                </TextBlock>
+                                <Rectangle x:Name="PART_OldColorNoAlpha"
+                                           Grid.Row="1"
+                                           Grid.Column="1" />
+                                <Rectangle x:Name="PART_OldColor"
+                                           Grid.Row="1"
+                                           Grid.Column="2" />
+                                <Rectangle x:Name="PART_NewColorNoAlpha"
+                                           Grid.Row="2"
+                                           Grid.Column="1" />
+                                <Rectangle x:Name="PART_NewColor"
+                                           Grid.Row="2"
+                                           Grid.Column="2" />
+                            </Grid>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel Margin="12">
+        <dr:ColorPicker Name="Picker"
+                        OldColor="Beige"
+                        SelectedComponent="Hue"
+                        Color="Firebrick" />
+        <dr:ColorButton Height="24"
+                        Margin="0,6,0,0"
+                        HorizontalAlignment="Stretch" />
+    </StackPanel>
+
+</UserControl>

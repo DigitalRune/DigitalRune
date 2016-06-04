@@ -1,0 +1,43 @@
+<Window x:Class="WindowsControlsApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WindowsControlsApp"
+        Title="DigitalRune.Windows Tests"
+        Width="868"
+        Height="591"
+        UseLayoutRounding="False">
+    <Window.Resources>
+        <!--  Test cases  -->
+        <x:Array x:Key="Tests" Type="{x:Type UserControl}">
+            <local:ButtonChromeTest x:Name="ButtonChrome" />
+            <local:ColorGradientTest x:Name="ColorGradient" />
+            <local:ColorPickerTest x:Name="ColorPicker" />
+            <local:DropDownButtonTest x:Name="DropDownButtonTest" />
+            <local:EditableTextBlockTest x:Name="EditableTextBlock" />
+            <local:ExplorerViewMenuTest x:Name="ExplorerViewMenu" />
+            <local:ExplorerViewTest x:Name="ExplorerView" />
+            <local:FontChooserTest x:Name="FontChooser" />
+            <local:IconTest x:Name="Icons" />
+            <local:NumericUpDownTest x:Name="NumericUpDown" />
+            <local:TimeSpanUpDownTest x:Name="TimeSpanUpDown" />
+            <local:ProgressRingTest x:Name="ProgressRing" />
+            <local:PropertyGridTest x:Name="PropertyGrid" />
+            <local:WatermarkedTextBoxTest x:Name="WatermarkedTextBox" />
+            <local:TreeViewExTest x:Name="TreeViewEx" />
+        </x:Array>
+    </Window.Resources>
+
+    <Grid>
+        <TabControl ItemsSource="{StaticResource Tests}"
+                    SelectedIndex="4"
+                    TabStripPlacement="Left">
+            <TabControl.ItemContainerStyle>
+                <Style TargetType="{x:Type TabItem}">
+                    <Style.Setters>
+                        <Setter Property="Header" Value="{Binding Path=Name}" />
+                    </Style.Setters>
+                </Style>
+            </TabControl.ItemContainerStyle>
+        </TabControl>
+    </Grid>
+</Window>

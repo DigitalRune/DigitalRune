@@ -1,0 +1,163 @@
+﻿<UserControl x:Class="SampleApplication.ScatterPlots"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             SnapsToDevicePixels="True">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--  ChartStyles.xaml contains data templates and styles.  -->
+                <ResourceDictionary Source="ChartStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <PointCollection x:Key="Data1">
+                <Point X="0" Y="66" />
+                <Point X="10" Y="23" />
+                <Point X="20" Y="55" />
+                <Point X="30" Y="78" />
+                <Point X="40" Y="80" />
+                <Point X="50" Y="100" />
+                <Point X="60" Y="25" />
+                <Point X="70" Y="36" />
+                <Point X="80" Y="24" />
+                <Point X="90" Y="5" />
+            </PointCollection>
+
+            <PointCollection x:Key="Data2">
+                <Point X="5" Y="67" />
+                <Point X="14" Y="54" />
+                <Point X="33" Y="99" />
+                <Point X="38" Y="80" />
+                <Point X="48" Y="60" />
+                <Point X="55" Y="35" />
+                <Point X="67" Y="12" />
+                <Point X="79" Y="56" />
+                <Point X="86" Y="0" />
+                <Point X="92" Y="10" />
+            </PointCollection>
+
+            <PointCollection x:Key="Data3">
+                <Point X="65" Y="23" />
+                <Point X="78" Y="35" />
+                <Point X="32" Y="50" />
+                <Point X="0" Y="45" />
+                <Point X="36" Y="74" />
+                <Point X="54" Y="86" />
+                <Point X="60" Y="56" />
+                <Point X="77" Y="77" />
+                <Point X="80" Y="43" />
+                <Point X="100" Y="28" />
+            </PointCollection>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+
+    <StackPanel>
+        <!--  Example: Scatter plot  -->
+        <Grid Height="320" Margin="0,11,0,11">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <dr:DefaultChartPanel Name="ChartPanel1"
+                                  XAxis1Style="{StaticResource AutoAxis}"
+                                  XAxis2Style="{StaticResource LineOnly}"
+                                  YAxis1Style="{StaticResource AutoAxis}"
+                                  YAxis2Style="{StaticResource LineOnly}">
+                <dr:ChartBackground XAxis="{Binding ElementName=ChartPanel1, Path=XAxis1}" YAxis="{Binding ElementName=ChartPanel1, Path=YAxis1}" />
+                <dr:ChartGrid XAxis="{Binding ElementName=ChartPanel1, Path=XAxis1}" YAxis="{Binding ElementName=ChartPanel1, Path=YAxis1}" />
+                <dr:ScatterPlot DataSource="{StaticResource Data1}"
+                                XAxis="{Binding ElementName=ChartPanel1, Path=XAxis1}"
+                                YAxis="{Binding ElementName=ChartPanel1, Path=YAxis1}" />
+            </dr:DefaultChartPanel>
+            <dr:Legend Grid.Column="1"
+                       Margin="7,0,0,0"
+                       VerticalAlignment="Top"
+                       Source="{Binding ElementName=ChartPanel1}" />
+        </Grid>
+
+        <!--  Example: Multiple scatter plots  -->
+        <Grid Height="320" Margin="0,11,0,11">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <dr:DefaultChartPanel Name="ChartPanel2"
+                                  XAxis1Style="{StaticResource AutoAxis}"
+                                  XAxis2Style="{StaticResource LineOnly}"
+                                  YAxis1Style="{StaticResource AutoAxis}"
+                                  YAxis2Style="{StaticResource LineOnly}">
+                <dr:ChartBackground XAxis="{Binding ElementName=ChartPanel2, Path=XAxis1}" YAxis="{Binding ElementName=ChartPanel2, Path=YAxis1}" />
+                <dr:ChartGrid XAxis="{Binding ElementName=ChartPanel2, Path=XAxis1}" YAxis="{Binding ElementName=ChartPanel2, Path=YAxis1}" />
+                <dr:ScatterPlot Title="Scatter plot #1"
+                                DataPointStyle="{StaticResource BlueShape}"
+                                DataSource="{StaticResource Data1}"
+                                XAxis="{Binding ElementName=ChartPanel2, Path=XAxis1}"
+                                YAxis="{Binding ElementName=ChartPanel2, Path=YAxis1}" />
+                <dr:ScatterPlot Title="Scatter plot #2"
+                                DataPointStyle="{StaticResource RedShape}"
+                                DataSource="{StaticResource Data2}"
+                                XAxis="{Binding ElementName=ChartPanel2, Path=XAxis1}"
+                                YAxis="{Binding ElementName=ChartPanel2, Path=YAxis1}" />
+                <dr:ScatterPlot Title="Scatter plot #3"
+                                DataPointStyle="{StaticResource GreenShape}"
+                                DataSource="{StaticResource Data3}"
+                                XAxis="{Binding ElementName=ChartPanel2, Path=XAxis1}"
+                                YAxis="{Binding ElementName=ChartPanel2, Path=YAxis1}" />
+            </dr:DefaultChartPanel>
+            <dr:Legend Grid.Column="1"
+                       Margin="7,0,0,0"
+                       VerticalAlignment="Top"
+                       Source="{Binding ElementName=ChartPanel2}" />
+        </Grid>
+
+        <!--  Example: Multiple scatter plots with different markers  -->
+        <Grid Height="320" Margin="0,11,0,11">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <dr:DefaultChartPanel Name="ChartPanel3"
+                                  XAxis1Style="{StaticResource AutoAxis}"
+                                  XAxis2Style="{StaticResource LineOnly}"
+                                  YAxis1Style="{StaticResource AutoAxis}"
+                                  YAxis2Style="{StaticResource LineOnly}">
+                <dr:ChartBackground XAxis="{Binding ElementName=ChartPanel3, Path=XAxis1}" YAxis="{Binding ElementName=ChartPanel3, Path=YAxis1}" />
+                <dr:ChartGrid XAxis="{Binding ElementName=ChartPanel3, Path=XAxis1}" YAxis="{Binding ElementName=ChartPanel3, Path=YAxis1}" />
+                <dr:ScatterPlot Title="Scatter plot #1"
+                                DataPointStyle="{StaticResource BlueShape}"
+                                DataPointTemplate="{StaticResource SquareMarker}"
+                                DataSource="{StaticResource Data1}"
+                                XAxis="{Binding ElementName=ChartPanel3, Path=XAxis1}"
+                                YAxis="{Binding ElementName=ChartPanel3, Path=YAxis1}" />
+                <dr:ScatterPlot Title="Scatter plot #2"
+                                DataPointStyle="{StaticResource RedShape}"
+                                DataPointTemplate="{StaticResource DiamondMarker}"
+                                DataSource="{StaticResource Data2}"
+                                XAxis="{Binding ElementName=ChartPanel3, Path=XAxis1}"
+                                YAxis="{Binding ElementName=ChartPanel3, Path=YAxis1}" />
+                <dr:ScatterPlot Title="Scatter plot #3"
+                                DataPointStyle="{StaticResource GreenShape}"
+                                DataPointTemplate="{StaticResource LeftFlagMarker}"
+                                DataSource="{StaticResource Data3}"
+                                XAxis="{Binding ElementName=ChartPanel3, Path=XAxis1}"
+                                YAxis="{Binding ElementName=ChartPanel3, Path=YAxis1}" />
+            </dr:DefaultChartPanel>
+            <dr:Legend Grid.Column="1"
+                       Margin="7,0,0,0"
+                       VerticalAlignment="Top"
+                       Source="{Binding ElementName=ChartPanel3}" />
+        </Grid>
+
+    </StackPanel>
+</UserControl>

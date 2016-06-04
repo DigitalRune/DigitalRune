@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="WindowsControlsApp.NumericUpDownTest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             Keyboard.GotKeyboardFocus="OnGotKeyboardFocus">
+
+    <StackPanel Margin="6">
+        <TextBlock Margin="3">Comparison:</TextBlock>
+        <Grid Margin="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" VerticalAlignment="Center">TextBlock</TextBlock>
+            <TextBox Grid.Column="1"
+                     Margin="3,0,3,0"
+                     VerticalAlignment="Center">
+                TextBox
+            </TextBox>
+            <dr:NumericUpDown Grid.Column="2" VerticalAlignment="Center" />
+        </Grid>
+
+        <Separator />
+
+        <TextBlock Margin="3">Different sizes and states:</TextBlock>
+        <dr:NumericUpDown Margin="3" FontSize="8" />
+        <dr:NumericUpDown Margin="3"
+                          DecimalPlaces="2"
+                          FontSize="24"
+                          Maximum="20"
+                          Minimum="5" />
+        <dr:NumericUpDown Margin="3" IsEnabled="False" />
+    </StackPanel>
+</UserControl>

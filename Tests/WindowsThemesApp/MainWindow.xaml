@@ -1,0 +1,282 @@
+﻿<Window x:Class="WindowsThemesApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:dr="http://schemas.digitalrune.com/windows"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:WindowsThemesApp.ViewModels"
+        Title="Themes"
+        Width="525"
+        Height="350"
+        ResizeMode="CanResizeWithGrip"
+        Style="{StaticResource Modern.WindowChrome}"
+        UseLayoutRounding="True"
+        mc:Ignorable="d">
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+
+    <DockPanel x:Name="LayoutRoot">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="MenuItem">
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem">
+                    <MenuItem.Icon>
+                        <dr:Icon Width="16"
+                                 Height="16"
+                                 Source="pack://application:,,,/WindowsThemesApp;component/Resources/openHS.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="MenuItem (Checked)"
+                          IsCheckable="True"
+                          IsChecked="True" />
+                <MenuItem Header="MenuItem (Disabled)" IsEnabled="False">
+                    <MenuItem.Icon>
+                        <dr:Icon Width="16"
+                                 Height="16"
+                                 Source="pack://application:,,,/WindowsThemesApp;component/Resources/openHS.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="MenuItem">
+                    <MenuItem Header="MenuItem" />
+                    <MenuItem Header="MenuItem">
+                        <MenuItem.Icon>
+                            <dr:Icon Width="16"
+                                     Height="16"
+                                     Source="pack://application:,,,/WindowsThemesApp;component/Resources/openHS.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator />
+                    <MenuItem Header="MenuItem (Checked)"
+                              IsCheckable="True"
+                              IsChecked="True" />
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="MenuItem">
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+                <MenuItem Header="MenuItem" />
+            </MenuItem>
+            <MenuItem Header="MenuItem" IsChecked="True" />
+        </Menu>
+
+        <StatusBar DockPanel.Dock="Bottom">
+            <Label>StatusBar:</Label>
+            <TextBox Width="100">Text</TextBox>
+            <Button>Button</Button>
+            <TextBlock />
+            <Separator />
+            <ProgressBar Width="100" Value="65" />
+            Text
+        </StatusBar>
+
+        <ToolBarTray DockPanel.Dock="Top">
+            <dr:ToolBarEx>
+                <ComboBox x:Name="ThemesComboBox"
+                          Width="100"
+                          ItemsSource="{Binding Themes}"
+                          SelectedIndex="{Binding SelectedThemeIndex}" />
+                <Button>
+                    <dr:Icon Width="16"
+                             Height="16"
+                             Source="pack://application:,,,/WindowsThemesApp;component/Resources/openHS.png" />
+                </Button>
+                <Button>Button</Button>
+                <Button IsEnabled="False">Disabled</Button>
+                <Separator />
+                <Button Click="Break">Break()</Button>
+                <Separator />
+                <CheckBox>CheckBox</CheckBox>
+                <RadioButton>CheckBox</RadioButton>
+                <ComboBox Width="80">
+                    <ComboBoxItem>ComboBoxItem #1</ComboBoxItem>
+                    <ComboBoxItem>ComboBoxItem #2</ComboBoxItem>
+                    <ComboBoxItem>ComboBoxItem #3</ComboBoxItem>
+                </ComboBox>
+                <ComboBox Width="80" IsEditable="True">
+                    <ComboBoxItem>ComboBoxItem #1</ComboBoxItem>
+                    <ComboBoxItem>ComboBoxItem #2</ComboBoxItem>
+                    <ComboBoxItem>ComboBoxItem #3</ComboBoxItem>
+                </ComboBox>
+                <TextBox Width="80" />
+                <TextBox Width="80" IsEnabled="False" />
+            </dr:ToolBarEx>
+            <dr:ToolBarEx>
+                <Button>
+                    <dr:Icon Width="16"
+                             Height="16"
+                             Source="pack://application:,,,/WindowsThemesApp;component/Resources/openHS.png" />
+                </Button>
+                <Button>Button</Button>
+                <dr:DropDownButton>
+                    <dr:DropDownButton.DropDown>
+                        <ContextMenu>
+                            <MenuItem Header="Menu item #1" />
+                            <MenuItem Header="Menu item #2" />
+                            <MenuItem Header="Menu item #3" />
+                        </ContextMenu>
+                    </dr:DropDownButton.DropDown>
+                    DropDown
+                </dr:DropDownButton>
+                <dr:SplitButton>
+                    <dr:SplitButton.DropDown>
+                        <ContextMenu>
+                            <MenuItem Header="Menu item #1" />
+                            <MenuItem Header="Menu item #2" />
+                            <MenuItem Header="Menu item #3" />
+                        </ContextMenu>
+                    </dr:SplitButton.DropDown>
+                    SplitButton
+                </dr:SplitButton>
+                <ComboBox Width="80">
+                    <ComboBoxItem>ComboBoxItem #1</ComboBoxItem>
+                    <ComboBoxItem>ComboBoxItem #2</ComboBoxItem>
+                    <ComboBoxItem>ComboBoxItem #3</ComboBoxItem>
+                </ComboBox>
+                <ComboBox Width="80"
+                          IsEditable="True"
+                          IsEnabled="False">
+                    <ComboBoxItem>ComboBoxItem #1</ComboBoxItem>
+                    <ComboBoxItem>ComboBoxItem #2</ComboBoxItem>
+                    <ComboBoxItem>ComboBoxItem #3</ComboBoxItem>
+                </ComboBox>
+                <TextBox Width="80" />
+                <RepeatButton>RepeatButton</RepeatButton>
+            </dr:ToolBarEx>
+            <dr:ToolBarEx>
+                <Menu>
+                    <MenuItem Header="MenuItem #1">
+                        <!--
+              <MenuItem.Icon>
+              <dr:Icon Width="16"
+              Height="16"
+              Source="pack://application:,,,/WindowsThemesApp;component/Resources/openHS.png" />
+              </MenuItem.Icon>
+                        -->
+                        <MenuItem Header="MenuItem #1" />
+                        <MenuItem Header="MenuItem #2" />
+                    </MenuItem>
+                    <MenuItem Header="MenuItem #2" IsChecked="True" />
+                </Menu>
+            </dr:ToolBarEx>
+        </ToolBarTray>
+
+        <!--
+      <Rectangle DockPanel.Dock="Top"
+      Fill="{StaticResource DarkPaneBorderBrush}"
+      Height="1"
+      Margin="0,1,0,0"/>
+      <Rectangle DockPanel.Dock="Top"
+      Fill="{StaticResource LightPaneBorderBrush}"
+      Height="1"
+      Margin="0,1,0,1"/>
+        -->
+
+        <ToolBarTray DockPanel.Dock="Left" Orientation="Vertical">
+            <dr:ToolBarEx>
+                <Button>
+                    <dr:Icon Width="16"
+                             Height="16"
+                             Source="pack://application:,,,/WindowsThemesApp;component/Resources/openHS.png" />
+                </Button>
+                <Separator />
+                <Button>
+                    <dr:Icon Width="16"
+                             Height="16"
+                             Source="pack://application:,,,/WindowsThemesApp;component/Resources/openHS.png" />
+                </Button>
+                <Button>
+                    <dr:Icon Width="16"
+                             Height="16"
+                             Source="pack://application:,,,/WindowsThemesApp;component/Resources/openHS.png" />
+                </Button>
+                <Button IsEnabled="False">
+                    <dr:Icon Width="16"
+                             Height="16"
+                             Source="pack://application:,,,/WindowsThemesApp;component/Resources/openHS.png" />
+                </Button>
+            </dr:ToolBarEx>
+            <dr:ToolBarEx>
+                <Button>
+                    <dr:Icon Width="16"
+                             Height="16"
+                             Source="pack://application:,,,/WindowsThemesApp;component/Resources/openHS.png" />
+                </Button>
+                <Separator />
+                <Button>
+                    <dr:Icon Width="16"
+                             Height="16"
+                             Source="pack://application:,,,/WindowsThemesApp;component/Resources/openHS.png" />
+                </Button>
+                <Button>
+                    <dr:Icon Width="16"
+                             Height="16"
+                             Source="pack://application:,,,/WindowsThemesApp;component/Resources/openHS.png" />
+                </Button>
+                <Button IsEnabled="False">
+                    <dr:Icon Width="16"
+                             Height="16"
+                             Source="pack://application:,,,/WindowsThemesApp;component/Resources/openHS.png" />
+                </Button>
+            </dr:ToolBarEx>
+        </ToolBarTray>
+
+        <ContentControl Content="{Binding DockControlViewModel}" />
+    </DockPanel>
+</Window>

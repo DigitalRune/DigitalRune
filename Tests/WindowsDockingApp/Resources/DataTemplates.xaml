@@ -1,0 +1,57 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dr="http://schemas.digitalrune.com/windows"
+                    xmlns:local="clr-namespace:WindowsDockingApp">
+
+    <DataTemplate DataType="{x:Type dr:DockTabItemViewModel}">
+        <dr:DockTabItem Title="{Binding Title}"
+                        DockHeight="{Binding DockHeight}"
+                        DockWidth="{Binding DockWidth}"
+                        Icon="{Binding Icon}"
+                        ToolTip="Tooltip of this DockTabItem">
+            <dr:DockTabItem.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Command="dr:DockCommands.AutoHide" />
+                    <MenuItem Command="dr:DockCommands.Dock" />
+                    <MenuItem Command="dr:DockCommands.Float" />
+                    <MenuItem Command="ApplicationCommands.Close" />
+                </ContextMenu>
+            </dr:DockTabItem.ContextMenu>
+            <!--<dr:DockTabItem.Resources>
+                <DataTemplate DataType="{x:Type vm:DockTabItemViewModel}">
+                    <local:TestDockTabItemContent />
+                </DataTemplate>
+            </dr:DockTabItem.Resources>-->
+            <local:TestDockTabItemContent />
+        </dr:DockTabItem>
+    </DataTemplate>
+
+    <!--
+        Data templates for the other default view models (except DockTabItemViewModel!) are already 
+        defined in DigitalRune.Windows.Docking.
+    -->
+    <!--<DataTemplate DataType="{x:Type dr:DockControlViewModel}">
+        <dr:DockControl Content="{Binding RootPane}" />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type dr:DockAnchorPaneViewModel}">
+        <dr:DockAnchorPane Content="{Binding ChildPane}"
+                           DockHeight="{Binding DockHeight}"
+                           DockWidth="{Binding DockWidth}" />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type dr:DockSplitPaneViewModel}">
+        <dr:DockSplitPane DockHeight="{Binding DockHeight}"
+                          DockWidth="{Binding DockWidth}"
+                          ItemsSource="{Binding ChildPanes}"
+                          Orientation="{Binding Orientation}" />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type dr:DockTabPaneViewModel}">
+        <dr:DockTabPane DockHeight="{Binding DockHeight}"
+                        DockWidth="{Binding DockWidth}"
+                        ItemsSource="{Binding Items}"
+                        SelectedItem="{Binding SelectedItem}" />
+    </DataTemplate>-->
+
+</ResourceDictionary>

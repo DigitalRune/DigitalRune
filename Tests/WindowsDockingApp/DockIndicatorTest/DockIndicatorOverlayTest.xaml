@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="WindowsDockingApp.DockIndicatorOverlayTest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Margin="11">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+    
+        <Button Grid.ColumnSpan="2" Grid.Row="0" Margin="5" Width="200" Height="22" PreviewMouseDown="Button_PreviewMouseDown">Click and Start Drag</Button>
+        <CheckBox Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="1" x:Name="AllowDockLeftBorderCheckBox" IsChecked="True">AllowDockLeftBorder</CheckBox>
+        <CheckBox Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="2" x:Name="AllowDockRightBorderCheckBox" IsChecked="True">AllowDockRightBorder</CheckBox>
+        <CheckBox Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="3" x:Name="AllowDockTopBorderCheckBox" IsChecked="True">AllowDockTopBorder</CheckBox>
+        <CheckBox Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="4" x:Name="AllowDockBottomBorderCheckBox" IsChecked="True">AllowDockBottomBorder</CheckBox>
+        <CheckBox Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="5" x:Name="AllowDockLeftCheckBox" IsChecked="True">AllowDockLeft</CheckBox>
+        <CheckBox Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="6" x:Name="AllowDockRightCheckBox" IsChecked="True">AllowDockRight</CheckBox>
+        <CheckBox Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="7" x:Name="AllowDockTopCheckBox" IsChecked="True">AllowDockTop</CheckBox>
+        <CheckBox Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="8" x:Name="AllowDockBottomCheckBox" IsChecked="True">AllowDockBottom</CheckBox>
+        <CheckBox Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="9" x:Name="AllowDockCenterCheckBox" IsChecked="True">AllowDockCenter</CheckBox>
+        <Label Grid.Column="0" Grid.Row="10">Dock to border:</Label>
+        <TextBox Grid.Column="1" Grid.Row="10" Margin="3" x:Name="BorderResultTextBox" MinWidth="100" IsReadOnly="True"/>
+        <Label Grid.Column="0" Grid.Row="11">Dock in pane:</Label>
+        <TextBox Grid.Column="1" Grid.Row="11" Margin="3" x:Name="PaneResultTextBox" MinWidth="100" IsReadOnly="True"/>
+    </Grid>
+</UserControl>

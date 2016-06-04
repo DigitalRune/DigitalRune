@@ -1,0 +1,186 @@
+﻿<UserControl x:Class="SampleApplication.CustomElements"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             SnapsToDevicePixels="True">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <PointCollection x:Key="Data1">
+                <Point X="0" Y="66" />
+                <Point X="1" Y="23" />
+                <Point X="2" Y="55" />
+                <Point X="3" Y="78" />
+                <Point X="4" Y="80" />
+                <Point X="5" Y="100" />
+                <Point X="6" Y="25" />
+                <Point X="7" Y="0" />
+                <Point X="8" Y="-24" />
+                <Point X="9" Y="-5" />
+            </PointCollection>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+
+    <StackPanel>
+        <Grid Height="320" Margin="0,11,0,11">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <dr:DefaultChartPanel Name="ChartPanel1">
+                <dr:DefaultChartPanel.XAxis1Style>
+                    <Style TargetType="{x:Type dr:Axis}">
+                        <Style.Setters>
+                            <Setter Property="AutoScale" Value="True" />
+                        </Style.Setters>
+                    </Style>
+                </dr:DefaultChartPanel.XAxis1Style>
+                <dr:DefaultChartPanel.YAxis1Style>
+                    <Style TargetType="{x:Type dr:Axis}">
+                        <Style.Setters>
+                            <Setter Property="AutoScale" Value="True" />
+                        </Style.Setters>
+                    </Style>
+                </dr:DefaultChartPanel.YAxis1Style>
+                <dr:ChartBackground IsVisibleInLegend="True"
+                                    XAxis="{Binding ElementName=ChartPanel1, Path=XAxis1}"
+                                    YAxis="{Binding ElementName=ChartPanel1, Path=YAxis1}" />
+                <dr:ChartGrid IsVisibleInLegend="True"
+                              XAxis="{Binding ElementName=ChartPanel1, Path=XAxis1}"
+                              YAxis="{Binding ElementName=ChartPanel1, Path=YAxis1}" />
+                <dr:ChartCross IsVisibleInLegend="true"
+                               XAxis="{Binding ElementName=ChartPanel1, Path=XAxis1}"
+                               YAxis="{Binding ElementName=ChartPanel1, Path=YAxis1}">
+                    <dr:ChartCross.HorizontalLineStyle>
+                        <Style TargetType="{x:Type Line}">
+                            <Setter Property="Stroke" Value="Red" />
+                        </Style>
+                    </dr:ChartCross.HorizontalLineStyle>
+                    <dr:ChartCross.VerticalLineStyle>
+                        <Style TargetType="{x:Type Line}">
+                            <Setter Property="Stroke" Value="Orange" />
+                        </Style>
+                    </dr:ChartCross.VerticalLineStyle>
+                </dr:ChartCross>
+
+                <!--  A line chart which uses buttons to represent data points  -->
+                <dr:LineChart Title="Line chart #1"
+                              DataPointStyle="{x:Null}"
+                              DataSource="{StaticResource Data1}"
+                              XAxis="{Binding ElementName=ChartPanel1, Path=XAxis1}"
+                              YAxis="{Binding ElementName=ChartPanel1, Path=YAxis1}">
+                    <dr:LineChart.DataPointTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding Y}" />
+                        </DataTemplate>
+                    </dr:LineChart.DataPointTemplate>
+                </dr:LineChart>
+
+                <!--  WPF elements such as Button, TextBox, ... can be positioned relative to data values.  -->
+                <Button Content="Button"
+                        dr:ChartPanel.X1="1"
+                        dr:ChartPanel.XAxis="{Binding ElementName=ChartPanel1, Path=XAxis1}"
+                        dr:ChartPanel.Y1="-5"
+                        dr:ChartPanel.YAxis="{Binding ElementName=ChartPanel1, Path=YAxis1}" />
+                <TextBox dr:ChartPanel.X1="7"
+                         dr:ChartPanel.X2="8.5"
+                         dr:ChartPanel.XAxis="{Binding ElementName=ChartPanel1, Path=XAxis1}"
+                         dr:ChartPanel.Y1="90"
+                         dr:ChartPanel.Y2="70"
+                         dr:ChartPanel.YAxis="{Binding ElementName=ChartPanel1, Path=YAxis1}">
+                    Text, ...
+                </TextBox>
+                <Ellipse Stroke="Blue"
+                         StrokeThickness="2"
+                         dr:ChartPanel.X1="7"
+                         dr:ChartPanel.X2="8.5"
+                         dr:ChartPanel.XAxis="{Binding ElementName=ChartPanel1, Path=XAxis1}"
+                         dr:ChartPanel.Y1="60"
+                         dr:ChartPanel.Y2="40"
+                         dr:ChartPanel.YAxis="{Binding ElementName=ChartPanel1, Path=YAxis1}" />
+            </dr:DefaultChartPanel>
+
+            <dr:Legend Grid.Column="1"
+                       Margin="7,30,0,0"
+                       VerticalAlignment="Top"
+                       Source="{Binding ElementName=ChartPanel1}" />
+        </Grid>
+
+
+        <Grid Height="320" Margin="0,11,0,11">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <dr:DefaultChartPanel Name="ChartPanel2">
+                <dr:DefaultChartPanel.XAxis1Style>
+                    <Style TargetType="{x:Type dr:Axis}">
+                        <Style.Setters>
+                            <Setter Property="AutoScale" Value="True" />
+                        </Style.Setters>
+                    </Style>
+                </dr:DefaultChartPanel.XAxis1Style>
+                <dr:DefaultChartPanel.YAxis1Style>
+                    <Style TargetType="{x:Type dr:Axis}">
+                        <Style.Setters>
+                            <Setter Property="AutoScale" Value="True" />
+                        </Style.Setters>
+                    </Style>
+                </dr:DefaultChartPanel.YAxis1Style>
+                <dr:ChartBackground XAxis="{Binding ElementName=ChartPanel2, Path=XAxis1}" YAxis="{Binding ElementName=ChartPanel2, Path=YAxis1}" />
+                <dr:ChartGrid XAxis="{Binding ElementName=ChartPanel2, Path=XAxis1}" YAxis="{Binding ElementName=ChartPanel2, Path=YAxis1}" />
+                <dr:HorizontalChartLine XAxis="{Binding ElementName=ChartPanel2, Path=XAxis1}"
+                                        Y="0"
+                                        YAxis="{Binding ElementName=ChartPanel2, Path=YAxis1}" />
+
+                <!--  A bar chart using buttons instead of simple bars.  -->
+                <dr:BarChart Title="Bar chart #1"
+                             DataPointStyle="{x:Null}"
+                             DataSource="{StaticResource Data1}"
+                             XAxis="{Binding ElementName=ChartPanel2, Path=XAxis1}"
+                             YAxis="{Binding ElementName=ChartPanel2, Path=YAxis1}">
+                    <dr:BarChart.DataPointTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding Y}" />
+                        </DataTemplate>
+                    </dr:BarChart.DataPointTemplate>
+                </dr:BarChart>
+
+                <dr:HorizontalChartLine IsVisibleInLegend="True"
+                                        XAxis="{Binding ElementName=ChartPanel2, Path=XAxis1}"
+                                        Y="50"
+                                        YAxis="{Binding ElementName=ChartPanel2, Path=YAxis1}"
+                                        dr:ChartPanel.ZIndex="-1">
+                    <dr:HorizontalChartLine.LineStyle>
+                        <Style TargetType="{x:Type Line}">
+                            <Setter Property="Stroke" Value="Red" />
+                        </Style>
+                    </dr:HorizontalChartLine.LineStyle>
+                </dr:HorizontalChartLine>
+                <dr:VerticalChartLine IsVisibleInLegend="True"
+                                      X="6"
+                                      XAxis="{Binding ElementName=ChartPanel2, Path=XAxis1}"
+                                      YAxis="{Binding ElementName=ChartPanel2, Path=YAxis1}"
+                                      dr:ChartPanel.ZIndex="1">
+                    <dr:VerticalChartLine.LineStyle>
+                        <Style TargetType="{x:Type Line}">
+                            <Setter Property="Stroke" Value="Blue" />
+                        </Style>
+                    </dr:VerticalChartLine.LineStyle>
+                </dr:VerticalChartLine>
+            </dr:DefaultChartPanel>
+            <dr:Legend Grid.Column="1"
+                       Margin="7,30,0,0"
+                       VerticalAlignment="Top"
+                       Source="{Binding ElementName=ChartPanel2}" />
+        </Grid>
+
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,142 @@
+﻿<Window x:Class="SampleApplication.SampleViewer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:SampleApplication="clr-namespace:SampleApplication"
+        Title="Chart Samples"
+        Width="800"
+        Height="600">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type SampleApplication:SampleInfo}">
+            <TextBlock Text="{Binding Title}" />
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid Margin="11">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Margin="0,0,0,11"
+                   FontSize="24">
+            DigitalRune.Windows.Charts Samples
+        </TextBlock>
+
+        <ListBox Name="SamplesListBox"
+                 Grid.Row="1"
+                 Grid.Column="0"
+                 Margin="0,0,11,0">
+
+            <SampleApplication:SampleInfo Title="Bar &amp; column charts">
+                <SampleApplication:SampleInfo.Description>This sample shows various kinds of bar and column charts. (Source file: BarCharts.xaml)</SampleApplication:SampleInfo.Description>
+                <SampleApplication:BarCharts />
+            </SampleApplication:SampleInfo>
+
+            <SampleApplication:SampleInfo Title="Line &amp; Area charts">
+                <SampleApplication:SampleInfo.Description>This sample shows various kinds of line and area charts. (Source file: LineCharts.xaml)</SampleApplication:SampleInfo.Description>
+                <SampleApplication:LineCharts />
+            </SampleApplication:SampleInfo>
+
+            <SampleApplication:SampleInfo Title="Scatter plots">
+                <SampleApplication:SampleInfo.Description>This sample shows various kinds of scatter plots. (Source file: ScatterPlots.xaml)</SampleApplication:SampleInfo.Description>
+                <SampleApplication:ScatterPlots />
+            </SampleApplication:SampleInfo>
+
+            <SampleApplication:SampleInfo Title="Colored bar charts">
+                <SampleApplication:SampleInfo.Description>
+                    Colored bar charts are a special type of bar or column charts.
+                    The area or outline is filled depending on the index, x, or y value of the data.
+                    (Source file: ColoredBarCharts.xaml)
+                </SampleApplication:SampleInfo.Description>
+                <SampleApplication:ColoredBarCharts />
+            </SampleApplication:SampleInfo>
+
+            <SampleApplication:SampleInfo Title="Colored line charts">
+                <SampleApplication:SampleInfo.Description>
+                    Colored line charts are a special type of line or area charts.
+                    The line or area is filled depending on the index, x, or y value of the data.
+                    (Source file: ColoredLineCharts.xaml)
+                </SampleApplication:SampleInfo.Description>
+                <SampleApplication:ColoredLineCharts />
+            </SampleApplication:SampleInfo>
+
+            <SampleApplication:SampleInfo Title="Pie charts">
+                <SampleApplication:SampleInfo.Description>
+                    Pie charts illustrate proportions by dividing a circle into sectors. Information
+                    can be added using labels inside the sectors or outside the sectors. Special variants
+                    are &quot;doughnut charts&quot; or &quot;exploded pie charts&quot;. (Source file: PineCharts.xaml)
+                </SampleApplication:SampleInfo.Description>
+                <SampleApplication:PieCharts />
+            </SampleApplication:SampleInfo>
+
+            <SampleApplication:SampleInfo Title="Heat charts">
+                <SampleApplication:SampleInfo.Description>
+                    This sample shows 1D heat charts. Heat charts are a special kind of
+                    chart. Data values are represented by color.
+                    (Source file: HeatCharts.xaml)
+                </SampleApplication:SampleInfo.Description>
+                <SampleApplication:HeatCharts />
+            </SampleApplication:SampleInfo>
+
+            <SampleApplication:SampleInfo Title="Custom elements">
+                <SampleApplication:SampleInfo.Description>
+                    This samples shows that practically any element can be placed inside a ChartPanel.
+                    (Source file: CustomElements.xaml)
+                </SampleApplication:SampleInfo.Description>
+                <SampleApplication:CustomElements />
+            </SampleApplication:SampleInfo>
+
+            <SampleApplication:SampleInfo Title="Interactions">
+                <SampleApplication:SampleInfo.Description>
+                    This samples shows some of the default 'interactions'.
+                    Use the left mouse button to draw a chart element or to drag a selection rectangle.
+                    (However, the the selection has currently no visual effect.)
+                    Use the middle mouse button to pan the chart area or the individual axes.
+                    You can use the modifier keys Shift or Ctrl to pan only the primary or the secondary axes.
+                    Use the mouse-wheel on the chart area or the individual axes to zoom in or out.
+                    (Source file: ChartInteractions.xaml)
+                </SampleApplication:SampleInfo.Description>
+                <SampleApplication:ChartInteractions />
+            </SampleApplication:SampleInfo>
+
+            <SampleApplication:SampleInfo Title="Custom chart panel">
+                <SampleApplication:SampleInfo.Description>
+                    The DefaultChartPanel used in the other samples uses a default layout (two horizontal
+                    and two vertical axes). But you can create custom layouts by using the ChartPanel.
+                    When using the ChartPanel you need to explicitly add and position the x and y axes.
+                    (Source file: CustomChartPanel.xaml)
+                </SampleApplication:SampleInfo.Description>
+                <SampleApplication:CustomChartPanel />
+            </SampleApplication:SampleInfo>
+
+        </ListBox>
+
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
+            <Border Margin="0,0,0,7"
+                    BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}"
+                    BorderThickness="1">
+                <ScrollViewer>
+                    <ContentControl Margin="7" Content="{Binding ElementName=SamplesListBox, Path=SelectedItem.Sample}" />
+                </ScrollViewer>
+            </Border>
+            <TextBox Grid.Row="1"
+                     IsReadOnly="True"
+                     Text="{Binding ElementName=SamplesListBox, Path=SelectedItem.Description}"
+                     TextWrapping="Wrap" />
+        </Grid>
+
+    </Grid>
+
+</Window>

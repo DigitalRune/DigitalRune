@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="WindowsControlsApp.EditableTextBlockTest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:TestApplication="clr-namespace:WindowsControlsApp"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             Margin="11">
+
+    <UserControl.Resources>
+        <TestApplication:EmployeeList x:Key="Employees">
+            <TestApplication:Employee FirstName="John"
+                                      LastName="Smith"
+                                      Number="100" />
+            <TestApplication:Employee FirstName="William"
+                                      LastName="Johnson"
+                                      Number="200" />
+            <TestApplication:Employee FirstName="Andrea"
+                                      LastName="Miller"
+                                      Number="300" />
+        </TestApplication:EmployeeList>
+    </UserControl.Resources>
+
+    <StackPanel>
+        <dr:EditableTextBlock Margin="3">EditableTextBlock 1</dr:EditableTextBlock>
+        <dr:EditableTextBlock Margin="3">EditableTextBlock 2</dr:EditableTextBlock>
+        <dr:EditableTextBlock Margin="3" FontSize="24">EditableTextBlock 3</dr:EditableTextBlock>
+        <dr:EditableTextBlock Margin="3" IsEditable="False">EditableTextBlock 4 (IsEditable=false)</dr:EditableTextBlock>
+        <dr:EditableTextBlock Margin="3">EditableTextBlock 5</dr:EditableTextBlock>
+
+        <ListView Margin="3" ItemsSource="{Binding Source={StaticResource Employees}}">
+            <ListView.View>
+                <GridView AllowsColumnReorder="True" ColumnHeaderToolTip="Employee Information">
+                    <GridViewColumn x:Name="FirstColumn"
+                                    Width="100"
+                                    Header="First Name">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <dr:EditableTextBlock MaxWidth="{Binding ElementName=FirstColumn, Path=Width}"
+                                                      IsEditable="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                      Text="{Binding Path=FirstName}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="SecondColumn"
+                                    Width="100"
+                                    Header="Last Name">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <dr:EditableTextBlock MaxWidth="{Binding ElementName=SecondColumn, Path=Width}"
+                                                      IsEditable="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                      Text="{Binding Path=LastName}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="ThirdColumn"
+                                    Width="50"
+                                    Header="Number">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <dr:EditableTextBlock MaxWidth="{Binding ElementName=ThirdColumn, Path=Width}"
+                                                      IsEditable="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListViewItem}}, Path=IsSelected}"
+                                                      Text="{Binding Path=Number}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </StackPanel>
+</UserControl>

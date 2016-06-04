@@ -1,0 +1,68 @@
+﻿<!-- 
+    Note: 
+    The DataContext is set using the ViewModelLocator. This is only relevant at design-time. At
+    run-time the DataContext is set when the window is created using the WindowManager.
+    (See AppBootstrapper.cs).
+    At design-time we could use a static property MainWindowViewModel.DesignInstance instead of the
+    ViewModelLocator!
+-->
+<Window x:Class="ScreenConductionApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:ScreenConductionApp"
+        Title="MainWindow"
+        Width="525"
+        Height="350"
+        DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type local:TestWindowViewModel}">
+            <local:TestWindowView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:TestDialogViewModel}">
+            <local:TestDialogView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:TestItemConductorViewModel}">
+            <local:TestItemConductorView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:TestOneActiveItemsConductorViewModel}">
+            <local:TestOneActiveItemsConductorView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:DocumentViewModel}">
+            <local:DocumentView />
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="100" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Margin="0,0,10,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ListBox Grid.Row="0"
+                     Margin="0,0,0,5"
+                     ItemsSource="{Binding TestCases}"
+                     SelectedItem="{Binding SelectedTestCase}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding DisplayName}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button Grid.Row="1"
+                    Command="{Binding CloseCommand}"
+                    Content="Close" />
+        </Grid>
+
+        <Border Grid.Column="1"
+                BorderBrush="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}"
+                BorderThickness="1">
+            <ContentControl Content="{Binding Item}" />
+        </Border>
+    </Grid>
+</Window>
