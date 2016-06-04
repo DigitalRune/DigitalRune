@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Screens and Conductors                                         Assembly: DigitalRune.Windows.Framework  Namespace: DigitalRune.Windows.Framework">
+    <Position X="0.5" Y="0.5" Height="0.678" Width="2.857" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.Framework.ScreenHelper">
+    <Position X="5.75" Y="5.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ScreenConduction\ScreenHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.DeactivationEventArgs">
+    <Position X="2.5" Y="3" Width="2" />
+    <Members>
+      <Method Name="DeactivationEventArgs" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>ScreenConduction\IActivatable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.Screen" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="5.25" Width="1.5" />
+    <Members>
+      <Field Name="_conductor" Hidden="true" />
+      <Field Name="_displayName" Hidden="true" />
+      <Field Name="_isActive" Hidden="true" />
+      <Field Name="_isOpen" Hidden="true" />
+      <Method Name="IActivatable.OnActivate" Hidden="true" />
+      <Method Name="IActivatable.OnDeactivate" Hidden="true" />
+      <Method Name="Screen" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ICAAGAAgAAAQAABAUIQAAAQAAAQAAAAAAIAAAgAAAAA=</HashCode>
+      <FileName>ScreenConduction\Screen.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Conductor" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.ItemConductor">
+    <Position X="2.25" Y="9.5" Width="2" />
+    <Members>
+      <Method Name="ChangeActiveItem" Hidden="true" />
+      <Property Name="IConductor.ActiveItems" Hidden="true" />
+      <Property Name="IConductor.Items" Hidden="true" />
+      <Method Name="OnActivated" Hidden="true" />
+      <Method Name="OnDeactivated" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAQQAAAAAAQAAAAAAQAAAgEAAAAAAAAAIAAAAAAAAg=</HashCode>
+      <FileName>ScreenConduction\ItemConductor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.AllActiveItemsConductor">
+    <Position X="7" Y="9.5" Width="2.25" />
+    <Members>
+      <Method Name="AllActiveItemsConductor" Hidden="true" />
+      <Method Name="IConductor.ActivateItemAsync" Hidden="true" />
+      <Property Name="IConductor.ActiveItems" Hidden="true" />
+      <Property Name="IConductor.Items" Hidden="true" />
+      <Method Name="OnActivated" Hidden="true" />
+      <Method Name="OnDeactivated" Hidden="true" />
+      <Method Name="OnItemsCollectionsChanged" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAQCAAgAAQAAAgAAAAAAAABBIAABAgAAAg=</HashCode>
+      <FileName>ScreenConduction\AllActiveItemsConductor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.OneActiveItemsConductor">
+    <Position X="4.5" Y="9.5" Width="2.25" />
+    <Members>
+      <Field Name="_activeItem" Hidden="true" />
+      <Field Name="_items" Hidden="true" />
+      <Method Name="ActivateItem" Hidden="true" />
+      <Method Name="ChangeActiveItem" Hidden="true" />
+      <Method Name="CloseItem" Hidden="true" />
+      <Method Name="IConductor.ActivateItemAsync" Hidden="true" />
+      <Property Name="IConductor.ActiveItems" Hidden="true" />
+      <Property Name="IConductor.Items" Hidden="true" />
+      <Method Name="OnActivated" Hidden="true" />
+      <Method Name="OnDeactivated" Hidden="true" />
+      <Method Name="OneActiveItemsConductor" Hidden="true" />
+      <Method Name="OnItemsCollectionsChanged" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAQCAAgAEQAAAgBABAAAAABBIAABCgAAAg=</HashCode>
+      <FileName>ScreenConduction\OneActiveItemsConductor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.Dialog">
+    <Position X="0.5" Y="9.5" Width="1.5" />
+    <Members>
+      <Field Name="_dialogResult" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>ScreenConduction\Dialog.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.ActivationEventArgs">
+    <Position X="2.5" Y="1.5" Width="2" />
+    <Members>
+      <Method Name="ActivationEventArgs" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ScreenConduction\IActivatable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DigitalRune.Windows.Framework.IDisplayName">
+    <Position X="5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ScreenConduction\IDisplayName.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Windows.Framework.IScreen">
+    <Position X="0.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ScreenConduction\IScreen.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Conductor" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="DigitalRune.Windows.Framework.IGuardClose">
+    <Position X="5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ScreenConduction\IGuardClose.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Windows.Framework.IConductor">
+    <Position X="0.5" Y="6.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQQAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>ScreenConduction\IConductor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Windows.Framework.IDialogResult">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ScreenConduction\IDialogResult.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Windows.Framework.IActivatable">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAABAEAAAAAAgAAQAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>ScreenConduction\IActivatable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

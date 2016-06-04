@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Constraint Base Types            Assembly: DigitalRune.Physics        Namespace: DigitalRune.Physics">
+    <Position X="0.5" Y="0.5" Height="0.625" Width="2.064" />
+  </Comment>
+  <Class Name="DigitalRune.Physics.Constraints.Constraint">
+    <Position X="2.75" Y="1.5" Width="2.25" />
+    <Members>
+      <Field Name="_bodyA" Hidden="true" />
+      <Field Name="_bodyB" Hidden="true" />
+      <Field Name="_collisionEnabled" Hidden="true" />
+      <Field Name="_enabled" Hidden="true" />
+      <Field Name="_simulation" Hidden="true" />
+      <Method Name="AddToCollisionFilter" Hidden="true" />
+      <Method Name="RemoveFromCollisionFilter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AABAAEAQSQBACKAEAAIAAAAAAAAAEACRAAACBAAAEAA=</HashCode>
+      <FileName>Constraints\Constraint.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Physics.Constraints.ContactConstraint">
+    <Position X="5.25" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_bodyA" Hidden="true" />
+      <Field Name="_bodyB" Hidden="true" />
+      <Field Name="_dynamicFriction" Hidden="true" />
+      <Field Name="_frictionConstraint0" Hidden="true" />
+      <Field Name="_frictionConstraint1" Hidden="true" />
+      <Field Name="_minConstraintImpulse" Hidden="true" />
+      <Field Name="_normal" Hidden="true" />
+      <Field Name="_penetrationConstraint" Hidden="true" />
+      <Field Name="_rA" Hidden="true" />
+      <Field Name="_rALengthSquared" Hidden="true" />
+      <Field Name="_rB" Hidden="true" />
+      <Field Name="_rBLengthSquared" Hidden="true" />
+      <Field Name="_restitution" Hidden="true" />
+      <Field Name="_simulation" Hidden="true" />
+      <Field Name="_splitImpulse" Hidden="true" />
+      <Field Name="_splitImpulseTargetVelocity" Hidden="true" />
+      <Field Name="_staticFriction" Hidden="true" />
+      <Field Name="_surfaceMotionAEnabled" Hidden="true" />
+      <Field Name="_surfaceMotionBEnabled" Hidden="true" />
+      <Field Name="_t0" Hidden="true" />
+      <Field Name="_t1" Hidden="true" />
+      <Method Name="ContactConstraint" Hidden="true" />
+      <Method Name="Create" Hidden="true" />
+      <Property Name="IConstraint.AngularConstraintImpulse" Hidden="true" />
+      <Property Name="IConstraint.CollisionEnabled" Hidden="true" />
+      <Property Name="IConstraint.Enabled" Hidden="true" />
+      <Method Name="Initialize" Hidden="true" />
+      <Field Name="Pool" Hidden="true" />
+      <Method Name="Recycle" Hidden="true" />
+      <Property Name="RelativeNormalVelocity" Hidden="true" />
+      <Property Name="RelativeVelocity" Hidden="true" />
+      <Property Name="StackingTolerance" Hidden="true" />
+      <Method Name="Uninitialize" Hidden="true" />
+      <Property Name="Used" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>iAAAEEAASAADAygASAAQAAAAAgBAGEwJBSAADAFAEEg=</HashCode>
+      <FileName>Constraints\ContactConstraint.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Physics.Constraints.ConstraintHelper">
+    <Position X="7.5" Y="1.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAEAAAAAAAAAEAAgAAAAAAAAAAAAAAAABgAQA=</HashCode>
+      <FileName>Constraints\Misc\ConstraintHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DigitalRune.Physics.Constraints.IConstraint">
+    <Position X="0.5" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAACAAACKAEAAAAAAAAAAAAEAABAAAABAAAAAA=</HashCode>
+      <FileName>Constraints\IConstraint.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

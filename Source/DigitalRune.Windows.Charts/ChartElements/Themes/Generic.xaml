@@ -1,0 +1,198 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:charts="clr-namespace:DigitalRune.Windows.Charts"
+                    xmlns:interactivity="clr-namespace:DigitalRune.Windows.Charts.Interactivity">
+
+
+    <!--  Shared resources (brushes, etc.)  -->
+
+    <LinearGradientBrush x:Key="ChartAreaBrush" StartPoint="0.5,0.0" EndPoint="0.5,1.0">
+        <GradientStop Offset="0" Color="#FFFFFF" />
+        <GradientStop Offset="1" Color="#DDDDDD" />
+    </LinearGradientBrush>
+
+
+    <LinearGradientBrush x:Key="MajorGridLineBrush" StartPoint="0.5,0.0" EndPoint="0.5,1.0">
+        <GradientStop Offset="0" Color="#A0A0A0" />
+        <GradientStop Offset="1" Color="#808080" />
+    </LinearGradientBrush>
+
+
+    <LinearGradientBrush x:Key="MinorGridLineBrush" StartPoint="0.5,0.0" EndPoint="0.5,1.0">
+        <GradientStop Offset="0" Color="#DDDDDD" />
+        <GradientStop Offset="1" Color="#C0C0C0" />
+    </LinearGradientBrush>
+
+
+    <!--  Default Styles  -->
+
+    <Style TargetType="{x:Type charts:ChartBackground}">
+        <Setter Property="interactivity:ChartSelectionBehavior.Selectable" Value="False" />
+        <Setter Property="Panel.ZIndex" Value="-100" />
+        <Setter Property="Background" Value="{StaticResource ChartAreaBrush}" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="IsVisibleInLegend" Value="False" />
+        <Setter Property="Title" Value="Chart Background" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type charts:ChartBackground}">
+                    <Rectangle Name="PART_Background" Fill="{TemplateBinding Background}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type charts:ChartGrid}">
+        <Setter Property="interactivity:ChartSelectionBehavior.Selectable" Value="False" />
+        <Setter Property="Panel.ZIndex" Value="-99" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="HorizontalMajorLineStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type Path}">
+                    <Setter Property="Stroke" Value="{StaticResource MajorGridLineBrush}" />
+                    <Setter Property="StrokeThickness" Value="0.4" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="HorizontalMinorLineStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type Path}">
+                    <Setter Property="Stroke" Value="{StaticResource MinorGridLineBrush}" />
+                    <Setter Property="StrokeThickness" Value="0.4" />
+                    <!--
+                        Avoid dashed lines, because they cost a lot of performance.
+                        <Setter Property="StrokeDashArray" Value="4 4"/>
+                    -->
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="VerticalMajorLineStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type Path}">
+                    <Setter Property="Stroke" Value="{StaticResource MajorGridLineBrush}" />
+                    <Setter Property="StrokeThickness" Value="0.4" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="VerticalMinorLineStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type Path}">
+                    <Setter Property="Stroke" Value="{StaticResource MinorGridLineBrush}" />
+                    <Setter Property="StrokeThickness" Value="0.4" />
+                    <!--
+                        Avoid dashed lines, because they cost a lot of performance.
+                        <Setter Property="StrokeDashArray" Value="4 4"/>
+                    -->
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="IsVisibleInLegend" Value="False" />
+        <Setter Property="Title" Value="Grid lines" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type charts:ChartGrid}">
+                    <Canvas Background="{TemplateBinding Background}"
+                            IsHitTestVisible="False"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Path Name="PART_HorizontalMajorLines" Style="{TemplateBinding HorizontalMajorLineStyle}" />
+                        <Path Name="PART_HorizontalMinorLines" Style="{TemplateBinding HorizontalMinorLineStyle}" />
+                        <Path Name="PART_VerticalMajorLines" Style="{TemplateBinding VerticalMajorLineStyle}" />
+                        <Path Name="PART_VerticalMinorLines" Style="{TemplateBinding VerticalMinorLineStyle}" />
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type charts:ChartCross}">
+        <Setter Property="interactivity:ChartSelectionBehavior.Selectable" Value="False" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="HorizontalLineStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type Line}">
+                    <Setter Property="Stroke" Value="Black" />
+                    <Setter Property="StrokeThickness" Value="1" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="VerticalLineStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type Line}">
+                    <Setter Property="Stroke" Value="Black" />
+                    <Setter Property="StrokeThickness" Value="1" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="IsVisibleInLegend" Value="False" />
+        <Setter Property="Title" Value="Coordinate Cross" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type charts:ChartCross}">
+                    <Canvas Background="{TemplateBinding Background}"
+                            IsHitTestVisible="False"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Line Name="PART_HorizontalLine" Style="{TemplateBinding HorizontalLineStyle}" />
+                        <Line Name="PART_VerticalLine" Style="{TemplateBinding VerticalLineStyle}" />
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type charts:HorizontalChartLine}">
+        <Setter Property="interactivity:ChartSelectionBehavior.Selectable" Value="False" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="LineStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type Line}">
+                    <Setter Property="Stroke" Value="Black" />
+                    <Setter Property="StrokeThickness" Value="1" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="IsVisibleInLegend" Value="False" />
+        <Setter Property="Title" Value="Horizontal Line" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type charts:HorizontalChartLine}">
+                    <Canvas Background="{TemplateBinding Background}"
+                            IsHitTestVisible="False"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Line Name="PART_Line" Style="{TemplateBinding LineStyle}" />
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type charts:VerticalChartLine}">
+        <Setter Property="interactivity:ChartSelectionBehavior.Selectable" Value="False" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="LineStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type Line}">
+                    <Setter Property="Stroke" Value="Black" />
+                    <Setter Property="StrokeThickness" Value="1" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="IsVisibleInLegend" Value="False" />
+        <Setter Property="Title" Value="Vertical Line" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type charts:VerticalChartLine}">
+                    <Canvas Background="{TemplateBinding Background}"
+                            IsHitTestVisible="False"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Line Name="PART_Line" Style="{TemplateBinding LineStyle}" />
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

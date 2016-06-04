@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Explorer View                                   Assembly: DigitalRune.Windows.Controls   Namespace: DigitalRune.Windows.Controls">
+    <Position X="0.5" Y="0.5" Height="0.635" Width="2.658" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.Controls.ExplorerView">
+    <Position X="0.5" Y="1.5" Width="2.25" />
+    <Members>
+      <Field Name="_defaultStyleKey" Hidden="true" />
+      <Field Name="_itemContainerDefaultStyleKey" Hidden="true" />
+      <Field Name="_updating" Hidden="true" />
+      <Property Name="DefaultStyleKey" Hidden="true" />
+      <Method Name="ExplorerView" Hidden="true" />
+      <Field Name="IconProperty" Hidden="true" />
+      <Field Name="IconPropertyKey" Hidden="true" />
+      <Field Name="IconTemplateProperty" Hidden="true" />
+      <Field Name="IconTemplateSelectorProperty" Hidden="true" />
+      <Property Name="ItemContainerDefaultStyleKey" Hidden="true" />
+      <Field Name="ListTemplateProperty" Hidden="true" />
+      <Field Name="ListTemplateSelectorProperty" Hidden="true" />
+      <Field Name="MenuProperty" Hidden="true" />
+      <Field Name="MenuPropertyKey" Hidden="true" />
+      <Field Name="ModeProperty" Hidden="true" />
+      <Method Name="OnMenuLoaded" Hidden="true" />
+      <Method Name="OnModeChanged" Hidden="true" />
+      <Method Name="OnScaleChanged" Hidden="true" />
+      <Field Name="ScaleProperty" Hidden="true" />
+      <Method Name="SetIcon" Hidden="true" />
+      <Method Name="SetMode" Hidden="true" />
+      <Method Name="SetScale" Hidden="true" />
+      <Field Name="TileTemplateProperty" Hidden="true" />
+      <Field Name="TileTemplateSelectorProperty" Hidden="true" />
+      <Method Name="UpdateFromMode" Hidden="true" />
+      <Method Name="UpdateFromScale" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>YSAAJBAQAoABAgAAAAIAAAABQCIIkAWQgECEghEK0AA=</HashCode>
+      <FileName>ExplorerView\ExplorerView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Menu" />
+      <Property Name="Mode" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.ExplorerViewMenu">
+    <Position X="3.75" Y="1.5" Width="2.25" />
+    <Members>
+      <Field Name="_initialized" Hidden="true" />
+      <Field Name="_slider" Hidden="true" />
+      <Field Name="_sliderThumb" Hidden="true" />
+      <Field Name="_updating" Hidden="true" />
+      <Method Name="AttachToVisualTree" Hidden="true" />
+      <Method Name="BindMenuIcon" Hidden="true" />
+      <Method Name="BindMenuText" Hidden="true" />
+      <Method Name="CaptureMouseToThumb" Hidden="true" />
+      <Method Name="DetachFromVisualTree" Hidden="true" />
+      <Method Name="ExplorerViewMenu" Hidden="true" />
+      <Field Name="IconProperty" Hidden="true" />
+      <Field Name="IconPropertyKey" Hidden="true" />
+      <Field Name="ImageSourceDetailsProperty" Hidden="true" />
+      <Field Name="ImageSourceExtraLargeIconsProperty" Hidden="true" />
+      <Field Name="ImageSourceLargeIconsProperty" Hidden="true" />
+      <Field Name="ImageSourceListProperty" Hidden="true" />
+      <Field Name="ImageSourceMediumIconsProperty" Hidden="true" />
+      <Field Name="ImageSourceSmallIconsProperty" Hidden="true" />
+      <Field Name="ImageSourceTilesProperty" Hidden="true" />
+      <Field Name="ModeProperty" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnInitialized" Hidden="true" />
+      <Method Name="OnItemsChanged" Hidden="true" />
+      <Method Name="OnMenuItemClicked" Hidden="true" />
+      <Method Name="OnModeChanged" Hidden="true" />
+      <Method Name="OnOpened" Hidden="true" />
+      <Method Name="OnScaleChanged" Hidden="true" />
+      <Method Name="OnSliderPositionChanged" Hidden="true" />
+      <Method Name="OnThumbLostMouseCapture" Hidden="true" />
+      <Field Name="ScaleDetails" Hidden="true" />
+      <Field Name="ScaleExtraLarge" Hidden="true" />
+      <Field Name="ScaleLarge" Hidden="true" />
+      <Field Name="ScaleList" Hidden="true" />
+      <Field Name="ScaleMedium" Hidden="true" />
+      <Field Name="ScaleProperty" Hidden="true" />
+      <Field Name="ScaleSmall" Hidden="true" />
+      <Field Name="ScaleTiles" Hidden="true" />
+      <Method Name="SetIcon" Hidden="true" />
+      <Method Name="SetMode" Hidden="true" />
+      <Method Name="SetScale" Hidden="true" />
+      <Method Name="SetSliderPosition" Hidden="true" />
+      <Field Name="SliderPositionDetails" Hidden="true" />
+      <Field Name="SliderPositionExtraLarge" Hidden="true" />
+      <Field Name="SliderPositionLarge" Hidden="true" />
+      <Field Name="SliderPositionList" Hidden="true" />
+      <Field Name="SliderPositionMedium" Hidden="true" />
+      <Field Name="SliderPositionProperty" Hidden="true" />
+      <Field Name="SliderPositionSmall" Hidden="true" />
+      <Field Name="SliderPositionTiles" Hidden="true" />
+      <Field Name="StringDetailsProperty" Hidden="true" />
+      <Field Name="StringExtraLargeIconsProperty" Hidden="true" />
+      <Field Name="StringLargeIconsProperty" Hidden="true" />
+      <Field Name="StringListProperty" Hidden="true" />
+      <Field Name="StringMediumIconsProperty" Hidden="true" />
+      <Field Name="StringSmallIconsProperty" Hidden="true" />
+      <Field Name="StringTilesProperty" Hidden="true" />
+      <Method Name="UpdateFromMode" Hidden="true" />
+      <Method Name="UpdateFromScale" Hidden="true" />
+      <Method Name="UpdateFromSlider" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>cQCJCkkIiKjYEgRICgpACAABQBIAEQEemRymAykCiOA=</HashCode>
+      <FileName>ExplorerView\ExplorerViewMenu.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mode" />
+    </ShowAsAssociation>
+  </Class>
+  <Enum Name="DigitalRune.Windows.Controls.ExplorerViewMode">
+    <Position X="1" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QgAAAAAAAAABAAAAAAAAgAAAAAAAAAIAEAAAAAAAAAI=</HashCode>
+      <FileName>ExplorerView\ExplorerViewMode.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

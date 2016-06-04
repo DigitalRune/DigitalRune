@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Color controls                                   Assembly: DigitalRune.Windows.Controls   Namespace: DigitalRune.Windows.Controls">
+    <Position X="0.5" Y="0.5" Height="0.635" Width="2.658" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.Controls.ColorGradientControl">
+    <Position X="4" Y="7" Width="2" />
+    <Members>
+      <Field Name="_colorStopPanel" Hidden="true" />
+      <Field Name="_gradientArea" Hidden="true" />
+      <Field Name="_mouseOffsetToColorStop" Hidden="true" />
+      <Field Name="_selectedIndex" Hidden="true" />
+      <Method Name="ColorGradientControl" Hidden="true" />
+      <Field Name="ColorStopSizeProperty" Hidden="true" />
+      <Field Name="GradientStopsChangedEvent" Hidden="true" />
+      <Field Name="GradientStopsProperty" Hidden="true" />
+      <Method Name="IncreaseWithModifiers" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnColorStopGotFocus" Hidden="true" />
+      <Method Name="OnColorStopMouseDown" Hidden="true" />
+      <Method Name="OnGradientStopsChanged" Hidden="true" />
+      <Method Name="OnKeyDown" Hidden="true" />
+      <Method Name="OnMouseDoubleClick" Hidden="true" />
+      <Method Name="OnMouseMove" Hidden="true" />
+      <Method Name="OnMouseUp" Hidden="true" />
+      <Method Name="OnPreviewMouseDown" Hidden="true" />
+      <Method Name="OnRenderSizeChanged" Hidden="true" />
+      <Method Name="RemoveColorStopControls" Hidden="true" />
+      <Method Name="SetSelection" Hidden="true" />
+      <Method Name="ShowColorDialog" Hidden="true" />
+      <Method Name="UpdateColorStops" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AMAQAIAEQAFBQAACACQAAABAABICEAAAgAAAAQAiACA=</HashCode>
+      <FileName>ColorGradientControl\ColorGradientControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.ColorStop">
+    <Position X="6.25" Y="7" Width="1.5" />
+    <Members>
+      <Field Name="ColorProperty" Hidden="true" />
+      <Method Name="ColorStop" Hidden="true" />
+      <Field Name="IsSelectedProperty" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnIsSelectedChanged" Hidden="true" />
+      <Method Name="UpdateStates" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAABAEAAAAAAAAAAAAAABAAAAIAAAhAAAAAA=</HashCode>
+      <FileName>ColorGradientControl\ColorStop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.ColorPicker">
+    <Position X="0.5" Y="1.5" Width="2.5" />
+    <Members>
+      <Field Name="_buttonB" Hidden="true" />
+      <Field Name="_buttonG" Hidden="true" />
+      <Field Name="_buttonH" Hidden="true" />
+      <Field Name="_buttonR" Hidden="true" />
+      <Field Name="_buttonS" Hidden="true" />
+      <Field Name="_buttonV" Hidden="true" />
+      <Field Name="_changedComponents" Hidden="true" />
+      <Field Name="_colorAControl" Hidden="true" />
+      <Field Name="_colorBControl" Hidden="true" />
+      <Field Name="_colorBeforeEyeDropperClicked" Hidden="true" />
+      <Field Name="_colorGControl" Hidden="true" />
+      <Field Name="_colorHControl" Hidden="true" />
+      <Field Name="_colorRControl" Hidden="true" />
+      <Field Name="_colorSControl" Hidden="true" />
+      <Field Name="_colorSpaceConverter" Hidden="true" />
+      <Field Name="_colorSpaceSelector" Hidden="true" />
+      <Field Name="_colorVControl" Hidden="true" />
+      <Field Name="_detailAreaBitmap" Hidden="true" />
+      <Field Name="_detailAreaBitmapIsValid" Hidden="true" />
+      <Field Name="_detailAreaChanged" Hidden="true" />
+      <Field Name="_eyeDropperButton" Hidden="true" />
+      <Field Name="_hexValueTextBox" Hidden="true" />
+      <Field Name="_invisibleFullScreenWindow" Hidden="true" />
+      <Field Name="_isInEyeDropperMode" Hidden="true" />
+      <Field Name="_newColorNoAlphaShape" Hidden="true" />
+      <Field Name="_newColorShape" Hidden="true" />
+      <Field Name="_oldColorNoAlphaShape" Hidden="true" />
+      <Field Name="_oldColorShape" Hidden="true" />
+      <Field Name="_pixelBuffer" Hidden="true" />
+      <Field Name="_screenshot" Hidden="true" />
+      <Field Name="_slider1D" Hidden="true" />
+      <Field Name="_slider2D" Hidden="true" />
+      <Field Name="ColorChangedEvent" Hidden="true" />
+      <Method Name="ColorPicker" Hidden="true" />
+      <Field Name="ColorProperty" Hidden="true" />
+      <Field Name="ColorSpaceProperty" Hidden="true" />
+      <Method Name="Fill2DArea" Hidden="true" />
+      <Method Name="GetColorFromControls" Hidden="true" />
+      <Method Name="GetColorFromHexValue" Hidden="true" />
+      <Field Name="OldColorProperty" Hidden="true" />
+      <Method Name="OnAlphaChanged" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnColorChanged" Hidden="true" />
+      <Method Name="OnColorSpaceChanged" Hidden="true" />
+      <Method Name="OnColorSpaceSelectionChanged" Hidden="true" />
+      <Method Name="OnDetailAreaChanged" Hidden="true" />
+      <Method Name="OnDetailAreaSizeChanged" Hidden="true" />
+      <Method Name="OnEyeDropperButtonClicked" Hidden="true" />
+      <Method Name="OnHexValueChanged" Hidden="true" />
+      <Method Name="OnHexValueLostFocus" Hidden="true" />
+      <Method Name="OnHsvChanged" Hidden="true" />
+      <Method Name="OnLoaded" Hidden="true" />
+      <Method Name="OnLostMouseCapture" Hidden="true" />
+      <Method Name="OnMouseMove" Hidden="true" />
+      <Method Name="OnMouseUp" Hidden="true" />
+      <Method Name="OnPreviewKeyDown" Hidden="true" />
+      <Method Name="OnRadioButtonChecked" Hidden="true" />
+      <Method Name="OnResetColorExecuted" Hidden="true" />
+      <Method Name="OnRgbChanged" Hidden="true" />
+      <Method Name="OnSelectedComponentChanged" Hidden="true" />
+      <Method Name="RegisterEventHandlers" Hidden="true" />
+      <Field Name="SelectedComponentProperty" Hidden="true" />
+      <Method Name="ToDevice" Hidden="true" />
+      <Method Name="UnregisterEventHandlers" Hidden="true" />
+      <Method Name="UpdateAlphaGradient" Hidden="true" />
+      <Method Name="UpdateControls" Hidden="true" />
+      <Method Name="UpdateDetailArea" Hidden="true" />
+      <Method Name="UpdateDetailAreaBitmap" Hidden="true" />
+      <Method Name="UpdateHsvGradients" Hidden="true" />
+      <Method Name="UpdateRgbGradients" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>wQAhBjgKkDnJBA0IQCCSAkkRYhCvAEAAghDAoA5qMQg=</HashCode>
+      <FileName>ColorPicker\ColorPicker.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_changedComponents" />
+      <Field Name="_colorHControl" />
+      <Field Name="_colorSControl" />
+      <Field Name="_colorVControl" />
+      <Field Name="_colorRControl" />
+      <Field Name="_colorGControl" />
+      <Field Name="_colorBControl" />
+      <Field Name="_colorAControl" />
+      <Field Name="_slider1D" />
+      <Property Name="ColorSpace" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.ColorDialog">
+    <Position X="0.5" Y="7" Width="1.5" />
+    <Members>
+      <Method Name="ColorDialog" Hidden="true" />
+      <Method Name="OnCancelClick" Hidden="true" />
+      <Method Name="OnOkClick" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAQAACAAAAAAAAgAAAgAA=</HashCode>
+      <FileName>ColorPicker\ColorDialog.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.ColorComponentControl">
+    <Position X="4" Y="4" Width="2" />
+    <Members>
+      <Field Name="_doubleValueControl" Hidden="true" />
+      <Field Name="_int32ValueControl" Hidden="true" />
+      <Field Name="_isUpdating" Hidden="true" />
+      <Field Name="_slider" Hidden="true" />
+      <Method Name="ColorComponentControl" Hidden="true" />
+      <Field Name="DisplayValueConverterProperty" Hidden="true" />
+      <Method Name="FromDisplayValue" Hidden="true" />
+      <Field Name="LabelProperty" Hidden="true" />
+      <Field Name="MaximumProperty" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnCoerceMaximum" Hidden="true" />
+      <Method Name="OnDisplayValueConverterChanged" Hidden="true" />
+      <Method Name="OnDoubleValueChanged" Hidden="true" />
+      <Method Name="OnInt32ValueChanged" Hidden="true" />
+      <Method Name="OnMaximumChanged" Hidden="true" />
+      <Method Name="OnSliderChanged" Hidden="true" />
+      <Method Name="OnValueChanged" Hidden="true" />
+      <Field Name="SliderBrushProperty" Hidden="true" />
+      <Method Name="ToDisplayValue" Hidden="true" />
+      <Method Name="Update" Hidden="true" />
+      <Method Name="UpdateControls" Hidden="true" />
+      <Field Name="ValueChangedEvent" Hidden="true" />
+      <Field Name="ValueProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAQAAGAIEAhAAAABAgg0AAAAAMAwAAEwAAAkAADAAQA=</HashCode>
+      <FileName>ColorPicker\ColorComponentControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.ColorButton">
+    <Position X="2.25" Y="7" Width="1.5" />
+    <Members>
+      <Field Name="_button" Hidden="true" />
+      <Method Name="ColorButton" Hidden="true" />
+      <Field Name="ColorProperty" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnButtonClick" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAIABAAIAAAAAgAAAAAA=</HashCode>
+      <FileName>ColorPicker\ColorButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.ColorSlider1D">
+    <Position X="0.5" Y="4" Width="1.5" />
+    <Members>
+      <Field Name="_thumb" Hidden="true" />
+      <Method Name="ClampValue" Hidden="true" />
+      <Method Name="ColorSlider1D" Hidden="true" />
+      <Method Name="IncreaseWithModifiers" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnCoerceValue" Hidden="true" />
+      <Method Name="OnMouseDown" Hidden="true" />
+      <Method Name="OnMouseMove" Hidden="true" />
+      <Method Name="OnMouseUp" Hidden="true" />
+      <Method Name="OnPreviewKeyDown" Hidden="true" />
+      <Method Name="OnRenderSizeChanged" Hidden="true" />
+      <Method Name="OnValueChanged" Hidden="true" />
+      <Method Name="PositionThumb" Hidden="true" />
+      <Field Name="ValueChangedEvent" Hidden="true" />
+      <Field Name="ValueProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAQACAAAABgAAAAAAAQAAAAAFAAAAUAoAAgAAAKAAE=</HashCode>
+      <FileName>ColorPicker\ColorSlider1D.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.ColorSlider2D">
+    <Position X="2.25" Y="4" Width="1.5" />
+    <Members>
+      <Field Name="_thumb" Hidden="true" />
+      <Method Name="ClampValue" Hidden="true" />
+      <Method Name="ColorSlider2D" Hidden="true" />
+      <Field Name="ImageSourceProperty" Hidden="true" />
+      <Method Name="IncreaseWithModifiers" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnCoerceValue" Hidden="true" />
+      <Method Name="OnMouseDown" Hidden="true" />
+      <Method Name="OnMouseMove" Hidden="true" />
+      <Method Name="OnMouseUp" Hidden="true" />
+      <Method Name="OnPreviewKeyDown" Hidden="true" />
+      <Method Name="OnRenderSizeChanged" Hidden="true" />
+      <Method Name="OnValueChanged" Hidden="true" />
+      <Method Name="PositionThumb" Hidden="true" />
+      <Field Name="ValueChangedEvent" Hidden="true" />
+      <Field Name="ValueProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAQACAAAABgAAAAAAMQAAAAAFAAAAUAoAAgAAAKAAE=</HashCode>
+      <FileName>ColorPicker\ColorSlider2D.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.ColorPickerCommands">
+    <Position X="3.75" Y="1" Width="2" />
+    <Members>
+      <Field Name="_resetColor" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAI=</HashCode>
+      <FileName>ColorPicker\ColorPickerCommands.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="DigitalRune.Windows.Controls.ColorComponents">
+    <Position X="6.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAASAAAAAAAAAgAAAAAAAAAAAAAAABAAAIAgABEAAAA=</HashCode>
+      <FileName>ColorPicker\ColorComponents.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DigitalRune.Windows.Controls.ColorSpace">
+    <Position X="4.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>ColorPicker\ColorSpace.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

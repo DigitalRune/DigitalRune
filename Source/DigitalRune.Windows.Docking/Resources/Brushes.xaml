@@ -1,0 +1,42 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <!--  Button Brushes  -->
+  <SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF707070" />
+  <SolidColorBrush x:Key="ActiveBorderBrush" Color="#3C7FB1" />
+  <SolidColorBrush x:Key="DefaultedBorderBrush" Color="#0CCCFE" />
+
+  <LinearGradientBrush x:Key="ButtonNormalBackground" StartPoint="0,0" EndPoint="0,1">
+    <LinearGradientBrush.GradientStops>
+      <GradientStop Offset="0" Color="#F3F3F3" />
+      <GradientStop Offset="0.5" Color="#EBEBEB" />
+      <GradientStop Offset="0.5" Color="#DDDDDD" />
+      <GradientStop Offset="1" Color="#CDCDCD" />
+    </LinearGradientBrush.GradientStops>
+  </LinearGradientBrush>
+
+  <LinearGradientBrush x:Key="ButtonMouseOverBackground" StartPoint="0,0" EndPoint="0,1">
+    <GradientStop Offset="0" Color="#FFEAF6FD" />
+    <GradientStop Offset="0.5" Color="#FFD7EFFC" />
+    <GradientStop Offset="0.5" Color="#FFBDE6FD" />
+    <GradientStop Offset="1" Color="#FFA6D9F4" />
+  </LinearGradientBrush>
+
+
+  <!--  Tab Brushes  -->
+  <SolidColorBrush x:Key="TabControlNormalBorderBrush" Color="#8C8E94" />
+  <SolidColorBrush x:Key="TabItemSelectedBackground" Color="#F9F9F9" />
+  <SolidColorBrush x:Key="TabItemDisabledBackground" Color="#F4F4F4" />
+  <SolidColorBrush x:Key="TabItemHotBorderBrush" Color="#3C7FB1" />
+  <SolidColorBrush x:Key="TabItemDisabledBorderBrush" Color="#FFC9C7BA" />
+
+  <LinearGradientBrush x:Key="TabItemHotBackground" StartPoint="0,0" EndPoint="0,1">
+    <LinearGradientBrush.GradientStops>
+      <GradientStop Offset="0.15" Color="#EAF6FD" />
+      <GradientStop Offset=".5" Color="#D9F0FC" />
+      <GradientStop Offset=".5" Color="#BEE6FD" />
+      <GradientStop Offset="1" Color="#A7D9F5" />
+    </LinearGradientBrush.GradientStops>
+  </LinearGradientBrush>
+
+</ResourceDictionary>

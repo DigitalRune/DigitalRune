@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Drag and Drop                                          Assembly: DigitalRune.Windows.Framework  Namespace: DigitalRune.Windows.Framework">
+    <Position X="0.5" Y="0.5" Height="0.678" Width="2.857" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.Framework.DropCommandParameter">
+    <Position X="3.75" Y="2.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAACAAAAAAAAAAAAABAAAAAIAAAAgAA=</HashCode>
+      <FileName>DragDrop\DropCommandParameter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.DragCommandParameter">
+    <Position X="3.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAgAAACAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>DragDrop\DragCommandParameter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.DragDropBehavior">
+    <Position X="0.5" Y="1.5" Width="2.75" />
+    <Members>
+      <Field Name="_currentMousePosition" Hidden="true" />
+      <Field Name="_dragAdorner" Hidden="true" />
+      <Field Name="_dragCommandParameter" Hidden="true" />
+      <Field Name="_dropAdorner" Hidden="true" />
+      <Field Name="_dropCommandParameter" Hidden="true" />
+      <Field Name="_inDragDrop" Hidden="true" />
+      <Field Name="_sourceUpdated" Hidden="true" />
+      <Field Name="AllowDragProperty" Hidden="true" />
+      <Field Name="AllowDropProperty" Hidden="true" />
+      <Field Name="BetweenItemsZoneProperty" Hidden="true" />
+      <Method Name="CanExecuteDrag" Hidden="true" />
+      <Method Name="CanExecuteDrop" Hidden="true" />
+      <Method Name="CanInsertDataInItemsControl" Hidden="true" />
+      <Field Name="DefaultDragCommand" Hidden="true" />
+      <Field Name="DefaultDropCommand" Hidden="true" />
+      <Field Name="DefaultEffectsProperty" Hidden="true" />
+      <Field Name="DefaultFormat" Hidden="true" />
+      <Method Name="DetermineDropTarget" Hidden="true" />
+      <Method Name="DisableDrag" Hidden="true" />
+      <Method Name="DisableDrop" Hidden="true" />
+      <Field Name="DragCommandProperty" Hidden="true" />
+      <Method Name="DragDropBehavior" Hidden="true" />
+      <Field Name="DragTemplateProperty" Hidden="true" />
+      <Field Name="DropCommandProperty" Hidden="true" />
+      <Method Name="EnableDrag" Hidden="true" />
+      <Method Name="EnableDrop" Hidden="true" />
+      <Method Name="ExceedsMinimumDragDistance" Hidden="true" />
+      <Method Name="ExecuteDrag" Hidden="true" />
+      <Method Name="ExecuteDrop" Hidden="true" />
+      <Method Name="HasVerticalOrientation" Hidden="true" />
+      <Method Name="InsertItemInItemsControl" Hidden="true" />
+      <Method Name="OnAllowDragChanged" Hidden="true" />
+      <Method Name="OnAllowDropChanged" Hidden="true" />
+      <Method Name="OnAttached" Hidden="true" />
+      <Method Name="OnDetaching" Hidden="true" />
+      <Method Name="OnDragEnterOrDragOver" Hidden="true" />
+      <Method Name="OnDragLeave" Hidden="true" />
+      <Method Name="OnDrop" Hidden="true" />
+      <Method Name="OnMouseLeftButtonDown" Hidden="true" />
+      <Method Name="OnPreviewMouseLeftButtonDown" Hidden="true" />
+      <Method Name="OnPreviewMouseLeftButtonUp" Hidden="true" />
+      <Method Name="OnPreviewMouseMove" Hidden="true" />
+      <Method Name="RemoveDragAdorner" Hidden="true" />
+      <Method Name="RemoveDropAdorner" Hidden="true" />
+      <Method Name="RemoveItemFromItemsControl" Hidden="true" />
+      <Field Name="ShowBetweenItemsIndicatorProperty" Hidden="true" />
+      <Method Name="UpdateDragAdorner" Hidden="true" />
+      <Method Name="UpdateDragAdornerPosition" Hidden="true" />
+      <Method Name="UpdateDragAdornerVisibility" Hidden="true" />
+      <Method Name="UpdateDropAdorner" Hidden="true" />
+      <Method Name="UpdateDropCommandParameter" Hidden="true" />
+      <Field Name="UsePreviewEventProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ABECBBQBNTASIEABQAUQiBAlBsgQWABoEAQ4QAAkkak=</HashCode>
+      <FileName>DragDrop\DragDropBehavior.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

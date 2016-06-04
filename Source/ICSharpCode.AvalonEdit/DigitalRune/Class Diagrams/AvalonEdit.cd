@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ICSharpCode.AvalonEdit.AvalonEditCommands">
+    <Position X="7.5" Y="0.75" Width="2.25" />
+    <Members>
+      <Field Name="_comment" Hidden="true" />
+      <Field Name="_pasteMultiple" Hidden="true" />
+      <Field Name="_syntaxHighlighting" Hidden="true" />
+      <Field Name="_toggleAllFolds" Hidden="true" />
+      <Field Name="_toggleFold" Hidden="true" />
+      <Field Name="_uncomment" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAIgAQsVBCAAABgCAAAAAaAAABAAAADAAgQAAACAAA=</HashCode>
+      <FileName>AvalonEditCommands.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.TextEditor" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="0.75" Width="2.25" />
+    <Members>
+      <Field Name="_bracketMarkerRenderer" Hidden="true" />
+      <Field Name="_foldingStrategy" Hidden="true" />
+      <Field Name="_foldingTimer" Hidden="true" />
+      <Field Name="_foldingValid" Hidden="true" />
+      <Field Name="BracketHighlightingBrushProperty" Hidden="true" />
+      <Field Name="BracketHighlightingPenProperty" Hidden="true" />
+      <Method Name="CanCommentSelection" Hidden="true" />
+      <Method Name="CanExecute" Hidden="true" />
+      <Method Name="CanPasteMultiple" Hidden="true" />
+      <Method Name="CanToggleFold" Hidden="true" />
+      <Field Name="ClosingBrackets" Hidden="true" />
+      <Field Name="colorizer" Hidden="true" />
+      <Field Name="ColumnRulerProperty" Hidden="true" />
+      <Method Name="CreateFrozenPen" Hidden="true" />
+      <Field Name="DocumentProperty" Hidden="true" />
+      <Field Name="EnableBracketHighlightingProperty" Hidden="true" />
+      <Field Name="EnableFoldingProperty" Hidden="true" />
+      <Field Name="EncodingProperty" Hidden="true" />
+      <Method Name="Execute" Hidden="true" />
+      <Method Name="GetDocument" Hidden="true" />
+      <Method Name="HandleIsOriginalChanged" Hidden="true" />
+      <Field Name="HorizontalScrollBarVisibilityProperty" Hidden="true" />
+      <Method Name="Initialize" Hidden="true" />
+      <Method Name="InstallFoldingManager" Hidden="true" />
+      <Method Name="InvalidateFolding" Hidden="true" />
+      <Method Name="IServiceProvider.GetService" Hidden="true" />
+      <Field Name="IsModifiedProperty" Hidden="true" />
+      <Field Name="IsReadOnlyProperty" Hidden="true" />
+      <Method Name="IWeakEventListener.ReceiveWeakEvent" Hidden="true" />
+      <Field Name="LineNumbersForegroundProperty" Hidden="true" />
+      <Field Name="MouseHoverEvent" Hidden="true" />
+      <Field Name="MouseHoverStoppedEvent" Hidden="true" />
+      <Method Name="OnColumnRulerChanged" Hidden="true" />
+      <Method Name="OnDocumentChanged" Hidden="true" />
+      <Method Name="OnEnableFoldingChanged" Hidden="true" />
+      <Method Name="OnFoldingTimerTick" Hidden="true" />
+      <Method Name="OnIsModifiedChanged" Hidden="true" />
+      <Method Name="OnIsReadOnlyChanged" Hidden="true" />
+      <Method Name="OnLineNumbersForegroundChanged" Hidden="true" />
+      <Method Name="OnOptionsChanged" Hidden="true" />
+      <Method Name="OnPasteMultiple" Hidden="true" />
+      <Method Name="OnShowLineNumbersChanged" Hidden="true" />
+      <Method Name="OnSyntaxHighlightingChanged" Hidden="true" />
+      <Method Name="OnTextEntered" Hidden="true" />
+      <Field Name="OpeningBrackets" Hidden="true" />
+      <Field Name="OptionsProperty" Hidden="true" />
+      <Field Name="PreviewMouseHoverEvent" Hidden="true" />
+      <Field Name="PreviewMouseHoverStoppedEvent" Hidden="true" />
+      <Field Name="scrollViewer" Hidden="true" />
+      <Property Name="ScrollViewer" Hidden="true" />
+      <Field Name="ShowLineNumbersProperty" Hidden="true" />
+      <Field Name="SyntaxHighlightingProperty" Hidden="true" />
+      <Field Name="textArea" Hidden="true" />
+      <Method Name="TextEditor" Hidden="true" />
+      <Method Name="UninstallFoldingManager" Hidden="true" />
+      <Method Name="UpdateBracketHighlighting" Hidden="true" />
+      <Method Name="UpdateFoldingManager" Hidden="true" />
+      <Field Name="VerticalScrollBarVisibilityProperty" Hidden="true" />
+      <Field Name="WordWrapProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>GQUI1YFypCjJ1wzfAUUYAnUXm5SROMa2qrxgaMtvPHs=</HashCode>
+      <FileName>DigitalRune\TextEditor.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Options" />
+      <Property Name="TextArea" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.TextEditorAutomationPeer" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="0.75" Width="2.25" />
+    <Members>
+      <Property Name="IValueProvider.IsReadOnly" Hidden="true" />
+      <Method Name="IValueProvider.SetValue" Hidden="true" />
+      <Property Name="IValueProvider.Value" Hidden="true" />
+      <Method Name="RaiseIsReadOnlyChanged" Hidden="true" />
+      <Property Name="TextEditor" Hidden="true" />
+      <Method Name="TextEditorAutomationPeer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAACACEAAAAAAACAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>TextEditorAutomationPeer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.TextEditorOptions" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="3.5" Width="3" />
+    <Members>
+      <Field Name="_enableBracketHighlighting" Hidden="true" />
+      <Field Name="_enableFolding" Hidden="true" />
+      <Field Name="_fontFamily" Hidden="true" />
+      <Field Name="_fontSize" Hidden="true" />
+      <Field Name="_fontStretch" Hidden="true" />
+      <Field Name="_fontStyle" Hidden="true" />
+      <Field Name="_fontWeight" Hidden="true" />
+      <Field Name="_showLineNumbers" Hidden="true" />
+      <Field Name="_wordWrap" Hidden="true" />
+      <Field Name="allowScrollBelowDocument" Hidden="true" />
+      <Field Name="allowToggleOverstrikeMode" Hidden="true" />
+      <Field Name="columnRulerPosition" Hidden="true" />
+      <Field Name="convertTabsToSpaces" Hidden="true" />
+      <Field Name="cutCopyWholeLine" Hidden="true" />
+      <Field Name="enableEmailHyperlinks" Hidden="true" />
+      <Field Name="enableHyperlinks" Hidden="true" />
+      <Field Name="enableImeSupport" Hidden="true" />
+      <Field Name="enableRectangularSelection" Hidden="true" />
+      <Field Name="enableTextDragDrop" Hidden="true" />
+      <Field Name="enableVirtualSpace" Hidden="true" />
+      <Field Name="hideCursorWhileTyping" Hidden="true" />
+      <Field Name="highlightCurrentLine" Hidden="true" />
+      <Field Name="indentationSize" Hidden="true" />
+      <Field Name="inheritWordWrapIndentation" Hidden="true" />
+      <Method Name="OnPropertyChanged" Hidden="true" />
+      <Event Name="PropertyChanged" Hidden="true" />
+      <Field Name="requireControlModifierForHyperlinkClick" Hidden="true" />
+      <Field Name="showBoxForControlCharacters" Hidden="true" />
+      <Field Name="showColumnRuler" Hidden="true" />
+      <Field Name="showEndOfLine" Hidden="true" />
+      <Field Name="showSpaces" Hidden="true" />
+      <Field Name="showTabs" Hidden="true" />
+      <Method Name="TextEditorOptions" Hidden="true" />
+      <Field Name="wordWrapIndentation" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>FRgEBTUgFEEGxmMSIACpApAYiAQAmggAIIASChYYGIo=</HashCode>
+      <FileName>DigitalRune\TextEditorOptions.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.TextEditorWeakEventManager">
+    <Position X="10.25" Y="5.25" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="ICSharpCode.AvalonEdit.TextEditorWeakEventManager.DocumentChanged">
+        <TypeIdentifier>
+          <NewMemberFileName>TextEditorWeakEventManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="ICSharpCode.AvalonEdit.TextEditorWeakEventManager.OptionChanged">
+        <TypeIdentifier>
+          <NewMemberFileName>TextEditorWeakEventManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TextEditorWeakEventManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Editing.TextArea" Collapsed="true">
+    <Position X="8" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>goJYe5YCQiTAUYto4hxaTAQC8o5Bkk0bIIBY5QFJY0A=</HashCode>
+      <FileName>Editing\TextArea.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Struct Name="ICSharpCode.AvalonEdit.TextViewPosition" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="2.75" Width="1.5" />
+    <Members>
+      <Field Name="column" Hidden="true" />
+      <Method Name="CompareTo" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Field Name="isAtEndOfLine" Hidden="true" />
+      <Field Name="line" Hidden="true" />
+      <Method Name="operator !=" Hidden="true" />
+      <Method Name="operator ==" Hidden="true" />
+      <Method Name="TextViewPosition" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+      <Field Name="visualColumn" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAQEgAJAAAAAQEgAAIBAAAAAAAABAig=</HashCode>
+      <FileName>TextViewPosition.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Interface Name="ICSharpCode.AvalonEdit.ITextEditorComponent">
+    <Position X="2.25" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAIAAAAAAAAAAACAAAAAABAAAA=</HashCode>
+      <FileName>TextEditorComponent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

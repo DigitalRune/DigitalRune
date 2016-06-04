@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ICSharpCode.AvalonEdit.Utils.CharRope">
+    <Position X="10.75" Y="6.25" Width="2" />
+    <Members>
+      <Method Name="FillNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEAAAAAEAAAAAAAFAAAAEAAIAAAAAEAgAEABAAAAAAA=</HashCode>
+      <FileName>Utils\CharRope.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Utils.CompressingTreeList&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="0.5" Width="2" />
+    <Members>
+      <Method Name="AppendTreeToString" Hidden="true" />
+      <Field Name="BLACK" Hidden="true" />
+      <Method Name="CheckNodeProperties" Hidden="true" />
+      <Method Name="CheckProperties" Hidden="true" />
+      <Field Name="comparisonFunc" Hidden="true" />
+      <Method Name="CompressingTreeList" Hidden="true" />
+      <Method Name="FixTreeOnDelete" Hidden="true" />
+      <Method Name="FixTreeOnInsert" Hidden="true" />
+      <Method Name="GetColor" Hidden="true" />
+      <Method Name="GetNode" Hidden="true" />
+      <Method Name="GetTreeAsString" Hidden="true" />
+      <Property Name="ICollection&lt;T&gt;.IsReadOnly" Hidden="true" />
+      <Method Name="InsertAsLeft" Hidden="true" />
+      <Method Name="InsertAsRight" Hidden="true" />
+      <Method Name="InsertBefore" Hidden="true" />
+      <Field Name="RED" Hidden="true" />
+      <Method Name="RemoveNode" Hidden="true" />
+      <Method Name="ReplaceNode" Hidden="true" />
+      <Field Name="root" Hidden="true" />
+      <Method Name="RotateLeft" Hidden="true" />
+      <Method Name="RotateRight" Hidden="true" />
+      <Method Name="Sibling" Hidden="true" />
+      <Method Name="System.Collections.IEnumerable.GetEnumerator" Hidden="true" />
+      <Method Name="UpdateAugmentedData" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="ICSharpCode.AvalonEdit.Utils.CompressingTreeList&lt;T&gt;.Node" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Utils\CompressingTreeList.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AGJAEEAAAAggEJEACAJqBARAEAAAgMCAKAgBgIJQIAA=</HashCode>
+      <FileName>Utils\CompressingTreeList.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Utils.Deque&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="arr" Hidden="true" />
+      <Field Name="head" Hidden="true" />
+      <Method Name="ICollection&lt;T&gt;.Add" Hidden="true" />
+      <Property Name="ICollection&lt;T&gt;.IsReadOnly" Hidden="true" />
+      <Method Name="ICollection&lt;T&gt;.Remove" Hidden="true" />
+      <Method Name="SetCapacity" Hidden="true" />
+      <Field Name="size" Hidden="true" />
+      <Method Name="System.Collections.IEnumerable.GetEnumerator" Hidden="true" />
+      <Field Name="tail" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ICQAEAAAgAAAABAACIAAAAQAoAAAAAAAAAQAAoBwIgA=</HashCode>
+      <FileName>Utils\Deque.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Utils.DocumentPrinter">
+    <Position X="6.5" Y="6" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAABAIAAAAAAA=</HashCode>
+      <FileName>Utils\DocumentPrinter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Utils.ExtensionMethods">
+    <Position X="1.25" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAEAACAAAUAEAAAAgUAAAACAgAAQEEACA=</HashCode>
+      <FileName>Utils\ExtensionMethods.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Utils.FileReader">
+    <Position X="8.5" Y="8.25" Width="1.5" />
+    <Members>
+      <Method Name="AutoDetect" Hidden="true" />
+      <Method Name="IsASCIICompatible" Hidden="true" />
+      <Method Name="RemoveBOM" Hidden="true" />
+      <Field Name="UTF8NoBOM" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ABAAEAEAAAAACAAAAACAAAAAAAAAAEAEAAQAAAAAAAA=</HashCode>
+      <FileName>Utils\FileReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Utils.NullSafeCollection&lt;T&gt;">
+    <Position X="10.75" Y="9.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\NullSafeCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Utils.PixelSnapHelpers">
+    <Position X="7" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAgAAAgAAAAIAAAA=</HashCode>
+      <FileName>Utils\PixelSnapHelpers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Utils.PropertyChangedWeakEventManager">
+    <Position X="1" Y="9" Width="5" />
+    <Members>
+      <Method Name="StartListening" Hidden="true" />
+      <Method Name="StopListening" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAIA=</HashCode>
+      <FileName>Utils\PropertyChangedWeakEventManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Utils.Rope&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="10.75" Y="0.5" Width="2.25" />
+    <Members>
+      <Method Name="Enumerate" Hidden="true" />
+      <Method Name="FindNodeUsingCache" Hidden="true" />
+      <Method Name="GetTreeAsString" Hidden="true" />
+      <Method Name="ICloneable.Clone" Hidden="true" />
+      <Property Name="ICollection&lt;T&gt;.IsReadOnly" Hidden="true" />
+      <Field Name="lastUsedNodeStack" Hidden="true" />
+      <Method Name="OnChanged" Hidden="true" />
+      <Field Name="root" Hidden="true" />
+      <Method Name="Rope" Hidden="true" />
+      <Method Name="System.Collections.IEnumerable.GetEnumerator" Hidden="true" />
+      <Method Name="ToArray" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+      <Method Name="VerifyArrayWithRange" Hidden="true" />
+      <Method Name="VerifyRange" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Struct Name="ICSharpCode.AvalonEdit.Utils.Rope&lt;T&gt;.RopeCacheEntry" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Utils\Rope.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>EGIAEEAAAQAAABAMiEAgFARAAAAAIMAACAiIAIBUIBA=</HashCode>
+      <FileName>Utils\Rope.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Utils.RopeTextReader">
+    <Position X="6.5" Y="8.25" Width="1.75" />
+    <Members>
+      <Field Name="currentNode" Hidden="true" />
+      <Method Name="GoToLeftMostLeaf" Hidden="true" />
+      <Method Name="GoToNextNode" Hidden="true" />
+      <Field Name="indexInsideNode" Hidden="true" />
+      <Method Name="RopeTextReader" Hidden="true" />
+      <Field Name="stack" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAgAAAAAIIAQAAAAAAAAEA=</HashCode>
+      <FileName>Utils\RopeTextReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Utils.WeakEventManagerBase&lt;TManager, TEventSource&gt;">
+    <Position X="1.75" Y="6" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAIAAAAAAAUAAAAIA=</HashCode>
+      <FileName>Utils\WeakEventManagerBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Utils.ImmutableStack&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.75" />
+    <Members>
+      <Method Name="ImmutableStack" Hidden="true" />
+      <Field Name="next" Hidden="true" />
+      <Method Name="System.Collections.IEnumerable.GetEnumerator" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+      <Field Name="value" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACBAAAAAAAAEABAEAAIAAAAAAACABCAAAAAAAAIACAA=</HashCode>
+      <FileName>Utils\ImmutableStack.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Struct Name="ICSharpCode.AvalonEdit.Utils.StringSegment" BaseTypeListCollapsed="true">
+    <Position X="8.75" Y="4.25" Width="1.5" />
+    <Members>
+      <Field Name="count" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Field Name="offset" Hidden="true" />
+      <Method Name="operator !=" Hidden="true" />
+      <Method Name="operator ==" Hidden="true" />
+      <Method Name="StringSegment" Hidden="true" />
+      <Field Name="text" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAhAAAAAQAAAAAAIAIAAAACAAAgiA=</HashCode>
+      <FileName>Utils\StringSegment.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Base Types                          Assembly: DigitalRune.Particles         Namespace: DigitalRune.Particles">
+    <Position X="0.5" Y="0.5" Height="0.645" Width="2.086" />
+  </Comment>
+  <Class Name="DigitalRune.Particles.ParticleParameterCollection" BaseTypeListCollapsed="true">
+    <Position X="7.25" Y="0.5" Width="2.25" />
+    <Members>
+      <Field Name="_collection" Hidden="true" />
+      <Method Name="GetEnumerator" Hidden="true" />
+      <Method Name="IEnumerable.GetEnumerator" Hidden="true" />
+      <Method Name="IEnumerable&lt;IParticleParameter&gt;.GetEnumerator" Hidden="true" />
+      <Method Name="ParticleParameterCollection" Hidden="true" />
+      <Method Name="UpdateArrayLength" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAQAAAFBABAAABAIAAAAQAAAEAAAAAABQAAY=</HashCode>
+      <FileName>ParticleParameterCollection.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ParticleSystem" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Particles.ParticleSystem">
+    <Position X="3.75" Y="0.75" Width="2.25" />
+    <Members>
+      <Field Name="_aabb" Hidden="true" />
+      <Field Name="_aabbIsValid" Hidden="true" />
+      <Field Name="_children" Hidden="true" />
+      <Field Name="_childrenCopy" Hidden="true" />
+      <Field Name="_childrenDirty" Hidden="true" />
+      <Field Name="_effectorsCopy" Hidden="true" />
+      <Field Name="_effectorsDirty" Hidden="true" />
+      <Field Name="_isInitialized" Hidden="true" />
+      <Field Name="_lifetimeParameter" Hidden="true" />
+      <Field Name="_maxNumberOfParticles" Hidden="true" />
+      <Field Name="_name" Hidden="true" />
+      <Field Name="_normalizedAgeParameter" Hidden="true" />
+      <Field Name="_parametersAreQueried" Hidden="true" />
+      <Field Name="_parent" Hidden="true" />
+      <Field Name="_pose" Hidden="true" />
+      <Field Name="_random" Hidden="true" />
+      <Field Name="_service" Hidden="true" />
+      <Field Name="_shape" Hidden="true" />
+      <Field Name="_updateParticleSystem" Hidden="true" />
+      <Method Name="AgeWithUniformLifetime" Hidden="true" />
+      <Method Name="AgeWithVaryingLifetime" Hidden="true" />
+      <Property Name="ChildrenInternal" Hidden="true" />
+      <Method Name="CopyChildren" Hidden="true" />
+      <Method Name="CopyEffectors" Hidden="true" />
+      <Method Name="CountLivingParticles" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Property Name="CurrentDeltaTime" Hidden="true" />
+      <Property Name="EffectorsInternal" Hidden="true" />
+      <Method Name="IAnimatableObject.GetAnimatableProperty" Hidden="true" />
+      <Method Name="IAnimatableObject.GetAnimatedProperties" Hidden="true" />
+      <Method Name="IGeometricObject.Clone" Hidden="true" />
+      <Property Name="IGeometricObject.Scale" Hidden="true" />
+      <Method Name="Initialize" Hidden="true" />
+      <Method Name="InitializeGeometricObject" Hidden="true" />
+      <Method Name="InvalidateParameters" Hidden="true" />
+      <Method Name="OnChildrenChanged" Hidden="true" />
+      <Method Name="OnEffectorsChanged" Hidden="true" />
+      <Method Name="OnParametersChanged" Hidden="true" />
+      <Method Name="OnShapeChanged" Hidden="true" />
+      <Property Name="ParametersInternal" Hidden="true" />
+      <Method Name="ParticleSystem" Hidden="true" />
+      <Method Name="RequeryParameters" Hidden="true" />
+      <Method Name="UpdateParticleSystem" Hidden="true" />
+    </Members>
+    <AssociationLine Name="ReferenceFrame" Type="DigitalRune.Particles.ParticleReferenceFrame">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.037" Y="0.07" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AIQUJhEQBQxCB9BUIgkGcgQUgAouRBSIgMAQKDEoKzM=</HashCode>
+      <FileName>ParticleSystem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ReferenceFrame" />
+      <Property Name="Parameters" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Effectors" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Particles.ParticleEffector">
+    <Position X="7.25" Y="4" Width="2" />
+    <Members>
+      <Field Name="_name" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="ParticleEffector" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AoEAZAIAIAAAAYEAAAAABAYIAAAKAAAAAAAgAAAAADg=</HashCode>
+      <FileName>ParticleEffector.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ParticleSystem" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Particles.ParticleSystemManager">
+    <Position X="0.5" Y="2.75" Width="2" />
+    <Members>
+      <Field Name="_collectionDirty" Hidden="true" />
+      <Field Name="_deltaTime" Hidden="true" />
+      <Field Name="_particleSystemsCopy" Hidden="true" />
+      <Field Name="_updateParticleSystem" Hidden="true" />
+      <Method Name="OnParticleSystemsChanged" Hidden="true" />
+      <Method Name="ParticleSystemManager" Hidden="true" />
+      <Property Name="ParticleSystems" Hidden="true" />
+      <Method Name="UpdateParticleSystem" Hidden="true" />
+      <Method Name="UpdateParticleSystemsCopy" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAABAAAAAAAAAAEIAAAACAQUAACAAAAAQAAA=</HashCode>
+      <FileName>ParticleSystemManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="DigitalRune.Particles.IParticleParameter&lt;T&gt;">
+    <Position X="9.75" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>IParticleParameter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Particles.IParticleParameter">
+    <Position X="9.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IParticleParameter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Particles.IParticleSystemService">
+    <Position X="0.5" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IParticleSystemService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ParticleSystems" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Enum Name="DigitalRune.Particles.ParticleReferenceFrame">
+    <Position X="0.5" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ParticleReferenceFrame.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

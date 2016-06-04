@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="PropertyGrid                                   Assembly: DigitalRune.Windows.Controls   Namespace: DigitalRune.Windows.Controls">
+    <Position X="0.5" Y="0.5" Height="0.635" Width="2.658" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.Controls.CustomProperty">
+    <Position X="6.5" Y="4" Width="1.75" />
+    <Members>
+      <Field Name="_canReset" Hidden="true" />
+      <Field Name="_category" Hidden="true" />
+      <Field Name="_defaultValue" Hidden="true" />
+      <Field Name="_description" Hidden="true" />
+      <Field Name="_isReadOnly" Hidden="true" />
+      <Field Name="_name" Hidden="true" />
+      <Field Name="_propertyType" Hidden="true" />
+      <Field Name="_value" Hidden="true" />
+      <Method Name="CustomProperty" Hidden="true" />
+      <Method Name="Reset" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QBAAMAAAAAAgBAAUAAAAAAQAAEBAAAAAIAAiAAAAGBA=</HashCode>
+      <FileName>PropertyGrid\CustomProperty.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.ReflectedProperty">
+    <Position X="10.5" Y="5.5" Width="1.75" />
+    <Members>
+      <Field Name="_bindablePropertyObserver" Hidden="true" />
+      <Field Name="_oldValue" Hidden="true" />
+      <Property Name="CanReset" Hidden="true" />
+      <Property Name="Category" Hidden="true" />
+      <Property Name="Description" Hidden="true" />
+      <Property Name="IsReadOnly" Hidden="true" />
+      <Property Name="Name" Hidden="true" />
+      <Method Name="OnPropertyChanged" Hidden="true" />
+      <Method Name="OnValueChanged" Hidden="true" />
+      <Event Name="PropertyChanged" Hidden="true" />
+      <Property Name="PropertyType" Hidden="true" />
+      <Method Name="ReflectedProperty" Hidden="true" />
+      <Method Name="Reset" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QAQQEAAAAEAgBAAQIAAAAAQAgAAAAAEAQAAiAAIACAA=</HashCode>
+      <FileName>PropertyGrid\ReflectedProperty.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.PropertyGridTemplateSelector">
+    <Position X="0.5" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PropertyGrid\PropertyGridTemplateSelector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.PropertyGrid">
+    <Position X="0.5" Y="1.5" Width="2.25" />
+    <Members>
+      <Field Name="_isManualCollapseOrExpand" Hidden="true" />
+      <Field Name="_listBox" Hidden="true" />
+      <Field Name="_thumb" Hidden="true" />
+      <Field Name="_timer" Hidden="true" />
+      <Method Name="Collapse" Hidden="true" />
+      <Method Name="CollapseAll" Hidden="true" />
+      <Field Name="DelayProperty" Hidden="true" />
+      <Method Name="Expand" Hidden="true" />
+      <Method Name="ExpandAll" Hidden="true" />
+      <Field Name="FilterProperty" Hidden="true" />
+      <Method Name="GetExpander" Hidden="true" />
+      <Field Name="IsCategorizedProperty" Hidden="true" />
+      <Field Name="IsLoadingProperty" Hidden="true" />
+      <Field Name="IsLoadingPropertyKey" Hidden="true" />
+      <Property Name="NameColumnWidth" Hidden="true" />
+      <Field Name="NameColumnWidthProperty" Hidden="true" />
+      <Method Name="NavigateUpDown" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnCanClearFilter" Hidden="true" />
+      <Method Name="OnCanResetProperty" Hidden="true" />
+      <Method Name="OnCategoryCollapsed" Hidden="true" />
+      <Method Name="OnCategoryExpanded" Hidden="true" />
+      <Method Name="OnClearFilter" Hidden="true" />
+      <Method Name="OnFilterChanged" Hidden="true" />
+      <Method Name="OnIsCategorizedChanged" Hidden="true" />
+      <Method Name="OnKeyDown" Hidden="true" />
+      <Method Name="OnPreviewKeyDown" Hidden="true" />
+      <Method Name="OnPropertiesChanged" Hidden="true" />
+      <Method Name="OnPropertiesSourceChanged" Hidden="true" />
+      <Method Name="OnResetProperty" Hidden="true" />
+      <Method Name="OnThumbDragDelta" Hidden="true" />
+      <Field Name="PropertiesProperty" Hidden="true" />
+      <Method Name="PropertyGrid" Hidden="true" />
+      <Field Name="PropertySourceProperty" Hidden="true" />
+      <Field Name="SelectedPropertyProperty" Hidden="true" />
+      <Method Name="SetFilter" Hidden="true" />
+      <Method Name="SetSorting" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>RSCAyiAAECxiAgBEAQTCAAIGgBIIgAAAQgAgAAAKEhI=</HashCode>
+      <FileName>PropertyGrid\PropertyGrid.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PropertySource" />
+      <Property Name="SelectedProperty" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.PropertyGridCommands">
+    <Position X="0.5" Y="5.25" Width="2.25" />
+    <Members>
+      <Field Name="_clearFilter" Hidden="true" />
+      <Field Name="_reset" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAQAgAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>PropertyGrid\PropertyGridCommands.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.PropertySource">
+    <Position X="4.25" Y="4.25" Width="1.75" />
+    <Members>
+      <Field Name="_name" Hidden="true" />
+      <Field Name="_typeName" Hidden="true" />
+      <Property Name="UserData" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAABAAAAAAQAAAAAABAAAAAAAAAKAAA=</HashCode>
+      <FileName>PropertyGrid\PropertySource.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.PropertyGridHelper">
+    <Position X="4.25" Y="6.25" Width="2" />
+    <Members>
+      <Method Name="Convert" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Windows.Controls.PropertyGridHelper.PropertyComparer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>PropertyGrid\PropertyGridHelper.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>PropertyGrid\PropertyGridHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.ReflectedField">
+    <Position X="8.5" Y="5.5" Width="1.75" />
+    <Members>
+      <Field Name="_oldValue" Hidden="true" />
+      <Property Name="Category" Hidden="true" />
+      <Property Name="IsReadOnly" Hidden="true" />
+      <Property Name="Name" Hidden="true" />
+      <Method Name="OnPropertyChanged" Hidden="true" />
+      <Event Name="PropertyChanged" Hidden="true" />
+      <Property Name="PropertyType" Hidden="true" />
+      <Method Name="ReflectedField" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QAQAEIAAAAAgBAAQIAAAAAQAgAAAAAAAQAAiAAIACAA=</HashCode>
+      <FileName>PropertyGrid\ReflectedField.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="DigitalRune.Windows.Controls.IPropertySource">
+    <Position X="4.25" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAACAAA=</HashCode>
+      <FileName>PropertyGrid\IPropertySource.cs</FileName>
+      <NewMemberFileName>PropertyGrid\IProperty.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Windows.Controls.IProperty">
+    <Position X="7.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QAAAEAAAAAAgBAAQAAAAAAAAAAAAAAAAAAAiAAAACAA=</HashCode>
+      <FileName>PropertyGrid\IProperty.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Windows.Controls.IReflectedProperty">
+    <Position X="9.5" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PropertyGrid\IReflectedProperty.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Triggers, Actions, and Behaviors                                       Assembly: DigitalRune.Windows.Framework  Namespace: DigitalRune.Windows.Framework">
+    <Position X="0.5" Y="0.5" Height="0.678" Width="2.857" />
+  </Comment>
+  <Comment CommentText="Behaviors">
+    <Position X="0.5" Y="4.788" Height="0.337" Width="0.791" />
+  </Comment>
+  <Comment CommentText="Triggers">
+    <Position X="0.5" Y="1.5" Height="0.337" Width="0.791" />
+  </Comment>
+  <Comment CommentText="Actions">
+    <Position X="3.05" Y="1.524" Height="0.337" Width="0.911" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.Framework.EventToCommand">
+    <Position X="3" Y="2" Width="2.25" />
+    <Members>
+      <Field Name="_commandParameterValue" Hidden="true" />
+      <Field Name="_mustToggleValue" Hidden="true" />
+      <Method Name="AssociatedElementIsDisabled" Hidden="true" />
+      <Field Name="CommandParameterProperty" Hidden="true" />
+      <Field Name="CommandProperty" Hidden="true" />
+      <Method Name="EnableDisableElement" Hidden="true" />
+      <Method Name="GetAssociatedObject" Hidden="true" />
+      <Method Name="GetCommand" Hidden="true" />
+      <Field Name="MustToggleIsEnabledProperty" Hidden="true" />
+      <Method Name="OnAttached" Hidden="true" />
+      <Method Name="OnCommandCanExecuteChanged" Hidden="true" />
+      <Method Name="OnCommandChanged" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAICAQAEAAIAAUAAAAABMAAAQCAAAAAABAAAAhBAAE=</HashCode>
+      <FileName>Interactivity\EventToCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.DialogResultBehavior">
+    <Position X="3" Y="5.25" Width="2" />
+    <Members>
+      <Field Name="DialogResultProperty" Hidden="true" />
+      <Method Name="OnAttached" Hidden="true" />
+      <Method Name="OnDetaching" Hidden="true" />
+      <Method Name="OnDialogResultChanged" Hidden="true" />
+      <Method Name="OnWindowClosed" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAABEABAAAAAAA=</HashCode>
+      <FileName>Interactivity\DialogResultBehavior.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.DoubleClickTrigger">
+    <Position X="0.5" Y="2" Width="1.75" />
+    <Members>
+      <Method Name="OnAttached" Hidden="true" />
+      <Method Name="OnDetaching" Hidden="true" />
+      <Method Name="OnPreviewMouseDown" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAFAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interactivity\DoubleClickTrigger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.AutoCompleteProvider" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="8.75" Width="2" />
+    <Members>
+      <Method Name="AutoCompleteProvider" Hidden="true" />
+      <Method Name="IAutoCompleteProvider.GetSuggestions" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interactivity\AutoCompleteBehavior.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.AutoCompleteBehavior">
+    <Position X="0.5" Y="5.25" Width="2" />
+    <Members>
+      <Field Name="_autoCompleteListBoxStyleKey" Hidden="true" />
+      <Field Name="_autoCompleteShadowDepthKey" Hidden="true" />
+      <Field Name="_listBox" Hidden="true" />
+      <Field Name="_originalText" Hidden="true" />
+      <Field Name="_popup" Hidden="true" />
+      <Field Name="_providerSubscription" Hidden="true" />
+      <Field Name="_suppressAutoAppend" Hidden="true" />
+      <Field Name="_updatingText" Hidden="true" />
+      <Field Name="_window" Hidden="true" />
+      <Property Name="AutoCompleteListBoxStyleKey" Hidden="true" />
+      <Property Name="AutoCompleteShadowDepthKey" Hidden="true" />
+      <Method Name="ClosePopup" Hidden="true" />
+      <Method Name="GetListBoxItem" Hidden="true" />
+      <Method Name="GetScrollViewer" Hidden="true" />
+      <Field Name="IsEnabledProperty" Hidden="true" />
+      <Method Name="ListBox_PreviewMouseLeftButtonDown" Hidden="true" />
+      <Method Name="ListBox_PreviewMouseLeftButtonUp" Hidden="true" />
+      <Method Name="ListBox_PreviewMouseMove" Hidden="true" />
+      <Field Name="MaxHeightProperty" Hidden="true" />
+      <Method Name="OnAttached" Hidden="true" />
+      <Method Name="OnDetaching" Hidden="true" />
+      <Method Name="OnIsEnabledChanged" Hidden="true" />
+      <Method Name="OnProviderChanged" Hidden="true" />
+      <Field Name="ProviderProperty" Hidden="true" />
+      <Method Name="SetText" Hidden="true" />
+      <Method Name="ShowPopup" Hidden="true" />
+      <Method Name="TextBox_LostFocus" Hidden="true" />
+      <Method Name="TextBox_PreviewKeyDown" Hidden="true" />
+      <Method Name="TextBox_TextChanged" Hidden="true" />
+      <Method Name="Window_Deactivated" Hidden="true" />
+      <Method Name="Window_LocationChanged" Hidden="true" />
+      <Method Name="Window_PreviewMouseDown" Hidden="true" />
+      <Method Name="Window_StateChanged" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAADAMgAlhIERCQAAIFACAAFAKAAAAUCAogAAEAEEAE=</HashCode>
+      <FileName>Interactivity\AutoCompleteBehavior.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Provider" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.FocusOnLoadedBehavior">
+    <Position X="3" Y="6.75" Width="2" />
+    <Members>
+      <Method Name="OnAttached" Hidden="true" />
+      <Method Name="OnDetaching" Hidden="true" />
+      <Method Name="OnLoaded" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAFAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interactivity\FocusOnLoadedBehavior.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.MousePanBehavior">
+    <Position X="3" Y="8" Width="2" />
+    <Members>
+      <Field Name="_cursorAnimation" Hidden="true" />
+      <Field Name="_grabbedCursor" Hidden="true" />
+      <Field Name="_grabCursor" Hidden="true" />
+      <Field Name="_isPanning" Hidden="true" />
+      <Field Name="_mouseDownPosition" Hidden="true" />
+      <Field Name="_originalScrollOffset" Hidden="true" />
+      <Field Name="_scrollViewer" Hidden="true" />
+      <Method Name="BeginPanning" Hidden="true" />
+      <Method Name="EndPanning" Hidden="true" />
+      <Field Name="IsEnabledProperty" Hidden="true" />
+      <Field Name="ModifierKeysProperty" Hidden="true" />
+      <Method Name="MouseButtonPressed" Hidden="true" />
+      <Field Name="MouseButtonProperty" Hidden="true" />
+      <Method Name="MousePanBehavior" Hidden="true" />
+      <Method Name="OnAttached" Hidden="true" />
+      <Method Name="OnDetaching" Hidden="true" />
+      <Method Name="OnKeyDown" Hidden="true" />
+      <Method Name="OnLostMouseCapture" Hidden="true" />
+      <Method Name="OnMouseDown" Hidden="true" />
+      <Method Name="OnMouseMove" Hidden="true" />
+      <Method Name="OnMouseUp" Hidden="true" />
+      <Method Name="PanningCondition" Hidden="true" />
+      <Method Name="UpdatePanning" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AACAAEAAVAAACCBACAEAkYADABIAAgAAIAKAAAISAAA=</HashCode>
+      <FileName>Interactivity\MousePanBehavior.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.SelectAllOnGotFocusBehavior">
+    <Position X="5.5" Y="5.25" Width="2.25" />
+    <Members>
+      <Method Name="GotFocus" Hidden="true" />
+      <Method Name="OnAttached" Hidden="true" />
+      <Method Name="OnDetaching" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Interactivity\SelectAllOnGotFocusBehavior.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.TreeViewItemSelectionBehavior">
+    <Position X="0.5" Y="12.25" Width="2.5" />
+    <Members>
+      <Method Name="GetBringIndexIntoView" Hidden="true" />
+      <Method Name="GetTreeViewItem" Hidden="true" />
+      <Method Name="OnAttached" Hidden="true" />
+      <Method Name="OnDetaching" Hidden="true" />
+      <Method Name="OnSelectedItemChanged" Hidden="true" />
+      <Method Name="OnTreeViewSelectedItemChanged" Hidden="true" />
+      <Field Name="SelectedItemProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAFAAAAAAAAAAAAABABIAAAAEAABAAAAAAAAA=</HashCode>
+      <FileName>Interactivity\TreeViewItemSelectionBehavior.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.StylizedBehaviorCollection">
+    <Position X="5.75" Y="10.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interactivity\StylizedBehaviors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.StylizedBehaviors">
+    <Position X="3.75" Y="10.25" Width="1.75" />
+    <Members>
+      <Method Name="OnBehaviorsChanged" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAIAAgAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Interactivity\StylizedBehaviors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.RoutedToDelegateCommandBehavior">
+    <Position X="0.5" Y="10.25" Width="2.75" />
+    <Members>
+      <Field Name="_commandBinding" Hidden="true" />
+      <Field Name="_routedCommand" Hidden="true" />
+      <Field Name="CommandParameterProperty" Hidden="true" />
+      <Field Name="DelegateCommandProperty" Hidden="true" />
+      <Method Name="Install" Hidden="true" />
+      <Method Name="OnAttached" Hidden="true" />
+      <Method Name="OnCanExecute" Hidden="true" />
+      <Method Name="OnCanExecuteChanged" Hidden="true" />
+      <Method Name="OnDelegateCommandChanged" Hidden="true" />
+      <Method Name="OnDetaching" Hidden="true" />
+      <Method Name="OnExecuted" Hidden="true" />
+      <Method Name="Uninstall" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAANCgAAAAEAAQAAIAEASAAAgQAEAAAAAAAAAA=</HashCode>
+      <FileName>Interactivity\RoutedToDelegateCommandBehavior.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.InvalidateOnCommandParameterChangedBehavior">
+    <Position X="5.5" Y="6.5" Width="3.5" />
+    <Members>
+      <Field Name="_propertyObserver" Hidden="true" />
+      <Method Name="OnAttached" Hidden="true" />
+      <Method Name="OnCommandParameterChanged" Hidden="true" />
+      <Method Name="OnDetaching" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAFAAAAAAAAEAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Interactivity\InvalidateOnCommandParameterChangedBehavior.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.MouseWheelZoomBehavior">
+    <Position X="5.5" Y="7.75" Width="2.25" />
+    <Members>
+      <Method Name="CoerceZoom" Hidden="true" />
+      <Field Name="IsEnabledProperty" Hidden="true" />
+      <Field Name="MaxZoomProperty" Hidden="true" />
+      <Field Name="MinZoomProperty" Hidden="true" />
+      <Field Name="ModifierKeysProperty" Hidden="true" />
+      <Method Name="OnAttached" Hidden="true" />
+      <Method Name="OnDetaching" Hidden="true" />
+      <Method Name="OnMaxZoomChanged" Hidden="true" />
+      <Method Name="OnMinZoomChanged" Hidden="true" />
+      <Method Name="OnMouseWheel" Hidden="true" />
+      <Method Name="OnZoomChanged" Hidden="true" />
+      <Field Name="ZoomProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CBAAAEAANAAAAADAMgEAEAAARAAIAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Interactivity\MouseWheelZoomBehavior.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DigitalRune.Windows.Framework.IAutoCompleteProvider">
+    <Position X="0.5" Y="7.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interactivity\AutoCompleteBehavior.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

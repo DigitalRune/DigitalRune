@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ICSharpCode.AvalonEdit.Indentation.DefaultIndentationStrategy">
+    <Position X="3.5" Y="3" Width="2.25" />
+    <Members>
+      <Method Name="IndentLine" Hidden="true" />
+      <Method Name="IndentLines" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAABAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Indentation\DefaultIndentationStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Editing.TextArea" Collapsed="true">
+    <Position X="0.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>goJYe5YCQiTAUYto4hxaTAQC8o5Bkk0bIIBY5QFJY0A=</HashCode>
+      <FileName>Editing\TextArea.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IndentationStrategy" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="ICSharpCode.AvalonEdit.Indentation.IIndentationStrategy">
+    <Position X="3.75" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Indentation\IIndentationStrategy.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

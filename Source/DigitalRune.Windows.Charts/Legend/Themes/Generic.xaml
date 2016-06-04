@@ -1,0 +1,156 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DigitalRune.Windows.Charts">
+
+    <!--  Shared resources (brushes, etc.)  -->
+
+    <LinearGradientBrush x:Key="LegendBackgroundBrush" StartPoint="0.5,0.0" EndPoint="0.5,1.0">
+        <GradientStop Offset="0" Color="#FFFFFF" />
+        <GradientStop Offset="1" Color="#DDDDDD" />
+    </LinearGradientBrush>
+
+
+    <!--  Default Styles  -->
+
+    <Style TargetType="{x:Type local:Legend}">
+        <Setter Property="Background" Value="{StaticResource LegendBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="TitleStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type ContentControl}">
+                    <Setter Property="FontSize" Value="10" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="IsTabStop" Value="False" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Legend}">
+                    <Border Name="LegendBorder"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="2"
+                            Padding="1"
+                            SnapsToDevicePixels="True">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <ContentControl Grid.Row="0"
+                                            Margin="0,5,0,7"
+                                            Content="{TemplateBinding Title}"
+                                            Style="{TemplateBinding TitleStyle}" />
+                            <ScrollViewer Grid.Row="1"
+                                          BorderThickness="0"
+                                          Focusable="False"
+                                          HorizontalScrollBarVisibility="Auto"
+                                          IsTabStop="False"
+                                          Padding="{TemplateBinding Padding}"
+                                          VerticalScrollBarVisibility="Auto">
+                                <StackPanel Name="PART_ItemsPanel"
+                                            Margin="4,0,2,7"
+                                            Grid.IsSharedSizeScope="True"
+                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type local:PieChartLegend}">
+        <Setter Property="Background" Value="{StaticResource LegendBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="TitleStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type ContentControl}">
+                    <Setter Property="FontSize" Value="10" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="IsTabStop" Value="False" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:PieChartLegend}">
+                    <Border Name="LegendBorder"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="2"
+                            Padding="1"
+                            SnapsToDevicePixels="True">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <ContentControl Grid.Row="0"
+                                            Margin="0,5,0,7"
+                                            Content="{TemplateBinding Title}"
+                                            Style="{TemplateBinding TitleStyle}" />
+                            <ScrollViewer Grid.Row="1"
+                                          BorderThickness="0"
+                                          Focusable="False"
+                                          HorizontalScrollBarVisibility="Auto"
+                                          IsTabStop="False"
+                                          Padding="{TemplateBinding Padding}"
+                                          VerticalScrollBarVisibility="Auto">
+                                <StackPanel Name="PART_ItemsPanel"
+                                            Margin="4,0,2,7"
+                                            Grid.IsSharedSizeScope="True"
+                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type local:LegendItem}">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:LegendItem}">
+                    <Grid Margin="1" HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition SharedSizeGroup="LegendSymbolColumn" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Name="PART_Symbol"
+                                        Margin="3,1,3,1"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Content="{TemplateBinding Symbol}"
+                                        IsTabStop="False" />
+                        <ContentControl Name="PART_Label"
+                                        Grid.Column="1"
+                                        Margin="0,0,5,0"
+                                        VerticalAlignment="Center"
+                                        Content="{TemplateBinding Label}"
+                                        ContentTemplate="{TemplateBinding LabelTemplate}"
+                                        FontSize="10" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

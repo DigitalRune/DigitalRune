@@ -1,0 +1,29 @@
+﻿<Window x:Class="DigitalRune.Windows.Controls.ColorDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:DigitalRune.Windows.Controls"
+        Title="Select a Color"
+        ResizeMode="NoResize"
+        SizeToContent="WidthAndHeight">
+    <Grid>
+        <Controls:ColorPicker x:Name="ColorPicker"
+                              Margin="11"
+                              IsTabStop="False" />
+        <StackPanel Margin="11"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Orientation="Horizontal">
+            <Button Name="ButtonOk"
+                    MinWidth="75"
+                    Margin="0,0,7,0"
+                    Click="OnOkClick"
+                    Content="_OK"
+                    IsDefault="True" />
+            <Button Name="ButtonCancel"
+                    MinWidth="75"
+                    Click="OnCancelClick"
+                    Content="_Cancel"
+                    IsCancel="True" />
+        </StackPanel>
+    </Grid>
+</Window>

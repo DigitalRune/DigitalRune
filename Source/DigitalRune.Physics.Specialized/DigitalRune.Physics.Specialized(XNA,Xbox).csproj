@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{1AD2BE16-75F4-4C08-8876-93C26B448447}</ProjectGuid>
+    <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">Xbox 360</Platform>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.Physics.Specialized</RootNamespace>
+    <AssemblyName>DigitalRune.Physics.Specialized</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
+    <XnaPlatform>Xbox 360</XnaPlatform>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaCrossPlatformGroupID>49a79a13-a562-482e-903c-25db6268a3bb</XnaCrossPlatformGroupID>
+    <XnaOutputType>Library</XnaOutputType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Xbox 360' ">
+    <BaseIntermediateOutputPath>obj\XNA\Xbox360\Debug\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\XNA\Xbox360\Debug</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>TRACE;DEBUG;XNA;XBOX;XBOX360</DefineConstants>
+    <XnaCompressContent>true</XnaCompressContent>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Xbox 360' ">
+    <BaseIntermediateOutputPath>obj\XNA\Xbox360\Release\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\XNA\Xbox360\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE;XNA;XBOX;XBOX360</DefineConstants>
+    <XnaCompressContent>true</XnaCompressContent>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
+  <!--
+      To modify your build process, add your task inside one of the targets below and uncomment it. 
+      Other similar extension points exist, see Microsoft.Common.targets.
+      <Target Name="BeforeBuild">
+      </Target>
+      <Target Name="AfterBuild">
+      </Target>
+    -->
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework" />
+    <Reference Include="Microsoft.Xna.Framework.Avatar" />
+    <Reference Include="System">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="mscorlib">
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune.Animation\DigitalRune.Animation(XNA,Xbox).csproj">
+      <Project>{660B236F-8A2A-4540-9FC0-56FEFB7BAA3D}</Project>
+      <Name>DigitalRune.Animation(XNA,Xbox)</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Geometry\DigitalRune.Geometry(XNA,Xbox).csproj">
+      <Project>{77D0523C-26E5-4842-9406-D74B93E608B6}</Project>
+      <Name>DigitalRune.Geometry(XNA,Xbox)</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Mathematics\DigitalRune.Mathematics(XNA,Xbox).csproj">
+      <Project>{99F943BF-424D-4296-96D8-5FE96AC84DF0}</Project>
+      <Name>DigitalRune.Mathematics(XNA,Xbox)</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Physics\DigitalRune.Physics(XNA,Xbox).csproj">
+      <Project>{24379CE8-904D-425D-8C46-E8E323446268}</Project>
+      <Name>DigitalRune.Physics(XNA,Xbox)</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune\DigitalRune(XNA,Xbox).csproj">
+      <Project>{DEF0F476-047C-424A-99F6-CC5593B2A27C}</Project>
+      <Name>DigitalRune(XNA,Xbox)</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CharacterControllers\Dynamic\DynamicCharacterController.cs" />
+    <Compile Include="CharacterControllers\Kinematic\CharacterControllerForceEffect.cs" />
+    <Compile Include="CharacterControllers\Kinematic\KinematicCharacterController.cs" />
+    <Compile Include="CharacterControllers\Kinematic\KinematicCharacterController_Body.cs" />
+    <Compile Include="CharacterControllers\Kinematic\KinematicCharacterController_Contacts.cs" />
+    <Compile Include="CharacterControllers\Kinematic\KinematicCharacterController_Slides.cs" />
+    <Compile Include="NamespaceDoc.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ragdolls\Ragdoll.cs" />
+    <Compile Include="Ragdolls\RagdollMotor.cs" />
+    <Compile Include="Ragdolls\RagdollMotorMode.cs" />
+    <Compile Include="Ragdolls\Ragdoll_Avatars.cs" />
+    <Compile Include="Vehicles\Vehicle.cs" />
+    <Compile Include="Vehicles\VehicleForceEffect.cs" />
+    <Compile Include="Vehicles\Wheel.cs" />
+  </ItemGroup>
+</Project>

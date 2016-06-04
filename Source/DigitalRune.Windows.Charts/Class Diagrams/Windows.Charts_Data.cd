@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Data sources                              Assembly: DigitalRune.Windows.Charts                 Namespace: DigitalRune.Windows.Charts">
+    <Position X="0.5" Y="0.5" Height="0.65" Width="2.504" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.Charts.CompositeData">
+    <Position X="3" Y="4.25" Width="1.5" />
+    <Members>
+      <Method Name="CompositeData" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAEgAAAAAAAAAAAAIAAAAAAAACAAAA=</HashCode>
+      <FileName>Data\CompositeData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.CompositeDataSource" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="4.25" Width="2.25" />
+    <Members>
+      <Method Name="CompositeDataSource" Hidden="true" />
+      <Method Name="GetEnumerator" Hidden="true" />
+      <Method Name="IEnumerable.GetEnumerator" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAEBAAAwgAAAAAAQAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Data\CompositeDataSource.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.ChartDataException">
+    <Position X="5" Y="1.5" Width="1.75" />
+    <Members>
+      <Method Name="ChartDataException" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\ChartDataException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.DataPointCollection">
+    <Position X="0.5" Y="1.5" Width="2.5" />
+    <Members>
+      <Method Name="DataPointCollection" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\DataPointCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.ObservableDataPointCollection">
+    <Position X="0.5" Y="2.75" Width="2.5" />
+    <Members>
+      <Method Name="ObservableDataPointCollection" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\ObservableDataPointCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="DigitalRune.Windows.Charts.DataPoint" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="1.5" Width="1.5" />
+    <Members>
+      <Field Name="_dataContext" Hidden="true" />
+      <Field Name="_x" Hidden="true" />
+      <Field Name="_y" Hidden="true" />
+      <Method Name="ConvertToString" Hidden="true" />
+      <Method Name="DataPoint" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="IFormattable.ToString" Hidden="true" />
+      <Method Name="operator !=" Hidden="true" />
+      <Method Name="operator ==" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAAAAAgIAAQAgBAEgAAAAAAAAAAAQIAAAAAAAAAAYiA=</HashCode>
+      <FileName>Data\DataPoint.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

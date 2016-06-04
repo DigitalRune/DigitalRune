@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A560721A-6665-4534-80B6-9DA1F79B00DD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.Windows</RootNamespace>
+    <AssemblyName>DigitalRune.Windows</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET45</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\DigitalRune.Windows.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>..\DigitalRune\DigitalRuneRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NET45</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\DigitalRune.Windows.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune\DigitalRune.csproj">
+      <Project>{5A0E3C60-1CA9-49D5-84CA-308CB8E3A3B4}</Project>
+      <Name>DigitalRune</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccessKeyScope.cs" />
+    <Compile Include="Adorners\SingleChildAdorner.cs" />
+    <None Include="Archive\DigitalRuneResourceKeyID.cs" />
+    <None Include="Archive\DigitalRuneResources.cs" />
+    <None Include="Archive\ItemDispenser.cs" />
+    <None Include="Archive\ItemNotAvailableException.cs" />
+    <None Include="Archive\Resources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Archive\StyleDispenser.cs" />
+    <Compile Include="BindablePropertyObserver.cs" />
+    <Compile Include="Boxed.cs" />
+    <Compile Include="Categories.cs" />
+    <None Include="Class Diagrams\Windows.Interop.cd" />
+    <None Include="Class Diagrams\Windows.cd" />
+    <None Include="Class Diagrams\Windows_Adorners_Decorators.cd" />
+    <None Include="Class Diagrams\Windows_Themes.cd" />
+    <None Include="Class Diagrams\Windows_ValueConverter.cd" />
+    <Compile Include="ColorHelper.SL.cs" />
+    <Compile Include="ColorHelper.cs" />
+    <Compile Include="ComparisonOperator.cs" />
+    <Compile Include="Converters\ComparisonToVisibilityConverter.cs" />
+    <Compile Include="Converters\DoubleToBooleanConverter.cs" />
+    <Compile Include="Converters\EnumToArrayConverter.cs" />
+    <Compile Include="Converters\EnumToBooleanConverter.cs" />
+    <Compile Include="Converters\IntegerToDoubleConverter.cs" />
+    <Compile Include="Converters\InvertBooleanConverter.cs" />
+    <Compile Include="Converters\InvertedBooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\IsNaNConverter.cs" />
+    <Compile Include="Converters\IsNotNullConverter.cs" />
+    <Compile Include="Converters\IsNullConverter.cs" />
+    <Compile Include="Converters\LookupConverter.cs" />
+    <Compile Include="Converters\MaxValueConverter.cs" />
+    <Compile Include="Converters\MenuToUpperConverter.cs" />
+    <Compile Include="Converters\MinValueConverter.cs" />
+    <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Converters\SingleToDoubleConverter.cs" />
+    <Compile Include="Converters\ToLowerConverter.cs" />
+    <Compile Include="Converters\ToUpperConverter.cs" />
+    <Compile Include="Converters\TreeViewMarginConverter.cs" />
+    <Compile Include="Converters\ValueToBooleanConverter.cs" />
+    <Compile Include="Converters\ValueToStringConverter.cs" />
+    <Compile Include="DataTemplateSelector.cs" />
+    <Compile Include="Decorators\MinimumStretch.cs" />
+    <Compile Include="Decorators\PixelSnapper.cs" />
+    <Compile Include="ErrorsContainer.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Interop\GetWindowLongIndex.cs" />
+    <Compile Include="Interop\HitTestCodes.cs" />
+    <Compile Include="Interop\HookType.cs" />
+    <Compile Include="Interop\HwndConstants.cs" />
+    <Compile Include="Interop\MSG.cs" />
+    <Compile Include="Interop\MenuItemFlags.cs" />
+    <Compile Include="Interop\POINT.cs" />
+    <Compile Include="Interop\RECT.cs" />
+    <Compile Include="Interop\SafeLibraryHandle.cs" />
+    <Compile Include="Interop\SetWindowPosFlags.cs" />
+    <Compile Include="Interop\ShowWindowStyles.cs" />
+    <Compile Include="Interop\SystemCommands.cs" />
+    <Compile Include="Interop\WNDCLASS.cs" />
+    <Compile Include="Interop\Win32.cs" />
+    <Compile Include="Interop\Win32_DllImports.cs" />
+    <Compile Include="Interop\WindowMessages.cs" />
+    <Compile Include="Interop\WindowStyles.cs" />
+    <Compile Include="Interop\WindowStylesEx.cs" />
+    <Compile Include="ObservableChildCollection.cs" />
+    <Compile Include="ObservableObject.cs" />
+    <Compile Include="ObservableUIElementCollection.cs" />
+    <Compile Include="PackedBitmapExtension.cs" />
+    <Compile Include="PathHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Properties\AssemblyInfo.template" />
+    <Compile Include="SetterValueBindingHelper.cs" />
+    <Compile Include="SharedResourceDictionary.cs" />
+    <Compile Include="System\GridLengthConverter.cs" />
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Theming\Theme.cs" />
+    <Compile Include="Theming\ThemeChangedEventArgs.cs" />
+    <Compile Include="Theming\ThemeManager.cs" />
+    <Compile Include="ValidatableObservableObject.cs" />
+    <Compile Include="WeakEventListener.cs" />
+    <Compile Include="WindowsHelper.Desktop.cs" />
+    <Compile Include="WindowsHelper.SL.cs" />
+    <Compile Include="WindowsHelper.cs" />
+  </ItemGroup>
+</Project>

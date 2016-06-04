@@ -1,0 +1,419 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dr="clr-namespace:DigitalRune.Windows;assembly=DigitalRune.Windows"
+                    xmlns:local="clr-namespace:DigitalRune.Windows.Controls">
+
+    <!--  BRUSHES  -->
+
+    <DrawingBrush x:Key="CheckerBrush"
+                  TileMode="Tile"
+                  Viewport="0,0,10,10"
+                  ViewportUnits="Absolute">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <!--  The whole tile background is white (100x100).  -->
+                <GeometryDrawing Brush="White">
+                    <GeometryDrawing.Geometry>
+                        <RectangleGeometry Rect="0,0 100,100" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <!--  The upper left and lower left quarter is gray.  -->
+                <GeometryDrawing Brush="LightGray">
+                    <GeometryDrawing.Geometry>
+                        <GeometryGroup>
+                            <RectangleGeometry Rect="0,0 50,50" />
+                            <RectangleGeometry Rect="50,50 50,50" />
+                        </GeometryGroup>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+
+    <!--  STYLES  -->
+
+    <Style TargetType="{x:Type local:ColorSlider1D}">
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ColorSlider1D}">
+                    <Border Background="{StaticResource CheckerBrush}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Rectangle HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Stretch"
+                                       Fill="{TemplateBinding Foreground}"
+                                       Stretch="Fill"
+                                       StrokeThickness="0" />
+                            <Canvas>
+                                <Grid x:Name="PART_Thumb"
+                                      Width="12"
+                                      Height="{TemplateBinding ActualHeight}"
+                                      HorizontalAlignment="Center">
+                                    <Path Height="6"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Top"
+                                          Data="M0,0 L2,0 L1,2 L0,0"
+                                          Fill="White"
+                                          Stretch="Fill"
+                                          Stroke="Black"
+                                          StrokeThickness="1" />
+                                    <Path Height="6"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Bottom"
+                                          Data="M0,2 L2,2 L1,0 L0,2"
+                                          Fill="White"
+                                          Stretch="Fill"
+                                          Stroke="Black"
+                                          StrokeThickness="1" />
+                                </Grid>
+                            </Canvas>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type local:ColorSlider2D}">
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ColorSlider2D}">
+                    <Border Background="{StaticResource CheckerBrush}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Image x:Name="PART_Image" Source="{TemplateBinding ImageSource}" />
+                            <Canvas>
+                                <Grid x:Name="PART_Thumb"
+                                      Width="10"
+                                      Height="10"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center">
+                                    <Ellipse Stroke="White" StrokeThickness="2" />
+                                    <Ellipse Stroke="Black" StrokeThickness="1" />
+                                </Grid>
+                            </Canvas>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type local:ColorComponentControl}">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ColorComponentControl}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="ColorComponentLabel" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--  Label showing component.  -->
+                            <Label Grid.Column="0"
+                                   Margin="0,0,5,0"
+                                   VerticalAlignment="Center"
+                                   Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Label}"
+                                   Padding="0" />
+
+                            <!--  Color slider.  -->
+                            <local:ColorSlider1D x:Name="PART_Slider"
+                                                 Grid.Column="1"
+                                                 Width="132"
+                                                 Margin="0,2,5,2"
+                                                 ClipToBounds="True"
+                                                 Foreground="{TemplateBinding SliderBrush}" />
+
+                            <!--  NumericUpDown for integer representation  -->
+                            <local:NumericUpDown x:Name="PART_Int32Value"
+                                                 Grid.Column="2"
+                                                 Width="54"
+                                                 Height="21"
+                                                 Margin="0,0,5,0"
+                                                 DecimalPlaces="0"
+                                                 Increment="1"
+                                                 Maximum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Maximum}"
+                                                 Minimum="0" />
+
+                            <!--  NumericUpDown for float representation  -->
+                            <local:NumericUpDown x:Name="PART_DoubleValue"
+                                                 Grid.Column="3"
+                                                 Width="62"
+                                                 Height="21"
+                                                 DecimalPlaces="3"
+                                                 Increment="0.01"
+                                                 Maximum="1"
+                                                 Minimum="0" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type local:ColorPicker}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ColorPicker}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid Grid.IsSharedSizeScope="True">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Grid.Row="0" Orientation="Horizontal">
+
+                                    <!--  2D color area.  -->
+                                    <local:ColorSlider2D x:Name="PART_Slider2D"
+                                                         Width="189"
+                                                         Height="189"
+                                                         Margin="0,0,5,0"
+                                                         ClipToBounds="True"
+                                                         ToolTip="The 2D color field created by the complementary color components." />
+
+                                    <!--  Vertical color slider next to the 2D color area.  -->
+                                    <local:ColorSlider1D x:Name="PART_Slider1D"
+                                                         Height="24"
+                                                         ClipToBounds="True"
+                                                         ToolTip="The color component (H, S, V, R, G or B) selected with the radio button.">
+                                        <local:ColorSlider1D.LayoutTransform>
+                                            <RotateTransform Angle="-90" />
+                                        </local:ColorSlider1D.LayoutTransform>
+                                    </local:ColorSlider1D>
+                                </StackPanel>
+
+                                <!--  Color preview area.  -->
+                                <Grid Grid.Row="1"
+                                      Margin="0,16,0,0"
+                                      HorizontalAlignment="Right">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition SharedSizeGroup="ColorPreviewColumn" />
+                                        <ColumnDefinition SharedSizeGroup="ColorPreviewColumn" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition MinHeight="24" SharedSizeGroup="ColorPreviewRow" />
+                                        <RowDefinition MinHeight="24" SharedSizeGroup="ColorPreviewRow" />
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Grid.Row="0"
+                                               Grid.Column="1"
+                                               Margin="2,0,7,4"
+                                               HorizontalAlignment="Left">
+                                        No Alpha:
+                                    </TextBlock>
+                                    <TextBlock Grid.Row="0"
+                                               Grid.Column="2"
+                                               Margin="2,0,7,4"
+                                               HorizontalAlignment="Left">
+                                        With Alpha:
+                                    </TextBlock>
+                                    <TextBlock Grid.Row="1"
+                                               Grid.Column="0"
+                                               Margin="0,0,7,0"
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Center">
+                                        Old:
+                                    </TextBlock>
+                                    <TextBlock Grid.Row="2"
+                                               Grid.Column="0"
+                                               Margin="0,0,7,0"
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Center">
+                                        New:
+                                    </TextBlock>
+
+                                    <Rectangle Grid.Row="1"
+                                               Grid.RowSpan="2"
+                                               Grid.Column="1"
+                                               Grid.ColumnSpan="2"
+                                               Fill="{StaticResource CheckerBrush}"
+                                               SnapsToDevicePixels="True" />
+
+                                    <Rectangle x:Name="PART_OldColorNoAlpha"
+                                               Grid.Row="1"
+                                               Grid.Column="1"
+                                               SnapsToDevicePixels="True"
+                                               ToolTip="The old color with Alpha set to 255." />
+                                    <Rectangle x:Name="PART_OldColor"
+                                               Grid.Row="1"
+                                               Grid.Column="2"
+                                               SnapsToDevicePixels="True"
+                                               ToolTip="The old color." />
+                                    <Button Grid.Row="1"
+                                            Grid.Column="1"
+                                            Grid.ColumnSpan="2"
+                                            Command="local:ColorPickerCommands.ResetColor">
+                                        <Button.Style>
+                                            <Style TargetType="{x:Type Button}">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type Button}">
+                                                            <Border Background="Transparent" />
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                    <Rectangle x:Name="PART_NewColorNoAlpha"
+                                               Grid.Row="2"
+                                               Grid.Column="1"
+                                               SnapsToDevicePixels="True"
+                                               ToolTip="The new color with Alpha set to 255." />
+                                    <Rectangle x:Name="PART_NewColor"
+                                               Grid.Row="2"
+                                               Grid.Column="2"
+                                               SnapsToDevicePixels="True"
+                                               ToolTip="The new color." />
+                                </Grid>
+                            </Grid>
+
+                            <!--  Color components.  -->
+                            <StackPanel Grid.Column="1"
+                                        Margin="15,0,0,11"
+                                        Grid.IsSharedSizeScope="True">
+                                <RadioButton x:Name="PART_ButtonH" ToolTip="The hue component in the range [0,360) or [0,1].">
+                                    <local:ColorComponentControl x:Name="PART_H"
+                                                                 Margin="0,0,0,5"
+                                                                 Label="_H:"
+                                                                 Maximum="360" />
+                                </RadioButton>
+                                <RadioButton x:Name="PART_ButtonS"
+                                             Margin="0,0,0,5"
+                                             ToolTip="The saturation component in the range [0,100] or [0,1].">
+                                    <local:ColorComponentControl x:Name="PART_S"
+                                                                 Label="_S:"
+                                                                 Maximum="100" />
+                                </RadioButton>
+                                <RadioButton x:Name="PART_ButtonV"
+                                             Margin="0,0,0,11"
+                                             ToolTip="The value component in the range [0,100] or [0,1].">
+                                    <local:ColorComponentControl x:Name="PART_V"
+                                                                 Label="_V:"
+                                                                 Maximum="100" />
+                                </RadioButton>
+
+                                <RadioButton x:Name="PART_ButtonR"
+                                             Margin="0,0,0,5"
+                                             ToolTip="The red component in the range [0,255] or [0,1].">
+                                    <local:ColorComponentControl x:Name="PART_R" Label="_R:" />
+                                </RadioButton>
+                                <RadioButton x:Name="PART_ButtonG"
+                                             Margin="0,0,0,5"
+                                             ToolTip="The green component in the range [0,255] or [0,1].">
+                                    <local:ColorComponentControl x:Name="PART_G" Label="_G:" />
+                                </RadioButton>
+                                <RadioButton x:Name="PART_ButtonB"
+                                             Margin="0,0,0,11"
+                                             ToolTip="The blue component in the range [0,255] or [0,1].">
+                                    <local:ColorComponentControl x:Name="PART_B" Label="_B:" />
+                                </RadioButton>
+
+                                <local:ColorComponentControl x:Name="PART_A"
+                                                             Margin="0,0,0,11"
+                                                             HorizontalAlignment="Right"
+                                                             Label="_A:"
+                                                             ToolTip="The alpha (opacity) component in the range [0,255] or [0,1]." />
+
+                                <Grid Margin="13,0,0,0" ToolTip="The color in hexadecimal notation: #AARRGGBB.">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="ExtraLabelColumn" />
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="ExtraControlColumn" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0"
+                                           Margin="0,0,-3,0"
+                                           Content="He_xadecimal:  #"
+                                           Target="{Binding ElementName=PART_HexValue}" />
+                                    <TextBox x:Name="PART_HexValue"
+                                             Grid.Column="1"
+                                             Height="20"
+                                             MinWidth="75"
+                                             VerticalAlignment="Center"
+                                             VerticalContentAlignment="Center" />
+
+                                    <Button x:Name="PART_EyeDropperButton"
+                                            Grid.Column="2"
+                                            Margin="4,0,0,0"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            ToolTip="Click button to pick a color from anywhere on the screen.">
+                                        <local:Icon Width="16"
+                                                    Height="16"
+                                                    Source="{dr:PackedBitmap /DigitalRune.Windows.Controls;component/Resources/Icons.png, 320 0 32 32}" />
+                                    </Button>
+                                </Grid>
+                                <Grid Margin="13,0,0,0" ToolTip="Select the RGB color space (linear or sRGB). This setting affects which numeric values are displayed for red, green and blue.">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="ExtraLabelColumn" />
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="ExtraControlColumn" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="_Color space:" Target="{Binding ElementName=PART_ColorSpace}" />
+                                    <ComboBox x:Name="PART_ColorSpace"
+                                              Grid.Column="1"
+                                              Height="21"
+                                              MinWidth="75">
+                                        <ComboBox.Items>
+                                            <ComboBoxItem>Linear</ComboBoxItem>
+                                            <ComboBoxItem>sRGB</ComboBoxItem>
+                                        </ComboBox.Items>
+                                    </ComboBox>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type local:ColorButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ColorButton}">
+                    <Button Name="PART_Button"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                            Padding="3">
+                        <Border Background="{StaticResource CheckerBrush}">
+                            <Border>
+                                <Border.Background>
+                                    <SolidColorBrush Color="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Color}" />
+                                </Border.Background>
+                            </Border>
+                        </Border>
+                    </Button>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

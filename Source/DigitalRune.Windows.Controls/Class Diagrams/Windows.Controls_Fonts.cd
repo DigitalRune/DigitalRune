@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Font controls                                   Assembly: DigitalRune.Windows.Controls   Namespace: DigitalRune.Windows.Controls">
+    <Position X="0.5" Y="0.5" Height="0.635" Width="2.658" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.Controls.FontChooser">
+    <Position X="0.5" Y="1.5" Width="2.75" />
+    <Members>
+      <Field Name="_backgroundWorker" Hidden="true" />
+      <Field Name="_baselineCheckBox" Hidden="true" />
+      <Field Name="_fontFamilyListBox" Hidden="true" />
+      <Field Name="_fontFamilyTextBox" Hidden="true" />
+      <Field Name="_fontSizeListBox" Hidden="true" />
+      <Field Name="_fontSizeTextBox" Hidden="true" />
+      <Field Name="_isInternalUpdate" Hidden="true" />
+      <Field Name="_overlineCheckBox" Hidden="true" />
+      <Field Name="_strikethroughCheckBox" Hidden="true" />
+      <Field Name="_typefaceListBox" Hidden="true" />
+      <Field Name="_underlineCheckBox" Hidden="true" />
+      <Method Name="CreateFontFamilyDescriptions" Hidden="true" />
+      <Method Name="FontChooser" Hidden="true" />
+      <Field Name="FontFamiliesProperty" Hidden="true" />
+      <Field Name="IsLoadingProperty" Hidden="true" />
+      <Field Name="IsLoadingPropertyKey" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnFontFamiliesChanged" Hidden="true" />
+      <Method Name="OnFontFamilyListBoxSelectionChanged" Hidden="true" />
+      <Method Name="OnFontFamilyTextBoxLostFocus" Hidden="true" />
+      <Method Name="OnFontFamilyTextBoxTextChanged" Hidden="true" />
+      <Method Name="OnFontSizeListBoxSelectionChanged" Hidden="true" />
+      <Method Name="OnFontSizeTextBoxTextChanged" Hidden="true" />
+      <Method Name="OnLoaded" Hidden="true" />
+      <Method Name="OnPreviewKeyDown" Hidden="true" />
+      <Method Name="OnSelectedFontFamilyChanged" Hidden="true" />
+      <Method Name="OnSelectedFontSizeChanged" Hidden="true" />
+      <Method Name="OnSelectedTextDecorationsChanged" Hidden="true" />
+      <Method Name="OnSelectedTypefaceChanged" Hidden="true" />
+      <Method Name="OnTextDecorationCheckBoxChanged" Hidden="true" />
+      <Method Name="OnTypefaceListBoxSelectionChanged" Hidden="true" />
+      <Method Name="OnUnloaded" Hidden="true" />
+      <Method Name="OnWorkerCompleted" Hidden="true" />
+      <Method Name="OnWorkerProgressChanged" Hidden="true" />
+      <Field Name="PreviewTextProperty" Hidden="true" />
+      <Field Name="SelectedFontFamilyProperty" Hidden="true" />
+      <Field Name="SelectedFontSizeProperty" Hidden="true" />
+      <Field Name="SelectedFontStretchProperty" Hidden="true" />
+      <Field Name="SelectedFontStyleProperty" Hidden="true" />
+      <Field Name="SelectedFontWeightProperty" Hidden="true" />
+      <Field Name="SelectedTextDecorationsProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AKJEEAJSAjRAAgAAQABCggYgAcgABBJQIAIAAEIpMkI=</HashCode>
+      <FileName>FontChooser\FontChooser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.FontDialog">
+    <Position X="3.75" Y="1.5" Width="1.5" />
+    <Members>
+      <Method Name="FontDialog" Hidden="true" />
+      <Method Name="OnCancelClick" Hidden="true" />
+      <Method Name="OnOkClick" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAACAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>FontChooser\FontDialog.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

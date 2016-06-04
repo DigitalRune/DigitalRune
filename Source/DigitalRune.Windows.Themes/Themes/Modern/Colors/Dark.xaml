@@ -1,0 +1,412 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!--  COLORS  -->
+
+    <!--  Accent colors  -->
+    <Color x:Key="Accent0">#FF0179D7</Color>
+    <Color x:Key="Accent1">#FF1D91EB</Color>
+    <Color x:Key="Accent2">#330190FF</Color>
+    <Color x:Key="Accent3">#3333A6FF</Color>
+
+    <!--  Shades of gray  -->
+    <Color x:Key="Gray006">#FF0F0F0F</Color>
+    <Color x:Key="Gray011">#FF1B1B1C</Color>
+    <Color x:Key="Gray012">#FF1E1E1E</Color>
+    <Color x:Key="Gray015">#FF262627</Color>
+    <Color x:Key="Gray015_050">#7F262627</Color>
+    <Color x:Key="Gray019">#FF2E2E31</Color>
+    <Color x:Key="Gray022">#FF343438</Color>
+    <Color x:Key="Gray025">#FF3e3e40</Color>
+    <Color x:Key="Gray026">#FF3E3E42</Color>
+    <Color x:Key="Gray027">#FF434346</Color>
+    <Color x:Key="Gray027_050">#7F434346</Color>
+    <Color x:Key="Gray029">#FF46464A</Color>
+    <Color x:Key="Gray034">#FF575757</Color>
+    <Color x:Key="Gray038">#FF606060</Color>
+    <Color x:Key="Gray041">#FF686868</Color>
+    <Color x:Key="Gray050">#FF808080</Color>
+    <Color x:Key="Gray062">#FF9E9E9E</Color>
+    <Color x:Key="Gray082">#FFCFCFD1</Color>
+    <Color x:Key="Gray095">#FFF1F1F1</Color>
+    <Color x:Key="Gray100">#FFFFFFFF</Color>
+
+
+    <!--  BRUSHES  -->
+
+    <!--  Window  -->
+    <SolidColorBrush x:Key="Window.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray019}" />
+    <SolidColorBrush x:Key="Window.Inactive.Border"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray012}" />
+    <SolidColorBrush x:Key="Dialog.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray019}" />
+
+    <!--  Icon  -->
+    <sys:Double x:Key="Icon.DisabledOpacity}">0.33</sys:Double>
+    <sys:Double x:Key="Icon.EnabledOpacity}">1.0</sys:Double>
+    <SolidColorBrush x:Key="Icon.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray019}" />
+    <SolidColorBrush x:Key="Icon.Foreground"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray082}" />
+    <SolidColorBrush x:Key="Icon.LightGray"
+                     options:Freeze="True"
+                     Color="#FFECECEF" />
+    <SolidColorBrush x:Key="Icon.DarkGray"
+                     options:Freeze="True"
+                     Color="#FF424242" />
+    <SolidColorBrush x:Key="Icon.Red"
+                     options:Freeze="True"
+                     Color="#FFE51500" />
+    <SolidColorBrush x:Key="Icon.Orange"
+                     options:Freeze="True"
+                     Color="#FFFFCC00" />
+    <SolidColorBrush x:Key="Icon.Green"
+                     options:Freeze="True"
+                     Color="#FF76CA72" />
+    <SolidColorBrush x:Key="Icon.Blue"
+                     options:Freeze="True"
+                     Color="#FF60B4FF" />
+
+    <!--  Control  -->
+    <SolidColorBrush x:Key="Control.Static.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray019}" />
+    <SolidColorBrush x:Key="Control.Static.Border"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray027}" />
+    <SolidColorBrush x:Key="Control.Static.Foreground"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray095}" />
+    <SolidColorBrush x:Key="Control.Static.Glyph"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray050}" />
+    <SolidColorBrush x:Key="Control.Focus.Border"
+                     options:Freeze="True"
+                     Color="{StaticResource Accent0}" />
+    <SolidColorBrush x:Key="Control.MouseOver.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray025}" />
+    <SolidColorBrush x:Key="Control.MouseOver.Border"
+                     options:Freeze="True"
+                     Color="{StaticResource Accent1}" />
+    <SolidColorBrush x:Key="Control.MouseOver.Glyph"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray095}" />
+    <SolidColorBrush x:Key="Control.Pressed.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Accent0}" />
+    <SolidColorBrush x:Key="Control.Pressed.Border"
+                     options:Freeze="True"
+                     Color="{StaticResource Accent0}" />
+    <SolidColorBrush x:Key="Control.Pressed.Foreground"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray095}" />
+    <SolidColorBrush x:Key="Control.Pressed.Glyph"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray095}" />
+    <SolidColorBrush x:Key="Control.Checked.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Accent2}" />
+    <SolidColorBrush x:Key="Control.Checked.Border"
+                     options:Freeze="True"
+                     Color="{StaticResource Accent0}" />
+    <SolidColorBrush x:Key="Control.Disabled.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray015_050}" />
+    <SolidColorBrush x:Key="Control.Disabled.Border"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray027_050}" />
+    <SolidColorBrush x:Key="Control.Disabled.Foreground"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray034}" />
+    <SolidColorBrush x:Key="Control.Disabled.Glyph"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray034}" />
+
+    <!--  Hyperlink  -->
+    <SolidColorBrush x:Key="HyperLink.Static.Foreground"
+                     options:Freeze="True"
+                     Color="{StaticResource Accent0}" />
+    <SolidColorBrush x:Key="HyperLink.MouseOver.Foreground"
+                     options:Freeze="True"
+                     Color="{StaticResource Accent1}" />
+
+    <!--  Item  -->
+    <SolidColorBrush x:Key="Item.MouseOver.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Accent3}" />
+    <SolidColorBrush x:Key="Item.MouseOver.Border"
+                     options:Freeze="True"
+                     Color="{StaticResource Accent1}" />
+    <SolidColorBrush x:Key="Item.SelectedActive.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Accent2}" />
+    <SolidColorBrush x:Key="Item.SelectedActive.Border"
+                     options:Freeze="True"
+                     Color="{StaticResource Accent0}" />
+    <SolidColorBrush x:Key="Item.SelectedInactive.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray027}" />
+    <SolidColorBrush x:Key="Item.SelectedInactive.Border"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray027}" />
+
+    <!--  ListView  -->
+    <SolidColorBrush x:Key="ListView.Header.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray022}" />
+    <SolidColorBrush x:Key="ListView.Header.Border"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray027}" />
+    <SolidColorBrush x:Key="ListView.Header.Foreground"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray095}" />
+
+    <!--  Menu  -->
+    <SolidColorBrush x:Key="Menu.Static.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray011}" />
+    <SolidColorBrush x:Key="Menu.Static.Border"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray022}" />
+    <SolidColorBrush x:Key="Menu.Static.Separator"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray022}" />
+
+    <!--  ProgressBar  -->
+    <SolidColorBrush x:Key="ProgressBar.Progress"
+                     options:Freeze="True"
+                     Color="#FF1F9F29" />
+
+    <!--  ScrollBar  -->
+    <SolidColorBrush x:Key="ScrollBar.Static.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray026}" />
+    <SolidColorBrush x:Key="ScrollBar.Static.Border"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray026}" />
+    <SolidColorBrush x:Key="ScrollBar.Static.Thumb"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray041}" />
+    <SolidColorBrush x:Key="ScrollBar.MouseOver.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray026}" />
+    <SolidColorBrush x:Key="ScrollBar.MouseOver.Border"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray026}" />
+    <SolidColorBrush x:Key="ScrollBar.MouseOver.Thumb"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray062}" />
+    <SolidColorBrush x:Key="ScrollBar.Pressed.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray038}" />
+    <SolidColorBrush x:Key="ScrollBar.Pressed.Border"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray038}" />
+    <SolidColorBrush x:Key="ScrollBar.Pressed.Thumb"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray082}" />
+    <SolidColorBrush x:Key="ScrollBar.Pressed.Glyph"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray095}" />
+    <SolidColorBrush x:Key="ScrollBar.Disabled.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray026}" />
+    <SolidColorBrush x:Key="ScrollBar.Disabled.Border"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray026}" />
+    <SolidColorBrush x:Key="ScrollBar.Disabled.Thumb"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray026}" />
+
+    <!--  Separator  -->
+    <SolidColorBrush x:Key="Separator.Static.Fill"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray027_050}" />
+
+    <!--  Slider  -->
+    <SolidColorBrush x:Key="Slider.Static.Foreground"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray038}" />
+    <SolidColorBrush x:Key="Slider.Static.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray022}" />
+    <SolidColorBrush x:Key="Slider.Static.Border"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray038}" />
+
+    <!--  TabControl  -->
+    <SolidColorBrush x:Key="Tab.Static.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray019}" />
+    <SolidColorBrush x:Key="Tab.Static.Border"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray027}" />
+    <SolidColorBrush x:Key="Tab.Disabled.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray015_050}" />
+    <SolidColorBrush x:Key="Tab.Selected.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray011}" />
+
+    <!--  TextBox  -->
+    <SolidColorBrush x:Key="TextBox.Static.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray022}" />
+    <SolidColorBrush x:Key="TextBox.Static.Border"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray027}" />
+    <SolidColorBrush x:Key="TextBox.MouseOver.Border"
+                     options:Freeze="True"
+                     Color="{StaticResource Accent1}" />
+    <SolidColorBrush x:Key="TextBox.Active.Border"
+                     options:Freeze="True"
+                     Color="{StaticResource Accent0}" />
+    <SolidColorBrush x:Key="TextBox.Static.Foreground"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray100}" />
+
+    <!--  ToolBar  -->
+    <SolidColorBrush x:Key="ToolBar.Static.Border"
+                     options:Freeze="True"
+                     Color="Transparent" />
+    <Thickness x:Key="ToolBar.Static.BorderThickness">0</Thickness>
+    <SolidColorBrush x:Key="ToolBar.Gripper.Fill"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray029}" />
+
+    <!--  ToolTip  -->
+    <SolidColorBrush x:Key="ToolTip.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray011}" />
+    <SolidColorBrush x:Key="ToolTip.Border"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray038}" />
+    <SolidColorBrush x:Key="ToolTip.Foreground"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray095}" />
+
+    <!--  ResizeGrip  -->
+    <LinearGradientBrush x:Key="ResizeGrip.Foreground" options:Freeze="True" StartPoint="0,0.25" EndPoint="1,0.75">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Offset="0.3" Color="{StaticResource Gray011}" />
+            <GradientStop Offset="0.75" Color="{StaticResource Gray029}" />
+            <GradientStop Offset="1" Color="{StaticResource Gray038}" />
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <!--  AvalonEdit  -->
+    <SolidColorBrush x:Key="TextEditor.Static.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray012}" />
+    <SolidColorBrush x:Key="TextEditor.Static.Foreground"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray100}" />
+    <SolidColorBrush x:Key="TextEditor.ColumnRuler"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray038}" />
+    <SolidColorBrush x:Key="TextEditor.BracketHighlighting.Background"
+                     options:Freeze="True"
+                     Color="#FF004D4D" />
+    <SolidColorBrush x:Key="TextEditor.BracketHighlighting.Border"
+                     options:Freeze="True"
+                     Color="#FF008080" />
+    <SolidColorBrush x:Key="TextEditor.LineNumbers.Foreground"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray050}" />
+    <SolidColorBrush x:Key="TextEditor.CurrentLineBackground"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray006}" />
+    <SolidColorBrush x:Key="TextEditor.CurrentLineBorder"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray006}" />
+    <SolidColorBrush x:Key="TextEditor.Folding.Static.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray012}" />
+    <SolidColorBrush x:Key="TextEditor.Folding.Static.Foreground"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray050}" />
+    <SolidColorBrush x:Key="TextEditor.Folding.Selected.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray012}" />
+    <SolidColorBrush x:Key="TextEditor.Folding.Selected.Foreground"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray095}" />
+    <SolidColorBrush x:Key="TextEditor.SearchResultBackground"
+                     options:Freeze="True"
+                     Color="SandyBrown" />
+    <SolidColorBrush x:Key="TextEditor.SelectedWordBackground"
+                     options:Freeze="True"
+                     Color="#FF453471" />
+
+    <!--  DigitalRune.Windows.Controls  -->
+    <SolidColorBrush x:Key="PropertyGroup.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray015}" />
+    <DrawingBrush x:Key="Modern.CheckerBrush"
+                  TileMode="Tile"
+                  Viewport="0,0,10,10"
+                  ViewportUnits="Absolute"
+                  options:Freeze="True">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <!--  The whole tile background is white (100x100).  -->
+                <GeometryDrawing Brush="White">
+                    <GeometryDrawing.Geometry>
+                        <RectangleGeometry Rect="0,0 100,100" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <!--  The upper left and lower left quarter is gray.  -->
+                <GeometryDrawing Brush="LightGray">
+                    <GeometryDrawing.Geometry>
+                        <GeometryGroup>
+                            <RectangleGeometry Rect="0,0 50,50" />
+                            <RectangleGeometry Rect="50,50 50,50" />
+                        </GeometryGroup>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <!--  DigitalRune.Windows.Docking  -->
+    <SolidColorBrush x:Key="DockIndicator.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Accent0}" />
+    <SolidColorBrush x:Key="DockAnchorPane.Static.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray015}" />
+    <SolidColorBrush x:Key="DockTabPane.Static.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray015}" />
+    <SolidColorBrush x:Key="DockTabPane.Static.Border"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray027}" />
+    <SolidColorBrush x:Key="DockTabPane.MouseOver.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray011}" />
+    <SolidColorBrush x:Key="DockTabItem.Active.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Accent0}" />
+    <SolidColorBrush x:Key="DockTabItem.Active.Foreground"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray095}" />
+    <SolidColorBrush x:Key="DockTabItem.MouseOver.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Accent1}" />
+    <SolidColorBrush x:Key="DockTabItem.MouseOver.Foreground"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray095}" />
+    <SolidColorBrush x:Key="DockTab.Selected.Background"
+                     options:Freeze="True"
+                     Color="{StaticResource Gray027}" />
+
+</ResourceDictionary>

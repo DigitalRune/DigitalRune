@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Character Controllers                                Assembly: DigitalRune.Physics.Specialized        Namespace: DigitalRune.Physics.Specialized">
+    <Position X="0.5" Y="0.5" Height="0.625" Width="2.647" />
+  </Comment>
+  <Class Name="DigitalRune.Physics.Specialized.DynamicCharacterController">
+    <Position X="3" Y="1.25" Width="2.25" />
+    <Members>
+      <Field Name="_cosSlopeLimit" Hidden="true" />
+      <Field Name="_gravity" Hidden="true" />
+      <Field Name="_gravityVelocity" Hidden="true" />
+      <Field Name="_hasGroundContact" Hidden="true" />
+      <Field Name="_jumpVelocity" Hidden="true" />
+      <Field Name="_ray" Hidden="true" />
+      <Field Name="_slopeLimit" Hidden="true" />
+      <Method Name="DynamicCharacterController" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQBACAACBIAoAIAgACQBAEAAAAAAAAAAAAAABAADAAA=</HashCode>
+      <FileName>CharacterControllers\Dynamic\DynamicCharacterController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Physics.Specialized.KinematicCharacterController">
+    <Position X="0.5" Y="1.25" Width="2.25" />
+    <Members>
+      <Field Name="_backupContacts" Hidden="true" />
+      <Field Name="_backupHasGroundContact" Hidden="true" />
+      <Field Name="_bottomContacts" Hidden="true" />
+      <Field Name="_bounds" Hidden="true" />
+      <Field Name="_contacts" Hidden="true" />
+      <Field Name="_cosSlopeLimit" Hidden="true" />
+      <Field Name="_desiredPosition" Hidden="true" />
+      <Field Name="_forceEffect" Hidden="true" />
+      <Field Name="_gravity" Hidden="true" />
+      <Field Name="_gravityVelocity" Hidden="true" />
+      <Field Name="_hadGroundContact" Hidden="true" />
+      <Field Name="_hasGroundContact" Hidden="true" />
+      <Field Name="_isSteppingDown" Hidden="true" />
+      <Field Name="_isSteppingUp" Hidden="true" />
+      <Field Name="_jumpManeuverability" Hidden="true" />
+      <Field Name="_jumpVelocity" Hidden="true" />
+      <Field Name="_lastActualVelocity" Hidden="true" />
+      <Field Name="_lastDesiredVelocity" Hidden="true" />
+      <Field Name="_maxVelocity" Hidden="true" />
+      <Field Name="_numberOfSlideIterations" Hidden="true" />
+      <Field Name="_numberOfSolverIterations" Hidden="true" />
+      <Field Name="_obstacles" Hidden="true" />
+      <Field Name="_oldPosition" Hidden="true" />
+      <Field Name="_pushForce" Hidden="true" />
+      <Field Name="_slopeLimit" Hidden="true" />
+      <Field Name="_stepHeight" Hidden="true" />
+      <Method Name="AddBounds" Hidden="true" />
+      <Property Name="AllowedPenetration" Hidden="true" />
+      <Method Name="BackupContacts" Hidden="true" />
+      <Method Name="CollectObstacles" Hidden="true" />
+      <Property Name="CollisionDetection" Hidden="true" />
+      <Method Name="Fly" Hidden="true" />
+      <Method Name="HasUnallowedContact" Hidden="true" />
+      <Method Name="InitializeBody" Hidden="true" />
+      <Method Name="IsAllowedSlope" Hidden="true" />
+      <Method Name="KinematicCharacterController" Hidden="true" />
+      <Field Name="OppositeContactLimit" Hidden="true" />
+      <Method Name="RollbackContacts" Hidden="true" />
+      <Method Name="Slide" Hidden="true" />
+      <Method Name="StepDown" Hidden="true" />
+      <Method Name="StepUp" Hidden="true" />
+      <Method Name="UpdateContacts" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Struct Name="DigitalRune.Physics.Specialized.KinematicCharacterController.CCContact" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>CharacterControllers\Kinematic\KinematicCharacterController_Contacts.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AUJJSAQCJpEowqIiASwBAEAAHUiAAASIAAkBBVATBIA=</HashCode>
+      <FileName>CharacterControllers\Kinematic\KinematicCharacterController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

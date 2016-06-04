@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Themes                                         Assembly: DigitalRune.Windows Namespace: DigitalRune.Windows ">
+    <Position X="0.5" Y="0.5" Height="0.657" Width="2.2" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.Theme" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="1.5" Width="1.5" />
+    <Members>
+      <Method Name="Theme" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAEAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Theming\Theme.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.ThemeChangedEventArgs">
+    <Position X="3.5" Y="3.25" Width="2" />
+    <Members>
+      <Method Name="ThemeChangedEventArgs" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAEBAAAAQAAAAAAAIAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Theming\ThemeChangedEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.ThemeManager">
+    <Position X="0.5" Y="1.5" Width="2.5" />
+    <Members>
+      <Method Name="ApplyThemeResourceDictionary" Hidden="true" />
+      <Method Name="ClearThemeResourceDictionary" Hidden="true" />
+      <Field Name="ThemeChangedEvent" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Windows.ThemeManager.ThemeResourceDictionary" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ThemeManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Windows.ThemeManager.BaseThemeResourceDictionary" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Theming\ThemeManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Windows.ThemeManager.ColorThemeResourceDictionary" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Theming\ThemeManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Windows.ThemeManager.AccentThemeResourceDictionary" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Theming\ThemeManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAIAAAACAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Theming\ThemeManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

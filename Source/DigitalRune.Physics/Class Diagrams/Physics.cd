@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Physics        Namespace: DigitalRune.Physics">
+    <Position X="0.5" Y="0.5" Height="0.521" Width="2.21" />
+  </Comment>
+  <Class Name="DigitalRune.Physics.Simulation">
+    <Position X="0.5" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_computeTimeOfImpactMethod" Hidden="true" />
+      <Field Name="_constraints" Hidden="true" />
+      <Field Name="_contactConstraints" Hidden="true" />
+      <Field Name="_fixedTimeStep" Hidden="true" />
+      <Field Name="_moveToTimeOfImpactMethod" Hidden="true" />
+      <Field Name="_settings" Hidden="true" />
+      <Field Name="_solveIslandMethod" Hidden="true" />
+      <Field Name="_tempForceEffects" Hidden="true" />
+      <Field Name="_tempForceList" Hidden="true" />
+      <Field Name="_timeScaling" Hidden="true" />
+      <Field Name="_updatePoseMethod" Hidden="true" />
+      <Field Name="_updateVelocityMethod" Hidden="true" />
+      <Property Name="CcdRequested" Hidden="true" />
+      <Method Name="ComputeTimeOfImpact_Multithreaded" Hidden="true" />
+      <Method Name="ComputeTimeOfImpact_Singlethreaded" Hidden="true" />
+      <Property Name="ConstraintSolver" Hidden="true" />
+      <Field Name="ContactConstraintsInternal" Hidden="true" />
+      <Method Name="DoCcdMotionClamping_Multithreaded" Hidden="true" />
+      <Method Name="DoCcdMotionClamping_Singlethreaded" Hidden="true" />
+      <Method Name="EvaluateForces" Hidden="true" />
+      <Method Name="MoveToTimeOfImpact" Hidden="true" />
+      <Method Name="OnConstraintsChanged" Hidden="true" />
+      <Method Name="OnForceEffectsChanged" Hidden="true" />
+      <Method Name="OnRigidBodiesChanged" Hidden="true" />
+      <Method Name="RegisterInCollisionFilter" Hidden="true" />
+      <Method Name="RemoveBodiesOutsideWorld" Hidden="true" />
+      <Method Name="Simulation" Hidden="true" />
+      <Method Name="SolveIsland" Hidden="true" />
+      <Method Name="SubTimeStep_Multithreaded" Hidden="true" />
+      <Method Name="SubTimeStep_Singlethreaded" Hidden="true" />
+      <Method Name="UnregisterFromCollisionFilter" Hidden="true" />
+      <Method Name="UpdateContacts" Hidden="true" />
+    </Members>
+    <AssociationLine Name="World" Type="DigitalRune.Physics.RigidBody" FixedFromPoint="true">
+      <Path>
+        <Point X="2.5" Y="2.083" />
+        <Point X="5.5" Y="2.083" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="RigidBodies" Type="DigitalRune.Physics.RigidBody" FixedToPoint="true">
+      <Path>
+        <Point X="2.5" Y="2.604" />
+        <Point X="5.5" Y="2.604" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ResponseFilter" Type="DigitalRune.Geometry.Partitioning.IPairFilter&lt;T&gt;" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.5" Y="3.78" />
+        <Point X="3.625" Y="3.78" />
+        <Point X="3.625" Y="5.75" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.15" Y="0.11" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="IslandManager" Type="DigitalRune.Physics.SimulationIslandManager">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.161" Y="0.164" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>QAUAQUCAABAWBQQBgQgAABLEgDQgghCh4AACBIgAARQ=</HashCode>
+      <FileName>Simulation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="World" />
+      <Property Name="ResponseFilter" />
+      <Property Name="IslandManager" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="RigidBodies" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Physics.PhysicsException">
+    <Position X="0.5" Y="9.25" Width="2" />
+    <Members>
+      <Method Name="PhysicsException" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PhysicsException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Physics.SimulationIsland">
+    <Position X="0.5" Y="7.25" Width="2" />
+    <Members>
+      <Field Name="_constraints" Hidden="true" />
+      <Field Name="_contactConstraints" Hidden="true" />
+      <Field Name="_rigidBodies" Hidden="true" />
+      <Method Name="Clear" Hidden="true" />
+      <Property Name="ConstraintsInternal" Hidden="true" />
+      <Property Name="ContactConstraintsInternal" Hidden="true" />
+      <Method Name="Create" Hidden="true" />
+      <Method Name="IsSleeping" Hidden="true" />
+      <Field Name="Pool" Hidden="true" />
+      <Property Name="Random" Hidden="true" />
+      <Method Name="Recycle" Hidden="true" />
+      <Property Name="RigidBodiesInternal" Hidden="true" />
+      <Property Name="Simulation" Hidden="true" />
+      <Method Name="SimulationIsland" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAEAAACAAAAAAAAAQAAAAAgAAARAjFAEAAAABABAAAQ=</HashCode>
+      <FileName>Islands\SimulationIsland.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Physics.SimulationIslandManager">
+    <Position X="0.5" Y="5.75" Width="2" />
+    <Members>
+      <Field Name="_islands" Hidden="true" />
+      <Field Name="_simulation" Hidden="true" />
+      <Field Name="_sortedElements" Hidden="true" />
+      <Field Name="_unionFinder" Hidden="true" />
+      <Property Name="ContactSetLinks" Hidden="true" />
+      <Method Name="GetIslandId" Hidden="true" />
+      <Method Name="IComparer&lt;SimulationIsland&gt;.Compare" Hidden="true" />
+      <Property Name="IslandsInternal" Hidden="true" />
+      <Method Name="SimulationIslandManager" Hidden="true" />
+      <Method Name="Update" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Islands" Type="DigitalRune.Physics.SimulationIsland">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.722" Y="0.255" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAISAAABAAgAQEAAAAAAAAAAAAAAACBAAAAAAA=</HashCode>
+      <FileName>Islands\SimulationIslandManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Islands" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DigitalRune.Physics.MassFrame">
+    <Position X="9.25" Y="4.75" Width="2" />
+    <Members>
+      <Field Name="_density" Hidden="true" />
+      <Field Name="_inertia" Hidden="true" />
+      <Field Name="_inertiaInverse" Hidden="true" />
+      <Field Name="_mass" Hidden="true" />
+      <Field Name="_massInverse" Hidden="true" />
+      <Field Name="_massLimit" Hidden="true" />
+      <Field Name="_pose" Hidden="true" />
+      <Method Name="ComputeMassProperties" Hidden="true" />
+      <Property Name="InertiaInverse" Hidden="true" />
+      <Property Name="MassInverse" Hidden="true" />
+      <Method Name="UpdateInertiaInverse" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Pose" Type="DigitalRune.Geometry.Pose" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.25" Y="5.76" />
+        <Point X="11.625" Y="5.76" />
+        <Point X="11.625" Y="4.031" />
+        <Point X="10.75" Y="4.031" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAACAQAAgAAACARAAIECgAAQAEAAACDAVA=</HashCode>
+      <FileName>Mass\MassFrame.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Pose" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Physics.MassHelper">
+    <Position X="11.75" Y="6.25" Width="2" />
+    <Members>
+      <Method Name="AdjustMass" Hidden="true" />
+      <Method Name="ComputePolyhedronMassSubExpressions" Hidden="true" />
+      <Method Name="DiagonalizeInertia" Hidden="true" />
+      <Method Name="GetTranslatedMassInertia" Hidden="true" />
+      <Method Name="GetUntranslatedMassInertia" Hidden="true" />
+      <Method Name="MassHelper" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAQABAAIAAAAAAAAIAAAAAAAAAAAAAAAAAACIAAAA=</HashCode>
+      <FileName>Mass\MassHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Physics.CollisionResponseFilter" BaseTypeListCollapsed="true">
+    <Position X="3" Y="6.75" Width="2" />
+    <Members>
+      <Field Name="_disabledPairs" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAQAABAAABAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CollisionResponseFilter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Geometry.Shapes.Shape" Collapsed="true">
+    <Position X="9.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.CollisionObject" Collapsed="true">
+    <Position X="9.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="GeometricObject" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Physics.RigidBody" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="1.75" Width="2.25" />
+    <Members>
+      <Field Name="_aabb" Hidden="true" />
+      <Field Name="_aabbIsValid" Hidden="true" />
+      <Field Name="_angularVelocity" Hidden="true" />
+      <Field Name="_canSleep" Hidden="true" />
+      <Field Name="_inertiaInverseWorld" Hidden="true" />
+      <Field Name="_linearVelocity" Hidden="true" />
+      <Field Name="_lockRotationX" Hidden="true" />
+      <Field Name="_lockRotationY" Hidden="true" />
+      <Field Name="_lockRotationZ" Hidden="true" />
+      <Field Name="_massFrame" Hidden="true" />
+      <Field Name="_massInverse" Hidden="true" />
+      <Field Name="_material" Hidden="true" />
+      <Field Name="_motionType" Hidden="true" />
+      <Field Name="_noMovementTime" Hidden="true" />
+      <Field Name="_pose" Hidden="true" />
+      <Field Name="_poseCenterOfMass" Hidden="true" />
+      <Field Name="_scale" Hidden="true" />
+      <Field Name="_shape" Hidden="true" />
+      <Field Name="_simulation" Hidden="true" />
+      <Field Name="AccumulatedForce" Hidden="true" />
+      <Field Name="AccumulatedTorque" Hidden="true" />
+      <Field Name="AngularCorrectionVelocity" Hidden="true" />
+      <Method Name="ApplyCorrectionImpulse" Hidden="true" />
+      <Property Name="BuoyancyData" Hidden="true" />
+      <Method Name="ClearForces" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="DeferSleep" Hidden="true" />
+      <Method Name="IGeometricObject.Clone" Hidden="true" />
+      <Property Name="InertiaInverseWorld" Hidden="true" />
+      <Property Name="InertiaWorld" Hidden="true" />
+      <Property Name="IsCcdActive" Hidden="true" />
+      <Property Name="IslandId" Hidden="true" />
+      <Property Name="IslandTouchesImmovable" Hidden="true" />
+      <Property Name="IsSleepingCandidate" Hidden="true" />
+      <Field Name="LinearCorrectionVelocity" Hidden="true" />
+      <Property Name="MassInverse" Hidden="true" />
+      <Method Name="OnPoseCenterOfMassChanged" Hidden="true" />
+      <Method Name="OnPoseChanged" Hidden="true" />
+      <Method Name="OnShapeChanged" Hidden="true" />
+      <Method Name="RigidBody" Hidden="true" />
+      <Property Name="TargetPose" Hidden="true" />
+      <Field Name="TimeOfImpact" Hidden="true" />
+      <Method Name="UpdateInverseMass" Hidden="true" />
+      <Method Name="UpdateMassFrame" Hidden="true" />
+      <Method Name="UpdatePose" Hidden="true" />
+      <Method Name="UpdatePoseCenterOfMass" Hidden="true" />
+      <Method Name="UpdateSleeping" Hidden="true" />
+      <Method Name="UpdateVelocity" Hidden="true" />
+      <Field Name="UserForce" Hidden="true" />
+      <Field Name="UserTorque" Hidden="true" />
+    </Members>
+    <AssociationLine Name="CollisionObject" Type="DigitalRune.Geometry.Collisions.CollisionObject" FixedFromPoint="true">
+      <Path>
+        <Point X="7.75" Y="1.86" />
+        <Point X="9.25" Y="1.86" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Simulation" Type="DigitalRune.Physics.Simulation" FixedFromPoint="true">
+      <Path>
+        <Point X="5.5" Y="3.03" />
+        <Point X="2.5" Y="3.03" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="MassFrame" Type="DigitalRune.Physics.MassFrame">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.038" Y="0.108" Height="0.182" Width="0.927" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>o8REBwQAY4KBCEYNAxKjMA4BQgoMEEKaCNB4HCAIELk=</HashCode>
+      <FileName>RigidBody.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CollisionObject" />
+      <Property Name="Material" />
+      <Property Name="MotionType" />
+      <Property Name="Simulation" />
+      <Property Name="Pose" />
+      <Property Name="PoseCenterOfMass" />
+      <Property Name="Shape" />
+      <Property Name="MassFrame" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Struct Name="DigitalRune.Geometry.Pose" Collapsed="true">
+    <Position X="9.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Interface Name="DigitalRune.Geometry.IGeometricObject" Collapsed="true">
+    <Position X="5.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="DigitalRune.Geometry.Partitioning.IPairFilter&lt;T&gt;" Collapsed="true">
+    <Position X="3" Y="5.75" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="DigitalRune.Physics.Materials.IMaterial" Collapsed="true">
+    <Position X="9.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Materials\IMaterial.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DigitalRune.Physics.MotionType">
+    <Position X="9.25" Y="8.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAABAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>MotionType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,420 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.DocumentHighlighter" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="6" Width="2.25" />
+    <Members>
+      <Method Name="BeginHighlighting" Hidden="true" />
+      <Method Name="CheckIsHighlighting" Hidden="true" />
+      <Property Name="DefaultTextColor" Hidden="true" />
+      <Field Name="definition" Hidden="true" />
+      <Field Name="document" Hidden="true" />
+      <Property Name="Document" Hidden="true" />
+      <Method Name="DocumentHighlighter" Hidden="true" />
+      <Method Name="EndHighlighting" Hidden="true" />
+      <Field Name="engine" Hidden="true" />
+      <Method Name="EqualSpanStacks" Hidden="true" />
+      <Field Name="firstInvalidLine" Hidden="true" />
+      <Method Name="GetColorStack" Hidden="true" />
+      <Method Name="GetNamedColor" Hidden="true" />
+      <Event Name="HighlightingStateChanged" Hidden="true" />
+      <Method Name="HighlightLine" Hidden="true" />
+      <Method Name="HighlightUpTo" Hidden="true" />
+      <Method Name="ILineTracker.BeforeRemoveLine" Hidden="true" />
+      <Method Name="ILineTracker.ChangeComplete" Hidden="true" />
+      <Method Name="ILineTracker.LineInserted" Hidden="true" />
+      <Method Name="ILineTracker.RebuildDocument" Hidden="true" />
+      <Method Name="ILineTracker.SetLineLength" Hidden="true" />
+      <Field Name="initialSpanStack" Hidden="true" />
+      <Field Name="isDisposed" Hidden="true" />
+      <Field Name="isHighlighting" Hidden="true" />
+      <Field Name="isInHighlightingGroup" Hidden="true" />
+      <Field Name="isValid" Hidden="true" />
+      <Field Name="storedSpanStacks" Hidden="true" />
+      <Method Name="UpdateHighlightingState" Hidden="true" />
+      <Method Name="UpdateTreeList" Hidden="true" />
+      <Field Name="weakLineTracker" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AUAAAAEIEmAECAACEgBAAAgABI4GgIECAIAAoAQgQEA=</HashCode>
+      <FileName>Highlighting\DocumentHighlighter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="InitialSpanStack" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.HighlightedInlineBuilder">
+    <Position X="5.75" Y="9.75" Width="2" />
+    <Members>
+      <Method Name="GetIndexForOffset" Hidden="true" />
+      <Method Name="HighlightedInlineBuilder" Hidden="true" />
+      <Method Name="MakeBrush" Hidden="true" />
+      <Field Name="stateChangeOffsets" Hidden="true" />
+      <Field Name="stateChanges" Hidden="true" />
+      <Field Name="text" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACIAAQAIIAAAEAACAAAAAgAAAAAAAIAAAQCAABEBA=</HashCode>
+      <FileName>Highlighting\HighlightedInlineBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.HighlightedLine">
+    <Position X="12.25" Y="6" Width="2" />
+    <Members>
+      <Method Name="HighlightedLine" Hidden="true" />
+      <Method Name="Insert" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="ICSharpCode.AvalonEdit.Highlighting.HighlightedLine.HtmlElement" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Highlighting\HighlightedLine.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAEBAEAAAAAAAAAEAAAgEAAAAAAgAAAiAEAAQAAAEAA=</HashCode>
+      <FileName>Highlighting\HighlightedLine.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Sections" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.HighlightedSection" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAEAAAAAABAAAAAAAAAAAAAgAAAgAA=</HashCode>
+      <FileName>Highlighting\HighlightedSection.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Color" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.HighlightingBrush">
+    <Position X="17.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAgAAAAAAA=</HashCode>
+      <FileName>Highlighting\HighlightingBrush.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.HighlightingColor" BaseTypeListCollapsed="true">
+    <Position X="14.25" Y="0.75" Width="1.5" />
+    <Members>
+      <Field Name="background" Hidden="true" />
+      <Field Name="Empty" Hidden="true" />
+      <Field Name="fontStyle" Hidden="true" />
+      <Field Name="fontWeight" Hidden="true" />
+      <Field Name="foreground" Hidden="true" />
+      <Field Name="frozen" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="HighlightingColor" Hidden="true" />
+      <Method Name="ICloneable.Clone" Hidden="true" />
+      <Field Name="name" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+      <Field Name="underline" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAggkAMgIIAAAQgAAAkQIAAACAwAAIAMBI=</HashCode>
+      <FileName>Highlighting\HighlightingColor.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Foreground" />
+      <Property Name="Background" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.HighlightingColorizer">
+    <Position X="8.25" Y="9.75" Width="2" />
+    <Members>
+      <Field Name="definition" Hidden="true" />
+      <Field Name="highlighter" Hidden="true" />
+      <Method Name="HighlightingColorizer" Hidden="true" />
+      <Method Name="IsEmptyColor" Hidden="true" />
+      <Field Name="isFixedHighlighter" Hidden="true" />
+      <Field Name="isInHighlightingGroup" Hidden="true" />
+      <Field Name="lastColorizedLine" Hidden="true" />
+      <Field Name="lineNumberBeingColorized" Hidden="true" />
+      <Method Name="OnHighlightStateChanged" Hidden="true" />
+      <Field Name="textView" Hidden="true" />
+      <Method Name="textView_DocumentChanged" Hidden="true" />
+      <Method Name="textView_VisualLineConstructionStarting" Hidden="true" />
+      <Method Name="textView_VisualLinesChanged" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AIAAAAAZCAAABgEAAAAAAkAACAAAgAAIBAIAAgAAAlQ=</HashCode>
+      <FileName>Highlighting\HighlightingColorizer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.HighlightingDefinitionInvalidException">
+    <Position X="11" Y="11.25" Width="3" />
+    <Members>
+      <Method Name="HighlightingDefinitionInvalidException" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Highlighting\HighlightingDefinitionInvalidException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.HighlightingDefinitionTypeConverter">
+    <Position X="11" Y="9.75" Width="2.75" />
+    <Members>
+      <Method Name="CanConvertFrom" Hidden="true" />
+      <Method Name="CanConvertTo" Hidden="true" />
+      <Method Name="ConvertFrom" Hidden="true" />
+      <Method Name="ConvertTo" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAACAAAAIAAAAAAAA=</HashCode>
+      <FileName>Highlighting\HighlightingDefinitionTypeConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.HighlightingManager" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="3.75" Width="2.75" />
+    <Members>
+      <Field Name="_instance" Hidden="true" />
+      <Field Name="allHighlightings" Hidden="true" />
+      <Method Name="GetDefinition" Hidden="true" />
+      <Method Name="GetDefinitionByExtension" Hidden="true" />
+      <Property Name="HighlightingDefinitions" Hidden="true" />
+      <Field Name="highlightingsByExtension" Hidden="true" />
+      <Field Name="highlightingsByName" Hidden="true" />
+      <Field Name="lockObj" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="ICSharpCode.AvalonEdit.Highlighting.HighlightingManager.DelayLoadedHighlightingDefinition" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Highlighting\HighlightingManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="ICSharpCode.AvalonEdit.Highlighting.HighlightingManager.DefaultHighlightingManager" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Highlighting\HighlightingManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAIAAABQIAAAAAAACQAAAAAIAEIA=</HashCode>
+      <FileName>Highlighting\HighlightingManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="HighlightingDefinitions" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.HighlightingRule">
+    <Position X="11" Y="2" Width="1.5" />
+    <Members>
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAEAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Highlighting\HighlightingRule.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Color" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.HighlightingRuleSet">
+    <Position X="8.25" Y="2" Width="1.75" />
+    <Members>
+      <Method Name="HighlightingRuleSet" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAQAAAAAAEAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Highlighting\HighlightingRuleSet.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Spans" />
+      <Property Name="Rules" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.HighlightingSpan">
+    <Position X="11" Y="3.25" Width="2" />
+    <Members>
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACADAAACQIAAAEAAAAAAAAAAAAAAAAQAgAAAAAAAA=</HashCode>
+      <FileName>Highlighting\HighlightingSpan.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="RuleSet" />
+      <Property Name="StartColor" />
+      <Property Name="SpanColor" />
+      <Property Name="EndColor" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.HtmlClipboard">
+    <Position X="3" Y="6.5" Width="1.75" />
+    <Members>
+      <Method Name="BuildHeader" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Highlighting\HtmlClipboard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.HtmlOptions">
+    <Position X="0.5" Y="6.5" Width="2.25" />
+    <Members>
+      <Method Name="HtmlOptions" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAABAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Highlighting\HtmlOptions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.SimpleHighlightingBrush">
+    <Position X="17" Y="3.75" Width="2" />
+    <Members>
+      <Field Name="brush" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetBrush" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="ISerializable.GetObjectData" Hidden="true" />
+      <Method Name="SimpleHighlightingBrush" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAEgAAAAAAAAACAAIAAAAAgAAAAAAA=</HashCode>
+      <FileName>Highlighting\HighlightingBrush.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.HighlightingEngine">
+    <Position X="5" Y="3.5" Width="1.75" />
+    <Members>
+      <Method Name="AllocateMatchArray" Hidden="true" />
+      <Property Name="CurrentRuleSet" Hidden="true" />
+      <Field Name="emptyRuleSet" Hidden="true" />
+      <Field Name="highlightedLine" Hidden="true" />
+      <Field Name="highlightedSectionStack" Hidden="true" />
+      <Method Name="HighlightLineInternal" Hidden="true" />
+      <Method Name="HighlightNonSpans" Hidden="true" />
+      <Field Name="lastPoppedSection" Hidden="true" />
+      <Field Name="lineStartOffset" Hidden="true" />
+      <Field Name="lineText" Hidden="true" />
+      <Field Name="mainRuleSet" Hidden="true" />
+      <Method Name="Minimum" Hidden="true" />
+      <Method Name="PopAllColors" Hidden="true" />
+      <Method Name="PopColor" Hidden="true" />
+      <Field Name="position" Hidden="true" />
+      <Method Name="PushColor" Hidden="true" />
+      <Method Name="ResetColorStack" Hidden="true" />
+      <Field Name="spanStack" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAADAgAAABAAAAACAIAIECABAAAEBAghgCABQAQA=</HashCode>
+      <FileName>Highlighting\HighlightingEngine.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="CurrentSpanStack" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.RichText">
+    <Position X="3" Y="8.75" Width="2" />
+    <Members>
+      <Method Name="ApplyColorToTextElement" Hidden="true" />
+      <Method Name="GetEnd" Hidden="true" />
+      <Method Name="GetIndexForOffset" Hidden="true" />
+      <Method Name="RichText" Hidden="true" />
+      <Field Name="stateChangeOffsets" Hidden="true" />
+      <Field Name="stateChanges" Hidden="true" />
+      <Field Name="text" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EAEBIAAAAEAAAAEEQQIAAABAAAAAAAAJABAQCAIBCAA=</HashCode>
+      <FileName>Highlighting\RichText.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.RichTextColorizer">
+    <Position X="0.5" Y="11.75" Width="1.5" />
+    <Members>
+      <Method Name="RichTextColorizer" Hidden="true" />
+      <Field Name="richTextModel" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Highlighting\RichTextColorizer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.RichTextModel">
+    <Position X="0.5" Y="8.75" Width="2.25" />
+    <Members>
+      <Method Name="Append" Hidden="true" />
+      <Method Name="GetEnd" Hidden="true" />
+      <Method Name="GetIndexForOffset" Hidden="true" />
+      <Method Name="GetIndexForOffsetUseExistingSegment" Hidden="true" />
+      <Method Name="RichTextModel" Hidden="true" />
+      <Field Name="stateChangeOffsets" Hidden="true" />
+      <Field Name="stateChanges" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACIAAQAAIBAAEAASAAAAAgAAAAAQABAAAQAQABCAA=</HashCode>
+      <FileName>Highlighting\RichTextModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ICSharpCode.AvalonEdit.Highlighting.IHighlightingDefinitionReferenceResolver">
+    <Position X="0.5" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Highlighting\IHighlightingDefinitionReferenceResolver.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ICSharpCode.AvalonEdit.Highlighting.IHighlightingDefinition">
+    <Position X="5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAEQAIAAAAAAAAAAAgAACAAA=</HashCode>
+      <FileName>Highlighting\IHighlightingDefinition.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MainRuleSet" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="NamedHighlightingColors" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Interface Name="ICSharpCode.AvalonEdit.Highlighting.IHighlighter">
+    <Position X="7.25" Y="6" Width="2.25" />
+    <AssociationLine Name="DefaultTextColor" Type="ICSharpCode.AvalonEdit.Highlighting.HighlightingColor" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9" Y="6" />
+        <Point X="9" Y="5.426" />
+        <Point X="11.417" Y="5.426" Type="JumpStart" />
+        <Point X="11.583" Y="5.426" Type="JumpEnd" />
+        <Point X="14.5" Y="5.426" />
+        <Point X="14.5" Y="4.228" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEEAAAAAAAABAAAAABAAAAIECAAAAoAAAAAA=</HashCode>
+      <FileName>Highlighting\IHighlighter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DefaultTextColor" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="ICSharpCode.AvalonEdit.Highlighting.IHighlightingService">
+    <Position X="0.75" Y="2" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Highlighting\IHighlightingDefinitionReferenceResolver.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="HighlightingDefinitions" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Delegate Name="ICSharpCode.AvalonEdit.Highlighting.HighlightingStateChangedEventHandler">
+    <Position X="16.25" Y="9.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Highlighting\IHighlighter.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

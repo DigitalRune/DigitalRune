@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Effectors                                                        Assembly: DigitalRune.Particles                 Namespace: DigitalRune.Particles.Effectors">
+    <Position X="0.5" Y="0.5" Height="0.676" Width="2.648" />
+  </Comment>
+  <Class Name="DigitalRune.Particles.Effectors.SingleDampingEffector">
+    <Position X="7" Y="7.25" Width="2" />
+    <Members>
+      <Field Name="_dampingParameter" Hidden="true" />
+      <Field Name="_valueParameter" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="OnBeginUpdate" Hidden="true" />
+      <Method Name="OnRequeryParameters" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="OnUpdateParticles" Hidden="true" />
+      <Method Name="SingleDampingEffector" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AoEAAACAAAAAAAAAAAAAICAIAAAIAAAAAAAAAAQAACA=</HashCode>
+      <FileName>Effectors\SingleDampingEffector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Particles.Effectors.StartValueEffector&lt;T&gt;">
+    <Position X="0.5" Y="2.5" Width="2" />
+    <Members>
+      <Field Name="_parameter" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="OnInitialize" Hidden="true" />
+      <Method Name="OnInitializeParticles" Hidden="true" />
+      <Method Name="OnRequeryParameters" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AoAAgAAAAAAAAAUAAAAAAAAAAABaAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Effectors\StartValueEffector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Particles.Effectors.SingleLerpEffector">
+    <Position X="0.5" Y="4.5" Width="1.75" />
+    <Members>
+      <Field Name="_endParameter" Hidden="true" />
+      <Field Name="_factorParameter" Hidden="true" />
+      <Field Name="_startParameter" Hidden="true" />
+      <Field Name="_valueParameter" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="OnBeginUpdate" Hidden="true" />
+      <Method Name="OnRequeryParameters" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="OnUpdateParticles" Hidden="true" />
+      <Method Name="SingleLerpEffector" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AoEAAAAgAAAAAACAAIAAIBAIAAAIABABAAAAAAQAACA=</HashCode>
+      <FileName>Effectors\SingleLerpEffector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Particles.Effectors.LinearAccelerationEffector">
+    <Position X="4.75" Y="7.25" Width="2" />
+    <Members>
+      <Field Name="_directionParameter" Hidden="true" />
+      <Field Name="_linearAccelerationParameter" Hidden="true" />
+      <Field Name="_linearSpeedParameter" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="LinearAccelerationEffector" Hidden="true" />
+      <Method Name="OnBeginUpdate" Hidden="true" />
+      <Method Name="OnRequeryParameters" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="OnUpdateParticles" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AoEAAAIAAAAAAAAAAAAAAAAIAAAIAAAIAAgAAAEACGA=</HashCode>
+      <FileName>Effectors\LinearAccelerationEffector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Particles.Effectors.AngularVelocityEffector">
+    <Position X="2.5" Y="7.25" Width="2" />
+    <Members>
+      <Field Name="_angleParameter" Hidden="true" />
+      <Field Name="_angularSpeedParameter" Hidden="true" />
+      <Method Name="AngularVelocityEffector" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="OnBeginUpdate" Hidden="true" />
+      <Method Name="OnRequeryParameters" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="OnUpdateParticles" Hidden="true" />
+      <Method Name="Rotate" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AoEAAAAAAAAAAAAACAAAAAAIEAAIAAAAEAAAAAABAGA=</HashCode>
+      <FileName>Effectors\AngularVelocityEffector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Particles.Effectors.SingleFadeEffector">
+    <Position X="4.5" Y="4.5" Width="2" />
+    <Members>
+      <Field Name="_fadeInBeforeFadeOut" Hidden="true" />
+      <Field Name="_fadeInDuration" Hidden="true" />
+      <Field Name="_fadeOutDuration" Hidden="true" />
+      <Field Name="_targetValueParameter" Hidden="true" />
+      <Field Name="_timeParameter" Hidden="true" />
+      <Field Name="_valueParameter" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="Fade" Hidden="true" />
+      <Method Name="OnBeginUpdate" Hidden="true" />
+      <Method Name="OnRequeryParameters" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="OnUpdateParticles" Hidden="true" />
+      <Method Name="SingleFadeEffector" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AoEAABAACAECAAAAAAAAJgBIBAAIAAAAAAACUCQAACA=</HashCode>
+      <FileName>Effectors\SingleFadeEffector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Particles.Effectors.LinearVelocityEffector">
+    <Position X="0.5" Y="7.25" Width="1.75" />
+    <Members>
+      <Field Name="_directionParameter" Hidden="true" />
+      <Field Name="_linearSpeedParameter" Hidden="true" />
+      <Field Name="_positionParameter" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="LinearVelocityEffector" Hidden="true" />
+      <Method Name="OnBeginUpdate" Hidden="true" />
+      <Method Name="OnRequeryParameters" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="OnUpdateParticles" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AoEAAgIAAAAAAAAAAAAAAAAIAAAIAAAoAAgAAAAAAGA=</HashCode>
+      <FileName>Effectors\LinearVelocityEffector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Particles.Effectors.StartPositionEffector">
+    <Position X="2.75" Y="2.5" Width="1.75" />
+    <Members>
+      <Field Name="_parameter" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="OnInitialize" Hidden="true" />
+      <Method Name="OnInitializeParticles" Hidden="true" />
+      <Method Name="OnRequeryParameters" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="StartPositionEffector" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AoAAgAAAAAAAAAUAAAAAAAAAAABaAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Effectors\StartPositionEffector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Particles.Effectors.StartDirectionEffector">
+    <Position X="4.75" Y="2.5" Width="1.75" />
+    <Members>
+      <Field Name="_parameter" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="OnInitialize" Hidden="true" />
+      <Method Name="OnInitializeParticles" Hidden="true" />
+      <Method Name="OnRequeryParameters" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="StartDirectionEffector" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AoAAgAAAAAAAAAUAAAAAAAAAAABaAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Effectors\StartDirectionEffector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Particles.Effectors.Vector3FLerpEffector">
+    <Position X="2.5" Y="4.5" Width="1.75" />
+    <Members>
+      <Field Name="_endParameter" Hidden="true" />
+      <Field Name="_factorParameter" Hidden="true" />
+      <Field Name="_startParameter" Hidden="true" />
+      <Field Name="_valueParameter" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="OnBeginUpdate" Hidden="true" />
+      <Method Name="OnRequeryParameters" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="OnUpdateParticles" Hidden="true" />
+      <Method Name="Vector3FLerpEffector" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AoEAAAAgAAAAAACAAIAAIBAIAAAIABABAAAAAAQAACA=</HashCode>
+      <FileName>Effectors\Vector3FLerpEffector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Particles.Effectors.StartVelocityBiasEffector">
+    <Position X="6.75" Y="2.5" Width="2" />
+    <Members>
+      <Field Name="_biasVelocityParameter" Hidden="true" />
+      <Field Name="_directionParameter" Hidden="true" />
+      <Field Name="_linearSpeedParameter" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="OnInitialize" Hidden="true" />
+      <Method Name="OnInitializeParticles" Hidden="true" />
+      <Method Name="OnRequeryParameters" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="StartVelocityBiasEffector" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AoAAAAIAAAAAAAEQAAAAACAAAABKAAAIAAgAAAAAAGA=</HashCode>
+      <FileName>Effectors\StartVelocityBiasEffector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Particles.Effectors.Vector3FLinearSegment3Effector">
+    <Position X="3" Y="9.25" Width="2.5" />
+    <Members>
+      <Field Name="_inputParameter" Hidden="true" />
+      <Field Name="_outputParameter" Hidden="true" />
+      <Field Name="_time0" Hidden="true" />
+      <Field Name="_time1" Hidden="true" />
+      <Field Name="_time2" Hidden="true" />
+      <Field Name="_time3" Hidden="true" />
+      <Field Name="_timeParameter" Hidden="true" />
+      <Field Name="_value0" Hidden="true" />
+      <Field Name="_value1" Hidden="true" />
+      <Field Name="_value2" Hidden="true" />
+      <Field Name="_value3" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="OnBeginUpdate" Hidden="true" />
+      <Method Name="OnRequeryParameters" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="OnUpdateParticles" Hidden="true" />
+      <Method Name="Vector3FLinearSegment3Effector" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IoEAAAAACHggAAQAAQAAAAKIAAAIAAAAYABgQAAAACA=</HashCode>
+      <FileName>Effectors\Vector3FLinearSegment3Effector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Particles.Effectors.FuncEffector&lt;TInput, TOutput&gt;">
+    <Position X="5.75" Y="9.25" Width="2.5" />
+    <Members>
+      <Field Name="_inputParameter" Hidden="true" />
+      <Field Name="_outputParameter" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="OnBeginUpdate" Hidden="true" />
+      <Method Name="OnRequeryParameters" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="OnUpdateParticles" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IoEAAAAAAAAAAAQAAAAAAAIIAAAIAAAAQAABAAAAACA=</HashCode>
+      <FileName>Effectors\FuncEffector1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Particles.Effectors.FuncEffector&lt;TInput1, TInput2, TOutput&gt;">
+    <Position X="5.75" Y="11" Width="3" />
+    <Members>
+      <Field Name="_inputParameter1" Hidden="true" />
+      <Field Name="_inputParameter2" Hidden="true" />
+      <Field Name="_outputParameter" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="OnBeginUpdate" Hidden="true" />
+      <Method Name="OnRequeryParameters" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="OnUpdateParticles" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IoEAAAAAAAAAAAQAAAAMAAAIAAAIAAAAQAABAAAAACA=</HashCode>
+      <FileName>Effectors\FuncEffector2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Particles.Effectors.ReserveParticleEffector">
+    <Position X="6.75" Y="0.5" Width="2" />
+    <Members>
+      <Field Name="_normalizedAgeParameter" Hidden="true" />
+      <Field Name="_numberOfFreeParticles" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="OnBeginUpdate" Hidden="true" />
+      <Method Name="OnRequeryParameters" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="OnUpdateParticles" Hidden="true" />
+      <Method Name="ReserveParticleEffector" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AoEAAAAAAAQAAAEAAAAAAAAIAAAIAAAAAAACAAAAACA=</HashCode>
+      <FileName>Effectors\ReserveParticlesEffector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Particles.Effectors.SingleLinearSegment3Effector">
+    <Position X="0.5" Y="9.25" Width="2.25" />
+    <Members>
+      <Field Name="_inputParameter" Hidden="true" />
+      <Field Name="_outputParameter" Hidden="true" />
+      <Field Name="_time0" Hidden="true" />
+      <Field Name="_time1" Hidden="true" />
+      <Field Name="_time2" Hidden="true" />
+      <Field Name="_time3" Hidden="true" />
+      <Field Name="_timeParameter" Hidden="true" />
+      <Field Name="_value0" Hidden="true" />
+      <Field Name="_value1" Hidden="true" />
+      <Field Name="_value2" Hidden="true" />
+      <Field Name="_value3" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="OnBeginUpdate" Hidden="true" />
+      <Method Name="OnRequeryParameters" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="OnUpdateParticles" Hidden="true" />
+      <Method Name="SingleLinearSegment3Effector" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IoEAAAAACHggAAQAAQAAAAKIAAAIAAAAYABgQAAAACA=</HashCode>
+      <FileName>Effectors\SingleLinearSegment3Effector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Particles.Effectors.TimeToSingleEffector">
+    <Position X="6.75" Y="4.5" Width="1.75" />
+    <Members>
+      <Field Name="_parameter" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="OnBeginUpdate" Hidden="true" />
+      <Method Name="OnRequeryParameters" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="OnUpdateParticles" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AoEAgAAAAAAAAAAAAAAAAAAIAAAYAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Effectors\TimeToSingleEffector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Particles.Effectors.StreamEmitter">
+    <Position X="3.75" Y="0.5" Width="2" />
+    <Members>
+      <Field Name="_emissionRateParameter" Hidden="true" />
+      <Field Name="_emittedParticles" Hidden="true" />
+      <Field Name="_leftoverParticles" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="OnBeginUpdate" Hidden="true" />
+      <Method Name="OnInitialize" Hidden="true" />
+      <Method Name="OnRequeryParameters" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="StreamEmitter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AoEAEAEAAACAACAAAAAgAAAAAAAKAAAAAQAAAAAAACA=</HashCode>
+      <FileName>Effectors\StreamEmitter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

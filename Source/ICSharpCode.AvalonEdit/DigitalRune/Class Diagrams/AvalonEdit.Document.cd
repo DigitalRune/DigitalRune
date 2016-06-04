@@ -1,0 +1,670 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ICSharpCode.AvalonEdit.Document.AnchorSegment" BaseTypeListCollapsed="true">
+    <Position X="6" Y="10" Width="1.5" />
+    <Members>
+      <Method Name="AnchorSegment" Hidden="true" />
+      <Field Name="end" Hidden="true" />
+      <Property Name="EndOffset" Hidden="true" />
+      <Property Name="Length" Hidden="true" />
+      <Property Name="Offset" Hidden="true" />
+      <Field Name="start" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAA0AAAAAABAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Document\SimpleSegment.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Document.DocumentChangeEventArgs">
+    <Position X="0.5" Y="3.5" Width="2.25" />
+    <Members>
+      <Method Name="CreateSingleChangeMapEntry" Hidden="true" />
+      <Method Name="DocumentChangeEventArgs" Hidden="true" />
+      <Method Name="GetNewOffset" Hidden="true" />
+      <Method Name="Invert" Hidden="true" />
+      <Field Name="offsetChangeMap" Hidden="true" />
+      <Property Name="OffsetChangeMapOrNull" Hidden="true" />
+      <Method Name="SetOffsetChangeMap" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAAAEAAAAAAAAAAAAAAAACIAAAAAAAAAAAEAAIAAAA=</HashCode>
+      <FileName>Document\DocumentChangeEventArgs.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="OffsetChangeMap" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Document.DocumentLine" BaseTypeListCollapsed="true">
+    <Position X="6" Y="14.75" Width="1.5" />
+    <Members>
+      <Field Name="color" Hidden="true" />
+      <Method Name="DebugVerifyAccess" Hidden="true" />
+      <Field Name="delimiterLength" Hidden="true" />
+      <Property Name="DelimiterLength" Hidden="true" />
+      <Method Name="DocumentLine" Hidden="true" />
+      <Property Name="EndOffset" Hidden="true" />
+      <Property Name="IDocumentLine.NextLine" Hidden="true" />
+      <Property Name="IDocumentLine.PreviousLine" Hidden="true" />
+      <Method Name="InitLineNode" Hidden="true" />
+      <Field Name="isDeleted" Hidden="true" />
+      <Property Name="IsDeleted" Hidden="true" />
+      <Field Name="left" Hidden="true" />
+      <Property Name="LeftMost" Hidden="true" />
+      <Property Name="Length" Hidden="true" />
+      <Property Name="LineNumber" Hidden="true" />
+      <Property Name="NextLine" Hidden="true" />
+      <Field Name="nodeTotalCount" Hidden="true" />
+      <Field Name="nodeTotalLength" Hidden="true" />
+      <Property Name="Offset" Hidden="true" />
+      <Field Name="parent" Hidden="true" />
+      <Property Name="PreviousLine" Hidden="true" />
+      <Method Name="ResetLine" Hidden="true" />
+      <Field Name="right" Hidden="true" />
+      <Property Name="RightMost" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+      <Field Name="totalLength" Hidden="true" />
+      <Property Name="TotalLength" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAQIAQAAAAAAIBUAgAIAiJIAAAICLiBAAAEAQAAgAA=</HashCode>
+      <FileName>Document\DocumentLine.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Document.DocumentTextWriter">
+    <Position X="16.5" Y="7.5" Width="1.75" />
+    <Members>
+      <Field Name="document" Hidden="true" />
+      <Method Name="DocumentTextWriter" Hidden="true" />
+      <Field Name="insertionOffset" Hidden="true" />
+      <Method Name="Write" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAgAIAAAAIAAAAAAEAAAA=</HashCode>
+      <FileName>Document\DocumentTextWriter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Document.OffsetChangeMap">
+    <Position X="0.5" Y="5" Width="2.25" />
+    <Members>
+      <Method Name="CheckFrozen" Hidden="true" />
+      <Method Name="ClearItems" Hidden="true" />
+      <Method Name="InsertItem" Hidden="true" />
+      <Field Name="isFrozen" Hidden="true" />
+      <Method Name="OffsetChangeMap" Hidden="true" />
+      <Method Name="RemoveItem" Hidden="true" />
+      <Method Name="SetItem" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAEBAAAAABhAAAAIgAABAQAAAQAAEAAAEAAAAAAI=</HashCode>
+      <FileName>Document\OffsetChangeMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Document.RopeTextSource" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <Members>
+      <Method Name="CreateReader" Hidden="true" />
+      <Method Name="CreateSnapshot" Hidden="true" />
+      <Method Name="GetCharAt" Hidden="true" />
+      <Method Name="GetText" Hidden="true" />
+      <Method Name="IndexOf" Hidden="true" />
+      <Method Name="IndexOfAny" Hidden="true" />
+      <Method Name="LastIndexOf" Hidden="true" />
+      <Field Name="rope" Hidden="true" />
+      <Method Name="RopeTextSource" Hidden="true" />
+      <Property Name="Text" Hidden="true" />
+      <Property Name="TextLength" Hidden="true" />
+      <Field Name="version" Hidden="true" />
+      <Property Name="Version" Hidden="true" />
+      <Method Name="WriteTextTo" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IUAAACEAAAAAAAEIAAAAEBgAAAAAAAAAAAABDAAAAAA=</HashCode>
+      <FileName>Document\RopeTextSource.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Document.TextAnchor" BaseTypeListCollapsed="true">
+    <Position X="10.5" Y="13" Width="1.5" />
+    <Members>
+      <Property Name="Column" Hidden="true" />
+      <Event Name="Deleted" Hidden="true" />
+      <Field Name="document" Hidden="true" />
+      <Property Name="IsDeleted" Hidden="true" />
+      <Property Name="Line" Hidden="true" />
+      <Property Name="Location" Hidden="true" />
+      <Property Name="MovementType" Hidden="true" />
+      <Field Name="node" Hidden="true" />
+      <Property Name="Offset" Hidden="true" />
+      <Method Name="OnDeleted" Hidden="true" />
+      <Property Name="SurviveDeletion" Hidden="true" />
+      <Method Name="TextAnchor" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAgAAAAAAAEIAJAEAAAAAIAAAACAAAAAQABgAA=</HashCode>
+      <FileName>Document\TextAnchor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Document.TextDocument" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="4" Width="2.5" />
+    <Members>
+      <Field Name="anchorTree" Hidden="true" />
+      <Field Name="beginUpdateCount" Hidden="true" />
+      <Field Name="cachedText" Hidden="true" />
+      <Method Name="CreateAnchor" Hidden="true" />
+      <Method Name="CreateReader" Hidden="true" />
+      <Method Name="CreateSnapshot" Hidden="true" />
+      <Method Name="DebugVerifyAccess" Hidden="true" />
+      <Method Name="DoReplace" Hidden="true" />
+      <Field Name="fileName" Hidden="true" />
+      <Property Name="FileName" Hidden="true" />
+      <Event Name="FileNameChanged" Hidden="true" />
+      <Method Name="FireChangeEvents" Hidden="true" />
+      <Field Name="fireTextChanged" Hidden="true" />
+      <Method Name="GetCharAt" Hidden="true" />
+      <Method Name="GetLineByNumber" Hidden="true" />
+      <Method Name="GetLineByOffset" Hidden="true" />
+      <Method Name="GetLineTreeAsString" Hidden="true" />
+      <Method Name="GetLocation" Hidden="true" />
+      <Method Name="GetOffset" Hidden="true" />
+      <Method Name="GetText" Hidden="true" />
+      <Method Name="GetTextAnchorTreeAsString" Hidden="true" />
+      <Method Name="GetTextFromTextSource" Hidden="true" />
+      <Event Name="IDocument.ChangeCompleted" Hidden="true" />
+      <Method Name="IDocument.CreateAnchor" Hidden="true" />
+      <Method Name="IDocument.EndUndoableAction" Hidden="true" />
+      <Method Name="IDocument.GetLineByNumber" Hidden="true" />
+      <Method Name="IDocument.GetLineByOffset" Hidden="true" />
+      <Method Name="IDocument.OpenUndoGroup" Hidden="true" />
+      <Method Name="IDocument.StartUndoableAction" Hidden="true" />
+      <Event Name="IDocument.TextChanged" Hidden="true" />
+      <Event Name="IDocument.TextChanging" Hidden="true" />
+      <Method Name="IndexOf" Hidden="true" />
+      <Method Name="IndexOfAny" Hidden="true" />
+      <Field Name="inDocumentChanging" Hidden="true" />
+      <Method Name="Insert" Hidden="true" />
+      <Method Name="IServiceProvider.GetService" Hidden="true" />
+      <Method Name="LastIndexOf" Hidden="true" />
+      <Property Name="LineCount" Hidden="true" />
+      <Field Name="lineManager" Hidden="true" />
+      <Field Name="lineTrackers" Hidden="true" />
+      <Field Name="lineTree" Hidden="true" />
+      <Field Name="lockObject" Hidden="true" />
+      <Field Name="oldLineCount" Hidden="true" />
+      <Field Name="oldTextLength" Hidden="true" />
+      <Method Name="OnFileNameChanged" Hidden="true" />
+      <Field Name="owner" Hidden="true" />
+      <Method Name="Remove" Hidden="true" />
+      <Method Name="Replace" Hidden="true" />
+      <Field Name="rope" Hidden="true" />
+      <Field Name="serviceProvider" Hidden="true" />
+      <Property Name="Text" Hidden="true" />
+      <Event Name="textChanged" Hidden="true" />
+      <Event Name="TextChanged" Hidden="true" />
+      <Event Name="textChanging" Hidden="true" />
+      <Property Name="TextLength" Hidden="true" />
+      <Method Name="ThrowIfRangeInvalid" Hidden="true" />
+      <Field Name="undoStack" Hidden="true" />
+      <Property Name="Version" Hidden="true" />
+      <Field Name="versionProvider" Hidden="true" />
+      <Method Name="WriteTextTo" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>MUAwEENCIQDAxAsaJGSO1B4B8S4hAEgCIUYBToBDKCA=</HashCode>
+      <FileName>Document\TextDocument.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="UndoStack" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Lines" />
+      <Property Name="LineTrackers" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Document.TextDocumentWeakEventManager">
+    <Position X="16.25" Y="0.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="ICSharpCode.AvalonEdit.Document.TextDocumentWeakEventManager.UpdateStarted" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Document\TextDocumentWeakEventManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="ICSharpCode.AvalonEdit.Document.TextDocumentWeakEventManager.UpdateFinished" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Document\TextDocumentWeakEventManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="ICSharpCode.AvalonEdit.Document.TextDocumentWeakEventManager.Changing" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Document\TextDocumentWeakEventManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="ICSharpCode.AvalonEdit.Document.TextDocumentWeakEventManager.Changed" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Document\TextDocumentWeakEventManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="ICSharpCode.AvalonEdit.Document.TextDocumentWeakEventManager.LineCountChanged" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Document\TextDocumentWeakEventManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="ICSharpCode.AvalonEdit.Document.TextDocumentWeakEventManager.TextLengthChanged" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Document\TextDocumentWeakEventManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="ICSharpCode.AvalonEdit.Document.TextDocumentWeakEventManager.TextChanged" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Document\TextDocumentWeakEventManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Document\TextDocumentWeakEventManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Document.TextSegment" BaseTypeListCollapsed="true">
+    <Position X="6" Y="13" Width="1.5" />
+    <Members>
+      <Field Name="color" Hidden="true" />
+      <Field Name="distanceToMaxEnd" Hidden="true" />
+      <Property Name="EndOffset" Hidden="true" />
+      <Property Name="ISegment.Offset" Hidden="true" />
+      <Field Name="left" Hidden="true" />
+      <Property Name="LeftMost" Hidden="true" />
+      <Property Name="Length" Hidden="true" />
+      <Field Name="nodeLength" Hidden="true" />
+      <Method Name="OnSegmentChanged" Hidden="true" />
+      <Field Name="ownerTree" Hidden="true" />
+      <Field Name="parent" Hidden="true" />
+      <Property Name="Predecessor" Hidden="true" />
+      <Field Name="right" Hidden="true" />
+      <Property Name="RightMost" Hidden="true" />
+      <Field Name="segmentLength" Hidden="true" />
+      <Property Name="Successor" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+      <Field Name="totalNodeLength" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAQIAJUAAAAAkBIAAAIAACAACQADAABgAA=</HashCode>
+      <FileName>Document\TextSegment.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Document.TextSegmentCollection&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="12.25" Width="3" />
+    <Members>
+      <Method Name="AddSegment" Hidden="true" />
+      <Field Name="BLACK" Hidden="true" />
+      <Method Name="CheckProperties" Hidden="true" />
+      <Field Name="count" Hidden="true" />
+      <Method Name="Disconnect" Hidden="true" />
+      <Method Name="FindNode" Hidden="true" />
+      <Method Name="FixTreeOnDelete" Hidden="true" />
+      <Method Name="FixTreeOnInsert" Hidden="true" />
+      <Method Name="GetColor" Hidden="true" />
+      <Method Name="GetTreeAsString" Hidden="true" />
+      <Property Name="ICollection&lt;T&gt;.IsReadOnly" Hidden="true" />
+      <Method Name="InsertAsLeft" Hidden="true" />
+      <Method Name="InsertAsRight" Hidden="true" />
+      <Method Name="InsertBefore" Hidden="true" />
+      <Method Name="InsertText" Hidden="true" />
+      <Field Name="isConnectedToDocument" Hidden="true" />
+      <Method Name="ISegmentTree.Add" Hidden="true" />
+      <Method Name="ISegmentTree.Remove" Hidden="true" />
+      <Method Name="ISegmentTree.UpdateAugmentedData" Hidden="true" />
+      <Method Name="IWeakEventListener.ReceiveWeakEvent" Hidden="true" />
+      <Method Name="OnCollectionChanged" Hidden="true" />
+      <Method Name="OnDocumentChanged" Hidden="true" />
+      <Field Name="RED" Hidden="true" />
+      <Method Name="RemoveNode" Hidden="true" />
+      <Method Name="RemoveSegment" Hidden="true" />
+      <Method Name="ReplaceNode" Hidden="true" />
+      <Method Name="ReplaceText" Hidden="true" />
+      <Field Name="root" Hidden="true" />
+      <Method Name="RotateLeft" Hidden="true" />
+      <Method Name="RotateRight" Hidden="true" />
+      <Method Name="Sibling" Hidden="true" />
+      <Method Name="System.Collections.IEnumerable.GetEnumerator" Hidden="true" />
+      <Method Name="UpdateAugmentedData" Hidden="true" />
+      <Method Name="UpdateOffsetsInternal" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ADZIEAAAAAgAUJEAFAprnARKAAAAFFKAQRgAAQJYIAA=</HashCode>
+      <FileName>Document\TextSegmentCollection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Document.TextUtilities">
+    <Position X="13.25" Y="0.5" Width="2.5" />
+    <Members>
+      <Field Name="c0Table" Hidden="true" />
+      <Method Name="CompareSegment" Hidden="true" />
+      <Field Name="delAndC1Table" Hidden="true" />
+      <Method Name="FindFirstNonWhitespace" Hidden="true" />
+      <Method Name="GetExpressionBeforeOffset" Hidden="true" />
+      <Method Name="GetLineTerminator" Hidden="true" />
+      <Method Name="GetStartType" Hidden="true" />
+      <Method Name="IsEmptyLine" Hidden="true" />
+      <Method Name="IsIdentifierPart" Hidden="true" />
+      <Method Name="IsNormal" Hidden="true" />
+      <Method Name="ScanLineStart" Hidden="true" />
+      <Method Name="SearchBracketBackward" Hidden="true" />
+      <Method Name="SearchBracketBackwardQuick" Hidden="true" />
+      <Method Name="SearchBracketForward" Hidden="true" />
+      <Method Name="SearchBracketForwardQuick" Hidden="true" />
+      <Method Name="StopBetweenCharacters" Hidden="true" />
+      <Field Name="whitespaceChars" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="ICSharpCode.AvalonEdit.Document.TextUtilities.CodeType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>DigitalRune\Document\TextUtilities.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAwgRAAAQAKEAQAxAgYAEQgEAIBQiAAgIEBAAIAgJAA=</HashCode>
+      <FileName>DigitalRune\Document\TextUtilities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Document.UndoStack" BaseTypeListCollapsed="true">
+    <Position X="10.25" Y="2.5" Width="2.5" />
+    <Members>
+      <Field Name="actionCountInUndoGroup" Hidden="true" />
+      <Field Name="affectedDocuments" Hidden="true" />
+      <Field Name="allowContinue" Hidden="true" />
+      <Method Name="CallEndUpdateOnAffectedDocuments" Hidden="true" />
+      <Field Name="elementsOnUndoUntilOriginalFile" Hidden="true" />
+      <Method Name="EnforceSizeLimit" Hidden="true" />
+      <Method Name="FileModified" Hidden="true" />
+      <Field Name="isOriginalFile" Hidden="true" />
+      <Field Name="lastGroupDescriptor" Hidden="true" />
+      <Method Name="NotifyPropertyChanged" Hidden="true" />
+      <Field Name="optionalActionCount" Hidden="true" />
+      <Event Name="PropertyChanged" Hidden="true" />
+      <Method Name="RecalcIsOriginalFile" Hidden="true" />
+      <Field Name="redostack" Hidden="true" />
+      <Method Name="RegisterAffectedDocument" Hidden="true" />
+      <Method Name="RunRedo" Hidden="true" />
+      <Method Name="RunUndo" Hidden="true" />
+      <Field Name="sizeLimit" Hidden="true" />
+      <Field Name="state" Hidden="true" />
+      <Field Name="StateListen" Hidden="true" />
+      <Field Name="StatePlayback" Hidden="true" />
+      <Field Name="StatePlaybackModifyDocument" Hidden="true" />
+      <Method Name="ThrowIfUndoGroupOpen" Hidden="true" />
+      <Field Name="undoGroupDepth" Hidden="true" />
+      <Field Name="undostack" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>hAgAAqQEJAAAJKBAQAggEoEBlAANgwAMEoEAAAFCCAA=</HashCode>
+      <FileName>Document\UndoStack.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Document.WeakLineTracker" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="12.25" Width="1.5" />
+    <Members>
+      <Method Name="ILineTracker.BeforeRemoveLine" Hidden="true" />
+      <Method Name="ILineTracker.ChangeComplete" Hidden="true" />
+      <Method Name="ILineTracker.LineInserted" Hidden="true" />
+      <Method Name="ILineTracker.RebuildDocument" Hidden="true" />
+      <Method Name="ILineTracker.SetLineLength" Hidden="true" />
+      <Field Name="targetObject" Hidden="true" />
+      <Field Name="textDocument" Hidden="true" />
+      <Method Name="WeakLineTracker" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BEAAEAAAAAAEAAAAAAAAAAgAAAgDAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Document\WeakLineTracker.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Document.TextChangeEventArgs">
+    <Position X="0.75" Y="0.5" Width="1.75" />
+    <Members>
+      <Field Name="insertedText" Hidden="true" />
+      <Field Name="offset" Hidden="true" />
+      <Field Name="removedText" Hidden="true" />
+      <Method Name="TextChangeEventArgs" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AECAAEBAAAAAAAAAAAAAYABAAEAAAAAAAAAEAAAAgAA=</HashCode>
+      <FileName>Document\IDocument.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="InsertedText" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Document.StringTextSource" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="2" Width="1.5" />
+    <Members>
+      <Method Name="CreateReader" Hidden="true" />
+      <Method Name="CreateSnapshot" Hidden="true" />
+      <Method Name="GetCharAt" Hidden="true" />
+      <Method Name="GetText" Hidden="true" />
+      <Method Name="IndexOf" Hidden="true" />
+      <Method Name="IndexOfAny" Hidden="true" />
+      <Method Name="LastIndexOf" Hidden="true" />
+      <Method Name="StringTextSource" Hidden="true" />
+      <Field Name="text" Hidden="true" />
+      <Property Name="Text" Hidden="true" />
+      <Property Name="TextLength" Hidden="true" />
+      <Field Name="version" Hidden="true" />
+      <Property Name="Version" Hidden="true" />
+      <Method Name="WriteTextTo" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IUAAACEAAAAAAAEIAAIAEAgAAAAAAAAIAAABDAAAAAA=</HashCode>
+      <FileName>Document\ITextSource.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Document.TextLocationConverter">
+    <Position X="12.75" Y="12.25" Width="2" />
+    <Members>
+      <Method Name="CanConvertFrom" Hidden="true" />
+      <Method Name="CanConvertTo" Hidden="true" />
+      <Method Name="ConvertFrom" Hidden="true" />
+      <Method Name="ConvertTo" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAACAAAAIAAAAAAAA=</HashCode>
+      <FileName>Document\TextLocation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Document.ISegmentExtensions">
+    <Position X="3.75" Y="14.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Document\TextLocation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Document.TextSourceVersionProvider">
+    <Position X="15.25" Y="10" Width="2.25" />
+    <Members>
+      <Field Name="currentVersion" Hidden="true" />
+      <Method Name="TextSourceVersionProvider" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="ICSharpCode.AvalonEdit.Document.TextSourceVersionProvider.Version" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Document\TextSourceVersionProvider.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAkAAAAAAAAAAAA=</HashCode>
+      <FileName>Document\TextSourceVersionProvider.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CurrentVersion" />
+    </ShowAsAssociation>
+  </Class>
+  <Struct Name="ICSharpCode.AvalonEdit.Document.OffsetChangeMapEntry" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="8.25" Width="3" />
+    <Members>
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Field Name="insertionLengthWithMovementFlag" Hidden="true" />
+      <Field Name="offset" Hidden="true" />
+      <Method Name="OffsetChangeMapEntry" Hidden="true" />
+      <Method Name="operator !=" Hidden="true" />
+      <Method Name="operator ==" Hidden="true" />
+      <Field Name="removalLengthWithDeletionFlag" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAABAAEgAQAIABAAAAAAIABAAAEAAAAgiA=</HashCode>
+      <FileName>Document\OffsetChangeMap.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="ICSharpCode.AvalonEdit.Document.SimpleSegment" BaseTypeListCollapsed="true">
+    <Position X="6" Y="11.5" Width="1.5" />
+    <Members>
+      <Property Name="EndOffset" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="GetOverlap" Hidden="true" />
+      <Property Name="ISegment.Length" Hidden="true" />
+      <Property Name="ISegment.Offset" Hidden="true" />
+      <Field Name="Length" Hidden="true" />
+      <Field Name="Offset" Hidden="true" />
+      <Method Name="operator !=" Hidden="true" />
+      <Method Name="operator ==" Hidden="true" />
+      <Method Name="SimpleSegment" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAEAAAAAAUgAACAABAAAAAAIAAAAAAAAAAgiA=</HashCode>
+      <FileName>Document\SimpleSegment.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="ICSharpCode.AvalonEdit.Document.TextLocation" BaseTypeListCollapsed="true">
+    <Position X="13" Y="10" Width="1.5" />
+    <Members>
+      <Field Name="column" Hidden="true" />
+      <Method Name="CompareTo" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Field Name="line" Hidden="true" />
+      <Method Name="operator !=" Hidden="true" />
+      <Method Name="operator &lt;" Hidden="true" />
+      <Method Name="operator &lt;=" Hidden="true" />
+      <Method Name="operator ==" Hidden="true" />
+      <Method Name="operator &gt;" Hidden="true" />
+      <Method Name="operator &gt;=" Hidden="true" />
+      <Method Name="TextLocation" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAFAAAAAAAAAAAQEgALAAgAAQAAAAIAAAAAAAAABByA=</HashCode>
+      <FileName>Document\TextLocation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Interface Name="ICSharpCode.AvalonEdit.Document.ILineTracker">
+    <Position X="8.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEABgAAAAAAAAAAAAAAAAAIAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Document\ILineTracker.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ICSharpCode.AvalonEdit.Document.IUndoableOperation">
+    <Position X="10.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Document\IUndoableOperation.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ICSharpCode.AvalonEdit.Document.IDocument">
+    <Position X="4" Y="4" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEBCAAAAQAhAAAAAhAQAIAAAAACAAAAACABJCDA=</HashCode>
+      <FileName>Document\IDocument.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ICSharpCode.AvalonEdit.Document.IDocumentLine">
+    <Position X="4.25" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAQAAAAAAAAAAgAIAAAAAAAAAAAAAAAEAQAAAAA=</HashCode>
+      <FileName>Document\IDocument.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ICSharpCode.AvalonEdit.Document.ITextAnchor">
+    <Position X="10.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAJAEAAAAAAAAAAAAAAAAQABgAA=</HashCode>
+      <FileName>Document\ITextAnchor.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Location" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="ICSharpCode.AvalonEdit.Document.ITextSource">
+    <Position X="4" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IUAAAAEAAAAAAAEIAAAAEAgAAAAAAAAAAAABDAAAAAA=</HashCode>
+      <FileName>Document\ITextSource.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ICSharpCode.AvalonEdit.Document.ITextSourceVersion">
+    <Position X="15.25" Y="11.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAIAAAAAAAAAAAAAAAQAACAAAAAAAAAA=</HashCode>
+      <FileName>Document\ITextSource.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ICSharpCode.AvalonEdit.Document.ISegment">
+    <Position X="4.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAABAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Document\TextLocation.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="ICSharpCode.AvalonEdit.Document.CaretPositioningMode">
+    <Position X="19" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAABAAAEAAAAAIAAAAAEAAAAAAAQA=</HashCode>
+      <FileName>Document\TextUtilities.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ICSharpCode.AvalonEdit.Document.CharacterClass">
+    <Position X="19" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAACCAAAAAAAAAAAAAAAAAAAAAEQAAAAAAAAA=</HashCode>
+      <FileName>Document\TextUtilities.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ICSharpCode.AvalonEdit.Document.OffsetChangeMappingType">
+    <Position X="19" Y="4.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAEAQAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Document\OffsetChangeMap.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ICSharpCode.AvalonEdit.Document.AnchorMovementType">
+    <Position X="19" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAABAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Document\ITextAnchor.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

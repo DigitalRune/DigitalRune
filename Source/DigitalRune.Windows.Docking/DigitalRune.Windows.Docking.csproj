@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B39D4F11-6C1F-4F4A-AEA9-715832C501CD}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.Windows.Docking</RootNamespace>
+    <AssemblyName>DigitalRune.Windows.Docking</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\DigitalRune.Windows.Docking.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>..\DigitalRune\DigitalRuneRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\DigitalRune.Windows.Docking.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune.Windows.Controls\DigitalRune.Windows.Controls.csproj">
+      <Project>{6C1A27B5-4E09-4B52-AC71-9489EC0353E8}</Project>
+      <Name>DigitalRune.Windows.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Windows\DigitalRune.Windows.csproj">
+      <Project>{A560721A-6665-4534-80B6-9DA1F79B00DD}</Project>
+      <Name>DigitalRune.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune\DigitalRune.csproj">
+      <Project>{5A0E3C60-1CA9-49D5-84CA-308CB8E3A3B4}</Project>
+      <Name>DigitalRune</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoHide\AutoHideBar.cs" />
+    <Compile Include="AutoHide\AutoHideGroup.cs" />
+    <Compile Include="AutoHide\AutoHideOverlay.cs" />
+    <Compile Include="AutoHide\AutoHidePane.cs" />
+    <Compile Include="AutoHide\AutoHideState.cs" />
+    <Compile Include="AutoHide\AutoHideTab.cs" />
+    <Page Include="AutoHide\Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <None Include="Class Diagrams\Windows.Docking_AutoHide.cd" />
+    <None Include="Class Diagrams\Windows.Docking_Controls.cd" />
+    <None Include="Class Diagrams\Windows.Docking_DockIndicators.cd" />
+    <None Include="Class Diagrams\Windows.Docking_Interfaces.cd" />
+    <None Include="Class Diagrams\Windows.Docking_Misc.cd" />
+    <None Include="Class Diagrams\Windows.Docking_ViewModels.cd" />
+    <Compile Include="DockAnchorPane\DockAnchorPane.cs" />
+    <Page Include="DockAnchorPane\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="DockCommands.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DockControl\DockControl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DockControl\DockControl_Attached.cs" />
+    <Compile Include="DockControl\DockControl_AutoHide.cs" />
+    <Compile Include="DockControl\DockControl_FloatWindows.cs" />
+    <Page Include="DockControl\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="DockException.cs" />
+    <Compile Include="DockHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DockIndicators\BorderIndicators.cs" />
+    <Compile Include="DockIndicators\DockIndicator.cs" />
+    <Compile Include="DockIndicators\DockIndicatorOverlay.cs" />
+    <Compile Include="DockIndicators\PaneIndicators.cs" />
+    <Page Include="DockIndicators\Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="DockOverlay\DockOverlay.cs" />
+    <Compile Include="DockPosition.cs" />
+    <Compile Include="DockSplitPane\DockPaneSplitter.cs" />
+    <Compile Include="DockSplitPane\DockSplitPane.cs" />
+    <Compile Include="DockSplitPane\DockSplitPanel.cs" />
+    <Page Include="DockSplitPane\Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="DockState.cs" />
+    <Compile Include="DockStrategy.cs" />
+    <Compile Include="DockTabItem\DockTabItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DockTabItem\DockTabItem_Commands.cs" />
+    <Page Include="DockTabItem\Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="DockTabPane\DockPaneMenu.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DockTabPane\DockTabPane.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DockTabPane\DockTabPane_Commands.cs" />
+    <Compile Include="DockTabPane\DockTabPanel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="DockTabPane\Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="DragManager\DockTabItemProxy.cs" />
+    <Compile Include="DragManager\DragManager.cs" />
+    <Compile Include="DragManager\DragManager_DockIndicators.cs" />
+    <Compile Include="DragManager\DragManager_EventHandlers.cs" />
+    <Compile Include="DragManager\DragManager_HelperMethods.cs" />
+    <Compile Include="DragManager\DragManager_Proxies.cs" />
+    <Compile Include="FloatWindow\FloatWindow.cs" />
+    <Page Include="FloatWindow\Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="GlobalSuppressions.cs" />
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="Properties\AssemblyInfo.template" />
+    <Page Include="Resources\Brushes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Resources\StringResources.cs" />
+    <Compile Include="Resources\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Resources\Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Serialization\DockSerializer.Load.cs" />
+    <Compile Include="Serialization\DockSerializer.Save.cs" />
+    <Compile Include="Serialization\DockSerializer.cs" />
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="ViewModels\DockAnchorPaneViewModel.cs" />
+    <Compile Include="ViewModels\DockControlViewModel.cs" />
+    <Compile Include="ViewModels\DockElementCollection.cs" />
+    <Compile Include="ViewModels\DockElementViewModel.cs" />
+    <Compile Include="ViewModels\DockPaneCollection.cs" />
+    <Compile Include="ViewModels\DockPaneViewModel.cs" />
+    <Compile Include="ViewModels\DockSplitPaneViewModel.cs" />
+    <Compile Include="ViewModels\DockTabItemCollection.cs" />
+    <Compile Include="ViewModels\DockTabItemViewModel.cs" />
+    <Compile Include="ViewModels\DockTabPaneCollection.cs" />
+    <Compile Include="ViewModels\DockTabPaneViewModel.cs" />
+    <Compile Include="ViewModels\FloatWindowCollection.cs" />
+    <Compile Include="ViewModels\FloatWindowViewModel.cs" />
+    <Compile Include="ViewModels\IDockAnchorPane.cs" />
+    <Compile Include="ViewModels\IDockContainer.cs" />
+    <Compile Include="ViewModels\IDockControl.cs" />
+    <Compile Include="ViewModels\IDockElement.cs" />
+    <Compile Include="ViewModels\IDockPane.cs" />
+    <Compile Include="ViewModels\IDockSplitPane.cs" />
+    <Compile Include="ViewModels\IDockTabItem.cs" />
+    <Compile Include="ViewModels\IDockTabPane.cs" />
+    <Compile Include="ViewModels\IFloatWindow.cs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.Xshd.HighlightingLoader">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <Members>
+      <Method Name="FormatExceptionMessage" Hidden="true" />
+      <Method Name="GetValidatingReader" Hidden="true" />
+      <Method Name="LoadSchemaSet" Hidden="true" />
+      <Method Name="WrapException" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAIAAAAAgAAAAAAMAAAAAAAAIA=</HashCode>
+      <FileName>Highlighting\Xshd\HighlightingLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.Xshd.XshdSyntaxDefinition">
+    <Position X="2.75" Y="0.5" Width="1.75" />
+    <Members>
+      <Method Name="XshdSyntaxDefinition" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAQAAQAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Highlighting\Xshd\XshdSyntaxDefinition.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Elements" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.Xshd.SaveXshdVisitor" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="5.25" Width="1.5" />
+    <Members>
+      <Method Name="IXshdVisitor.VisitColor" Hidden="true" />
+      <Method Name="IXshdVisitor.VisitImport" Hidden="true" />
+      <Method Name="IXshdVisitor.VisitKeywords" Hidden="true" />
+      <Method Name="IXshdVisitor.VisitRule" Hidden="true" />
+      <Method Name="IXshdVisitor.VisitRuleSet" Hidden="true" />
+      <Method Name="IXshdVisitor.VisitSpan" Hidden="true" />
+      <Method Name="WriteBeginEndElement" Hidden="true" />
+      <Method Name="WriteBoolAttribute" Hidden="true" />
+      <Method Name="WriteColorAttributes" Hidden="true" />
+      <Method Name="WriteColorReference" Hidden="true" />
+      <Field Name="writer" Hidden="true" />
+      <Method Name="WriteRuleSetReference" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACAAAAAIAAAAAAAIBQAAAAYAIAAAIAAABQAAEAAACAA=</HashCode>
+      <FileName>Highlighting\Xshd\SaveXshdVisitor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.Xshd.XshdColor">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <Members>
+      <Method Name="AcceptVisitor" Hidden="true" />
+      <Method Name="XshdColor" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAgAgAIAAAAQgAAAAAAAAAIAgAAAAEAA=</HashCode>
+      <FileName>Highlighting\Xshd\XshdColor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.Xshd.XshdElement">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAIAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Highlighting\Xshd\XshdElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.Xshd.XshdImport">
+    <Position X="6" Y="3" Width="1.75" />
+    <Members>
+      <Method Name="AcceptVisitor" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Highlighting\Xshd\XshdImport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.Xshd.XshdKeywords">
+    <Position X="8" Y="3" Width="1.5" />
+    <Members>
+      <Method Name="AcceptVisitor" Hidden="true" />
+      <Field Name="words" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAACAAAAAgAAA=</HashCode>
+      <FileName>Highlighting\Xshd\XshdKeywords.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.Xshd.XshdRule">
+    <Position X="4.25" Y="3" Width="1.5" />
+    <Members>
+      <Method Name="AcceptVisitor" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAgAAAIAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Highlighting\Xshd\XshdRule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.Xshd.XshdRuleSet">
+    <Position X="11.5" Y="3" Width="1.5" />
+    <Members>
+      <Method Name="AcceptVisitor" Hidden="true" />
+      <Field Name="elements" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAABAgAAAQAAQAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Highlighting\Xshd\XshdRuleSet.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Elements" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.Xshd.XshdSpan">
+    <Position X="2.25" Y="3" Width="1.75" />
+    <Members>
+      <Method Name="AcceptVisitor" Hidden="true" />
+    </Members>
+    <AssociationLine Name="BeginRegexType" Type="ICSharpCode.AvalonEdit.Highlighting.Xshd.XshdRegexType">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.39" Y="0.091" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAApAUAAAQAAAAAAEAAAAAAACAAAAEA=</HashCode>
+      <FileName>Highlighting\Xshd\XshdSpan.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BeginRegexType" />
+      <Property Name="EndRegexType" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.Xshd.XshdProperty">
+    <Position X="9.75" Y="3" Width="1.5" />
+    <Members>
+      <Method Name="AcceptVisitor" Hidden="true" />
+      <Method Name="XshdProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAQAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Highlighting\Xshd\XshdProperty.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="ICSharpCode.AvalonEdit.Highlighting.Xshd.XshdReference&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="5.25" Width="1.75" />
+    <Members>
+      <Method Name="AcceptVisitor" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Field Name="inlineElement" Hidden="true" />
+      <Method Name="operator !=" Hidden="true" />
+      <Method Name="operator ==" Hidden="true" />
+      <Field Name="referencedDefinition" Hidden="true" />
+      <Field Name="referencedElement" Hidden="true" />
+      <Method Name="XshdReference" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAggAAgAAAAAAAAEIAAABQgAAAEAiA=</HashCode>
+      <FileName>Highlighting\Xshd\XshdReference.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Interface Name="ICSharpCode.AvalonEdit.Highlighting.Xshd.IXshdVisitor">
+    <Position X="5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAIAACgAAAAAABAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Highlighting\Xshd\IXshdVisitor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="ICSharpCode.AvalonEdit.Highlighting.Xshd.XshdRegexType">
+    <Position X="2" Y="6.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Highlighting\Xshd\XshdSpan.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{156169B7-AF63-478C-90CB-F6652B867E4F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.Particles</RootNamespace>
+    <AssemblyName>DigitalRune.Particles</AssemblyName>
+    <TargetFrameworkVersion Condition=" '$(OS)' == 'Windows_NT' ">v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition=" '$(OS)' == 'Unix' ">v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile Condition=" '$(OS)' == 'Windows_NT' ">Profile328</TargetFrameworkProfile>
+    <TargetFrameworkProfile Condition=" '$(OS)' == 'Unix' ">Profile78</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <BaseIntermediateOutputPath>obj\.NETPortable\Debug\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath Condition=" '$(OS)' == 'Windows_NT' ">bin\.NETPortable\Debug\</OutputPath>
+    <OutputPath Condition=" '$(OS)' == 'Unix' ">bin\.NETPortable_iOS\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;PORTABLE;MONOGAME</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\.NETPortable\Debug\DigitalRune.Particles.xml</DocumentationFile>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <BaseIntermediateOutputPath>obj\.NETPortable\Release\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath Condition=" '$(OS)' == 'Windows_NT' ">bin\.NETPortable\Release\</OutputPath>
+    <OutputPath Condition=" '$(OS)' == 'Unix' ">bin\.NETPortable_iOS\Release\</OutputPath>
+    <DefineConstants>TRACE;PORTABLE;MONOGAME</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\.NETPortable\Release\DigitalRune.Particles.xml</DocumentationFile>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties ProjectLinkReference="8c362669-6670-42d7-b22c-e0930b3242e3" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune.Geometry\DigitalRune.Geometry%28PCL%29.csproj">
+      <Project>{8A8FE6D4-0906-4FC3-847C-31387DFDCB2C}</Project>
+      <Name>DigitalRune.Geometry(PCL)</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Mathematics\DigitalRune.Mathematics%28PCL%29.csproj">
+      <Project>{A5833DE3-70A9-4258-966F-77456D6C7900}</Project>
+      <Name>DigitalRune.Mathematics(PCL)</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune\DigitalRune%28PCL%29.csproj">
+      <Project>{05D82E85-901A-42CE-8D0A-DAF8B7F0168B}</Project>
+      <Name>DigitalRune(PCL)</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MonoGame\MonoGame.Framework\MonoGame.Framework.PCL.csproj">
+      <Project>{FFCCDE91-500E-47EF-8342-5CA5C85A67FE}</Project>
+      <Name>MonoGame.Framework.PCL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Effectors\AngularVelocityEffector.cs" />
+    <Compile Include="Effectors\CurveEffector.cs" />
+    <Compile Include="Effectors\FuncEffector1.cs" />
+    <Compile Include="Effectors\FuncEffector2.cs" />
+    <Compile Include="Effectors\LinearAccelerationEffector.cs" />
+    <Compile Include="Effectors\LinearVelocityEffector.cs" />
+    <Compile Include="Effectors\NamespaceDoc.cs" />
+    <Compile Include="Effectors\ReserveParticlesEffector.cs" />
+    <Compile Include="Effectors\SingleDampingEffector.cs" />
+    <Compile Include="Effectors\SingleFadeEffector.cs" />
+    <Compile Include="Effectors\SingleLerpEffector.cs" />
+    <Compile Include="Effectors\SingleLinearSegment3Effector.cs" />
+    <Compile Include="Effectors\StartDirectionEffector.cs" />
+    <Compile Include="Effectors\StartPositionEffector.cs" />
+    <Compile Include="Effectors\StartValueEffector.cs" />
+    <Compile Include="Effectors\StartVelocityBiasEffector.cs" />
+    <Compile Include="Effectors\StreamEmitter.cs" />
+    <Compile Include="Effectors\TimeToSingleEffector.cs" />
+    <Compile Include="Effectors\Vector3FLerpEffector.cs" />
+    <Compile Include="Effectors\Vector3FLinearSegment3Effector.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="IParticleParameter.cs" />
+    <Compile Include="IParticleSystemService.cs" />
+    <Compile Include="NamespaceDoc.cs" />
+    <Compile Include="ParticleEffector.cs" />
+    <Compile Include="ParticleEffectorCollection.cs" />
+    <Compile Include="ParticleEffector_Cloneable.cs" />
+    <Compile Include="ParticleHelper.cs" />
+    <Compile Include="ParticleParameterAttribute.cs" />
+    <Compile Include="ParticleParameterCollection.cs" />
+    <Compile Include="ParticleParameterNames.cs" />
+    <Compile Include="ParticleReferenceFrame.cs" />
+    <Compile Include="ParticleSystem.cs" />
+    <Compile Include="ParticleSystemCollection.cs" />
+    <Compile Include="ParticleSystemException.cs" />
+    <Compile Include="ParticleSystemManager.cs" />
+    <Compile Include="ParticleSystem_Cloneable.cs" />
+    <Compile Include="ParticleSystem_GeometricObject.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Properties\AssemblyInfo.template" />
+    <Compile Include="UniformParticleParameter.cs" />
+    <Compile Include="VaryingParticleParameter.cs" />
+  </ItemGroup>
+</Project>

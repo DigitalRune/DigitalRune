@@ -1,0 +1,484 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ICSharpCode.AvalonEdit.Editing.AbstractMargin">
+    <Position X="8.75" Y="7.5" Width="2" />
+    <Members>
+      <Field Name="document" Hidden="true" />
+      <Method Name="ITextViewConnect.AddToTextView" Hidden="true" />
+      <Method Name="ITextViewConnect.RemoveFromTextView" Hidden="true" />
+      <Method Name="OnTextViewChanged" Hidden="true" />
+      <Method Name="TextViewDocumentChanged" Hidden="true" />
+      <Field Name="TextViewProperty" Hidden="true" />
+      <Field Name="wasAutoAddedToTextView" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAICgAAAAAAAAAAAAAABAAoAEAAiAAAAAAAAAAQ=</HashCode>
+      <FileName>Editing\AbstractMargin.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Editing.Caret">
+    <Position X="5" Y="7.5" Width="2.5" />
+    <Members>
+      <Method Name="CalcCaretOverstrikeRectangle" Hidden="true" />
+      <Method Name="CalcCaretRectangle" Hidden="true" />
+      <Method Name="Caret" Hidden="true" />
+      <Field Name="caretAdorner" Hidden="true" />
+      <Field Name="desiredXPos" Hidden="true" />
+      <Field Name="hasWin32Caret" Hidden="true" />
+      <Method Name="InvalidateVisualColumn" Hidden="true" />
+      <Field Name="isInVirtualSpace" Hidden="true" />
+      <Method Name="Log" Hidden="true" />
+      <Field Name="MinimumDistanceToViewBorder" Hidden="true" />
+      <Property Name="NonValidatedPosition" Hidden="true" />
+      <Method Name="OnDocumentChanged" Hidden="true" />
+      <Method Name="OnDocumentChanging" Hidden="true" />
+      <Method Name="OnDocumentUpdateFinished" Hidden="true" />
+      <Field Name="position" Hidden="true" />
+      <Method Name="RaisePositionChanged" Hidden="true" />
+      <Field Name="raisePositionChangedOnUpdateFinished" Hidden="true" />
+      <Method Name="RevalidateVisualColumn" Hidden="true" />
+      <Method Name="ShowInternal" Hidden="true" />
+      <Field Name="showScheduled" Hidden="true" />
+      <Field Name="storedCaretOffset" Hidden="true" />
+      <Field Name="textArea" Hidden="true" />
+      <Field Name="textView" Hidden="true" />
+      <Method Name="TextView_ScrollOffsetChanged" Hidden="true" />
+      <Method Name="TextView_VisualLinesChanged" Hidden="true" />
+      <Method Name="UpdateIfVisible" Hidden="true" />
+      <Method Name="ValidatePosition" Hidden="true" />
+      <Method Name="ValidateVisualColumn" Hidden="true" />
+      <Field Name="visible" Hidden="true" />
+      <Field Name="visualColumnValid" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AyAgBSAAAYARAAQgVQpAIQABAEgFmAAoAQAACBKFgAA=</HashCode>
+      <FileName>Editing\Caret.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Editing.CaretWeakEventManager">
+    <Position X="10.25" Y="3.25" Width="3.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="ICSharpCode.AvalonEdit.Editing.CaretWeakEventManager.PositionChanged">
+        <TypeIdentifier>
+          <NewMemberFileName>Editing\CaretWeakEventHandler.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Editing\CaretWeakEventHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Editing.DottedLineMargin">
+    <Position X="12.25" Y="0.75" Width="1.75" />
+    <Members>
+      <Field Name="tag" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAIAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Editing\DottedLineMargin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Editing.DragDropException">
+    <Position X="14.25" Y="0.75" Width="1.75" />
+    <Members>
+      <Method Name="DragDropException" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Editing\DragDropException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Editing.EmptySelection">
+    <Position X="13.75" Y="8.75" Width="1.5" />
+    <Members>
+      <Method Name="EmptySelection" Hidden="true" />
+      <Property Name="EndPosition" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="GetText" Hidden="true" />
+      <Property Name="Length" Hidden="true" />
+      <Method Name="ReplaceSelectionWithText" Hidden="true" />
+      <Property Name="Segments" Hidden="true" />
+      <Method Name="SetEndpoint" Hidden="true" />
+      <Property Name="StartPosition" Hidden="true" />
+      <Method Name="StartSelectionOrSetEndpoint" Hidden="true" />
+      <Property Name="SurroundingSegment" Hidden="true" />
+      <Method Name="UpdateOnDocumentChange" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQAIAAAQEAAAAAAIgAAAAABkQCAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Editing\EmptySelection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Editing.LineNumberMargin">
+    <Position X="8.75" Y="9.75" Width="2" />
+    <Members>
+      <Method Name="ExtendSelection" Hidden="true" />
+      <Method Name="GetTextLineSegment" Hidden="true" />
+      <Method Name="HitTestCore" Hidden="true" />
+      <Method Name="IWeakEventListener.ReceiveWeakEvent" Hidden="true" />
+      <Method Name="LineNumberMargin" Hidden="true" />
+      <Method Name="MeasureOverride" Hidden="true" />
+      <Method Name="OnDocumentChanged" Hidden="true" />
+      <Method Name="OnDocumentLineCountChanged" Hidden="true" />
+      <Method Name="OnMouseLeftButtonDown" Hidden="true" />
+      <Method Name="OnMouseLeftButtonUp" Hidden="true" />
+      <Method Name="OnMouseMove" Hidden="true" />
+      <Method Name="OnRender" Hidden="true" />
+      <Field Name="selecting" Hidden="true" />
+      <Field Name="selectionStart" Hidden="true" />
+      <Field Name="textArea" Hidden="true" />
+      <Method Name="TextViewVisualLinesChanged" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IQBMAAAAgAgAQAAAAAAAAAAGABEAEgAQAABAKAgAAAA=</HashCode>
+      <FileName>Editing\LineNumberMargin.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Editing.RectangleSelection">
+    <Position X="17.25" Y="8.75" Width="2.25" />
+    <Members>
+      <Field Name="bottomRightOffset" Hidden="true" />
+      <Method Name="CalculateSegments" Hidden="true" />
+      <Method Name="Command" Hidden="true" />
+      <Method Name="CreateDataObject" Hidden="true" />
+      <Field Name="document" Hidden="true" />
+      <Property Name="EnableVirtualSpace" Hidden="true" />
+      <Field Name="end" Hidden="true" />
+      <Field Name="endLine" Hidden="true" />
+      <Property Name="EndPosition" Hidden="true" />
+      <Field Name="endXPos" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetEnd" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="GetStart" Hidden="true" />
+      <Method Name="GetText" Hidden="true" />
+      <Method Name="GetVisualColumnFromXPos" Hidden="true" />
+      <Method Name="GetXPos" Hidden="true" />
+      <Method Name="InitDocument" Hidden="true" />
+      <Property Name="Length" Hidden="true" />
+      <Method Name="RectangleSelection" Hidden="true" />
+      <Method Name="ReplaceSelectionWithText" Hidden="true" />
+      <Method Name="ReplaceSingleLineText" Hidden="true" />
+      <Field Name="segments" Hidden="true" />
+      <Property Name="Segments" Hidden="true" />
+      <Method Name="SetEndpoint" Hidden="true" />
+      <Field Name="start" Hidden="true" />
+      <Field Name="startLine" Hidden="true" />
+      <Property Name="StartPosition" Hidden="true" />
+      <Method Name="StartSelectionOrSetEndpoint" Hidden="true" />
+      <Field Name="startXPos" Hidden="true" />
+      <Property Name="SurroundingSegment" Hidden="true" />
+      <Field Name="topLeftOffset" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+      <Method Name="UpdateOnDocumentChange" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQAIABBSFAAAAAR8wAQAJABlRCIQAIAAQCAANBCACAQ=</HashCode>
+      <FileName>Editing\RectangleSelection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Editing.Selection">
+    <Position X="14.25" Y="3.25" Width="2.25" />
+    <Members>
+      <Method Name="AddSpacesIfRequired" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="InsertVirtualSpaces" Hidden="true" />
+      <Method Name="IsInVirtualSpace" Hidden="true" />
+      <Field Name="textArea" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQBIAAAQEIAAAAAYiAAAAABkQCAQAMAABAQAAAAQAIA=</HashCode>
+      <FileName>Editing\Selection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Editing.SelectionMouseHandler" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="3.25" Width="2" />
+    <Members>
+      <Method Name="Attach" Hidden="true" />
+      <Method Name="AttachDragDrop" Hidden="true" />
+      <Field Name="currentDragDescriptor" Hidden="true" />
+      <Method Name="Detach" Hidden="true" />
+      <Method Name="DetachDragDrop" Hidden="true" />
+      <Field Name="enableTextDragDrop" Hidden="true" />
+      <Method Name="ExtendSelectionToMouse" Hidden="true" />
+      <Method Name="GetEffect" Hidden="true" />
+      <Method Name="GetLineAtMousePosition" Hidden="true" />
+      <Method Name="GetOffsetFromMousePosition" Hidden="true" />
+      <Method Name="GetOffsetFromMousePositionFirstTextLineOnly" Hidden="true" />
+      <Method Name="GetWordAtMousePosition" Hidden="true" />
+      <Field Name="mode" Hidden="true" />
+      <Method Name="OnDragException" Hidden="true" />
+      <Field Name="possibleDragStartMousePos" Hidden="true" />
+      <Method Name="SetCaretOffsetToMousePosition" Hidden="true" />
+      <Method Name="StartDrag" Hidden="true" />
+      <Field Name="startWord" Hidden="true" />
+      <Field Name="textArea" Hidden="true" />
+      <Property Name="TextArea" Hidden="true" />
+      <Method Name="textArea_DragEnter" Hidden="true" />
+      <Method Name="textArea_DragLeave" Hidden="true" />
+      <Method Name="textArea_DragOver" Hidden="true" />
+      <Method Name="textArea_Drop" Hidden="true" />
+      <Method Name="textArea_GiveFeedback" Hidden="true" />
+      <Method Name="textArea_MouseLeftButtonDown" Hidden="true" />
+      <Method Name="textArea_MouseLeftButtonUp" Hidden="true" />
+      <Method Name="textArea_MouseMove" Hidden="true" />
+      <Method Name="textArea_OptionChanged" Hidden="true" />
+      <Method Name="textArea_QueryContinueDrag" Hidden="true" />
+      <Method Name="textArea_QueryCursor" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Enum Name="ICSharpCode.AvalonEdit.Editing.SelectionMouseHandler.SelectionMode">
+        <TypeIdentifier>
+          <NewMemberFileName>Editing\SelectionMouseHandler.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AUAACABEBQEABAKAAAAQABAAEIAWggIJCAAIAAEMQAg=</HashCode>
+      <FileName>Editing\SelectionMouseHandler.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TextArea" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Editing.SelectionSegment" BaseTypeListCollapsed="true">
+    <Position X="10" Y="0.75" Width="1.75" />
+    <Members>
+      <Field Name="endOffset" Hidden="true" />
+      <Field Name="endVC" Hidden="true" />
+      <Property Name="ISegment.Offset" Hidden="true" />
+      <Method Name="SelectionSegment" Hidden="true" />
+      <Field Name="startOffset" Hidden="true" />
+      <Field Name="startVC" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAABAAAAAUBAAAAEBAAAABAAAAAAAABAAAAAQ=</HashCode>
+      <FileName>Editing\SelectionSegment.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Editing.SimpleSelection">
+    <Position X="15.5" Y="8.75" Width="1.5" />
+    <Members>
+      <Field Name="end" Hidden="true" />
+      <Field Name="endOffset" Hidden="true" />
+      <Property Name="EndPosition" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Property Name="IsEmpty" Hidden="true" />
+      <Property Name="Length" Hidden="true" />
+      <Method Name="ReplaceSelectionWithText" Hidden="true" />
+      <Property Name="Segments" Hidden="true" />
+      <Method Name="SetEndpoint" Hidden="true" />
+      <Method Name="SimpleSelection" Hidden="true" />
+      <Field Name="start" Hidden="true" />
+      <Field Name="startOffset" Hidden="true" />
+      <Property Name="StartPosition" Hidden="true" />
+      <Method Name="StartSelectionOrSetEndpoint" Hidden="true" />
+      <Property Name="SurroundingSegment" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+      <Method Name="UpdateOnDocumentChange" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQBIAAASEBAAAAAkgAAAAABkQCAAAIAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Editing\SimpleSelection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Editing.TextArea" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="0.75" Width="3" />
+    <Members>
+      <Field Name="activeInputHandler" Hidden="true" />
+      <Field Name="allowCaretOutsideSelection" Hidden="true" />
+      <Method Name="ApplyScrollInfo" Hidden="true" />
+      <Method Name="AttachTypingEvents" Hidden="true" />
+      <Field Name="canHorizontallyScroll" Hidden="true" />
+      <Field Name="canVerticallyScroll" Hidden="true" />
+      <Field Name="caret" Hidden="true" />
+      <Method Name="CaretPositionChanged" Hidden="true" />
+      <Field Name="DocumentProperty" Hidden="true" />
+      <Field Name="emptySelection" Hidden="true" />
+      <Method Name="EnsureSelectionValid" Hidden="true" />
+      <Field Name="ensureSelectionValidRequested" Hidden="true" />
+      <Method Name="GetDeletableSegments" Hidden="true" />
+      <Method Name="HideMouseCursor" Hidden="true" />
+      <Method Name="HitTestCore" Hidden="true" />
+      <Field Name="ime" Hidden="true" />
+      <Field Name="IndentationStrategyProperty" Hidden="true" />
+      <Field Name="isChangingInputHandler" Hidden="true" />
+      <Property Name="IScrollInfo.CanHorizontallyScroll" Hidden="true" />
+      <Property Name="IScrollInfo.CanVerticallyScroll" Hidden="true" />
+      <Property Name="IScrollInfo.ExtentHeight" Hidden="true" />
+      <Property Name="IScrollInfo.ExtentWidth" Hidden="true" />
+      <Property Name="IScrollInfo.HorizontalOffset" Hidden="true" />
+      <Method Name="IScrollInfo.LineDown" Hidden="true" />
+      <Method Name="IScrollInfo.LineLeft" Hidden="true" />
+      <Method Name="IScrollInfo.LineRight" Hidden="true" />
+      <Method Name="IScrollInfo.LineUp" Hidden="true" />
+      <Method Name="IScrollInfo.MakeVisible" Hidden="true" />
+      <Method Name="IScrollInfo.MouseWheelDown" Hidden="true" />
+      <Method Name="IScrollInfo.MouseWheelLeft" Hidden="true" />
+      <Method Name="IScrollInfo.MouseWheelRight" Hidden="true" />
+      <Method Name="IScrollInfo.MouseWheelUp" Hidden="true" />
+      <Method Name="IScrollInfo.PageDown" Hidden="true" />
+      <Method Name="IScrollInfo.PageLeft" Hidden="true" />
+      <Method Name="IScrollInfo.PageRight" Hidden="true" />
+      <Method Name="IScrollInfo.PageUp" Hidden="true" />
+      <Property Name="IScrollInfo.ScrollOwner" Hidden="true" />
+      <Method Name="IScrollInfo.SetHorizontalOffset" Hidden="true" />
+      <Method Name="IScrollInfo.SetVerticalOffset" Hidden="true" />
+      <Property Name="IScrollInfo.VerticalOffset" Hidden="true" />
+      <Property Name="IScrollInfo.ViewportHeight" Hidden="true" />
+      <Property Name="IScrollInfo.ViewportWidth" Hidden="true" />
+      <Field Name="isMouseCursorHidden" Hidden="true" />
+      <Method Name="IWeakEventListener.ReceiveWeakEvent" Hidden="true" />
+      <Field Name="leftMargins" Hidden="true" />
+      <Method Name="leftMargins_CollectionChanged" Hidden="true" />
+      <Method Name="OnDocumentChanged" Hidden="true" />
+      <Method Name="OnDocumentChanging" Hidden="true" />
+      <Method Name="OnGotKeyboardFocus" Hidden="true" />
+      <Method Name="OnKeyDown" Hidden="true" />
+      <Method Name="OnKeyUp" Hidden="true" />
+      <Method Name="OnLostKeyboardFocus" Hidden="true" />
+      <Method Name="OnMouseDown" Hidden="true" />
+      <Method Name="OnOptionsChanged" Hidden="true" />
+      <Method Name="OnPreviewKeyDown" Hidden="true" />
+      <Method Name="OnPreviewKeyUp" Hidden="true" />
+      <Method Name="OnTextCopied" Hidden="true" />
+      <Method Name="OnUpdateFinished" Hidden="true" />
+      <Method Name="OnUpdateStarted" Hidden="true" />
+      <Field Name="OptionsProperty" Hidden="true" />
+      <Field Name="OverstrikeModeProperty" Hidden="true" />
+      <Field Name="readOnlySectionProvider" Hidden="true" />
+      <Method Name="RemoveSelectedText" Hidden="true" />
+      <Method Name="ReplaceSelectionWithNewLine" Hidden="true" />
+      <Method Name="ReplaceSelectionWithText" Hidden="true" />
+      <Method Name="RequestSelectionValidation" Hidden="true" />
+      <Field Name="scrollInfo" Hidden="true" />
+      <Field Name="scrollOwner" Hidden="true" />
+      <Field Name="selection" Hidden="true" />
+      <Field Name="SelectionBorderProperty" Hidden="true" />
+      <Field Name="SelectionBrushProperty" Hidden="true" />
+      <Field Name="SelectionCornerRadiusProperty" Hidden="true" />
+      <Field Name="SelectionForegroundProperty" Hidden="true" />
+      <Method Name="ShowMouseCursor" Hidden="true" />
+      <Field Name="stackedInputHandlers" Hidden="true" />
+      <Method Name="TextArea" Hidden="true" />
+      <Field Name="textView" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="ICSharpCode.AvalonEdit.Editing.TextArea.RestoreCaretAndSelectionUndoAction">
+        <TypeIdentifier>
+          <NewMemberFileName>Editing\TextArea.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>goJYe5YCQiTAUYto4hxaTAQC8o5Bkk0bIIBY5QFJY0A=</HashCode>
+      <FileName>Editing\TextArea.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ActiveInputHandler" />
+      <Property Name="DefaultInputHandler" />
+      <Property Name="Caret" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Editing.TextAreaDefaultInputHandler">
+    <Position X="5" Y="6" Width="2.25" />
+    <Members>
+      <Method Name="CanExecuteRedo" Hidden="true" />
+      <Method Name="CanExecuteUndo" Hidden="true" />
+      <Method Name="CreateFrozenKeyBinding" Hidden="true" />
+      <Method Name="ExecuteRedo" Hidden="true" />
+      <Method Name="ExecuteUndo" Hidden="true" />
+      <Method Name="GetUndoStack" Hidden="true" />
+      <Method Name="TextAreaDefaultInputHandler" Hidden="true" />
+      <Method Name="WorkaroundWPFMemoryLeak" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAxAAAACAAAAAAAAAAAgBIAAAgAACAAAAA=</HashCode>
+      <FileName>Editing\TextAreaDefaultInputHandlers.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CaretNavigation" />
+      <Property Name="MouseSelection" />
+      <Property Name="Editing" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Editing.TextAreaInputHandler">
+    <Position X="5.25" Y="3.25" Width="1.75" />
+    <Members>
+      <Method Name="Attach" Hidden="true" />
+      <Method Name="CommandBinding_Added" Hidden="true" />
+      <Method Name="CommandBinding_Removed" Hidden="true" />
+      <Field Name="commandBindings" Hidden="true" />
+      <Method Name="Detach" Hidden="true" />
+      <Method Name="InputBinding_Added" Hidden="true" />
+      <Method Name="InputBinding_Removed" Hidden="true" />
+      <Field Name="inputBindings" Hidden="true" />
+      <Field Name="isAttached" Hidden="true" />
+      <Method Name="NestedInputHandler_Added" Hidden="true" />
+      <Method Name="NestedInputHandler_Removed" Hidden="true" />
+      <Field Name="nestedInputHandlers" Hidden="true" />
+      <Field Name="textArea" Hidden="true" />
+      <Property Name="TextArea" Hidden="true" />
+      <Method Name="TextAreaInputHandler" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQACgAAAEAAiAAIAIgAAICAAQIAAAIAAAAAIBAEAAoA=</HashCode>
+      <FileName>Editing\TextAreaInputHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Editing.TextAreaStackedInputHandler" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="5.25" Width="2" />
+    <Members>
+      <Method Name="Attach" Hidden="true" />
+      <Method Name="Detach" Hidden="true" />
+      <Field Name="textArea" Hidden="true" />
+      <Property Name="TextArea" Hidden="true" />
+      <Method Name="TextAreaStackedInputHandler" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQAACAAAAAAAAAIAAAAAAAAAAIAAAAAAAAAAAAEIAAA=</HashCode>
+      <FileName>Editing\TextAreaInputHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Editing.TextSegmentReadOnlySectionProvider&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="9.75" Width="3.75" />
+    <Members>
+      <Field Name="segments" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAIAAAAiAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Editing\TextSegmentReadOnlySectionProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="ICSharpCode.AvalonEdit.Editing.IReadOnlySectionProvider">
+    <Position X="16.75" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Editing\IReadOnlySectionProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ICSharpCode.AvalonEdit.Editing.ITextAreaInputHandler">
+    <Position X="5.25" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAIAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Editing\TextAreaInputHandler.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

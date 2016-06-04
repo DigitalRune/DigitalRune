@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ICSharpCode.AvalonEdit.Snippets.SnippetTextElement">
+    <Position X="7" Y="2.75" Width="1.75" />
+    <Members>
+      <Method Name="Insert" Hidden="true" />
+      <Field Name="text" Hidden="true" />
+      <Method Name="ToTextRun" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAIAACACAAAAAA=</HashCode>
+      <FileName>Snippets\SnippetTextElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Snippets.InsertionContext">
+    <Position X="0.5" Y="5" Width="2" />
+    <Members>
+      <Field Name="currentStatus" Hidden="true" />
+      <Field Name="deactivateIfSnippetEmpty" Hidden="true" />
+      <Field Name="elementMap" Hidden="true" />
+      <Method Name="InsertionContext" Hidden="true" />
+      <Method Name="IWeakEventListener.ReceiveWeakEvent" Hidden="true" />
+      <Field Name="myInputHandler" Hidden="true" />
+      <Field Name="registeredElements" Hidden="true" />
+      <Field Name="startPosition" Hidden="true" />
+      <Field Name="wholeSnippetAnchor" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Enum Name="ICSharpCode.AvalonEdit.Snippets.InsertionContext.Status" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Snippets\InsertionContext.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAACAQwFGBgQBAAAAAAQAAKAAQIACASIEAAQAEAgAg=</HashCode>
+      <FileName>Snippets\InsertionContext.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ActiveElements" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Snippets.Snippet">
+    <Position X="11.25" Y="4" Width="2" />
+    <Members>
+      <Method Name="Insert" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Snippets\Snippet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Snippets.SnippetBoundElement">
+    <Position X="0.5" Y="2.75" Width="2" />
+    <Members>
+      <Method Name="Insert" Hidden="true" />
+      <Field Name="targetElement" Hidden="true" />
+      <Method Name="ToTextRun" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEAAAEAAAACAAAAAAAAAAAAAAAAAQAAAAACAAAAAAAA=</HashCode>
+      <FileName>Snippets\SnippetBoundElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Snippets.SnippetCaretElement">
+    <Position X="5" Y="2.75" Width="1.75" />
+    <Members>
+      <Method Name="Insert" Hidden="true" />
+      <Method Name="SetCaret" Hidden="true" />
+      <Field Name="setCaretOnlyIfTextIsSelected" Hidden="true" />
+      <Method Name="SnippetCaretElement" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Snippets\SnippetCaretElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Snippets.SnippetContainerElement">
+    <Position X="11.25" Y="2.75" Width="2" />
+    <Members>
+      <Field Name="elements" Hidden="true" />
+      <Method Name="Insert" Hidden="true" />
+      <Method Name="ToTextRun" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Elements" Type="ICSharpCode.AvalonEdit.Snippets.SnippetElement" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.75" Y="2.75" />
+        <Point X="12.75" Y="1.148" />
+        <Point X="5.5" Y="1.148" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAABAAAAAQAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Snippets\SnippetContainerElement.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Elements" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Snippets.SnippetElement">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Snippets\SnippetElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Snippets.SnippetEventArgs">
+    <Position X="9.25" Y="6.5" Width="1.5" />
+    <Members>
+      <Method Name="SnippetEventArgs" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Snippets\SnippetEventArgs.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Reason" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Snippets.SnippetReplaceableTextElement">
+    <Position X="6.5" Y="4.5" Width="2.75" />
+    <Members>
+      <Method Name="Insert" Hidden="true" />
+      <Method Name="ToTextRun" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Snippets\SnippetReplaceableTextElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Snippets.SnippetSelectionElement">
+    <Position X="2.75" Y="2.75" Width="2" />
+    <Members>
+      <Method Name="Insert" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Snippets\SnippetSelectionElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Snippets.SnippetAnchorElement">
+    <Position X="9" Y="2.75" Width="2" />
+    <Members>
+      <Method Name="Insert" Hidden="true" />
+      <Method Name="SnippetAnchorElement" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Snippets\SnippetAnchorElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Snippets.AnchorElement">
+    <Position X="6.75" Y="6.5" Width="2" />
+    <Members>
+      <Method Name="AnchorElement" Hidden="true" />
+      <Field Name="context" Hidden="true" />
+      <Method Name="Deactivate" Hidden="true" />
+      <Property Name="IsEditable" Hidden="true" />
+      <Method Name="OnInsertionCompleted" Hidden="true" />
+      <Field Name="segment" Hidden="true" />
+      <Property Name="Segment" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAABAAQAAAAEAIAQAAAgAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Snippets\SnippetAnchorElement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Snippets.SnippetInputHandler">
+    <Position X="6.75" Y="8.5" Width="2" />
+    <Members>
+      <Field Name="context" Hidden="true" />
+      <Method Name="FindNextEditableElement" Hidden="true" />
+      <Method Name="SelectElement" Hidden="true" />
+      <Method Name="SnippetInputHandler" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAIAAgAAAAAAAIIAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Snippets\SnippetInputHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ICSharpCode.AvalonEdit.Snippets.IActiveElement">
+    <Position X="4" Y="5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAEAIAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Snippets\IActiveElement.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ICSharpCode.AvalonEdit.Snippets.IReplaceableActiveElement">
+    <Position X="4" Y="7.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Snippets\SnippetReplaceableTextElement.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="ICSharpCode.AvalonEdit.Snippets.DeactivateReason">
+    <Position X="11.75" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAQEAAAAAAAAABAAACAAAAAABA=</HashCode>
+      <FileName>Snippets\SnippetEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,553 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dr="clr-namespace:DigitalRune.Windows;assembly=DigitalRune.Windows"
+                    xmlns:local="clr-namespace:DigitalRune.Windows.Docking">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DigitalRune.Windows.Docking;component/Resources/Brushes.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+
+    <!--  BRUSHES  -->
+
+    <LinearGradientBrush x:Key="GlyphFillBrush" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Offset="0" Color="#6E8BFF" />
+            <GradientStop Offset="1" Color="#2E3657" />
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="GlyphStrokeBrush" Color="White" />
+
+
+    <!--  GEOMETRIES  -->
+
+    <Geometry x:Key="TabGeometry">M0,0 L9,0 9,3 15,3 15,15 0,15 Z</Geometry>
+    <Geometry x:Key="LeftTriangleGeometry">M0,0.5 L1,1 1,0Z</Geometry>
+    <Geometry x:Key="RightTriangleGeometry">M0,0 L1,0.5 0,1Z</Geometry>
+    <Geometry x:Key="DownTriangleGeometry">M0,0 L1,0 0.5,1Z</Geometry>
+    <Geometry x:Key="UpTriangleGeometry">M0,1 L1,1 0.5,0Z</Geometry>
+
+
+    <!--  STYLES  -->
+
+    <Style TargetType="{x:Type local:DockIndicator}">
+        <Setter Property="Background" Value="{StaticResource ButtonNormalBackground}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:DockIndicator}">
+                    <Grid Name="Root">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="Normal"
+                                                      GeneratedDuration="0:0:0.1"
+                                                      To="Selected" />
+                                    <VisualTransition From="Selected"
+                                                      GeneratedDuration="0:0:0.25"
+                                                      To="Normal" />
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Selected">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0"
+                                                         Storyboard.TargetName="SelectedDockIndicator"
+                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                         To="1.0" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Border Name="DefaultDockIndicator"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5"
+                                SnapsToDevicePixels="True">
+                            <Border Name="DefaultButtonInnerBorder"
+                                    BorderBrush="White"
+                                    BorderThickness="1"
+                                    CornerRadius="4"
+                                    Opacity="0.75"
+                                    SnapsToDevicePixels="True" />
+                        </Border>
+                        <Border Name="SelectedDockIndicator"
+                                Background="{StaticResource ButtonMouseOverBackground}"
+                                BorderBrush="{StaticResource ActiveBorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5"
+                                Opacity="0"
+                                SnapsToDevicePixels="True">
+                            <Border Name="MouseOverButtonInnerBorder"
+                                    BorderBrush="{StaticResource DefaultedBorderBrush}"
+                                    BorderThickness="1"
+                                    CornerRadius="4"
+                                    Opacity="0.75"
+                                    SnapsToDevicePixels="True" />
+                        </Border>
+                        <Border Name="ContentBorder" Padding="1">
+                            <dr:PixelSnapper HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                <ContentPresenter Margin="{TemplateBinding Padding}"
+                                                  Content="{TemplateBinding Content}"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                  Focusable="{TemplateBinding Focusable}" />
+                            </dr:PixelSnapper>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type local:BorderIndicators}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="FadeInAnimation">
+            <Setter.Value>
+                <Storyboard>
+                    <DoubleAnimation Duration="0:0:0.1"
+                                     From="0"
+                                     Storyboard.TargetProperty="Opacity"
+                                     To="1" />
+                </Storyboard>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FadeOutAnimation">
+            <Setter.Value>
+                <Storyboard>
+                    <DoubleAnimation Duration="0:0:0.2"
+                                     Storyboard.TargetProperty="Opacity"
+                                     To="0" />
+                </Storyboard>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="5"
+                                  Opacity="0.25"
+                                  ShadowDepth="3" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:BorderIndicators}">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="DockStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.25" />
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="None" />
+                                <VisualState x:Name="Left">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="LeftPreview"
+                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                         To="0.5" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Right">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="RightPreview"
+                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                         To="0.5" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Top">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="TopPreview"
+                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                         To="0.5" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Bottom">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="BottomPreview"
+                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                         To="0.5" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Border x:Name="LeftPreview"
+                                Grid.RowSpan="3"
+                                Grid.Column="0"
+                                Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"
+                                BorderThickness="0"
+                                Opacity="0" />
+                        <Border x:Name="RightPreview"
+                                Grid.Row="0"
+                                Grid.RowSpan="3"
+                                Grid.Column="2"
+                                Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"
+                                BorderThickness="0"
+                                Opacity="0" />
+                        <Border x:Name="TopPreview"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"
+                                BorderThickness="0"
+                                Opacity="0" />
+                        <Border x:Name="BottomPreview"
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"
+                                BorderThickness="0"
+                                Opacity="0" />
+
+                        <local:DockIndicator x:Name="PART_DockTop"
+                                             Grid.Row="0"
+                                             Grid.Column="1"
+                                             Width="32"
+                                             Height="32"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Top"
+                                             VerticalContentAlignment="Top"
+                                             Padding="2">
+                            <Path Width="11"
+                                  Height="7"
+                                  Margin="0"
+                                  Data="{StaticResource UpTriangleGeometry}"
+                                  Fill="{StaticResource GlyphFillBrush}"
+                                  Stretch="Fill"
+                                  Stroke="{StaticResource GlyphStrokeBrush}"
+                                  StrokeThickness="1" />
+                        </local:DockIndicator>
+                        <local:DockIndicator x:Name="PART_DockLeft"
+                                             Grid.Row="1"
+                                             Grid.Column="0"
+                                             Width="32"
+                                             Height="32"
+                                             HorizontalAlignment="Left"
+                                             VerticalAlignment="Center"
+                                             HorizontalContentAlignment="Left"
+                                             Padding="2">
+                            <Path Width="7"
+                                  Height="11"
+                                  Margin="0"
+                                  Data="{StaticResource LeftTriangleGeometry}"
+                                  Fill="{StaticResource GlyphFillBrush}"
+                                  Stretch="Fill"
+                                  Stroke="{StaticResource GlyphStrokeBrush}"
+                                  StrokeThickness="1" />
+                        </local:DockIndicator>
+                        <local:DockIndicator x:Name="PART_DockRight"
+                                             Grid.Row="1"
+                                             Grid.Column="2"
+                                             Width="32"
+                                             Height="32"
+                                             HorizontalAlignment="Right"
+                                             VerticalAlignment="Center"
+                                             HorizontalContentAlignment="Right"
+                                             Padding="2">
+                            <Path Width="7"
+                                  Height="11"
+                                  Margin="0"
+                                  Data="{StaticResource RightTriangleGeometry}"
+                                  Fill="{StaticResource GlyphFillBrush}"
+                                  Stretch="Fill"
+                                  Stroke="{StaticResource GlyphStrokeBrush}"
+                                  StrokeThickness="1" />
+                        </local:DockIndicator>
+                        <local:DockIndicator x:Name="PART_DockBottom"
+                                             Grid.Row="2"
+                                             Grid.Column="1"
+                                             Width="32"
+                                             Height="32"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Bottom"
+                                             VerticalContentAlignment="Bottom"
+                                             Padding="2">
+                            <Path Width="11"
+                                  Height="7"
+                                  Margin="0"
+                                  Data="{StaticResource DownTriangleGeometry}"
+                                  Fill="{StaticResource GlyphFillBrush}"
+                                  Stretch="Fill"
+                                  Stroke="{StaticResource GlyphStrokeBrush}"
+                                  StrokeThickness="1" />
+                        </local:DockIndicator>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type local:PaneIndicators}">
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="FadeInAnimation">
+            <Setter.Value>
+                <Storyboard>
+                    <DoubleAnimation Duration="0:0:0.1"
+                                     From="0"
+                                     Storyboard.TargetProperty="Opacity"
+                                     To="1" />
+                </Storyboard>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FadeOutAnimation">
+            <Setter.Value>
+                <Storyboard>
+                    <DoubleAnimation Duration="0:0:0.2"
+                                     Storyboard.TargetProperty="Opacity"
+                                     To="0" />
+                </Storyboard>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="5"
+                                  Opacity="0.25"
+                                  ShadowDepth="3" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:PaneIndicators}">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="SelectionStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition GeneratedDuration="0:0:0.25" />
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="None" />
+                                <VisualState x:Name="Left">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="LeftPreview"
+                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                         To="0.5" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Right">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="RightPreview"
+                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                         To="0.5" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Top">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="TopPreview"
+                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                         To="0.5" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Bottom">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="BottomPreview"
+                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                         To="0.5" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Inside">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="InsidePreview"
+                                                         Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                         To="0.5" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Border x:Name="InsidePreview"
+                                Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"
+                                BorderThickness="0"
+                                Opacity="0" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Border x:Name="LeftPreview"
+                                    Grid.RowSpan="2"
+                                    Grid.Column="0"
+                                    Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"
+                                    BorderThickness="0"
+                                    Opacity="0" />
+                            <Border x:Name="RightPreview"
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"
+                                    Grid.Column="1"
+                                    Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"
+                                    BorderThickness="0"
+                                    Opacity="0" />
+                            <Border x:Name="TopPreview"
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"
+                                    BorderThickness="0"
+                                    Opacity="0" />
+                            <Border x:Name="BottomPreview"
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"
+                                    BorderThickness="0"
+                                    Opacity="0" />
+                        </Grid>
+
+                        <Grid>
+                            <Border x:Name="PaneIndicatorsBackground"
+                                    Width="48"
+                                    Height="48"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Background="{StaticResource ButtonNormalBackground}"
+                                    BorderBrush="{StaticResource ButtonNormalBorder}"
+                                    BorderThickness="1"
+                                    CornerRadius="9"
+                                    Opacity="0.75"
+                                    SnapsToDevicePixels="True">
+                                <Border BorderBrush="White"
+                                        BorderThickness="1"
+                                        CornerRadius="8"
+                                        Opacity="0.75"
+                                        SnapsToDevicePixels="True" />
+                            </Border>
+                            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="32" />
+                                    <ColumnDefinition Width="36" />
+                                    <ColumnDefinition Width="32" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="32" />
+                                    <RowDefinition Height="36" />
+                                    <RowDefinition Height="32" />
+                                </Grid.RowDefinitions>
+                                <local:DockIndicator x:Name="PART_DockTop"
+                                                     Grid.Row="0"
+                                                     Grid.Column="1"
+                                                     Width="32"
+                                                     Height="32"
+                                                     HorizontalAlignment="Center"
+                                                     VerticalAlignment="Top"
+                                                     VerticalContentAlignment="Bottom"
+                                                     Padding="3">
+                                    <Path Width="11"
+                                          Height="7"
+                                          Margin="0"
+                                          Data="{StaticResource UpTriangleGeometry}"
+                                          Fill="{StaticResource GlyphFillBrush}"
+                                          Stretch="Fill"
+                                          Stroke="{StaticResource GlyphStrokeBrush}"
+                                          StrokeThickness="1" />
+                                </local:DockIndicator>
+                                <local:DockIndicator x:Name="PART_DockLeft"
+                                                     Grid.Row="1"
+                                                     Grid.Column="0"
+                                                     Width="32"
+                                                     Height="32"
+                                                     HorizontalAlignment="Left"
+                                                     VerticalAlignment="Center"
+                                                     HorizontalContentAlignment="Right"
+                                                     Padding="3">
+                                    <Path Width="7"
+                                          Height="11"
+                                          Margin="0"
+                                          Data="{StaticResource LeftTriangleGeometry}"
+                                          Fill="{StaticResource GlyphFillBrush}"
+                                          Stretch="Fill"
+                                          Stroke="{StaticResource GlyphStrokeBrush}"
+                                          StrokeThickness="1" />
+                                </local:DockIndicator>
+                                <local:DockIndicator x:Name="PART_DockInside"
+                                                     Grid.Row="1"
+                                                     Grid.Column="1"
+                                                     Width="32"
+                                                     Height="32"
+                                                     HorizontalAlignment="Center"
+                                                     VerticalAlignment="Center"
+                                                     Padding="3">
+                                    <Path Width="16"
+                                          Height="16"
+                                          Margin="0"
+                                          Data="{StaticResource TabGeometry}"
+                                          Fill="{StaticResource GlyphFillBrush}"
+                                          Stretch="Fill"
+                                          Stroke="{StaticResource GlyphStrokeBrush}"
+                                          StrokeThickness="1" />
+                                </local:DockIndicator>
+                                <local:DockIndicator x:Name="PART_DockRight"
+                                                     Grid.Row="1"
+                                                     Grid.Column="2"
+                                                     Width="32"
+                                                     Height="32"
+                                                     HorizontalAlignment="Right"
+                                                     VerticalAlignment="Center"
+                                                     HorizontalContentAlignment="Left"
+                                                     Padding="3">
+                                    <Path Width="7"
+                                          Height="11"
+                                          Margin="0"
+                                          Data="{StaticResource RightTriangleGeometry}"
+                                          Fill="{StaticResource GlyphFillBrush}"
+                                          Stretch="Fill"
+                                          Stroke="{StaticResource GlyphStrokeBrush}"
+                                          StrokeThickness="1" />
+                                </local:DockIndicator>
+                                <local:DockIndicator x:Name="PART_DockBottom"
+                                                     Grid.Row="2"
+                                                     Grid.Column="1"
+                                                     Width="32"
+                                                     Height="32"
+                                                     HorizontalAlignment="Center"
+                                                     VerticalAlignment="Bottom"
+                                                     VerticalContentAlignment="Top"
+                                                     Padding="3">
+                                    <Path Width="11"
+                                          Height="7"
+                                          Margin="0"
+                                          Data="{StaticResource DownTriangleGeometry}"
+                                          Fill="{StaticResource GlyphFillBrush}"
+                                          Stretch="Fill"
+                                          Stroke="{StaticResource GlyphStrokeBrush}"
+                                          StrokeThickness="1" />
+                                </local:DockIndicator>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

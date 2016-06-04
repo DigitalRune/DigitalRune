@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="General types                                                    Assembly: DigitalRune.Windows.Framework  Namespace: DigitalRune.Windows.Framework">
+    <Position X="0.5" Y="0.5" Height="0.678" Width="2.857" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.Framework.MessageBus">
+    <Position X="6.25" Y="3.5" Width="1.75" />
+    <Members>
+      <Field Name="_subjects" Hidden="true" />
+      <Property Name="Gate" Hidden="true" />
+      <Method Name="GetOrCreateSubject" Hidden="true" />
+      <Method Name="Listen" Hidden="true" />
+      <Method Name="Publish" Hidden="true" />
+      <Method Name="RegisterPublisher" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAEAAQEAAAAAAACgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MessageBus\MessageBus.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.WindowManager" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="3.25" Width="1.5" />
+    <Members>
+      <Field Name="_viewLocator" Hidden="true" />
+      <Method Name="EnsurePage" Hidden="true" />
+      <Method Name="EnsureWindow" Hidden="true" />
+      <Method Name="InferOwnerOf" Hidden="true" />
+      <Method Name="ShowDialog" Hidden="true" />
+      <Method Name="ShowWindow" Hidden="true" />
+      <Method Name="WindowManager" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAIgAAAAAAQAAAAAAAAAAEAAAAAEAAAAAAAAQBAABA=</HashCode>
+      <FileName>WindowManager\WindowManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.BindableCollection&lt;T&gt;">
+    <Position X="0.5" Y="5" Width="2.25" />
+    <Members>
+      <Field Name="_suppressNotifications" Hidden="true" />
+      <Method Name="BindableCollection" Hidden="true" />
+      <Method Name="ClearItems" Hidden="true" />
+      <Method Name="InsertItem" Hidden="true" />
+      <Method Name="OnCollectionChanged" Hidden="true" />
+      <Method Name="OnPropertyChanged" Hidden="true" />
+      <Method Name="RemoveItem" Hidden="true" />
+      <Method Name="SetItem" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QAAgAABAAABABAAAIAABAABAQAEAABAEAQAAAIAEAQA=</HashCode>
+      <FileName>BindableCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.Bootstrapper">
+    <Position X="0.5" Y="1.5" Width="2" />
+    <Members>
+      <Method Name="Bootstrapper" Hidden="true" />
+      <Method Name="StartDesignTime" Hidden="true" />
+      <Method Name="StartRuntime" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAQAAAAAABAAAAAAAAAAAAAAAIAQBAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Bootstrapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Framework.TaskHelper">
+    <Position X="3" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>TaskHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DigitalRune.Windows.Framework.IMessageBus">
+    <Position X="6.25" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAEAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MessageBus\IMessageBus.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Windows.Framework.IWindowService">
+    <Position X="4.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>WindowManager\IWindowService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Windows.Framework.IViewLocator">
+    <Position X="2.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>IViewLocator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,74 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DigitalRune.Windows.Charts"
+                    xmlns:interactivity="clr-namespace:DigitalRune.Windows.Charts.Interactivity">
+
+    <!--  Default Styles  -->
+
+    <Style TargetType="{x:Type local:Axis}">
+        <Setter Property="interactivity:ChartSelectionBehavior.Selectable" Value="False" />
+        <Setter Property="AxisStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type Line}">
+                    <Setter Property="Stroke" Value="Black" />
+                    <Setter Property="StrokeThickness" Value="1" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="MajorTickStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type Path}">
+                    <Setter Property="Stroke" Value="Black" />
+                    <Setter Property="StrokeThickness" Value="1" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="MinorTickStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type Path}">
+                    <Setter Property="Stroke" Value="Black" />
+                    <Setter Property="StrokeThickness" Value="1" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="LabelStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="FontSize" Value="10" />
+                    <Setter Property="TextAlignment" Value="Center" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="TitleStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type ContentControl}">
+                    <Setter Property="FontSize" Value="10" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="IsTabStop" Value="False" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="MajorTickLength" Value="8" />
+        <Setter Property="MinorTickLength" Value="4" />
+        <Setter Property="OneSidedTicks" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Axis}">
+                    <Canvas Name="PART_Canvas"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Line Name="PART_AxisLine" Style="{TemplateBinding AxisStyle}" />
+                        <Path Name="PART_MajorTicks" Style="{TemplateBinding MajorTickStyle}" />
+                        <Path Name="PART_MinorTicks" Style="{TemplateBinding MinorTickStyle}" />
+                        <ContentControl Name="PART_Title"
+                                        Content="{TemplateBinding Title}"
+                                        Style="{TemplateBinding TitleStyle}" />
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Title" Value="Axis Title" />
+    </Style>
+
+</ResourceDictionary>

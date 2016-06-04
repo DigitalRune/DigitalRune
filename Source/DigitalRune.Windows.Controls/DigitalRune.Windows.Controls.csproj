@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6C1A27B5-4E09-4B52-AC71-9489EC0353E8}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.Windows.Controls</RootNamespace>
+    <AssemblyName>DigitalRune.Windows.Controls</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\DigitalRune.Windows.Controls.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>..\DigitalRune\DigitalRuneRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\DigitalRune.Windows.Controls.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune.Windows\DigitalRune.Windows.csproj">
+      <Project>{A560721A-6665-4534-80B6-9DA1F79B00DD}</Project>
+      <Name>DigitalRune.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune\DigitalRune.csproj">
+      <Project>{5A0E3C60-1CA9-49D5-84CA-308CB8E3A3B4}</Project>
+      <Name>DigitalRune</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ButtonChrome\ButtonChrome.cs" />
+    <Page Include="ButtonChrome\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <None Include="Class Diagrams\Windows.Controls.cd" />
+    <None Include="Class Diagrams\Windows.Controls_Colors.cd" />
+    <None Include="Class Diagrams\Windows.Controls_ExplorerView.cd" />
+    <None Include="Class Diagrams\Windows.Controls_Fonts.cd" />
+    <None Include="Class Diagrams\Windows.Controls_PropertyGrid.cd" />
+    <None Include="Class Diagrams\Windows.Controls_UpDown.cd" />
+    <Compile Include="ColorGradientControl\ColorGradientControl.cs" />
+    <Compile Include="ColorGradientControl\ColorStop.cs" />
+    <Page Include="ColorGradientControl\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="ColorPicker\ColorButton.cs" />
+    <Compile Include="ColorPicker\ColorComponentControl.cs" />
+    <Compile Include="ColorPicker\ColorComponents.cs" />
+    <Page Include="ColorPicker\ColorDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="ColorPicker\ColorDialog.xaml.cs">
+      <DependentUpon>ColorDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorPicker\ColorPicker.cs" />
+    <Compile Include="ColorPicker\ColorPickerCommands.cs" />
+    <Compile Include="ColorPicker\ColorSlider1D.cs" />
+    <Compile Include="ColorPicker\ColorSlider2D.cs" />
+    <Compile Include="ColorPicker\ColorSpace.cs" />
+    <Compile Include="ColorPicker\ColorSpaceConverter.cs" />
+    <Page Include="ColorPicker\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="CommandTextBox\CommandTextBox.cs" />
+    <Page Include="CommandTextBox\Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="DropDownButton\DropDownButton.cs" />
+    <Page Include="DropDownButton\Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="EditableTextBlock\EditableTextBlock.cs" />
+    <Compile Include="EditableTextBlock\TextBoxAdorner.cs" />
+    <Page Include="EditableTextBlock\Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="ExplorerView\ExplorerView.cs" />
+    <Compile Include="ExplorerView\ExplorerViewMenu.cs" />
+    <Compile Include="ExplorerView\ExplorerViewMode.cs" />
+    <Page Include="ExplorerView\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="FontChooser\FontChooser.cs" />
+    <Page Include="FontChooser\FontDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="FontChooser\FontDialog.xaml.cs">
+      <DependentUpon>FontDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FontChooser\FontFamilyDescription.cs" />
+    <Compile Include="FontChooser\FontHelper.cs" />
+    <Page Include="FontChooser\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="FontChooser\TypefaceDescription.cs" />
+    <Compile Include="Icon\Icon.cs" />
+    <Compile Include="Icon\MultiColorGlyph.cs" />
+    <Compile Include="ImageEffect.cs" />
+    <Compile Include="ListViewEx.cs" />
+    <Compile Include="MenuGapBorder.cs" />
+    <Compile Include="MultiFrameImage.cs" />
+    <Compile Include="NumericUpDown\BaseUpDownControl.cs" />
+    <Compile Include="NumericUpDown\NumericUpDown.cs" />
+    <Page Include="NumericUpDown\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="NumericUpDown\TimeSpanUpDown.cs" />
+    <Compile Include="PathTextBlock\PathTextBlock.cs" />
+    <Page Include="PathTextBlock\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="ProgressRing\ProgressRing.cs" />
+    <Page Include="ProgressRing\Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="Properties\AssemblyInfo.template" />
+    <Compile Include="PropertyGrid\CustomProperty.cs" />
+    <Compile Include="PropertyGrid\IProperty.cs" />
+    <Compile Include="PropertyGrid\IPropertySource.cs" />
+    <Compile Include="PropertyGrid\IReflectedProperty.cs" />
+    <Compile Include="PropertyGrid\PropertyGrid.cs" />
+    <Compile Include="PropertyGrid\PropertyGridCommands.cs" />
+    <Compile Include="PropertyGrid\PropertyGridHelper.cs" />
+    <Compile Include="PropertyGrid\PropertyGridTemplateSelector.cs" />
+    <Compile Include="PropertyGrid\PropertySource.cs" />
+    <Compile Include="PropertyGrid\ReflectedField.cs" />
+    <Compile Include="PropertyGrid\ReflectedProperty.cs" />
+    <Page Include="PropertyGrid\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Resource Include="Resources\Icons.png" />
+    <Resource Include="Resources\ImageEffect.ps" />
+    <Compile Include="SelectionRectangle.cs" />
+    <Compile Include="SplitButton\SplitButton.cs" />
+    <Page Include="SplitButton\Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ToolBarEx\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="ToolBarEx\ToolBarEx.cs" />
+    <Compile Include="TreeViewEx\IndentationMarginConverter.cs" />
+    <Page Include="TreeViewEx\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="TreeViewEx\TreeViewEx.cs" />
+    <Compile Include="TreeViewEx\TreeViewItemEx.cs" />
+    <Compile Include="UnclippedTextBlock.cs" />
+    <Page Include="WatermarkedTextBox\Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="WatermarkedTextBox\WatermarkedTextBox.cs" />
+    <Page Include="WindowChrome\Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="WindowChrome\WindowCaptionButtons.cs" />
+    <Compile Include="WindowChrome\WindowCaptionIcon.cs" />
+  </ItemGroup>
+</Project>

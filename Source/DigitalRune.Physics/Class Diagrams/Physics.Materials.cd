@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Materials                                              Assembly: DigitalRune.Physics        Namespace: DigitalRune.Physics.Materials">
+    <Position X="0.5" Y="0.5" Height="0.615" Width="2.585" />
+  </Comment>
+  <Class Name="DigitalRune.Physics.Materials.CompositeMaterial" BaseTypeListCollapsed="true">
+    <Position X="6" Y="1.75" Width="1.75" />
+    <Members>
+      <Method Name="CompositeMaterial" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEAACAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Materials\CompositeMaterial.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Materials" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Physics.Materials.UniformMaterial" BaseTypeListCollapsed="true">
+    <Position X="3" Y="1.75" Width="2" />
+    <Members>
+      <Field Name="_surfaceMotion" Hidden="true" />
+      <Method Name="UniformMaterial" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAACQAACAAAAAABAAAAAQQAAAAABAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Materials\UniformMaterial.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Struct Name="DigitalRune.Physics.Materials.MaterialProperties">
+    <Position X="0.5" Y="3.25" Width="2" />
+    <Members>
+      <Field Name="_dynamicFriction" Hidden="true" />
+      <Field Name="_restitution" Hidden="true" />
+      <Field Name="_staticFriction" Hidden="true" />
+      <Field Name="_supportsSurfaceMotion" Hidden="true" />
+      <Field Name="_surfaceMotion" Hidden="true" />
+      <Method Name="MaterialProperties" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAEQAACAAAAAABAAAAAQAAAhAABAAAAAAAAAEAQAA=</HashCode>
+      <FileName>Materials\MaterialProperties.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="DigitalRune.Physics.Materials.IMaterial">
+    <Position X="0.5" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Materials\IMaterial.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

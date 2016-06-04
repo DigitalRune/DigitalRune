@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E3AD7CE4-30A9-42FD-A7AF-B25DD8FC6FBD}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.Windows.Framework</RootNamespace>
+    <AssemblyName>DigitalRune.Windows.Framework</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET45</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\DigitalRune.Windows.Framework.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>..\DigitalRune\DigitalRuneRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NET45</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\DigitalRune.Windows.Framework.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Windows.Threading, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-XAML.2.2.5\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune.Windows\DigitalRune.Windows.csproj">
+      <Project>{A560721A-6665-4534-80B6-9DA1F79B00DD}</Project>
+      <Name>DigitalRune.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune\DigitalRune.csproj">
+      <Project>{5A0E3C60-1CA9-49D5-84CA-308CB8E3A3B4}</Project>
+      <Name>DigitalRune</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BindableCollection.cs" />
+    <Compile Include="Bootstrapper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="Class Diagrams\Windows.Framework.cd" />
+    <None Include="Class Diagrams\Windows.Framework_Commands.cd" />
+    <None Include="Class Diagrams\Windows.Framework_DragDrop.cd" />
+    <None Include="Class Diagrams\Windows.Framework_Help.cd" />
+    <None Include="Class Diagrams\Windows.Framework_InputBindings.cd" />
+    <None Include="Class Diagrams\Windows.Framework_Interactivity.cd" />
+    <None Include="Class Diagrams\Windows.Framework_ScreenConduction.cd" />
+    <Compile Include="Commands\CompositeCommand.cs" />
+    <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="Commands\DelegateCommand{T}.cs" />
+    <Compile Include="Commands\IDelegateCommand.cs" />
+    <Compile Include="DragDrop\DragAdorner.cs" />
+    <Compile Include="DragDrop\DragCommandParameter.cs" />
+    <Compile Include="DragDrop\DragDropBehavior.cs" />
+    <Compile Include="DragDrop\DragDropBehavior_Adorner.cs" />
+    <Compile Include="DragDrop\DragDropBehavior_DefaultCommands.cs" />
+    <Compile Include="DragDrop\DragDropBehavior_Drag.cs" />
+    <Compile Include="DragDrop\DragDropBehavior_Drop.cs" />
+    <Compile Include="DragDrop\DropAdorner.cs" />
+    <Compile Include="DragDrop\DropCommandParameter.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Help\FormsHelpProvider.cs" />
+    <Compile Include="Help\Help.cs" />
+    <Compile Include="Help\IHelpProvider.cs" />
+    <Compile Include="IViewLocator.cs" />
+    <Compile Include="Input\MultiKeyBinding.cs" />
+    <Compile Include="Input\MultiKeyGesture.cs" />
+    <Compile Include="Input\MultiKeyGestureConverter.cs" />
+    <Compile Include="Input\MultiKeyGestureValueSerializer.cs" />
+    <Compile Include="Interactivity\AutoCompleteBehavior.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interactivity\AutoScrollBehavior.cs" />
+    <Compile Include="Interactivity\DialogResultBehavior.cs" />
+    <Compile Include="Interactivity\DoubleClickTrigger.cs" />
+    <Compile Include="Interactivity\EventToCommand.cs" />
+    <Compile Include="Interactivity\FocusOnLoadedBehavior.cs" />
+    <Compile Include="Interactivity\FocusOnMouseDownBehavior.cs" />
+    <Compile Include="Interactivity\InvalidateOnCommandParameterChangedBehavior.cs" />
+    <Compile Include="Interactivity\MousePanBehavior.cs" />
+    <Compile Include="Interactivity\MouseWheelZoomBehavior.cs" />
+    <Compile Include="Interactivity\RoutedToDelegateCommandBehavior.cs" />
+    <Compile Include="Interactivity\SelectAllOnGotFocusBehavior.cs" />
+    <Compile Include="Interactivity\StylizedBehaviors.cs" />
+    <Compile Include="Interactivity\ToggleGroupBehavior.cs" />
+    <Compile Include="Interactivity\TreeViewItemSelectionBehavior.cs" />
+    <Compile Include="Interactivity\WatermarkBehavior.cs" />
+    <Compile Include="MessageBus\IMessageBus.cs" />
+    <Compile Include="MessageBus\MessageBus.cs" />
+    <Compile Include="MessageBus\WeakSubject.cs" />
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="Properties\AssemblyInfo.template" />
+    <Resource Include="Resources\Grab.cur" />
+    <Resource Include="Resources\Hand.cur" />
+    <Compile Include="ScreenConduction\AllActiveItemsConductor.cs" />
+    <Compile Include="ScreenConduction\Dialog.cs" />
+    <Compile Include="ScreenConduction\IActivatable.cs" />
+    <Compile Include="ScreenConduction\IConductor.cs" />
+    <Compile Include="ScreenConduction\IDialogResult.cs" />
+    <Compile Include="ScreenConduction\IDisplayName.cs" />
+    <Compile Include="ScreenConduction\IGuardClose.cs" />
+    <Compile Include="ScreenConduction\IScreen.cs" />
+    <Compile Include="ScreenConduction\ItemConductor.cs" />
+    <Compile Include="ScreenConduction\OneActiveItemsConductor.cs" />
+    <Compile Include="ScreenConduction\Screen.cs" />
+    <Compile Include="ScreenConduction\ScreenHelper.cs" />
+    <Compile Include="TaskHelper.cs" />
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="WindowManager\IWindowService.cs" />
+    <Compile Include="WindowManager\WindowConductor.cs" />
+    <Compile Include="WindowManager\WindowManager.cs" />
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

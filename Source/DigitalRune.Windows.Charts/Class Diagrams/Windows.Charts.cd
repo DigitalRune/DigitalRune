@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Chart panel and basic chart elements                         Assembly: DigitalRune.Windows.Charts          Namespace: DigitalRune.Windows.Charts      ">
+    <Position X="0.5" Y="0.5" Height="0.691" Width="2.828" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.Charts.ChartCross">
+    <Position X="3.25" Y="7.5" Width="2.25" />
+    <Members>
+      <Field Name="_horizontalLine" Hidden="true" />
+      <Field Name="_verticalLine" Hidden="true" />
+      <Method Name="ChartCross" Hidden="true" />
+      <Field Name="HorizontalLineStyleProperty" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnGetLegendSymbol" Hidden="true" />
+      <Method Name="OnOriginChanged" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Field Name="VerticalLineStyleProperty" Hidden="true" />
+      <Field Name="XProperty" Hidden="true" />
+      <Field Name="YProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AABAAEAAABBAACAACAAIAAAAAIAAAgAACAAAAAEAZAA=</HashCode>
+      <FileName>ChartElements\ChartCross.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.VerticalChartLine">
+    <Position X="8" Y="7.5" Width="1.75" />
+    <Members>
+      <Field Name="_line" Hidden="true" />
+      <Field Name="LineStyleProperty" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnGetLegendSymbol" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Method Name="OnXChanged" Hidden="true" />
+      <Method Name="VerticalChartLine" Hidden="true" />
+      <Field Name="XProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAABAACAAABAFAAAAAAAAAAAACAAAAAEAQAA=</HashCode>
+      <FileName>ChartElements\VerticalChartLine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.ChartElement">
+    <Position X="6.75" Y="4" Width="2" />
+    <Members>
+      <Method Name="Invalidate" Hidden="true" />
+      <Event Name="Invalidated" Hidden="true" />
+      <Property Name="IsValid" Hidden="true" />
+      <Field Name="IsVisibleInLegendProperty" Hidden="true" />
+      <Method Name="MeasureOverride" Hidden="true" />
+      <Method Name="OnAxisChanged" Hidden="true" />
+      <Method Name="OnAxisUpdated" Hidden="true" />
+      <Method Name="OnXAxisChanged" Hidden="true" />
+      <Method Name="OnYAxisChanged" Hidden="true" />
+      <Method Name="SuggestXScale" Hidden="true" />
+      <Method Name="SuggestYScale" Hidden="true" />
+      <Field Name="TitleProperty" Hidden="true" />
+      <Method Name="Update" Hidden="true" />
+      <Event Name="Updated" Hidden="true" />
+      <Property Name="XAxis" Hidden="true" />
+      <Field Name="XAxisProperty" Hidden="true" />
+      <Property Name="YAxis" Hidden="true" />
+      <Field Name="YAxisProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAQEQwAFAAAACEAAAAiAQBEAAAAAAgAASDQAgBEAACA=</HashCode>
+      <FileName>ChartElements\ChartElement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.ChartException">
+    <Position X="0.5" Y="10" Width="1.5" />
+    <Members>
+      <Method Name="ChartException" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ChartException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.ChartGrid">
+    <Position X="5.75" Y="7.5" Width="2" />
+    <Members>
+      <Field Name="_cacheMode" Hidden="true" />
+      <Field Name="_edgeMode" Hidden="true" />
+      <Field Name="_horizontalMajorLinesRenderer" Hidden="true" />
+      <Field Name="_horizontalMinorLinesRenderer" Hidden="true" />
+      <Field Name="_updatePending" Hidden="true" />
+      <Field Name="_verticalMajorLinesRenderer" Hidden="true" />
+      <Field Name="_verticalMinorLinesRenderer" Hidden="true" />
+      <Method Name="ChartGrid" Hidden="true" />
+      <Method Name="ClearCacheMode" Hidden="true" />
+      <Method Name="ClearEdgeMode" Hidden="true" />
+      <Field Name="HorizontalMajorLineStyleProperty" Hidden="true" />
+      <Field Name="HorizontalMinorLineStyleProperty" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnGetLegendSymbol" Hidden="true" />
+      <Method Name="OnLineStyleChanged" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Field Name="RenderModeProperty" Hidden="true" />
+      <Method Name="RestoreCacheMode" Hidden="true" />
+      <Method Name="RestoreEdgeMode" Hidden="true" />
+      <Method Name="UpdateMajorGridLines" Hidden="true" />
+      <Method Name="UpdateMinorGridLines" Hidden="true" />
+      <Field Name="VerticalMajorLineStyleProperty" Hidden="true" />
+      <Field Name="VerticalMinorLineStyleProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AiQACAAEAABAAkAJAAKGAAACKAAAAAAQCAAQQBUAACg=</HashCode>
+      <FileName>ChartElements\ChartGrid.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="RenderMode" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.ChartPanel">
+    <Position X="0.5" Y="1.5" Width="2.5" />
+    <Members>
+      <Field Name="_chartElements" Hidden="true" />
+      <Field Name="_chartElementsReadOnly" Hidden="true" />
+      <Field Name="_children" Hidden="true" />
+      <Field Name="_monitoredAxes" Hidden="true" />
+      <Field Name="_monitoredAxesReadOnly" Hidden="true" />
+      <Method Name="ArrangeOverride" Hidden="true" />
+      <Property Name="Axes" Hidden="true" />
+      <Method Name="ChartPanel" Hidden="true" />
+      <Method Name="ClipElementToChartArea" Hidden="true" />
+      <Field Name="ClipToChartAreaProperty" Hidden="true" />
+      <Method Name="DetectAxes" Hidden="true" />
+      <Method Name="GetChartPanel" Hidden="true" />
+      <Method Name="GetElement" Hidden="true" />
+      <Method Name="GetElementThatRequiresArrange" Hidden="true" />
+      <Method Name="GetElementWithAxes" Hidden="true" />
+      <Method Name="GetHitTestResult" Hidden="true" />
+      <Method Name="GetIsDataPoint" Hidden="true" />
+      <Method Name="GetLayoutClip" Hidden="true" />
+      <Method Name="GetVisualsAt" Hidden="true" />
+      <Method Name="HandleAxisHit" Hidden="true" />
+      <Method Name="HandleChartHit" Hidden="true" />
+      <Method Name="HandleChartPanelHit" Hidden="true" />
+      <Method Name="HandleDoubleClick" Hidden="true" />
+      <Method Name="HasAxes" Hidden="true" />
+      <Field Name="IsDataPointProperty" Hidden="true" />
+      <Method Name="MeasureOverride" Hidden="true" />
+      <Event Name="MouseDoubleClick" Hidden="true" />
+      <Field Name="MouseDoubleClickEvent" Hidden="true" />
+      <Method Name="OnAxisChanged" Hidden="true" />
+      <Method Name="OnLayoutUpdated" Hidden="true" />
+      <Method Name="OnPositioningChanged" Hidden="true" />
+      <Method Name="OnXAxisChanged" Hidden="true" />
+      <Method Name="OnYAxisChanged" Hidden="true" />
+      <Field Name="PreviewMouseDoubleClickEvent" Hidden="true" />
+      <Method Name="RequiresArrange" Hidden="true" />
+      <Method Name="SetIsDataPoint" Hidden="true" />
+      <Method Name="UpdateChartElements" Hidden="true" />
+      <Field Name="X1Property" Hidden="true" />
+      <Field Name="X2Property" Hidden="true" />
+      <Field Name="XAxisProperty" Hidden="true" />
+      <Field Name="Y1Property" Hidden="true" />
+      <Field Name="Y2Property" Hidden="true" />
+      <Field Name="YAxisProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>GoAWgEGIUAHaiQoCoQMIYBGSAQgqIAAAATAIAQIIMAA=</HashCode>
+      <FileName>ChartPanel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ChartElements" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.HorizontalChartLine">
+    <Position X="10" Y="7.5" Width="1.75" />
+    <Members>
+      <Field Name="_line" Hidden="true" />
+      <Method Name="HorizontalChartLine" Hidden="true" />
+      <Field Name="LineStyleProperty" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnGetLegendSymbol" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Method Name="OnYChanged" Hidden="true" />
+      <Field Name="YProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAJAAAAAAABAAAAAABAFAAAAAAAAAAAACAAAAAEAIAA=</HashCode>
+      <FileName>ChartElements\HorizontalChartLine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.DefaultChartPanel">
+    <Position X="0.5" Y="6.75" Width="2.5" />
+    <Members>
+      <Field Name="_positioningAxes" Hidden="true" />
+      <Field Name="AutoAxisSpacingProperty" Hidden="true" />
+      <Field Name="AxisSpacingProperty" Hidden="true" />
+      <Field Name="AxisZIndex" Hidden="true" />
+      <Method Name="DefaultChartPanel" Hidden="true" />
+      <Field Name="DefaultHeight" Hidden="true" />
+      <Field Name="DefaultWidth" Hidden="true" />
+      <Method Name="MeasureOverride" Hidden="true" />
+      <Field Name="MinChartAreaHeight" Hidden="true" />
+      <Field Name="MinChartAreaWidth" Hidden="true" />
+      <Method Name="OnAxisInvalidated" Hidden="true" />
+      <Method Name="OnRelevantPropertyChanged" Hidden="true" />
+      <Method Name="PositionAxes" Hidden="true" />
+      <Method Name="PositionAxesBySpacing" Hidden="true" />
+      <Method Name="PositionAxisAbsolute" Hidden="true" />
+      <Method Name="PositionAxisAutomatically" Hidden="true" />
+      <Method Name="UpdateAxes" Hidden="true" />
+      <Method Name="VerifyChildren" Hidden="true" />
+      <Field Name="XAxis1StyleProperty" Hidden="true" />
+      <Field Name="XAxis2StyleProperty" Hidden="true" />
+      <Field Name="YAxis1StyleProperty" Hidden="true" />
+      <Field Name="YAxis2StyleProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gBAEQAgDEFAAAkAAAQAQAAAAQAAQAQAQAAARgAAIIAA=</HashCode>
+      <FileName>DefaultChartPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.ChartBackground">
+    <Position X="12" Y="7.5" Width="1.5" />
+    <Members>
+      <Field Name="_background" Hidden="true" />
+      <Method Name="ChartBackground" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnGetLegendSymbol" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAACAAAAQEAAAA=</HashCode>
+      <FileName>ChartElements\ChartBackground.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DigitalRune.Windows.Charts.IChartElement">
+    <Position X="6.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gAQAAAAFAAAAAAAAAAgAAAAAAAAAAAAAQAQAgBAAAAA=</HashCode>
+      <FileName>ChartElements\IChartElement.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DigitalRune.Windows.Charts.ChartRenderMode">
+    <Position X="6" Y="9.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAABAAAAEAAAAAAAA=</HashCode>
+      <FileName>ChartRenderMode.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

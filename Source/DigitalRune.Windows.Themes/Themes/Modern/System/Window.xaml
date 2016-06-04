@@ -1,0 +1,89 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--  ResizeGrip  -->
+    <Style x:Key="Modern.ResizeGrip" TargetType="{x:Type ResizeGrip}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="MinHeight" Value="{DynamicResource {x:Static SystemParameters.HorizontalScrollBarHeightKey}}" />
+        <Setter Property="MinWidth" Value="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ResizeGrip}">
+                    <Grid Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                        <Path Margin="0,0,2,2"
+                              HorizontalAlignment="Right"
+                              VerticalAlignment="Bottom"
+                              Data="M 9,0 L 11,0 11,11 0,11 0,9 3,9 3,6 6,6 6,3 9,3 z">
+                            <Path.Fill>
+                                <DrawingBrush TileMode="Tile"
+                                              Viewbox="0,0,3,3"
+                                              ViewboxUnits="Absolute"
+                                              Viewport="0,0,3,3"
+                                              ViewportUnits="Absolute">
+                                    <DrawingBrush.Drawing>
+                                        <DrawingGroup>
+                                            <DrawingGroup.Children>
+                                                <GeometryDrawing Brush="{DynamicResource ResizeGrip.Foreground}" Geometry="M 0,0 L 2,0 2,2 0,2 z " />
+                                            </DrawingGroup.Children>
+                                        </DrawingGroup>
+                                    </DrawingBrush.Drawing>
+                                </DrawingBrush>
+                            </Path.Fill>
+                        </Path>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--  Window Template used when window has resize grip.  -->
+    <ControlTemplate x:Key="Modern.WindowTemplate" TargetType="{x:Type Window}">
+        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}">
+            <Grid>
+                <AdornerDecorator>
+                    <ContentPresenter />
+                </AdornerDecorator>
+                <ResizeGrip x:Name="WindowResizeGrip"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            IsTabStop="False"
+                            Visibility="Collapsed" />
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Window.ResizeMode" Value="CanResizeWithGrip" />
+                    <Condition Property="Window.WindowState" Value="Normal" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="WindowResizeGrip" Property="Visibility" Value="Visible" />
+            </MultiTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!--  Window  -->
+    <Style x:Key="Modern.Window" TargetType="{x:Type Window}">
+        <Setter Property="Background" Value="{DynamicResource Window.Background}" />
+        <Setter Property="Foreground" Value="{DynamicResource Control.Static.Foreground}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Window}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <AdornerDecorator>
+                            <ContentPresenter />
+                        </AdornerDecorator>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Window.ResizeMode" Value="CanResizeWithGrip">
+                <Setter Property="Template" Value="{StaticResource Modern.WindowTemplate}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

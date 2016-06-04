@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Material Property Combiner                           Assembly: DigitalRune.Physics        Namespace: DigitalRune.Physics.Materials">
+    <Position X="0.5" Y="0.5" Height="0.615" Width="2.585" />
+  </Comment>
+  <Class Name="DigitalRune.Physics.Materials.MaterialPropertyCombiner" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="1.5" Width="2.25" />
+    <Members>
+      <Field Name="_maxRestitution" Hidden="true" />
+      <Method Name="CombineFriction" Hidden="true" />
+      <Method Name="CombineRestitution" Hidden="true" />
+      <Method Name="MaterialPropertyCombiner" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="DigitalRune.Physics.Materials.MaterialPropertyCombiner.Mode">
+        <TypeIdentifier>
+          <NewMemberFileName>Materials\MaterialPropertyCombiner.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAABAQAAAIAQAAACAAAAEAEAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Materials\MaterialPropertyCombiner.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Physics.Simulation" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAQQCAABASAQAAgAgAABIEABQgiBChwAACAAAAARg=</HashCode>
+      <FileName>Simulation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Settings" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Physics.Settings.SimulationSettings" Collapsed="true">
+    <Position X="3" Y="1.5" Width="1.75" />
+    <Members>
+      <Field Name="_constraints" Hidden="true" />
+      <Field Name="_materialPropertyCombiner" Hidden="true" />
+      <Field Name="_motion" Hidden="true" />
+      <Field Name="_sleeping" Hidden="true" />
+      <Field Name="_timing" Hidden="true" />
+      <Method Name="SimulationSettings" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAEAAAAQAAAAAAAAAAAQJAABEAAAAAACQACAA=</HashCode>
+      <FileName>Settings\SimulationSettings.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MaterialPropertyCombiner" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="DigitalRune.Physics.Materials.IMaterialPropertyCombiner">
+    <Position X="2.75" Y="2.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Materials\IMaterialPropertyCombiner.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

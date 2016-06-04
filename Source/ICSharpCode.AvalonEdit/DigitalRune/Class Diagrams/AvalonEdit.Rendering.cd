@@ -1,0 +1,578 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.BackgroundGeometryBuilder">
+    <Position X="0.5" Y="15.5" Width="2.25" />
+    <Members>
+      <Method Name="BackgroundGeometryBuilder" Hidden="true" />
+      <Field Name="cornerRadius" Hidden="true" />
+      <Field Name="figure" Hidden="true" />
+      <Field Name="figures" Hidden="true" />
+      <Method Name="GetRectsForSegmentImpl" Hidden="true" />
+      <Field Name="insertionIndex" Hidden="true" />
+      <Field Name="lastBottom" Hidden="true" />
+      <Field Name="lastLeft" Hidden="true" />
+      <Field Name="lastRight" Hidden="true" />
+      <Field Name="lastTop" Hidden="true" />
+      <Method Name="MakeArc" Hidden="true" />
+      <Method Name="MakeLineSegment" Hidden="true" />
+      <Method Name="ProcessTextLines" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACAIACAQgECCAAAAABAAAAAACCAAEAEEAhAEBABAAAA=</HashCode>
+      <FileName>Rendering\BackgroundGeometryBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.CollapsedLineSection">
+    <Position X="15.25" Y="16.25" Width="1.75" />
+    <Members>
+      <Method Name="CollapsedLineSection" Hidden="true" />
+      <Field Name="end" Hidden="true" />
+      <Field Name="heightTree" Hidden="true" />
+      <Field Name="ID" Hidden="true" />
+      <Field Name="nextId" Hidden="true" />
+      <Field Name="start" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEIAAAACACAIgAAkABAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Rendering\CollapsedLineSection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.ColorizingTransformer">
+    <Position X="3.25" Y="15.25" Width="2.25" />
+    <Members>
+      <Method Name="ITextViewConnect.AddToTextView" Hidden="true" />
+      <Method Name="ITextViewConnect.RemoveFromTextView" Hidden="true" />
+      <Method Name="Transform" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAgAABAAAAAAAAAQAAAAAAAAgBAAAAAAAABE=</HashCode>
+      <FileName>Rendering\ColorizingTransformer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.DefaultTextRunTypographyProperties">
+    <Position X="15.75" Y="1" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AGCfgRAAhgBgEAQBAIAJQBkAAAACkVFIAACAACACAAA=</HashCode>
+      <FileName>Rendering\DefaultTextRunTypographyProperties.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.DocumentColorizingTransformer">
+    <Position X="3.25" Y="18" Width="2.25" />
+    <Members>
+      <Method Name="Colorize" Hidden="true" />
+      <Field Name="currentDocumentLine" Hidden="true" />
+      <Field Name="currentDocumentLineEndOffset" Hidden="true" />
+      <Field Name="currentDocumentLineStartOffset" Hidden="true" />
+      <Field Name="firstLineStart" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAgAAAAEAAAAAAAAAAAQAABAAAIAAgAAABA=</HashCode>
+      <FileName>Rendering\DocumentColorizingTransformer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.FormattedTextElement">
+    <Position X="8" Y="5.75" Width="2" />
+    <Members>
+      <Method Name="CreateTextRun" Hidden="true" />
+      <Field Name="formattedText" Hidden="true" />
+      <Method Name="FormattedTextElement" Hidden="true" />
+      <Field Name="text" Hidden="true" />
+      <Field Name="textLine" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAEQAAAAAIAAAAAAAAAAAIAIAABAAAAAA=</HashCode>
+      <FileName>Rendering\FormattedTextElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.FormattedTextRun">
+    <Position X="11" Y="1" Width="2" />
+    <Members>
+      <Field Name="element" Hidden="true" />
+      <Method Name="FormattedTextRun" Hidden="true" />
+      <Field Name="properties" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QAIAAAAAAAQAEgAAAAgAAABIAAgAAAAAgAAAAAQCAAA=</HashCode>
+      <FileName>Rendering\FormattedTextElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.InlineObjectElement">
+    <Position X="10.25" Y="5.75" Width="1.75" />
+    <Members>
+      <Method Name="CreateTextRun" Hidden="true" />
+      <Method Name="InlineObjectElement" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Rendering\InlineObjectRun.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.InlineObjectRun">
+    <Position X="13.5" Y="1" Width="1.5" />
+    <Members>
+      <Field Name="desiredSize" Hidden="true" />
+      <Field Name="element" Hidden="true" />
+      <Field Name="length" Hidden="true" />
+      <Field Name="properties" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QAIAAAAAQAQIEgAAAEgAAABIAAgAAAAAgAAAAAQCAAA=</HashCode>
+      <FileName>Rendering\InlineObjectRun.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.LinkElementGenerator">
+    <Position X="5.25" Y="11" Width="2.75" />
+    <Members>
+      <Method Name="ConstructElement" Hidden="true" />
+      <Field Name="defaultLinkRegex" Hidden="true" />
+      <Field Name="defaultMailRegex" Hidden="true" />
+      <Method Name="GetFirstInterestedOffset" Hidden="true" />
+      <Method Name="GetMatch" Hidden="true" />
+      <Method Name="IBuiltinElementGenerator.FetchOptions" Hidden="true" />
+      <Method Name="LinkElementGenerator" Hidden="true" />
+      <Field Name="linkRegex" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAABIYBAAAAAAAAAAxAgAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Rendering\LinkElementGenerator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.MailLinkElementGenerator">
+    <Position X="5.5" Y="13.5" Width="2.25" />
+    <Members>
+      <Method Name="GetUriFromMatch" Hidden="true" />
+      <Method Name="MailLinkElementGenerator" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Rendering\LinkElementGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.MouseHoverLogic" BaseTypeListCollapsed="true">
+    <Position X="12" Y="11" Width="2" />
+    <Members>
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="disposed" Hidden="true" />
+      <Field Name="mouseHovering" Hidden="true" />
+      <Field Name="mouseHoverLastEventArgs" Hidden="true" />
+      <Method Name="MouseHoverLogic" Hidden="true" />
+      <Method Name="MouseHoverLogicMouseEnter" Hidden="true" />
+      <Method Name="MouseHoverLogicMouseLeave" Hidden="true" />
+      <Method Name="MouseHoverLogicMouseMove" Hidden="true" />
+      <Field Name="mouseHoverStartPoint" Hidden="true" />
+      <Field Name="mouseHoverTimer" Hidden="true" />
+      <Method Name="OnMouseHoverTimerElapsed" Hidden="true" />
+      <Method Name="StartHovering" Hidden="true" />
+      <Method Name="StopHovering" Hidden="true" />
+      <Field Name="target" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACICQAAAACEAAABAMAAQAAEAAQAASAAAAAAAAAggCAA=</HashCode>
+      <FileName>Rendering\MouseHoverLogic.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.SingleCharacterElementGenerator">
+    <Position X="8.5" Y="11" Width="2.75" />
+    <Members>
+      <Method Name="ConstructElement" Hidden="true" />
+      <Method Name="GetFirstInterestedOffset" Hidden="true" />
+      <Method Name="IBuiltinElementGenerator.FetchOptions" Hidden="true" />
+      <Method Name="SingleCharacterElementGenerator" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="ICSharpCode.AvalonEdit.Rendering.SingleCharacterElementGenerator.SpaceTextElement" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\SingleCharacterElementGenerator.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="ICSharpCode.AvalonEdit.Rendering.SingleCharacterElementGenerator.TabTextElement" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\SingleCharacterElementGenerator.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="ICSharpCode.AvalonEdit.Rendering.SingleCharacterElementGenerator.TabGlyphRun" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\SingleCharacterElementGenerator.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="ICSharpCode.AvalonEdit.Rendering.SingleCharacterElementGenerator.SpecialCharacterBoxElement" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\SingleCharacterElementGenerator.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="ICSharpCode.AvalonEdit.Rendering.SingleCharacterElementGenerator.SpecialCharacterTextRun" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\SingleCharacterElementGenerator.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAEAAQAgAAAAAAAAAAAAAAAAABAIAAA=</HashCode>
+      <FileName>Rendering\SingleCharacterElementGenerator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.TextView" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1" Width="3.75" />
+    <Members>
+      <Method Name="AddInlineObject" Hidden="true" />
+      <Field Name="AdditionalHorizontalScrollAmount" Hidden="true" />
+      <Method Name="AddRemoveDefaultElementGeneratorOnDemand" Hidden="true" />
+      <Field Name="allVisualLines" Hidden="true" />
+      <Method Name="ArrangeOverride" Hidden="true" />
+      <Method Name="ArrangeTextLayer" Hidden="true" />
+      <Method Name="BackgroundRenderer_Added" Hidden="true" />
+      <Method Name="BackgroundRenderer_Removed" Hidden="true" />
+      <Field Name="backgroundRenderers" Hidden="true" />
+      <Method Name="BuildVisualLine" Hidden="true" />
+      <Field Name="cachedElements" Hidden="true" />
+      <Method Name="CalculateDefaultTextMetrics" Hidden="true" />
+      <Field Name="canHorizontallyScroll" Hidden="true" />
+      <Field Name="canVerticallyScroll" Hidden="true" />
+      <Method Name="ClearScrollData" Hidden="true" />
+      <Method Name="ClearVisualLines" Hidden="true" />
+      <Field Name="clippedPixelsOnTop" Hidden="true" />
+      <Field Name="ColumnRulerPenProperty" Hidden="true" />
+      <Field Name="columnRulerRenderer" Hidden="true" />
+      <Method Name="ConnectToTextView" Hidden="true" />
+      <Method Name="CreateAndMeasureVisualLines" Hidden="true" />
+      <Method Name="CreateFrozenPen" Hidden="true" />
+      <Method Name="CreateGlobalTextRunProperties" Hidden="true" />
+      <Method Name="CreateParagraphProperties" Hidden="true" />
+      <Field Name="CurrentLineBackgroundProperty" Hidden="true" />
+      <Field Name="CurrentLineBorderProperty" Hidden="true" />
+      <Field Name="currentLineHighlighRenderer" Hidden="true" />
+      <Field Name="defaultBaseline" Hidden="true" />
+      <Field Name="defaultLineHeight" Hidden="true" />
+      <Field Name="defaultTextMetricsValid" Hidden="true" />
+      <Method Name="DisconnectFromTextView" Hidden="true" />
+      <Method Name="DisposeVisualLine" Hidden="true" />
+      <Field Name="document" Hidden="true" />
+      <Field Name="DocumentProperty" Hidden="true" />
+      <Method Name="ElementGenerator_Added" Hidden="true" />
+      <Method Name="ElementGenerator_Removed" Hidden="true" />
+      <Field Name="elementGenerators" Hidden="true" />
+      <Property Name="FontSize" Hidden="true" />
+      <Field Name="formatter" Hidden="true" />
+      <Method Name="GetIndentationVisualColumn" Hidden="true" />
+      <Method Name="GetVisualChild" Hidden="true" />
+      <Method Name="GetVisualLineElementFromPosition" Hidden="true" />
+      <Field Name="heightTree" Hidden="true" />
+      <Field Name="hoverLogic" Hidden="true" />
+      <Field Name="inlineObjects" Hidden="true" />
+      <Field Name="inMeasure" Hidden="true" />
+      <Method Name="InvalidateCursorIfMouseWithinTextView" Hidden="true" />
+      <Method Name="InvalidateDefaultTextMetrics" Hidden="true" />
+      <Method Name="InvalidateMeasure" Hidden="true" />
+      <Field Name="invalidateMeasureOperation" Hidden="true" />
+      <Field Name="invalidCursor" Hidden="true" />
+      <Property Name="IScrollInfo.CanHorizontallyScroll" Hidden="true" />
+      <Property Name="IScrollInfo.CanVerticallyScroll" Hidden="true" />
+      <Property Name="IScrollInfo.ExtentHeight" Hidden="true" />
+      <Property Name="IScrollInfo.ExtentWidth" Hidden="true" />
+      <Method Name="IScrollInfo.LineDown" Hidden="true" />
+      <Method Name="IScrollInfo.LineLeft" Hidden="true" />
+      <Method Name="IScrollInfo.LineRight" Hidden="true" />
+      <Method Name="IScrollInfo.LineUp" Hidden="true" />
+      <Method Name="IScrollInfo.MakeVisible" Hidden="true" />
+      <Method Name="IScrollInfo.MouseWheelDown" Hidden="true" />
+      <Method Name="IScrollInfo.MouseWheelLeft" Hidden="true" />
+      <Method Name="IScrollInfo.MouseWheelRight" Hidden="true" />
+      <Method Name="IScrollInfo.MouseWheelUp" Hidden="true" />
+      <Method Name="IScrollInfo.PageDown" Hidden="true" />
+      <Method Name="IScrollInfo.PageLeft" Hidden="true" />
+      <Method Name="IScrollInfo.PageRight" Hidden="true" />
+      <Method Name="IScrollInfo.PageUp" Hidden="true" />
+      <Property Name="IScrollInfo.ScrollOwner" Hidden="true" />
+      <Method Name="IScrollInfo.SetHorizontalOffset" Hidden="true" />
+      <Method Name="IScrollInfo.SetVerticalOffset" Hidden="true" />
+      <Property Name="IScrollInfo.ViewportHeight" Hidden="true" />
+      <Property Name="IScrollInfo.ViewportWidth" Hidden="true" />
+      <Method Name="IWeakEventListener.ReceiveWeakEvent" Hidden="true" />
+      <Field Name="lastAvailableSize" Hidden="true" />
+      <Field Name="layers" Hidden="true" />
+      <Method Name="LayersChanged" Hidden="true" />
+      <Method Name="LineTransformer_Added" Hidden="true" />
+      <Method Name="LineTransformer_Removed" Hidden="true" />
+      <Field Name="lineTransformers" Hidden="true" />
+      <Field Name="linkElementGenerator" Hidden="true" />
+      <Field Name="LinkTextBackgroundBrushProperty" Hidden="true" />
+      <Field Name="LinkTextForegroundBrushProperty" Hidden="true" />
+      <Field Name="LinkTextUnderlineProperty" Hidden="true" />
+      <Property Name="LogicalChildren" Hidden="true" />
+      <Field Name="mailLinkElementGenerator" Hidden="true" />
+      <Method Name="MeasureInlineObjects" Hidden="true" />
+      <Method Name="MeasureOverride" Hidden="true" />
+      <Field Name="MouseHoverEvent" Hidden="true" />
+      <Field Name="MouseHoverStoppedEvent" Hidden="true" />
+      <Field Name="newVisualLines" Hidden="true" />
+      <Field Name="NonPrintableCharacterBrushProperty" Hidden="true" />
+      <Method Name="OnDocumentChanged" Hidden="true" />
+      <Method Name="OnMouseDown" Hidden="true" />
+      <Method Name="OnMouseUp" Hidden="true" />
+      <Method Name="OnOptionsChanged" Hidden="true" />
+      <Method Name="OnQueryCursor" Hidden="true" />
+      <Method Name="OnRender" Hidden="true" />
+      <Method Name="OnScrollChange" Hidden="true" />
+      <Field Name="OptionsProperty" Hidden="true" />
+      <Field Name="PreviewMouseHoverEvent" Hidden="true" />
+      <Field Name="PreviewMouseHoverStoppedEvent" Hidden="true" />
+      <Method Name="RaiseHoverEventPair" Hidden="true" />
+      <Method Name="RecreateCachedElements" Hidden="true" />
+      <Method Name="RecreateTextFormatter" Hidden="true" />
+      <Method Name="RemoveInlineObjectRun" Hidden="true" />
+      <Method Name="RemoveInlineObjects" Hidden="true" />
+      <Method Name="RemoveInlineObjectsNow" Hidden="true" />
+      <Method Name="RenderBackground" Hidden="true" />
+      <Field Name="scrollExtent" Hidden="true" />
+      <Field Name="scrollOffset" Hidden="true" />
+      <Field Name="scrollViewport" Hidden="true" />
+      <Field Name="services" Hidden="true" />
+      <Method Name="SetScrollData" Hidden="true" />
+      <Method Name="SetScrollOffset" Hidden="true" />
+      <Field Name="singleCharacterElementGenerator" Hidden="true" />
+      <Field Name="textLayer" Hidden="true" />
+      <Method Name="TextView" Hidden="true" />
+      <Method Name="UpdateBuiltinElementGeneratorsFromOptions" Hidden="true" />
+      <Method Name="ValidateVisualOffset" Hidden="true" />
+      <Field Name="visibleVisualLines" Hidden="true" />
+      <Property Name="VisualChildrenCount" Hidden="true" />
+      <Field Name="visualLinesWithOutstandingInlineObjects" Hidden="true" />
+      <Field Name="wideSpaceWidth" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="ICSharpCode.AvalonEdit.Rendering.TextView.LayerCollection" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\TextView.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>3pz3S3MUhCnIVaGc4E0OrvQeV8Ynk4SXIWp+pZz6aFo=</HashCode>
+      <FileName>Rendering\TextView.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="BackgroundRenderers" />
+      <Property Name="ElementGenerators" />
+      <Property Name="LineTransformers" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.TextViewWeakEventManager">
+    <Position X="19.25" Y="1" Width="3.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="ICSharpCode.AvalonEdit.Rendering.TextViewWeakEventManager.DocumentChanged">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\TextViewWeakEventManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="ICSharpCode.AvalonEdit.Rendering.TextViewWeakEventManager.VisualLinesChanged">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\TextViewWeakEventManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="ICSharpCode.AvalonEdit.Rendering.TextViewWeakEventManager.ScrollOffsetChanged">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\TextViewWeakEventManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Rendering\TextViewWeakEventManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.VisualLine">
+    <Position X="4.75" Y="1" Width="2.75" />
+    <Members>
+      <Method Name="CalculateOffsets" Hidden="true" />
+      <Method Name="ConstructVisualElements" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="elements" Hidden="true" />
+      <Method Name="HasImplicitStopAtLineEnd" Hidden="true" />
+      <Method Name="HasImplicitStopAtLineStart" Hidden="true" />
+      <Field Name="hasInlineObjects" Hidden="true" />
+      <Method Name="HasStopsInVirtualSpace" Hidden="true" />
+      <Method Name="PerformVisualElementConstruction" Hidden="true" />
+      <Field Name="phase" Hidden="true" />
+      <Method Name="Render" Hidden="true" />
+      <Method Name="RunTransformers" Hidden="true" />
+      <Method Name="SetTextLines" Hidden="true" />
+      <Field Name="textLines" Hidden="true" />
+      <Field Name="textView" Hidden="true" />
+      <Field Name="visual" Hidden="true" />
+      <Method Name="VisualLine" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Enum Name="ICSharpCode.AvalonEdit.Rendering.VisualLine.LifetimePhase" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Rendering\VisualLine.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>4ABQAQQBBCEEIRIEAgYRIBAQARCAACAKABAEVRAAgAA=</HashCode>
+      <FileName>Rendering\VisualLine.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Elements" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.VisualLineConstructionStartEventArgs">
+    <Position X="15" Y="11.25" Width="2.75" />
+    <Members>
+      <Method Name="VisualLineConstructionStartEventArgs" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Rendering\VisualLineConstructionStartEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.VisualLineElement">
+    <Position X="8.75" Y="1" Width="1.75" />
+    <Members>
+      <Method Name="OnMouseDown" Hidden="true" />
+      <Method Name="OnMouseUp" Hidden="true" />
+      <Method Name="OnQueryCursor" Hidden="true" />
+      <Method Name="SetTextRunProperties" Hidden="true" />
+      <Method Name="VisualLineElement" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAABAIAAAUAAAAABQoABAAIQiYAAAQYAAAAAACgAA=</HashCode>
+      <FileName>Rendering\VisualLineElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.VisualLineElementGenerator">
+    <Position X="7.25" Y="8.25" Width="2" />
+    <Members>
+      <Field Name="cachedInterest" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAgAAAQAgAAAAAAAQAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Rendering\VisualLineElementGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.VisualLineElementTextRunProperties" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="13.5" Width="2.75" />
+    <Members>
+      <Field Name="backgroundBrush" Hidden="true" />
+      <Field Name="baselineAlignment" Hidden="true" />
+      <Field Name="cultureInfo" Hidden="true" />
+      <Field Name="fontHintingEmSize" Hidden="true" />
+      <Field Name="fontRenderingEmSize" Hidden="true" />
+      <Field Name="foregroundBrush" Hidden="true" />
+      <Method Name="ICloneable.Clone" Hidden="true" />
+      <Field Name="numberSubstitution" Hidden="true" />
+      <Field Name="textDecorations" Hidden="true" />
+      <Field Name="textEffects" Hidden="true" />
+      <Field Name="typeface" Hidden="true" />
+      <Field Name="typographyProperties" Hidden="true" />
+      <Method Name="VisualLineElementTextRunProperties" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAgAJIBAACQBQAAMAIAiDAAAJABIAAAADwDAAAEIwDA=</HashCode>
+      <FileName>Rendering\VisualLineElementTextRunProperties.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.VisualLineLinkText">
+    <Position X="11.75" Y="7.75" Width="2.5" />
+    <Members>
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="CreateTextRun" Hidden="true" />
+      <Method Name="OnMouseDown" Hidden="true" />
+      <Method Name="OnQueryCursor" Hidden="true" />
+      <Method Name="VisualLineLinkText" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAJBAAAAAAAAAAAAAIAAAAAAQAAAIgIAAAAAAAAAA=</HashCode>
+      <FileName>Rendering\VisualLineLinkText.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.VisualLinesInvalidException">
+    <Position X="15.25" Y="13" Width="2.25" />
+    <Members>
+      <Method Name="VisualLinesInvalidException" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Rendering\VisualLinesInvalidException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.VisualLineText">
+    <Position X="12.25" Y="5.75" Width="1.5" />
+    <Members>
+      <Property Name="CanSplit" Hidden="true" />
+      <Method Name="CreateTextRun" Hidden="true" />
+      <Method Name="GetNextCaretPosition" Hidden="true" />
+      <Method Name="GetPrecedingText" Hidden="true" />
+      <Method Name="GetRelativeOffset" Hidden="true" />
+      <Method Name="GetVisualColumn" Hidden="true" />
+      <Method Name="IsWhitespace" Hidden="true" />
+      <Field Name="parentVisualLine" Hidden="true" />
+      <Method Name="Split" Hidden="true" />
+      <Method Name="VisualLineText" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAUAAAAAAQqABAAAAAAAAAQAAAAAACAgAA=</HashCode>
+      <FileName>Rendering\VisualLineText.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ICSharpCode.AvalonEdit.Rendering.IBackgroundRenderer">
+    <Position X="0.5" Y="13.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Rendering\IBackgroundRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ICSharpCode.AvalonEdit.Rendering.ITextRunConstructionContext">
+    <Position X="6.25" Y="15.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAIAAAAAAAAAAgAAAACAAAAAAAABAA=</HashCode>
+      <FileName>Rendering\ITextRunConstructionContext.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ICSharpCode.AvalonEdit.Rendering.ITextViewConnect">
+    <Position X="15.25" Y="14.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Rendering\ITextViewConnect.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ICSharpCode.AvalonEdit.Rendering.IVisualLineTransformer">
+    <Position X="3.25" Y="13.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Rendering\IVisualLineTransformer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="ICSharpCode.AvalonEdit.Rendering.KnownLayer">
+    <Position X="9.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAgCAAAQAA=</HashCode>
+      <FileName>Rendering\LayerPosition.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ICSharpCode.AvalonEdit.Rendering.LayerInsertionPosition">
+    <Position X="9.5" Y="18" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Rendering\LayerPosition.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ICSharpCode.AvalonEdit.Rendering.VisualYPosition">
+    <Position X="9.5" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAQAAAgAAAAAAAAAAAAAAAAgAAAAAABgAQAAA=</HashCode>
+      <FileName>Rendering\VisualYPosition.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

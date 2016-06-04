@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Chart Legend                                                           Assembly: DigitalRune.Windows.Charts                 Namespace: DigitalRune.Windows.Charts">
+    <Position X="0.5" Y="0.5" Height="0.66" Width="2.557" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.Charts.Legend">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <Members>
+      <Field Name="_chartElements" Hidden="true" />
+      <Field Name="_itemsPanel" Hidden="true" />
+      <Field Name="BooleanToVisibilityConverter" Hidden="true" />
+      <Field Name="DefaultTitle" Hidden="true" />
+      <Method Name="Legend" Hidden="true" />
+      <Field Name="LegendItemStyleProperty" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnChartElementsChanged" Hidden="true" />
+      <Method Name="OnChartPanelChanged" Hidden="true" />
+      <Field Name="SourceProperty" Hidden="true" />
+      <Field Name="TitleProperty" Hidden="true" />
+      <Field Name="TitleStyleProperty" Hidden="true" />
+      <Method Name="Update" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQAEBAAAgBCAEgAAACAACIEAAAAIAAAAIAABgAAAAA=</HashCode>
+      <FileName>Legend\Legend.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.LegendItem">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <Members>
+      <Field Name="LabelProperty" Hidden="true" />
+      <Field Name="LabelTemplateProperty" Hidden="true" />
+      <Method Name="LegendItem" Hidden="true" />
+      <Field Name="SymbolProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAEAAAAAAAAAgAAAAAAAAAAAAAACAAAAAACgA=</HashCode>
+      <FileName>Legend\LegendItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.PieChartLegend">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <Members>
+      <Field Name="_itemsPanel" Hidden="true" />
+      <Field Name="_pieChart" Hidden="true" />
+      <Field Name="_pieChartSubscription" Hidden="true" />
+      <Field Name="DefaultTitle" Hidden="true" />
+      <Field Name="LegendItemStyleProperty" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnPieChartChanged" Hidden="true" />
+      <Method Name="PieChartLegend" Hidden="true" />
+      <Field Name="SourceProperty" Hidden="true" />
+      <Field Name="TitleProperty" Hidden="true" />
+      <Field Name="TitleStyleProperty" Hidden="true" />
+      <Method Name="Update" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQAEhAAAgBCAEAAAACAACBEAAAAIAAAAAAABAAAAIA=</HashCode>
+      <FileName>Legend\PieChartLegend.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

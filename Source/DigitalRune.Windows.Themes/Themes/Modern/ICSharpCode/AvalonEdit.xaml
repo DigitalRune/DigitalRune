@@ -1,0 +1,280 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:avalonedit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                    xmlns:cc="clr-namespace:ICSharpCode.AvalonEdit.CodeCompletion;assembly=ICSharpCode.AvalonEdit"
+                    xmlns:dr="http://schemas.digitalrune.com/windows"
+                    xmlns:folding="clr-namespace:ICSharpCode.AvalonEdit.Folding;assembly=ICSharpCode.AvalonEdit"
+                    xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
+
+    <Pen x:Key="Modern.TextEditor.BracketHighlighting.Pen"
+         Brush="{DynamicResource TextEditor.BracketHighlighting.Border}"
+         Thickness="1"
+         options:Freeze="True" />
+    <Pen x:Key="Modern.TextEditor.ColumnRuler"
+         Brush="{DynamicResource TextEditor.ColumnRuler}"
+         Thickness="1"
+         options:Freeze="True" />
+    <Pen x:Key="Modern.TextEditor.CurrentLineBorder"
+         Brush="{DynamicResource TextEditor.CurrentLineBorder}"
+         Thickness="1"
+         options:Freeze="True" />
+
+    <Style x:Key="Modern.TextEditor" TargetType="{x:Type avalonedit:TextEditor}">
+        <Setter Property="Background" Value="{DynamicResource TextEditor.Static.Background}" />
+        <Setter Property="BracketHighlightingBrush" Value="{DynamicResource TextEditor.BracketHighlighting.Background}" />
+        <Setter Property="BracketHighlightingPen" Value="{DynamicResource TextEditor.BracketHighlighting.Pen}" />
+        <Setter Property="ColumnRuler" Value="{StaticResource Modern.TextEditor.ColumnRuler}" />
+        <!--  AvalonEdit does not support RTL, so ensure we use LTR by default  -->
+        <Setter Property="FlowDirection" Value="LeftToRight" />
+        <Setter Property="Foreground" Value="{DynamicResource TextEditor.Static.Foreground}" />
+        <Setter Property="LineNumbersForeground" Value="{DynamicResource TextEditor.LineNumbers.Foreground}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type avalonedit:TextEditor}">
+                    <ScrollViewer Name="PART_ScrollViewer"
+                                  HorizontalContentAlignment="Left"
+                                  VerticalContentAlignment="Top"
+                                  Background="{TemplateBinding Background}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                  CanContentScroll="True"
+                                  Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TextArea}"
+                                  Focusable="False"
+                                  HorizontalScrollBarVisibility="{TemplateBinding HorizontalScrollBarVisibility}"
+                                  Padding="{TemplateBinding Padding}"
+                                  VerticalScrollBarVisibility="{TemplateBinding VerticalScrollBarVisibility}"
+                                  PanningMode="Both"/>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="WordWrap" Value="True">
+                            <Setter TargetName="PART_ScrollViewer" Property="HorizontalScrollBarVisibility" Value="Disabled" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Modern.TextView" TargetType="{x:Type avalonedit:TextView}">
+        <Setter Property="CurrentLineBackground" Value="{DynamicResource TextEditor.CurrentLineBackground}" />
+        <Setter Property="CurrentLineBorder" Value="{StaticResource Modern.TextEditor.CurrentLineBorder}" />
+        <Setter Property="LinkTextForegroundBrush" Value="{DynamicResource HyperLink.Static.Foreground}" />
+        <Setter Property="NonPrintableCharacterBrush" Value="{DynamicResource Control.Disabled.Foreground}" />
+    </Style>
+
+    <Style x:Key="Modern.FoldingMargin" TargetType="{x:Type folding:FoldingMargin}">
+        <Setter Property="FoldingMarkerBackgroundBrush" Value="{DynamicResource TextEditor.Folding.Static.Background}" />
+        <Setter Property="FoldingMarkerBrush" Value="{DynamicResource TextEditor.Folding.Static.Foreground}" />
+        <Setter Property="SelectedFoldingMarkerBackgroundBrush" Value="{DynamicResource TextEditor.Folding.Selected.Background}" />
+        <Setter Property="SelectedFoldingMarkerBrush" Value="{DynamicResource TextEditor.Folding.Selected.Foreground}" />
+    </Style>
+
+    <Style x:Key="Modern.CompletionWindow" TargetType="{x:Type cc:CompletionWindow}">
+        <Setter Property="AllowsTransparency" Value="True" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type cc:CompletionWindow}">
+                    <Border Margin="0,0,3,0">
+                        <AdornerDecorator>
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Content="{TemplateBinding Content}"
+                                              ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </AdornerDecorator>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CompletionListBoxItem" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Border Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}"
+                            SnapsToDevicePixels="True">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Border>
+                    <!--
+                        Simplified triggers:
+                        we don't want a gray selection background when the ListBox doesn't have focus
+                    -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource Item.SelectedActive.Background}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource Item.SelectedActive.Border}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Modern.CompletionList" TargetType="{x:Type cc:CompletionList}">
+        <Setter Property="Background" Value="{DynamicResource TextBox.Static.Background}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TextBox.Static.Border}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBox.Static.Foreground}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type cc:CompletionList}">
+                    <cc:CompletionListBox x:Name="PART_ListBox"
+                                          Background="{TemplateBinding Background}"
+                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                          BorderThickness="{TemplateBinding BorderThickness}"
+                                          Foreground="{TemplateBinding Foreground}"
+                                          ItemContainerStyle="{StaticResource CompletionListBoxItem}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <dr:Icon Width="16"
+                                             Height="16"
+                                             Margin="0,0,2,0"
+                                             Source="{Binding Image}" />
+                                    <ContentPresenter Content="{Binding Content}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </cc:CompletionListBox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Modern.InsightWindow" TargetType="{x:Type cc:InsightWindow}">
+        <Setter Property="Background" Value="{DynamicResource ToolTip.Background}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ToolTip.Border}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="FontFamily" Value="{DynamicResource {x:Static SystemFonts.StatusFontFamilyKey}}" />
+        <Setter Property="FontSize" Value="{DynamicResource {x:Static SystemFonts.StatusFontSizeKey}}" />
+        <Setter Property="FontStyle" Value="{DynamicResource {x:Static SystemFonts.StatusFontStyleKey}}" />
+        <Setter Property="FontWeight" Value="{DynamicResource {x:Static SystemFonts.StatusFontWeightKey}}" />
+        <Setter Property="Foreground" Value="{DynamicResource ToolTip.Foreground}" />
+        <Setter Property="Padding" Value="5,4" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="SizeToContent" Value="WidthAndHeight" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type cc:InsightWindow}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Control.Padding}"
+                            SnapsToDevicePixels="True">
+                        <AdornerDecorator>
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                                              Content="{TemplateBinding ContentControl.Content}"
+                                              ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}"
+                                              ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
+                                              SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                        </AdornerDecorator>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <cc:InsightWindowTemplateSelector x:Key="templateSelector" />
+
+    <Style x:Key="Modern.OverloadViewer" TargetType="{x:Type cc:OverloadViewer}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type cc:OverloadViewer}">
+                    <Grid>
+                        <Grid.Resources>
+                            <cc:CollapseIfSingleOverloadConverter x:Key="collapseIfSingleOverloadConverter" />
+
+                            <!--  Style of the UpDownButton  -->
+                            <Style x:Key="upDownButtonStyle" TargetType="{x:Type Button}">
+                                <Style.Setters>
+                                    <Setter Property="Background" Value="{DynamicResource Control.Static.Background}" />
+                                    <Setter Property="BorderBrush" Value="{DynamicResource Control.Static.Border}" />
+                                    <Setter Property="BorderThickness" Value="1" />
+                                    <Setter Property="Padding" Value="1" />
+                                    <Setter Property="Width" Value="9" />
+                                    <Setter Property="Height" Value="9" />
+                                    <Setter Property="SnapsToDevicePixels" Value="True" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Name="Border"
+                                                        Background="{TemplateBinding Background}"
+                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                                    <ContentPresenter Margin="{TemplateBinding Padding}" Content="{TemplateBinding Content}" />
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter TargetName="Border" Property="Background" Value="{DynamicResource Control.MouseOver.Background}" />
+                                                        <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource Control.MouseOver.Border}" />
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style.Setters>
+                            </Style>
+
+                            <DataTemplate x:Key="TextBlockTemplate">
+                                <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content}" TextWrapping="Wrap" />
+                            </DataTemplate>
+                        </Grid.Resources>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0"
+                                    Grid.Column="0"
+                                    Margin="0,0,4,0"
+                                    Orientation="Horizontal"
+                                    Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Provider.Count, Converter={StaticResource collapseIfSingleOverloadConverter}}">
+                            <Button Name="PART_UP" Style="{StaticResource upDownButtonStyle}">
+                                <Path Data="M 0,0.866 L 1,0.866 L 0.5,0 Z"
+                                      Fill="{DynamicResource Control.Static.Foreground}"
+                                      Stretch="Uniform"
+                                      Stroke="{DynamicResource Control.Static.Foreground}" />
+                            </Button>
+                            <TextBlock Margin="2,0,2,0" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Provider.CurrentIndexText}" />
+                            <Button Name="PART_DOWN" Style="{StaticResource upDownButtonStyle}">
+                                <Path Data="M 0,0 L 1,0 L 0.5,0.866 Z"
+                                      Fill="{DynamicResource Control.Static.Foreground}"
+                                      Stretch="Uniform"
+                                      Stroke="{DynamicResource Control.Static.Foreground}" />
+                            </Button>
+                        </StackPanel>
+                        <ContentPresenter Grid.Row="0"
+                                          Grid.Column="1"
+                                          Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Provider.CurrentHeader}"
+                                          ContentTemplateSelector="{StaticResource templateSelector}" />
+                        <ContentPresenter Grid.Row="1"
+                                          Grid.Column="0"
+                                          Grid.ColumnSpan="2"
+                                          Margin="0,5,0,0"
+                                          Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Provider.CurrentContent}"
+                                          ContentTemplateSelector="{StaticResource templateSelector}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

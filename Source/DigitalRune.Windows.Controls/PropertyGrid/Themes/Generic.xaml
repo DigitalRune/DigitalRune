@@ -1,0 +1,675 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dr="clr-namespace:DigitalRune.Windows;assembly=DigitalRune.Windows"
+                    xmlns:local="clr-namespace:DigitalRune.Windows.Controls"
+                    xmlns:media="clr-namespace:System.Windows.Media;assembly=PresentationCore"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!--  TEMPLATE SELECTORS  -->
+
+    <local:PropertyGridTemplateSelector x:Key="PropertyGridTemplateSelector" />
+
+
+    <!--  CONVERTERS  -->
+
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+
+    <!--  BRUSHES  -->
+
+    <SolidColorBrush x:Key="MouseOverBorderBrush" Color="#3399FF" />
+    <SolidColorBrush x:Key="MouseOverBackgroundBrush" Color="#C2E0FF" />
+    <SolidColorBrush x:Key="CheckedBorderBrush" Color="#3399FF" />
+    <SolidColorBrush x:Key="CheckedBackgroundBrush" Color="#E6F0FA" />
+    <SolidColorBrush x:Key="PressedBorderBrush" Color="#3399FF" />
+    <SolidColorBrush x:Key="PressedBackgroundBrush" Color="#99CCFF" />
+
+    <DrawingBrush x:Key="CheckerBrush"
+                  TileMode="Tile"
+                  Viewport="0,0,10,10"
+                  ViewportUnits="Absolute">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <!--  The whole tile background is white (100x100).  -->
+                <GeometryDrawing Brush="White">
+                    <GeometryDrawing.Geometry>
+                        <RectangleGeometry Rect="0,0 100,100" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <!--  The upper left and lower left quarter is gray.  -->
+                <GeometryDrawing Brush="LightGray">
+                    <GeometryDrawing.Geometry>
+                        <GeometryGroup>
+                            <RectangleGeometry Rect="0,0 50,50" />
+                            <RectangleGeometry Rect="50,50 50,50" />
+                        </GeometryGroup>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <SolidColorBrush x:Key="ButtonBorderBrush" Color="#91939A" />
+    <SolidColorBrush x:Key="InactiveForeground" Color="#ADADAD" />
+    <SolidColorBrush x:Key="GlyphBrush" Color="#FF31347C" />
+
+
+    <!--  STYLES  -->
+
+    <Style x:Key="EmbeddedButton" TargetType="{x:Type Button}">
+        <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <local:ButtonChrome x:Name="Chrome"
+                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        IsEnabled="{TemplateBinding IsEnabled}"
+                                        Padding="0"
+                                        RenderBackground="{TemplateBinding IsMouseOver}"
+                                        RenderDefaulted="{TemplateBinding Button.IsDefaulted}"
+                                        RenderMouseOver="{TemplateBinding IsMouseOver}"
+                                        RenderPressed="{TemplateBinding IsPressed}"
+                                        SnapsToDevicePixels="True">
+                        <ContentPresenter x:Name="Content"
+                                          Margin="{TemplateBinding Padding}"
+                                          RecognizesAccessKey="True"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </local:ButtonChrome>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{StaticResource InactiveForeground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="OptionsToggleButtonStyle" TargetType="{x:Type RadioButton}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="2" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <Grid SnapsToDevicePixels="True">
+                        <Border x:Name="Bd"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter x:Name="Content"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Content="{TemplateBinding Content}"
+                                              RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource MouseOverBackgroundBrush}" />
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource MouseOverBorderBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{StaticResource InactiveForeground}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource CheckedBackgroundBrush}" />
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource CheckedBorderBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource PressedBackgroundBrush}" />
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource PressedBorderBrush}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="PropertiesListBoxStyle" TargetType="{x:Type ListBox}">
+        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="KeyboardNavigation.DirectionalNavigation" Value="Contained" />
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="Contained" />
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBox}">
+                    <Border Name="Bd"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            SnapsToDevicePixels="True">
+                        <ScrollViewer Focusable="False" Padding="{TemplateBinding Padding}">
+                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </ScrollViewer>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+                        </Trigger>
+                        <Trigger Property="IsGrouping" Value="True">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <ControlTemplate x:Key="ExpanderToggleButton" TargetType="{x:Type ToggleButton}">
+        <Grid>
+            <Rectangle x:Name="Rectangle"
+                       Margin="0,0,0,0"
+                       Fill="Transparent" />
+            <Path x:Name="UpArrow"
+                  Margin="4 0 0 0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Center"
+                  Data="M 0 0 L 4 4 L 8 0 Z"
+                  Fill="{StaticResource GlyphBrush}"
+                  RenderTransformOrigin="0.5,0.5">
+                <Path.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                        <SkewTransform AngleX="0" AngleY="0" />
+                        <RotateTransform Angle="-90" />
+                        <TranslateTransform X="0" Y="0" />
+                    </TransformGroup>
+                </Path.RenderTransform>
+            </Path>
+            <Path x:Name="DownArrow"
+                  Margin="4 0 0 0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Center"
+                  Data="M 0 4 L 4 0 L 8 4 Z"
+                  Fill="{StaticResource GlyphBrush}"
+                  RenderTransformOrigin="0.5,0.5"
+                  Visibility="Collapsed">
+                <Path.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                        <SkewTransform AngleX="0" AngleY="0" />
+                        <RotateTransform Angle="135" />
+                        <TranslateTransform X="0" Y="0" />
+                    </TransformGroup>
+                </Path.RenderTransform>
+            </Path>
+            <ContentPresenter Margin="16 0 0 0"
+                              VerticalAlignment="Center"
+                              TextElement.FontWeight="Bold" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="DownArrow" Property="Visibility" Value="Visible" />
+                <Setter TargetName="UpArrow" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="ExpanderStyle" TargetType="{x:Type Expander}">
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Expander}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition x:Name="ContentRow" Height="*" />
+                        </Grid.RowDefinitions>
+                        <Border x:Name="Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding Background}">
+                            <ToggleButton Height="18"
+                                          Content="{TemplateBinding Header}"
+                                          Focusable="False"
+                                          IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                          IsTabStop="False"
+                                          OverridesDefaultStyle="True"
+                                          Template="{StaticResource ExpanderToggleButton}" />
+                        </Border>
+                        <Border x:Name="ExpandSite"
+                                Grid.Row="1"
+                                Margin="0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Background="#FFFFFF"
+                                BorderThickness="0"
+                                Padding="0"
+                                Visibility="Collapsed">
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Focusable="False" />
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsExpanded" Value="True">
+                            <Setter TargetName="ExpandSite" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="{x:Type local:PropertyGrid}">
+        <Setter Property="Background" Value="{StaticResource {x:Static SystemColors.ControlBrushKey}}" />
+        <Setter Property="BorderBrush" Value="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="ContextMenu">
+            <Setter.Value>
+                <ContextMenu>
+                    <MenuItem Command="local:PropertyGridCommands.ResetProperty"
+                              CommandParameter="{Binding}"
+                              Header="Reset" />
+                </ContextMenu>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:PropertyGrid}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <!--  Header with Type and Name  -->
+                            <StackPanel Margin="6,2,0,4" Orientation="Horizontal">
+                                <TextBlock FontWeight="Bold" Text="{Binding PropertySource.TypeName, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <TextBlock Margin="5,0,0,0" Text="{Binding PropertySource.Name, RelativeSource={RelativeSource TemplatedParent}}" />
+                            </StackPanel>
+
+                            <!--  Categorized Buttons and Filter Text Box  -->
+                            <Grid Grid.Row="1" Margin="4,0,4,4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Margin="4">
+                                    <StackPanel Orientation="Horizontal">
+                                        <RadioButton VerticalAlignment="Center"
+                                                     IsChecked="{Binding IsCategorized, RelativeSource={RelativeSource TemplatedParent}}"
+                                                     Style="{StaticResource OptionsToggleButtonStyle}"
+                                                     ToolTip="Categorized">
+                                            <Image Width="16"
+                                                   Height="16"
+                                                   Source="{dr:PackedBitmap /DigitalRune.Windows.Controls;component/Resources/Icons.png, 224 0 32 32}" />
+                                        </RadioButton>
+                                        <RadioButton VerticalAlignment="Center"
+                                                     IsChecked="{Binding IsCategorized, Converter={x:Static dr:InvertBooleanConverter.Instance}, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                                     Style="{StaticResource OptionsToggleButtonStyle}"
+                                                     ToolTip="Alphabetical">
+                                            <Image Width="16"
+                                                   Height="16"
+                                                   Source="{dr:PackedBitmap /DigitalRune.Windows.Controls;component/Resources/Icons.png, 256 0 32 32}" />
+                                        </RadioButton>
+                                    </StackPanel>
+                                </Grid>
+
+                                <local:CommandTextBox Grid.Column="1"
+                                                      Margin="4,4,0,4"
+                                                      ClearOnEscape="True"
+                                                      Command="local:PropertyGridCommands.ClearFilter"
+                                                      SelectAllOnFocus="True"
+                                                      Text="{Binding Filter, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
+                                                      Watermark="Search">
+                                    <local:CommandTextBox.ButtonContent>
+                                        <Image Width="16"
+                                               Height="16"
+                                               Margin="1,0"
+                                               Source="{dr:PackedBitmap /DigitalRune.Windows.Controls;component/Resources/Icons.png, 288 0 32 32}" />
+                                    </local:CommandTextBox.ButtonContent>
+                                </local:CommandTextBox>
+                            </Grid>
+
+                            <!--  Properties List  -->
+                            <Grid Grid.Row="2"
+                                  Background="White"
+                                  ClipToBounds="True">
+                                <ProgressBar x:Name="ProgressBar"
+                                             Height="4"
+                                             Visibility="Collapsed" />
+                                <ListBox x:Name="PART_ListBox"
+                                         BorderThickness="0,1,0,1"
+                                         ItemsSource="{Binding Properties, RelativeSource={RelativeSource TemplatedParent}}"
+                                         SelectedItem="{Binding SelectedProperty, RelativeSource={RelativeSource TemplatedParent}}"
+                                         Style="{StaticResource PropertiesListBoxStyle}">
+
+                                    <!--  ListViewItem must stretch horizontally and gray left margin  -->
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem">
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                            <Setter Property="Padding" Value="0" />
+                                            <Setter Property="BorderBrush" Value="Transparent" />
+                                            <Setter Property="BorderThickness" Value="0,1,0,1" />
+                                            <Setter Property="dr:WindowsHelper.SelectOnMouseDown" Value="True" />
+                                            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+
+                                    <!--  Item Template with Name column and Value column  -->
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Margin="0,-1,0,-1"
+                                                  HorizontalAlignment="Stretch"
+                                                  VerticalAlignment="Center">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="{Binding NameColumnWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:PropertyGrid}}}" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.ToolTip>
+                                                    <StackPanel>
+                                                        <TextBlock FontWeight="Bold">
+                                                            <TextBlock.Inlines>
+                                                                <Run Text="{Binding PropertyType.Name, Mode=OneTime}" />
+                                                                <Run Text="{Binding Name, Mode=OneTime}" />
+                                                            </TextBlock.Inlines>
+                                                        </TextBlock>
+                                                        <TextBlock Text="{Binding Description, Mode=OneTime}" Visibility="{Binding Description, Converter={x:Static dr:NullToVisibilityConverter.Instance}}" />
+                                                    </StackPanel>
+                                                </Grid.ToolTip>
+
+                                                <Border Grid.Column="0"
+                                                        BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
+                                                        BorderThickness="10,0.5,1,0.5">
+                                                    <TextBlock Margin="7,2,2,2"
+                                                               HorizontalAlignment="Stretch"
+                                                               Focusable="False"
+                                                               Text="{Binding Name}"
+                                                               TextTrimming="CharacterEllipsis" />
+                                                </Border>
+
+                                                <Border Grid.Column="1"
+                                                        HorizontalAlignment="Stretch"
+                                                        Background="White"
+                                                        BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
+                                                        BorderThickness="0,0.5,1,0.5">
+                                                    <ContentControl HorizontalAlignment="Stretch"
+                                                                    VerticalAlignment="Center"
+                                                                    HorizontalContentAlignment="Stretch"
+                                                                    Content="{Binding}"
+                                                                    ContentTemplateSelector="{StaticResource PropertyGridTemplateSelector}"
+                                                                    Focusable="False"
+                                                                    IsTabStop="False" />
+                                                </Border>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+
+                                    <!--  Group Style with Expander  -->
+                                    <ItemsControl.GroupStyle>
+                                        <GroupStyle>
+                                            <GroupStyle.ContainerStyle>
+                                                <Style TargetType="{x:Type GroupItem}">
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate>
+                                                                <Border Background="{TemplateBinding Background}"
+                                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                                                    <Expander Header="{Binding Name}"
+                                                                              IsExpanded="True"
+                                                                              Style="{StaticResource ExpanderStyle}">
+                                                                        <ItemsPresenter />
+                                                                    </Expander>
+                                                                </Border>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </GroupStyle.ContainerStyle>
+                                        </GroupStyle>
+                                    </ItemsControl.GroupStyle>
+                                </ListBox>
+
+                                <!--  A thumb over the list box controls the width of the name column  -->
+                                <Thumb x:Name="PART_Thumb"
+                                       Width="5"
+                                       Margin="0 0 0 0"
+                                       HorizontalAlignment="Left"
+                                       Cursor="SizeWE">
+                                    <Thumb.RenderTransform>
+                                        <TransformGroup>
+                                            <TranslateTransform X="{Binding NameColumnWidth, RelativeSource={RelativeSource TemplatedParent}}" />
+                                        </TransformGroup>
+                                    </Thumb.RenderTransform>
+                                    <Thumb.Template>
+                                        <ControlTemplate>
+                                            <Border Background="Transparent" />
+                                        </ControlTemplate>
+                                    </Thumb.Template>
+                                </Thumb>
+
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsLoading" Value="True">
+                            <Setter TargetName="ProgressBar" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="ProgressBar" Property="IsIndeterminate" Value="True" />
+                            <Setter TargetName="PART_ListBox" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_ListBox" Property="ItemsSource" Value="{x:Null}" />
+                            <Setter TargetName="PART_Thumb" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <!--
+        DataTemplates
+        DataTemplates that are used in a property, selected by the PropertyGridTemplateSelector.
+    -->
+
+    <!--  The fallback data template, which is used if no other template does the job.  -->
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type local:PropertyGrid}, default}">
+        <TextBox IsReadOnly="True" Text="{Binding Path=Value}" />
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type local:PropertyGrid}, {x:Type sys:String}}">
+        <TextBox IsReadOnly="{Binding Path=IsReadOnly}" Text="{Binding Value, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type local:PropertyGrid}, {x:Type sys:Single}}">
+        <!--  We need a ValueConverter because double is not automatically converted to float.  -->
+        <local:NumericUpDown IsEnabled="{Binding IsReadOnly, Converter={x:Static dr:InvertBooleanConverter.Instance}}" Value="{Binding Path=Value, Mode=TwoWay, Converter={x:Static dr:SingleToDoubleConverter.Instance}, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type local:PropertyGrid}, {x:Type sys:Double}}">
+        <local:NumericUpDown IsEnabled="{Binding IsReadOnly, Converter={x:Static dr:InvertBooleanConverter.Instance}}" Value="{Binding Path=Value, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type local:PropertyGrid}, {x:Type sys:Byte}}">
+        <!--  We need a ValueConverter because double is not automatically converted to integer.  -->
+        <local:NumericUpDown DecimalPlaces="0"
+                             IsEnabled="{Binding IsReadOnly, Converter={x:Static dr:InvertBooleanConverter.Instance}}"
+                             Maximum="255"
+                             Minimum="0"
+                             Value="{Binding Path=Value, Converter={x:Static dr:IntegerToDoubleConverter.Instance}, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type local:PropertyGrid}, {x:Type sys:SByte}}">
+        <!--  We need a ValueConverter because double is not automatically converted to integer.  -->
+        <local:NumericUpDown DecimalPlaces="0"
+                             IsEnabled="{Binding IsReadOnly, Converter={x:Static dr:InvertBooleanConverter.Instance}}"
+                             Maximum="127"
+                             Minimum="-128"
+                             Value="{Binding Path=Value, Converter={x:Static dr:IntegerToDoubleConverter.Instance}, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type local:PropertyGrid}, {x:Type sys:Int16}}">
+        <!--  We need a ValueConverter because double is not automatically converted to integer.  -->
+        <local:NumericUpDown DecimalPlaces="0"
+                             IsEnabled="{Binding IsReadOnly, Converter={x:Static dr:InvertBooleanConverter.Instance}}"
+                             Maximum="32767"
+                             Minimum="-32768"
+                             Value="{Binding Path=Value, Mode=OneTime, Converter={x:Static dr:IntegerToDoubleConverter.Instance}, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type local:PropertyGrid}, {x:Type sys:UInt16}}">
+        <!--  We need a ValueConverter because double is not automatically converted to integer.  -->
+        <local:NumericUpDown DecimalPlaces="0"
+                             IsEnabled="{Binding IsReadOnly, Converter={x:Static dr:InvertBooleanConverter.Instance}}"
+                             Maximum="65535"
+                             Minimum="0"
+                             Value="{Binding Path=Value, Converter={x:Static dr:IntegerToDoubleConverter.Instance}, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type local:PropertyGrid}, {x:Type sys:Int32}}">
+        <!--  We need a ValueConverter because double is not automatically converted to integer.  -->
+        <local:NumericUpDown DecimalPlaces="0"
+                             IsEnabled="{Binding IsReadOnly, Converter={x:Static dr:InvertBooleanConverter.Instance}}"
+                             Maximum="2147483647"
+                             Minimum="-2147483648  "
+                             Value="{Binding Path=Value, Mode=OneTime, Converter={x:Static dr:IntegerToDoubleConverter.Instance}, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type local:PropertyGrid}, {x:Type sys:UInt32}}">
+        <!--  We need a ValueConverter because double is not automatically converted to integer.  -->
+        <local:NumericUpDown DecimalPlaces="0"
+                             IsEnabled="{Binding IsReadOnly, Converter={x:Static dr:InvertBooleanConverter.Instance}}"
+                             Maximum="4294967295"
+                             Minimum="0"
+                             Value="{Binding Path=Value, Converter={x:Static dr:IntegerToDoubleConverter.Instance}, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type local:PropertyGrid}, {x:Type sys:Int64}}">
+        <!--  We need a ValueConverter because double is not automatically converted to integer.  -->
+        <local:NumericUpDown DecimalPlaces="0"
+                             IsEnabled="{Binding IsReadOnly, Converter={x:Static dr:InvertBooleanConverter.Instance}}"
+                             Value="{Binding Path=Value, Converter={x:Static dr:IntegerToDoubleConverter.Instance}, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type local:PropertyGrid}, {x:Type sys:UInt64}}">
+        <!--  We need a ValueConverter because double is not automatically converted to integer.  -->
+        <local:NumericUpDown DecimalPlaces="0"
+                             IsEnabled="{Binding IsReadOnly, Converter={x:Static dr:InvertBooleanConverter.Instance}}"
+                             Minimum="0"
+                             Value="{Binding Path=Value, Converter={x:Static dr:IntegerToDoubleConverter.Instance}, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type local:PropertyGrid}, {x:Type sys:TimeSpan}}">
+        <local:TimeSpanUpDown IsEnabled="{Binding IsReadOnly, Converter={x:Static dr:InvertBooleanConverter.Instance}}" Value="{Binding Path=Value, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type local:PropertyGrid}, {x:Type media:Brush}}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.ColumnSpan="2"
+                     Padding="30,1,3,1"
+                     Text="{Binding Value, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
+            <Border Width="20"
+                    Margin="6,4,6,4"
+                    Background="{StaticResource CheckerBrush}"
+                    SnapsToDevicePixels="True">
+                <Border Background="{Binding Path=Value}" />
+            </Border>
+        </Grid>
+    </DataTemplate>
+
+
+    <Style x:Key="EmbeddedColorButton" TargetType="{x:Type local:ColorButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ColorButton}">
+                    <Button Name="PART_Button"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                            Padding="5,3,5,3"
+                            Style="{StaticResource EmbeddedButton}">
+                        <Border HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Background="{StaticResource CheckerBrush}"
+                                SnapsToDevicePixels="True">
+                            <Border>
+                                <Border.Background>
+                                    <SolidColorBrush Color="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Color}" />
+                                </Border.Background>
+                            </Border>
+                        </Border>
+                    </Button>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type local:PropertyGrid}, {x:Type media:Color}}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.ColumnSpan="2"
+                     Padding="30,1,3,1"
+                     Text="{Binding Value, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
+            <local:ColorButton Grid.Column="0"
+                               Width="30"
+                               IsEnabled="{Binding IsReadOnly, Converter={x:Static dr:InvertBooleanConverter.Instance}}"
+                               Style="{StaticResource EmbeddedColorButton}"
+                               Color="{Binding Path=Value, Mode=TwoWay}" />
+        </Grid>
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type local:PropertyGrid}, {x:Type sys:Enum}}">
+        <ComboBox IsEnabled="{Binding Path=IsReadOnly, Converter={x:Static dr:InvertBooleanConverter.Instance}}"
+                  ItemsSource="{Binding Path=Value, Converter={x:Static dr:EnumToArrayConverter.Instance}}"
+                  SelectedValue="{Binding Path=Value}" />
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type local:PropertyGrid}, {x:Type sys:Boolean}}">
+        <CheckBox VerticalAlignment="Center"
+                  IsChecked="{Binding Path=Value}"
+                  IsEnabled="{Binding IsReadOnly, Converter={x:Static dr:InvertBooleanConverter.Instance}}" />
+    </DataTemplate>
+
+</ResourceDictionary>

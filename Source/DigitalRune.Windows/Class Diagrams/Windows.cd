@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Windows Namespace: DigitalRune.Windows">
+    <Position X="0.5" Y="0.5" Height="0.438" Width="2.335" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.WindowsHelper">
+    <Position X="0.5" Y="1.25" Width="3.25" />
+    <Members>
+      <Field Name="_dispatcher" Hidden="true" />
+      <Field Name="_isInDesignMode" Hidden="true" />
+      <Method Name="GetVisualChildrenImpl" Hidden="true" />
+      <Method Name="HideMaximizeBox" Hidden="true" />
+      <Method Name="HideMinimizeBox" Hidden="true" />
+      <Method Name="OnCanMaximizeChanged" Hidden="true" />
+      <Method Name="OnCanMinimizeChanged" Hidden="true" />
+      <Method Name="OnPreviewMouseDown" Hidden="true" />
+      <Method Name="OnSelectOnMouseDownChanged" Hidden="true" />
+      <Method Name="RegisterPropertyChangedEventHandler" Hidden="true" />
+      <Method Name="RunAsync" Hidden="true" />
+      <Method Name="SetWindowCompositionAttribute" Hidden="true" />
+      <Method Name="ShowMaximizeBox" Hidden="true" />
+      <Method Name="ShowMinimizeBox" Hidden="true" />
+      <Method Name="ShowWindowIcon" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Struct Name="DigitalRune.Windows.WindowsHelper.WindowCompositionAttribData" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>WindowsHelper.Desktop.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="DigitalRune.Windows.WindowsHelper.AccentPolicy" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>WindowsHelper.Desktop.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Enum Name="DigitalRune.Windows.WindowsHelper.AccentFlags" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>WindowsHelper.Desktop.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="DigitalRune.Windows.WindowsHelper.WindowCompositionAttribute" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>WindowsHelper.Desktop.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="DigitalRune.Windows.WindowsHelper.AccentState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>WindowsHelper.Desktop.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>GCgEA4BBVhClQ0kAlCAJCAJgECaAGcCBwERMCPRAADA=</HashCode>
+      <FileName>WindowsHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.ObservableUIElementCollection" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="14.25" Width="2.75" />
+    <Members>
+      <Method Name="Add" Hidden="true" />
+      <Method Name="Clear" Hidden="true" />
+      <Method Name="Insert" Hidden="true" />
+      <Method Name="ObservableUIElementCollection" Hidden="true" />
+      <Method Name="Remove" Hidden="true" />
+      <Method Name="RemoveAt" Hidden="true" />
+      <Method Name="RemoveRange" Hidden="true" />
+      <Property Name="this" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAIAAEAAAAAAAAAAKAAAhAAAgAAAABAACAAAAIBAAAA=</HashCode>
+      <FileName>ObservableUIElementCollection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Categories">
+    <Position X="6.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAQAAAAIACAQQSAAAYAQAAAgAABBICAAAAAAAAAQ=</HashCode>
+      <FileName>Categories.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.ObservableObject" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="6" Width="3" />
+    <Members>
+      <Field Name="_enableUIThreadMarshaling" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAIAABAAAAgAEAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>ObservableObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.WeakEventListener&lt;TEventArgs&gt;" BaseTypeListCollapsed="true">
+    <Position X="4" Y="3.5" Width="2.5" />
+    <Members>
+      <Method Name="WeakEventListener" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>WeakEventListener.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.PackedBitmapExtension">
+    <Position X="4" Y="5.5" Width="2" />
+    <Members>
+      <Method Name="PackedBitmapExtension" Hidden="true" />
+      <Method Name="ProvideValue" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAgAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>PackedBitmapExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Boxed">
+    <Position X="9.75" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AJAAAQAAAAQAAABQGAABAhAAQCAAABAMAgAgAQAIAAA=</HashCode>
+      <FileName>Boxed.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.ColorHelper">
+    <Position X="4" Y="9.5" Width="2" />
+    <Members>
+      <Method Name="GetValue" Hidden="true" />
+      <Method Name="ToByte" Hidden="true" />
+      <Method Name="ToDouble" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAKACEQAAIAQAAAAAAAAABAAAQAJBAAAQAAAA=</HashCode>
+      <FileName>ColorHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.ValidatableObservableObject">
+    <Position X="6.75" Y="9" Width="2.5" />
+    <Members>
+      <Field Name="HasErrorsPropertyName" Hidden="true" />
+      <Method Name="TryValidateProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAgAAAABEAAAAAAAAAEAAACIQAAAAAABIAA=</HashCode>
+      <FileName>ValidatableObservableObject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ErrorsContainer" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.ErrorsContainer">
+    <Position X="10.5" Y="9" Width="1.5" />
+    <Members>
+      <Field Name="_errorsChanged" Hidden="true" />
+      <Field Name="_errorsPerProperty" Hidden="true" />
+      <Field Name="_hasErrors" Hidden="true" />
+      <Method Name="ErrorsContainer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQgAAAAAAAgYAAABAAAAAAAAAAAAAAAIAAAAAAAggAA=</HashCode>
+      <FileName>ErrorsContainer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.ObservableChildCollection&lt;TParent, TChild&gt;">
+    <Position X="3.5" Y="14.25" Width="3" />
+    <Members>
+      <Field Name="_parent" Hidden="true" />
+      <Method Name="ClearItems" Hidden="true" />
+      <Method Name="GetEnumerator" Hidden="true" />
+      <Method Name="InsertItem" Hidden="true" />
+      <Method Name="ObservableChildCollection" Hidden="true" />
+      <Method Name="RemoveItem" Hidden="true" />
+      <Method Name="SetItem" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAABBAAAAAAQAAQQAAAAAAEAEAAAAQAAAA=</HashCode>
+      <FileName>ObservableChildCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.BindablePropertyObserver">
+    <Position X="6.75" Y="14.25" Width="2" />
+    <Members>
+      <Field Name="_source" Hidden="true" />
+      <Method Name="BindablePropertyObserver" Hidden="true" />
+      <Method Name="OnValueChanged" Hidden="true" />
+      <Property Name="Source" Hidden="true" />
+      <Property Name="Value" Hidden="true" />
+      <Field Name="ValueProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAmAAAAAAAAAQAAAAAEAAAAEAAAAgAAAAAAA=</HashCode>
+      <FileName>BindablePropertyObserver.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Enum Name="DigitalRune.Windows.ComparisonOperator">
+    <Position X="4" Y="7.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAEAAQQAAAAQAAAE=</HashCode>
+      <FileName>ComparisonOperator.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{533AA572-0050-447F-851B-A4D82A542B5A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.Physics.Specialized</RootNamespace>
+    <AssemblyName>DigitalRune.Physics.Specialized</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <BaseIntermediateOutputPath>obj\Unity\Debug\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\Unity\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;UNITY</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <BaseIntermediateOutputPath>obj\Unity\Release\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\Unity\Release\</OutputPath>
+    <DefineConstants>TRACE;UNITY</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune.Animation\DigitalRune.Animation%28Unity%29.csproj">
+      <Project>{6D573481-FEE8-4964-A3FB-717963CAC3BF}</Project>
+      <Name>DigitalRune.Animation%28Unity%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Geometry\DigitalRune.Geometry%28Unity%29.csproj">
+      <Project>{17373892-D9F2-4F6F-A7AC-31457FEA60AE}</Project>
+      <Name>DigitalRune.Geometry%28Unity%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Mathematics\DigitalRune.Mathematics%28Unity%29.csproj">
+      <Project>{F881B626-2C84-4B2C-AB32-A16273BCD408}</Project>
+      <Name>DigitalRune.Mathematics%28Unity%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Physics\DigitalRune.Physics%28Unity%29.csproj">
+      <Project>{40D4D3A3-3C89-46F3-9547-FAA3FF2CD2D8}</Project>
+      <Name>DigitalRune.Physics%28Unity%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune\DigitalRune%28Unity%29.csproj">
+      <Project>{3CD3AB84-E372-4FFB-BCE4-EBE0BE3BD3D6}</Project>
+      <Name>DigitalRune%28Unity%29</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CharacterControllers\Dynamic\DynamicCharacterController.cs" />
+    <Compile Include="CharacterControllers\Kinematic\CharacterControllerForceEffect.cs" />
+    <Compile Include="CharacterControllers\Kinematic\KinematicCharacterController.cs" />
+    <Compile Include="CharacterControllers\Kinematic\KinematicCharacterController_Body.cs" />
+    <Compile Include="CharacterControllers\Kinematic\KinematicCharacterController_Contacts.cs" />
+    <Compile Include="CharacterControllers\Kinematic\KinematicCharacterController_Slides.cs" />
+    <Compile Include="NamespaceDoc.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ragdolls\Ragdoll.cs" />
+    <Compile Include="Ragdolls\RagdollMotor.cs" />
+    <Compile Include="Ragdolls\RagdollMotorMode.cs" />
+    <Compile Include="Ragdolls\Ragdoll_Avatars.cs" />
+    <Compile Include="Vehicles\Vehicle.cs" />
+    <Compile Include="Vehicles\VehicleForceEffect.cs" />
+    <Compile Include="Vehicles\Wheel.cs" />
+  </ItemGroup>
+</Project>

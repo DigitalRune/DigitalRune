@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Main docking controls                           Assembly: DigitalRune.Windows.Docking           Namespace: DigitalRune.Windows.Docking">
+    <Position X="0.5" Y="0.5" Height="0.658" Width="2.619" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.Docking.DockControl">
+    <Position X="0.5" Y="1.5" Width="2.25" />
+    <Members>
+      <Field Name="_autoHideBars" Hidden="true" />
+      <Field Name="_autoHideOverlays" Hidden="true" />
+      <Field Name="_autoHidePanel" Hidden="true" />
+      <Field Name="_bottomAutoHideBar" Hidden="true" />
+      <Field Name="_contentPresenter" Hidden="true" />
+      <Field Name="_dockTabItems" Hidden="true" />
+      <Field Name="_dockTabPanes" Hidden="true" />
+      <Field Name="_floatWindows" Hidden="true" />
+      <Field Name="_leftAutoHideBar" Hidden="true" />
+      <Field Name="_rightAutoHideBar" Hidden="true" />
+      <Field Name="_topAutoHideBar" Hidden="true" />
+      <Method Name="CloseAutoHidePanes" Hidden="true" />
+      <Method Name="CloseAutoHidePanesExcept" Hidden="true" />
+      <Method Name="DockControl" Hidden="true" />
+      <Field Name="DockHeightProperty" Hidden="true" />
+      <Property Name="DockStrategy" Hidden="true" />
+      <Field Name="DockWidthProperty" Hidden="true" />
+      <Property Name="DragManager" Hidden="true" />
+      <Method Name="LoadFloatWindows" Hidden="true" />
+      <Method Name="OnActiveItemChanged" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnDataContextChanged" Hidden="true" />
+      <Method Name="OnDockSizeChanged" Hidden="true" />
+      <Method Name="OnDockStrategyChanged" Hidden="true" />
+      <Method Name="OnFloatWindowsChanged" Hidden="true" />
+      <Method Name="OnLoaded" Hidden="true" />
+      <Method Name="OnUnloaded" Hidden="true" />
+      <Method Name="OnWindowStateChanged" Hidden="true" />
+      <Method Name="Register" Hidden="true" />
+      <Method Name="RegisterEventHandlers" Hidden="true" />
+      <Property Name="RootPane" Hidden="true" />
+      <Method Name="ShowAutoHidePane" Hidden="true" />
+      <Method Name="UnloadFloatWindows" Hidden="true" />
+      <Method Name="Unregister" Hidden="true" />
+      <Method Name="UnregisterEventHandlers" Hidden="true" />
+      <Method Name="UpdateFloatWindows" Hidden="true" />
+    </Members>
+    <AssociationLine Name="FloatWindows" Type="DigitalRune.Windows.Docking.FloatWindow">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.171" Y="0.143" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>gAkAABgAAYhBEAEAaAKAthEQhYERAQAACgADAQIAEAM=</HashCode>
+      <FileName>DockControl\DockControl.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="DockTabPanes" />
+      <Property Name="DockTabItems" />
+      <Property Name="FloatWindows" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Windows.Docking.DockAnchorPane">
+    <Position X="2.5" Y="4.5" Width="1.5" />
+    <Members>
+      <Field Name="_contentPresenter" Hidden="true" />
+      <Property Name="ChildPane" Hidden="true" />
+      <Method Name="DockAnchorPane" Hidden="true" />
+      <Field Name="DockHeightProperty" Hidden="true" />
+      <Field Name="DockWidthProperty" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnContentChanged" Hidden="true" />
+      <Method Name="OnContentVisibilityChanged" Hidden="true" />
+      <Method Name="OnLoaded" Hidden="true" />
+      <Method Name="UpdateVisualStates" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAABAAAEAQEAAIAAAAKAAAAgACAAEAAAAAAA=</HashCode>
+      <FileName>DockAnchorPane\DockAnchorPane.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Docking.DockTabPane">
+    <Position X="4.25" Y="2.25" Width="1.5" />
+    <Members>
+      <Field Name="_autoHideButton" Hidden="true" />
+      <Field Name="_closeButton" Hidden="true" />
+      <Field Name="_contentPresenter" Hidden="true" />
+      <Field Name="_currentItem" Hidden="true" />
+      <Field Name="_dockButton" Hidden="true" />
+      <Field Name="_dockControl" Hidden="true" />
+      <Field Name="_dockState" Hidden="true" />
+      <Field Name="_dragArea" Hidden="true" />
+      <Field Name="_isActive" Hidden="true" />
+      <Field Name="_isMouseOverDragArea" Hidden="true" />
+      <Field Name="_windowListButton" Hidden="true" />
+      <Method Name="ActivateNext" Hidden="true" />
+      <Method Name="ActivatePrevious" Hidden="true" />
+      <Property Name="CanActivateNext" Hidden="true" />
+      <Property Name="CanActivatePrevious" Hidden="true" />
+      <Property Name="CanShowWindowList" Hidden="true" />
+      <Field Name="DockHeightProperty" Hidden="true" />
+      <Method Name="DockTabPane" Hidden="true" />
+      <Field Name="DockWidthProperty" Hidden="true" />
+      <Method Name="Filter" Hidden="true" />
+      <Method Name="FocusSelectedContent" Hidden="true" />
+      <Method Name="GetContainerForItemOverride" Hidden="true" />
+      <Method Name="GetNextIndex" Hidden="true" />
+      <Field Name="HasSingleItemProperty" Hidden="true" />
+      <Field Name="HasSingleItemPropertyKey" Hidden="true" />
+      <Method Name="InitializeButtons" Hidden="true" />
+      <Method Name="IsItemItsOwnContainerOverride" Hidden="true" />
+      <Method Name="OnAccessKeyPressed" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnCommandCanExecute" Hidden="true" />
+      <Method Name="OnCommandExecuted" Hidden="true" />
+      <Method Name="OnContentGotKeyboardFocus" Hidden="true" />
+      <Method Name="OnDataContextChanged" Hidden="true" />
+      <Method Name="OnDockStateChanged" Hidden="true" />
+      <Method Name="OnDragAreaMouseEnter" Hidden="true" />
+      <Method Name="OnDragAreaMouseLeave" Hidden="true" />
+      <Method Name="OnDragAreaMouseLeftButtonDown" Hidden="true" />
+      <Method Name="OnGeneratorStatusChanged" Hidden="true" />
+      <Method Name="OnGotFocus" Hidden="true" />
+      <Method Name="OnInitialized" Hidden="true" />
+      <Method Name="OnIsEnabledChanged" Hidden="true" />
+      <Method Name="OnItemsChanged" Hidden="true" />
+      <Method Name="OnItemsSourceChanged" Hidden="true" />
+      <Method Name="OnKeyDown" Hidden="true" />
+      <Method Name="OnLoaded" Hidden="true" />
+      <Method Name="OnLostFocus" Hidden="true" />
+      <Method Name="OnSelectionChanged" Hidden="true" />
+      <Method Name="OnUnloaded" Hidden="true" />
+      <Method Name="RegisterCommandBindings" Hidden="true" />
+      <Field Name="SelectedContentProperty" Hidden="true" />
+      <Field Name="SelectedContentPropertyKey" Hidden="true" />
+      <Method Name="ShowWindowList" Hidden="true" />
+      <Method Name="UpdateSelectedContent" Hidden="true" />
+      <Method Name="UpdateVisualStates" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>KADiCCghiIBQSgWAQIgAIAGTEZNAAChAKBAIQARDAAA=</HashCode>
+      <FileName>DockTabPane\DockTabPane.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Docking.DockSplitPane">
+    <Position X="4.25" Y="4.5" Width="1.5" />
+    <Members>
+      <Field Name="_currentItem" Hidden="true" />
+      <Field Name="DockHeightProperty" Hidden="true" />
+      <Method Name="DockSplitPane" Hidden="true" />
+      <Field Name="DockWidthProperty" Hidden="true" />
+      <Method Name="Filter" Hidden="true" />
+      <Method Name="GetContainerForItemOverride" Hidden="true" />
+      <Method Name="IsItemItsOwnContainerOverride" Hidden="true" />
+      <Method Name="OnItemsSourceChanged" Hidden="true" />
+      <Field Name="OrientationProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAAAACAAAQAAAAEAAAgAIAECAJAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>DockSplitPane\DockSplitPane.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Docking.DockTabItem">
+    <Position X="6" Y="1.5" Width="2.75" />
+    <Members>
+      <Field Name="_activating" Hidden="true" />
+      <Field Name="_dockControl" Hidden="true" />
+      <Field Name="_logicalChildren" Hidden="true" />
+      <Field Name="_tab" Hidden="true" />
+      <Field Name="ActivatedEvent" Hidden="true" />
+      <Method Name="Deactivate" Hidden="true" />
+      <Field Name="DeactivatedEvent" Hidden="true" />
+      <Method Name="DeactivateOtherItems" Hidden="true" />
+      <Field Name="DockHeightProperty" Hidden="true" />
+      <Method Name="DockTabItem" Hidden="true" />
+      <Property Name="DockTabPane" Hidden="true" />
+      <Field Name="DockWidthProperty" Hidden="true" />
+      <Method Name="FocusContent" Hidden="true" />
+      <Field Name="IconProperty" Hidden="true" />
+      <Field Name="IsActiveProperty" Hidden="true" />
+      <Field Name="IsActivePropertyKey" Hidden="true" />
+      <Field Name="IsSelectedProperty" Hidden="true" />
+      <Field Name="IsTabWidthFixedProperty" Hidden="true" />
+      <Method Name="OnAccessKey" Hidden="true" />
+      <Method Name="OnAccessKeyPressed" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnCommandCanExecute" Hidden="true" />
+      <Method Name="OnCommandExecuted" Hidden="true" />
+      <Method Name="OnContentChanged" Hidden="true" />
+      <Method Name="OnContentStringFormatChanged" Hidden="true" />
+      <Method Name="OnContentTemplateChanged" Hidden="true" />
+      <Method Name="OnContentTemplateSelectorChanged" Hidden="true" />
+      <Method Name="OnGotFocus" Hidden="true" />
+      <Method Name="OnGotKeyboardFocus" Hidden="true" />
+      <Method Name="OnIsEnabledChanged" Hidden="true" />
+      <Method Name="OnIsSelectedChanged" Hidden="true" />
+      <Method Name="OnLoaded" Hidden="true" />
+      <Method Name="OnLostFocus" Hidden="true" />
+      <Method Name="OnMouseEnter" Hidden="true" />
+      <Method Name="OnMouseLeave" Hidden="true" />
+      <Method Name="OnMouseLeftButtonDown" Hidden="true" />
+      <Method Name="OnMouseRightButtonDown" Hidden="true" />
+      <Method Name="OnPreviewGotKeyboardFocus" Hidden="true" />
+      <Method Name="OnTabMouseButtonDown" Hidden="true" />
+      <Method Name="OnUnloaded" Hidden="true" />
+      <Method Name="RegisterCommandBindings" Hidden="true" />
+      <Field Name="SelectedEvent" Hidden="true" />
+      <Method Name="SetActiveItem" Hidden="true" />
+      <Field Name="TitleProperty" Hidden="true" />
+      <Field Name="UnselectedEvent" Hidden="true" />
+      <Method Name="UpdateDockPaneContent" Hidden="true" />
+      <Method Name="UpdateVisualStates" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAHkAKiICgBSklVA0ADQYAAFkaaAQAhAIIAAAAEDIgI=</HashCode>
+      <FileName>DockTabItem\DockTabItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Docking.FloatWindow">
+    <Position X="0.75" Y="4.5" Width="1.5" />
+    <Members>
+      <Field Name="_contentPresenter" Hidden="true" />
+      <Field Name="_hwndSource" Hidden="true" />
+      <Field Name="_ignoreSizingMessage" Hidden="true" />
+      <Method Name="FloatWindow" Hidden="true" />
+      <Property Name="LastActivation" Hidden="true" />
+      <Method Name="OnActivated" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnClosed" Hidden="true" />
+      <Method Name="OnClosing" Hidden="true" />
+      <Method Name="OnLoaded" Hidden="true" />
+      <Method Name="OnSourceInitialized" Hidden="true" />
+      <Method Name="OnUnloaded" Hidden="true" />
+      <Property Name="RootPane" Hidden="true" />
+      <Method Name="WindowMessageHandler" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAABQAAAgQAAgggwIAQABAAAACAAAAAAAAAA=</HashCode>
+      <FileName>FloatWindow\FloatWindow.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DockControl" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Windows.Docking.DockPaneSplitter">
+    <Position X="2.25" Y="6.5" Width="1.5" />
+    <Members>
+      <Field Name="_actualLengthOfNext" Hidden="true" />
+      <Field Name="_actualLengthOfPrevious" Hidden="true" />
+      <Field Name="_gridLengthOfNext" Hidden="true" />
+      <Field Name="_gridLengthOfPrevious" Hidden="true" />
+      <Field Name="_index" Hidden="true" />
+      <Field Name="_isDragging" Hidden="true" />
+      <Field Name="_panel" Hidden="true" />
+      <Field Name="_startMousePosition" Hidden="true" />
+      <Method Name="BeginDrag" Hidden="true" />
+      <Method Name="DockPaneSplitter" Hidden="true" />
+      <Method Name="EndDrag" Hidden="true" />
+      <Method Name="GetAdjacentElements" Hidden="true" />
+      <Method Name="GetDockSize" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnKeyDown" Hidden="true" />
+      <Method Name="OnLostMouseCapture" Hidden="true" />
+      <Method Name="OnMouseDoubleClick" Hidden="true" />
+      <Method Name="OnMouseEnter" Hidden="true" />
+      <Method Name="OnMouseLeave" Hidden="true" />
+      <Method Name="OnMouseLeftButtonDown" Hidden="true" />
+      <Method Name="OnMouseLeftButtonUp" Hidden="true" />
+      <Method Name="OnMouseMove" Hidden="true" />
+      <Method Name="SetDockSize" Hidden="true" />
+      <Method Name="UpdateVisualStates" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gIAQAAAIAEBAAAgAAQBgAAEEABMQQAgAAAEEAAIAAAA=</HashCode>
+      <FileName>DockSplitPane\DockPaneSplitter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Docking.DockPaneMenu">
+    <Position X="5.75" Y="6.5" Width="1.5" />
+    <Members>
+      <Method Name="CreateMenuItem" Hidden="true" />
+      <Method Name="DockPaneMenu" Hidden="true" />
+      <Method Name="OnOpened" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>DockTabPane\DockPaneMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Docking.DockTabPanel">
+    <Position X="4" Y="6.5" Width="1.5" />
+    <Members>
+      <Field Name="_elementHeight" Hidden="true" />
+      <Field Name="_elementWidths" Hidden="true" />
+      <Field Name="_elementWidthsBackup" Hidden="true" />
+      <Field Name="_offsets" Hidden="true" />
+      <Field Name="_previousChildren" Hidden="true" />
+      <Field Name="_previousOffsets" Hidden="true" />
+      <Field Name="_scrollOffset" Hidden="true" />
+      <Method Name="AnimateOffset" Hidden="true" />
+      <Method Name="ArrangeOverride" Hidden="true" />
+      <Method Name="ComputeElementSizes" Hidden="true" />
+      <Method Name="DockTabPanel" Hidden="true" />
+      <Method Name="GetIsDragged" Hidden="true" />
+      <Method Name="GetLayoutClip" Hidden="true" />
+      <Field Name="InvertZOrderProperty" Hidden="true" />
+      <Field Name="IsDraggedProperty" Hidden="true" />
+      <Method Name="MeasureOverride" Hidden="true" />
+      <Method Name="OnIsDraggedPropertyChanged" Hidden="true" />
+      <Method Name="SetIsDragged" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>SABEAAAAQAAAkAAAAIAgAAARAAACAEAAAAATAAQAAAI=</HashCode>
+      <FileName>DockTabPane\DockTabPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Docking.DockOverlay">
+    <Position X="0.5" Y="8.5" Width="1.5" />
+    <Members>
+      <Field Name="_targetElement" Hidden="true" />
+      <Field Name="_targetWindow" Hidden="true" />
+      <Method Name="AttachToTarget" Hidden="true" />
+      <Method Name="DetachFromTarget" Hidden="true" />
+      <Method Name="DockOverlay" Hidden="true" />
+      <Method Name="OnClosed" Hidden="true" />
+      <Method Name="OnLoaded" Hidden="true" />
+      <Method Name="OnTargetChanged" Hidden="true" />
+      <Method Name="UpdateBounds" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAARAAAACgAgBAAAAAAAAAAAABAAgA=</HashCode>
+      <FileName>DockOverlay\DockOverlay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Docking.DockSplitPanel">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <Members>
+      <Field Name="_finalSizes" Hidden="true" />
+      <Field Name="_minSizes" Hidden="true" />
+      <Field Name="_splitterOrientation" Hidden="true" />
+      <Field Name="_splitterSize" Hidden="true" />
+      <Method Name="ArrangeOverride" Hidden="true" />
+      <Method Name="ComputeFinalSizes" Hidden="true" />
+      <Method Name="CreateSplitters" Hidden="true" />
+      <Method Name="DockSplitPanel" Hidden="true" />
+      <Property Name="FinalSizes" Hidden="true" />
+      <Method Name="GetPrimaryDockSize" Hidden="true" />
+      <Method Name="GetPrimarySize" Hidden="true" />
+      <Method Name="GetSecondarySize" Hidden="true" />
+      <Method Name="MeasureOverride" Hidden="true" />
+      <Field Name="OrientationProperty" Hidden="true" />
+      <Field Name="SplitterPanelProperty" Hidden="true" />
+      <Field Name="SplitterSizeProperty" Hidden="true" />
+      <Method Name="Sum" Hidden="true" />
+      <Method Name="ValidateDockSizes" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAAEAAAAAQIBSAAAQAgIAAAQAAAIAMAAAAAAAEIFABQ=</HashCode>
+      <FileName>DockSplitPane\DockSplitPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

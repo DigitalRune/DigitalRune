@@ -1,0 +1,34 @@
+﻿<Window x:Class="DigitalRune.Windows.Controls.FontDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:DigitalRune.Windows.Controls"
+        Title="Select a Font"
+        Width="600"
+        Height="400"
+        ResizeMode="NoResize">
+    <Grid Margin="11">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Controls:FontChooser x:Name="FontChooser"
+                              Grid.Row="0"
+                              Margin="0,0,0,11" />
+        <StackPanel Grid.Row="1"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Orientation="Horizontal">
+            <Button Name="ButtonOk"
+                    MinWidth="75"
+                    Margin="0,0,7,0"
+                    Click="OnOkClick"
+                    Content="_OK"
+                    IsDefault="True" />
+            <Button Name="ButtonCancel"
+                    MinWidth="75"
+                    Click="OnCancelClick"
+                    Content="_Cancel"
+                    IsCancel="True" />
+        </StackPanel>
+    </Grid>
+</Window>

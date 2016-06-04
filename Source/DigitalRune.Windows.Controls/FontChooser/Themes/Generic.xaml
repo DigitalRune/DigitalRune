@@ -1,0 +1,251 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DigitalRune.Windows.Controls"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <Style TargetType="{x:Type local:FontChooser}">
+        <Style.Resources>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <x:Array x:Key="CommonFontSizes" Type="sys:Double">
+                <sys:Double>3.0</sys:Double>
+                <sys:Double>4.0</sys:Double>
+                <sys:Double>5.0</sys:Double>
+                <sys:Double>6.0</sys:Double>
+                <sys:Double>6.5</sys:Double>
+                <sys:Double>7.0</sys:Double>
+                <sys:Double>7.5</sys:Double>
+                <sys:Double>8.0</sys:Double>
+                <sys:Double>8.5</sys:Double>
+                <sys:Double>9.0</sys:Double>
+                <sys:Double>9.5</sys:Double>
+                <sys:Double>10.0</sys:Double>
+                <sys:Double>10.5</sys:Double>
+                <sys:Double>11.0</sys:Double>
+                <sys:Double>11.5</sys:Double>
+                <sys:Double>12.0</sys:Double>
+                <sys:Double>12.5</sys:Double>
+                <sys:Double>13.0</sys:Double>
+                <sys:Double>13.5</sys:Double>
+                <sys:Double>14.0</sys:Double>
+                <sys:Double>15</sys:Double>
+                <sys:Double>16</sys:Double>
+                <sys:Double>17</sys:Double>
+                <sys:Double>18</sys:Double>
+                <sys:Double>19</sys:Double>
+                <sys:Double>20</sys:Double>
+                <sys:Double>22</sys:Double>
+                <sys:Double>24</sys:Double>
+                <sys:Double>26</sys:Double>
+                <sys:Double>28</sys:Double>
+                <sys:Double>30</sys:Double>
+                <sys:Double>32</sys:Double>
+                <sys:Double>34</sys:Double>
+                <sys:Double>36</sys:Double>
+                <sys:Double>38</sys:Double>
+                <sys:Double>40</sys:Double>
+                <sys:Double>44</sys:Double>
+                <sys:Double>48</sys:Double>
+                <sys:Double>52</sys:Double>
+                <sys:Double>56</sys:Double>
+                <sys:Double>60</sys:Double>
+                <sys:Double>64</sys:Double>
+                <sys:Double>68</sys:Double>
+                <sys:Double>72</sys:Double>
+                <sys:Double>76</sys:Double>
+                <sys:Double>80</sys:Double>
+                <sys:Double>88</sys:Double>
+                <sys:Double>96</sys:Double>
+                <sys:Double>104</sys:Double>
+                <sys:Double>112</sys:Double>
+                <sys:Double>120</sys:Double>
+                <sys:Double>128</sys:Double>
+                <sys:Double>136</sys:Double>
+                <sys:Double>144</sys:Double>
+            </x:Array>
+        </Style.Resources>
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:FontChooser}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <!--  Row 0: Font properties  -->
+                                <!--  Row 1: Empty  -->
+                                <!--  Row 2: Preview  -->
+                                <RowDefinition Height="2*" />
+                                <RowDefinition Height="11" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+
+                            <!--  Row 0: Font properties  -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <!--  Column 0: Font family  -->
+                                    <!--  Column 1: Empty  -->
+                                    <!--  Column 2: Size  -->
+                                    <!--  Column 3: Empty  -->
+                                    <!--  Column 4: Typeface  -->
+                                    <ColumnDefinition Width="11" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="11" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <!--  Row 0: Labels  -->
+                                    <!--  Row 1: TextBox and ListBoxes  -->
+                                    <!--  Row 2: Empty  -->
+                                    <!--  Row 3: Checkboxes  -->
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="11" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <!--  Column 0: Font family  -->
+                                <Label Grid.Row="0"
+                                       Grid.Column="0"
+                                       Margin="2,0,0,4"
+                                       Padding="0">
+                                    _Font family:
+                                </Label>
+                                <DockPanel Grid.Row="1"
+                                           Grid.RowSpan="3"
+                                           Grid.Column="0">
+                                    <TextBox x:Name="PART_FontFamilyTextBox"
+                                             Margin="0,0,0,7"
+                                             DockPanel.Dock="Top" />
+                                    <Grid>
+                                        <ListBox x:Name="PART_FontFamilyListBox" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate DataType="{x:Type local:FontFamilyDescription}">
+                                                    <TextBlock x:Name="FontFamilyItem"
+                                                               FontFamily="{Binding FontFamily}"
+                                                               Text="{Binding DisplayName}"
+                                                               ToolTip="{Binding DisplayName}" />
+                                                    <DataTemplate.Triggers>
+                                                        <DataTrigger Binding="{Binding IsSymbolFont}" Value="True">
+                                                            <Setter TargetName="FontFamilyItem" Property="FontFamily" Value="{DynamicResource {x:Static SystemFonts.MessageFontFamilyKey}}" />
+                                                        </DataTrigger>
+                                                    </DataTemplate.Triggers>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                        <local:ProgressRing IsActive="{TemplateBinding IsLoading}" ToolTip="Loading fonts..." />
+                                    </Grid>
+                                </DockPanel>
+
+                                <!--  Column 2: Size  -->
+                                <Label Grid.Row="0"
+                                       Grid.Column="2"
+                                       Margin="2,0,0,4"
+                                       Padding="0">
+                                    _Size:
+                                </Label>
+                                <DockPanel Grid.Row="1" Grid.Column="2">
+                                    <TextBox x:Name="PART_SizeTextBox"
+                                             Margin="0,0,0,7"
+                                             DockPanel.Dock="Top" />
+                                    <ListBox x:Name="PART_SizeListBox"
+                                             ItemsSource="{StaticResource CommonFontSizes}"
+                                             ScrollViewer.HorizontalScrollBarVisibility="Hidden" />
+                                </DockPanel>
+
+                                <!--  Column 4: Typeface  -->
+                                <Label Grid.Row="0"
+                                       Grid.Column="4"
+                                       Margin="2,0,0,4"
+                                       Padding="0">
+                                    _Typeface:
+                                </Label>
+                                <ListBox x:Name="PART_TypefaceListBox"
+                                         Grid.Row="1"
+                                         Grid.Column="4"
+                                         ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate DataType="{x:Type local:TypefaceDescription}">
+                                            <TextBlock x:Name="TypefaceItem"
+                                                       FontFamily="{Binding FontFamily}"
+                                                       FontStretch="{Binding Typeface.Stretch}"
+                                                       FontStyle="{Binding Typeface.Style}"
+                                                       FontWeight="{Binding Typeface.Weight}"
+                                                       Text="{Binding DisplayName}"
+                                                       ToolTip="{Binding DisplayName}" />
+                                            <DataTemplate.Triggers>
+                                                <DataTrigger Binding="{Binding IsSymbolFont}" Value="True">
+                                                    <Setter TargetName="TypefaceItem" Property="FontFamily" Value="{DynamicResource {x:Static SystemFonts.MessageFontFamilyKey}}" />
+                                                </DataTrigger>
+                                            </DataTemplate.Triggers>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+
+                                <!--  Row 3: Checkboxes  -->
+                                <Grid Grid.Row="3"
+                                      Grid.Column="2"
+                                      Grid.ColumnSpan="3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="11" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <CheckBox x:Name="PART_UnderlineCheckBox"
+                                              Grid.Row="0"
+                                              Grid.Column="0"
+                                              Margin="0,0,0,4">
+                                        <TextBlock TextDecorations="Underline">Underline</TextBlock>
+                                    </CheckBox>
+                                    <CheckBox x:Name="PART_BaselineCheckBox"
+                                              Grid.Row="1"
+                                              Grid.Column="0">
+                                        <TextBlock TextDecorations="Baseline">Baseline</TextBlock>
+                                    </CheckBox>
+                                    <CheckBox x:Name="PART_StrikethroughCheckBox"
+                                              Grid.Row="0"
+                                              Grid.Column="2"
+                                              Margin="0,0,0,4">
+                                        <TextBlock TextDecorations="Strikethrough">Strikethrough</TextBlock>
+                                    </CheckBox>
+                                    <CheckBox x:Name="PART_OverlineCheckBox"
+                                              Grid.Row="1"
+                                              Grid.Column="2">
+                                        <TextBlock TextDecorations="Overline">Overline</TextBlock>
+                                    </CheckBox>
+                                </Grid>
+                            </Grid>
+
+                            <!--  Row 2: Preview  -->
+                            <DockPanel Grid.Row="2">
+                                <Label Margin="2,0,0,4"
+                                       DockPanel.Dock="Top"
+                                       Padding="0">
+                                    Preview:
+                                </Label>
+                                <TextBox x:Name="PART_PreviewTextBox"
+                                         AcceptsReturn="True"
+                                         FontFamily="{TemplateBinding SelectedFontFamily}"
+                                         FontSize="{TemplateBinding SelectedFontSize}"
+                                         FontStretch="{TemplateBinding SelectedFontStretch}"
+                                         FontStyle="{TemplateBinding SelectedFontStyle}"
+                                         FontWeight="{TemplateBinding SelectedFontWeight}"
+                                         Text="{TemplateBinding PreviewText}"
+                                         TextAlignment="Center"
+                                         TextDecorations="{TemplateBinding SelectedTextDecorations}"
+                                         TextWrapping="Wrap"
+                                         VerticalScrollBarVisibility="Auto" />
+                            </DockPanel>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

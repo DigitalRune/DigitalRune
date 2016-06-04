@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Value Converters                      Assembly: DigitalRune.Windows Namespace: DigitalRune.Windows">
+    <Position X="0.5" Y="0.5" Height="0.636" Width="2.335" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.DoubleToBooleanConverter" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="9" Width="2.25" />
+    <Members>
+      <Method Name="Convert" Hidden="true" />
+      <Method Name="ConvertBack" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\DoubleToBooleanConverter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Comparison" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.MinValueConverter" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="6" Width="1.75" />
+    <Members>
+      <Field Name="_instance" Hidden="true" />
+      <Method Name="Convert" Hidden="true" />
+      <Method Name="ConvertBack" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAIAAAAAAAAgAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Converters\MinValueConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.MaxValueConverter" BaseTypeListCollapsed="true">
+    <Position X="6" Y="4.5" Width="1.75" />
+    <Members>
+      <Field Name="_instance" Hidden="true" />
+      <Method Name="Convert" Hidden="true" />
+      <Method Name="ConvertBack" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAIAAAAAAAAgAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Converters\MaxValueConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.EnumToArrayConverter" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_instance" Hidden="true" />
+      <Method Name="Convert" Hidden="true" />
+      <Method Name="ConvertBack" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAIAAAAAAAAgAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Converters\EnumToArrayConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.SingleToDoubleConverter" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="6" Width="2" />
+    <Members>
+      <Field Name="_instance" Hidden="true" />
+      <Method Name="Convert" Hidden="true" />
+      <Method Name="ConvertBack" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAIAAAAAAAAgAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Converters\SingleToDoubleConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.ValueToBooleanConverter" BaseTypeListCollapsed="true">
+    <Position X="5" Y="7.5" Width="2" />
+    <Members>
+      <Method Name="Convert" Hidden="true" />
+      <Method Name="ConvertBack" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAhAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\ValueToBooleanConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.ValueToStringConverter" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="7.5" Width="2" />
+    <Members>
+      <Field Name="_instance" Hidden="true" />
+      <Method Name="Convert" Hidden="true" />
+      <Method Name="ConvertBack" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAIAAAAAAAAgAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Converters\ValueToStringConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.InvertBooleanConverter" BaseTypeListCollapsed="true">
+    <Position X="3" Y="3" Width="2" />
+    <Members>
+      <Field Name="_instance" Hidden="true" />
+      <Method Name="Convert" Hidden="true" />
+      <Method Name="ConvertBack" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAIAAAAAAAAgAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Converters\InvertBooleanConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.IsNotNullConverter" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="4.5" Width="1.75" />
+    <Members>
+      <Field Name="_instance" Hidden="true" />
+      <Method Name="Convert" Hidden="true" />
+      <Method Name="ConvertBack" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAIAAAAAAAAgAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Converters\IsNotNullConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.IsNullConverter" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="4.5" Width="1.5" />
+    <Members>
+      <Field Name="_instance" Hidden="true" />
+      <Method Name="Convert" Hidden="true" />
+      <Method Name="ConvertBack" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAIAAAAAAAAgAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Converters\IsNullConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.NullToVisibilityConverter" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="6" Width="2" />
+    <Members>
+      <Field Name="_instance" Hidden="true" />
+      <Method Name="Convert" Hidden="true" />
+      <Method Name="ConvertBack" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAIAAAAAAAAgAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Converters\NullToVisibilityConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.ComparisonToVisibilityConverter" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.5" Width="2.5" />
+    <Members>
+      <Field Name="_instance" Hidden="true" />
+      <Method Name="Convert" Hidden="true" />
+      <Method Name="ConvertBack" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAIAAAAAAAAgAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Converters\ComparisonToVisibilityConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.InvertedBooleanToVisibilityConverter" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="3" Width="2.75" />
+    <Members>
+      <Field Name="_instance" Hidden="true" />
+      <Method Name="Convert" Hidden="true" />
+      <Method Name="ConvertBack" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAIAAAAAAAAgAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Converters\InvertedBooleanToVisibilityConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.LookupEntry">
+    <Position X="3" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Converters\LookupConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.LookupConverter" BaseTypeListCollapsed="true">
+    <Position X="3" Y="9" Width="1.5" />
+    <Members>
+      <Method Name="Convert" Hidden="true" />
+      <Method Name="ConvertBack" Hidden="true" />
+      <Method Name="LookupConverter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\LookupConverter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Entries" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.ToLowerConverter" BaseTypeListCollapsed="true">
+    <Position X="7" Y="6" Width="1.75" />
+    <Members>
+      <Field Name="_instance" Hidden="true" />
+      <Method Name="Convert" Hidden="true" />
+      <Method Name="ConvertBack" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAIAAAAAAAAgAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Converters\ToLowerConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.ToUpperConverter" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="7.5" Width="1.75" />
+    <Members>
+      <Field Name="_instance" Hidden="true" />
+      <Method Name="Convert" Hidden="true" />
+      <Method Name="ConvertBack" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAIAAAAAAAAgAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Converters\ToUpperConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.EnumToBooleanConverter">
+    <Position X="5.5" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_instance" Hidden="true" />
+      <Method Name="Convert" Hidden="true" />
+      <Method Name="ConvertBack" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAIAAAAAAAAgAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Converters\EnumToBooleanConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.IsNaNConverter">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <Members>
+      <Field Name="_instance" Hidden="true" />
+      <Method Name="Convert" Hidden="true" />
+      <Method Name="ConvertBack" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAIAAAAAAAAgAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Converters\IsNaNConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.IntegerToDoubleConverter">
+    <Position X="0.5" Y="3" Width="2.25" />
+    <Members>
+      <Field Name="_instance" Hidden="true" />
+      <Method Name="Convert" Hidden="true" />
+      <Method Name="ConvertBack" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAIAAAAAAAAgAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Converters\IntegerToDoubleConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Enum Name="DigitalRune.Windows.ComparisonOperator">
+    <Position X="0.5" Y="10.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAEAAQQAAAAQAAAE=</HashCode>
+      <FileName>ComparisonOperator.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

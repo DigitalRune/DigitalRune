@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Constraints and Joints            Assembly: DigitalRune.Physics        Namespace: DigitalRune.Physics">
+    <Position X="0.5" Y="0.5" Height="0.625" Width="2.064" />
+  </Comment>
+  <Class Name="DigitalRune.Physics.Constraints.Constraint" Collapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAEAQSQBACKAEAAIAAAAAAAAAEACRAAACBAAAEAA=</HashCode>
+      <FileName>Constraints\Constraint.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Physics.Constraints.BallJoint">
+    <Position X="3" Y="1.75" Width="2" />
+    <Members>
+      <Field Name="_anchorAWorld" Hidden="true" />
+      <Field Name="_anchorBWorld" Hidden="true" />
+      <Field Name="_anchorPositionALocal" Hidden="true" />
+      <Field Name="_anchorPositionBLocal" Hidden="true" />
+      <Field Name="_constraintImpulse" Hidden="true" />
+      <Field Name="_deltaTime" Hidden="true" />
+      <Field Name="_errorReduction" Hidden="true" />
+      <Field Name="_kInverse" Hidden="true" />
+      <Field Name="_maxForce" Hidden="true" />
+      <Field Name="_softness" Hidden="true" />
+      <Field Name="_targetVelocity" Hidden="true" />
+      <Method Name="OnApplyImpulse" Hidden="true" />
+      <Method Name="OnChanged" Hidden="true" />
+      <Method Name="OnSetup" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EQBAAEAAAQAACBAEAAAAACgAAAEAQAohECAAAAAACAA=</HashCode>
+      <FileName>Constraints\BallJoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Physics.Constraints.PointOnPlaneConstraint">
+    <Position X="6" Y="9.75" Width="2" />
+    <Members>
+      <Field Name="_linearLimit" Hidden="true" />
+      <Method Name="OnAddToSimulation" Hidden="true" />
+      <Method Name="OnApplyImpulse" Hidden="true" />
+      <Method Name="OnChanged" Hidden="true" />
+      <Method Name="OnRemoveFromSimulation" Hidden="true" />
+      <Method Name="OnSetup" Hidden="true" />
+      <Method Name="PointOnPlaneConstraint" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>kABQAECAAQAQCAAACAIAAQAAAAAAAAqBAAEAAAAACAA=</HashCode>
+      <FileName>Constraints\PointOnPlaneConstraint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Physics.Constraints.PointOnLineConstraint">
+    <Position X="3" Y="9.75" Width="2" />
+    <Members>
+      <Field Name="_linearLimit" Hidden="true" />
+      <Method Name="OnAddToSimulation" Hidden="true" />
+      <Method Name="OnApplyImpulse" Hidden="true" />
+      <Method Name="OnChanged" Hidden="true" />
+      <Method Name="OnRemoveFromSimulation" Hidden="true" />
+      <Method Name="OnSetup" Hidden="true" />
+      <Method Name="PointOnLineConstraint" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>kABQAECAAQAACAAAAAIAAQAAAAAAAAqBAAEAAACACAA=</HashCode>
+      <FileName>Constraints\PointOnLineConstraint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Physics.Constraints.UniversalJoint">
+    <Position X="6" Y="5.75" Width="2" />
+    <Members>
+      <Field Name="_angularLimit" Hidden="true" />
+      <Field Name="_linearLimit" Hidden="true" />
+      <Method Name="OnAddToSimulation" Hidden="true" />
+      <Method Name="OnApplyImpulse" Hidden="true" />
+      <Method Name="OnChanged" Hidden="true" />
+      <Method Name="OnRemoveFromSimulation" Hidden="true" />
+      <Method Name="OnSetup" Hidden="true" />
+      <Method Name="UniversalJoint" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>kABAAECAAQAACAAAAAIAAYAQAAAAAAiDAAEAAAAACAA=</HashCode>
+      <FileName>Constraints\UniversalJoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Physics.Constraints.FixedJoint">
+    <Position X="0.5" Y="1.75" Width="2" />
+    <Members>
+      <Field Name="_angularLimit" Hidden="true" />
+      <Field Name="_linearLimit" Hidden="true" />
+      <Method Name="FixedJoint" Hidden="true" />
+      <Method Name="OnAddToSimulation" Hidden="true" />
+      <Method Name="OnApplyImpulse" Hidden="true" />
+      <Method Name="OnChanged" Hidden="true" />
+      <Method Name="OnRemoveFromSimulation" Hidden="true" />
+      <Method Name="OnSetup" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EABAAEAAAQAACAAAAAIAAIAQAAAAAAiDAAEAAAAACAA=</HashCode>
+      <FileName>Constraints\FixedJoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Physics.Constraints.Hinge2Joint">
+    <Position X="3" Y="5.75" Width="2" />
+    <Members>
+      <Field Name="_angularLimit" Hidden="true" />
+      <Field Name="_linearLimit" Hidden="true" />
+      <Method Name="Hinge2Joint" Hidden="true" />
+      <Method Name="OnAddToSimulation" Hidden="true" />
+      <Method Name="OnApplyImpulse" Hidden="true" />
+      <Method Name="OnChanged" Hidden="true" />
+      <Method Name="OnRemoveFromSimulation" Hidden="true" />
+      <Method Name="OnSetup" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>kABAAECAAQAACAAAAAIAAYAQAAAAAAiDAAEAAAAACAA=</HashCode>
+      <FileName>Constraints\Hinge2Joint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Physics.Constraints.HingeJoint">
+    <Position X="0.5" Y="5.75" Width="2" />
+    <Members>
+      <Field Name="_angularLimit" Hidden="true" />
+      <Field Name="_linearLimit" Hidden="true" />
+      <Method Name="HingeJoint" Hidden="true" />
+      <Method Name="OnAddToSimulation" Hidden="true" />
+      <Method Name="OnApplyImpulse" Hidden="true" />
+      <Method Name="OnChanged" Hidden="true" />
+      <Method Name="OnRemoveFromSimulation" Hidden="true" />
+      <Method Name="OnSetup" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>kADQAECAAQAACAAAAAIAAYAQAAAAAAiDAAEAAAAACAA=</HashCode>
+      <FileName>Constraints\HingeJoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Physics.Constraints.NoRotationConstraint">
+    <Position X="0.5" Y="9.75" Width="2" />
+    <Members>
+      <Field Name="_angularLimit" Hidden="true" />
+      <Method Name="NoRotationConstraint" Hidden="true" />
+      <Method Name="OnAddToSimulation" Hidden="true" />
+      <Method Name="OnApplyImpulse" Hidden="true" />
+      <Method Name="OnChanged" Hidden="true" />
+      <Method Name="OnRemoveFromSimulation" Hidden="true" />
+      <Method Name="OnSetup" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EABAAEAAAQAACAAAAAIAAAAEAAAAAAiDAAAAAAAACAA=</HashCode>
+      <FileName>Constraints\NoRotationConstraint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Physics.Constraints.PrismaticJoint">
+    <Position X="6" Y="1.75" Width="2" />
+    <Members>
+      <Field Name="_angularLimit" Hidden="true" />
+      <Field Name="_linearLimit" Hidden="true" />
+      <Method Name="OnAddToSimulation" Hidden="true" />
+      <Method Name="OnApplyImpulse" Hidden="true" />
+      <Method Name="OnChanged" Hidden="true" />
+      <Method Name="OnRemoveFromSimulation" Hidden="true" />
+      <Method Name="OnSetup" Hidden="true" />
+      <Method Name="PrismaticJoint" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>kABQAECAAQAACAAAAAIAAYAQAAAAAAiDAAEAAAAACAA=</HashCode>
+      <FileName>Constraints\PrismaticJoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Physics.Constraints.CylindricalJoint">
+    <Position X="8.25" Y="1.75" Width="2" />
+    <Members>
+      <Field Name="_angularLimit" Hidden="true" />
+      <Field Name="_linearLimit" Hidden="true" />
+      <Method Name="CylindricalJoint" Hidden="true" />
+      <Method Name="OnAddToSimulation" Hidden="true" />
+      <Method Name="OnApplyImpulse" Hidden="true" />
+      <Method Name="OnChanged" Hidden="true" />
+      <Method Name="OnRemoveFromSimulation" Hidden="true" />
+      <Method Name="OnSetup" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EABAAEQAAQAACAAACEYAAYAYAAAAAAiDAAEAAAAQCAA=</HashCode>
+      <FileName>Constraints\CylindricalJoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

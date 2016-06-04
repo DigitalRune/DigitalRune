@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Context-sensitive Help                                       Assembly: DigitalRune.Windows.Framework  Namespace: DigitalRune.Windows.Framework">
+    <Position X="0.5" Y="0.5" Height="0.678" Width="2.857" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.Framework.Help">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <Members>
+      <Field Name="_helpProvider" Hidden="true" />
+      <Method Name="CanExecute" Hidden="true" />
+      <Method Name="Executed" Hidden="true" />
+      <Method Name="Help" Hidden="true" />
+      <Field Name="KeywordProperty" Hidden="true" />
+      <Method Name="ShowHelp" Hidden="true" />
+      <Field Name="UrlProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQAIAAAAAAgAAAAAlAAAAAAAAAAAAICAAAAQAEgAAA=</HashCode>
+      <FileName>Help\Help.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="HelpProvider" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="DigitalRune.Windows.Framework.IHelpProvider">
+    <Position X="3.25" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Help\IHelpProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

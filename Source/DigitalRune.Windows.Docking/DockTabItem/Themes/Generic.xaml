@@ -1,0 +1,392 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dr="clr-namespace:DigitalRune.Windows;assembly=DigitalRune.Windows"
+                    xmlns:local="clr-namespace:DigitalRune.Windows.Docking">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DigitalRune.Windows.Docking;component/Resources/Brushes.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+
+    <!--  CONVERTERS  -->
+
+    <dr:NullToVisibilityConverter x:Key="IconVisibilityConverter" />
+
+
+    <!--  GEOMETRIES  -->
+
+    <Geometry x:Key="TabLeftOutline">M0,20 L0,4 Q0,0 4,0 L20,0</Geometry>
+    <Geometry x:Key="TabLeftFill">M0,20 L0,4 Q0,0 4,0 L20,0 20,20 Z</Geometry>
+    <Geometry x:Key="TabRightOutline">M0,0 C8,0 12,20 20,20</Geometry>
+    <Geometry x:Key="TabRightFill">M0,0 C8,0 12,20 20,20 L0,20 Z</Geometry>
+
+
+    <!--  STYLES  -->
+
+    <!--  The focus visual shown on the tab when the DockTabItem has keyboard focus.  -->
+    <Style x:Key="TabItemFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle Margin="3,3,3,1"
+                               SnapsToDevicePixels="True"
+                               Stroke="Black"
+                               StrokeDashArray="1 2"
+                               StrokeThickness="1" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <!--  DataContext = IDockTabPane  -->
+    <Style TargetType="{x:Type local:DockTabItem}">
+        <!--  Default background when the DockTabItem is selected in the DockTabPane.  -->
+        <Setter Property="Background" Value="White" />
+        <Setter Property="BorderBrush" Value="{StaticResource TabControlNormalBorderBrush}" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource TabItemFocusVisual}" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="MinWidth" Value="32" />
+        <Setter Property="MinHeight" Value="20" />
+        <Setter Property="IsTabStop" Value="False" />
+        <!--
+            The control template of the DockTabItem only contains the tab. The content is automatically
+            presented by the DockTabPane. (DockTabItems and DockTabPanes are similar to TabItems and
+            TabControls.)
+        -->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:DockTabItem}">
+                    <Grid Name="PART_Tab" Margin="0,0,-12,0">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="TabLeftFill"
+                                                                       Storyboard.TargetProperty="Fill">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ButtonNormalBackground}" />
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="TabCenter"
+                                                                       Storyboard.TargetProperty="Background">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ButtonNormalBackground}" />
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="TabRightFill"
+                                                                       Storyboard.TargetProperty="Fill">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ButtonNormalBackground}" />
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="TabLeftOutline"
+                                                                       Storyboard.TargetProperty="Stroke">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ButtonNormalBorder}" />
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="TabCenter"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ButtonNormalBorder}" />
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="TabRightOutline"
+                                                                       Storyboard.TargetProperty="Stroke">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ButtonNormalBorder}" />
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="TabLeftFill"
+                                                                       Storyboard.TargetProperty="Fill">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TabItemHotBackground}" />
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="TabCenter"
+                                                                       Storyboard.TargetProperty="Background">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TabItemHotBackground}" />
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="TabRightFill"
+                                                                       Storyboard.TargetProperty="Fill">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TabItemHotBackground}" />
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="TabLeftOutline"
+                                                                       Storyboard.TargetProperty="Stroke">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TabItemHotBorderBrush}" />
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="TabCenter"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TabItemHotBorderBrush}" />
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="TabRightOutline"
+                                                                       Storyboard.TargetProperty="Stroke">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TabItemHotBorderBrush}" />
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Selected">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="TabBottomBorder"
+                                                                       Storyboard.TargetProperty="BorderThickness">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Thickness Bottom="0"
+                                                                   Left="0"
+                                                                   Right="0"
+                                                                   Top="0" />
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Active">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="Title"
+                                                                       Storyboard.TargetProperty="FontWeight">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <FontWeight>SemiBold</FontWeight>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="TabBottomBorder"
+                                                                       Storyboard.TargetProperty="BorderThickness">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Thickness Bottom="0"
+                                                                   Left="0"
+                                                                   Right="0"
+                                                                   Top="0" />
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0"
+                                                         Storyboard.TargetName="Icon"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.5" />
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="Title"
+                                                                       Storyboard.TargetProperty="Foreground">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="TabLeftFill"
+                                                                       Storyboard.TargetProperty="Fill">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TabItemDisabledBackground}" />
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="TabCenter"
+                                                                       Storyboard.TargetProperty="Background">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TabItemDisabledBackground}" />
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="TabRightFill"
+                                                                       Storyboard.TargetProperty="Fill">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TabItemDisabledBackground}" />
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="TabLeftOutline"
+                                                                       Storyboard.TargetProperty="Stroke">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TabItemDisabledBorderBrush}" />
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="TabCenter"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TabItemDisabledBorderBrush}" />
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Duration="0"
+                                                                       Storyboard.TargetName="TabRightOutline"
+                                                                       Storyboard.TargetProperty="Stroke">
+                                            <ObjectAnimationUsingKeyFrames.KeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TabItemDisabledBorderBrush}" />
+                                            </ObjectAnimationUsingKeyFrames.KeyFrames>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Unfocused" />
+                                <VisualState x:Name="Focused" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!--  Left edge of the tab.  -->
+                        <Grid Width="{Binding ElementName=PART_Tab, Path=ActualHeight}" Height="{Binding ElementName=PART_Tab, Path=ActualHeight}">
+                            <Path x:Name="TabLeftFill"
+                                  Grid.Column="0"
+                                  Margin="0,1,-1,0"
+                                  Data="{StaticResource TabLeftFill}"
+                                  Fill="{TemplateBinding Background}"
+                                  Stretch="Fill"
+                                  StrokeThickness="0" />
+                            <Path x:Name="TabLeftOutline"
+                                  Grid.Column="0"
+                                  Margin="0,0,-1,0"
+                                  Data="{StaticResource TabLeftOutline}"
+                                  Stretch="Fill"
+                                  Stroke="{TemplateBinding BorderBrush}"
+                                  StrokeThickness="1" />
+                            <Border Grid.Column="0"
+                                    Margin="0,0,-1,0"
+                                    BorderThickness="1,1,0,0">
+                                <Path Data="{StaticResource TabLeftOutline}"
+                                      Opacity="0.75"
+                                      Stretch="Fill"
+                                      Stroke="White"
+                                      StrokeThickness="1" />
+                            </Border>
+                        </Grid>
+
+                        <!--  Right edge of the tab.  -->
+                        <Grid Grid.Column="2"
+                              Width="{Binding ElementName=PART_Tab, Path=ActualHeight}"
+                              Height="{Binding ElementName=PART_Tab, Path=ActualHeight}">
+                            <Path x:Name="TabRightFill"
+                                  Margin="-1,1,0,0"
+                                  Data="{StaticResource TabRightFill}"
+                                  Fill="{TemplateBinding Background}"
+                                  Stretch="Fill"
+                                  StrokeThickness="0" />
+                            <Path x:Name="TabRightOutline"
+                                  Margin="-1,0,0,0"
+                                  Data="{StaticResource TabRightOutline}"
+                                  Stretch="Fill"
+                                  Stroke="{TemplateBinding BorderBrush}"
+                                  StrokeThickness="1" />
+                            <Border Margin="-1,0,0,0" BorderThickness="0,1,1,0">
+                                <Path Margin="0,0,1,0"
+                                      Data="{StaticResource TabRightOutline}"
+                                      Opacity="0.75"
+                                      Stretch="Fill"
+                                      Stroke="White"
+                                      StrokeThickness="1" />
+                            </Border>
+                        </Grid>
+
+
+                        <!--  Center of the tab.  -->
+                        <Border x:Name="TabCenter"
+                                Grid.Column="1"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="0,1,0,0">
+                            <Border BorderBrush="White"
+                                    BorderThickness="0,1,0,0"
+                                    Opacity="1" />
+                        </Border>
+
+                        <!--  Content  -->
+                        <Border Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Margin="5,2,0,2"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                            <!--  Each DockTabItem is represented by its icon and title.  -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <dr:PixelSnapper>
+                                    <Image x:Name="Icon"
+                                           Height="16"
+                                           Margin="0,0,2,0"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Top"
+                                           Source="{TemplateBinding Icon}"
+                                           Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Icon, Mode=OneWay, Converter={StaticResource IconVisibilityConverter}}" />
+                                </dr:PixelSnapper>
+                                <TextBlock x:Name="Title"
+                                           Grid.Column="1"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Foreground="{TemplateBinding Foreground}"
+                                           Text="{TemplateBinding Title}"
+                                           TextTrimming="CharacterEllipsis" />
+                            </Grid>
+                        </Border>
+
+                        <!--
+              <ContentControl IsTabStop="False"
+              Foreground="{TemplateBinding Foreground}"
+              FontSize="{TemplateBinding FontSize}"
+              HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+              VerticalAlignment="{TemplateBinding VerticalAlignment}"
+              Margin="{TemplateBinding Padding}"
+              Cursor="{TemplateBinding Cursor}" />
+                        -->
+
+                        <!--  Bottom edge of tab.  -->
+                        <Border x:Name="TabBottomBorder"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="0,0,0,1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

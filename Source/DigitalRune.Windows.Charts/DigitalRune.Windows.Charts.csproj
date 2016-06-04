@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{28D8DD9B-47A8-4837-9E67-E253E805EDE8}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.Windows.Charts</RootNamespace>
+    <AssemblyName>DigitalRune.Windows.Charts</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <FileUpgradeFlags></FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <ExpressionBlendVersion>4.0.20901.0</ExpressionBlendVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;WINDOWS;USE_STREAMGEOMETRY</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\DigitalRune.Windows.Charts.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;WINDOWS;USE_STREAMGEOMETRY</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\DigitalRune.Windows.Charts.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Expression Blend\.NET Framework\v4.5\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune.Windows\DigitalRune.Windows.csproj">
+      <Project>{A560721A-6665-4534-80B6-9DA1F79B00DD}</Project>
+      <Name>DigitalRune.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune\DigitalRune.csproj">
+      <Project>{5A0E3C60-1CA9-49D5-84CA-308CB8E3A3B4}</Project>
+      <Name>DigitalRune</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <Compile Include="Axes\Axis.cs" />
+    <Compile Include="Axes\AxisPredicateConverter.cs" />
+    <Compile Include="Axes\AxisPredicates.cs" />
+    <Compile Include="Axes\AxisScale.cs" />
+    <Compile Include="Axes\DateTimeLabel.cs" />
+    <Compile Include="Axes\DateTimeRange.cs" />
+    <Compile Include="Axes\DateTimeRangeConverter.cs" />
+    <Compile Include="Axes\DateTimeScale.cs" />
+    <Compile Include="Axes\DoubleRange.cs" />
+    <Compile Include="Axes\DoubleRangeConverter.cs" />
+    <Compile Include="Axes\LinearScale.cs" />
+    <Compile Include="Axes\LogScale.cs" />
+    <Compile Include="Axes\TextLabel.cs" />
+    <Compile Include="Axes\TextLabelCollection.cs" />
+    <Compile Include="Axes\TextScale.cs" />
+    <Page Include="Axes\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="ChartCategories.cs" />
+    <Compile Include="ChartElements\ChartBackground.cs" />
+    <Compile Include="ChartElements\ChartCross.cs" />
+    <Compile Include="ChartElements\ChartElement.cs" />
+    <Compile Include="ChartElements\ChartGrid.cs" />
+    <Compile Include="ChartElements\HorizontalChartLine.cs" />
+    <Compile Include="ChartElements\IChartElement.cs" />
+    <Page Include="ChartElements\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="ChartElements\VerticalChartLine.cs" />
+    <Compile Include="ChartException.cs" />
+    <Compile Include="ChartPanel.cs" />
+    <Compile Include="ChartPanel_AttachedProperties.cs" />
+    <Compile Include="ChartPanel_HitTest.cs" />
+    <Compile Include="ChartRenderMode.cs" />
+    <Compile Include="Charts\AreaFillMode.cs" />
+    <Compile Include="Charts\BarChart.cs" />
+    <Compile Include="Charts\BarChartGroup.cs" />
+    <Compile Include="Charts\BarChartGrouping.cs" />
+    <Compile Include="Charts\BarFillMode.cs" />
+    <Compile Include="Charts\Chart.cs" />
+    <Compile Include="Charts\ChartGroup.cs" />
+    <Compile Include="Charts\ChartGroup{T}.cs" />
+    <Compile Include="Charts\ChartInterpolation.cs" />
+    <Compile Include="Charts\ColoredBarChart.cs" />
+    <Compile Include="Charts\ColoredLineChart.cs" />
+    <Compile Include="Charts\HeatChart.cs" />
+    <Compile Include="Charts\HeatChartGroup.cs" />
+    <Compile Include="Charts\ILineChartGroup.cs" />
+    <Compile Include="Charts\LineChart.cs" />
+    <Compile Include="Charts\LineChartGroup.cs" />
+    <Compile Include="Charts\LineChartGrouping.cs" />
+    <Compile Include="Charts\PieChart.cs" />
+    <Compile Include="Charts\PieChartItem.cs" />
+    <Compile Include="Charts\ScatterPlot.cs" />
+    <Page Include="Charts\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <None Include="Class Diagrams\Windows.Charts.Interactivity.cd" />
+    <None Include="Class Diagrams\Windows.Charts.cd" />
+    <None Include="Class Diagrams\Windows.Charts_Axes.cd" />
+    <None Include="Class Diagrams\Windows.Charts_Charts.cd" />
+    <None Include="Class Diagrams\Windows.Charts_Data.cd" />
+    <None Include="Class Diagrams\Windows.Charts_HitTests.cd" />
+    <None Include="Class Diagrams\Windows.Charts_Legend.cd" />
+    <None Include="Class Diagrams\Windows.Charts_Misc.cd" />
+    <Compile Include="Data\ChartDataException.cs" />
+    <Compile Include="Data\ChartDataHelper.cs" />
+    <Compile Include="Data\CompositeData.cs" />
+    <Compile Include="Data\CompositeDataSource.cs" />
+    <Compile Include="Data\DataPoint.cs" />
+    <Compile Include="Data\DataPointCollection.cs" />
+    <Compile Include="Data\DoubleValueExtractor.cs" />
+    <Compile Include="Data\ObservableDataPointCollection.cs" />
+    <Compile Include="Data\ObservablePointListWrapper.cs" />
+    <Compile Include="Data\PointListEnumerator.cs" />
+    <Compile Include="Data\PointListWrapper.cs" />
+    <Compile Include="Data\PointValueExtractor.cs" />
+    <Compile Include="DefaultChartPanel.cs" />
+    <Compile Include="HitTests\AxisHitTestResult.cs" />
+    <Compile Include="HitTests\ChartHitTestResult.cs" />
+    <Compile Include="HitTests\ChartPanelHitTestResult.cs" />
+    <Compile Include="Interactivity\AxisPanBehavior.cs" />
+    <Compile Include="Interactivity\AxisZoomBehavior.cs" />
+    <Compile Include="Interactivity\ChartPanBehavior.cs" />
+    <Compile Include="Interactivity\ChartSelectionBehavior.cs" />
+    <Compile Include="Interactivity\ChartSelectionChangedEventArgs.cs" />
+    <Compile Include="Interactivity\ChartSelectionRectangleEventArgs.cs" />
+    <Compile Include="Interactivity\ChartZoomBehavior.cs" />
+    <Compile Include="Interactivity\MouseGuidesBehavior.cs" />
+    <Compile Include="Interactivity\SelectionRectangle.cs" />
+    <Compile Include="Legend\Legend.cs" />
+    <Compile Include="Legend\LegendItem.cs" />
+    <Compile Include="Legend\PieChartLegend.cs" />
+    <Page Include="Legend\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="Properties\AssemblyInfo.template" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Utilities\ChartHelper.cs" />
+    <Compile Include="Utilities\FormatHelper.cs" />
+    <Compile Include="Utilities\IBrushSelector.cs" />
+    <Compile Include="Utilities\IndexedBrushSelector.cs" />
+    <Compile Include="Utilities\Palette.cs" />
+    <Compile Include="Utilities\PaletteEntry.cs" />
+    <Compile Include="Utilities\PaletteException.cs" />
+    <Compile Include="Utilities\PaletteIndex.cs" />
+    <Compile Include="Utilities\PaletteMode.cs" />
+    <Compile Include="Utilities\PathRenderer.cs" />
+  </ItemGroup>
+</Project>

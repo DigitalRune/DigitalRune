@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Numeric up/down controls                             Assembly: DigitalRune.Windows.Controls   Namespace: DigitalRune.Windows.Controls">
+    <Position X="0.5" Y="0.5" Height="0.635" Width="2.658" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.Controls.BaseUpDownControl&lt;T&gt;">
+    <Position X="3.5" Y="1.75" Width="1.75" />
+    <Members>
+      <Field Name="_buttonDown" Hidden="true" />
+      <Field Name="_buttonUp" Hidden="true" />
+      <Field Name="_textBox" Hidden="true" />
+      <Method Name="BaseUpDownControl" Hidden="true" />
+      <Method Name="CoerceValue" Hidden="true" />
+      <Field Name="MaximumProperty" Hidden="true" />
+      <Field Name="MinimumProperty" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnDownClicked" Hidden="true" />
+      <Method Name="OnGotFocus" Hidden="true" />
+      <Method Name="OnGotKeyboardFocus" Hidden="true" />
+      <Method Name="OnMaximumChanged" Hidden="true" />
+      <Method Name="OnMinimumChanged" Hidden="true" />
+      <Method Name="OnPreviewKeyDown" Hidden="true" />
+      <Method Name="OnPreviewTextBoxInput" Hidden="true" />
+      <Method Name="OnUpClicked" Hidden="true" />
+      <Method Name="OnValueChanged" Hidden="true" />
+      <Field Name="ValueChangedEvent" Hidden="true" />
+      <Field Name="ValueProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>oAAAACKAACRAAIAAABAQAAACAEAQCAEABAAgARAIAAA=</HashCode>
+      <FileName>NumericUpDown\BaseUpDownControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.NumericUpDown">
+    <Position X="2.25" Y="5.75" Width="2" />
+    <Members>
+      <Field Name="_stringFormat" Hidden="true" />
+      <Field Name="_textBox" Hidden="true" />
+      <Field Name="_textBoxBinding" Hidden="true" />
+      <Field Name="_textBoxBindingExpression" Hidden="true" />
+      <Field Name="DecimalPlacesProperty" Hidden="true" />
+      <Method Name="IncreaseWithModifiers" Hidden="true" />
+      <Field Name="IncrementProperty" Hidden="true" />
+      <Method Name="NumericUpDown" Hidden="true" />
+      <Method Name="OnDecimalPlacesChanged" Hidden="true" />
+      <Method Name="OnDecrease" Hidden="true" />
+      <Method Name="OnIncrease" Hidden="true" />
+      <Method Name="OnStringValueChanged" Hidden="true" />
+      <Method Name="OnTextBoxKeyDown" Hidden="true" />
+      <Method Name="OnTextBoxLostFocus" Hidden="true" />
+      <Method Name="RemoveValueBinding" Hidden="true" />
+      <Method Name="SetValueBinding" Hidden="true" />
+      <Property Name="StringValue" Hidden="true" />
+      <Field Name="StringValueProperty" Hidden="true" />
+      <Method Name="UpdateStringValueFromDoubleValue" Hidden="true" />
+      <Method Name="ValidateDecimalPlaces" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>JAAAAACAAQQAAIAgIBAQAAAAAEAACCEgiAJAABBACAA=</HashCode>
+      <FileName>NumericUpDown\NumericUpDown.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.TimeSpanUpDown">
+    <Position X="4.5" Y="5.75" Width="2.25" />
+    <Members>
+      <Field Name="_textBox" Hidden="true" />
+      <Field Name="_textBoxBinding" Hidden="true" />
+      <Field Name="AlwaysShowDaysProperty" Hidden="true" />
+      <Field Name="AlwaysShowHoursAndMinutesProperty" Hidden="true" />
+      <Field Name="AlwaysShowMillisecondsProperty" Hidden="true" />
+      <Field Name="AlwaysShowSecondsProperty" Hidden="true" />
+      <Field Name="AlwaysShowSignProperty" Hidden="true" />
+      <Method Name="Convert" Hidden="true" />
+      <Method Name="ConvertBack" Hidden="true" />
+      <Method Name="GetUnitAtCaret" Hidden="true" />
+      <Method Name="IncreaseWithModifiers" Hidden="true" />
+      <Property Name="IsBindingValid" Hidden="true" />
+      <Method Name="OnAlwaysShowXChanged" Hidden="true" />
+      <Method Name="OnDecrease" Hidden="true" />
+      <Method Name="OnIncrease" Hidden="true" />
+      <Method Name="OnPreviewKeyDown" Hidden="true" />
+      <Method Name="OnTextBoxLostFocus" Hidden="true" />
+      <Method Name="RemoveValueBinding" Hidden="true" />
+      <Method Name="SetCaret" Hidden="true" />
+      <Method Name="SetValueBinding" Hidden="true" />
+      <Method Name="TimeSpanUpDown" Hidden="true" />
+      <Method Name="UpdateTextBox" Hidden="true" />
+      <Method Name="UpdateValueBinding" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Enum Name="DigitalRune.Windows.Controls.TimeSpanUpDown.TimeUnit" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>NumericUpDown\TimeSpanUpDown.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>BAABAACAAAKAAIACAMAAAAAAIEgCCAAQ2QBAAxAoAAA=</HashCode>
+      <FileName>NumericUpDown\TimeSpanUpDown.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.BaseUpDownControl">
+    <Position X="3.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NumericUpDown\BaseUpDownControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

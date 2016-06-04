@@ -1,0 +1,649 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Code completion">
+    <Position X="9.116" Y="0.705" Height="0.302" Width="1.221" />
+  </Comment>
+  <Comment CommentText="General">
+    <Position X="0.5" Y="0.5" Height="0.302" Width="1.221" />
+  </Comment>
+  <Comment CommentText="Document">
+    <Position X="0.526" Y="7.831" Height="0.302" Width="1.221" />
+  </Comment>
+  <Comment CommentText="Folding">
+    <Position X="4" Y="7.843" Height="0.302" Width="1.221" />
+  </Comment>
+  <Comment CommentText="Formatting">
+    <Position X="8.856" Y="7.914" Height="0.302" Width="1.221" />
+  </Comment>
+  <Comment CommentText="Highlighting">
+    <Position X="0.514" Y="13.562" Height="0.302" Width="1.221" />
+  </Comment>
+  <Comment CommentText="Indentation">
+    <Position X="3.893" Y="12.395" Height="0.302" Width="1.221" />
+  </Comment>
+  <Comment CommentText="Rendering">
+    <Position X="0.5" Y="17.036" Height="0.302" Width="1.221" />
+  </Comment>
+  <Class Name="ICSharpCode.AvalonEdit.AvalonEditCommands">
+    <Position X="4" Y="1.25" Width="1.75" />
+    <Members>
+      <Field Name="_comment" Hidden="true" />
+      <Field Name="_pasteMultiple" Hidden="true" />
+      <Field Name="_syntaxHighlighting" Hidden="true" />
+      <Field Name="_toggleAllFolds" Hidden="true" />
+      <Field Name="_toggleFold" Hidden="true" />
+      <Field Name="_uncomment" Hidden="true" />
+      <Field Name="ConvertLeadingSpacesToTabs" Hidden="true" />
+      <Field Name="ConvertLeadingTabsToSpaces" Hidden="true" />
+      <Field Name="ConvertSpacesToTabs" Hidden="true" />
+      <Field Name="ConvertTabsToSpaces" Hidden="true" />
+      <Field Name="ConvertToLowercase" Hidden="true" />
+      <Field Name="ConvertToTitleCase" Hidden="true" />
+      <Field Name="ConvertToUppercase" Hidden="true" />
+      <Field Name="DeleteLine" Hidden="true" />
+      <Field Name="IndentSelection" Hidden="true" />
+      <Field Name="InvertCase" Hidden="true" />
+      <Field Name="RemoveLeadingWhitespace" Hidden="true" />
+      <Field Name="RemoveTrailingWhitespace" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAIgAQsVBCAAABgCAAAAAaAAABAAAADAAgQAAACAAA=</HashCode>
+      <FileName>AvalonEditCommands.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.ClipboardRing">
+    <Position X="6.5" Y="1.25" Width="1.5" />
+    <Members>
+      <Field Name="_entries" Hidden="true" />
+      <Field Name="_syncRoot" Hidden="true" />
+      <Field Name="Capacity" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAJAAAAAAAAAAAEAAAAAAAACgAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DigitalRune\ClipboardRing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.TextEditor" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.75" Width="2.75" />
+    <Members>
+      <Field Name="_bracketMarkerRenderer" Hidden="true" />
+      <Field Name="_foldingStrategy" Hidden="true" />
+      <Field Name="_foldingTimer" Hidden="true" />
+      <Field Name="_foldingValid" Hidden="true" />
+      <Method Name="AppendText" Hidden="true" />
+      <Method Name="BeginChange" Hidden="true" />
+      <Field Name="BracketHighlightingBrushProperty" Hidden="true" />
+      <Field Name="BracketHighlightingPenProperty" Hidden="true" />
+      <Method Name="CanCommentSelection" Hidden="true" />
+      <Method Name="CanExecute" Hidden="true" />
+      <Method Name="CanPasteMultiple" Hidden="true" />
+      <Property Name="CanRedo" Hidden="true" />
+      <Method Name="CanToggleFold" Hidden="true" />
+      <Property Name="CanUndo" Hidden="true" />
+      <Property Name="CaretOffset" Hidden="true" />
+      <Method Name="Clear" Hidden="true" />
+      <Field Name="ClosingBrackets" Hidden="true" />
+      <Field Name="colorizer" Hidden="true" />
+      <Field Name="ColumnRulerProperty" Hidden="true" />
+      <Method Name="Copy" Hidden="true" />
+      <Method Name="CreateColorizer" Hidden="true" />
+      <Method Name="CreateFrozenPen" Hidden="true" />
+      <Method Name="Cut" Hidden="true" />
+      <Method Name="DeclareChangeBlock" Hidden="true" />
+      <Property Name="Document" Hidden="true" />
+      <Event Name="DocumentChanged" Hidden="true" />
+      <Field Name="DocumentProperty" Hidden="true" />
+      <Field Name="EnableBracketHighlightingProperty" Hidden="true" />
+      <Field Name="EnableFoldingProperty" Hidden="true" />
+      <Property Name="Encoding" Hidden="true" />
+      <Field Name="EncodingProperty" Hidden="true" />
+      <Method Name="EndChange" Hidden="true" />
+      <Method Name="Execute" Hidden="true" />
+      <Property Name="ExtentHeight" Hidden="true" />
+      <Property Name="ExtentWidth" Hidden="true" />
+      <Method Name="GetDocument" Hidden="true" />
+      <Method Name="GetPositionFromPoint" Hidden="true" />
+      <Method Name="HandleIsOriginalChanged" Hidden="true" />
+      <Property Name="HorizontalOffset" Hidden="true" />
+      <Property Name="HorizontalScrollBarVisibility" Hidden="true" />
+      <Field Name="HorizontalScrollBarVisibilityProperty" Hidden="true" />
+      <Method Name="Initialize" Hidden="true" />
+      <Method Name="InstallFoldingManager" Hidden="true" />
+      <Method Name="InvalidateFolding" Hidden="true" />
+      <Method Name="IServiceProvider.GetService" Hidden="true" />
+      <Property Name="IsModified" Hidden="true" />
+      <Field Name="IsModifiedProperty" Hidden="true" />
+      <Property Name="IsReadOnly" Hidden="true" />
+      <Field Name="IsReadOnlyProperty" Hidden="true" />
+      <Method Name="IWeakEventListener.ReceiveWeakEvent" Hidden="true" />
+      <Property Name="LineCount" Hidden="true" />
+      <Method Name="LineDown" Hidden="true" />
+      <Method Name="LineLeft" Hidden="true" />
+      <Property Name="LineNumbersForeground" Hidden="true" />
+      <Field Name="LineNumbersForegroundProperty" Hidden="true" />
+      <Method Name="LineRight" Hidden="true" />
+      <Method Name="LineUp" Hidden="true" />
+      <Method Name="Load" Hidden="true" />
+      <Event Name="MouseHover" Hidden="true" />
+      <Field Name="MouseHoverEvent" Hidden="true" />
+      <Event Name="MouseHoverStopped" Hidden="true" />
+      <Field Name="MouseHoverStoppedEvent" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnColumnRulerChanged" Hidden="true" />
+      <Method Name="OnCreateAutomationPeer" Hidden="true" />
+      <Method Name="OnDocumentChanged" Hidden="true" />
+      <Method Name="OnEnableFoldingChanged" Hidden="true" />
+      <Method Name="OnFoldingTimerTick" Hidden="true" />
+      <Method Name="OnGotKeyboardFocus" Hidden="true" />
+      <Method Name="OnIsModifiedChanged" Hidden="true" />
+      <Method Name="OnIsReadOnlyChanged" Hidden="true" />
+      <Method Name="OnLineNumbersForegroundChanged" Hidden="true" />
+      <Method Name="OnOptionChanged" Hidden="true" />
+      <Method Name="OnOptionsChanged" Hidden="true" />
+      <Method Name="OnPasteMultiple" Hidden="true" />
+      <Method Name="OnShowLineNumbersChanged" Hidden="true" />
+      <Method Name="OnSyntaxHighlightingChanged" Hidden="true" />
+      <Method Name="OnTextChanged" Hidden="true" />
+      <Method Name="OnTextEntered" Hidden="true" />
+      <Field Name="OpeningBrackets" Hidden="true" />
+      <Event Name="OptionChanged" Hidden="true" />
+      <Property Name="Options" Hidden="true" />
+      <Field Name="OptionsProperty" Hidden="true" />
+      <Method Name="PageDown" Hidden="true" />
+      <Method Name="PageLeft" Hidden="true" />
+      <Method Name="PageRight" Hidden="true" />
+      <Method Name="PageUp" Hidden="true" />
+      <Method Name="Paste" Hidden="true" />
+      <Event Name="PreviewMouseHover" Hidden="true" />
+      <Field Name="PreviewMouseHoverEvent" Hidden="true" />
+      <Event Name="PreviewMouseHoverStopped" Hidden="true" />
+      <Field Name="PreviewMouseHoverStoppedEvent" Hidden="true" />
+      <Method Name="ReceiveWeakEvent" Hidden="true" />
+      <Method Name="Redo" Hidden="true" />
+      <Method Name="Save" Hidden="true" />
+      <Method Name="ScrollTo" Hidden="true" />
+      <Method Name="ScrollToEnd" Hidden="true" />
+      <Method Name="ScrollToHome" Hidden="true" />
+      <Method Name="ScrollToHorizontalOffset" Hidden="true" />
+      <Method Name="ScrollToLine" Hidden="true" />
+      <Method Name="ScrollToVerticalOffset" Hidden="true" />
+      <Field Name="scrollViewer" Hidden="true" />
+      <Property Name="ScrollViewer" Hidden="true" />
+      <Method Name="Select" Hidden="true" />
+      <Method Name="SelectAll" Hidden="true" />
+      <Property Name="SelectedText" Hidden="true" />
+      <Property Name="SelectionLength" Hidden="true" />
+      <Property Name="SelectionStart" Hidden="true" />
+      <Property Name="ShowLineNumbers" Hidden="true" />
+      <Field Name="ShowLineNumbersProperty" Hidden="true" />
+      <Property Name="SyntaxHighlighting" Hidden="true" />
+      <Field Name="SyntaxHighlightingProperty" Hidden="true" />
+      <Property Name="Text" Hidden="true" />
+      <Field Name="textArea" Hidden="true" />
+      <Property Name="TextArea" Hidden="true" />
+      <Event Name="TextChanged" Hidden="true" />
+      <Method Name="TextEditor" Hidden="true" />
+      <Method Name="Undo" Hidden="true" />
+      <Method Name="UninstallFoldingManager" Hidden="true" />
+      <Method Name="UpdateBracketHighlighting" Hidden="true" />
+      <Method Name="UpdateFoldingManager" Hidden="true" />
+      <Property Name="VerticalOffset" Hidden="true" />
+      <Property Name="VerticalScrollBarVisibility" Hidden="true" />
+      <Field Name="VerticalScrollBarVisibilityProperty" Hidden="true" />
+      <Property Name="ViewportHeight" Hidden="true" />
+      <Property Name="ViewportWidth" Hidden="true" />
+      <Property Name="WordWrap" Hidden="true" />
+      <Field Name="WordWrapProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>GQUI1YFypCjJ1wzfAUUYAnUXm5SROMa2qrxgaMtvPHs=</HashCode>
+      <FileName>DigitalRune\TextEditor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.TextEditorOptions" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="4" Width="2.25" />
+    <Members>
+      <Field Name="_enableBracketHighlighting" Hidden="true" />
+      <Field Name="_enableFolding" Hidden="true" />
+      <Field Name="_fontFamily" Hidden="true" />
+      <Field Name="_fontSize" Hidden="true" />
+      <Field Name="_fontStretch" Hidden="true" />
+      <Field Name="_fontStyle" Hidden="true" />
+      <Field Name="_fontWeight" Hidden="true" />
+      <Field Name="_showLineNumbers" Hidden="true" />
+      <Field Name="_wordWrap" Hidden="true" />
+      <Field Name="allowScrollBelowDocument" Hidden="true" />
+      <Property Name="AllowScrollBelowDocument" Hidden="true" />
+      <Field Name="allowToggleOverstrikeMode" Hidden="true" />
+      <Property Name="AllowToggleOverstrikeMode" Hidden="true" />
+      <Field Name="columnRulerPosition" Hidden="true" />
+      <Property Name="ColumnRulerPosition" Hidden="true" />
+      <Field Name="convertTabsToSpaces" Hidden="true" />
+      <Property Name="ConvertTabsToSpaces" Hidden="true" />
+      <Field Name="cutCopyWholeLine" Hidden="true" />
+      <Property Name="CutCopyWholeLine" Hidden="true" />
+      <Field Name="enableEmailHyperlinks" Hidden="true" />
+      <Property Name="EnableEmailHyperlinks" Hidden="true" />
+      <Field Name="enableHyperlinks" Hidden="true" />
+      <Property Name="EnableHyperlinks" Hidden="true" />
+      <Field Name="enableImeSupport" Hidden="true" />
+      <Property Name="EnableImeSupport" Hidden="true" />
+      <Field Name="enableRectangularSelection" Hidden="true" />
+      <Property Name="EnableRectangularSelection" Hidden="true" />
+      <Field Name="enableTextDragDrop" Hidden="true" />
+      <Property Name="EnableTextDragDrop" Hidden="true" />
+      <Field Name="enableVirtualSpace" Hidden="true" />
+      <Property Name="EnableVirtualSpace" Hidden="true" />
+      <Method Name="GetIndentationString" Hidden="true" />
+      <Field Name="hideCursorWhileTyping" Hidden="true" />
+      <Property Name="HideCursorWhileTyping" Hidden="true" />
+      <Field Name="highlightCurrentLine" Hidden="true" />
+      <Property Name="HighlightCurrentLine" Hidden="true" />
+      <Field Name="indentationSize" Hidden="true" />
+      <Property Name="IndentationSize" Hidden="true" />
+      <Property Name="IndentationString" Hidden="true" />
+      <Field Name="inheritWordWrapIndentation" Hidden="true" />
+      <Property Name="InheritWordWrapIndentation" Hidden="true" />
+      <Method Name="OnPropertyChanged" Hidden="true" />
+      <Event Name="PropertyChanged" Hidden="true" />
+      <Field Name="requireControlModifierForHyperlinkClick" Hidden="true" />
+      <Property Name="RequireControlModifierForHyperlinkClick" Hidden="true" />
+      <Field Name="showBoxForControlCharacters" Hidden="true" />
+      <Property Name="ShowBoxForControlCharacters" Hidden="true" />
+      <Field Name="showColumnRuler" Hidden="true" />
+      <Property Name="ShowColumnRuler" Hidden="true" />
+      <Field Name="showEndOfLine" Hidden="true" />
+      <Property Name="ShowEndOfLine" Hidden="true" />
+      <Field Name="showSpaces" Hidden="true" />
+      <Property Name="ShowSpaces" Hidden="true" />
+      <Field Name="showTabs" Hidden="true" />
+      <Property Name="ShowTabs" Hidden="true" />
+      <Method Name="TextEditorOptions" Hidden="true" />
+      <Field Name="wordWrapIndentation" Hidden="true" />
+      <Property Name="WordWrapIndentation" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>FRgEBTUgFEEGxmMSIACpApAYiAQAmggAIIASChYYGIo=</HashCode>
+      <FileName>DigitalRune\TextEditorOptions.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.CodeCompletion.CompletionData" BaseTypeListCollapsed="true">
+    <Position X="9" Y="1.5" Width="1.5" />
+    <Members>
+      <Method Name="CompletionData" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAgAAIEAAAAAAAAAAAAABAAAAAACAAAAAA=</HashCode>
+      <FileName>DigitalRune\CodeCompletion\CompletionData.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.CodeCompletion.OverloadDescription">
+    <Position X="11.5" Y="5" Width="1.75" />
+    <Members>
+      <Method Name="OverloadDescription" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAgAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DigitalRune\CodeCompletion\OverloadDescription.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.CodeCompletion.OverloadProvider" BaseTypeListCollapsed="true">
+    <Position X="10.75" Y="1.5" Width="2.5" />
+    <Members>
+      <Field Name="_overloads" Hidden="true" />
+      <Field Name="_selectedIndex" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAQAAAAAAIAAAAARAgAAAAAEAAIAAAAEAAAA=</HashCode>
+      <FileName>DigitalRune\CodeCompletion\OverloadProvider.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Overloads" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.CodeCompletion.SnippetCompletionData" BaseTypeListCollapsed="true">
+    <Position X="9" Y="5" Width="2" />
+    <Members>
+      <Method Name="SnippetCompletionData" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAgAAIEAAAAAAAAAAAAABAAAAAACgAAAAA=</HashCode>
+      <FileName>DigitalRune\CodeCompletion\SnippetCompletionData.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Document.TextUtilities">
+    <Position X="0.5" Y="8.5" Width="2.5" />
+    <Members>
+      <Field Name="c0Table" Hidden="true" />
+      <Method Name="CompareSegment" Hidden="true" />
+      <Field Name="delAndC1Table" Hidden="true" />
+      <Method Name="FindFirstNonWhitespace" Hidden="true" />
+      <Method Name="FindNextNewLine" Hidden="true" />
+      <Method Name="GetCharacterClass" Hidden="true" />
+      <Method Name="GetControlCharacterName" Hidden="true" />
+      <Method Name="GetExpressionBeforeOffset" Hidden="true" />
+      <Method Name="GetLeadingWhitespace" Hidden="true" />
+      <Method Name="GetLineTerminator" Hidden="true" />
+      <Method Name="GetNewLineFromDocument" Hidden="true" />
+      <Method Name="GetNextCaretPosition" Hidden="true" />
+      <Method Name="GetSingleIndentationSegment" Hidden="true" />
+      <Method Name="GetStartType" Hidden="true" />
+      <Method Name="GetTrailingWhitespace" Hidden="true" />
+      <Method Name="GetWhitespaceAfter" Hidden="true" />
+      <Method Name="GetWhitespaceBefore" Hidden="true" />
+      <Method Name="IsEmptyLine" Hidden="true" />
+      <Method Name="IsIdentifierPart" Hidden="true" />
+      <Method Name="IsNewLine" Hidden="true" />
+      <Method Name="IsNormal" Hidden="true" />
+      <Method Name="ScanLineStart" Hidden="true" />
+      <Method Name="SearchBracketBackward" Hidden="true" />
+      <Method Name="SearchBracketBackwardQuick" Hidden="true" />
+      <Method Name="SearchBracketForward" Hidden="true" />
+      <Method Name="SearchBracketForwardQuick" Hidden="true" />
+      <Method Name="SmartReplaceLine" Hidden="true" />
+      <Method Name="StopBetweenCharacters" Hidden="true" />
+      <Field Name="whitespaceChars" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Enum Name="ICSharpCode.AvalonEdit.Document.TextUtilities.CodeType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>DigitalRune\Document\TextUtilities.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAwgRAAAQAKEAQAxAgYAEQgEAIBQiAAgIEBAAIAgJAA=</HashCode>
+      <FileName>DigitalRune\Document\TextUtilities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Folding.CSharpFoldingStrategy">
+    <Position X="4" Y="10.25" Width="2" />
+    <Members>
+      <Method Name="AddFold" Hidden="true" />
+      <Method Name="FindAndMarkRegions" Hidden="true" />
+      <Method Name="MarkBlock" Hidden="true" />
+      <Method Name="MarkBlocks" Hidden="true" />
+      <Method Name="MarkMethod" Hidden="true" />
+      <Method Name="MarkRegion" Hidden="true" />
+      <Method Name="MarkRegions" Hidden="true" />
+      <Method Name="SkipComment" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAIAAAABAAAAAEAAAABAAgAAAACEAg=</HashCode>
+      <FileName>DigitalRune\Folding\CSharpFoldingStrategy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Folding.FoldingStrategy">
+    <Position X="5.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>DigitalRune\Folding\FoldingStrategy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Folding.HlslFoldingStrategy">
+    <Position X="6.25" Y="10.25" Width="1.75" />
+    <Members>
+      <Method Name="AddFold" Hidden="true" />
+      <Field Name="Blocks" Hidden="true" />
+      <Method Name="HlslFoldingStrategy" Hidden="true" />
+      <Method Name="MarkBlock" Hidden="true" />
+      <Method Name="MarkBlocks" Hidden="true" />
+      <Method Name="MarkMethod" Hidden="true" />
+      <Method Name="SkipComment" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAIAAAAAAAAAAEAAAABAAgAAAACEAA=</HashCode>
+      <FileName>DigitalRune\Folding\HlslFoldingStrategy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Formatting.CSharpFormattingStrategy" BaseTypeListCollapsed="true">
+    <Position X="8.75" Y="10.25" Width="2.25" />
+    <Members>
+      <Method Name="FormatLine" Hidden="true" />
+      <Method Name="FormatLineInternal" Hidden="true" />
+      <Method Name="IsInNonVerbatimString" Hidden="true" />
+      <Method Name="IsInsideDocumentationComment" Hidden="true" />
+      <Method Name="IsInsideStringOrComment" Hidden="true" />
+      <Method Name="NeedCurlyBracket" Hidden="true" />
+      <Method Name="NeedEndregion" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAACAQAAIAAAAQAAACAAAAAEAAA=</HashCode>
+      <FileName>DigitalRune\Formatting\CSharpFormattingStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Formatting.HlslFormattingStrategy" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="8.75" Width="2" />
+    <Members>
+      <Method Name="FormatLine" Hidden="true" />
+      <Method Name="FormatLineInternal" Hidden="true" />
+      <Method Name="IsInNonVerbatimString" Hidden="true" />
+      <Method Name="IsInsideDocumentationComment" Hidden="true" />
+      <Method Name="IsInsideStringOrComment" Hidden="true" />
+      <Method Name="NeedCurlyBracket" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAACAQAAIAAAAAAAACAAAAAEAAA=</HashCode>
+      <FileName>DigitalRune\Formatting\HlslFormattingStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Formatting.XmlFormattingStrategy" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="10.25" Width="2" />
+    <Members>
+      <Method Name="FormatLine" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DigitalRune\Formatting\XmlFormattingStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Highlighting.HighlightingKnownNames">
+    <Position X="0.5" Y="14.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEAAAAAAAAQAAAACAAAAAgACAAAAAAAAAAAAA=</HashCode>
+      <FileName>DigitalRune\Highlighting\HighlightingKnownNames.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Indentation.IndentationSettings">
+    <Position X="10.75" Y="16.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>DigitalRune\Indentation\CSharpIndentationReformatter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Indentation.CSharpIndentationReformatter">
+    <Position X="10.75" Y="13" Width="2.5" />
+    <Members>
+      <Field Name="_block" Hidden="true" />
+      <Field Name="_blocks" Hidden="true" />
+      <Field Name="_inBlockComment" Hidden="true" />
+      <Field Name="_indent" Hidden="true" />
+      <Field Name="_inVerbatimString" Hidden="true" />
+      <Field Name="_lineCommentStart" Hidden="true" />
+      <Field Name="_wordBuilder" Hidden="true" />
+      <Method Name="Init" Hidden="true" />
+      <Method Name="IsSingleStatementKeyword" Hidden="true" />
+      <Method Name="Repeat" Hidden="true" />
+      <Method Name="Step" Hidden="true" />
+      <Method Name="TrimEnd" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Struct Name="ICSharpCode.AvalonEdit.Indentation.CSharpIndentationReformatter.Block" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>DigitalRune\Indentation\CSharpIndentationReformatter.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ACAEQAAAAAgAAoAAAAIAAgAAAAAAAEAAIAICBAAAAAA=</HashCode>
+      <FileName>DigitalRune\Indentation\CSharpIndentationReformatter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Indentation.CSharpIndentationStrategy">
+    <Position X="8" Y="14.25" Width="2.25" />
+    <Members>
+      <Method Name="Indent" Hidden="true" />
+      <Method Name="IndentLine" Hidden="true" />
+      <Method Name="IndentLines" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAACAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DigitalRune\Indentation\CSharpIndentationStrategy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Indentation.TextDocumentAccessor" BaseTypeListCollapsed="true">
+    <Position X="4" Y="15.5" Width="2" />
+    <Members>
+      <Field Name="doc" Hidden="true" />
+      <Property Name="IsReadOnly" Hidden="true" />
+      <Field Name="line" Hidden="true" />
+      <Field Name="lineDirty" Hidden="true" />
+      <Property Name="LineNumber" Hidden="true" />
+      <Field Name="maxLine" Hidden="true" />
+      <Field Name="minLine" Hidden="true" />
+      <Method Name="MoveNext" Hidden="true" />
+      <Field Name="num" Hidden="true" />
+      <Field Name="text" Hidden="true" />
+      <Property Name="Text" Hidden="true" />
+      <Method Name="TextDocumentAccessor" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAEAACAAAAAAAAAQAAAIAAAAQAAAAAAIIAAASAAAAAQ=</HashCode>
+      <FileName>DigitalRune\Indentation\DocumentAccessor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Indentation.HlslIndentationReformatter">
+    <Position X="10.75" Y="14.5" Width="2.25" />
+    <Members>
+      <Field Name="_block" Hidden="true" />
+      <Field Name="_blocks" Hidden="true" />
+      <Field Name="_inBlockComment" Hidden="true" />
+      <Field Name="_indent" Hidden="true" />
+      <Field Name="_inDirective" Hidden="true" />
+      <Field Name="_inVerbatimString" Hidden="true" />
+      <Field Name="_lineCommentStart" Hidden="true" />
+      <Field Name="_wordBuilder" Hidden="true" />
+      <Method Name="Init" Hidden="true" />
+      <Method Name="IsMacro" Hidden="true" />
+      <Method Name="IsSingleStatementKeyword" Hidden="true" />
+      <Method Name="Repeat" Hidden="true" />
+      <Method Name="Step" Hidden="true" />
+      <Method Name="TrimEnd" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Struct Name="ICSharpCode.AvalonEdit.Indentation.HlslIndentationReformatter.Block" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>DigitalRune\Indentation\HlslIndentationReformatter.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ACAEQAAAAAgAAoAAAAIAAgAAIAAAAEAAIAICRAAAAAA=</HashCode>
+      <FileName>DigitalRune\Indentation\HlslIndentationReformatter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Indentation.HlslIntendationStrategy">
+    <Position X="8" Y="15.5" Width="2" />
+    <Members>
+      <Method Name="Indent" Hidden="true" />
+      <Method Name="IndentLine" Hidden="true" />
+      <Method Name="IndentLines" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAACAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DigitalRune\Indentation\HlslIndentationStrategy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Indentation.XmlIndentationStrategy">
+    <Position X="8" Y="16.75" Width="2" />
+    <Members>
+      <Method Name="IndentLine" Hidden="true" />
+      <Method Name="IndentLines" Hidden="true" />
+      <Method Name="TryIndent" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAABAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>DigitalRune\Indentation\XmlIndentationStrategy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Indentation.DefaultIndentationStrategy" Collapsed="true">
+    <Position X="6.25" Y="13" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAABAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Indentation\DefaultIndentationStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.BlockMarker">
+    <Position X="2.25" Y="19.5" Width="1.5" />
+    <Members>
+      <Method Name="BlockMarker" Hidden="true" />
+      <Method Name="Draw" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACgIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DigitalRune\Rendering\BlockMarker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.Marker">
+    <Position X="3" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DigitalRune\Rendering\Marker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.MarkerRenderer">
+    <Position X="0.5" Y="17.75" Width="1.5" />
+    <Members>
+      <Field Name="_isEnabled" Hidden="true" />
+      <Field Name="_markers" Hidden="true" />
+      <Field Name="_textView" Hidden="true" />
+      <Method Name="InvalidateMarkers" Hidden="true" />
+      <Method Name="OnMarkersChanged" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAIAIAAAgAAAAkAAAAAQAgAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>DigitalRune\Rendering\MarkerRenderer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Markers" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Rendering.ZigzagMarker">
+    <Position X="4" Y="19.5" Width="1.5" />
+    <Members>
+      <Field Name="DefaultPen" Hidden="true" />
+      <Method Name="Draw" Hidden="true" />
+      <Method Name="ZigzagMarker" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DigitalRune\Rendering\ZigzagMarker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ICSharpCode.AvalonEdit.Formatting.IFormattingStrategy">
+    <Position X="8.75" Y="8.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DigitalRune\Formatting\IFormattingStrategy.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ICSharpCode.AvalonEdit.Indentation.IDocumentAccessor">
+    <Position X="4" Y="13" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAIAAAAAAAAAAAAIAAACAAAAAA=</HashCode>
+      <FileName>DigitalRune\Indentation\DocumentAccessor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

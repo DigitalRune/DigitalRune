@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Adorners and Decorators                    Assembly: DigitalRune.Windows Namespace: DigitalRune.Windows">
+    <Position X="0.5" Y="0.5" Height="0.636" Width="2.335" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.PixelSnapper">
+    <Position X="3.5" Y="2.75" Width="1.5" />
+    <Members>
+      <Field Name="_pixelOffset" Hidden="true" />
+      <Method Name="ArrangeOverride" Hidden="true" />
+      <Method Name="GetPixelOffset" Hidden="true" />
+      <Method Name="OnLayoutUpdated" Hidden="true" />
+      <Method Name="PixelSnapper" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAQAAAAAAAAAAAAIAAAAAI=</HashCode>
+      <FileName>Decorators\PixelSnapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.MinimumStretch">
+    <Position X="3.5" Y="1.5" Width="1.5" />
+    <Members>
+      <Method Name="ArrangeOverride" Hidden="true" />
+      <Method Name="MeasureOverride" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Decorators\MinimumStretch.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.SingleChildAdorner">
+    <Position X="0.5" Y="1.5" Width="2.5" />
+    <Members>
+      <Field Name="_child" Hidden="true" />
+      <Field Name="_horizontalOffset" Hidden="true" />
+      <Field Name="_verticalOffset" Hidden="true" />
+      <Method Name="ArrangeOverride" Hidden="true" />
+      <Method Name="GetDesiredTransform" Hidden="true" />
+      <Method Name="GetVisualChild" Hidden="true" />
+      <Property Name="LogicalChildren" Hidden="true" />
+      <Method Name="MeasureOverride" Hidden="true" />
+      <Method Name="SingleChildAdorner" Hidden="true" />
+      <Method Name="Update" Hidden="true" />
+      <Property Name="VisualChildrenCount" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAcEAAAAAAAACIAIAAEAAIAQAAQAEAAAAAABAAAAAAA=</HashCode>
+      <FileName>Adorners\SingleChildAdorner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

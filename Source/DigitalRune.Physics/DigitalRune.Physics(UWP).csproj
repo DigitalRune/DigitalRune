@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E46C7B11-FE3C-4D89-8F90-15F8A4AB090F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.Physics</RootNamespace>
+    <AssemblyName>DigitalRune.Physics</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <BaseIntermediateOutputPath>obj\WindowsUniversal\Debug\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\WindowsUniversal\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP;MONOGAME</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\WindowsUniversal\Debug\DigitalRune.Physics.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <BaseIntermediateOutputPath>obj\WindowsUniversal\Release\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\WindowsUniversal\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;MONOGAME</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\WindowsUniversal\Release\DigitalRune.Physics.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune.Geometry\DigitalRune.Geometry%28UWP%29.csproj">
+      <Project>{2b9c7ff5-953e-4e65-89ba-087791b32b11}</Project>
+      <Name>DigitalRune.Geometry%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Mathematics\DigitalRune.Mathematics%28UWP%29.csproj">
+      <Project>{29d8637e-450b-4c0d-962f-baa851282185}</Project>
+      <Name>DigitalRune.Mathematics%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune\DigitalRune%28UWP%29.csproj">
+      <Project>{86ad1576-a1fd-4b7e-ac9d-83d118967c81}</Project>
+      <Name>DigitalRune%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MonoGame\MonoGame.Framework\MonoGame.Framework.WindowsUAP.csproj">
+      <Project>{09c41a48-7bf3-4a46-9eb8-ce95b4c27ca9}</Project>
+      <Name>MonoGame.Framework.WindowsUAP</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CollisionResponseFilter.cs" />
+    <Compile Include="Constraints\AngularLimit.cs" />
+    <Compile Include="Constraints\AngularVelocityMotor.cs" />
+    <Compile Include="Constraints\BallJoint.cs" />
+    <Compile Include="Constraints\Constraint.cs" />
+    <Compile Include="Constraints\ConstraintCollection.cs" />
+    <Compile Include="Constraints\ContactConstraint.cs" />
+    <Compile Include="Constraints\CylindricalJoint.cs" />
+    <Compile Include="Constraints\DistanceLimit.cs" />
+    <Compile Include="Constraints\EulerMotor.cs" />
+    <Compile Include="Constraints\FixedJoint.cs" />
+    <Compile Include="Constraints\Hinge2Joint.cs" />
+    <Compile Include="Constraints\HingeJoint.cs" />
+    <Compile Include="Constraints\IConstraint.cs" />
+    <Compile Include="Constraints\LimitState.cs" />
+    <Compile Include="Constraints\LinearLimit.cs" />
+    <Compile Include="Constraints\LinearVelocityMotor.cs" />
+    <Compile Include="Constraints\Misc\Constraint1D.cs" />
+    <Compile Include="Constraints\Misc\ConstraintHelper.cs" />
+    <Compile Include="Constraints\NamespaceDoc.cs" />
+    <Compile Include="Constraints\NoRotationConstraint.cs" />
+    <Compile Include="Constraints\PlaneLimit.cs" />
+    <Compile Include="Constraints\PointOnLineConstraint.cs" />
+    <Compile Include="Constraints\PointOnPlaneConstraint.cs" />
+    <Compile Include="Constraints\PositionMotor.cs" />
+    <Compile Include="Constraints\PrismaticJoint.cs" />
+    <Compile Include="Constraints\QuaternionMotor.cs" />
+    <Compile Include="Constraints\Solvers\ConstraintSolver.cs" />
+    <Compile Include="Constraints\Solvers\SequentialImpulseBasedSolver.cs" />
+    <Compile Include="Constraints\TwistSwingLimit.cs" />
+    <Compile Include="Constraints\UniversalJoint.cs" />
+    <None Include="DigitalRune.Physics%28UWP%29.project.json" />
+    <Compile Include="ForceEffects\Buoyancy.cs" />
+    <Compile Include="ForceEffects\DampedSpring.cs" />
+    <Compile Include="ForceEffects\Damping.cs" />
+    <Compile Include="ForceEffects\Explosion.cs" />
+    <Compile Include="ForceEffects\ForceEffect.cs" />
+    <Compile Include="ForceEffects\ForceEffectCollection.cs" />
+    <Compile Include="ForceEffects\ForceField.cs" />
+    <Compile Include="ForceEffects\GeometricAreaOfEffect.cs" />
+    <Compile Include="ForceEffects\GlobalAreaOfEffect.cs" />
+    <Compile Include="ForceEffects\Gravity.cs" />
+    <Compile Include="ForceEffects\IAreaOfEffect.cs" />
+    <Compile Include="ForceEffects\ListAreaOfEffect.cs" />
+    <Compile Include="ForceEffects\NamespaceDoc.cs" />
+    <Compile Include="ForceEffects\SetFilter.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Islands\SimulationIsland.cs" />
+    <Compile Include="Islands\SimulationIslandManager.cs" />
+    <Compile Include="Islands\UnionFinder.cs" />
+    <Compile Include="Mass\MassFrame.cs" />
+    <Compile Include="Mass\MassHelper.cs" />
+    <Compile Include="Mass\MassHelper_Polyhedra.cs" />
+    <Compile Include="Mass\MassHelper_Shapes.cs" />
+    <Compile Include="Materials\CompositeMaterial.cs" />
+    <Compile Include="Materials\IMaterial.cs" />
+    <Compile Include="Materials\IMaterialPropertyCombiner.cs" />
+    <Compile Include="Materials\MaterialProperties.cs" />
+    <Compile Include="Materials\MaterialPropertyCombiner.cs" />
+    <Compile Include="Materials\NamespaceDoc.cs" />
+    <Compile Include="Materials\UniformMaterial.cs" />
+    <Compile Include="MotionType.cs" />
+    <Compile Include="NamespaceDoc.cs" />
+    <Compile Include="PhysicsException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Properties\AssemblyInfo.template" />
+    <Content Include="Properties\DigitalRune.Physics.rd.xml" />
+    <Compile Include="RigidBody.cs" />
+    <Compile Include="RigidBodyCollection.cs" />
+    <Compile Include="RigidBody_Forces.cs" />
+    <Compile Include="RigidBody_ICloneable.cs" />
+    <Compile Include="RigidBody_IGeometricObject.cs" />
+    <Compile Include="RigidBody_Mass.cs" />
+    <Compile Include="RigidBody_Sleeping.cs" />
+    <Compile Include="RigidBody_Velocities.cs" />
+    <Compile Include="Settings\ConstraintSettings.cs" />
+    <Compile Include="Settings\MotionSettings.cs" />
+    <Compile Include="Settings\NamespaceDoc.cs" />
+    <Compile Include="Settings\SimulationSettings.cs" />
+    <Compile Include="Settings\SleepingSettings.cs" />
+    <Compile Include="Settings\TimingSettings.cs" />
+    <Compile Include="Simulation.cs" />
+    <Compile Include="Simulation_Filtering.cs" />
+  </ItemGroup>
+</Project>

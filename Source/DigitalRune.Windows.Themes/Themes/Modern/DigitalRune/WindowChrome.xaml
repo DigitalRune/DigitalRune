@@ -1,0 +1,169 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dr="http://schemas.digitalrune.com/windows">
+
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+
+    <Style x:Key="DefaultButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Width" Value="34" />
+        <Setter Property="MaxHeight" Value="34" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource Control.Static.Foreground}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="{x:Null}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter x:Name="Content"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Opacity="0.75"
+                                          RecognizesAccessKey="False"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Content" Property="Opacity" Value="1" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource Control.MouseOver.Background}" />
+                <Setter Property="Foreground" Value="{DynamicResource Control.MouseOver.Foreground}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="{DynamicResource Control.Pressed.Background}" />
+                <Setter Property="Foreground" Value="{DynamicResource Control.Pressed.Foreground}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource Control.Disabled.Foreground}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style x:Key="CloseButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Width" Value="34" />
+        <Setter Property="MaxHeight" Value="34" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource Control.Static.Foreground}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="{x:Null}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter x:Name="Content"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Opacity="0.75"
+                                          RecognizesAccessKey="False"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Content" Property="Opacity" Value="1" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FFE81123" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="#80E81123" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource Control.Disabled.Foreground}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style x:Key="Modern.WindowCaptionButtons" TargetType="{x:Type dr:WindowCaptionButtons}">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="CloseButtonStyle" Value="{StaticResource CloseButtonStyle}" />
+        <Setter Property="MaximizeButtonStyle" Value="{StaticResource DefaultButtonStyle}" />
+        <Setter Property="MinimizeButtonStyle" Value="{StaticResource DefaultButtonStyle}" />
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type dr:WindowCaptionButtons}">
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="PART_MinimizeButton"
+                                Focusable="False"
+                                Style="{TemplateBinding MinimizeButtonStyle}"
+                                ToolTip="{Binding MinimizeCaption, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dr:WindowCaptionButtons}}, Mode=OneTime}"
+                                Visibility="{Binding ShowMinimizeButton, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dr:WindowCaptionButtons}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <TextBlock FontFamily="pack://application:,,,/DigitalRune.Windows.Themes;component/Resources/#DigitalRune Icons" FontSize="16">&#xE001;</TextBlock>
+                        </Button>
+                        <Button x:Name="PART_MaximizeButton"
+                                Focusable="False"
+                                Style="{TemplateBinding MaximizeButtonStyle}"
+                                ToolTip="{Binding MaximizeCaption, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dr:WindowCaptionButtons}}, Mode=OneTime}"
+                                Visibility="{Binding ShowMaximizeButton, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dr:WindowCaptionButtons}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Grid>
+                                <TextBlock x:Name="MaximizeText"
+                                           FontFamily="pack://application:,,,/DigitalRune.Windows.Themes;component/Resources/#DigitalRune Icons"
+                                           FontSize="16">
+                                    &#xE002;
+                                </TextBlock>
+                                <TextBlock x:Name="RestoreText"
+                                           FontFamily="pack://application:,,,/DigitalRune.Windows.Themes;component/Resources/#DigitalRune Icons"
+                                           FontSize="16"
+                                           Visibility="Collapsed">
+                                    &#xE003;
+                                </TextBlock>
+                            </Grid>
+                        </Button>
+                        <Button x:Name="PART_CloseButton"
+                                Focusable="False"
+                                RenderOptions.EdgeMode="Aliased"
+                                Style="{TemplateBinding CloseButtonStyle}"
+                                ToolTip="{Binding CloseCaption, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dr:WindowCaptionButtons}}, Mode=OneTime}"
+                                Visibility="{Binding ShowCloseButton, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dr:WindowCaptionButtons}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <TextBlock FontFamily="pack://application:,,,/DigitalRune.Windows.Themes;component/Resources/#DigitalRune Icons" FontSize="16">&#xE004;</TextBlock>
+                        </Button>
+                    </StackPanel>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=WindowState}" Value="Maximized">
+                            <Setter TargetName="MaximizeText" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="RestoreText" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="PART_MaximizeButton" Property="ToolTip" Value="{Binding RestoreCaption, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dr:WindowCaptionButtons}}, Mode=OneTime}" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

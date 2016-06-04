@@ -1,0 +1,39 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dr="clr-namespace:DigitalRune.Windows.Docking">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/DigitalRune.Windows.Docking;component/AutoHide/Themes/Generic.xaml" />
+        <ResourceDictionary Source="/DigitalRune.Windows.Docking;component/DockControl/Themes/Generic.xaml" />
+        <ResourceDictionary Source="/DigitalRune.Windows.Docking;component/DockIndicators/Themes/Generic.xaml" />
+        <ResourceDictionary Source="/DigitalRune.Windows.Docking;component/DockTabPane/Themes/Generic.xaml" />
+        <ResourceDictionary Source="/DigitalRune.Windows.Docking;component/DockSplitPane/Themes/Generic.xaml" />
+        <ResourceDictionary Source="/DigitalRune.Windows.Docking;component/DockTabItem/Themes/Generic.xaml" />
+        <ResourceDictionary Source="/DigitalRune.Windows.Docking;component/DockAnchorPane/Themes/Generic.xaml" />
+        <ResourceDictionary Source="/DigitalRune.Windows.Docking;component/FloatWindow/Themes/Generic.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <DataTemplate DataType="{x:Type dr:DockControlViewModel}">
+        <dr:DockControl Content="{Binding RootPane}" />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type dr:DockAnchorPaneViewModel}">
+        <dr:DockAnchorPane Content="{Binding ChildPane}"
+                           DockHeight="{Binding DockHeight}"
+                           DockWidth="{Binding DockWidth}" />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type dr:DockSplitPaneViewModel}">
+        <dr:DockSplitPane DockHeight="{Binding DockHeight}"
+                          DockWidth="{Binding DockWidth}"
+                          ItemsSource="{Binding ChildPanes}"
+                          Orientation="{Binding Orientation}" />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type dr:DockTabPaneViewModel}">
+        <dr:DockTabPane DockHeight="{Binding DockHeight}"
+                        DockWidth="{Binding DockWidth}"
+                        ItemsSource="{Binding Items}"
+                        SelectedItem="{Binding SelectedItem}" />
+    </DataTemplate>
+
+</ResourceDictionary>

@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ICSharpCode.AvalonEdit.Folding.XmlFoldingStrategy">
+    <Position X="4" Y="4.25" Width="2.5" />
+    <Members>
+      <Method Name="CreateCommentFold" Hidden="true" />
+      <Method Name="CreateElementFold" Hidden="true" />
+      <Method Name="CreateElementFoldStart" Hidden="true" />
+      <Method Name="CreateNewFoldings" Hidden="true" />
+      <Method Name="GetAttributeFoldText" Hidden="true" />
+      <Method Name="GetOffset" Hidden="true" />
+      <Method Name="XmlEncodeAttributeValue" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAIAAAAAgAAgAAAAAAAAAAAAAgEAgAEAAAAAA=</HashCode>
+      <FileName>Folding\XmlFoldingStrategy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Folding.FoldingElementGenerator">
+    <Position X="4.25" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="DefaultTextBrush" Hidden="true" />
+      <Field Name="foldingManager" Hidden="true" />
+      <Method Name="ITextViewConnect.AddToTextView" Hidden="true" />
+      <Method Name="ITextViewConnect.RemoveFromTextView" Hidden="true" />
+      <Field Name="textBrush" Hidden="true" />
+      <Field Name="textViews" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="ICSharpCode.AvalonEdit.Folding.FoldingElementGenerator.FoldingLineElement" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Folding\FoldingElementGenerator.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="ICSharpCode.AvalonEdit.Folding.FoldingElementGenerator.FoldingLineTextRun" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Folding\FoldingElementGenerator.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAACACAAAgAAAAAQAgAAAAAAAAAAAoAAQIEAAAABA=</HashCode>
+      <FileName>Folding\FoldingElementGenerator.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="FoldingManager" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Folding.FoldingManager">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <Members>
+      <Method Name="AddToTextView" Hidden="true" />
+      <Field Name="document" Hidden="true" />
+      <Method Name="FoldingManager" Hidden="true" />
+      <Field Name="foldings" Hidden="true" />
+      <Field Name="isFirstUpdate" Hidden="true" />
+      <Method Name="IWeakEventListener.ReceiveWeakEvent" Hidden="true" />
+      <Method Name="OnDocumentChanged" Hidden="true" />
+      <Method Name="Redraw" Hidden="true" />
+      <Method Name="RemoveFromTextView" Hidden="true" />
+      <Field Name="textViews" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="ICSharpCode.AvalonEdit.Folding.FoldingManager.FoldingManagerInstallation" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Folding\FoldingManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ACEAAAAAACACAAEEAAAICAACAAYAEAAYAABSAAFAAAA=</HashCode>
+      <FileName>Folding\FoldingManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="AllFoldings" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Folding.FoldingMargin">
+    <Position X="0.5" Y="4.25" Width="3" />
+    <Members>
+      <Method Name="ArrangeOverride" Hidden="true" />
+      <Method Name="CalculateFoldLinesForFoldingsActiveAtStart" Hidden="true" />
+      <Method Name="CalculateFoldLinesForMarkers" Hidden="true" />
+      <Method Name="DrawFoldLines" Hidden="true" />
+      <Field Name="foldingControlPen" Hidden="true" />
+      <Field Name="FoldingMarkerBackgroundBrushProperty" Hidden="true" />
+      <Field Name="FoldingMarkerBrushProperty" Hidden="true" />
+      <Method Name="GetTextLineIndexFromOffset" Hidden="true" />
+      <Method Name="GetVisualChild" Hidden="true" />
+      <Method Name="GetVisualPos" Hidden="true" />
+      <Method Name="MakeFrozenPen" Hidden="true" />
+      <Field Name="markers" Hidden="true" />
+      <Method Name="MeasureOverride" Hidden="true" />
+      <Method Name="OnRender" Hidden="true" />
+      <Method Name="OnTextViewChanged" Hidden="true" />
+      <Method Name="OnUpdateBrushes" Hidden="true" />
+      <Field Name="selectedFoldingControlPen" Hidden="true" />
+      <Field Name="SelectedFoldingMarkerBackgroundBrushProperty" Hidden="true" />
+      <Field Name="SelectedFoldingMarkerBrushProperty" Hidden="true" />
+      <Field Name="SizeFactor" Hidden="true" />
+      <Method Name="TextViewVisualLinesChanged" Hidden="true" />
+      <Property Name="VisualChildrenCount" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAQMAAgggAICAQQAAAUwAIgcAQKAQAAAAAAAIAAAQBA=</HashCode>
+      <FileName>Folding\FoldingMargin.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="FoldingManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Folding.FoldingSection">
+    <Position X="6.75" Y="0.5" Width="1.75" />
+    <Members>
+      <Field Name="collapsedSections" Hidden="true" />
+      <Method Name="FoldingSection" Hidden="true" />
+      <Field Name="isFolded" Hidden="true" />
+      <Field Name="manager" Hidden="true" />
+      <Method Name="RemoveCollapsedLineSection" Hidden="true" />
+      <Field Name="title" Hidden="true" />
+      <Method Name="ValidateCollapsedLineSections" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>MAgAAAIAQAAwAEAAAAAEAAAEAAAAAAAAAAAQABAAAAA=</HashCode>
+      <FileName>Folding\FoldingSection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Folding.NewFolding" BaseTypeListCollapsed="true">
+    <Position X="7" Y="3.5" Width="2.25" />
+    <Members>
+      <Property Name="ISegment.Length" Hidden="true" />
+      <Property Name="ISegment.Offset" Hidden="true" />
+      <Method Name="NewFolding" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAQAAAQAAAAAAQAAAAAAQAAAAAABAAAAAA=</HashCode>
+      <FileName>Folding\NewFolding.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.221" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

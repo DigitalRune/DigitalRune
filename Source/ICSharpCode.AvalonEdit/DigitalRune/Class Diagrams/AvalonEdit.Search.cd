@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ICSharpCode.AvalonEdit.Search.DropDownButton">
+    <Position X="6.25" Y="5.75" Width="2" />
+    <Members>
+      <Method Name="DropDownButton" Hidden="true" />
+      <Method Name="DropDownContent_Closed" Hidden="true" />
+      <Field Name="DropDownContentProperty" Hidden="true" />
+      <Field Name="IsDropDownContentOpenProperty" Hidden="true" />
+      <Field Name="IsDropDownContentOpenPropertyKey" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAEAEAAAAAAAAAACAAAAAAAAgACAIAAAAAA=</HashCode>
+      <FileName>Search\DropDownButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Search.SearchPatternException" BaseTypeListCollapsed="true">
+    <Position X="9" Y="2.25" Width="2" />
+    <Members>
+      <Method Name="SearchPatternException" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Search\ISearchStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Search.Localization">
+    <Position X="6.25" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAABAgAAAAAAACAAAAAAgAAACAAAAAIAAAA=</HashCode>
+      <FileName>Search\Localization.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Search.SearchCommands">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAQAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Search\SearchCommands.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Search.SearchInputHandler">
+    <Position X="5.75" Y="0.5" Width="2" />
+    <Members>
+      <Method Name="CanExecuteWithOpenSearchPanel" Hidden="true" />
+      <Method Name="ExecuteCloseSearchPanel" Hidden="true" />
+      <Method Name="ExecuteFind" Hidden="true" />
+      <Method Name="ExecuteFindNext" Hidden="true" />
+      <Method Name="ExecuteFindPrevious" Hidden="true" />
+      <Field Name="panel" Hidden="true" />
+      <Method Name="RegisterCommands" Hidden="true" />
+      <Method Name="SearchInputHandler" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAEAAAAAAAAAABAAAAAABAAAAwAACAQ=</HashCode>
+      <FileName>Search\SearchCommands.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Search.SearchPanel">
+    <Position X="2.75" Y="0.5" Width="2.25" />
+    <Members>
+      <Field Name="adorner" Hidden="true" />
+      <Method Name="AttachInternal" Hidden="true" />
+      <Field Name="currentDocument" Hidden="true" />
+      <Method Name="DoSearch" Hidden="true" />
+      <Field Name="handler" Hidden="true" />
+      <Field Name="LocalizationProperty" Hidden="true" />
+      <Method Name="MarkerBrushChangedCallback" Hidden="true" />
+      <Field Name="MarkerBrushProperty" Hidden="true" />
+      <Field Name="MatchCaseProperty" Hidden="true" />
+      <Field Name="messageView" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Field Name="renderer" Hidden="true" />
+      <Method Name="SearchLayerKeyDown" Hidden="true" />
+      <Method Name="SearchPanel" Hidden="true" />
+      <Method Name="SearchPatternChangedCallback" Hidden="true" />
+      <Field Name="SearchPatternProperty" Hidden="true" />
+      <Field Name="searchTextBox" Hidden="true" />
+      <Method Name="SelectResult" Hidden="true" />
+      <Field Name="strategy" Hidden="true" />
+      <Field Name="textArea" Hidden="true" />
+      <Method Name="textArea_Document_TextChanged" Hidden="true" />
+      <Method Name="textArea_DocumentChanged" Hidden="true" />
+      <Method Name="UpdateSearch" Hidden="true" />
+      <Field Name="UseRegexProperty" Hidden="true" />
+      <Method Name="ValidateSearchText" Hidden="true" />
+      <Field Name="WholeWordsProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>GQAAAEgECSDAIYIkEAAASCCAAYEgIEABBCBIAEDAhAA=</HashCode>
+      <FileName>Search\SearchPanel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Localization" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Search.SearchOptionsChangedEventArgs">
+    <Position X="2.75" Y="5.75" Width="2.5" />
+    <Members>
+      <Method Name="SearchOptionsChangedEventArgs" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAASAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Search\SearchPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICSharpCode.AvalonEdit.Search.SearchStrategyFactory">
+    <Position X="0.5" Y="4.25" Width="1.75" />
+    <Members>
+      <Method Name="ConvertWildcardsToRegex" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Search\SearchStrategyFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ICSharpCode.AvalonEdit.Search.ISearchStrategy">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Search\ISearchStrategy.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ICSharpCode.AvalonEdit.Search.ISearchResult">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Search\ISearchStrategy.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="ICSharpCode.AvalonEdit.Search.SearchMode">
+    <Position X="9" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAgIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Search\ISearchStrategy.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

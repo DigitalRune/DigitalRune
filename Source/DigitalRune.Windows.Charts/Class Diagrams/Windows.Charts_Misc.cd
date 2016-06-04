@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Miscellaneous                                         Assembly: DigitalRune.Windows.Charts                 Namespace: DigitalRune.Windows.Charts">
+    <Position X="0.5" Y="0.5" Height="0.65" Width="2.504" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.Charts.IndexedBrushSelector" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\IndexedBrushSelector.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.Palette">
+    <Position X="2.75" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_convertedPalette" Hidden="true" />
+      <Field Name="_sortedPaletteEntries" Hidden="true" />
+      <Method Name="AddGradientStops" Hidden="true" />
+      <Method Name="BuildInternalSortedList" Hidden="true" />
+      <Method Name="CleanUpGradient" Hidden="true" />
+      <Method Name="ClearItems" Hidden="true" />
+      <Method Name="ConvertPalette" Hidden="true" />
+      <Method Name="GetGradientStopOffset" Hidden="true" />
+      <Method Name="GetIntermediateEntries" Hidden="true" />
+      <Method Name="GetInterpolatedColor" Hidden="true" />
+      <Method Name="GetPaletteEntry" Hidden="true" />
+      <Method Name="InsertItem" Hidden="true" />
+      <Method Name="Palette" Hidden="true" />
+      <Method Name="RemoveItem" Hidden="true" />
+      <Method Name="ReverseGradient" Hidden="true" />
+      <Method Name="SetItem" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAIAAABAAIAABACAJAAEBAAAyABAAACEAAAAAAAUCQA=</HashCode>
+      <FileName>Utilities\Palette.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mode" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.PaletteException">
+    <Position X="2.75" Y="4.5" Width="2" />
+    <Members>
+      <Method Name="PaletteException" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\PaletteException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.ChartCategories">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>ChartCategories.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="DigitalRune.Windows.Charts.PaletteEntry" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <Members>
+      <Field Name="_color" Hidden="true" />
+      <Field Name="_value" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="operator !=" Hidden="true" />
+      <Method Name="operator ==" Hidden="true" />
+      <Method Name="PaletteEntry" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAIAAAEgAAAAAAAAAAAAIAAAAAggAAAAiA=</HashCode>
+      <FileName>Utilities\PaletteEntry.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Interface Name="DigitalRune.Windows.Charts.IBrushSelector">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\IBrushSelector.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DigitalRune.Windows.Charts.PaletteMode">
+    <Position X="5.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAQAAAAAAEAACAAAAAAAAAE=</HashCode>
+      <FileName>Utilities\PaletteMode.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

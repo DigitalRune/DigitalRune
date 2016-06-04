@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Windows              Namespace: DigitalRune.Windows.Interop">
+    <Position X="0.5" Y="0.5" Height="0.47" Width="2.88" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.Interop.Win32">
+    <Position X="0.75" Y="1.75" Width="2" />
+    <Members>
+      <Method Name="CommandLineToArgvW" Hidden="true" />
+      <Method Name="LocalFree" Hidden="true" />
+      <Method Name="ScreenToClient" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Delegate Name="DigitalRune.Windows.Interop.Win32.HookProc">
+        <TypeIdentifier>
+          <NewMemberFileName>Interop\Win32_DllImports.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>yIAAEEgKBQBAAGACZCAADAACAoAACAAAAAEAaARgBAA=</HashCode>
+      <FileName>Interop\Win32.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Interop.GetWindowLongIndex">
+    <Position X="13.5" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAAAACQAAAAAAAAAAAAAAEAAEAAAAAAAAQAAAAAAABA=</HashCode>
+      <FileName>Interop\GetWindowLongIndex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Interop.HitTestCodes">
+    <Position X="13.5" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>JEAACAABgABoAAAQgAgkAgAgIIIwRAAAAAAgAAgAgCA=</HashCode>
+      <FileName>Interop\HitTestCodes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Interop.HwndConstants">
+    <Position X="15.75" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAIAAAABAAAAAAAAAIAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Interop\HwndConstants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Interop.WindowMessages">
+    <Position X="7.25" Y="1.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>yKBBjOhuSiNJRrmgfs8aX+LcBlzducL6am5Dt/9nd3Q=</HashCode>
+      <FileName>Interop\WindowMessages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Interop.WindowStyles">
+    <Position X="10.5" Y="1.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>hCBAgAAABhAAAkgEAgBAAAMIAAACAEICEAAAAAAUEAI=</HashCode>
+      <FileName>Interop\WindowStyles.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Interop.WindowStylesEx">
+    <Position X="10.5" Y="8.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAASBAgAAACAgAAEAQkBAAEAAEAUGQAAQCEIAAAEACA=</HashCode>
+      <FileName>Interop\WindowStylesEx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="DigitalRune.Windows.Interop.WNDCLASS">
+    <Position X="3.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAEIAAAAAAAAQAAAAACAAEIAgQAAIAAAAAAAA=</HashCode>
+      <FileName>Interop\WNDCLASS.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="DigitalRune.Windows.Interop.MSG">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAIAAAAAAAAQAAAAIAAAAAAAAEAAAAAAAAAAACA=</HashCode>
+      <FileName>Interop\MSG.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="DigitalRune.Windows.Interop.POINT">
+    <Position X="5.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Interop\POINT.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="DigitalRune.Windows.Interop.RECT">
+    <Position X="5.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAABAAAAAAAEgAAAAIAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Interop\RECT.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="DigitalRune.Windows.Interop.HookType">
+    <Position X="15.75" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>BIAAgAAABAAABAAABAAAAAAAAQAAAAAQAAUAAJIIgAA=</HashCode>
+      <FileName>Interop\HookType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DigitalRune.Windows.Interop.SetWindowPosFlags">
+    <Position X="18.25" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAIIAGAIAAAAAAAAACCAAABAAAAgAABQACAgCIAAAA=</HashCode>
+      <FileName>Interop\SetWindowPosFlags.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DigitalRune.Windows.Interop.ShowWindowStyles">
+    <Position X="18.25" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>IgBIAAAAAAAAAAgAAICAAIQAAABEgAAAAAAAAAAAEQg=</HashCode>
+      <FileName>Interop\ShowWindowStyles.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DigitalRune.Windows.Interop.MenuItemFlags">
+    <Position X="15.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAABAAAAAAQAAAAQAAAAAAAAAIA=</HashCode>
+      <FileName>Interop\MenuItemFlags.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DigitalRune.Windows.Interop.SystemCommands">
+    <Position X="18.25" Y="9.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IIgAAAQAAgQACBAAAAAIAAIAgggAAAAACQgAAAgAIAA=</HashCode>
+      <FileName>Interop\SystemCommands.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="DigitalRune.Windows.Interop.WindowProc">
+    <Position X="3.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAECAAAAAAAAAA=</HashCode>
+      <FileName>Interop\WNDCLASS.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

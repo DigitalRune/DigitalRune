@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Auto-hide controls                                     Assembly: DigitalRune.Windows.Docking                          Namespace: DigitalRune.Windows.Docking">
+    <Position X="0.5" Y="0.5" Height="0.667" Width="2.658" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.Docking.AutoHideBar">
+    <Position X="0.5" Y="1.5" Width="2.5" />
+    <Members>
+      <Field Name="_autoHideOverlays" Hidden="true" />
+      <Method Name="AutoHideBar" Hidden="true" />
+      <Method Name="CloseAutoHideOverlay" Hidden="true" />
+      <Method Name="CloseAutoHideOverlays" Hidden="true" />
+      <Method Name="CloseAutoHidePane" Hidden="true" />
+      <Method Name="CloseAutoHidePanes" Hidden="true" />
+      <Method Name="CloseAutoHidePanesExcept" Hidden="true" />
+      <Field Name="DockProperty" Hidden="true" />
+      <Method Name="Filter" Hidden="true" />
+      <Method Name="GetAutoHidePane" Hidden="true" />
+      <Method Name="GetContainerForItemOverride" Hidden="true" />
+      <Method Name="IsItemItsOwnContainerOverride" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnDockPropertyChanged" Hidden="true" />
+      <Method Name="OnItemsChanged" Hidden="true" />
+      <Method Name="OnItemsSourceChanged" Hidden="true" />
+      <Method Name="OnTargetAreaChanged" Hidden="true" />
+      <Method Name="ShowAutoHidePane" Hidden="true" />
+      <Method Name="TabClicked" Hidden="true" />
+      <Method Name="TabEnter" Hidden="true" />
+      <Method Name="TabLeave" Hidden="true" />
+      <Method Name="UpdateVisualStates" Hidden="true" />
+      <Field Name="WindowPanelProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAIAEAAyAIBAACAAAAMAgAEDABAAAAiAAFAAABQAAAA=</HashCode>
+      <FileName>AutoHide\AutoHideBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Docking.AutoHidePane">
+    <Position X="5.75" Y="1.5" Width="2.75" />
+    <Members>
+      <Field Name="_contentPresenter" Hidden="true" />
+      <Field Name="_grid" Hidden="true" />
+      <Field Name="_isFocusDeferred" Hidden="true" />
+      <Field Name="_resizeThumb" Hidden="true" />
+      <Field Name="_slideInAnimation" Hidden="true" />
+      <Field Name="_slideOutAnimation" Hidden="true" />
+      <Field Name="_timer" Hidden="true" />
+      <Field Name="_translateTransform" Hidden="true" />
+      <Field Name="AdditionalOffset" Hidden="true" />
+      <Method Name="AutoHidePane" Hidden="true" />
+      <Method Name="DeferredFocusContent" Hidden="true" />
+      <Method Name="DeferredHide" Hidden="true" />
+      <Method Name="DeferredShow" Hidden="true" />
+      <Field Name="DockProperty" Hidden="true" />
+      <Method Name="GetAnimatedProperty" Hidden="true" />
+      <Method Name="GetOffScreenOffset" Hidden="true" />
+      <Field Name="HideAutomaticallyProperty" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnContentChanged" Hidden="true" />
+      <Method Name="OnDockPropertyChanged" Hidden="true" />
+      <Method Name="OnGotKeyboardFocus" Hidden="true" />
+      <Method Name="OnHideAutomaticallyChanged" Hidden="true" />
+      <Method Name="OnLoaded" Hidden="true" />
+      <Method Name="OnMouseEnter" Hidden="true" />
+      <Method Name="OnMouseLeave" Hidden="true" />
+      <Method Name="OnMouseLeftButtonDown" Hidden="true" />
+      <Method Name="OnResizeThumbDoubleClicked" Hidden="true" />
+      <Method Name="OnResizeThumbDragged" Hidden="true" />
+      <Method Name="OnSlideInAnimationCompleted" Hidden="true" />
+      <Method Name="OnSlideOutAnimationCompleted" Hidden="true" />
+      <Method Name="OnTimeout" Hidden="true" />
+      <Method Name="OnTimeoutChanged" Hidden="true" />
+      <Method Name="RemoveSlideInAnimation" Hidden="true" />
+      <Method Name="RemoveSlideOutAnimation" Hidden="true" />
+      <Method Name="ResetAnimations" Hidden="true" />
+      <Method Name="SaveAutoHideSize" Hidden="true" />
+      <Field Name="SlideDurationProperty" Hidden="true" />
+      <Method Name="StartAutomaticTimeout" Hidden="true" />
+      <Field Name="StateProperty" Hidden="true" />
+      <Field Name="StatePropertyKey" Hidden="true" />
+      <Method Name="StopAutomaticTimeout" Hidden="true" />
+      <Field Name="TimeoutProperty" Hidden="true" />
+      <Method Name="UpdateAutoHideSize" Hidden="true" />
+      <Method Name="UpdateVisualStates" Hidden="true" />
+      <Property Name="UseAnimations" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AhABEYB4BghhBAAAcIlQUgIEQSAHUAsAKCAgBAAMIAA=</HashCode>
+      <FileName>AutoHide\AutoHidePane.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="State" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Windows.Docking.AutoHideTab">
+    <Position X="0.5" Y="4.5" Width="2.25" />
+    <Members>
+      <Field Name="_hoverTimer" Hidden="true" />
+      <Property Name="AutoHideBar" Hidden="true" />
+      <Property Name="AutoHideGroup" Hidden="true" />
+      <Method Name="AutoHideTab" Hidden="true" />
+      <Property Name="IsUpsideDown" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnGotFocus" Hidden="true" />
+      <Method Name="OnKeyDown" Hidden="true" />
+      <Method Name="OnLostFocus" Hidden="true" />
+      <Method Name="OnMouseEnter" Hidden="true" />
+      <Method Name="OnMouseHover" Hidden="true" />
+      <Method Name="OnMouseLeave" Hidden="true" />
+      <Method Name="OnMouseLeftButtonDown" Hidden="true" />
+      <Method Name="UpdateVisualStates" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IABAAAAIAAJAAAAAAABAAAAEAAIACAgAAABAEgAAAAA=</HashCode>
+      <FileName>AutoHide\AutoHideTab.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AutoHideBar" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Windows.Docking.AutoHideOverlay">
+    <Position X="3.5" Y="2.5" Width="1.5" />
+    <Members>
+      <Method Name="AutoHideOverlay" Hidden="true" />
+      <Method Name="OnLoaded" Hidden="true" />
+      <Method Name="OnSourceInitialized" Hidden="true" />
+      <Method Name="OnUnloaded" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAAAAgAAAQABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AutoHide\AutoHideOverlay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Docking.DockOverlay" Collapsed="true">
+    <Position X="3.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAARAAAACgAgBAAAAAAAAAAAABAAgA=</HashCode>
+      <FileName>DockOverlay\DockOverlay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Docking.AutoHideGroup">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <Members>
+      <Method Name="AutoHideGroup" Hidden="true" />
+      <Method Name="Filter" Hidden="true" />
+      <Method Name="GetContainerForItemOverride" Hidden="true" />
+      <Method Name="IsItemItsOwnContainerOverride" Hidden="true" />
+      <Method Name="OnItemsSourceChanged" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAECABAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>AutoHide\AutoHideGroup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="DigitalRune.Windows.Docking.AutoHideState">
+    <Position X="3.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABABAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>AutoHide\AutoHideState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

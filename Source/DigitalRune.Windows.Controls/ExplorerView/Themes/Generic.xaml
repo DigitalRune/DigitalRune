@@ -1,0 +1,419 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dr="clr-namespace:DigitalRune.Windows;assembly=DigitalRune.Windows"
+                    xmlns:local="clr-namespace:DigitalRune.Windows.Controls">
+
+    <Style x:Key="{x:Type local:ExplorerViewMenu}" TargetType="{x:Type local:ExplorerViewMenu}">
+        <Setter Property="ImageSourceExtraLargeIcons" Value="{dr:PackedBitmap /DigitalRune.Windows.Controls;component/Resources/Icons.png, 0 0 32 32}" />
+        <Setter Property="ImageSourceLargeIcons" Value="{dr:PackedBitmap /DigitalRune.Windows.Controls;component/Resources/Icons.png, 32 0 32 32}" />
+        <Setter Property="ImageSourceMediumIcons" Value="{dr:PackedBitmap /DigitalRune.Windows.Controls;component/Resources/Icons.png, 64 0 32 32}" />
+        <Setter Property="ImageSourceSmallIcons" Value="{dr:PackedBitmap /DigitalRune.Windows.Controls;component/Resources/Icons.png, 96 0 32 32}" />
+        <Setter Property="ImageSourceList" Value="{dr:PackedBitmap /DigitalRune.Windows.Controls;component/Resources/Icons.png, 128 0 32 32}" />
+        <Setter Property="ImageSourceDetails" Value="{dr:PackedBitmap /DigitalRune.Windows.Controls;component/Resources/Icons.png, 160 0 32 32}" />
+        <Setter Property="ImageSourceTiles" Value="{dr:PackedBitmap /DigitalRune.Windows.Controls;component/Resources/Icons.png, 192 0 32 32}" />
+        <Setter Property="StringExtraLargeIcons" Value="Extra Large Icons" />
+        <Setter Property="StringLargeIcons" Value="Large Icons" />
+        <Setter Property="StringMediumIcons" Value="Medium Icons" />
+        <Setter Property="StringSmallIcons" Value="Small Icons" />
+        <Setter Property="StringList" Value="List" />
+        <Setter Property="StringDetails" Value="Details" />
+        <Setter Property="StringTiles" Value="Tiles" />
+        <Setter Property="Background" Value="#F5F5F5" />
+        <Setter Property="BorderBrush" Value="#FF959595" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="FontFamily" Value="{DynamicResource {x:Static SystemFonts.MenuFontFamilyKey}}" />
+        <Setter Property="FontSize" Value="{DynamicResource {x:Static SystemFonts.MenuFontSizeKey}}" />
+        <Setter Property="FontStyle" Value="{DynamicResource {x:Static SystemFonts.MenuFontStyleKey}}" />
+        <Setter Property="FontWeight" Value="{DynamicResource {x:Static SystemFonts.MenuFontWeightKey}}" />
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
+        <Setter Property="HasDropShadow" Value="{DynamicResource {x:Static SystemParameters.DropShadowKey}}" />
+        <Setter Property="Padding" Value="2" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Grid.IsSharedSizeScope" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ExplorerViewMenu}">
+                    <Grid SnapsToDevicePixels="True">
+                        <Border x:Name="Shadow"
+                                Margin="0,0,5,5"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="2">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="2"
+                                                  Opacity="0.2"
+                                                  ShadowDepth="3" />
+                            </Border.Effect>
+                        </Border>
+                        <Border Margin="0,0,5,5"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <Grid>
+                                <Rectangle Width="28"
+                                           HorizontalAlignment="Left"
+                                           Fill="#F1F1F1"
+                                           RadiusX="2"
+                                           RadiusY="2" />
+                                <Rectangle Width="1"
+                                           Margin="30,2,0,2"
+                                           HorizontalAlignment="Left"
+                                           Fill="#E2E3E3" />
+                                <Rectangle Width="1"
+                                           Margin="31,2,0,2"
+                                           HorizontalAlignment="Left"
+                                           Fill="White" />
+                                <ScrollViewer Margin="32,0,2,0"
+                                              CanContentScroll="True"
+                                              Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type FrameworkElement}, ResourceId=MenuScrollViewer}}">
+                                    <StackPanel Margin="{TemplateBinding Padding}"
+                                                IsItemsHost="True"
+                                                KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                </ScrollViewer>
+                                <Slider Name="PART_ViewSlider"
+                                        Margin="6,12,0,12"
+                                        HorizontalAlignment="Left"
+                                        Foreground="Transparent"
+                                        IsMoveToPointEnabled="True"
+                                        IsSnapToTickEnabled="True"
+                                        Maximum="222"
+                                        Minimum="0"
+                                        Orientation="Vertical"
+                                        SmallChange="4"
+                                        TickPlacement="BottomRight"
+                                        Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SliderPosition}">
+                                    <Slider.Ticks>
+                                        0, 36, 72,
+                                        108, 116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,140,
+                                        148, 155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,
+                                        178, 184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,
+                                        222
+                                    </Slider.Ticks>
+                                </Slider>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="HasDropShadow" Value="False">
+                            <Setter TargetName="Shadow" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <SolidColorBrush x:Key="ListBorderBrush" Color="#828790" />
+
+
+    <Style x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ExplorerView}, ResourceId=ExplorerViewStyle}" TargetType="{x:Type ListView}">
+        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ListBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="#FF042271" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListView}">
+                    <Border Name="Bd"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            SnapsToDevicePixels="True">
+                        <ScrollViewer Padding="{TemplateBinding Padding}" Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
+                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </ScrollViewer>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsGrouping" Value="True">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=View.Mode}" Value="ExtraLargeIcons">
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+                <Setter Property="ItemTemplate" Value="{Binding View.IconTemplate, RelativeSource={RelativeSource Self}}" />
+                <Setter Property="ItemTemplateSelector" Value="{Binding View.IconTemplateSelector, RelativeSource={RelativeSource Self}}" />
+                <Setter Property="ItemsPanel">
+                    <Setter.Value>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=View.Mode}" Value="LargeIcons">
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+                <Setter Property="ItemTemplate" Value="{Binding View.IconTemplate, RelativeSource={RelativeSource Self}}" />
+                <Setter Property="ItemTemplateSelector" Value="{Binding View.IconTemplateSelector, RelativeSource={RelativeSource Self}}" />
+                <Setter Property="ItemsPanel">
+                    <Setter.Value>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=View.Mode}" Value="MediumIcons">
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+                <Setter Property="ItemTemplate" Value="{Binding View.IconTemplate, RelativeSource={RelativeSource Self}}" />
+                <Setter Property="ItemTemplateSelector" Value="{Binding View.IconTemplateSelector, RelativeSource={RelativeSource Self}}" />
+                <Setter Property="ItemsPanel">
+                    <Setter.Value>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=View.Mode}" Value="SmallIcons">
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+                <Setter Property="ItemTemplate" Value="{Binding View.IconTemplate, RelativeSource={RelativeSource Self}}" />
+                <Setter Property="ItemTemplateSelector" Value="{Binding View.IconTemplateSelector, RelativeSource={RelativeSource Self}}" />
+                <Setter Property="ItemsPanel">
+                    <Setter.Value>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=View.Mode}" Value="List">
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
+                <Setter Property="ItemTemplate" Value="{Binding View.ListTemplate, RelativeSource={RelativeSource Self}}" />
+                <Setter Property="ItemTemplateSelector" Value="{Binding View.ListTemplateSelector, RelativeSource={RelativeSource Self}}" />
+                <Setter Property="ItemsPanel">
+                    <Setter.Value>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Vertical" />
+                        </ItemsPanelTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=View.Mode}" Value="Tiles">
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+                <Setter Property="ItemTemplate" Value="{Binding View.TileTemplate, RelativeSource={RelativeSource Self}}" />
+                <Setter Property="ItemTemplateSelector" Value="{Binding View.TileTemplateSelector, RelativeSource={RelativeSource Self}}" />
+                <Setter Property="ItemsPanel">
+                    <Setter.Value>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style x:Key="ListViewItemFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle RadiusX="2"
+                               RadiusY="2"
+                               Stroke="#8E6EA6F5"
+                               StrokeThickness="1" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <LinearGradientBrush x:Key="ListItemHoverFill" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Offset="0" Color="#FFF1FBFF" />
+            <GradientStop Offset="1" Color="#FFD5F1FE" />
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ListItemSelectedFill" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Offset="0" Color="#FFD9F4FF" />
+            <GradientStop Offset="1" Color="#FF9BDDFB" />
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ListItemSelectedHoverFill" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Offset="0" Color="#FFEAF9FF" />
+            <GradientStop Offset="1" Color="#FFC9EDFD" />
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ListItemSelectedInactiveFill" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Offset="0" Color="#FFEEEDED" />
+            <GradientStop Offset="1" Color="#FFDDDDDD" />
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+
+    <ControlTemplate x:Key="DefaultListViewItem" TargetType="{x:Type ListViewItem}">
+        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="2"
+                SnapsToDevicePixels="True">
+            <Border Name="InnerBorder"
+                    BorderThickness="1"
+                    CornerRadius="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Rectangle Name="UpperHighlight"
+                               Fill="#75FFFFFF"
+                               Visibility="Collapsed" />
+                    <ContentPresenter Grid.RowSpan="2"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                </Grid>
+            </Border>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource ListItemHoverFill}" />
+                <Setter Property="BorderBrush" Value="#FFCCF0FF" />
+                <Setter TargetName="UpperHighlight" Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{StaticResource ListItemSelectedFill}" />
+                <Setter Property="BorderBrush" Value="#FF98DDFB" />
+                <Setter TargetName="InnerBorder" Property="BorderBrush" Value="#80FFFFFF" />
+                <Setter TargetName="UpperHighlight" Property="Visibility" Value="Visible" />
+                <Setter TargetName="UpperHighlight" Property="Fill" Value="#40FFFFFF" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected" Value="True" />
+                    <Condition Property="Selector.IsSelectionActive" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{StaticResource ListItemSelectedInactiveFill}" />
+                <Setter Property="BorderBrush" Value="#FFCFCFCF" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected" Value="True" />
+                    <Condition Property="IsMouseOver" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{StaticResource ListItemSelectedHoverFill}" />
+                <Setter Property="BorderBrush" Value="#FF98DDFB" />
+            </MultiTrigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="DetailsListViewItem" TargetType="{x:Type ListViewItem}">
+        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="2"
+                SnapsToDevicePixels="True">
+            <Border Name="InnerBorder"
+                    BorderThickness="1"
+                    CornerRadius="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition MaxHeight="11" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Rectangle Name="UpperHighlight"
+                               Fill="#75FFFFFF"
+                               Visibility="Collapsed" />
+                    <GridViewRowPresenter Grid.RowSpan="2"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                </Grid>
+            </Border>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource ListItemHoverFill}" />
+                <Setter Property="BorderBrush" Value="#FFCCF0FF" />
+                <Setter TargetName="UpperHighlight" Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{StaticResource ListItemSelectedFill}" />
+                <Setter Property="BorderBrush" Value="#FF98DDFB" />
+                <Setter TargetName="InnerBorder" Property="BorderBrush" Value="#80FFFFFF" />
+                <Setter TargetName="UpperHighlight" Property="Visibility" Value="Visible" />
+                <Setter TargetName="UpperHighlight" Property="Fill" Value="#40FFFFFF" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected" Value="True" />
+                    <Condition Property="Selector.IsSelectionActive" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{StaticResource ListItemSelectedInactiveFill}" />
+                <Setter Property="BorderBrush" Value="#FFCFCFCF" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected" Value="True" />
+                    <Condition Property="IsMouseOver" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{StaticResource ListItemSelectedHoverFill}" />
+                <Setter Property="BorderBrush" Value="#FF98DDFB" />
+            </MultiTrigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ExplorerView}, ResourceId=ExplorerViewItemContainerStyle}" TargetType="{x:Type ListViewItem}">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource ListViewItemFocusVisual}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Margin" Value="0,0,0,1" />
+        <Setter Property="Padding" Value="5,2,5,2" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template" Value="{StaticResource DefaultListViewItem}" />
+        <Style.Triggers>
+            <DataTrigger Value="Details">
+                <DataTrigger.Binding>
+                    <PriorityBinding>
+                        <!--
+                            Wrap binding in PriorityBinding.
+                            This is necessary because the ListView-ancestor cannot always be resolved.
+                            (For example: When the ListViewItem is created it does not have an ancestor until it is
+                            connected to the visual tree.)
+                            Generally this is not a problem, but failed bindings are logged to the Visual Studio Output Window:
+                            System.Windows.Data Error: 4 : Cannot find source for binding ...
+                            
+                            When we use a PriorityBinding the failed bindings are logged as warnings instead of errors:
+                            System.Windows.Data Warning: 4 : Cannot find source for binding ...
+                            
+                            Warnings are acceptable!
+                        -->
+                        <Binding Path="View.Mode" RelativeSource="{RelativeSource AncestorType={x:Type ListView}}" />
+                    </PriorityBinding>
+                </DataTrigger.Binding>
+                <Setter Property="Template" Value="{StaticResource DetailsListViewItem}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

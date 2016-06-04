@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Physics                        Namespace: DigitalRune.Physics.ForceEffects">
+    <Position X="0.5" Y="0.5" Height="0.479" Width="2.745" />
+  </Comment>
+  <Class Name="DigitalRune.Physics.ForceEffects.Damping">
+    <Position X="2.25" Y="7.5" Width="1.5" />
+    <Members>
+      <Method Name="Apply" Hidden="true" />
+      <Method Name="Damping" Hidden="true" />
+      <Method Name="Initialize" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAABAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ForceEffects\Damping.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Physics.ForceEffects.Gravity">
+    <Position X="0.5" Y="7.5" Width="1.5" />
+    <Members>
+      <Field Name="_acceleration" Hidden="true" />
+      <Field Name="_direction" Hidden="true" />
+      <Method Name="Apply" Hidden="true" />
+      <Method Name="Gravity" Hidden="true" />
+      <Method Name="Initialize" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAQAAAAAAAAAAAAAAAAAAAAAMAQAAAAA=</HashCode>
+      <FileName>ForceEffects\Gravity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Physics.ForceEffects.ForceEffect">
+    <Position X="3.5" Y="0.5" Width="2.25" />
+    <Members>
+      <Field Name="_enabled" Hidden="true" />
+      <Field Name="_simulation" Hidden="true" />
+      <Method Name="Apply" Hidden="true" />
+      <Method Name="ForceEffect" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAQBAAAIAAAAIAAAABAAAAAACQAAQABAAACAE=</HashCode>
+      <FileName>ForceEffects\ForceEffect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Physics.ForceEffects.Explosion">
+    <Position X="4" Y="7.5" Width="1.5" />
+    <Members>
+      <Method Name="Apply" Hidden="true" />
+      <Property Name="EndTime" Hidden="true" />
+      <Method Name="Explosion" Hidden="true" />
+      <Method Name="Initialize" Hidden="true" />
+      <Method Name="OnAddToSimulation" Hidden="true" />
+      <Method Name="OnApply" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAABACAQAgAAAAAAAAAAAgAACAAAQAAAAIAAA=</HashCode>
+      <FileName>ForceEffects\Explosion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Physics.ForceEffects.DampedSpring">
+    <Position X="0.5" Y="4.25" Width="2.25" />
+    <Members>
+      <Method Name="DampedSpring" Hidden="true" />
+      <Method Name="OnApply" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAKEAAAAAAACABAAAAAAFAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>ForceEffects\DampedSpring.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Physics.ForceEffects.Buoyancy">
+    <Position X="5.75" Y="7.5" Width="1.5" />
+    <Members>
+      <Method Name="Apply" Hidden="true" />
+      <Method Name="Buoyancy" Hidden="true" />
+      <Method Name="ClipTriangle" Hidden="true" />
+      <Method Name="GetSignedTetrahedronVolume" Hidden="true" />
+      <Method Name="GetSubmergedVolume" Hidden="true" />
+      <Method Name="Initialize" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEABEIQQAAAAEAAAAFAAAAAAAAAAAAAAAMAAA=</HashCode>
+      <FileName>ForceEffects\Buoyancy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Physics.ForceEffects.ListAreaOfEffect" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="4.25" Width="1.5" />
+    <Members>
+      <Method Name="Apply" Hidden="true" />
+      <Method Name="ListAreaOfEffect" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ForceEffects\ListAreaOfEffect.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Physics.ForceEffects.ForceField">
+    <Position X="3" Y="4.25" Width="1.5" />
+    <Members>
+      <Method Name="Apply" Hidden="true" />
+      <Method Name="ForceField" Hidden="true" />
+      <Method Name="OnApply" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>ForceEffects\ForceField.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AreaOfEffect" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Physics.ForceEffects.GeometricAreaOfEffect" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="5.75" Width="2" />
+    <Members>
+      <Method Name="Apply" Hidden="true" />
+      <Method Name="GeometricAreaOfEffect" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ForceEffects\GeometricAreaOfEffect.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Physics.ForceEffects.GlobalAreaOfEffect" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="2.75" Width="1.75" />
+    <Members>
+      <Method Name="Apply" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ForceEffects\GlobalAreaOfEffect.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="DigitalRune.Physics.ForceEffects.IAreaOfEffect">
+    <Position X="5.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ForceEffects\IAreaOfEffect.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

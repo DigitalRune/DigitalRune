@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Charts                                                             Assembly: DigitalRune.Windows.Charts                 Namespace: DigitalRune.Windows.Charts">
+    <Position X="0.5" Y="0.5" Height="0.627" Width="2.575" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.Charts.HeatChartGroup">
+    <Position X="11.25" Y="4.75" Width="2" />
+    <Members>
+      <Field Name="BarGapProperty" Hidden="true" />
+      <Field Name="FillPaletteProperty" Hidden="true" />
+      <Method Name="HeatChartGroup" Hidden="true" />
+      <Method Name="OnRelevantPropertyChanged" Hidden="true" />
+      <Method Name="OnSuggestYScale" Hidden="true" />
+      <Field Name="StrokePaletteProperty" Hidden="true" />
+      <Method Name="ValidateData" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAQUgAAAAAAAEAgAAAAQAAAIAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Charts\HeatChartGroup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.BarChart">
+    <Position X="7.5" Y="9.75" Width="1.75" />
+    <Members>
+      <Method Name="BarChart" Hidden="true" />
+      <Field Name="BarGapProperty" Hidden="true" />
+      <Method Name="EnsureScaleIncludesZero" Hidden="true" />
+      <Method Name="GetBarWidth" Hidden="true" />
+      <Method Name="GetClusterPosition" Hidden="true" />
+      <Method Name="GetNumberOfBarCharts" Hidden="true" />
+      <Method Name="GetPointWithGrouping" Hidden="true" />
+      <Method Name="OnGetLegendSymbol" Hidden="true" />
+      <Method Name="OnRelevantPropertyChanged" Hidden="true" />
+      <Method Name="OnSuggestXScale" Hidden="true" />
+      <Method Name="OnSuggestYScale" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Field Name="OrientationProperty" Hidden="true" />
+      <Method Name="ValidateData" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IIAAUgkAAQAoBEAAAAAAAAAAIAAAAAAACAAAAAEBEiA=</HashCode>
+      <FileName>Charts\BarChart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.BarChartGroup">
+    <Position X="9" Y="4.75" Width="1.75" />
+    <Members>
+      <Method Name="BarChartGroup" Hidden="true" />
+      <Field Name="BarGapProperty" Hidden="true" />
+      <Field Name="ClusterGapProperty" Hidden="true" />
+      <Field Name="GroupingProperty" Hidden="true" />
+      <Method Name="OnRelevantPropertyChanged" Hidden="true" />
+      <Method Name="OnSuggestXScale" Hidden="true" />
+      <Method Name="OnSuggestYScale" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Field Name="OrientationProperty" Hidden="true" />
+      <Method Name="ValidateData" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAAAUgAAAQCAAEEAAAAAAAARIAAAAAAAAAAAAAEAAiA=</HashCode>
+      <FileName>Charts\BarChartGroup.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Grouping" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.Chart">
+    <Position X="2.75" Y="2.5" Width="1.75" />
+    <Members>
+      <Field Name="_dataSourceSubscription" Hidden="true" />
+      <Field Name="_isDataSourceValid" Hidden="true" />
+      <Method Name="Chart" Hidden="true" />
+      <Field Name="DataPointStyleProperty" Hidden="true" />
+      <Field Name="DataPointTemplateProperty" Hidden="true" />
+      <Field Name="DataSourceProperty" Hidden="true" />
+      <Method Name="GetLabels" Hidden="true" />
+      <Field Name="GroupProperty" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnDataSourceChanged" Hidden="true" />
+      <Method Name="OnRelevantPropertyChanged" Hidden="true" />
+      <Method Name="OnSuggestXScale" Hidden="true" />
+      <Method Name="OnSuggestYScale" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Method Name="OnValuePathChanged" Hidden="true" />
+      <Method Name="OnXAxisChanged" Hidden="true" />
+      <Method Name="OnYAxisChanged" Hidden="true" />
+      <Method Name="SuggestScale" Hidden="true" />
+      <Field Name="XValuePathProperty" Hidden="true" />
+      <Field Name="XYValuePathProperty" Hidden="true" />
+      <Field Name="YValuePathProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAIgUkAgAABAElAIBKoAQAQQAAAABhAEAEAAEAEACCA=</HashCode>
+      <FileName>Charts\Chart.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Group" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.ChartGroup">
+    <Position X="8" Y="2" Width="1.75" />
+    <Members>
+      <Field Name="_invalidating" Hidden="true" />
+      <Method Name="ChartGroup" Hidden="true" />
+      <Method Name="ClearContainerForItemOverride" Hidden="true" />
+      <Method Name="Invalidate" Hidden="true" />
+      <Event Name="Invalidated" Hidden="true" />
+      <Property Name="IsValid" Hidden="true" />
+      <Method Name="MeasureOverride" Hidden="true" />
+      <Method Name="OnAxisChanged" Hidden="true" />
+      <Method Name="OnAxisUpdated" Hidden="true" />
+      <Method Name="OnChartInvalidated" Hidden="true" />
+      <Method Name="OnInvalidate" Hidden="true" />
+      <Method Name="OnSuggestXScale" Hidden="true" />
+      <Method Name="OnSuggestYScale" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Method Name="OnXAxisChanged" Hidden="true" />
+      <Method Name="OnYAxisChanged" Hidden="true" />
+      <Method Name="PrepareContainerForItemOverride" Hidden="true" />
+      <Method Name="SuggestXScale" Hidden="true" />
+      <Method Name="SuggestYScale" Hidden="true" />
+      <Method Name="Update" Hidden="true" />
+      <Event Name="Updated" Hidden="true" />
+      <Property Name="XAxis" Hidden="true" />
+      <Field Name="XAxisProperty" Hidden="true" />
+      <Property Name="YAxis" Hidden="true" />
+      <Field Name="YAxisProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAQEUAAFAABAgEAAAAgAQBEAAAEAEgAAQDQAgBEAACA=</HashCode>
+      <FileName>Charts\ChartGroup.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Charts" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.ColoredBarChart">
+    <Position X="7.5" Y="13.5" Width="1.75" />
+    <Members>
+      <Method Name="ColoredBarChart" Hidden="true" />
+      <Field Name="FillModeProperty" Hidden="true" />
+      <Field Name="FillPaletteProperty" Hidden="true" />
+      <Method Name="GetBrushes" Hidden="true" />
+      <Method Name="OnGetLegendSymbol" Hidden="true" />
+      <Method Name="OnPrepareBar" Hidden="true" />
+      <Method Name="OnRelevantPropertyChanged" Hidden="true" />
+      <Field Name="PaletteIndexProperty" Hidden="true" />
+      <Field Name="StrokePaletteProperty" Hidden="true" />
+    </Members>
+    <AssociationLine Name="PaletteIndex" Type="DigitalRune.Windows.Charts.PaletteIndex">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.115" Y="0.11" Height="0.182" Width="1.068" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAQgAAAAMAAAEAgAAAAQAAAAAAgAAAgCAAAAAAAEEA=</HashCode>
+      <FileName>Charts\ColoredBarChart.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="FillMode" />
+      <Property Name="PaletteIndex" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.ColoredLineChart">
+    <Position X="4.5" Y="13.5" Width="2.75" />
+    <Members>
+      <Method Name="AddSegment" Hidden="true" />
+      <Method Name="ColoredLineChart" Hidden="true" />
+      <Field Name="FillModeProperty" Hidden="true" />
+      <Field Name="FillPaletteProperty" Hidden="true" />
+      <Method Name="OnGetLegendSymbol" Hidden="true" />
+      <Method Name="OnRelevantPropertyChanged" Hidden="true" />
+      <Method Name="OnUpdateLines" Hidden="true" />
+      <Field Name="PaletteIndexProperty" Hidden="true" />
+      <Field Name="StrokePaletteProperty" Hidden="true" />
+    </Members>
+    <AssociationLine Name="FillMode" Type="DigitalRune.Windows.Charts.AreaFillMode" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.5" Y="13.688" />
+        <Point X="3.5" Y="13.688" />
+        <Point X="3.5" Y="14.25" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAYgAAAAIAAAEAgAAAAQAgAAAAgAAAgCAEAAEAAAEA=</HashCode>
+      <FileName>Charts\ColoredLineChart.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="FillMode" />
+      <Property Name="PaletteIndex" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.LineChart">
+    <Position X="4.75" Y="9.75" Width="2.25" />
+    <Members>
+      <Field Name="_areaPath" Hidden="true" />
+      <Field Name="_areaRenderer" Hidden="true" />
+      <Field Name="_basePositions" Hidden="true" />
+      <Field Name="_cacheMode" Hidden="true" />
+      <Field Name="_edgeMode" Hidden="true" />
+      <Field Name="_endIndexExclusive" Hidden="true" />
+      <Field Name="_linePath" Hidden="true" />
+      <Field Name="_lineRenderer" Hidden="true" />
+      <Field Name="_startIndex" Hidden="true" />
+      <Field Name="_updatePending" Hidden="true" />
+      <Field Name="_xPositions" Hidden="true" />
+      <Field Name="_yPositions" Hidden="true" />
+      <Field Name="AreaStyleProperty" Hidden="true" />
+      <Method Name="CachePositions" Hidden="true" />
+      <Method Name="ClearCacheMode" Hidden="true" />
+      <Method Name="ClearEdgeMode" Hidden="true" />
+      <Field Name="FilledProperty" Hidden="true" />
+      <Method Name="FindVisibleDataPoints" Hidden="true" />
+      <Method Name="GetCenteredStep" Hidden="true" />
+      <Method Name="GetValues" Hidden="true" />
+      <Field Name="HorizontalStepLineVisibleProperty" Hidden="true" />
+      <Field Name="InterpolationProperty" Hidden="true" />
+      <Method Name="LineChart" Hidden="true" />
+      <Field Name="LineStyleProperty" Hidden="true" />
+      <Method Name="MarkerSizeChanged" Hidden="true" />
+      <Field Name="MarkerThresholdProperty" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnGetLegendSymbol" Hidden="true" />
+      <Method Name="OnRelevantPropertyChanged" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Method Name="PositionMarker" Hidden="true" />
+      <Field Name="RenderModeProperty" Hidden="true" />
+      <Method Name="RestoreCacheMode" Hidden="true" />
+      <Method Name="RestoreEdgeMode" Hidden="true" />
+      <Method Name="UpdateMarkers" Hidden="true" />
+      <Method Name="ValidateData" Hidden="true" />
+      <Field Name="VerticalStepLineVisibleProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ACQKGEAAIQBAAEEhQBaMAIEAAAAQBQAQGCEBwBkAqDg=</HashCode>
+      <FileName>Charts\LineChart.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Interpolation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.LineChartGroup">
+    <Position X="6.75" Y="4.75" Width="1.75" />
+    <Members>
+      <Method Name="GetValues" Hidden="true" />
+      <Field Name="GroupingProperty" Hidden="true" />
+      <Field Name="InterpolationProperty" Hidden="true" />
+      <Method Name="LineChartGroup" Hidden="true" />
+      <Method Name="OnRelevantPropertyChanged" Hidden="true" />
+      <Method Name="OnSuggestYScale" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Method Name="ValidateData" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Interpolation" Type="DigitalRune.Windows.Charts.ChartInterpolation">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.027" Y="0.804" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAUgAAIAAAAEAAAAAAAAABAAAAAQAAAAAAAAEAgAA=</HashCode>
+      <FileName>Charts\LineChartGroup.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Interpolation" />
+      <Property Name="Grouping" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.ScatterPlot">
+    <Position X="2.5" Y="9.75" Width="1.75" />
+    <Members>
+      <Method Name="MarkerSizeChanged" Hidden="true" />
+      <Method Name="OnGetLegendSymbol" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Method Name="PositionMarker" Hidden="true" />
+      <Method Name="ScatterPlot" Hidden="true" />
+      <Method Name="ValidateData" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQAEAAAAAAAAAAAAAAAAIAAAAAAAAAACAAAAAEAAAA=</HashCode>
+      <FileName>Charts\ScatterPlot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.HeatChart">
+    <Position X="9.75" Y="9.75" Width="1.75" />
+    <Members>
+      <Property Name="BarWidth" Hidden="true" />
+      <Property Name="EffectiveFillPalette" Hidden="true" />
+      <Property Name="EffectiveStrokePalette" Hidden="true" />
+      <Field Name="FillModeProperty" Hidden="true" />
+      <Field Name="FillPaletteProperty" Hidden="true" />
+      <Method Name="GetBrushesFromPalette" Hidden="true" />
+      <Method Name="HeatChart" Hidden="true" />
+      <Method Name="OnGetLegendSymbol" Hidden="true" />
+      <Method Name="OnRelevantPropertyChanged" Hidden="true" />
+      <Method Name="OnSuggestYScale" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Field Name="StrokePaletteProperty" Hidden="true" />
+      <Method Name="ValidateData" Hidden="true" />
+      <Property Name="Y" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CACQUAAAAIAAAEAgAAAAQIAAEAAgAAAACAAAAAEAIEA=</HashCode>
+      <FileName>Charts\HeatChart.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="FillMode" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.ChartElement" Collapsed="true">
+    <Position X="2.75" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>gAQEQwAFAAAACEAAAAiAQBEAAAAAAgAASDQAgBEAACA=</HashCode>
+      <FileName>ChartElements\ChartElement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.PieChart">
+    <Position X="0.5" Y="9.75" Width="1.75" />
+    <Members>
+      <Field Name="_legendSymbols" Hidden="true" />
+      <Field Name="ActualHoleRadiusProperty" Hidden="true" />
+      <Field Name="ActualHoleRadiusPropertyKey" Hidden="true" />
+      <Field Name="BrushSelectorProperty" Hidden="true" />
+      <Field Name="CenterXProperty" Hidden="true" />
+      <Field Name="CenterYProperty" Hidden="true" />
+      <Method Name="DrawPieChart" Hidden="true" />
+      <Method Name="GetPieChartLegendSymbols" Hidden="true" />
+      <Field Name="HoleProperty" Hidden="true" />
+      <Method Name="OnGetLegendSymbol" Hidden="true" />
+      <Method Name="OnRelevantPropertyChanged" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Method Name="PieChart" Hidden="true" />
+      <Field Name="RadiusProperty" Hidden="true" />
+      <Method Name="ValidateData" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AIAIEAgMAECQAEAAGAAAAgAAAAQBEAAACAAACAEIAAA=</HashCode>
+      <FileName>Charts\PieChart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.PieChartItem">
+    <Position X="0.5" Y="12.25" Width="1.75" />
+    <Members>
+      <Field Name="_innerLabel" Hidden="true" />
+      <Field Name="_isValid" Hidden="true" />
+      <Field Name="_leaderLineGeometry" Hidden="true" />
+      <Field Name="_leaderLinePath" Hidden="true" />
+      <Field Name="_outerLabel" Hidden="true" />
+      <Field Name="_sectorGeometry" Hidden="true" />
+      <Field Name="_sectorPath" Hidden="true" />
+      <Property Name="CenterX" Hidden="true" />
+      <Field Name="CenterXProperty" Hidden="true" />
+      <Property Name="CenterY" Hidden="true" />
+      <Field Name="CenterYProperty" Hidden="true" />
+      <Property Name="EndAngle" Hidden="true" />
+      <Field Name="EndAngleProperty" Hidden="true" />
+      <Method Name="GetDirection" Hidden="true" />
+      <Field Name="InnerLabelClipAngleProperty" Hidden="true" />
+      <Field Name="InnerLabelProperty" Hidden="true" />
+      <Field Name="InnerLabelTemplateProperty" Hidden="true" />
+      <Property Name="InnerRadius" Hidden="true" />
+      <Field Name="InnerRadiusProperty" Hidden="true" />
+      <Method Name="Invalidate" Hidden="true" />
+      <Field Name="LeaderLineLengthProperty" Hidden="true" />
+      <Field Name="LeaderLineStyleProperty" Hidden="true" />
+      <Method Name="MeasureOverride" Hidden="true" />
+      <Field Name="OffsetProperty" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnRelevantPropertyChanged" Hidden="true" />
+      <Field Name="OuterLabelClipAngleProperty" Hidden="true" />
+      <Field Name="OuterLabelProperty" Hidden="true" />
+      <Field Name="OuterLabelTemplateProperty" Hidden="true" />
+      <Property Name="OuterRadius" Hidden="true" />
+      <Field Name="OuterRadiusProperty" Hidden="true" />
+      <Method Name="PieChartItem" Hidden="true" />
+      <Field Name="SectorStyleProperty" Hidden="true" />
+      <Property Name="StartAngle" Hidden="true" />
+      <Field Name="StartAngleProperty" Hidden="true" />
+      <Method Name="Update" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CAQEABaEAiBIAHBAHaAAICIAABAAEAUCQEgIAJQIgAA=</HashCode>
+      <FileName>Charts\PieChartItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.ChartGroup&lt;T&gt;" Collapsed="true">
+    <Position X="8" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Charts\ChartGroup{T}.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DigitalRune.Windows.Charts.ILineChartGroup">
+    <Position X="5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Charts\ILineChartGroup.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DigitalRune.Windows.Charts.AreaFillMode">
+    <Position X="2.75" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAgAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Charts\AreaFillMode.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DigitalRune.Windows.Charts.BarChartGrouping">
+    <Position X="9.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAIAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Charts\BarChartGrouping.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DigitalRune.Windows.Charts.BarFillMode">
+    <Position X="10.25" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Charts\BarFillMode.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DigitalRune.Windows.Charts.ChartInterpolation">
+    <Position X="5.25" Y="7.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AACAAIAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Charts\ChartInterpolation.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DigitalRune.Windows.Charts.LineChartGrouping">
+    <Position X="7.25" Y="7.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Charts\LineChartGrouping.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DigitalRune.Windows.Charts.PaletteIndex">
+    <Position X="7.75" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAACAAAA=</HashCode>
+      <FileName>Utilities\PaletteIndex.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

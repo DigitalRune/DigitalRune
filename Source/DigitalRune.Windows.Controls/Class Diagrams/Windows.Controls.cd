@@ -1,0 +1,452 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Misc controls                                   Assembly: DigitalRune.Windows.Controls   Namespace: DigitalRune.Windows.Controls">
+    <Position X="0.5" Y="0.5" Height="0.635" Width="2.658" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.Controls.UnclippedTextBlock">
+    <Position X="0.5" Y="3.75" Width="1.75" />
+    <Members>
+      <Method Name="GetLayoutClip" Hidden="true" />
+      <Method Name="UnclippedTextBlock" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UnclippedTextBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.EditableTextBlock">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <Members>
+      <Field Name="_canBeEdited" Hidden="true" />
+      <Field Name="_cancelEditing" Hidden="true" />
+      <Field Name="_mouseDownDetected" Hidden="true" />
+      <Field Name="_textBlock" Hidden="true" />
+      <Field Name="_textBoxAdorner" Hidden="true" />
+      <Method Name="CoerceIsEditing" Hidden="true" />
+      <Method Name="EditableTextBlock" Hidden="true" />
+      <Field Name="IsEditableProperty" Hidden="true" />
+      <Field Name="IsEditingProperty" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnIsEditingChanged" Hidden="true" />
+      <Method Name="OnMouseEnter" Hidden="true" />
+      <Method Name="OnMouseLeave" Hidden="true" />
+      <Method Name="OnMouseLeftButtonDown" Hidden="true" />
+      <Method Name="OnMouseLeftButtonUp" Hidden="true" />
+      <Method Name="OnTextBoxKeyDown" Hidden="true" />
+      <Method Name="OnTextBoxLostKeyboardFocus" Hidden="true" />
+      <Method Name="RemoveTextBox" Hidden="true" />
+      <Method Name="ShowTextBox" Hidden="true" />
+      <Field Name="TextBlockStyleProperty" Hidden="true" />
+      <Field Name="TextBoxStyleProperty" Hidden="true" />
+      <Field Name="TextProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAIQARAiAFAIABAIBAMIEUEAAQAEgAACAAAAEA=</HashCode>
+      <FileName>EditableTextBlock\EditableTextBlock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.ButtonChrome">
+    <Position X="5.75" Y="1.5" Width="1.75" />
+    <Members>
+      <Method Name="ButtonChrome" Hidden="true" />
+      <Field Name="CornerRadiusProperty" Hidden="true" />
+      <Field Name="InnerCornerRadiusProperty" Hidden="true" />
+      <Field Name="InnerCornerRadiusPropertyKey" Hidden="true" />
+      <Method Name="OnCornerRadiusChanged" Hidden="true" />
+      <Field Name="RenderBackgroundProperty" Hidden="true" />
+      <Field Name="RenderDefaultedProperty" Hidden="true" />
+      <Field Name="RenderMouseOverProperty" Hidden="true" />
+      <Field Name="RenderPressedProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ABAAAAAhBAAAAAAAAAAAAAAAAKAAAAAAgAABJAAkAAA=</HashCode>
+      <FileName>ButtonChrome\ButtonChrome.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.SelectionRectangle">
+    <Position X="3" Y="6" Width="1.75" />
+    <Members>
+      <Method Name="OnRender" Hidden="true" />
+      <Method Name="SelectionRectangle" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>SelectionRectangle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.ProgressRing">
+    <Position X="3" Y="9.5" Width="1.5" />
+    <Members>
+      <Field Name="_deferredActions" Hidden="true" />
+      <Property Name="EllipseDiameter" Hidden="true" />
+      <Field Name="EllipseDiameterProperty" Hidden="true" />
+      <Field Name="EllipseDiameterPropertyKey" Hidden="true" />
+      <Property Name="EllipseOffset" Hidden="true" />
+      <Field Name="EllipseOffsetProperty" Hidden="true" />
+      <Field Name="EllipseOffsetPropertyKey" Hidden="true" />
+      <Method Name="ExecuteDeferredActions" Hidden="true" />
+      <Method Name="ExecuteOrDefer" Hidden="true" />
+      <Field Name="IsActiveProperty" Hidden="true" />
+      <Field Name="IsLargeProperty" Hidden="true" />
+      <Property Name="MaxSideLength" Hidden="true" />
+      <Field Name="MaxSideLengthProperty" Hidden="true" />
+      <Field Name="MaxSideLengthPropertyKey" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnIsActiveChanged" Hidden="true" />
+      <Method Name="OnIsLargeChanged" Hidden="true" />
+      <Method Name="OnSizeChanged" Hidden="true" />
+      <Method Name="OnVisibilityChanged" Hidden="true" />
+      <Method Name="ProgressRing" Hidden="true" />
+      <Method Name="UpdateActiveState" Hidden="true" />
+      <Method Name="UpdateLargeState" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAIiAACkABBBACAEBAAAAQAAACABARQAACAAAIgAAE=</HashCode>
+      <FileName>ProgressRing\ProgressRing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.CommandTextBox">
+    <Position X="2.75" Y="4" Width="2.25" />
+    <Members>
+      <Field Name="ButtonContentProperty" Hidden="true" />
+      <Field Name="CommandProperty" Hidden="true" />
+      <Method Name="CommandTextBox" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAABAAAAAIAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>CommandTextBox\CommandTextBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.WatermarkedTextBox">
+    <Position X="2.75" Y="1.5" Width="2.25" />
+    <Members>
+      <Field Name="_contentHost" Hidden="true" />
+      <Field Name="ClearOnEscapeProperty" Hidden="true" />
+      <Method Name="IsTextBoxViewHit" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnGotKeyboardFocus" Hidden="true" />
+      <Method Name="OnKeyDown" Hidden="true" />
+      <Method Name="OnPreviewMouseLeftButtonDown" Hidden="true" />
+      <Field Name="SelectAllOnFocusProperty" Hidden="true" />
+      <Method Name="WatermarkedTextBox" Hidden="true" />
+      <Field Name="WatermarkProperty" Hidden="true" />
+      <Field Name="WatermarkStringFormatProperty" Hidden="true" />
+      <Field Name="WatermarkTemplateProperty" Hidden="true" />
+      <Field Name="WatermarkTemplateSelectorProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BBJCAAAAAQBAAAAgAAQQAAAAAAIACgBAAEAAAAAAQAA=</HashCode>
+      <FileName>WatermarkedTextBox\WatermarkedTextBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.WindowCaptionButtons">
+    <Position X="2.25" Y="11.5" Width="2" />
+    <Members>
+      <Field Name="_closeButton" Hidden="true" />
+      <Field Name="_closeCaption" Hidden="true" />
+      <Field Name="_maximizeButton" Hidden="true" />
+      <Field Name="_maximizeCaption" Hidden="true" />
+      <Field Name="_minimizeButton" Hidden="true" />
+      <Field Name="_minimizeCaption" Hidden="true" />
+      <Field Name="_restoreCaption" Hidden="true" />
+      <Field Name="_user32" Hidden="true" />
+      <Field Name="CloseButtonStyleProperty" Hidden="true" />
+      <Method Name="GetCaption" Hidden="true" />
+      <Field Name="MaximizeButtonStyleProperty" Hidden="true" />
+      <Field Name="MinimizeButtonStyleProperty" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnCloseButtonClicked" Hidden="true" />
+      <Method Name="OnMaximizeButtonClicked" Hidden="true" />
+      <Method Name="OnMinimizeButtonClicked" Hidden="true" />
+      <Field Name="ShowCloseButtonProperty" Hidden="true" />
+      <Field Name="ShowMaximizeButtonProperty" Hidden="true" />
+      <Field Name="ShowMinimizeButtonProperty" Hidden="true" />
+      <Method Name="WindowCaptionButtons" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>HAIEAKCQASJIQAEIAAAAAAAAACIAMAgASCgAAAgEgAA=</HashCode>
+      <FileName>WindowChrome\WindowCaptionButtons.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.WindowCaptionIcon">
+    <Position X="5.75" Y="6.5" Width="1.75" />
+    <Members>
+      <Method Name="OnMouseDown" Hidden="true" />
+      <Method Name="WindowCaptionIcon" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>WindowChrome\WindowCaptionIcon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.ImageEffect">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <Members>
+      <Field Name="ColorProperty" Hidden="true" />
+      <Method Name="ImageEffect" Hidden="true" />
+      <Field Name="ImageEffectShader" Hidden="true" />
+      <Field Name="InputProperty" Hidden="true" />
+      <Method Name="MakePackUri" Hidden="true" />
+      <Field Name="OpacityProperty" Hidden="true" />
+      <Field Name="SaturationProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAwEAAAAAAAAAAAAAAAAAIAEIgBAEAAAAAAgAAAAAA=</HashCode>
+      <FileName>ImageEffect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.ListViewEx">
+    <Position X="3" Y="8" Width="1.5" />
+    <Members>
+      <Method Name="ListViewEx" Hidden="true" />
+      <Method Name="OnViewChanged" Hidden="true" />
+      <Method Name="PrepareContainerForItemOverride" Hidden="true" />
+      <Method Name="SetDefaultStyle" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAIAAAAACAAA=</HashCode>
+      <FileName>ListViewEx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.MultiFrameImage">
+    <Position X="0.5" Y="10" Width="1.5" />
+    <Members>
+      <Field Name="_frames" Hidden="true" />
+      <Method Name="GetFrame" Hidden="true" />
+      <Method Name="MultiFrameImage" Hidden="true" />
+      <Method Name="OnRender" Hidden="true" />
+      <Method Name="OnSourceChanged" Hidden="true" />
+      <Method Name="UpdateFrameList" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAQAAAAAAAEAAAAAAAAAAAAAAAAIAAQAAA=</HashCode>
+      <FileName>MultiFrameImage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.SplitButton">
+    <Position X="8" Y="5.25" Width="1.75" />
+    <Members>
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Field Name="PART_ActionButton" Hidden="true" />
+      <Method Name="SplitButton" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SplitButton\SplitButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.DropDownButton">
+    <Position X="8" Y="1.5" Width="1.75" />
+    <Members>
+      <Field Name="_button" Hidden="true" />
+      <Field Name="_contextMenu" Hidden="true" />
+      <Field Name="_contextMenuRoot" Hidden="true" />
+      <Field Name="_popup" Hidden="true" />
+      <Field Name="_toggleButton" Hidden="true" />
+      <Method Name="BindToIsDropDownOpen" Hidden="true" />
+      <Field Name="ClickEvent" Hidden="true" />
+      <Method Name="CloseDropDown" Hidden="true" />
+      <Field Name="CommandParameterProperty" Hidden="true" />
+      <Field Name="CommandProperty" Hidden="true" />
+      <Field Name="CommandTargetProperty" Hidden="true" />
+      <Method Name="DropDownButton" Hidden="true" />
+      <Field Name="DropDownProperty" Hidden="true" />
+      <Field Name="IsDropDownOpenProperty" Hidden="true" />
+      <Method Name="IsLogicalDescendant" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnButtonClicked" Hidden="true" />
+      <Method Name="OnCanExecuteChanged" Hidden="true" />
+      <Method Name="OnCommandChanged" Hidden="true" />
+      <Method Name="OnDropDownChanged" Hidden="true" />
+      <Method Name="OnDropDownClosed" Hidden="true" />
+      <Method Name="OnDropDownOpened" Hidden="true" />
+      <Method Name="OnIsKeyboardFocusWithinChanged" Hidden="true" />
+      <Method Name="OnIsOpenChanged" Hidden="true" />
+      <Method Name="OnKeyDown" Hidden="true" />
+      <Method Name="OnLostMouseCapture" Hidden="true" />
+      <Method Name="OnMouseDownOutsideCapturedElement" Hidden="true" />
+      <Method Name="OnPopupContextMenuOpening" Hidden="true" />
+      <Method Name="OnPopupMouseDown" Hidden="true" />
+      <Method Name="OnPopupOpened" Hidden="true" />
+      <Method Name="OnToggleButtonPreviewLeftButtonMouseDown" Hidden="true" />
+      <Field Name="PART_DropDownButton" Hidden="true" />
+      <Method Name="RaiseCommand" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEJJAAABABBCRgMAKAQCBoAGIcIAEQAAAAAAEAMCUoA=</HashCode>
+      <FileName>DropDownButton\DropDownButton.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.ToolBarEx">
+    <Position X="0.5" Y="11.5" Width="1.5" />
+    <Members>
+      <Field Name="_currentItem" Hidden="true" />
+      <Method Name="GetContainerForItemOverride" Hidden="true" />
+      <Method Name="IsItemItsOwnContainerOverride" Hidden="true" />
+      <Method Name="ToolBarEx" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAEAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>ToolBarEx\ToolBarEx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.Icon">
+    <Position X="0.5" Y="7.25" Width="1.75" />
+    <Members>
+      <Field Name="_imageEffect" Hidden="true" />
+      <Field Name="_imageSource" Hidden="true" />
+      <Field Name="_multiColorGlyph" Hidden="true" />
+      <Field Name="BackgroundProperty" Hidden="true" />
+      <Property Name="BaseUri" Hidden="true" />
+      <Field Name="CollapseIfEmptyProperty" Hidden="true" />
+      <Field Name="DisabledOpacityProperty" Hidden="true" />
+      <Method Name="DrawGlyph" Hidden="true" />
+      <Field Name="EnabledOpacityProperty" Hidden="true" />
+      <Field Name="ForegroundProperty" Hidden="true" />
+      <Method Name="GetBackgroundBrush" Hidden="true" />
+      <Method Name="GetForegroundBrush" Hidden="true" />
+      <Method Name="GetOverlayBackgroundBrush" Hidden="true" />
+      <Method Name="GetOverlayForegroundBrush" Hidden="true" />
+      <Method Name="GetTypeface" Hidden="true" />
+      <Method Name="Icon" Hidden="true" />
+      <Property Name="IUriContext.BaseUri" Hidden="true" />
+      <Method Name="OnCollapseIfEmptyChanged" Hidden="true" />
+      <Method Name="OnImageEffectChanged" Hidden="true" />
+      <Method Name="OnRender" Hidden="true" />
+      <Method Name="OnSourceChanged" Hidden="true" />
+      <Field Name="SourceProperty" Hidden="true" />
+      <Method Name="TryConvertToImageSource" Hidden="true" />
+      <Field Name="TypefaceCache" Hidden="true" />
+      <Method Name="UpdateEffect" Hidden="true" />
+      <Method Name="UpdateVisibility" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgBAGCAAAhAwAQgCAAQAAABQAAAIIEAACwohICAAAAA=</HashCode>
+      <FileName>Icon\Icon.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.PathTextBlock">
+    <Position X="5.75" Y="4.25" Width="1.75" />
+    <Members>
+      <Field Name="_textBlock" Hidden="true" />
+      <Field Name="_typeface" Hidden="true" />
+      <Field Name="CommandParameterProperty" Hidden="true" />
+      <Field Name="CommandProperty" Hidden="true" />
+      <Field Name="CommandTargetProperty" Hidden="true" />
+      <Method Name="MeasureOverride" Hidden="true" />
+      <Method Name="MeasureText" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="PathTextBlock" Hidden="true" />
+      <Method Name="SetText" Hidden="true" />
+      <Field Name="TextProperty" Hidden="true" />
+      <Method Name="TrimText" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAINAAAAAABAAAAAAIAABIAAAQAAgAAAEAIASAAAAIA=</HashCode>
+      <FileName>PathTextBlock\PathTextBlock.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.TreeViewEx">
+    <Position X="5.5" Y="8" Width="2" />
+    <Members>
+      <Field Name="_lastFocusedContainer" Hidden="true" />
+      <Field Name="_scrollViewer" Hidden="true" />
+      <Field Name="_shiftSelectionAnchor" Hidden="true" />
+      <Field Name="_window" Hidden="true" />
+      <Method Name="GetAllContainers" Hidden="true" />
+      <Method Name="GetAllContainersReverse" Hidden="true" />
+      <Method Name="GetAllItems" Hidden="true" />
+      <Method Name="GetContainer" Hidden="true" />
+      <Method Name="GetContainerForItemOverride" Hidden="true" />
+      <Method Name="GetFirstContainer" Hidden="true" />
+      <Method Name="GetFocusedContainer" Hidden="true" />
+      <Method Name="GetLastContainer" Hidden="true" />
+      <Method Name="GetNextContainer" Hidden="true" />
+      <Method Name="GetNextSibling" Hidden="true" />
+      <Method Name="GetPageUpDownContainer" Hidden="true" />
+      <Method Name="GetPreviousContainer" Hidden="true" />
+      <Method Name="GetPreviousSibling" Hidden="true" />
+      <Method Name="GetRangeContainers" Hidden="true" />
+      <Method Name="GetRangeItems" Hidden="true" />
+      <Method Name="HandleCollapse" Hidden="true" />
+      <Method Name="HandleGotFocus" Hidden="true" />
+      <Method Name="HandleItemsChanged" Hidden="true" />
+      <Method Name="HandleKeyDown" Hidden="true" />
+      <Property Name="IsControlDown" Hidden="true" />
+      <Method Name="IsItemItsOwnContainerOverride" Hidden="true" />
+      <Field Name="IsSelectionActiveProperty" Hidden="true" />
+      <Field Name="IsSelectionActivePropertyKey" Hidden="true" />
+      <Property Name="IsShiftDown" Hidden="true" />
+      <Method Name="MoveSelection" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnGotFocus" Hidden="true" />
+      <Method Name="OnIsKeyboardFocusWithinChanged" Hidden="true" />
+      <Method Name="OnItemsChanged" Hidden="true" />
+      <Method Name="OnKeyDown" Hidden="true" />
+      <Method Name="OnLoaded" Hidden="true" />
+      <Method Name="OnMouseDown" Hidden="true" />
+      <Method Name="OnNavigationKey" Hidden="true" />
+      <Method Name="OnSelectedItemsChanged" Hidden="true" />
+      <Method Name="OnSelectionChanged" Hidden="true" />
+      <Method Name="OnUnloaded" Hidden="true" />
+      <Method Name="OnWindowGotKeyboardFocus" Hidden="true" />
+      <Field Name="PART_ScrollViewer" Hidden="true" />
+      <Field Name="SelectedItemsProperty" Hidden="true" />
+      <Field Name="SelectionChangedEvent" Hidden="true" />
+      <Method Name="SetIsSelectionActive" Hidden="true" />
+      <Method Name="TreeViewEx" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ICIEEAiAAipgCAESQEAAFBEKAVKAAAIKIFggSEQGAAA=</HashCode>
+      <FileName>TreeViewEx\TreeViewEx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Controls.TreeViewItemEx">
+    <Position X="8" Y="7.25" Width="1.5" />
+    <Members>
+      <Field Name="_header" Hidden="true" />
+      <Method Name="BringIntoViewOverride" Hidden="true" />
+      <Property Name="CanExpand" Hidden="true" />
+      <Method Name="ClearContainerForItemOverride" Hidden="true" />
+      <Field Name="CollapsedEvent" Hidden="true" />
+      <Method Name="ExpandAncestors" Hidden="true" />
+      <Field Name="ExpandedEvent" Hidden="true" />
+      <Method Name="FocusWithRetry" Hidden="true" />
+      <Method Name="GetContainerForItemOverride" Hidden="true" />
+      <Property Name="HeaderHeight" Hidden="true" />
+      <Field Name="IndentationLevelProperty" Hidden="true" />
+      <Field Name="IndentationLevelPropertyKey" Hidden="true" />
+      <Field Name="IsExpandedProperty" Hidden="true" />
+      <Method Name="IsItemItsOwnContainerOverride" Hidden="true" />
+      <Field Name="IsSelectedProperty" Hidden="true" />
+      <Property Name="Item" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Method Name="OnDataContextChanged" Hidden="true" />
+      <Method Name="OnGotFocus" Hidden="true" />
+      <Method Name="OnInitialized" Hidden="true" />
+      <Method Name="OnIsExpandedChanged" Hidden="true" />
+      <Method Name="OnIsSelectedChanged" Hidden="true" />
+      <Method Name="OnItemsChanged" Hidden="true" />
+      <Method Name="OnKeyDown" Hidden="true" />
+      <Method Name="OnMouseDoubleClick" Hidden="true" />
+      <Method Name="OnMouseDown" Hidden="true" />
+      <Method Name="OnRequestBringIntoView" Hidden="true" />
+      <Property Name="ParentItemsControl" Hidden="true" />
+      <Property Name="ParentTreeView" Hidden="true" />
+      <Property Name="ParentTreeViewItem" Hidden="true" />
+      <Field Name="PART_Header" Hidden="true" />
+      <Method Name="PrepareContainerForItemOverride" Hidden="true" />
+      <Field Name="SelectedEvent" Hidden="true" />
+      <Method Name="TreeViewItemEx" Hidden="true" />
+      <Field Name="UnselectedEvent" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>MJAggQCABoBAEEEAgUAQQAEEBCMQAEAAKBKEACUgAgI=</HashCode>
+      <FileName>TreeViewEx\TreeViewItemEx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="View model interfaces and dock strategy                                                         Assembly: DigitalRune.Windows.Docking           Namespace: DigitalRune.Windows.Docking">
+    <Position X="0.5" Y="0.5" Height="0.657" Width="2.679" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.Docking.DockStrategy">
+    <Position X="0.75" Y="8.5" Width="3" />
+    <Members>
+      <Field Name="_dockControl" Hidden="true" />
+      <Field Name="_dockOperationCount" Hidden="true" />
+      <Method Name="Activate" Hidden="true" />
+      <Method Name="ActivateLastActive" Hidden="true" />
+      <Method Name="Cleanup" Hidden="true" />
+      <Method Name="CleanupAutoHidePanes" Hidden="true" />
+      <Method Name="CleanupDockControl" Hidden="true" />
+      <Method Name="CleanupFloatWindows" Hidden="true" />
+      <Method Name="CreateDockAnchorPane" Hidden="true" />
+      <Method Name="CreateDockSplitPane" Hidden="true" />
+      <Method Name="CreateDockTabItem" Hidden="true" />
+      <Method Name="CreateDockTabPane" Hidden="true" />
+      <Method Name="CreateFloatWindow" Hidden="true" />
+      <Method Name="FindLastActive" Hidden="true" />
+      <Method Name="FindObsoleteDockPane" Hidden="true" />
+      <Method Name="First" Hidden="true" />
+      <Method Name="GetActualDockState" Hidden="true" />
+      <Method Name="GetAutoHideBar" Hidden="true" />
+      <Method Name="GetFloatWindow" Hidden="true" />
+      <Method Name="GetRelativePosition" Hidden="true" />
+      <Method Name="HasVisible" Hidden="true" />
+      <Method Name="IsVisible" Hidden="true" />
+      <Method Name="OnActiveItemChanged" Hidden="true" />
+      <Method Name="OnRootPaneChanged" Hidden="true" />
+      <Method Name="RemoveObsoleteDockPanes" Hidden="true" />
+      <Method Name="SelectLastActive" Hidden="true" />
+      <Method Name="SetDockState" Hidden="true" />
+      <Method Name="ThrowIfDockControlIsNull" Hidden="true" />
+      <Method Name="UpdateProperties" Hidden="true" />
+      <Method Name="Validate" Hidden="true" />
+    </Members>
+    <AssociationLine Name="DockControl" Type="DigitalRune.Windows.Docking.IDockControl" FixedToPoint="true">
+      <Path>
+        <Point X="1.125" Y="8.5" />
+        <Point X="1.125" Y="4.939" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>gAJCECAEQBCBEQBUAAAADIBFB0gFEhQAKCIAAEGhA0A=</HashCode>
+      <FileName>DockStrategy.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DockControl" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="DigitalRune.Windows.Docking.IDockControl">
+    <Position X="0.75" Y="3" Width="1.5" />
+    <AssociationLine Name="DockStrategy" Type="DigitalRune.Windows.Docking.DockStrategy" FixedFromPoint="true">
+      <Path>
+        <Point X="1.312" Y="4.939" />
+        <Point X="1.312" Y="8.5" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-1.224" Y="0.114" Height="0.162" Width="1.141" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="AutoHideLeft" Type="DigitalRune.Windows.Docking.IDockTabPane" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.062" Y="4.939" />
+        <Point X="2.062" Y="7.096" />
+        <Point X="8" Y="7.096" />
+        <Point X="8" Y="6.747" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.087" Y="0.409" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="AutoHideRight" Type="DigitalRune.Windows.Docking.IDockTabPane" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.875" Y="4.939" />
+        <Point X="1.875" Y="7.371" />
+        <Point X="8.188" Y="7.371" />
+        <Point X="8.188" Y="6.747" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.206" Y="0.661" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="AutoHideTop" Type="DigitalRune.Windows.Docking.IDockTabPane" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.688" Y="4.939" />
+        <Point X="1.688" Y="7.614" />
+        <Point X="8.375" Y="7.614" />
+        <Point X="8.375" Y="6.747" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.466" Y="0.901" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="AutoHideBottom" Type="DigitalRune.Windows.Docking.IDockTabPane" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.5" Y="4.939" />
+        <Point X="1.5" Y="7.858" />
+        <Point X="8.562" Y="7.858" />
+        <Point X="8.562" Y="6.747" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.477" Y="1.141" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAACAAQAAAAAAAACIABAAAAAAABAQAAEAAAAQAAAIA=</HashCode>
+      <FileName>ViewModels\IDockControl.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DockStrategy" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="AutoHideLeft" />
+      <Property Name="AutoHideRight" />
+      <Property Name="AutoHideTop" />
+      <Property Name="AutoHideBottom" />
+      <Property Name="FloatWindows" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Interface Name="DigitalRune.Windows.Docking.IFloatWindow">
+    <Position X="3.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAEAAAAAAAAEAAAAAIAAAACAgAAAAAAAA=</HashCode>
+      <FileName>ViewModels\IFloatWindow.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Windows.Docking.IDockElement">
+    <Position X="6" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQACAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\IDockElement.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DockState" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="DigitalRune.Windows.Docking.IDockPane">
+    <Position X="5.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\IDockPane.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Windows.Docking.IDockAnchorPane">
+    <Position X="4" Y="5.75" Width="1.5" />
+    <AssociationLine Name="ChildPane" Type="DigitalRune.Windows.Docking.IDockPane">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.796" Y="0.185" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\IDockAnchorPane.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ChildPane" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="DigitalRune.Windows.Docking.IDockSplitPane">
+    <Position X="5.75" Y="5.75" Width="1.5" />
+    <AssociationLine Name="ChildPanes" Type="DigitalRune.Windows.Docking.IDockPane">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.89" Y="0.185" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\IDockSplitPane.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ChildPanes" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Interface Name="DigitalRune.Windows.Docking.IDockTabPane">
+    <Position X="7.5" Y="5.75" Width="1.5" />
+    <AssociationLine Name="SelectedItem" Type="DigitalRune.Windows.Docking.IDockTabItem" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.75" Y="6.747" />
+        <Point X="8.75" Y="7.442" />
+        <Point X="9.75" Y="7.442" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\IDockTabPane.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SelectedItem" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Items" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Interface Name="DigitalRune.Windows.Docking.IDockTabItem">
+    <Position X="9.75" Y="5.75" Width="1.5" />
+    <AssociationLine Name="LastDockState" Type="DigitalRune.Windows.Docking.DockState" FixedToPoint="true">
+      <Path>
+        <Point X="10.75" Y="5.75" />
+        <Point X="10.75" Y="2.181" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEBAAAggAAQAAAAAAAAAAAAAAgEAAIA=</HashCode>
+      <FileName>ViewModels\IDockTabItem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="LastDockState" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="DigitalRune.Windows.Docking.IDockContainer">
+    <Position X="2" Y="1.5" Width="1.5" />
+    <AssociationLine Name="RootPane" Type="DigitalRune.Windows.Docking.IDockPane" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.5" Y="1.875" />
+        <Point X="5.688" Y="1.875" />
+        <Point X="5.688" Y="3" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\IDockContainer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="RootPane" />
+    </ShowAsAssociation>
+  </Interface>
+  <Enum Name="DigitalRune.Windows.Docking.DockState">
+    <Position X="9.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAEgAAA=</HashCode>
+      <FileName>DockState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DigitalRune.Windows.Docking.DockPosition">
+    <Position X="4.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAIAAAACACBAAEAAAA=</HashCode>
+      <FileName>DockPosition.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

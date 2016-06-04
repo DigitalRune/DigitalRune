@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Vehicles                                              Assembly: DigitalRune.Physics.Specialized        Namespace: DigitalRune.Physics.Specialized">
+    <Position X="0.5" Y="0.5" Height="0.625" Width="2.647" />
+  </Comment>
+  <Class Name="DigitalRune.Physics.Specialized.Vehicle">
+    <Position X="0.5" Y="1.75" Width="1.75" />
+    <Members>
+      <Field Name="_chassis" Hidden="true" />
+      <Field Name="_forceEffect" Hidden="true" />
+      <Method Name="OnWheelsChanged" Hidden="true" />
+      <Method Name="Vehicle" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAIAAAAAAAAAAAQAAAACQBACABAAAAAA=</HashCode>
+      <FileName>Vehicles\Vehicle.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Wheels" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Physics.Specialized.Wheel">
+    <Position X="3.75" Y="0.5" Width="2.5" />
+    <Members>
+      <Field Name="_chassis" Hidden="true" />
+      <Field Name="_offset" Hidden="true" />
+      <Field Name="_radius" Hidden="true" />
+      <Field Name="_suspensionRestLength" Hidden="true" />
+      <Field Name="_vehicle" Hidden="true" />
+      <Property Name="Enabled" Hidden="true" />
+      <Method Name="OnChassisChanged" Hidden="true" />
+      <Method Name="OnPoseChanged" Hidden="true" />
+      <Property Name="PreviousSuspensionLength" Hidden="true" />
+      <Method Name="UpdateContactInfo" Hidden="true" />
+      <Method Name="Wheel" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Vehicle" Type="DigitalRune.Physics.Specialized.Vehicle" FixedFromPoint="true">
+      <Path>
+        <Point X="3.75" Y="3.25" />
+        <Point X="2.25" Y="3.25" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>CAAIASAAAAAQCICDoAQAgAIFRQJkAAOgCBgBAAAAgAg=</HashCode>
+      <FileName>Vehicles\Wheel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Vehicle" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

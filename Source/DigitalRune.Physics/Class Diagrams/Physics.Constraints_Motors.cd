@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Motors                                              Assembly: DigitalRune.Physics        Namespace: DigitalRune.Physics">
+    <Position X="0.5" Y="0.5" Height="0.625" Width="2.064" />
+  </Comment>
+  <Class Name="DigitalRune.Physics.Constraints.Constraint" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAEAQSQBACKAEAAIAAAAAAAAAEACRAAACBAAAEAA=</HashCode>
+      <FileName>Constraints\Constraint.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Physics.Constraints.AngularVelocityMotor">
+    <Position X="9.5" Y="2" Width="2" />
+    <Members>
+      <Field Name="_axisALocal" Hidden="true" />
+      <Field Name="_constraints" Hidden="true" />
+      <Field Name="_maxForce" Hidden="true" />
+      <Field Name="_maxImpulseLimits" Hidden="true" />
+      <Field Name="_minImpulseLimits" Hidden="true" />
+      <Field Name="_softness" Hidden="true" />
+      <Field Name="_targetVelocity" Hidden="true" />
+      <Field Name="_useSingleAxisMode" Hidden="true" />
+      <Method Name="ApplyImpulse" Hidden="true" />
+      <Method Name="OnApplyImpulse" Hidden="true" />
+      <Method Name="OnChanged" Hidden="true" />
+      <Method Name="OnSetup" Hidden="true" />
+      <Method Name="SetupConstraint" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EQFgAMAAAQAACABAAgAAAAAAAAgAUAIBAIAAAACACAA=</HashCode>
+      <FileName>Constraints\AngularVelocityMotor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Physics.Constraints.EulerMotor">
+    <Position X="2.75" Y="2" Width="2" />
+    <Members>
+      <Field Name="_anchorOrientationALocal" Hidden="true" />
+      <Field Name="_anchorOrientationBLocal" Hidden="true" />
+      <Field Name="_constraints" Hidden="true" />
+      <Field Name="_dampingConstant" Hidden="true" />
+      <Field Name="_maxForce" Hidden="true" />
+      <Field Name="_maxImpulseLimits" Hidden="true" />
+      <Field Name="_maxVelocity" Hidden="true" />
+      <Field Name="_minImpulseLimits" Hidden="true" />
+      <Field Name="_springConstant" Hidden="true" />
+      <Field Name="_targetAngles" Hidden="true" />
+      <Method Name="ApplyImpulse" Hidden="true" />
+      <Method Name="OnApplyImpulse" Hidden="true" />
+      <Method Name="OnChanged" Hidden="true" />
+      <Method Name="OnSetup" Hidden="true" />
+      <Method Name="SetupConstraint" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAFgCMACAQAADAABAQAAAAAEAggAEAIBAAAAACAQCAA=</HashCode>
+      <FileName>Constraints\EulerMotor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Physics.Constraints.LinearVelocityMotor">
+    <Position X="7.25" Y="2" Width="2" />
+    <Members>
+      <Field Name="_anchorPositionALocal" Hidden="true" />
+      <Field Name="_anchorPositionBLocal" Hidden="true" />
+      <Field Name="_axisALocal" Hidden="true" />
+      <Field Name="_constraints" Hidden="true" />
+      <Field Name="_maxForce" Hidden="true" />
+      <Field Name="_maxImpulseLimits" Hidden="true" />
+      <Field Name="_minImpulseLimits" Hidden="true" />
+      <Field Name="_softness" Hidden="true" />
+      <Field Name="_targetVelocity" Hidden="true" />
+      <Field Name="_useSingleAxisMode" Hidden="true" />
+      <Method Name="ApplyImpulse" Hidden="true" />
+      <Method Name="OnApplyImpulse" Hidden="true" />
+      <Method Name="OnChanged" Hidden="true" />
+      <Method Name="OnSetup" Hidden="true" />
+      <Method Name="SetupConstraint" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EQFgAMAAAQAACABEAgAAAAAAAAgAUAIhAIAAAACACAA=</HashCode>
+      <FileName>Constraints\LinearVelocityMotor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Physics.Constraints.PositionMotor">
+    <Position X="0.5" Y="2" Width="2" />
+    <Members>
+      <Field Name="_anchorPoseALocal" Hidden="true" />
+      <Field Name="_anchorPositionBLocal" Hidden="true" />
+      <Field Name="_constraints" Hidden="true" />
+      <Field Name="_dampingConstant" Hidden="true" />
+      <Field Name="_maxForce" Hidden="true" />
+      <Field Name="_maxImpulseLimits" Hidden="true" />
+      <Field Name="_maxVelocity" Hidden="true" />
+      <Field Name="_minImpulseLimits" Hidden="true" />
+      <Field Name="_springConstant" Hidden="true" />
+      <Field Name="_targetPosition" Hidden="true" />
+      <Field Name="_useSingleAxisMode" Hidden="true" />
+      <Method Name="ApplyImpulse" Hidden="true" />
+      <Method Name="OnApplyImpulse" Hidden="true" />
+      <Method Name="OnChanged" Hidden="true" />
+      <Method Name="OnSetup" Hidden="true" />
+      <Method Name="SetupConstraint" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAFwCMAAAQAACAABAwAAAIAAAAgAEAIxAACAACAQCAA=</HashCode>
+      <FileName>Constraints\PositionMotor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Physics.Constraints.QuaternionMotor">
+    <Position X="5" Y="2" Width="2" />
+    <Members>
+      <Field Name="_anchorOrientationALocal" Hidden="true" />
+      <Field Name="_anchorOrientationBLocal" Hidden="true" />
+      <Field Name="_constraints" Hidden="true" />
+      <Field Name="_dampingConstant" Hidden="true" />
+      <Field Name="_maxForce" Hidden="true" />
+      <Field Name="_maxImpulseLimits" Hidden="true" />
+      <Field Name="_maxVelocity" Hidden="true" />
+      <Field Name="_minImpulseLimits" Hidden="true" />
+      <Field Name="_springConstant" Hidden="true" />
+      <Field Name="_targetOrientation" Hidden="true" />
+      <Field Name="_useSingleAxisMode" Hidden="true" />
+      <Method Name="ApplyImpulse" Hidden="true" />
+      <Method Name="OnApplyImpulse" Hidden="true" />
+      <Method Name="OnChanged" Hidden="true" />
+      <Method Name="OnSetup" Hidden="true" />
+      <Method Name="SetupConstraint" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAFgCMACAQAADAABAwAAAAAMAAgAEAIBAAAAACAQCAA=</HashCode>
+      <FileName>Constraints\QuaternionMotor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

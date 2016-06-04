@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Miscellaneous types                        Assembly: DigitalRune.Windows.Docking           Namespace: DigitalRune.Windows.Docking">
+    <Position X="0.5" Y="0.5" Height="0.658" Width="2.619" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.Docking.DockCommands">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <Members>
+      <Field Name="_autoHide" Hidden="true" />
+      <Field Name="_dock" Hidden="true" />
+      <Field Name="_float" Hidden="true" />
+      <Field Name="_next" Hidden="true" />
+      <Field Name="_previous" Hidden="true" />
+      <Field Name="_show" Hidden="true" />
+      <Field Name="_showMenu" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BgAAFAAAAAAAQgAIAAAAAAAAAAAGAAAgAAgAAAEhAAA=</HashCode>
+      <FileName>DockCommands.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Docking.Resources.StringResources">
+    <Position X="4.25" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_commandAutoHideText" Hidden="true" />
+      <Field Name="_commandDockText" Hidden="true" />
+      <Field Name="_commandFloatText" Hidden="true" />
+      <Field Name="_commandNextText" Hidden="true" />
+      <Field Name="_commandPreviousText" Hidden="true" />
+      <Field Name="_commandShowText" Hidden="true" />
+      <Field Name="_commandShowWindowListText" Hidden="true" />
+      <Field Name="_toolTipAutoHide" Hidden="true" />
+      <Field Name="_toolTipClose" Hidden="true" />
+      <Field Name="_toolTipDock" Hidden="true" />
+      <Field Name="_toolTipShowWindowList" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAgAAIgAEAAAAgCABRIIgAQQAFCAQAgCQAAAAAAAAA=</HashCode>
+      <FileName>Resources\StringResources.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Docking.DockException">
+    <Position X="2.25" Y="4" Width="1.75" />
+    <Members>
+      <Method Name="DockException" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DockException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Docking.DockSerializer">
+    <Position X="2.25" Y="1.5" Width="1.75" />
+    <Members>
+      <Method Name="ContainsItemsToSave" Hidden="true" />
+      <Method Name="ConvertToGridLength" Hidden="true" />
+      <Method Name="ConvertToString" Hidden="true" />
+      <Field Name="GridLengthConverter" Hidden="true" />
+      <Method Name="LoadDockPane" Hidden="true" />
+      <Method Name="LoadDockTabItem" Hidden="true" />
+      <Method Name="LoadFloatWindow" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Windows.Docking.DockSerializer.DeserializationContext" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Serialization\DockSerializer.Load.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Windows.Docking.DockSerializer.SerializationContext" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Serialization\DockSerializer.Save.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAgAgIgAAIAAAAAAAAAABAAAAAAAAAAAIAgAAAAAAAE=</HashCode>
+      <FileName>Serialization\DockSerializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Docking.DockHelper">
+    <Position X="0.5" Y="4" Width="1.5" />
+    <Members>
+      <Field Name="BoxedDockStateDocked" Hidden="true" />
+      <Field Name="BoxedDockStateFloating" Hidden="true" />
+      <Field Name="BoxedGridLengthOneStar" Hidden="true" />
+      <Method Name="Contains" Hidden="true" />
+      <Method Name="GetContentContainer" Hidden="true" />
+      <Method Name="GetDockControl" Hidden="true" />
+      <Method Name="GetDockState" Hidden="true" />
+      <Method Name="GetParent" Hidden="true" />
+      <Method Name="GetViewModel" Hidden="true" />
+      <Field Name="GridLengthOneStar" Hidden="true" />
+      <Method Name="HitTest" Hidden="true" />
+      <Method Name="Remove" Hidden="true" />
+      <Method Name="Replace" Hidden="true" />
+      <Method Name="ScreenToLogical" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAEABAABBAgAAIBAiAAAAAAAEAAAAAAAQSACA=</HashCode>
+      <FileName>DockHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Axes and Scales                                                       Assembly: DigitalRune.Windows.Charts                Namespace: DigitalRune.Windows.Charts">
+    <Position X="0.5" Y="0.5" Height="0.681" Width="2.525" />
+  </Comment>
+  <Class Name="DigitalRune.Windows.Charts.Axis">
+    <Position X="0.5" Y="1.5" Width="2.5" />
+    <Members>
+      <Field Name="_axisLine" Hidden="true" />
+      <Field Name="_canvas" Hidden="true" />
+      <Field Name="_chartElements" Hidden="true" />
+      <Field Name="_defaultScale" Hidden="true" />
+      <Field Name="_effectiveTitleOffset" Hidden="true" />
+      <Field Name="_endPosition" Hidden="true" />
+      <Field Name="_hitRectangle" Hidden="true" />
+      <Field Name="_hitRectangleBounds" Hidden="true" />
+      <Field Name="_internalTitleOffset" Hidden="true" />
+      <Field Name="_invalidatedEvent" Hidden="true" />
+      <Field Name="_isValid" Hidden="true" />
+      <Field Name="_isXAxis" Hidden="true" />
+      <Field Name="_length" Hidden="true" />
+      <Field Name="_majorTickRenderer" Hidden="true" />
+      <Field Name="_minorTickRenderer" Hidden="true" />
+      <Field Name="_originX" Hidden="true" />
+      <Field Name="_originY" Hidden="true" />
+      <Field Name="_scale" Hidden="true" />
+      <Field Name="_scaleSubscription" Hidden="true" />
+      <Field Name="_startPosition" Hidden="true" />
+      <Field Name="_tickLabels" Hidden="true" />
+      <Field Name="_titleContentControl" Hidden="true" />
+      <Field Name="_titleSize" Hidden="true" />
+      <Field Name="_updatedEvent" Hidden="true" />
+      <Method Name="AddTick" Hidden="true" />
+      <Method Name="AddTickLabel" Hidden="true" />
+      <Method Name="AutoGenerateScale" Hidden="true" />
+      <Field Name="AutoScaleProperty" Hidden="true" />
+      <Method Name="Axis" Hidden="true" />
+      <Field Name="AxisStyleProperty" Hidden="true" />
+      <Field Name="ClipLabelsProperty" Hidden="true" />
+      <Field Name="DefaultLength" Hidden="true" />
+      <Field Name="DefaultMajorTickLength" Hidden="true" />
+      <Field Name="DefaultMinorTickLength" Hidden="true" />
+      <Field Name="DefaultMinTickDistance" Hidden="true" />
+      <Field Name="DefaultOriginX" Hidden="true" />
+      <Field Name="DefaultOriginY" Hidden="true" />
+      <Property Name="DefaultScale" Hidden="true" />
+      <Field Name="DefaultTitle" Hidden="true" />
+      <Field Name="DefaultTitleOffset" Hidden="true" />
+      <Method Name="GetComponent" Hidden="true" />
+      <Property Name="IsXAxis" Hidden="true" />
+      <Field Name="LabelsAboveAxisProperty" Hidden="true" />
+      <Field Name="LabelStyleProperty" Hidden="true" />
+      <Field Name="LengthProperty" Hidden="true" />
+      <Field Name="MajorTickLengthProperty" Hidden="true" />
+      <Field Name="MajorTickStyleProperty" Hidden="true" />
+      <Method Name="MeasureOverride" Hidden="true" />
+      <Field Name="MinorTickLengthProperty" Hidden="true" />
+      <Field Name="MinorTickStyleProperty" Hidden="true" />
+      <Field Name="MinTickDistanceProperty" Hidden="true" />
+      <Method Name="OnApplyTemplate" Hidden="true" />
+      <Field Name="OneSidedTicksProperty" Hidden="true" />
+      <Method Name="OnRelevantPropertyChanged" Hidden="true" />
+      <Method Name="OnScaleChanged" Hidden="true" />
+      <Method Name="OnTitleSizeChanged" Hidden="true" />
+      <Field Name="OrientationProperty" Hidden="true" />
+      <Field Name="OriginXProperty" Hidden="true" />
+      <Field Name="OriginYProperty" Hidden="true" />
+      <Method Name="RegisterChartElement" Hidden="true" />
+      <Field Name="ScaleProperty" Hidden="true" />
+      <Field Name="TitleOffsetProperty" Hidden="true" />
+      <Field Name="TitleProperty" Hidden="true" />
+      <Field Name="TitleStyleProperty" Hidden="true" />
+      <Method Name="UnregisterChartElement" Hidden="true" />
+      <Method Name="UpdateAxis" Hidden="true" />
+      <Method Name="UpdateTicks" Hidden="true" />
+      <Method Name="UpdateTitle" Hidden="true" />
+      <Field Name="UseAbsoluteTitleOffsetProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>pkaEiBUGcTBmDsghURuADCZIwICYRhFURUVACwFTDLM=</HashCode>
+      <FileName>Axes\Axis.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Scale" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.TextScale">
+    <Position X="11.5" Y="5.75" Width="2.25" />
+    <Members>
+      <Field Name="_labels" Hidden="true" />
+      <Field Name="_ticksBetweenLabels" Hidden="true" />
+      <Method Name="ComputeTicks" Hidden="true" />
+      <Method Name="GetText" Hidden="true" />
+      <Method Name="OnLabelsCollectionChanged" Hidden="true" />
+      <Method Name="TextScale" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEQAAAAAIIAAAAAAAAAIAAAAAAAQAQABAAAA=</HashCode>
+      <FileName>Axes\TextScale.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Labels" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.AxisScale">
+    <Position X="4.75" Y="0.5" Width="2" />
+    <Members>
+      <Field Name="_range" Hidden="true" />
+      <Field Name="_reversed" Hidden="true" />
+      <Method Name="AxisScale" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAIAAAABITgACgAIMAAAAAAAgAAAAAQAAAAAAAAQAAA=</HashCode>
+      <FileName>Axes\AxisScale.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Range" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.DateTimeScale">
+    <Position X="8.75" Y="5.75" Width="2.25" />
+    <Members>
+      <Field Name="_formatString" Hidden="true" />
+      <Field Name="_majorTickStepAsTimeSpan" Hidden="true" />
+      <Field Name="_rangeDateTime" Hidden="true" />
+      <Field Name="_tickLabel" Hidden="true" />
+      <Field Name="_timeZone" Hidden="true" />
+      <Method Name="AddTicksInDays" Hidden="true" />
+      <Method Name="AddTicksInHours" Hidden="true" />
+      <Method Name="AddTicksInMilliseconds" Hidden="true" />
+      <Method Name="AddTicksInMinutes" Hidden="true" />
+      <Method Name="AddTicksInMonths" Hidden="true" />
+      <Method Name="AddTicksInSeconds" Hidden="true" />
+      <Method Name="AddTicksInYears" Hidden="true" />
+      <Method Name="ComputeMajorTicks" Hidden="true" />
+      <Method Name="ComputeMinorTicks" Hidden="true" />
+      <Method Name="ComputeTicks" Hidden="true" />
+      <Method Name="DateTimeScale" Hidden="true" />
+      <Field Name="DaysMajorSteps" Hidden="true" />
+      <Field Name="DaysMinorSteps" Hidden="true" />
+      <Method Name="DetermineTickStep" Hidden="true" />
+      <Field Name="EmptyArrayOfDoubles" Hidden="true" />
+      <Field Name="Epsilon" Hidden="true" />
+      <Method Name="GetText" Hidden="true" />
+      <Field Name="HoursMajorSteps" Hidden="true" />
+      <Field Name="HoursMinorSteps" Hidden="true" />
+      <Field Name="MillisecondsMajorSteps" Hidden="true" />
+      <Field Name="MillisecondsMinorSteps" Hidden="true" />
+      <Field Name="MinutesMajorSteps" Hidden="true" />
+      <Field Name="MinutesMinorSteps" Hidden="true" />
+      <Field Name="MonthsMajorSteps" Hidden="true" />
+      <Method Name="OnPropertyChanged" Hidden="true" />
+      <Method Name="Pan" Hidden="true" />
+      <Method Name="RoundToDay" Hidden="true" />
+      <Method Name="RoundToHour" Hidden="true" />
+      <Method Name="RoundToMonth" Hidden="true" />
+      <Method Name="RoundToYear" Hidden="true" />
+      <Field Name="SecondsMajorSteps" Hidden="true" />
+      <Field Name="SecondsMinorSteps" Hidden="true" />
+      <Field Name="YearsMajorSteps" Hidden="true" />
+      <Method Name="Zoom" Hidden="true" />
+    </Members>
+    <AssociationLine Name="TickLabel" Type="DigitalRune.Windows.Charts.DateTimeLabel" FixedFromPoint="true">
+      <Path>
+        <Point X="10.688" Y="7.752" />
+        <Point X="10.688" Y="8.5" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="RangeDateTime" Type="DigitalRune.Windows.Charts.DateTimeRange" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9.5" Y="7.752" />
+        <Point X="9.5" Y="9.566" />
+        <Point X="8.5" Y="9.566" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.047" Y="-0.252" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AFBAAIAAgQoAcyFNMAAgBAgIAAAwALIBEQUBAOJAABA=</HashCode>
+      <FileName>Axes\DateTimeScale.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TickLabel" />
+      <Property Name="RangeDateTime" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.LinearScale">
+    <Position X="3.25" Y="5.75" Width="2.5" />
+    <Members>
+      <Field Name="_formatString" Hidden="true" />
+      <Field Name="_isOrdinal" Hidden="true" />
+      <Field Name="_majorTickAnchor" Hidden="true" />
+      <Field Name="_majorTickStep" Hidden="true" />
+      <Field Name="_numberOfMinorTicks" Hidden="true" />
+      <Method Name="ComputeTicks" Hidden="true" />
+      <Method Name="ComputeTicks_FirstPass" Hidden="true" />
+      <Method Name="ComputeTicks_SecondPass" Hidden="true" />
+      <Method Name="DetermineMajorTickStep" Hidden="true" />
+      <Method Name="DetermineNumberOfMinorTicks" Hidden="true" />
+      <Method Name="GetText" Hidden="true" />
+      <Method Name="LinearScale" Hidden="true" />
+      <Field Name="Mantissas" Hidden="true" />
+      <Field Name="MinorTickCounts" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CEAAAAQIAQAAKGAIACAAAAAAAiABAICBAAAAAAAAAIA=</HashCode>
+      <FileName>Axes\LinearScale.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.LogScale">
+    <Position X="6" Y="5.75" Width="2.5" />
+    <Members>
+      <Field Name="_formatString" Hidden="true" />
+      <Field Name="_majorTickAnchor" Hidden="true" />
+      <Field Name="_majorTickStep" Hidden="true" />
+      <Field Name="_numberOfMinorTicks" Hidden="true" />
+      <Method Name="ComputeMajorTicks" Hidden="true" />
+      <Method Name="ComputeMinorTicks" Hidden="true" />
+      <Method Name="ComputeTicks" Hidden="true" />
+      <Method Name="DetermineMajorTickStep" Hidden="true" />
+      <Method Name="DetermineNumberOfMinorTicks" Hidden="true" />
+      <Method Name="GetPosition" Hidden="true" />
+      <Method Name="GetText" Hidden="true" />
+      <Method Name="GetValue" Hidden="true" />
+      <Method Name="LogScale" Hidden="true" />
+      <Method Name="Pan" Hidden="true" />
+      <Method Name="Zoom" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CEAAAAAIoSgAIiAIECAAAAAAACAAAICBAAAAAAAAAAA=</HashCode>
+      <FileName>Axes\LogScale.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.TextLabel">
+    <Position X="11.5" Y="8.25" Width="2.25" />
+    <Members>
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="TextLabel" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAgAAAAAAAAAAAAIAAAAAgCAAAAAA=</HashCode>
+      <FileName>Axes\TextLabel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.AxisPredicateConverter">
+    <Position X="9.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Axes\AxisPredicateConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.AxisPredicates">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <Members>
+      <Method Name="MatchesAll" Hidden="true" />
+      <Method Name="MatchesNone" Hidden="true" />
+      <Method Name="MatchesPrimaryAxes" Hidden="true" />
+      <Method Name="MatchesSecondaryAxes" Hidden="true" />
+      <Method Name="MatchesXAxes" Hidden="true" />
+      <Method Name="MatchesXAxis1" Hidden="true" />
+      <Method Name="MatchesXAxis2" Hidden="true" />
+      <Method Name="MatchesYAxes" Hidden="true" />
+      <Method Name="MatchesYAxis1" Hidden="true" />
+      <Method Name="MatchesYAxis2" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAgAAAARBAAMAAAAAAghABQAAAAAAAAADAAAAAEJAAA=</HashCode>
+      <FileName>Axes\AxisPredicates.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.TextLabelCollection" Collapsed="true">
+    <Position X="11.5" Y="10" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Axes\TextLabelCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.DateTimeRangeConverter">
+    <Position X="15.75" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAACAAAAIAAAAAAAA=</HashCode>
+      <FileName>Axes\DateTimeRangeConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Windows.Charts.DoubleRangeConverter">
+    <Position X="15.75" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAACAAAAIAAAAAAAA=</HashCode>
+      <FileName>Axes\DoubleRangeConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="DigitalRune.Windows.Charts.DateTimeRange" BaseTypeListCollapsed="true">
+    <Position X="7" Y="8.5" Width="1.5" />
+    <Members>
+      <Field Name="_max" Hidden="true" />
+      <Field Name="_min" Hidden="true" />
+      <Method Name="DateTimeRange" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="operator !=" Hidden="true" />
+      <Method Name="operator ==" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAgAAABABAAAAAEkAAAAAAAAAAAAIAAEABAAAAQAiA=</HashCode>
+      <FileName>Axes\DateTimeRange.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="DigitalRune.Windows.Charts.DoubleRange" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="0.75" Width="1.5" />
+    <Members>
+      <Field Name="_max" Hidden="true" />
+      <Field Name="_min" Hidden="true" />
+      <Method Name="DoubleRange" Hidden="true" />
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="operator !=" Hidden="true" />
+      <Method Name="operator ==" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAgAAABABAAAAAEkAAAAAAAAAAAAIAAEABAAAAQAiA=</HashCode>
+      <FileName>Axes\DoubleRange.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Enum Name="DigitalRune.Windows.Charts.DateTimeLabel">
+    <Position X="9.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACQAAAAQAAAAAAAAAAAIAAEQAABAAFAAAA=</HashCode>
+      <FileName>Axes\DateTimeLabel.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Ragdolls                                            Assembly: DigitalRune.Physics.Specialized        Namespace: DigitalRune.Physics.Specialized">
+    <Position X="0.5" Y="0.5" Height="0.625" Width="2.647" />
+  </Comment>
+  <Class Name="DigitalRune.Physics.Specialized.Ragdoll">
+    <Position X="0.5" Y="1.5" Width="2.25" />
+    <Members>
+      <Field Name="_pose" Hidden="true" />
+      <Method Name="AddAngularLimit" Hidden="true" />
+      <Method Name="AddJoint" Hidden="true" />
+      <Method Name="AddMotor" Hidden="true" />
+      <Method Name="AddTwistSwingLimit" Hidden="true" />
+      <Method Name="OnBodiesChanged" Hidden="true" />
+      <Method Name="OnJointsChanged" Hidden="true" />
+      <Method Name="OnLimitsChanged" Hidden="true" />
+      <Method Name="OnMotorsChanged" Hidden="true" />
+      <Method Name="Ragdoll" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Pose" Type="DigitalRune.Geometry.Pose" FixedFromPoint="true">
+      <Path>
+        <Point X="2.75" Y="3.188" />
+        <Point X="4.75" Y="3.188" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Joints" Type="DigitalRune.Physics.Constraints.Constraint" FixedFromPoint="true">
+      <Path>
+        <Point X="2.75" Y="3.938" />
+        <Point X="4.75" Y="3.938" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Motors" Type="DigitalRune.Physics.Specialized.RagdollMotor" FixedFromPoint="true">
+      <Path>
+        <Point X="2.75" Y="4.75" />
+        <Point X="4.75" Y="4.75" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ACAIQQIAACAAAAgAEUACAwAABEKEAoAAAAIUBIQEAAg=</HashCode>
+      <FileName>Ragdolls\Ragdoll.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Pose" />
+      <Property Name="Simulation" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Bodies" />
+      <Property Name="BodyOffsets" />
+      <Property Name="Joints" />
+      <Property Name="Limits" />
+      <Property Name="Motors" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Physics.RigidBody" Collapsed="true">
+    <Position X="4.75" Y="2" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DigitalRune.Physics.Simulation" Collapsed="true">
+    <Position X="4.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DigitalRune.Physics.Specialized.RagdollMotor">
+    <Position X="4.75" Y="4.25" Width="1.75" />
+    <Members>
+      <Field Name="_boneIndex" Hidden="true" />
+      <Field Name="_mode" Hidden="true" />
+      <Field Name="_parentIndex" Hidden="true" />
+      <Field Name="_quaternionMotor" Hidden="true" />
+      <Field Name="_ragdoll" Hidden="true" />
+      <Method Name="AddToSimulation" Hidden="true" />
+      <Method Name="DriveToPose" Hidden="true" />
+      <Method Name="RagdollMotor" Hidden="true" />
+      <Method Name="RemoveFromSimulation" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAkQABAKAAAoBAAkBAAAAAAAAQBAAAAQAAAAAAEAA=</HashCode>
+      <FileName>Ragdolls\RagdollMotor.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Ragdoll" />
+      <Property Name="Mode" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Physics.Constraints.Constraint" Collapsed="true">
+    <Position X="4.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Struct Name="DigitalRune.Geometry.Pose" Collapsed="true">
+    <Position X="4.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Struct>
+  <Enum Name="DigitalRune.Physics.Specialized.RagdollMotorMode">
+    <Position X="7.5" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAEAAA=</HashCode>
+      <FileName>Ragdolls\RagdollMotorMode.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
