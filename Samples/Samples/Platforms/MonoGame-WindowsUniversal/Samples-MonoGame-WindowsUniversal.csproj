@@ -1,0 +1,1278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{8C23C251-D25D-4327-B2FB-75F548F792A7}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Samples</RootNamespace>
+    <AssemblyName>Samples</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>Samples-MonoGame-WindowsUniversal_TemporaryKey.pfx</PackageCertificateKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP;MONOGAME;DIGITALRUNE_PROFILE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;MONOGAME;DIGITALRUNE_PROFILE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP;MONOGAME;DIGITALRUNE_PROFILE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;MONOGAME;DIGITALRUNE_PROFILE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS;MONOGAME;DIGITALRUNE_PROFILE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS;MONOGAME;DIGITALRUNE_PROFILE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="DigitalRune">
+      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.dll</HintPath>
+    </Reference>
+    <Reference Include="DigitalRune.Animation">
+      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.Animation.dll</HintPath>
+    </Reference>
+    <Reference Include="DigitalRune.Game">
+      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.Game.dll</HintPath>
+    </Reference>
+    <Reference Include="DigitalRune.Game.Input">
+      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.Game.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="DigitalRune.Game.UI">
+      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.Game.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DigitalRune.Geometry">
+      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.Geometry.dll</HintPath>
+    </Reference>
+    <Reference Include="DigitalRune.Graphics">
+      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.Graphics.dll</HintPath>
+    </Reference>
+    <Reference Include="DigitalRune.Mathematics">
+      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="DigitalRune.Particles">
+      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.Particles.dll</HintPath>
+    </Reference>
+    <Reference Include="DigitalRune.Physics">
+      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.Physics.dll</HintPath>
+    </Reference>
+    <Reference Include="DigitalRune.Physics.Specialized">
+      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.Physics.Specialized.dll</HintPath>
+    </Reference>
+    <Reference Include="DigitalRune.ServiceLocation">
+      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=25ad73b7adb615af, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\MonoGame.Framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="..\..\..\Content\bin\MonoGame\Windows\Content.zip">
+      <Link>Content\Content.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\Content\MonoGame\WindowsUniversal\DigitalRune.zip">
+      <Link>Content\DigitalRune.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Page Include="GamePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="GamePage.xaml.cs">
+      <DependentUpon>GamePage.xaml</DependentUpon>
+    </Compile>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Properties\Default.rd.xml" />
+    <None Include="..\..\README.TXT">
+      <Link>README.TXT</Link>
+    </None>
+    <Compile Include="..\..\Sample Framework\ControlsAttribute.cs">
+      <Link>Sample Framework\ControlsAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sample Framework\GuiGraphicsScreen.cs">
+      <Link>Sample Framework\GuiGraphicsScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sample Framework\SampleAttribute.cs">
+      <Link>Sample Framework\SampleAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sample Framework\SampleCategory.cs">
+      <Link>Sample Framework\SampleCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sample Framework\SampleFramework.cs">
+      <Link>Sample Framework\SampleFramework.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sample Framework\SampleHelper.cs">
+      <Link>Sample Framework\SampleHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SampleGame.cs">
+      <Link>SampleGame.cs</Link>
+    </Compile>
+    <None Include="Samples-MonoGame-WindowsUniversal_TemporaryKey.pfx" />
+    <Compile Include="..\..\Samples\Animation\AnimationSample.cs">
+      <Link>Samples\Animation\AnimationSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\Basics\01-BasicAnimationSample.cs">
+      <Link>Samples\Animation\Basics\01-BasicAnimationSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\Basics\02-CompositeAnimationSample.cs">
+      <Link>Samples\Animation\Basics\02-CompositeAnimationSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\Basics\03-PathAnimationSample.cs">
+      <Link>Samples\Animation\Basics\03-PathAnimationSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\Basics\04-EasingSample.cs">
+      <Link>Samples\Animation\Basics\04-EasingSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\Basics\05-CustomAnimationSample\CustomAnimationSample.cs">
+      <Link>Samples\Animation\Basics\05-CustomAnimationSample\CustomAnimationSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\Basics\05-CustomAnimationSample\MyCircleAnimation.cs">
+      <Link>Samples\Animation\Basics\05-CustomAnimationSample\MyCircleAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\Basics\06-CrossFadeSample.cs">
+      <Link>Samples\Animation\Basics\06-CrossFadeSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\Basics\07-AnimatableObjectSample\AnimatableObjectSample.cs">
+      <Link>Samples\Animation\Basics\07-AnimatableObjectSample\AnimatableObjectSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\Basics\07-AnimatableObjectSample\AnimatableSprite.cs">
+      <Link>Samples\Animation\Basics\07-AnimatableObjectSample\AnimatableSprite.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\Basics\08-BlendedAnimationSample.cs">
+      <Link>Samples\Animation\Basics\08-BlendedAnimationSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\Basics\09-AdditiveAnimationSample.cs">
+      <Link>Samples\Animation\Basics\09-AdditiveAnimationSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\Basics\10-DoubleAnimation\DoubleAnimationSample.cs">
+      <Link>Samples\Animation\Basics\10-DoubleAnimation\DoubleAnimationSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\Basics\10-DoubleAnimation\DoubleFromToByAnimation.cs">
+      <Link>Samples\Animation\Basics\10-DoubleAnimation\DoubleFromToByAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\Basics\10-DoubleAnimation\DoubleTraits.cs">
+      <Link>Samples\Animation\Basics\10-DoubleAnimation\DoubleTraits.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\Basics\11-StringAnimation\StringAnimationSample.cs">
+      <Link>Samples\Animation\Basics\11-StringAnimation\StringAnimationSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\Basics\11-StringAnimation\StringKeyFrameAnimation.cs">
+      <Link>Samples\Animation\Basics\11-StringAnimation\StringKeyFrameAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\Basics\11-StringAnimation\StringTraits.cs">
+      <Link>Samples\Animation\Basics\11-StringAnimation\StringTraits.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\CharacterAnimationSample.cs">
+      <Link>Samples\Animation\CharacterAnimationSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\CharacterAnimation\01-BindPoseSample.cs">
+      <Link>Samples\Animation\CharacterAnimation\01-BindPoseSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\CharacterAnimation\02-SkeletonManipulationSample.cs">
+      <Link>Samples\Animation\CharacterAnimation\02-SkeletonManipulationSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\CharacterAnimation\03-DudeWalkingSample.cs">
+      <Link>Samples\Animation\CharacterAnimation\03-DudeWalkingSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\CharacterAnimation\04-AttachmentSample.cs">
+      <Link>Samples\Animation\CharacterAnimation\04-AttachmentSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\CharacterAnimation\05-CharacterCrossFadeSample.cs">
+      <Link>Samples\Animation\CharacterAnimation\05-CharacterCrossFadeSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\CharacterAnimation\06-StressTestSample.cs">
+      <Link>Samples\Animation\CharacterAnimation\06-StressTestSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\CharacterAnimation\07-CompressionSample.cs">
+      <Link>Samples\Animation\CharacterAnimation\07-CompressionSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\CharacterAnimation\08-MixingSample.cs">
+      <Link>Samples\Animation\CharacterAnimation\08-MixingSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\CharacterAnimation\09-BoneJiggleSample\BoneJiggleSample.cs">
+      <Link>Samples\Animation\CharacterAnimation\09-BoneJiggleSample\BoneJiggleSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\CharacterAnimation\09-BoneJiggleSample\BoneJiggler.cs">
+      <Link>Samples\Animation\CharacterAnimation\09-BoneJiggleSample\BoneJiggler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\CharacterAnimation\10-SkeletonMappingSample.cs">
+      <Link>Samples\Animation\CharacterAnimation\10-SkeletonMappingSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\CharacterAnimation\IK Samples\CcdIKSample.cs">
+      <Link>Samples\Animation\CharacterAnimation\IK Samples\CcdIKSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\CharacterAnimation\IK Samples\ClosedFormIKSample.cs">
+      <Link>Samples\Animation\CharacterAnimation\IK Samples\ClosedFormIKSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\CharacterAnimation\IK Samples\JacobianTransposeIKSample.cs">
+      <Link>Samples\Animation\CharacterAnimation\IK Samples\JacobianTransposeIKSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\CharacterAnimation\IK Samples\LookAtIKSample.cs">
+      <Link>Samples\Animation\CharacterAnimation\IK Samples\LookAtIKSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Animation\CharacterAnimation\IK Samples\TwoJointIKSample.cs">
+      <Link>Samples\Animation\CharacterAnimation\IK Samples\TwoJointIKSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Base\01-ProfilerSample.cs">
+      <Link>Samples\Base\01-ProfilerSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Base\02-HierarchicalProfilerSample.cs">
+      <Link>Samples\Base\02-HierarchicalProfilerSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\BasicSample.cs">
+      <Link>Samples\BasicSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\01 - InputSample\InputSample.cs">
+      <Link>Samples\Game.UI\01 - InputSample\InputSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\01 - InputSample\RectangleObject.cs">
+      <Link>Samples\Game.UI\01 - InputSample\RectangleObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\02 - InputCommandSample.cs">
+      <Link>Samples\Game.UI\02 - InputCommandSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\03 - ControlsSample\AllControlsWindow.cs">
+      <Link>Samples\Game.UI\03 - ControlsSample\AllControlsWindow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\03 - ControlsSample\ConsoleWindow.cs">
+      <Link>Samples\Game.UI\03 - ControlsSample\ConsoleWindow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\03 - ControlsSample\ControlsSample.cs">
+      <Link>Samples\Game.UI\03 - ControlsSample\ControlsSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\03 - ControlsSample\DialogDemoWindow.cs">
+      <Link>Samples\Game.UI\03 - ControlsSample\DialogDemoWindow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\03 - ControlsSample\FpsTextBox.cs">
+      <Link>Samples\Game.UI\03 - ControlsSample\FpsTextBox.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\03 - ControlsSample\RenderTransformWindow.cs">
+      <Link>Samples\Game.UI\03 - ControlsSample\RenderTransformWindow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\03 - ControlsSample\ResizableWindow.cs">
+      <Link>Samples\Game.UI\03 - ControlsSample\ResizableWindow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\04 - UIAnimationSample\AnimatedWindow.cs">
+      <Link>Samples\Game.UI\04 - UIAnimationSample\AnimatedWindow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\04 - UIAnimationSample\EasingWindow.cs">
+      <Link>Samples\Game.UI\04 - UIAnimationSample\EasingWindow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\04 - UIAnimationSample\FadingWindow.cs">
+      <Link>Samples\Game.UI\04 - UIAnimationSample\FadingWindow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\04 - UIAnimationSample\RotatingWindow.cs">
+      <Link>Samples\Game.UI\04 - UIAnimationSample\RotatingWindow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\04 - UIAnimationSample\ScalingWindow.cs">
+      <Link>Samples\Game.UI\04 - UIAnimationSample\ScalingWindow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\04 - UIAnimationSample\UIAnimationSample.cs">
+      <Link>Samples\Game.UI\04 - UIAnimationSample\UIAnimationSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\05 - TilingSample.cs">
+      <Link>Samples\Game.UI\05 - TilingSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\06 - CustomControlSample\CustomControlSample.cs">
+      <Link>Samples\Game.UI\06 - CustomControlSample\CustomControlSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\06 - CustomControlSample\MyUIRenderer.cs">
+      <Link>Samples\Game.UI\06 - CustomControlSample\MyUIRenderer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\06 - CustomControlSample\TreeView.cs">
+      <Link>Samples\Game.UI\06 - CustomControlSample\TreeView.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\06 - CustomControlSample\TreeViewItem.cs">
+      <Link>Samples\Game.UI\06 - CustomControlSample\TreeViewItem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\08 - GameStatesSample.cs">
+      <Link>Samples\Game.UI\08 - GameStatesSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\10 - WindowsPhoneSample\WindowsPhoneSample.cs">
+      <Link>Samples\Game.UI\10 - WindowsPhoneSample\WindowsPhoneSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\10 - WindowsPhoneSample\WpWindow.cs">
+      <Link>Samples\Game.UI\10 - WindowsPhoneSample\WpWindow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\11 - CustomCommandSample\ButtonHoldCommand.cs">
+      <Link>Samples\Game.UI\11 - CustomCommandSample\ButtonHoldCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\11 - CustomCommandSample\ButtonSequenceCommand.cs">
+      <Link>Samples\Game.UI\11 - CustomCommandSample\ButtonSequenceCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\11 - CustomCommandSample\ButtonTapCommand.cs">
+      <Link>Samples\Game.UI\11 - CustomCommandSample\ButtonTapCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\11 - CustomCommandSample\CustomCommandSample.cs">
+      <Link>Samples\Game.UI\11 - CustomCommandSample\CustomCommandSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Game.UI\12 - HealthBarSample.cs">
+      <Link>Samples\Game.UI\12 - HealthBarSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Geometry\01-CollisionDetectionSample.cs">
+      <Link>Samples\Geometry\01-CollisionDetectionSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Geometry\02-PickingSample.cs">
+      <Link>Samples\Geometry\02-PickingSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Geometry\03-ConvexHullSample.cs">
+      <Link>Samples\Geometry\03-ConvexHullSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Geometry\04-MassCollisionsSample.cs">
+      <Link>Samples\Geometry\04-MassCollisionsSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Geometry\05-FrustumCullingSample.cs">
+      <Link>Samples\Geometry\05-FrustumCullingSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Geometry\06-ContinuousCollisionDetectionSample.cs">
+      <Link>Samples\Geometry\06-ContinuousCollisionDetectionSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Geometry\07-ContentPipelineSample\ContentPipelineSample.cs">
+      <Link>Samples\Geometry\07-ContentPipelineSample\ContentPipelineSample.cs</Link>
+    </Compile>
+    <None Include="..\..\Samples\Geometry\07-ContentPipelineSample\README.TXT">
+      <Link>Samples\Geometry\07-ContentPipelineSample\README.TXT</Link>
+    </None>
+    <Compile Include="..\..\Samples\Geometry\07-ContentPipelineSample\SaucerObject.cs">
+      <Link>Samples\Geometry\07-ContentPipelineSample\SaucerObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Geometry\07-ContentPipelineSample\ShipObject.cs">
+      <Link>Samples\Geometry\07-ContentPipelineSample\ShipObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Geometry\08-CharacterControllerSample\CharacterController.cs">
+      <Link>Samples\Geometry\08-CharacterControllerSample\CharacterController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Geometry\08-CharacterControllerSample\CharacterControllerLevel.cs">
+      <Link>Samples\Geometry\08-CharacterControllerSample\CharacterControllerLevel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Geometry\08-CharacterControllerSample\CharacterControllerSample.cs">
+      <Link>Samples\Geometry\08-CharacterControllerSample\CharacterControllerSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Geometry\09-TriangulationSample.cs">
+      <Link>Samples\Geometry\09-TriangulationSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Geometry\12-CollisionFilterSample.cs">
+      <Link>Samples\Geometry\12-CollisionFilterSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Geometry\13-SpatialPartitionSample.cs">
+      <Link>Samples\Geometry\13-SpatialPartitionSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\Basics\01-DelegateGraphicsScreenSample.cs">
+      <Link>Samples\Graphics\Basics\01-DelegateGraphicsScreenSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\Basics\02-ScreenInScreenSample.cs">
+      <Link>Samples\Graphics\Basics\02-ScreenInScreenSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\Basics\03-XnaModelSample.cs">
+      <Link>Samples\Graphics\Basics\03-XnaModelSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\Basics\04-DebugRendererSample.cs">
+      <Link>Samples\Graphics\Basics\04-DebugRendererSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\Basics\05-SubmeshSample.cs">
+      <Link>Samples\Graphics\Basics\05-SubmeshSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\Basics\06-MeshNodeSample.cs">
+      <Link>Samples\Graphics\Basics\06-MeshNodeSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\Basics\07-SceneSample.cs">
+      <Link>Samples\Graphics\Basics\07-SceneSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\Basics\08-InstancingSample.cs">
+      <Link>Samples\Graphics\Basics\08-InstancingSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\Basics\09-CustomSceneNodeSample\CustomSceneNodeSample.cs">
+      <Link>Samples\Graphics\Basics\09-CustomSceneNodeSample\CustomSceneNodeSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\Basics\09-CustomSceneNodeSample\TextNode.cs">
+      <Link>Samples\Graphics\Basics\09-CustomSceneNodeSample\TextNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\Basics\09-CustomSceneNodeSample\TextRenderer.cs">
+      <Link>Samples\Graphics\Basics\09-CustomSceneNodeSample\TextRenderer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\Basics\10-LensFlareSample.cs">
+      <Link>Samples\Graphics\Basics\10-LensFlareSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\Basics\11-BillboardSample.cs">
+      <Link>Samples\Graphics\Basics\11-BillboardSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\Basics\12-MaterialCaptureSample.cs">
+      <Link>Samples\Graphics\Basics\12-MaterialCaptureSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\Basics\13-FigureSample\FigureGeometricObject.cs">
+      <Link>Samples\Graphics\Basics\13-FigureSample\FigureGeometricObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\Basics\13-FigureSample\FigurePickerObject.cs">
+      <Link>Samples\Graphics\Basics\13-FigureSample\FigurePickerObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\Basics\13-FigureSample\FigureSample.cs">
+      <Link>Samples\Graphics\Basics\13-FigureSample\FigureSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\Basics\14-ProjectedShadowSample\ProjectedShadowRenderer.cs">
+      <Link>Samples\Graphics\Basics\14-ProjectedShadowSample\ProjectedShadowRenderer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\Basics\14-ProjectedShadowSample\ProjectedShadowSample.cs">
+      <Link>Samples\Graphics\Basics\14-ProjectedShadowSample\ProjectedShadowSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\Basics\15-ProjectedShadowSample2.cs">
+      <Link>Samples\Graphics\Basics\15-ProjectedShadowSample2.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\01-DeferredLightingSample\DeferredLightingSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\01-DeferredLightingSample\DeferredLightingSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\02-LightSample\LightSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\02-LightSample\LightSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\02-LightSample\TestLightsObject.cs">
+      <Link>Samples\Graphics\DeferredRendering\02-LightSample\TestLightsObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\03-DecalSample\DecalSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\03-DecalSample\DecalSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\03-DecalSample\EnviromentDecalsGameObject.cs">
+      <Link>Samples\Graphics\DeferredRendering\03-DecalSample\EnviromentDecalsGameObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\04-SkySample\DynamicSkyObject.cs">
+      <Link>Samples\Graphics\DeferredRendering\04-SkySample\DynamicSkyObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\04-SkySample\SkySample.cs">
+      <Link>Samples\Graphics\DeferredRendering\04-SkySample\SkySample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\05-SplitScreenSample\SplitScreen.cs">
+      <Link>Samples\Graphics\DeferredRendering\05-SplitScreenSample\SplitScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\05-SplitScreenSample\SplitScreenSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\05-SplitScreenSample\SplitScreenSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\06-CloudQuadSample\CloudQuadSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\06-CloudQuadSample\CloudQuadSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\06-CloudQuadSample\SkyEffectBinder.cs">
+      <Link>Samples\Graphics\DeferredRendering\06-CloudQuadSample\SkyEffectBinder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\06-CloudQuadSample\SkyEffectInterpreter.cs">
+      <Link>Samples\Graphics\DeferredRendering\06-CloudQuadSample\SkyEffectInterpreter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\06-CloudQuadSample\SkyEffectParameterSemantics.cs">
+      <Link>Samples\Graphics\DeferredRendering\06-CloudQuadSample\SkyEffectParameterSemantics.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\07-EnvironmentLightSample\EnvironmentLight.cs">
+      <Link>Samples\Graphics\DeferredRendering\07-EnvironmentLightSample\EnvironmentLight.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\07-EnvironmentLightSample\EnvironmentLightRenderer.cs">
+      <Link>Samples\Graphics\DeferredRendering\07-EnvironmentLightSample\EnvironmentLightRenderer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\07-EnvironmentLightSample\EnvironmentLightSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\07-EnvironmentLightSample\EnvironmentLightSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\08-RefractionSample\RefractionMeshRenderer.cs">
+      <Link>Samples\Graphics\DeferredRendering\08-RefractionSample\RefractionMeshRenderer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\08-RefractionSample\RefractionSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\08-RefractionSample\RefractionSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\09-ParallaxMappingSample\ParallaxMappingSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\09-ParallaxMappingSample\ParallaxMappingSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\10-LodBlendingSample\FourWaySplitScreen.cs">
+      <Link>Samples\Graphics\DeferredRendering\10-LodBlendingSample\FourWaySplitScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\10-LodBlendingSample\LodBlendingSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\10-LodBlendingSample\LodBlendingSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\10-LodBlendingSample\LodTestObject.cs">
+      <Link>Samples\Graphics\DeferredRendering\10-LodBlendingSample\LodTestObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\10-LodBlendingSample\SceneQueryWithLodBlending.cs">
+      <Link>Samples\Graphics\DeferredRendering\10-LodBlendingSample\SceneQueryWithLodBlending.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\11-FurSample\FurSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\11-FurSample\FurSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\12-TechniqueBindingSample\RepeatTechniqueBinder.cs">
+      <Link>Samples\Graphics\DeferredRendering\12-TechniqueBindingSample\RepeatTechniqueBinder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\12-TechniqueBindingSample\RepeatTechniqueBinding.cs">
+      <Link>Samples\Graphics\DeferredRendering\12-TechniqueBindingSample\RepeatTechniqueBinding.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\12-TechniqueBindingSample\RepeatTechniqueDescription.cs">
+      <Link>Samples\Graphics\DeferredRendering\12-TechniqueBindingSample\RepeatTechniqueDescription.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\12-TechniqueBindingSample\RepeatTechniqueInterpreter.cs">
+      <Link>Samples\Graphics\DeferredRendering\12-TechniqueBindingSample\RepeatTechniqueInterpreter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\12-TechniqueBindingSample\TechniqueBindingSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\12-TechniqueBindingSample\TechniqueBindingSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\13-OcclusionCullingSample\OcclusionCullingSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\13-OcclusionCullingSample\OcclusionCullingSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\13-OcclusionCullingSample\OcclusionCullingScreen.cs">
+      <Link>Samples\Graphics\DeferredRendering\13-OcclusionCullingSample\OcclusionCullingScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\14-SceneCapture2DSample\SceneCapture2DSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\14-SceneCapture2DSample\SceneCapture2DSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\15-SceneCaptureCubeSample\SceneCaptureCubeSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\15-SceneCaptureCubeSample\SceneCaptureCubeSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\16-PlanarReflectionSample\PlanarReflectionSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\16-PlanarReflectionSample\PlanarReflectionSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\17-WaterSample\UnderwaterPostProcessor.cs">
+      <Link>Samples\Graphics\DeferredRendering\17-WaterSample\UnderwaterPostProcessor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\17-WaterSample\WaterSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\17-WaterSample\WaterSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\18-OceanSample\OceanSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\18-OceanSample\OceanSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\19-FogSphereSample\FogSphereNode.cs">
+      <Link>Samples\Graphics\DeferredRendering\19-FogSphereSample\FogSphereNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\19-FogSphereSample\FogSphereRenderer.cs">
+      <Link>Samples\Graphics\DeferredRendering\19-FogSphereSample\FogSphereRenderer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\19-FogSphereSample\FogSphereSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\19-FogSphereSample\FogSphereSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\20-LightClipSample\LightClipSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\20-LightClipSample\LightClipSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\21-DistortionSample\DistortionFilter.cs">
+      <Link>Samples\Graphics\DeferredRendering\21-DistortionSample\DistortionFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\21-DistortionSample\DistortionSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\21-DistortionSample\DistortionSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\22-VolumetricLightSample\VolumetricLightNode.cs">
+      <Link>Samples\Graphics\DeferredRendering\22-VolumetricLightSample\VolumetricLightNode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\22-VolumetricLightSample\VolumetricLightRenderer.cs">
+      <Link>Samples\Graphics\DeferredRendering\22-VolumetricLightSample\VolumetricLightRenderer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\22-VolumetricLightSample\VolumetricLightSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\22-VolumetricLightSample\VolumetricLightSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\23-ShadowSample\ShadowSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\23-ShadowSample\ShadowSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\24-CascadedShadowSample\CascadedShadowSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\24-CascadedShadowSample\CascadedShadowSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\25-VarianceShadowSample\VarianceShadow.cs">
+      <Link>Samples\Graphics\DeferredRendering\25-VarianceShadowSample\VarianceShadow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\25-VarianceShadowSample\VarianceShadowMapRenderer.cs">
+      <Link>Samples\Graphics\DeferredRendering\25-VarianceShadowSample\VarianceShadowMapRenderer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\25-VarianceShadowSample\VarianceShadowMaskRenderer.cs">
+      <Link>Samples\Graphics\DeferredRendering\25-VarianceShadowSample\VarianceShadowMaskRenderer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\25-VarianceShadowSample\VarianceShadowSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\25-VarianceShadowSample\VarianceShadowSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\26-CompositeShadowSample\CompositeShadowSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\26-CompositeShadowSample\CompositeShadowSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\27-FacialAnimationSample\FacialAnimationSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\27-FacialAnimationSample\FacialAnimationSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\28-VolumetricCloudSample\VolumetricCloudSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\28-VolumetricCloudSample\VolumetricCloudSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\29-ImageBasedLightingSample\ImageBasedLightingSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\29-ImageBasedLightingSample\ImageBasedLightingSample.cs</Link>
+    </Compile>
+    <Folder Include="Samples\Graphics\DeferredRendering\30-BatchingSample\" />
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\30-CathedralSample\CathedralSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\30-CathedralSample\CathedralSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\31-BatchingSample\BatchingSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\31-BatchingSample\BatchingSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\32-VegetationSample\VegetationObject.cs">
+      <Link>Samples\Graphics\DeferredRendering\32-VegetationSample\VegetationObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\32-VegetationSample\VegetationSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\32-VegetationSample\VegetationSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\32-VegetationSample\WindObject.cs">
+      <Link>Samples\Graphics\DeferredRendering\32-VegetationSample\WindObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\33-TerrainSample\OceanObject.cs">
+      <Link>Samples\Graphics\DeferredRendering\33-TerrainSample\OceanObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\33-TerrainSample\TerrainObject.cs">
+      <Link>Samples\Graphics\DeferredRendering\33-TerrainSample\TerrainObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\33-TerrainSample\TerrainSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\33-TerrainSample\TerrainSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\34-TerrainTextureSample\TerrainTextureSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\34-TerrainTextureSample\TerrainTextureSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\35-TerrainDecalSample\TerrainDecalSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\35-TerrainDecalSample\TerrainDecalSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\36-RoadSample\RoadSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\36-RoadSample\RoadSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\37-ProceduralTerrainSample\ProceduralTerrainCreator.cs">
+      <Link>Samples\Graphics\DeferredRendering\37-ProceduralTerrainSample\ProceduralTerrainCreator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\37-ProceduralTerrainSample\ProceduralTerrainObject.cs">
+      <Link>Samples\Graphics\DeferredRendering\37-ProceduralTerrainSample\ProceduralTerrainObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\37-ProceduralTerrainSample\ProceduralTerrainSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\37-ProceduralTerrainSample\ProceduralTerrainSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\38-ParallaxTerrainSample\ParallaxTerrainSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\38-ParallaxTerrainSample\ParallaxTerrainSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\39-TerrainHoleSample\TerrainHoleSample.cs">
+      <Link>Samples\Graphics\DeferredRendering\39-TerrainHoleSample\TerrainHoleSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\DeferredGraphicsScreen\CustomSceneQuery.cs">
+      <Link>Samples\Graphics\DeferredRendering\DeferredGraphicsScreen\CustomSceneQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\DeferredGraphicsScreen\DeferredGraphicsDebugMode.cs">
+      <Link>Samples\Graphics\DeferredRendering\DeferredGraphicsScreen\DeferredGraphicsDebugMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\DeferredGraphicsScreen\DeferredGraphicsOptionsObject.cs">
+      <Link>Samples\Graphics\DeferredRendering\DeferredGraphicsScreen\DeferredGraphicsOptionsObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\DeferredGraphicsScreen\DeferredGraphicsScreen.cs">
+      <Link>Samples\Graphics\DeferredRendering\DeferredGraphicsScreen\DeferredGraphicsScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\DeferredGraphicsScreen\GBufferRenderer.cs">
+      <Link>Samples\Graphics\DeferredRendering\DeferredGraphicsScreen\GBufferRenderer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\DeferredGraphicsScreen\LightBufferRenderer.cs">
+      <Link>Samples\Graphics\DeferredRendering\DeferredGraphicsScreen\LightBufferRenderer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\DeferredRendering\DeferredGraphicsScreen\PreprocessingSceneQuery.cs">
+      <Link>Samples\Graphics\DeferredRendering\DeferredGraphicsScreen\PreprocessingSceneQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\Misc\01-WeightedBlendedOITSample\WeightedBlendedOITQuery.cs">
+      <Link>Samples\Graphics\Misc\01-WeightedBlendedOITSample\WeightedBlendedOITQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\Misc\01-WeightedBlendedOITSample\WeightedBlendedOITSample.cs">
+      <Link>Samples\Graphics\Misc\01-WeightedBlendedOITSample\WeightedBlendedOITSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\Misc\01-WeightedBlendedOITSample\WeightedBlendedOITScreen.cs">
+      <Link>Samples\Graphics\Misc\01-WeightedBlendedOITSample\WeightedBlendedOITScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\01-SaturationSample.cs">
+      <Link>Samples\Graphics\PostProcessing\01-SaturationSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\02-SepiaSample.cs">
+      <Link>Samples\Graphics\PostProcessing\02-SepiaSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\03-ColorCorrectionSample.cs">
+      <Link>Samples\Graphics\PostProcessing\03-ColorCorrectionSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\04-SharpeningSample.cs">
+      <Link>Samples\Graphics\PostProcessing\04-SharpeningSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\05-UnsharpMaskingSample.cs">
+      <Link>Samples\Graphics\PostProcessing\05-UnsharpMaskingSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\06-EdgeFilterSample.cs">
+      <Link>Samples\Graphics\PostProcessing\06-EdgeFilterSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\07-GrainSample.cs">
+      <Link>Samples\Graphics\PostProcessing\07-GrainSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\08-CopyFilterSample.cs">
+      <Link>Samples\Graphics\PostProcessing\08-CopyFilterSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\09-DownsampleSample.cs">
+      <Link>Samples\Graphics\PostProcessing\09-DownsampleSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\10-BlurSample.cs">
+      <Link>Samples\Graphics\PostProcessing\10-BlurSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\11-KawaseBlurSample.cs">
+      <Link>Samples\Graphics\PostProcessing\11-KawaseBlurSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\12-RadialBlurSample.cs">
+      <Link>Samples\Graphics\PostProcessing\12-RadialBlurSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\13-SimpleMotionBlurSample.cs">
+      <Link>Samples\Graphics\PostProcessing\13-SimpleMotionBlurSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\14-CameraMotionBlurSample.cs">
+      <Link>Samples\Graphics\PostProcessing\14-CameraMotionBlurSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\15-ObjectMotionBlurSample.cs">
+      <Link>Samples\Graphics\PostProcessing\15-ObjectMotionBlurSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\16-DepthOfFieldSample.cs">
+      <Link>Samples\Graphics\PostProcessing\16-DepthOfFieldSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\17-FxaaSample.cs">
+      <Link>Samples\Graphics\PostProcessing\17-FxaaSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\18-SmaaSample.cs">
+      <Link>Samples\Graphics\PostProcessing\18-SmaaSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\19-GodRaySample.cs">
+      <Link>Samples\Graphics\PostProcessing\19-GodRaySample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\20-SsaoSample.cs">
+      <Link>Samples\Graphics\PostProcessing\20-SsaoSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\21-BloomSample.cs">
+      <Link>Samples\Graphics\PostProcessing\21-BloomSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\22-HdrSample.cs">
+      <Link>Samples\Graphics\PostProcessing\22-HdrSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\23-CustomProcessorSample\CustomProcessorSample.cs">
+      <Link>Samples\Graphics\PostProcessing\23-CustomProcessorSample\CustomProcessorSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\23-CustomProcessorSample\NegativeFilter.cs">
+      <Link>Samples\Graphics\PostProcessing\23-CustomProcessorSample\NegativeFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\24-CustomProcessorSample2.cs">
+      <Link>Samples\Graphics\PostProcessing\24-CustomProcessorSample2.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\25-VignetteSample.cs">
+      <Link>Samples\Graphics\PostProcessing\25-VignetteSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\26-InterlaceSample.cs">
+      <Link>Samples\Graphics\PostProcessing\26-InterlaceSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\27-LensDistortionSample.cs">
+      <Link>Samples\Graphics\PostProcessing\27-LensDistortionSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\28-SaoSample.cs">
+      <Link>Samples\Graphics\PostProcessing\28-SaoSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\PostProcessingGraphicsScreen.cs">
+      <Link>Samples\Graphics\PostProcessing\PostProcessingGraphicsScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\PostProcessing\PostProcessingSample.cs">
+      <Link>Samples\Graphics\PostProcessing\PostProcessingSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\StockEffects\BasicEffectSample.cs">
+      <Link>Samples\Graphics\StockEffects\BasicEffectSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\StockEffects\DualTextureEffectSample.cs">
+      <Link>Samples\Graphics\StockEffects\DualTextureEffectSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\StockEffects\EnvironmentMapEffectSample.cs">
+      <Link>Samples\Graphics\StockEffects\EnvironmentMapEffectSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\StockEffects\ProceduralSkyDome.cs">
+      <Link>Samples\Graphics\StockEffects\ProceduralSkyDome.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Graphics\StockEffects\SkinnedEffectSample.cs">
+      <Link>Samples\Graphics\StockEffects\SkinnedEffectSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Mathematics\01-BasicMathSample.cs">
+      <Link>Samples\Mathematics\01-BasicMathSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Mathematics\02-OdeIntegratorSample.cs">
+      <Link>Samples\Mathematics\02-OdeIntegratorSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Mathematics\03-CurveSample.cs">
+      <Link>Samples\Mathematics\03-CurveSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Mathematics\04-PathSample.cs">
+      <Link>Samples\Mathematics\04-PathSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Mathematics\05-ScatteredInterpolationSample.cs">
+      <Link>Samples\Mathematics\05-ScatteredInterpolationSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Mathematics\06-DistributionsSample.cs">
+      <Link>Samples\Mathematics\06-DistributionsSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Mathematics\07-PcaSample.cs">
+      <Link>Samples\Mathematics\07-PcaSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\01-Basic\BasicParticlesSample.cs">
+      <Link>Samples\Particles\01-Basic\BasicParticlesSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\02-Smoke\Smoke.cs">
+      <Link>Samples\Particles\02-Smoke\Smoke.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\02-Smoke\SmokeSample.cs">
+      <Link>Samples\Particles\02-Smoke\SmokeSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\03-RingOfFire\Fire.cs">
+      <Link>Samples\Particles\03-RingOfFire\Fire.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\03-RingOfFire\RingOfFireSample.cs">
+      <Link>Samples\Particles\03-RingOfFire\RingOfFireSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\04-Campfire\Campfire.cs">
+      <Link>Samples\Particles\04-Campfire\Campfire.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\04-Campfire\CampfireSample.cs">
+      <Link>Samples\Particles\04-Campfire\CampfireSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\04-Campfire\CampfireSmoke.cs">
+      <Link>Samples\Particles\04-Campfire\CampfireSmoke.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\05-Explosion\Explosion.cs">
+      <Link>Samples\Particles\05-Explosion\Explosion.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\05-Explosion\ExplosionSample.cs">
+      <Link>Samples\Particles\05-Explosion\ExplosionSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\06-FlameJet\FlameJet.cs">
+      <Link>Samples\Particles\06-FlameJet\FlameJet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\06-FlameJet\FlameJetSample.cs">
+      <Link>Samples\Particles\06-FlameJet\FlameJetSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\07-Rain\Rain.cs">
+      <Link>Samples\Particles\07-Rain\Rain.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\07-Rain\RainSample.cs">
+      <Link>Samples\Particles\07-Rain\RainSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\08-WaterFall\WaterFall.cs">
+      <Link>Samples\Particles\08-WaterFall\WaterFall.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\08-WaterFall\WaterFallSample.cs">
+      <Link>Samples\Particles\08-WaterFall\WaterFallSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\09-Bounce\BounceSample.cs">
+      <Link>Samples\Particles\09-Bounce\BounceSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\09-Bounce\BouncingSparks.cs">
+      <Link>Samples\Particles\09-Bounce\BouncingSparks.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\09-Bounce\CollisionPlaneEffector.cs">
+      <Link>Samples\Particles\09-Bounce\CollisionPlaneEffector.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\10-Teleport\Teleport.cs">
+      <Link>Samples\Particles\10-Teleport\Teleport.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\10-Teleport\TeleportSample.cs">
+      <Link>Samples\Particles\10-Teleport\TeleportSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\11-ReferenceFrame\GlowingMeshEffect.cs">
+      <Link>Samples\Particles\11-ReferenceFrame\GlowingMeshEffect.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\11-ReferenceFrame\ReferenceFrameSample.cs">
+      <Link>Samples\Particles\11-ReferenceFrame\ReferenceFrameSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\11-ReferenceFrame\StartOnMeshEffector.cs">
+      <Link>Samples\Particles\11-ReferenceFrame\StartOnMeshEffector.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\12-SuperEmitter\ParticleSystemRecycler.cs">
+      <Link>Samples\Particles\12-SuperEmitter\ParticleSystemRecycler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\12-SuperEmitter\RocketEffector.cs">
+      <Link>Samples\Particles\12-SuperEmitter\RocketEffector.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\12-SuperEmitter\RocketExplosion.cs">
+      <Link>Samples\Particles\12-SuperEmitter\RocketExplosion.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\12-SuperEmitter\RocketExplosionCore.cs">
+      <Link>Samples\Particles\12-SuperEmitter\RocketExplosionCore.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\12-SuperEmitter\RocketExplosionSmoke.cs">
+      <Link>Samples\Particles\12-SuperEmitter\RocketExplosionSmoke.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\12-SuperEmitter\RocketTrail.cs">
+      <Link>Samples\Particles\12-SuperEmitter\RocketTrail.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\12-SuperEmitter\Rockets.cs">
+      <Link>Samples\Particles\12-SuperEmitter\Rockets.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\12-SuperEmitter\SuperEmitterSample.cs">
+      <Link>Samples\Particles\12-SuperEmitter\SuperEmitterSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\13-Grass\Grass.cs">
+      <Link>Samples\Particles\13-Grass\Grass.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\13-Grass\GrassSample.cs">
+      <Link>Samples\Particles\13-Grass\GrassSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\14-Decals\DecalSample.cs">
+      <Link>Samples\Particles\14-Decals\DecalSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\14-Decals\Decals.cs">
+      <Link>Samples\Particles\14-Decals\Decals.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\15-DepthSorting\BrownOut.cs">
+      <Link>Samples\Particles\15-DepthSorting\BrownOut.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\15-DepthSorting\DepthSortingSample.cs">
+      <Link>Samples\Particles\15-DepthSorting\DepthSortingSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\16-Ribbon\RibbonEffect.cs">
+      <Link>Samples\Particles\16-Ribbon\RibbonEffect.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\16-Ribbon\RibbonEffector.cs">
+      <Link>Samples\Particles\16-Ribbon\RibbonEffector.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\16-Ribbon\RibbonSample.cs">
+      <Link>Samples\Particles\16-Ribbon\RibbonSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\17-AnimatedTexture\AnimatedTextureSample.cs">
+      <Link>Samples\Particles\17-AnimatedTexture\AnimatedTextureSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\17-AnimatedTexture\AnimationEffector.cs">
+      <Link>Samples\Particles\17-AnimatedTexture\AnimationEffector.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\17-AnimatedTexture\BeeEffector.cs">
+      <Link>Samples\Particles\17-AnimatedTexture\BeeEffector.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\17-AnimatedTexture\BeeSwarm.cs">
+      <Link>Samples\Particles\17-AnimatedTexture\BeeSwarm.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\ParticleHelper.cs">
+      <Link>Samples\Particles\ParticleHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\ParticleSample.cs">
+      <Link>Samples\Particles\ParticleSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Particles\ParticleSystemValidator.cs">
+      <Link>Samples\Particles\ParticleSystemValidator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\CharacterControllerSample\CharacterControllerLevelObject.cs">
+      <Link>Samples\Physics.Specialized\CharacterControllerSample\CharacterControllerLevelObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\CharacterControllerSample\CharacterControllerObject.cs">
+      <Link>Samples\Physics.Specialized\CharacterControllerSample\CharacterControllerObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\CharacterControllerSample\CharacterControllerSample.cs">
+      <Link>Samples\Physics.Specialized\CharacterControllerSample\CharacterControllerSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\CharacterControllerSample\ThirdPersonCameraObject.cs">
+      <Link>Samples\Physics.Specialized\CharacterControllerSample\ThirdPersonCameraObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\ConstraintVehicleSample\ConstraintVehicleObject.cs">
+      <Link>Samples\Physics.Specialized\ConstraintVehicleSample\ConstraintVehicleObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\ConstraintVehicleSample\ConstraintVehicleSample.cs">
+      <Link>Samples\Physics.Specialized\ConstraintVehicleSample\ConstraintVehicleSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\ConstraintVehicleSample\ConstraintVehicle\Constraint1D.cs">
+      <Link>Samples\Physics.Specialized\ConstraintVehicleSample\ConstraintVehicle\Constraint1D.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\ConstraintVehicleSample\ConstraintVehicle\ConstraintVehicle.cs">
+      <Link>Samples\Physics.Specialized\ConstraintVehicleSample\ConstraintVehicle\ConstraintVehicle.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\ConstraintVehicleSample\ConstraintVehicle\ConstraintVehicleHandler.cs">
+      <Link>Samples\Physics.Specialized\ConstraintVehicleSample\ConstraintVehicle\ConstraintVehicleHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\ConstraintVehicleSample\ConstraintVehicle\ConstraintWheel.cs">
+      <Link>Samples\Physics.Specialized\ConstraintVehicleSample\ConstraintVehicle\ConstraintWheel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\ConstraintVehicleSample\ConstraintVehicle\ConstraintWheel_GeometricObject.cs">
+      <Link>Samples\Physics.Specialized\ConstraintVehicleSample\ConstraintVehicle\ConstraintWheel_GeometricObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\ConstraintVehicleSample\ConstraintVehicle\VehicleHelper.cs">
+      <Link>Samples\Physics.Specialized\ConstraintVehicleSample\ConstraintVehicle\VehicleHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\ConstraintVehicleSample\ConstraintVehicle\WheelConstraint.cs">
+      <Link>Samples\Physics.Specialized\ConstraintVehicleSample\ConstraintVehicle\WheelConstraint.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\PhysicsSpecializedSample.cs">
+      <Link>Samples\Physics.Specialized\PhysicsSpecializedSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\Ragdoll Samples\01-CollisionDetectionOnlyRagdollSample.cs">
+      <Link>Samples\Physics.Specialized\Ragdoll Samples\01-CollisionDetectionOnlyRagdollSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\Ragdoll Samples\02-KinematicRagdollSample.cs">
+      <Link>Samples\Physics.Specialized\Ragdoll Samples\02-KinematicRagdollSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\Ragdoll Samples\03-PassiveRagdollSample.cs">
+      <Link>Samples\Physics.Specialized\Ragdoll Samples\03-PassiveRagdollSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\Ragdoll Samples\04-ActiveRagdollSample.cs">
+      <Link>Samples\Physics.Specialized\Ragdoll Samples\04-ActiveRagdollSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\Ragdoll Samples\05-AutoRagdollShapesSample.cs">
+      <Link>Samples\Physics.Specialized\Ragdoll Samples\05-AutoRagdollShapesSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\Ragdoll Samples\06-IKPhysicsSample.cs">
+      <Link>Samples\Physics.Specialized\Ragdoll Samples\06-IKPhysicsSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\Ragdoll Samples\DudeRagdollCreator.cs">
+      <Link>Samples\Physics.Specialized\Ragdoll Samples\DudeRagdollCreator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\VehicleSample\VehicleCameraObject.cs">
+      <Link>Samples\Physics.Specialized\VehicleSample\VehicleCameraObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\VehicleSample\VehicleLevelObject.cs">
+      <Link>Samples\Physics.Specialized\VehicleSample\VehicleLevelObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\VehicleSample\VehicleObject.cs">
+      <Link>Samples\Physics.Specialized\VehicleSample\VehicleObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\VehicleSample\VehicleSample.cs">
+      <Link>Samples\Physics.Specialized\VehicleSample\VehicleSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\01-BoxStackSample.cs">
+      <Link>Samples\Physics\01-BoxStackSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\02-SphereStackSample.cs">
+      <Link>Samples\Physics\02-SphereStackSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\03-WallSample.cs">
+      <Link>Samples\Physics\03-WallSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\04-KinematicSample.cs">
+      <Link>Samples\Physics\04-KinematicSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\05-MassSample.cs">
+      <Link>Samples\Physics\05-MassSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\06-MaterialSample.cs">
+      <Link>Samples\Physics\06-MaterialSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\07-CompositeMaterialSample.cs">
+      <Link>Samples\Physics\07-CompositeMaterialSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\08-CompositeMaterial2Sample.cs">
+      <Link>Samples\Physics\08-CompositeMaterial2Sample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\09-SurfaceMotionSample.cs">
+      <Link>Samples\Physics\09-SurfaceMotionSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\10-ShapesSample.cs">
+      <Link>Samples\Physics\10-ShapesSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\11-HeightFieldSample.cs">
+      <Link>Samples\Physics\11-HeightFieldSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\12-TriangleMeshSample.cs">
+      <Link>Samples\Physics\12-TriangleMeshSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\13-BuoyancySample.cs">
+      <Link>Samples\Physics\13-BuoyancySample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\14-CustomGravitySample\CustomGravity.cs">
+      <Link>Samples\Physics\14-CustomGravitySample\CustomGravity.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\14-CustomGravitySample\CustomGravitySample.cs">
+      <Link>Samples\Physics\14-CustomGravitySample\CustomGravitySample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\15-ConstraintSample1.cs">
+      <Link>Samples\Physics\15-ConstraintSample1.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\16-ConstraintSample2.cs">
+      <Link>Samples\Physics\16-ConstraintSample2.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\17-ConstraintSample3.cs">
+      <Link>Samples\Physics\17-ConstraintSample3.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\18-RopeSample.cs">
+      <Link>Samples\Physics\18-RopeSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\19-BridgeSample.cs">
+      <Link>Samples\Physics\19-BridgeSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\20-ConstraintCarSample.cs">
+      <Link>Samples\Physics\20-ConstraintCarSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\21-RagdollSample.cs">
+      <Link>Samples\Physics\21-RagdollSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\22-BreakableJointsSample.cs">
+      <Link>Samples\Physics\22-BreakableJointsSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\23-LockRotationSample.cs">
+      <Link>Samples\Physics\23-LockRotationSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\24-ContinuousCollisionDetectionSample.cs">
+      <Link>Samples\Physics\24-ContinuousCollisionDetectionSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\25-ResponseFilterSample\MyCollisionResponseFilter.cs">
+      <Link>Samples\Physics\25-ResponseFilterSample\MyCollisionResponseFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\25-ResponseFilterSample\ResponseFilterSample.cs">
+      <Link>Samples\Physics\25-ResponseFilterSample\ResponseFilterSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\26-ParallelSimulationsSample.cs">
+      <Link>Samples\Physics\26-ParallelSimulationsSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\27-SmallerScaleSample.cs">
+      <Link>Samples\Physics\27-SmallerScaleSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\28-PerformanceSample.cs">
+      <Link>Samples\Physics\28-PerformanceSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\29-MeshFromModelSample.cs">
+      <Link>Samples\Physics\29-MeshFromModelSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\30-SoundSample.cs">
+      <Link>Samples\Physics\30-SoundSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\31-ConvexHullSample.cs">
+      <Link>Samples\Physics\31-ConvexHullSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\32-ContentPipelineHeightFieldSample.cs">
+      <Link>Samples\Physics\32-ContentPipelineHeightFieldSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\33-ContentPipelineMeshSample.cs">
+      <Link>Samples\Physics\33-ContentPipelineMeshSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\34-RollingSphereSample.cs">
+      <Link>Samples\Physics\34-RollingSphereSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics\PhysicSample.cs">
+      <Link>Samples\Physics\PhysicSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Sample.cs">
+      <Link>Samples\Sample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\SampleGraphicsScreen.cs">
+      <Link>Samples\SampleGraphicsScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Shared GameObjects\BallShooterObject.cs">
+      <Link>Shared GameObjects\BallShooterObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Shared GameObjects\CameraObject.cs">
+      <Link>Shared GameObjects\CameraObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Shared GameObjects\CampfireObject.cs">
+      <Link>Shared GameObjects\CampfireObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Shared GameObjects\DefaultLightsObject.cs">
+      <Link>Shared GameObjects\DefaultLightsObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Shared GameObjects\DudeObject.cs">
+      <Link>Shared GameObjects\DudeObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Shared GameObjects\DynamicObject.cs">
+      <Link>Shared GameObjects\DynamicObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Shared GameObjects\ExplosionObject.cs">
+      <Link>Shared GameObjects\ExplosionObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Shared GameObjects\FogObject.cs">
+      <Link>Shared GameObjects\FogObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Shared GameObjects\GodRayObject.cs">
+      <Link>Shared GameObjects\GodRayObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Shared GameObjects\GrabObject.cs">
+      <Link>Shared GameObjects\GrabObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Shared GameObjects\GroundObject.cs">
+      <Link>Shared GameObjects\GroundObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Shared GameObjects\LavaBallsObject.cs">
+      <Link>Shared GameObjects\LavaBallsObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Shared GameObjects\ObjectCreatorObject.cs">
+      <Link>Shared GameObjects\ObjectCreatorObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Shared GameObjects\ProceduralObject.cs">
+      <Link>Shared GameObjects\ProceduralObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Shared GameObjects\SandboxObject.cs">
+      <Link>Shared GameObjects\SandboxObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Shared GameObjects\StaticObject.cs">
+      <Link>Shared GameObjects\StaticObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Shared GameObjects\StaticSkyObject.cs">
+      <Link>Shared GameObjects\StaticSkyObject.cs</Link>
+    </Compile>
+    <None Include="project.json" />
+  </ItemGroup>
+</Project>

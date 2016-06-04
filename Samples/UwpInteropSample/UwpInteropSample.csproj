@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{D7B1F5B5-4820-4655-95A3-ACBB0B95E4D1}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UwpInteropSample</RootNamespace>
+    <AssemblyName>UwpInteropSample</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>UwpInteropSample_TemporaryKey.pfx</PackageCertificateKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="SharpDX, Version=3.0.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Source\MonoGame\ThirdParty\Dependencies\SharpDX\Windows UAP\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DXGI, Version=3.0.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Source\MonoGame\ThirdParty\Dependencies\SharpDX\Windows UAP\SharpDX.DXGI.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D11, Version=3.0.0.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Source\MonoGame\ThirdParty\Dependencies\SharpDX\Windows UAP\SharpDX.Direct3D11.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Source\DigitalRune.Animation\DigitalRune.Animation%28UWP%29.csproj">
+      <Project>{153c8ba8-c4c1-4204-949f-bde47f715e6c}</Project>
+      <Name>DigitalRune.Animation%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Game.Input\DigitalRune.Game.Input%28UWP%29.csproj">
+      <Project>{0c6e5565-0167-4734-9c81-d144a5312b72}</Project>
+      <Name>DigitalRune.Game.Input%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Game.UI\DigitalRune.Game.UI%28UWP%29.csproj">
+      <Project>{a08abee3-0dcc-4bd8-84a6-0e3e331abcd8}</Project>
+      <Name>DigitalRune.Game.UI%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Game\DigitalRune.Game%28UWP%29.csproj">
+      <Project>{f250c667-6307-48f7-ba24-5fe215068249}</Project>
+      <Name>DigitalRune.Game%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Geometry\DigitalRune.Geometry%28UWP%29.csproj">
+      <Project>{2b9c7ff5-953e-4e65-89ba-087791b32b11}</Project>
+      <Name>DigitalRune.Geometry%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Graphics\DigitalRune.Graphics%28UWP%29.csproj">
+      <Project>{019b4b5b-1b76-439d-9bb7-6a227fe59f6a}</Project>
+      <Name>DigitalRune.Graphics%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Mathematics\DigitalRune.Mathematics%28UWP%29.csproj">
+      <Project>{29d8637e-450b-4c0d-962f-baa851282185}</Project>
+      <Name>DigitalRune.Mathematics%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Particles\DigitalRune.Particles%28UWP%29.csproj">
+      <Project>{a1d07a6b-e89c-45e7-806b-6cc73f5f1904}</Project>
+      <Name>DigitalRune.Particles%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Physics.Specialized\DigitalRune.Physics.Specialized%28UWP%29.csproj">
+      <Project>{7dac6123-cee6-439c-8ce1-872e6c165cf8}</Project>
+      <Name>DigitalRune.Physics.Specialized%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Physics\DigitalRune.Physics%28UWP%29.csproj">
+      <Project>{e46c7b11-fe3c-4d89-8f90-15f8a4ab090f}</Project>
+      <Name>DigitalRune.Physics%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.ServiceLocation\DigitalRune.ServiceLocation%28UWP%29.csproj">
+      <Project>{bbb251dd-f46c-4270-a115-d1b093436361}</Project>
+      <Name>DigitalRune.ServiceLocation%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune\DigitalRune%28UWP%29.csproj">
+      <Project>{86ad1576-a1fd-4b7e-ac9d-83d118967c81}</Project>
+      <Name>DigitalRune%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\MonoGame\MonoGame.Framework\MonoGame.Framework.WindowsUAP.csproj">
+      <Project>{09c41a48-7bf3-4a46-9eb8-ce95b4c27ca9}</Project>
+      <Name>MonoGame.Framework.WindowsUAP</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="..\Content\bin\MonoGame\Windows\Content.zip">
+      <Link>Content\Content.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Source\DigitalRune.Graphics.Content\bin\DigitalRune.zip">
+      <Link>Content\DigitalRune.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="Game\DummyGraphicsDeviceManager.cs" />
+    <Compile Include="Game\MyGame.cs" />
+    <Compile Include="Game\MyGamePresentationTarget.cs" />
+    <Compile Include="Game\MyGraphicsScreen.cs" />
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Properties\Default.rd.xml" />
+    <None Include="README.TXT" />
+    <None Include="UwpInteropSample_TemporaryKey.pfx" />
+    <None Include="project.json" />
+  </ItemGroup>
+</Project>

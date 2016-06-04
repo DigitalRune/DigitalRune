@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{17BD9BE5-46A9-4D58-A65C-31675F61539F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InteropSample</RootNamespace>
+    <AssemblyName>InteropSample</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <BaseIntermediateOutputPath>obj\MonoGame\Windows\Debug\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\MonoGame\Windows\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;WINDOWS;MONOGAME</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <BaseIntermediateOutputPath>obj\MonoGame\Windows\Release\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\MonoGame\Windows\Release\</OutputPath>
+    <DefineConstants>TRACE;WINDOWS;MONOGAME</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Game.ico</ApplicationIcon>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Source\DigitalRune.Graphics\DigitalRune.Graphics%28MG,Win%29.csproj">
+      <Project>{5926e2b5-50ad-433d-91f5-dd947f26d8fd}</Project>
+      <Name>DigitalRune.Graphics%28MG,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune\DigitalRune.csproj">
+      <Project>{5a0e3c60-1ca9-49d5-84ca-308cb8e3a3b4}</Project>
+      <Name>DigitalRune</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\MonoGame\MonoGame.Framework\MonoGame.Framework.Windows.csproj">
+      <Project>{7de47032-a904-4c29-bd22-2d235e8d91ba}</Project>
+      <Name>MonoGame.Framework.Windows</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BackgroundGraphicsScreen.cs" />
+    <Content Include="..\Content\bin\MonoGame\Windows\Content.zip">
+      <Link>Content\Content.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Source\DigitalRune.Graphics.Content\bin\DigitalRune.zip">
+      <Link>Content\DigitalRune.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Game.ico" />
+    <Compile Include="Game1.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="README.TXT" />
+    <Compile Include="TextGraphicsScreen.cs" />
+    <Compile Include="TriangleGraphicsScreen.cs" />
+    <Compile Include="WinForm.Designer.cs">
+      <DependentUpon>WinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Page Include="WpfWindow-MonoGame.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="WpfWindow-MonoGame.xaml.cs">
+      <DependentUpon>WpfWindow-MonoGame.xaml</DependentUpon>
+    </Compile>
+    <None Include="app.config" />
+  </ItemGroup>
+</Project>

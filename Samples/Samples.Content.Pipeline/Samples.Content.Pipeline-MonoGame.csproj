@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <ProjectGuid>{F1EDDA8F-85F0-4137-BEA7-E10C38D72675}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Samples.Content.Pipeline</RootNamespace>
+    <AssemblyName>Samples.Content.Pipeline</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <BaseIntermediateOutputPath>obj\MonoGame\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\MonoGame\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;MONOGAME;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <BaseIntermediateOutputPath>obj\MonoGame\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\MonoGame\</OutputPath>
+    <DefineConstants>TRACE;MONOGAME;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Source\DigitalRune.Animation.Content.Pipeline\DigitalRune.Animation.Content.Pipeline%28MG,Win%29.csproj">
+      <Project>{461af538-60c1-4bdc-a1b8-60c2750e5bc3}</Project>
+      <Name>DigitalRune.Animation.Content.Pipeline%28MG,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Animation\DigitalRune.Animation%28PCL%29.csproj">
+      <Project>{fca3d67b-a19a-4398-a126-171e5e1217f1}</Project>
+      <Name>DigitalRune.Animation%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Game.UI.Content.Pipeline\DigitalRune.Game.UI.Content.Pipeline%28MG,Win%29.csproj">
+      <Project>{9ab1d52a-7ff5-407b-9920-65dabac6c573}</Project>
+      <Name>DigitalRune.Game.UI.Content.Pipeline%28MG,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Geometry.Content.Pipeline\DigitalRune.Geometry.Content.Pipeline%28MG,Win%29.csproj">
+      <Project>{b7ad9a5b-2dd8-48fe-8e00-65430309d170}</Project>
+      <Name>DigitalRune.Geometry.Content.Pipeline%28MG,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Geometry\DigitalRune.Geometry%28PCL%29.csproj">
+      <Project>{8a8fe6d4-0906-4fc3-847c-31387dfdcb2c}</Project>
+      <Name>DigitalRune.Geometry%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Graphics.Content.Pipeline\DigitalRune.Graphics.Content.Pipeline%28MG,Win%29.csproj">
+      <Project>{686e45de-6daf-4bf0-affc-7a51bf7d98ca}</Project>
+      <Name>DigitalRune.Graphics.Content.Pipeline%28MG,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Mathematics.Content.Pipeline\DigitalRune.Mathematics.Content.Pipeline%28MG,Win%29.csproj">
+      <Project>{3ae1d04a-662d-4411-bb81-95c8655ac05e}</Project>
+      <Name>DigitalRune.Mathematics.Content.Pipeline%28MG,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Mathematics\DigitalRune.Mathematics%28PCL%29.csproj">
+      <Project>{a5833de3-70a9-4258-966f-77456d6c7900}</Project>
+      <Name>DigitalRune.Mathematics%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune\DigitalRune.csproj">
+      <Project>{5a0e3c60-1ca9-49d5-84ca-308cb8e3a3b4}</Project>
+      <Name>DigitalRune</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\MonoGame\MonoGame.Framework.Content.Pipeline\MonoGame.Framework.Content.Pipeline.Windows.csproj">
+      <Project>{b950de10-ac5d-4bd9-b817-51247c4a732d}</Project>
+      <Name>MonoGame.Framework.Content.Pipeline.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\MonoGame\MonoGame.Framework\MonoGame.Framework.Windows.csproj">
+      <Project>{7de47032-a904-4c29-bd22-2d235e8d91ba}</Project>
+      <Name>MonoGame.Framework.Windows</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AvatarAnimationProcessor.cs" />
+    <Compile Include="CollisionShapeProcessor.cs" />
+    <Compile Include="HeightFieldProcessor.cs" />
+    <Compile Include="ModelWithCollisionMeshProcessor.cs" />
+    <Compile Include="ModelWithConvexHullProcessor.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="README.txt" />
+  </ItemGroup>
+</Project>

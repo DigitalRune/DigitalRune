@@ -1,0 +1,13 @@
+﻿<Window x:Class="WpfInteropSample2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Local="clr-namespace:WpfInteropSample2"
+        Title="MainWindow"
+        Width="800"
+        Height="600">
+  <Grid>
+    <Local:MyGamePresentationTarget Margin="4"
+                                    Focusable="True"
+                                    KeyboardNavigation.IsTabStop="True" />
+  </Grid>
+</Window>

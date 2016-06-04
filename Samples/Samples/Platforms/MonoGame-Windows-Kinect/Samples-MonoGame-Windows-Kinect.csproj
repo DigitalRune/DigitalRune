@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{2A345759-AE8F-463A-BDFD-618125C58794}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Samples</RootNamespace>
+    <AssemblyName>Samples</AssemblyName>
+    <ApplicationIcon>Game.ico</ApplicationIcon>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;WINDOWS;MONOGAME;DIGITALRUNE_PROFILE;KINECT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;WINDOWS;MONOGAME;DIGITALRUNE_PROFILE;KINECT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="Microsoft.Kinect, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft SDKs\Kinect\v2.0_1409\Assemblies\Microsoft.Kinect.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune.Animation\DigitalRune.Animation%28PCL%29.csproj">
+      <Project>{fca3d67b-a19a-4398-a126-171e5e1217f1}</Project>
+      <Name>DigitalRune.Animation%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune.Game.Input\DigitalRune.Game.Input%28PCL%29.csproj">
+      <Project>{470c216a-a284-4ebd-8958-6a41398f2cb4}</Project>
+      <Name>DigitalRune.Game.Input%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune.Game.UI\DigitalRune.Game.UI%28PCL%29.csproj">
+      <Project>{9915e431-c06a-4317-91cb-f23551130b2b}</Project>
+      <Name>DigitalRune.Game.UI%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune.Game\DigitalRune.Game%28PCL%29.csproj">
+      <Project>{8d76487a-0b6f-4517-85b0-2762ae1b4e1a}</Project>
+      <Name>DigitalRune.Game%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune.Geometry\DigitalRune.Geometry%28PCL%29.csproj">
+      <Project>{8a8fe6d4-0906-4fc3-847c-31387dfdcb2c}</Project>
+      <Name>DigitalRune.Geometry%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune.Graphics\DigitalRune.Graphics%28PCL%29.csproj">
+      <Project>{f387fa64-cf76-4b23-bd42-444da0771f54}</Project>
+      <Name>DigitalRune.Graphics%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune.Mathematics\DigitalRune.Mathematics%28PCL%29.csproj">
+      <Project>{a5833de3-70a9-4258-966f-77456d6c7900}</Project>
+      <Name>DigitalRune.Mathematics%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune.Particles\DigitalRune.Particles%28PCL%29.csproj">
+      <Project>{156169b7-af63-478c-90cb-f6652b867e4f}</Project>
+      <Name>DigitalRune.Particles%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune.Physics.Specialized\DigitalRune.Physics.Specialized%28PCL%29.csproj">
+      <Project>{810c19ed-db79-4cf7-8710-21b4e4e31ff5}</Project>
+      <Name>DigitalRune.Physics.Specialized%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune.Physics\DigitalRune.Physics%28PCL%29.csproj">
+      <Project>{82af32ed-e99e-4c61-902f-9e2d42eae0f3}</Project>
+      <Name>DigitalRune.Physics%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune.ServiceLocation\DigitalRune.ServiceLocation%28PCL%29.csproj">
+      <Project>{4a84fcaf-bdd3-403e-a409-346d8b36564b}</Project>
+      <Name>DigitalRune.ServiceLocation%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune\DigitalRune.csproj">
+      <Project>{5a0e3c60-1ca9-49d5-84ca-308cb8e3a3b4}</Project>
+      <Name>DigitalRune</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\MonoGame\MonoGame.Framework\MonoGame.Framework.Windows.csproj">
+      <Project>{7de47032-a904-4c29-bd22-2d235e8d91ba}</Project>
+      <Name>MonoGame.Framework.Windows</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\..\Content\bin\MonoGame\Windows\Content.zip">
+      <Link>Content\Content.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="..\..\..\..\Source\DigitalRune.Graphics.Content\bin\DigitalRune.zip">
+      <Link>Content\DigitalRune.zip</Link>
+    </None>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="..\..\README.TXT">
+      <Link>README.TXT</Link>
+    </None>
+    <Compile Include="..\..\Sample Framework\ControlsAttribute.cs">
+      <Link>Sample Framework\ControlsAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sample Framework\GuiGraphicsScreen.cs">
+      <Link>Sample Framework\GuiGraphicsScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sample Framework\SampleAttribute.cs">
+      <Link>Sample Framework\SampleAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sample Framework\SampleCategory.cs">
+      <Link>Sample Framework\SampleCategory.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sample Framework\SampleFramework.cs">
+      <Link>Sample Framework\SampleFramework.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Sample Framework\SampleHelper.cs">
+      <Link>Sample Framework\SampleHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SampleGame.cs">
+      <Link>SampleGame.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\BasicSample.cs">
+      <Link>Samples\BasicSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Kinect\KinectRagdollMarionetteSample\KinectRagdollMarionetteSample.cs">
+      <Link>Samples\Kinect\KinectRagdollMarionetteSample\KinectRagdollMarionetteSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Kinect\KinectSkeletonMappingSample\KinectSkeletonMappingSample.cs">
+      <Link>Samples\Kinect\KinectSkeletonMappingSample\KinectSkeletonMappingSample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Kinect\KinectSkeletonMappingSample\SkeletonPoseSmoother.cs">
+      <Link>Samples\Kinect\KinectSkeletonMappingSample\SkeletonPoseSmoother.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Kinect\KinectWrapper.cs">
+      <Link>Samples\Kinect\KinectWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Physics.Specialized\Ragdoll Samples\DudeRagdollCreator.cs">
+      <Link>Samples\Physics.Specialized\Ragdoll Samples\DudeRagdollCreator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\Sample.cs">
+      <Link>Samples\Sample.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Samples\SampleGraphicsScreen.cs">
+      <Link>Samples\SampleGraphicsScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Shared GameObjects\CameraObject.cs">
+      <Link>Shared GameObjects\CameraObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Shared GameObjects\DefaultLightsObject.cs">
+      <Link>Shared GameObjects\DefaultLightsObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Shared GameObjects\SandboxObject.cs">
+      <Link>Shared GameObjects\SandboxObject.cs</Link>
+    </Compile>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,57 @@
+﻿<Page x:Class="UwpInteropSample.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:UwpInteropSample"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+
+  <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <TextBlock Grid.Row="0">This is a normal Universal Windows app. Below are two SwapChainPresentationTargets.</TextBlock>
+    <Grid Grid.Row="1">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <Grid Grid.Column="0">
+        <TextBlock TextWrapping="WrapWholeWords">SwapChainPresentationTarget 1</TextBlock>
+        <TextBlock Margin="0,0,0,100"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextWrapping="WrapWholeWords">
+          Text behind SwapChainPresentationTarget
+        </TextBlock>
+        <Border Margin="50"
+                BorderBrush="White"
+                BorderThickness="1">
+          <local:MyGamePresentationTarget />
+        </Border>
+        <TextBlock Margin="0,0,0,-100"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextWrapping="WrapWholeWords">
+          Text in front of SwapChainPresentationTarget
+        </TextBlock>
+      </Grid>
+      <Grid Grid.Column="1">
+        <TextBlock TextWrapping="WrapWholeWords">SwapChainPresentationTarget 2, rotated and scaled</TextBlock>
+        <Border Margin="100,50,200,350"
+                BorderBrush="White"
+                BorderThickness="1">
+          <Border BorderBrush="White" BorderThickness="1">
+            <Border.RenderTransform>
+              <CompositeTransform Rotation="15"
+                                    ScaleX="1.5"
+                                    ScaleY="1.5" />
+            </Border.RenderTransform>
+            <local:MyGamePresentationTarget />
+          </Border>
+        </Border>
+      </Grid>
+    </Grid>
+  </Grid>
+</Page>
