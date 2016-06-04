@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  This XML file defines a material, which can be assigned to a model.
+  A material consists of one or more render passes. 
+-->
+<Material>
+  <Pass Name="Default" Effect="DigitalRune/Materials/MatcapNormalSkinned" Profile="HiDef">
+    <!-- The MatcapTexture is set in the code. See GeneralSamples, Sample 13 "MaterialCaptureSample". -->
+    <!-- <Texture Name="MatcapTexture" File="mc01.jpg" /> -->
+  </Pass>
+</Material>
