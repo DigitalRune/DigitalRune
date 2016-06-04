@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{6A231CE9-74B6-4485-A2A9-BCBAC4A0F5CA}</ProjectGuid>
+    <ProjectTypeGuids>{96E2B04D-8817-42c6-938A-82C39BA4D311};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
+    <OutputPath>bin\$(Platform)\$(Configuration)</OutputPath>
+    <ContentRootDirectory>Content</ContentRootDirectory>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Samples.Content</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.EffectImporter" />
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.FBXImporter" />
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.TextureImporter" />
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.XImporter" />
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.AudioImporters" />
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.VideoImporters" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Source\DigitalRune.Animation.Content.Pipeline\DigitalRune.Animation.Content.Pipeline%28XNA,Win%29.csproj">
+      <Project>{5a02e74e-ef4a-405a-89f2-77a76e9767dd}</Project>
+      <Name>DigitalRune.Animation.Content.Pipeline%28XNA,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Game.UI.Content.Pipeline\DigitalRune.Game.UI.Content.Pipeline%28XNA,Win%29.csproj">
+      <Project>{e87b98fa-35cf-4a48-904a-0cb1a87a6d5d}</Project>
+      <Name>DigitalRune.Game.UI.Content.Pipeline%28XNA,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Geometry.Content.Pipeline\DigitalRune.Geometry.Content.Pipeline%28XNA,Win%29.csproj">
+      <Project>{3ebc3967-7562-463e-a636-78c5edb94c06}</Project>
+      <Name>DigitalRune.Geometry.Content.Pipeline%28XNA,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Graphics.Content.Pipeline\DigitalRune.Graphics.Content.Pipeline%28XNA,Win%29.csproj">
+      <Project>{b8e4b812-a541-416e-8f77-e78cf059cdd3}</Project>
+      <Name>DigitalRune.Graphics.Content.Pipeline%28XNA,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Mathematics.Content.Pipeline\DigitalRune.Mathematics.Content.Pipeline%28XNA,Win%29.csproj">
+      <Project>{5289a325-e339-4e11-84bf-321ada51e1df}</Project>
+      <Name>DigitalRune.Mathematics.Content.Pipeline%28XNA,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Samples.Content.Pipeline\Samples.Content.Pipeline-XNA.csproj">
+      <Project>{8b9edd3c-af88-46bd-83b8-63559c3d269a}</Project>
+      <Name>Samples.Content.Pipeline-XNA</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="sky.bmp">
+      <Name>sky</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Beam.png">
+      <Name>Beam</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\BeamBlurred.png">
+      <Name>BeamBlurred</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\beeWingFlap.png">
+      <Name>beeWingFlap</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_GenerateMipmaps>False</ProcessorParameters_GenerateMipmaps>
+      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Particles\BulletHole.png">
+      <Name>BulletHole</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Clouds.png">
+      <Name>Clouds</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Explosion.png">
+      <Name>Explosion</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Explosion2.png">
+      <Name>Explosion2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Explo1.wav">
+      <Name>Explo1</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Fire.png">
+      <Name>Fire</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Flames.png">
+      <Name>Flames</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Flash.png">
+      <Name>Flash</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\LensFlare.png">
+      <Name>LensFlare</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\RainDrop.png">
+      <Name>RainDrop</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Ribbon.png">
+      <Name>Ribbon</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Smoke.png">
+      <Name>Smoke</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Grass.tga">
+      <Name>Grass</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Campfire\FireParticles.tga">
+      <Name>FireParticles</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Campfire\Smoke2.png">
+      <Name>Smoke2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Spark.png">
+      <Name>Spark</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Spray.png">
+      <Name>Spray</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Sphere.fbx">
+      <Name>Sphere</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Star.png">
+      <Name>Star</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Water.png">
+      <Name>Water</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sandbox\Sandbox.fbx">
+      <Name>Sandbox</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Ship\Ship.fbx">
+      <Name>Ship</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Ship\Ship_CollisionModel.fbx">
+      <Name>Ship_CollisionModel</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>CollisionShapeProcessor</Processor>
+      <ProcessorParameters_Scale>0.001</ProcessorParameters_Scale>
+    </Compile>
+    <Compile Include="Saucer\saucer.fbx">
+      <Name>saucer</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelWithCollisionMeshProcessor</Processor>
+    </Compile>
+    <Compile Include="Audio\Roll.wav">
+      <Name>Roll</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Audio\Scratch.wav">
+      <Name>Scratch</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Bowl.fbx">
+      <Name>Bowl</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Dude\Dude.fbx">
+      <Name>Dude</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Saucer2\saucer.drmdl">
+      <Name>saucer</Name>
+      <Importer>DRModelImporter</Importer>
+      <Processor>ModelWithConvexHullProcessor</Processor>
+    </Compile>
+    <Compile Include="HeightField\TerrainHeights.png">
+      <Name>TerrainHeights</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>HeightFieldProcessor</Processor>
+      <ProcessorParameters_TextureFilename>Terrain.png</ProcessorParameters_TextureFilename>
+      <ProcessorParameters_ScaleY>16</ProcessorParameters_ScaleY>
+      <ProcessorParameters_WidthX>400</ProcessorParameters_WidthX>
+      <ProcessorParameters_WidthZ>400</ProcessorParameters_WidthZ>
+    </Compile>
+    <Compile Include="Car\Car.fbx">
+      <Name>Car</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Car\Wheel.fbx">
+      <Name>Wheel</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="LensFlare\AnamorphicFlare.png">
+      <Name>AnamorphicFlare</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_GenerateMipmaps>False</ProcessorParameters_GenerateMipmaps>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+    </Compile>
+    <Compile Include="LensFlare\LensFlares.png">
+      <Name>LensFlares</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_GenerateMipmaps>False</ProcessorParameters_GenerateMipmaps>
+    </Compile>
+    <Compile Include="Billboard\BillboardReference.png">
+      <Name>BillboardReference</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Ground\Ground.x">
+      <Name>Ground</Name>
+      <Importer>XImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="MetalGrateBox\MetalGrateBox.fbx">
+      <Name>MetalGrateBox</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Tank\tank.fbx">
+      <Name>tank</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="EnvironmentMapped\saucer.drmdl">
+      <Name>saucer</Name>
+      <Importer>DRModelImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="DualTextured\model_lightmap.fbx">
+      <Name>model_lightmap</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Saucer3\saucer.fbx">
+      <Name>saucer</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <ProcessorParameters_Scale>0.001</ProcessorParameters_Scale>
+      <ProcessorParameters_TextureFormat>Color</ProcessorParameters_TextureFormat>
+    </Compile>
+    <Compile Include="Marine\PlayerMarine_XNA.fbx">
+      <Name>PlayerMarine</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Marine\Weapon\WeaponMachineGun.fbx">
+      <Name>WeaponMachineGun</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="ButtonImages\xboxControllerSpriteFont.tga">
+      <Name>xboxControllerSpriteFont</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>FontTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Logo.png">
+      <Name>Logo</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <None Include="Layout.xml">
+      <Name>Layout</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Compile Include="Icon.png">
+      <Name>Icon</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="SpriteFont1.spritefont">
+      <Name>SpriteFont1</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Reticle.png">
+      <Name>Reticle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="UI Themes\Aero\Theme.xml">
+      <Name>Theme</Name>
+      <Importer>ThemeImporter</Importer>
+      <Processor>ThemeProcessor</Processor>
+    </Compile>
+    <Compile Include="UI Themes\BlendBlue\Theme.xml">
+      <Name>Theme</Name>
+      <Importer>ThemeImporter</Importer>
+      <Processor>ThemeProcessor</Processor>
+    </Compile>
+    <Compile Include="UI Themes\GameStatesSample\Theme.xml">
+      <Name>Theme</Name>
+      <Importer>ThemeImporter</Importer>
+      <Processor>ThemeProcessor</Processor>
+    </Compile>
+    <Compile Include="UI Themes\TilingSample\Theme.xml">
+      <Name>Theme</Name>
+      <Importer>ThemeImporter</Importer>
+      <Processor>ThemeProcessor</Processor>
+    </Compile>
+    <Compile Include="UI Themes\WindowsPhone7\ThemeDark.xml">
+      <Name>ThemeDark</Name>
+      <Importer>ThemeImporter</Importer>
+      <Processor>ThemeProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Audio\Hit.wav">
+      <Name>Hit</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

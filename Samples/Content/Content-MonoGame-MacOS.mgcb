@@ -1,0 +1,647 @@
+
+#----------------------------- Global Properties ----------------------------#
+
+/outputDir:bin\MonoGame\MacOS\Content
+/intermediateDir:obj\MonoGame\MacOS\Content
+/platform:MacOSX
+/config:
+/profile:Reach
+/compress:False
+
+#-------------------------------- References --------------------------------#
+
+/reference:..\..\Source\DigitalRune.Animation.Content.Pipeline\bin\MonoGame\Windows\Release\DigitalRune.Animation.Content.Pipeline.dll
+/reference:..\..\Source\DigitalRune.Game.UI.Content.Pipeline\bin\MonoGame\Windows\Release\DigitalRune.Game.UI.Content.Pipeline.dll
+/reference:..\..\Source\DigitalRune.Geometry.Content.Pipeline\bin\MonoGame\Windows\Release\DigitalRune.Geometry.Content.Pipeline.dll
+/reference:..\..\Source\DigitalRune.Graphics.Content.Pipeline\bin\MonoGame\Windows\Release\DigitalRune.Graphics.Content.Pipeline.dll
+/reference:..\..\Source\DigitalRune.Mathematics.Content.Pipeline\bin\MonoGame\Windows\Release\DigitalRune.Mathematics.Content.Pipeline.dll
+/reference:..\Samples.Content.Pipeline\bin\MonoGame\Samples.Content.Pipeline.dll
+
+#---------------------------------- Content ---------------------------------#
+
+#begin Audio/Hit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Hit.wav
+
+#begin Audio/Roll.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Roll.wav
+
+#begin Audio/Scratch.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/Scratch.wav
+
+#begin Billboard/BillboardReference.png
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=True
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Color
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:Billboard/BillboardReference.png
+
+#begin Bowl.fbx
+/importer:FbxImporter
+/processor:DRModelProcessor
+/processorParam:CreateMissingModelDescription=True
+/processorParam:CreateMissingMaterialDefinition=True
+/build:Bowl.fbx
+
+#begin ButtonImages/xboxControllerSpriteFont.tga
+/importer:TextureImporter
+/processor:FontTextureProcessor
+/processorParam:FirstCharacter= 
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Color
+/build:ButtonImages/xboxControllerSpriteFont.tga
+
+#begin Campfire/FireParticles.tga
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=True
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Dxt
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:Campfire/FireParticles.tga
+
+#begin Campfire/Smoke2.png
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=True
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Dxt
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:Campfire/Smoke2.png
+
+#begin Car/Car.fbx
+/importer:FbxImporter
+/processor:DRModelProcessor
+/processorParam:CreateMissingModelDescription=True
+/processorParam:CreateMissingMaterialDefinition=True
+/build:Car/Car.fbx
+
+#begin Car/Wheel.fbx
+/importer:FbxImporter
+/processor:DRModelProcessor
+/processorParam:CreateMissingModelDescription=True
+/processorParam:CreateMissingMaterialDefinition=True
+/build:Car/Wheel.fbx
+
+#begin DualTextured/model_lightmap.fbx
+/importer:FbxImporter
+/processor:DRModelProcessor
+/processorParam:CreateMissingModelDescription=True
+/processorParam:CreateMissingMaterialDefinition=True
+/build:DualTextured/model_lightmap.fbx
+
+#begin Dude/Dude.fbx
+/importer:FbxImporter
+/processor:DRModelProcessor
+/processorParam:CreateMissingModelDescription=True
+/processorParam:CreateMissingMaterialDefinition=True
+/build:Dude/Dude.fbx
+
+#begin EnvironmentMapped/saucer.drmdl
+/importer:DRModelImporter
+/processor:DRModelProcessor
+/processorParam:CreateMissingModelDescription=True
+/processorParam:CreateMissingMaterialDefinition=True
+/build:EnvironmentMapped/saucer.drmdl
+
+#begin Ground/Ground.x
+/importer:XImporter
+/processor:DRModelProcessor
+/processorParam:CreateMissingModelDescription=True
+/processorParam:CreateMissingMaterialDefinition=True
+/build:Ground/Ground.x
+
+#begin HeightField/TerrainHeights.png
+#/importer:TextureImporter
+#/processor:HeightFieldProcessor
+#/processorParam:TextureFilename=Terrain.png
+#/processorParam:ScaleY=16
+#/processorParam:WidthX=400
+#/processorParam:WidthZ=400
+#/build:HeightField/TerrainHeights.png
+
+#begin Icon.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:Icon.png
+
+#begin Layout.xml
+/copy:Layout.xml
+
+#begin LensFlare/AnamorphicFlare.png
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=False
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=False
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Color
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:LensFlare/AnamorphicFlare.png
+
+#begin LensFlare/LensFlares.png
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=False
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=False
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Color
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:LensFlare/LensFlares.png
+
+#begin Logo.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:Logo.png
+
+#begin Marine/PlayerMarine.fbx
+/importer:FbxImporter
+/processor:DRModelProcessor
+/processorParam:CreateMissingModelDescription=True
+/processorParam:CreateMissingMaterialDefinition=True
+/build:Marine/PlayerMarine.fbx
+
+#begin Marine/Weapon/WeaponMachineGun.fbx
+/importer:FbxImporter
+/processor:DRModelProcessor
+/processorParam:CreateMissingModelDescription=True
+/processorParam:CreateMissingMaterialDefinition=True
+/build:Marine/Weapon/WeaponMachineGun.fbx
+
+#begin MetalGrateBox/MetalGrateBox.fbx
+/importer:FbxImporter
+/processor:DRModelProcessor
+/processorParam:CreateMissingModelDescription=True
+/processorParam:CreateMissingMaterialDefinition=True
+/build:MetalGrateBox/MetalGrateBox.fbx
+
+#begin Particles/Beam.png
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=True
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Dxt
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:Particles/Beam.png
+
+#begin Particles/BeamBlurred.png
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=True
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Dxt
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:Particles/BeamBlurred.png
+
+#begin Particles/beeWingFlap.png
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=True
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Color
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:Particles/beeWingFlap.png
+
+#begin Particles/BulletHole.png
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=True
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Dxt
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:Particles/BulletHole.png
+
+#begin Particles/Clouds.png
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=True
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Color
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:Particles/Clouds.png
+
+#begin Particles/Explo1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Particles/Explo1.wav
+
+#begin Particles/Explosion.png
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=True
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Dxt
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:Particles/Explosion.png
+
+#begin Particles/Explosion2.png
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=True
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Dxt
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:Particles/Explosion2.png
+
+#begin Particles/Fire.png
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=True
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Dxt
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:Particles/Fire.png
+
+#begin Particles/Flames.png
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=True
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Dxt
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:Particles/Flames.png
+
+#begin Particles/Flash.png
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=True
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Dxt
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:Particles/Flash.png
+
+#begin Particles/Grass.tga
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=True
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Color
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:Particles/Grass.tga
+
+#begin Particles/LensFlare.png
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=True
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Dxt
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:Particles/LensFlare.png
+
+#begin Particles/RainDrop.png
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=True
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Dxt
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:Particles/RainDrop.png
+
+#begin Particles/Ribbon.png
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=True
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Dxt
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:Particles/Ribbon.png
+
+#begin Particles/Smoke.png
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=True
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Color
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:Particles/Smoke.png
+
+#begin Particles/Spark.png
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=True
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Dxt
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:Particles/Spark.png
+
+#begin Particles/Sphere.fbx
+/importer:FbxImporter
+/processor:DRModelProcessor
+/processorParam:CreateMissingModelDescription=True
+/processorParam:CreateMissingMaterialDefinition=True
+/build:Particles/Sphere.fbx
+
+#begin Particles/Spray.png
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=True
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Dxt
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:Particles/Spray.png
+
+#begin Particles/Star.png
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=True
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Dxt
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:Particles/Star.png
+
+#begin Particles/Water.png
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=True
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Dxt
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:Particles/Water.png
+
+#begin Reticle.png
+/importer:DRTextureImporter
+/processor:DRTextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=True
+/processorParam:InputGamma=2.2
+/processorParam:OutputGamma=2.2
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:Format=Color
+/processorParam:ReferenceAlpha=0.9
+/processorParam:ScaleAlphaToCoverage=False
+/build:Reticle.png
+
+#begin RustyCube/RustyCube.fbx
+/importer:FbxImporter
+/processor:DRModelProcessor
+/processorParam:CreateMissingModelDescription=True
+/processorParam:CreateMissingMaterialDefinition=True
+/build:RustyCube/RustyCube.fbx
+
+#begin Sandbox/Sandbox.fbx
+/importer:FbxImporter
+/processor:DRModelProcessor
+/processorParam:CreateMissingModelDescription=True
+/processorParam:CreateMissingMaterialDefinition=True
+/build:Sandbox/Sandbox.fbx
+
+#begin Saucer/saucer.fbx
+/importer:FbxImporter
+/processor:ModelWithCollisionMeshProcessor
+/processorParam:CreateMissingModelDescription=True
+/processorParam:CreateMissingMaterialDefinition=True
+/build:Saucer/saucer.fbx
+
+#begin Saucer2/saucer.drmdl
+/importer:DRModelImporter
+/processor:ModelWithConvexHullProcessor
+/processorParam:CreateMissingModelDescription=True
+/processorParam:CreateMissingMaterialDefinition=True
+/build:Saucer2/saucer.drmdl
+
+#begin Saucer3/saucer.fbx
+/importer:FbxImporter
+/processor:ModelProcessor
+/processorParam:ColorKeyColor=0,0,0,0
+/processorParam:ColorKeyEnabled=True
+/processorParam:DefaultEffect=BasicEffect
+/processorParam:GenerateMipmaps=True
+/processorParam:GenerateTangentFrames=False
+/processorParam:PremultiplyTextureAlpha=True
+/processorParam:PremultiplyVertexColors=True
+/processorParam:ResizeTexturesToPowerOfTwo=False
+/processorParam:RotationX=0
+/processorParam:RotationY=0
+/processorParam:RotationZ=0
+/processorParam:Scale=0.001
+/processorParam:SwapWindingOrder=False
+/processorParam:TextureFormat=Compressed
+/build:Saucer3/saucer.fbx
+
+#begin Ship/Ship.fbx
+/importer:FbxImporter
+/processor:DRModelProcessor
+/processorParam:CreateMissingModelDescription=True
+/processorParam:CreateMissingMaterialDefinition=True
+/build:Ship/Ship.fbx
+
+#begin Ship/Ship_CollisionModel.fbx
+/importer:FbxImporter
+/processor:CollisionShapeProcessor
+/processorParam:Scale=0.001
+/build:Ship/Ship_CollisionModel.fbx
+
+#begin sky.bmp
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:sky.bmp
+
+#begin SpriteFont1.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:SpriteFont1.spritefont
+
+#begin Tank/tank.fbx
+/importer:FbxImporter
+/processor:DRModelProcessor
+/processorParam:CreateMissingModelDescription=True
+/processorParam:CreateMissingMaterialDefinition=True
+/build:Tank/tank.fbx
+
+#begin UI Themes/Aero/Theme.xml
+/importer:ThemeImporter
+/processor:ThemeProcessor
+/build:UI Themes/Aero/Theme.xml
+
+#begin UI Themes/BlendBlue/Theme.xml
+/importer:ThemeImporter
+/processor:ThemeProcessor
+/build:UI Themes/BlendBlue/Theme.xml
+
+#begin UI Themes/GameStatesSample/Theme.xml
+/importer:ThemeImporter
+/processor:ThemeProcessor
+/build:UI Themes/GameStatesSample/Theme.xml
+
+#begin UI Themes/TilingSample/Theme.xml
+/importer:ThemeImporter
+/processor:ThemeProcessor
+/build:UI Themes/TilingSample/Theme.xml
+
+#begin UI Themes/WindowsPhone7/ThemeDark.xml
+/importer:ThemeImporter
+/processor:ThemeProcessor
+/build:UI Themes/WindowsPhone7/ThemeDark.xml

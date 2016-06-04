@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Material>
+  <Pass Name="Default" Effect="EnvironmentMapEffect">
+    <Parameter Name="DiffuseColor" Value="0.605,0.9741,1" />
+    <Parameter Name="EmissiveColor" Value="0,0,0" />
+    <Parameter Name="EnvironmentMapSpecular" Value="0.1,0.1,0.1" />
+    <Parameter Name="EnvironmentMapAmount" Value="0.5" />
+    <Parameter Name="FresnelFactor" Value="0.2" />
+    <Texture Name="Texture" PremultiplyAlpha="False" File="../Saucer/saucer_texture.tga" />
+    <Texture Name="EnvironmentMap" File="Skybox.dds" />
+  </Pass>
+</Material>

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- This file defines a window layout that can be loaded with the LayoutSerializer class. -->
+
+<Layout DefaultNamespace="DigitalRune.Game.UI.Controls">
+  
+  <!-- The LayoutSerializer can load any types - not only UI controls. For example: -->
+  <!-- 
+  <MyClass Namespace="MyNameSpace.MyTypes">
+    <Data>123</Data>
+  </MyClass>
+  -->
+     
+  <Window Name="Window0">
+    <!-- You can specify any property that has a type that can be converted from string:
+         Enumerations, basic value types, types that are IConvertible, types that have a
+         TypeConverter. -->
+    <CanResize>false</CanResize>
+    <IsModal>true</IsModal>
+    <MinHeight>0</MinHeight>
+    <Title>A modal dialog from XML</Title>    
+    <Content>
+      <StackPanel>
+        <Margin>(4;4;4;4)</Margin>
+        
+        <!-- The LayoutSerializer also supports collection properties that implement IList, like
+             StackPanel.Children: -->
+        <Children>
+          <TextBlock>
+            <HorizontalAlignment>Center</HorizontalAlignment>
+            <Margin>(4;4;4;4)</Margin>
+            <Text>This layout was defined in an XML file.</Text>
+          </TextBlock>
+          <Button Name="OkButton">
+            <Content>
+              <TextBlock>
+                <Text>Ok</Text>
+              </TextBlock>
+            </Content>
+            <HorizontalAlignment>Center</HorizontalAlignment>
+            <IsCancel>true</IsCancel>
+            <IsDefault>true</IsDefault>
+            <Margin>(4;4;4;4)</Margin>
+            <Width>60</Width>
+          </Button>
+        </Children>
+      </StackPanel>
+    </Content>
+  </Window>
+  
+</Layout>

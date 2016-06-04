@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- This file was generated automatically by the DigitalRune Model Content Processor. -->
+
+<Material>
+  <Pass Name="Default" Effect="BasicEffect" Profile="Any">
+    <Parameter Name="Alpha" Value="1" />
+    <Parameter Name="DiffuseColor" Value="0.8,0.8,0.8" />
+    <Parameter Name="EmissiveColor" Value="0,0,0" />
+    <Parameter Name="SpecularColor" Value="0,0,0" />
+    <Parameter Name="SpecularPower" Value="16" />
+    <Parameter Name="VertexColorEnabled" Value="False" />
+    <Texture Name="Texture" File="RacerCar.png" />
+  </Pass>
+  <Pass Name="ShadowMap" Effect="DigitalRune/Materials/ShadowMap" Profile="HiDef"/>
+  <Pass Name="GBuffer" Effect="DigitalRune/Materials/GBuffer" Profile="HiDef">
+    <Parameter Name="SpecularPower" Value="16" />
+  </Pass>
+  <Pass Name="Material" Effect="DigitalRune/Materials/Material" Profile="HiDef">
+    <Parameter Name="DiffuseColor" Value="0.8,0.8,0.8" />
+    <Parameter Name="SpecularColor" Value="1,1,1" />
+    <Texture Name="DiffuseTexture" File="RacerCar.png" />
+  </Pass>
+</Material>

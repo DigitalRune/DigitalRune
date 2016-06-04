@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Material>
+  <Pass Name="GBuffer" Effect="DigitalRune/Decals/GBufferNormal" Profile="HiDef">
+    <Texture Name="DiffuseTexture" ScaleAlphaToCoverage="True" File="Decal_diffuse_mask.png" />
+    <Parameter Name="SpecularPower" Value="100" />
+    <!--<Texture Name="NormalTexture" Format="Normal" File="Decal_normal.png" />-->
+  </Pass>
+  <Pass Name="Material" Effect="DigitalRune/Decals/Material" Profile="HiDef">
+    <Parameter Name="DiffuseColor" Value="1.0,1.0,1.0" />
+    <Parameter Name="SpecularColor" Value="0.5,0.5,0.5" />
+    <Texture Name="DiffuseTexture" ScaleAlphaToCoverage="True" File="Decal_diffuse_mask.png" />
+    <!--<Texture Name="SpecularTexture" File="Decal_specular.png" />-->
+  </Pass>
+</Material>

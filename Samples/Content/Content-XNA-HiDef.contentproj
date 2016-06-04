@@ -1,0 +1,1272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{8BA83B1A-5B69-477B-A6AF-2933A2B7DD8B}</ProjectGuid>
+    <ProjectTypeGuids>{96E2B04D-8817-42c6-938A-82C39BA4D311};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
+    <OutputPath>bin\$(Platform)\$(Configuration)</OutputPath>
+    <ContentRootDirectory>Content</ContentRootDirectory>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Samples.Content</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.EffectImporter" />
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.FBXImporter" />
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.TextureImporter" />
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.XImporter" />
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.AudioImporters" />
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.VideoImporters" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Fur\FurBall.fbx">
+      <Name>FurBall</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="sky.bmp">
+      <Name>sky</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Beam.png">
+      <Name>Beam</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\BeamBlurred.png">
+      <Name>BeamBlurred</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\beeWingFlap.png">
+      <Name>beeWingFlap</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_GenerateMipmaps>False</ProcessorParameters_GenerateMipmaps>
+      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Particles\BulletHole.png">
+      <Name>BulletHole</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Clouds.png">
+      <Name>Clouds</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Explosion.png">
+      <Name>Explosion</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Explosion2.png">
+      <Name>Explosion2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Explo1.wav">
+      <Name>Explo1</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Fire.png">
+      <Name>Fire</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Flames.png">
+      <Name>Flames</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Flash.png">
+      <Name>Flash</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\LensFlare.png">
+      <Name>LensFlare</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\RainDrop.png">
+      <Name>RainDrop</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Ribbon.png">
+      <Name>Ribbon</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Smoke.png">
+      <Name>Smoke</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Grass.tga">
+      <Name>Grass</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Campfire\FireParticles.tga">
+      <Name>FireParticles</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Campfire\Smoke2.png">
+      <Name>Smoke2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Spark.png">
+      <Name>Spark</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Spray.png">
+      <Name>Spray</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Sphere.fbx">
+      <Name>Sphere</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Star.png">
+      <Name>Star</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Particles\Water.png">
+      <Name>Water</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sandbox\Sandbox.fbx">
+      <Name>Sandbox</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Ship\Ship.fbx">
+      <Name>Ship</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Ship\Ship_CollisionModel.fbx">
+      <Name>Ship_CollisionModel</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>CollisionShapeProcessor</Processor>
+      <ProcessorParameters_Scale>0.001</ProcessorParameters_Scale>
+    </Compile>
+    <Compile Include="Saucer\saucer.fbx">
+      <Name>saucer</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelWithCollisionMeshProcessor</Processor>
+    </Compile>
+    <Compile Include="Audio\Roll.wav">
+      <Name>Roll</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Audio\Scratch.wav">
+      <Name>Scratch</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Bowl.fbx">
+      <Name>Bowl</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Dude\Dude.fbx">
+      <Name>Dude</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Saucer2\saucer.drmdl">
+      <Name>saucer</Name>
+      <Importer>DRModelImporter</Importer>
+      <Processor>ModelWithConvexHullProcessor</Processor>
+    </Compile>
+    <Compile Include="HeightField\TerrainHeights.png">
+      <Name>TerrainHeights</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>HeightFieldProcessor</Processor>
+      <ProcessorParameters_TextureFilename>Terrain.png</ProcessorParameters_TextureFilename>
+      <ProcessorParameters_ScaleY>16</ProcessorParameters_ScaleY>
+      <ProcessorParameters_WidthX>400</ProcessorParameters_WidthX>
+      <ProcessorParameters_WidthZ>400</ProcessorParameters_WidthZ>
+    </Compile>
+    <Compile Include="Car\Car.fbx">
+      <Name>Car</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Car\Wheel.fbx">
+      <Name>Wheel</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="LensFlare\AnamorphicFlare.png">
+      <Name>AnamorphicFlare</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_GenerateMipmaps>False</ProcessorParameters_GenerateMipmaps>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+    </Compile>
+    <Compile Include="LensFlare\LensFlares.png">
+      <Name>LensFlares</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_GenerateMipmaps>False</ProcessorParameters_GenerateMipmaps>
+    </Compile>
+    <Compile Include="Billboard\BillboardReference.png">
+      <Name>BillboardReference</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Ground\Ground.x">
+      <Name>Ground</Name>
+      <Importer>XImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="MetalGrateBox\MetalGrateBox.fbx">
+      <Name>MetalGrateBox</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Tank\tank.fbx">
+      <Name>tank</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Barrier\barrier.FBX">
+      <Name>barrier</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Barrier\cylinder.FBX">
+      <Name>cylinder</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Bubble\Bubble.fbx">
+      <Name>Bubble</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Decals\Decal.drmat">
+      <Name>Decal</Name>
+      <Importer>DRMaterialImporter</Importer>
+      <Processor>DRMaterialProcessor</Processor>
+    </Compile>
+    <Compile Include="PalmTree\palm_tree.fbx">
+      <Name>palm_tree</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="MagicSphere\MagicSphere.fbx">
+      <Name>MagicSphere</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="LavaBall\LavaBall.fbx">
+      <Name>LavaBall</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="GlassBox\GlassBox.fbx">
+      <Name>GlassBox</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="LavaBall\LavaCubeMap.dds">
+      <Name>LavaCubeMap</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_GenerateMipmaps>False</ProcessorParameters_GenerateMipmaps>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="MagicSphere\ColorCube.dds">
+      <Name>ColorCube</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="EnvironmentMapped\saucer.drmdl">
+      <Name>saucer</Name>
+      <Importer>DRModelImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="DualTextured\model_lightmap.fbx">
+      <Name>model_lightmap</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Saucer3\saucer.fbx">
+      <Name>saucer</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <ProcessorParameters_Scale>0.001</ProcessorParameters_Scale>
+    </Compile>
+    <Compile Include="TVBox\TVBox.fbx">
+      <Name>TVBox</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Sky2.dds">
+      <Name>Sky2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Dxt</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="Sky\MilkyWay.dds">
+      <Name>MilkyWay</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="RustyCube\RustyCube.fbx">
+      <Name>RustyCube</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Marine\PlayerMarine_XNA.fbx">
+      <Name>PlayerMarine</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Marine\Weapon\WeaponMachineGun.fbx">
+      <Name>WeaponMachineGun</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Barrel\Barrel.fbx">
+      <Name>Barrel</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Barrel\Barrel_Colored.fbx">
+      <Name>Barrel_Colored</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="CloudQuad\CloudQuad.fbx">
+      <Name>CloudQuad</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Parallax\Ground.drmdl">
+      <Name>Ground</Name>
+      <Importer>DRModelImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Parallax\PM.drmat">
+      <Name>PM</Name>
+      <Importer>DRMaterialImporter</Importer>
+      <Processor>DRMaterialProcessor</Processor>
+    </Compile>
+    <Compile Include="Parallax\POM.drmat">
+      <Name>POM</Name>
+      <Importer>DRMaterialImporter</Importer>
+      <Processor>DRMaterialProcessor</Processor>
+    </Compile>
+    <Compile Include="Parallax\Normal.drmat">
+      <Name>Normal</Name>
+      <Importer>DRMaterialImporter</Importer>
+      <Processor>DRMaterialProcessor</Processor>
+    </Compile>
+    <Compile Include="Fur2\FurBall.drmdl">
+      <Name>FurBall</Name>
+      <Importer>DRModelImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Building\concrete_door.fbx">
+      <Name>concrete_door</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Building\concrete_double_window.fbx">
+      <Name>concrete_double_window</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Building\concrete_small_double_window.fbx">
+      <Name>concrete_small_double_window</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Building\concrete_small_window_1.fbx">
+      <Name>concrete_small_window_1</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Building\concrete_small_window_2.fbx">
+      <Name>concrete_small_window_2</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Building\concrete_window_1.fbx">
+      <Name>concrete_window_1</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Building\concrete_window_2.fbx">
+      <Name>concrete_window_2</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Building\cooling.fbx">
+      <Name>cooling</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Building\hangar_door.fbx">
+      <Name>hangar_door</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Building\pillar_concrete_1.fbx">
+      <Name>pillar_concrete_1</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Building\pillar_concrete_2.fbx">
+      <Name>pillar_concrete_2</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Building\pillar_concrete_3.fbx">
+      <Name>pillar_concrete_3</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Building\roof.fbx">
+      <Name>roof</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Building\wall_brick_1.fbx">
+      <Name>wall_brick_1</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Building\wall_concrete_1.fbx">
+      <Name>wall_concrete_1</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Building\wall_concrete_2.fbx">
+      <Name>wall_concrete_2</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Building\wall_concrete_3.fbx">
+      <Name>wall_concrete_3</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Building\wall_concrete_4.fbx">
+      <Name>wall_concrete_4</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Building\wall_concrete_5.fbx">
+      <Name>wall_concrete_5</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Building\Building.FBX">
+      <Name>Building</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="GroundReflective\Ground.drmdl">
+      <Name>Ground</Name>
+      <Importer>DRModelImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Gravel\Gravel.fbx">
+      <Name>Gravel</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Island\Island.fbx">
+      <Name>Island</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Grass\grass.FBX">
+      <Name>grass</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Parviflora\parviflora.FBX">
+      <Name>parviflora</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Rock\rock_05.fbx">
+      <Name>rock_05</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Sintel\Sintel-Head.fbx">
+      <Name>Sintel-Head</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="ButtonImages\xboxControllerSpriteFont.tga">
+      <Name>xboxControllerSpriteFont</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>FontTextureProcessor</Processor>
+    </Compile>
+    <None Include="Sky\Stars.bin">
+      <Name>Stars</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Compile Include="TVBox\TestCard.png">
+      <Name>TestCard</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Dxt</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="Sky\Moon.png">
+      <Name>Moon</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ColorKeyColor>0, 0, 0, 255</ProcessorParameters_ColorKeyColor>
+    </Compile>
+    <Compile Include="SpriteFont1.spritefont">
+      <Name>SpriteFont1</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="PostProcessing\ColorLookupModified.png">
+      <Name>ColorLookupModified</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="PostProcessing\ColorLookupOriginal.png">
+      <Name>ColorLookupOriginal</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Logo.png">
+      <Name>Logo</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <None Include="Layout.xml">
+      <Name>Layout</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Compile Include="Icon.png">
+      <Name>Icon</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="TestCubeMap.dds">
+      <Name>TestCubeMap</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Dxt</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="Water\wave0.png">
+      <Name>wave0</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Normal</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="Water\wave1.png">
+      <Name>wave1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Normal</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="XboxAvatars\BaseballBat.fbx">
+      <Name>BaseballBat</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="XboxAvatars\Faint.fbx">
+      <Name>Faint</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>AvatarAnimation</Processor>
+    </Compile>
+    <Compile Include="XboxAvatars\Jump.fbx">
+      <Name>Jump</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>AvatarAnimation</Processor>
+      <ProcessorParameters_ExpressionFile>JumpExpression.txt</ProcessorParameters_ExpressionFile>
+    </Compile>
+    <Compile Include="XboxAvatars\Kick.fbx">
+      <Name>Kick</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>AvatarAnimation</Processor>
+    </Compile>
+    <Compile Include="XboxAvatars\Punch.fbx">
+      <Name>Punch</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>AvatarAnimation</Processor>
+    </Compile>
+    <Compile Include="XboxAvatars\walk.fbx">
+      <Name>walk</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>AvatarAnimation</Processor>
+      <ProcessorParameters_ExpressionFile>WalkExpression.txt</ProcessorParameters_ExpressionFile>
+    </Compile>
+    <Compile Include="Vegetation\BirdnestPlant\BirdnestPlant.FBX">
+      <Name>BirdnestPlant</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Vegetation\PalmTree\palm_tree.fbx">
+      <Name>palm_tree</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Vegetation\Grass\grass.FBX">
+      <Name>grass</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="WeightedBlendedOIT\tank.drmdl">
+      <Name>tank</Name>
+      <Importer>DRModelImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Reticle.png">
+      <Name>Reticle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Water\Foam.png">
+      <Name>Foam</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+    <Compile Include="InstancedModel\InstancedModel.fbx">
+      <Name>InstancedModel</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="DudeWithProjectedShadow\Dude.drmdl">
+      <Name>Dude</Name>
+      <Importer>DRModelImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="DudeRefracted\Dude.drmdl">
+      <Name>Dude</Name>
+      <Importer>DRModelImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="PostProcessing\NegativeFilter.fx">
+      <Name>NegativeFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="EnvironmentLight.fx">
+      <Name>EnvironmentLight</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Water\Underwater.fx">
+      <Name>Underwater</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FogSphere.fx">
+      <Name>FogSphere</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PostProcessing\Vignette.fx">
+      <Name>Vignette</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PostProcessing\Interlace.fx">
+      <Name>Interlace</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PostProcessing\LensDistortion.fx">
+      <Name>LensDistortion</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Particles\Distortion.png">
+      <Name>Distortion</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PostProcessing\DistortionFilter.fx">
+      <Name>DistortionFilter</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="VolumetricLight.fx">
+      <Name>VolumetricLight</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="UI Themes\Aero\Theme.xml">
+      <Name>Theme</Name>
+      <Importer>ThemeImporter</Importer>
+      <Processor>ThemeProcessor</Processor>
+    </Compile>
+    <Compile Include="UI Themes\BlendBlue\Theme.xml">
+      <Name>Theme</Name>
+      <Importer>ThemeImporter</Importer>
+      <Processor>ThemeProcessor</Processor>
+    </Compile>
+    <Compile Include="UI Themes\GameStatesSample\Theme.xml">
+      <Name>Theme</Name>
+      <Importer>ThemeImporter</Importer>
+      <Processor>ThemeProcessor</Processor>
+    </Compile>
+    <Compile Include="UI Themes\TilingSample\Theme.xml">
+      <Name>Theme</Name>
+      <Importer>ThemeImporter</Importer>
+      <Processor>ThemeProcessor</Processor>
+    </Compile>
+    <Compile Include="UI Themes\WindowsPhone7\ThemeDark.xml">
+      <Name>ThemeDark</Name>
+      <Importer>ThemeImporter</Importer>
+      <Processor>ThemeProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="VarianceShadowMask.fx">
+      <Name>VarianceShadowMask</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="WeightedBlendedOIT\WeightedBlendedOIT.fx">
+      <Name>WeightedBlendedOIT</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Terrain\Terrain001-Height-0-0.png">
+      <Name>Terrain001-Height-0-0</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Height-0-1.png">
+      <Name>Terrain001-Height-0-1</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Height-1-0.png">
+      <Name>Terrain001-Height-1-0</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Height-1-1.png">
+      <Name>Terrain001-Height-1-1</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Blend-Dirt-0-0.png">
+      <Name>Terrain001-Blend-Dirt-0-0</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Blend-Dirt-0-1.png">
+      <Name>Terrain001-Blend-Dirt-0-1</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Blend-Dirt-1-0.png">
+      <Name>Terrain001-Blend-Dirt-1-0</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Blend-Dirt-1-1.png">
+      <Name>Terrain001-Blend-Dirt-1-1</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Blend-Flow-0-0.png">
+      <Name>Terrain001-Blend-Flow-0-0</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Blend-Flow-0-1.png">
+      <Name>Terrain001-Blend-Flow-0-1</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Blend-Flow-1-0.png">
+      <Name>Terrain001-Blend-Flow-1-0</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Blend-Flow-1-1.png">
+      <Name>Terrain001-Blend-Flow-1-1</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Blend-Grass-0-0.png">
+      <Name>Terrain001-Blend-Grass-0-0</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Blend-Grass-0-1.png">
+      <Name>Terrain001-Blend-Grass-0-1</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Blend-Grass-1-0.png">
+      <Name>Terrain001-Blend-Grass-1-0</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Blend-Grass-1-1.png">
+      <Name>Terrain001-Blend-Grass-1-1</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Blend-Rock-0-0.png">
+      <Name>Terrain001-Blend-Rock-0-0</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Blend-Rock-0-1.png">
+      <Name>Terrain001-Blend-Rock-0-1</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Blend-Rock-1-0.png">
+      <Name>Terrain001-Blend-Rock-1-0</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Blend-Rock-1-1.png">
+      <Name>Terrain001-Blend-Rock-1-1</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Blend-Sand-1-0.png">
+      <Name>Terrain001-Blend-Sand-1-0</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Blend-Sand-1-1.png">
+      <Name>Terrain001-Blend-Sand-1-1</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Blend-Snow-0-0.png">
+      <Name>Terrain001-Blend-Snow-0-0</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Blend-Snow-0-1.png">
+      <Name>Terrain001-Blend-Snow-0-1</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Tint-0-0.png">
+      <Name>Terrain001-Tint-0-0</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Tint-0-1.png">
+      <Name>Terrain001-Tint-0-1</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Tint-1-0.png">
+      <Name>Terrain001-Tint-1-0</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Terrain001-Tint-1-1.png">
+      <Name>Terrain001-Tint-1-1</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>NoChange</ProcessorParameters_Format>
+      <ProcessorParameters_ResizeToPowerOfTwo>False</ProcessorParameters_ResizeToPowerOfTwo>
+    </Compile>
+    <Compile Include="Terrain\Sand-Diffuse.png">
+      <Name>Sand-Diffuse</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Dxt</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="Terrain\Sand-Normal.png">
+      <Name>Sand-Normal</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>NormalInvertY</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="Terrain\Sand-Specular.png">
+      <Name>Sand-Specular</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Dxt</ProcessorParameters_Format>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Terrain\Grass-Dry-Diffuse.png">
+      <Name>Grass-Dry-Diffuse</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Dxt</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="Terrain\Grass-Dry-Normal.png">
+      <Name>Grass-Dry-Normal</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Normal</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="Terrain\Grass-Dry-Specular.png">
+      <Name>Grass-Dry-Specular</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Dxt</ProcessorParameters_Format>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Terrain\Gravel-Diffuse.png">
+      <Name>Gravel-Diffuse</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Dxt</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="Terrain\Gravel-Normal.png">
+      <Name>Gravel-Normal</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>NormalInvertY</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="Terrain\Gravel-Specular.png">
+      <Name>Gravel-Specular</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Dxt</ProcessorParameters_Format>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Terrain\Snow-Diffuse.png">
+      <Name>Snow-Diffuse</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Dxt</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="Terrain\Snow-Normal.png">
+      <Name>Snow-Normal</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Normal</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="Terrain\Snow-Specular.png">
+      <Name>Snow-Specular</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Dxt</ProcessorParameters_Format>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Terrain\Rock-02-Diffuse.png">
+      <Name>Rock-02-Diffuse</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Dxt</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="Terrain\Rock-02-Normal.png">
+      <Name>Rock-02-Normal</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Normal</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="Terrain\Rock-02-Specular.png">
+      <Name>Rock-02-Specular</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Dxt</ProcessorParameters_Format>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Terrain\Rock-02-Height.png">
+      <Name>Rock-02-Height</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_PremultiplyAlpha>False</ProcessorParameters_PremultiplyAlpha>
+      <ProcessorParameters_Format>Dxt</ProcessorParameters_Format>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Decals\Decal_diffuse_mask.png">
+      <Name>Decal_diffuse_mask</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Dxt</ProcessorParameters_Format>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Terrain\Road-Asphalt-Diffuse.png">
+      <Name>Road-Asphalt-Diffuse</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Dxt</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="Terrain\Road-Asphalt-Height.png">
+      <Name>Road-Asphalt-Height</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Dxt</ProcessorParameters_Format>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+    </Compile>
+    <Compile Include="Terrain\Road-Asphalt-Normal.png">
+      <Name>Road-Asphalt-Normal</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Normal</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="Terrain\Road-Asphalt-Specular.png">
+      <Name>Road-Asphalt-Specular</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Dxt</ProcessorParameters_Format>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Parallax\AgedPavement_diffuse.png">
+      <Name>AgedPavement_diffuse</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Dxt</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="Parallax\AgedPavement_height.png">
+      <Name>AgedPavement_height</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_InputGamma>1</ProcessorParameters_InputGamma>
+      <ProcessorParameters_OutputGamma>1</ProcessorParameters_OutputGamma>
+      <ProcessorParameters_Format>Dxt</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="Parallax\AgedPavement_normal.png">
+      <Name>AgedPavement_normal</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>NormalInvertY</ProcessorParameters_Format>
+    </Compile>
+    <Compile Include="Parallax\AgedPavement_specular.png">
+      <Name>AgedPavement_specular</Name>
+      <Importer>DRTextureImporter</Importer>
+      <Processor>DRTextureProcessor</Processor>
+      <ProcessorParameters_Format>Dxt</ProcessorParameters_Format>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Source\DigitalRune.Animation.Content.Pipeline\DigitalRune.Animation.Content.Pipeline%28XNA,Win%29.csproj">
+      <Project>{5a02e74e-ef4a-405a-89f2-77a76e9767dd}</Project>
+      <Name>DigitalRune.Animation.Content.Pipeline%28XNA,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Game.UI.Content.Pipeline\DigitalRune.Game.UI.Content.Pipeline%28XNA,Win%29.csproj">
+      <Project>{e87b98fa-35cf-4a48-904a-0cb1a87a6d5d}</Project>
+      <Name>DigitalRune.Game.UI.Content.Pipeline%28XNA,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Geometry.Content.Pipeline\DigitalRune.Geometry.Content.Pipeline%28XNA,Win%29.csproj">
+      <Project>{3ebc3967-7562-463e-a636-78c5edb94c06}</Project>
+      <Name>DigitalRune.Geometry.Content.Pipeline%28XNA,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Graphics.Content.Pipeline\DigitalRune.Graphics.Content.Pipeline%28XNA,Win%29.csproj">
+      <Project>{b8e4b812-a541-416e-8f77-e78cf059cdd3}</Project>
+      <Name>DigitalRune.Graphics.Content.Pipeline%28XNA,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Source\DigitalRune.Mathematics.Content.Pipeline\DigitalRune.Mathematics.Content.Pipeline%28XNA,Win%29.csproj">
+      <Project>{5289a325-e339-4e11-84bf-321ada51e1df}</Project>
+      <Name>DigitalRune.Mathematics.Content.Pipeline%28XNA,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Samples.Content.Pipeline\Samples.Content.Pipeline-XNA.csproj">
+      <Project>{8b9edd3c-af88-46bd-83b8-63559c3d269a}</Project>
+      <Name>Samples.Content.Pipeline-XNA</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Audio\Hit.wav">
+      <Name>Hit</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
