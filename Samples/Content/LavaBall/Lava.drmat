@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Material>
+  <Pass Name="Default" Effect="BasicEffect" Profile="Any">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="SpecularColor" Value="1,1,1" />
+    <Parameter Name="SpecularPower" Value="100" />
+    <Texture Name="Texture" File="Lava_diffuse.png" />
+  </Pass>
+  <Pass Name="ShadowMap" Effect="DigitalRune/Materials/ShadowMap" Profile="HiDef" />
+  <Pass Name="GBuffer" Effect="DigitalRune/Materials/GBufferNormal" Profile="HiDef">
+    <Parameter Name="SpecularPower" Value="100" />
+    <Texture Name="NormalTexture" Format="Normal" File="Lava_normal.png"/>
+  </Pass>
+  <Pass Name="Material" Effect="DigitalRune/Materials/MaterialEmissive" Profile="HiDef">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="SpecularColor" Value="1,1,1" />
+    <Parameter Name="EmissiveColor" Value="1,1,1" />
+    <Texture Name="DiffuseTexture" File="Lava_diffuse.png" />
+    <Texture Name="SpecularTexture" File="Lava_specular_emissive.tga" PremultiplyAlpha="false" />
+  </Pass>
+</Material>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Material>
+  <Pass Name="Default" Effect="BasicEffect" Profile="Any">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="SpecularColor" Value="0.4,0.4,0.4" />
+    <Parameter Name="SpecularPower" Value="1000" />
+    <Texture Name="Texture" File="Marble_Diffuse.png" />
+  </Pass>
+  <Pass Name="ShadowMap" Effect="DigitalRune/Materials/ShadowMap" Profile="HiDef" />
+  <Pass Name="GBuffer" Effect="DigitalRune/Materials/GBufferNormal" Profile="HiDef">
+    <Parameter Name="SpecularPower" Value="1000" />
+    <Texture Name="NormalTexture" Format="Normal" File="Marble_Normal.png"/>
+  </Pass>
+  <Pass Name="Material" Effect="MaterialReflective.fx" Profile="HiDef">
+    <Parameter Name="DiffuseColor" Value="0.7,0.7,0.7" />
+    <Parameter Name="SpecularColor" Value="0.4,0.4,0.4" />
+    <Texture Name="DiffuseTexture" File="Marble_Diffuse.png" />
+  </Pass>
+</Material>

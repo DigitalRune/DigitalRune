@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- This file was generated automatically by the DigitalRune Model Content Processor. -->
+
+<Material>
+  <Pass Name="Default" Effect="BasicEffect" Profile="Any">
+    <Parameter Name="Alpha" Value="1" />
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="EmissiveColor" Value="0,0,0" />
+    <Parameter Name="SpecularColor" Value="0,0,0" />
+    <Parameter Name="SpecularPower" Value="16" />
+    <Parameter Name="VertexColorEnabled" Value="False" />
+    <Texture Name="Texture" File="Terrain.png" />
+  </Pass>
+
+<!--  Add other application-dependent passes here, for example: 
+
+  <Pass Name="ShadowMap" Effect="DigitalRune/Materials/ShadowMap" Profile="HiDef"/>
+  <Pass Name="GBuffer" Effect="DigitalRune/Materials/GBufferNormal" Profile="HiDef">
+    <Parameter Name="SpecularPower" Value="10" />
+    <Texture Name="NormalTexture" Format="Normal" File="normal.tga" />
+  </Pass>
+  <Pass Name="Material" Effect="DigitalRune/Materials/Material" Profile="HiDef">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="SpecularColor" Value="1,1,1" />
+    <Texture Name="DiffuseTexture" File="diffuse.tga" />
+    <Texture Name="SpecularTexture" File="specular.tga" />
+  </Pass>
+-->
+
+<!-- See the DigitalRune Graphics documentation for a full list of material definition options. -->
+
+</Material>
