@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  This XML file defines a material, which can be assigned to a model.
+  A material consists of one or more render passes. 
+-->
+<Material>
+  <Pass Name="Default" Effect="SkinnedEffect" Profile="Any">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="SpecularColor" Value="0.1,0.1,0.1" />
+    <Parameter Name="SpecularPower" Value="100" />
+    <Texture Name="Texture" File="head.tga" />
+  </Pass>
+  <Pass Name="ShadowMap" Effect="DigitalRune/Materials/ShadowMapSkinned" Profile="HiDef" />
+  <Pass Name="GBuffer" Effect="DigitalRune/Materials/GBufferNormalSkinned" Profile="HiDef">
+    <Parameter Name="SpecularPower" Value="10" />
+    <Texture Name="NormalTexture" Format="Normal" File="headN.tga" />
+  </Pass>
+  <Pass Name="Material" Effect="DigitalRune/Materials/MaterialSkinned" Profile="HiDef">
+    <Parameter Name="DiffuseColor" Value="1,1,1" />
+    <Parameter Name="SpecularColor" Value="1,1,1" />
+    <Texture Name="DiffuseTexture" File="head.tga" />
+    <Texture Name="SpecularTexture" File="headS.tga" />
+  </Pass>
+</Material>
