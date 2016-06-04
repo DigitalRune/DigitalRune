@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Editor                    Namespace: DigitalRune.Editor.QuickLaunch">
+    <Position X="0.5" Y="0.5" Height="0.469" Width="2.762" />
+  </Comment>
+  <Class Name="DigitalRune.Editor.QuickLaunch.QuickLaunchExtension" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_menuNodes" Hidden="true" />
+      <Field Name="_messageBus" Hidden="true" />
+      <Field Name="_quickLaunchViewModel" Hidden="true" />
+      <Field Name="_resourceDictionary" Hidden="true" />
+      <Method Name="AddCaptionBarItems" Hidden="true" />
+      <Method Name="AddCommands" Hidden="true" />
+      <Method Name="AddDataTemplates" Hidden="true" />
+      <Method Name="AddMenus" Hidden="true" />
+      <Method Name="FocusQuickLaunchBox" Hidden="true" />
+      <Field Name="FocusQuickLaunchMessage" Hidden="true" />
+      <Property Name="Items" Hidden="true" />
+      <Method Name="OnGetViewModel" Hidden="true" />
+      <Method Name="OnInitialize" Hidden="true" />
+      <Method Name="OnShutdown" Hidden="true" />
+      <Method Name="OnStartup" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="RemoveCaptionBarItems" Hidden="true" />
+      <Method Name="RemoveCommands" Hidden="true" />
+      <Method Name="RemoveDataTemplates" Hidden="true" />
+      <Method Name="RemoveMenus" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>KMgEEAAAAABACAQgAAiAACAAAAACAQBAAAACACEAAAA=</HashCode>
+      <FileName>Extensions\QuickLaunch\QuickLaunchExtension.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Editor.QuickLaunch.QuickLaunchItem">
+    <Position X="3" Y="1.5" Width="1.75" />
+    <Members>
+      <Field Name="_command" Hidden="true" />
+      <Field Name="_commandParameter" Hidden="true" />
+      <Field Name="_description" Hidden="true" />
+      <Field Name="_icon" Hidden="true" />
+      <Field Name="_keyGesture" Hidden="true" />
+      <Field Name="_tag" Hidden="true" />
+      <Field Name="_title" Hidden="true" />
+      <Property Name="DesignInstance" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAIAgAEAEAAAABAAAAUFAAACAAACAABEAAAA=</HashCode>
+      <FileName>Extensions\QuickLaunch\QuickLaunchItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DigitalRune.Editor.QuickLaunch.IQuickLaunchService">
+    <Position X="0.5" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\QuickLaunch\IQuickLaunchService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Items" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

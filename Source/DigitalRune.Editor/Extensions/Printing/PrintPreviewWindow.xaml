@@ -1,0 +1,204 @@
+﻿<Window x:Class="DigitalRune.Editor.Printing.PrintPreviewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:dr="http://schemas.digitalrune.com/windows"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:printing="clr-namespace:DigitalRune.Editor.Printing"
+        xmlns:themes="clr-namespace:DigitalRune.Windows.Themes;assembly=DigitalRune.Windows.Themes"
+        xmlns:windows="clr-namespace:System.Windows.Documents;assembly=PresentationUI"
+        Title="Print Preview"
+        Width="480"
+        Height="600"
+        ResizeMode="CanResize"
+        Style="{DynamicResource Modern.WindowChrome}"
+        d:DataContext="{d:DesignInstance printing:PrintPreviewViewModel, IsDesignTimeCreatable=True}"
+        x:ClassModifier="internal"
+        mc:Ignorable="d">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/DigitalRune.Windows.Themes;component/Themes/Modern/WindowChrome.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="PrintPreviewToolBarStyle" TargetType="{x:Type ContentControl}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ContentControl}">
+                            <ToolBarTray>
+                                <ToolBar Uid="ToolBar_2"
+                                         Focusable="{TemplateBinding Focusable}"
+                                         KeyboardNavigation.TabNavigation="Continue"
+                                         Language="en-us"
+                                         ToolBarTray.IsLocked="False">
+                                    <Button x:Name="PrintButton"
+                                            Command="ApplicationCommands.Print"
+                                            CommandTarget="{Binding TemplatedParent, RelativeSource={RelativeSource TemplatedParent}}"
+                                            IsTabStop="True"
+                                            TabIndex="0"
+                                            ToolTip="Print (Ctrl+P)"
+                                            ToolTipService.ShowOnDisabled="True">
+                                        <dr:Icon Width="16"
+                                                 Height="16"
+                                                 Source="{x:Static themes:MultiColorGlyphs.Print}" />
+                                    </Button>
+                                    <Button x:Name="CopyButton"
+                                            Command="ApplicationCommands.Copy"
+                                            CommandTarget="{Binding TemplatedParent, RelativeSource={RelativeSource TemplatedParent}}"
+                                            IsTabStop="True"
+                                            TabIndex="1"
+                                            ToolTip="Copy (Ctrl+C)"
+                                            ToolTipService.ShowOnDisabled="True">
+                                        <dr:Icon Width="16"
+                                                 Height="16"
+                                                 Source="{x:Static themes:MultiColorGlyphs.Copy}" />
+                                    </Button>
+                                    <Separator Uid="Separator_110" />
+                                    <Button x:Name="ZoomInButton"
+                                            Command="NavigationCommands.IncreaseZoom"
+                                            CommandTarget="{Binding TemplatedParent, RelativeSource={RelativeSource TemplatedParent}}"
+                                            IsTabStop="True"
+                                            TabIndex="3"
+                                            ToolTip="Increase the size of the content (Ctrl +)"
+                                            ToolTipService.ShowOnDisabled="True">
+                                        <dr:Icon Width="16"
+                                                 Height="16"
+                                                 Source="{x:Static themes:MultiColorGlyphs.ZoomIn}" />
+                                    </Button>
+                                    <Button x:Name="ZoomOutButton"
+                                            Command="NavigationCommands.DecreaseZoom"
+                                            CommandTarget="{Binding TemplatedParent, RelativeSource={RelativeSource TemplatedParent}}"
+                                            IsTabStop="True"
+                                            TabIndex="4"
+                                            ToolTip="Decrease the size of the content (Ctrl -)"
+                                            ToolTipService.ShowOnDisabled="True">
+                                        <dr:Icon Width="16"
+                                                 Height="16"
+                                                 Source="{x:Static themes:MultiColorGlyphs.ZoomOut}" />
+                                    </Button>
+                                    <Separator />
+                                    <Button x:Name="ActualSizeButton"
+                                            Command="NavigationCommands.Zoom"
+                                            CommandParameter="100.0"
+                                            CommandTarget="{Binding TemplatedParent, RelativeSource={RelativeSource TemplatedParent}}"
+                                            IsTabStop="True"
+                                            TabIndex="5"
+                                            ToolTip="100% (Ctrl+1)"
+                                            ToolTipService.ShowOnDisabled="True">
+                                        <dr:Icon Width="16"
+                                                 Height="16"
+                                                 Source="{x:Static themes:MultiColorGlyphs.ShowActualSize}" />
+                                    </Button>
+                                    <Button x:Name="PageWidthButton"
+                                            Command="DocumentViewer.FitToWidthCommand"
+                                            CommandTarget="{Binding TemplatedParent, RelativeSource={RelativeSource TemplatedParent}}"
+                                            IsTabStop="True"
+                                            TabIndex="6"
+                                            ToolTip="Page Width (Ctrl+2)"
+                                            ToolTipService.ShowOnDisabled="True">
+                                        <dr:Icon Width="16"
+                                                 Height="16"
+                                                 Source="{x:Static themes:MultiColorGlyphs.FitPageWidth}" />
+                                    </Button>
+                                    <Button x:Name="WholePageButton"
+                                            Command="DocumentViewer.FitToMaxPagesAcrossCommand"
+                                            CommandParameter="1"
+                                            CommandTarget="{Binding TemplatedParent, RelativeSource={RelativeSource TemplatedParent}}"
+                                            IsTabStop="True"
+                                            TabIndex="7"
+                                            ToolTip="Whole Page (Ctrl+3)"
+                                            ToolTipService.ShowOnDisabled="True">
+                                        <dr:Icon Width="16"
+                                                 Height="16"
+                                                 Source="{x:Static themes:MultiColorGlyphs.ShowWholePage}" />
+                                    </Button>
+                                    <Button x:Name="TwoPagesButton"
+                                            Command="DocumentViewer.FitToMaxPagesAcrossCommand"
+                                            CommandParameter="2"
+                                            CommandTarget="{Binding TemplatedParent, RelativeSource={RelativeSource TemplatedParent}}"
+                                            IsTabStop="True"
+                                            TabIndex="8"
+                                            ToolTip="Two Pages (Ctrl+4)"
+                                            ToolTipService.ShowOnDisabled="True">
+                                        <dr:Icon Width="16"
+                                                 Height="16"
+                                                 Source="{x:Static themes:MultiColorGlyphs.ShowTwoPages}" />
+                                    </Button>
+                                </ToolBar>
+                            </ToolBarTray>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="DocumentViewerStyle"
+                   BasedOn="{x:Null}"
+                   TargetType="{x:Type DocumentViewer}">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
+                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" />
+                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                <Setter Property="ContextMenu" Value="{DynamicResource {ComponentResourceKey ResourceId=PUIDocumentViewerContextMenu, TypeInTargetAssembly={x:Type windows:PresentationUIStyleResources}}}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type DocumentViewer}">
+                            <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Focusable="False">
+                                <Grid Background="{TemplateBinding Background}" KeyboardNavigation.TabNavigation="Local">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <ContentControl Grid.Row="0"
+                                                    Grid.Column="0"
+                                                    Focusable="{TemplateBinding Focusable}"
+                                                    Style="{DynamicResource PrintPreviewToolBarStyle}"
+                                                    TabIndex="0" />
+                                    <DockPanel Grid.Row="1">
+                                        <FrameworkElement Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" DockPanel.Dock="Right" />
+                                        <Rectangle Height="10"
+                                                   VerticalAlignment="top"
+                                                   Visibility="Visible">
+                                            <Rectangle.Fill>
+                                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                    <LinearGradientBrush.GradientStops>
+                                                        <GradientStopCollection>
+                                                            <GradientStop Offset="0" Color="#66000000" />
+                                                            <GradientStop Offset="1" Color="Transparent" />
+                                                        </GradientStopCollection>
+                                                    </LinearGradientBrush.GradientStops>
+                                                </LinearGradientBrush>
+                                            </Rectangle.Fill>
+                                        </Rectangle>
+                                    </DockPanel>
+                                    <ScrollViewer x:Name="PART_ContentHost"
+                                                  Grid.Row="1"
+                                                  Grid.Column="0"
+                                                  CanContentScroll="True"
+                                                  Focusable="{TemplateBinding Focusable}"
+                                                  HorizontalScrollBarVisibility="Auto"
+                                                  IsTabStop="True"
+                                                  TabIndex="1" />
+                                    <!--  The find box is irritating if the print document is not searchable.  -->
+                                    <ContentControl x:Name="PART_FindToolBarHost"
+                                                    Grid.Row="2"
+                                                    Grid.Column="0"
+                                                    Focusable="{TemplateBinding Focusable}"
+                                                    TabIndex="2"
+                                                    Visibility="Collapsed" />
+                                </Grid>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <DocumentViewer x:Name="DocumentViewer"
+                    Document="{Binding PrintDocument}"
+                    Style="{StaticResource DocumentViewerStyle}" />
+</Window>

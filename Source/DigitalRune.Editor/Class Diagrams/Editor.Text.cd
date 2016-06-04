@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Editor                    Namespace: DigitalRune.Editor.Text">
+    <Position X="0.5" Y="0.5" Height="0.469" Width="2.283" />
+  </Comment>
+  <Class Name="DigitalRune.Editor.Text.TextDocument">
+    <Position X="3.25" Y="0.5" Width="1.75" />
+    <Members>
+      <Field Name="_encoding" Hidden="true" />
+      <Field Name="_fileInfo" Hidden="true" />
+      <Field Name="_propertiesService" Hidden="true" />
+      <Field Name="_propertySource" Hidden="true" />
+      <Field Name="_searchResultBrush" Hidden="true" />
+      <Field Name="_searchResults" Hidden="true" />
+      <Field Name="_searchService" Hidden="true" />
+      <Field Name="_searchUpdateSubscription" Hidden="true" />
+      <Field Name="_themeMessageSubscription" Hidden="true" />
+      <Field Name="_updateProperties" Hidden="true" />
+      <Method Name="BeginInvokeUpdateProperties" Hidden="true" />
+      <Field Name="CarriageReturn" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="GetLineEndingName" Hidden="true" />
+      <Method Name="GetSearchResults" Hidden="true" />
+      <Method Name="GetTextStatistics" Hidden="true" />
+      <Method Name="InitializeSearch" Hidden="true" />
+      <Method Name="ISearchable.BeginReplaceAll" Hidden="true" />
+      <Method Name="ISearchable.EndReplaceAll" Hidden="true" />
+      <Method Name="ISearchable.Search" Hidden="true" />
+      <Field Name="LineFeed" Hidden="true" />
+      <Field Name="LineSeparator" Hidden="true" />
+      <Method Name="OnCreateViewModel" Hidden="true" />
+      <Method Name="OnEditorDockTabItemChanged" Hidden="true" />
+      <Method Name="OnLoad" Hidden="true" />
+      <Method Name="OnSave" Hidden="true" />
+      <Method Name="OnTextChanged" Hidden="true" />
+      <Method Name="OnThemeMessage" Hidden="true" />
+      <Method Name="OnUndoStackChanged" Hidden="true" />
+      <Field Name="ParagraphSeparator" Hidden="true" />
+      <Method Name="PreviewSearchResults" Hidden="true" />
+      <Method Name="Search" Hidden="true" />
+      <Method Name="TextDocument" Hidden="true" />
+      <Method Name="UninitializeSearch" Hidden="true" />
+      <Method Name="UpdateProperties" Hidden="true" />
+      <Field Name="UTF8NoBOM" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Enum Name="DigitalRune.Editor.Text.TextDocument.LineEndingType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Extensions\Text\TextDocument.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>EgQwgBAAACAAAA4AAAAEBEQWgggggSAUAACgRAAhRBg=</HashCode>
+      <FileName>Extensions\Text\TextDocument.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Editor.Text.TextExtension">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <Members>
+      <Field Name="_contextMenuNodeCollections" Hidden="true" />
+      <Field Name="_contextMenuNodes" Hidden="true" />
+      <Field Name="_currentSelectionSearchScope" Hidden="true" />
+      <Field Name="_documentService" Hidden="true" />
+      <Field Name="_extensionDescription" Hidden="true" />
+      <Field Name="_highlightingManager" Hidden="true" />
+      <Field Name="_menuManager" Hidden="true" />
+      <Field Name="_menuNodes" Hidden="true" />
+      <Field Name="_optionsNodes" Hidden="true" />
+      <Field Name="_resourceDictionary" Hidden="true" />
+      <Field Name="_showCommands" Hidden="true" />
+      <Field Name="_statusInfo" Hidden="true" />
+      <Field Name="_statusInfoUpdateSubscription" Hidden="true" />
+      <Field Name="_syntaxHighlightingItem" Hidden="true" />
+      <Field Name="_textDocumentFactory" Hidden="true" />
+      <Field Name="_windowService" Hidden="true" />
+      <Method Name="AddCommands" Hidden="true" />
+      <Method Name="AddContextMenu" Hidden="true" />
+      <Method Name="AddDataTemplates" Hidden="true" />
+      <Method Name="AddDocumentFactories" Hidden="true" />
+      <Method Name="AddExtensionDescription" Hidden="true" />
+      <Method Name="AddMenus" Hidden="true" />
+      <Method Name="AddOptions" Hidden="true" />
+      <Method Name="AddSearchScopes" Hidden="true" />
+      <Method Name="AddStatusBarItems" Hidden="true" />
+      <Method Name="CanGoToLineNumber" Hidden="true" />
+      <Property Name="ContextMenu" Hidden="true" />
+      <Property Name="ContextMenuNodeCollections" Hidden="true" />
+      <Method Name="CreateFoldingMenu" Hidden="true" />
+      <Method Name="CreateFormatMenu" Hidden="true" />
+      <Method Name="GoToLineNumber" Hidden="true" />
+      <Method Name="LoadOptions" Hidden="true" />
+      <Field Name="Logger" Hidden="true" />
+      <Method Name="OnActiveDocumentChanged" Hidden="true" />
+      <Method Name="OnEditorPropertyChanged" Hidden="true" />
+      <Method Name="OnEditorUIInvalidated" Hidden="true" />
+      <Method Name="OnGetViewModel" Hidden="true" />
+      <Method Name="OnInitialize" Hidden="true" />
+      <Method Name="OnShutdown" Hidden="true" />
+      <Method Name="OnStartup" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Property Name="Options" Hidden="true" />
+      <Method Name="RemoveCommands" Hidden="true" />
+      <Method Name="RemoveContextMenu" Hidden="true" />
+      <Method Name="RemoveDataTemplates" Hidden="true" />
+      <Method Name="RemoveDocumentFactories" Hidden="true" />
+      <Method Name="RemoveExtensionDescription" Hidden="true" />
+      <Method Name="RemoveMenus" Hidden="true" />
+      <Method Name="RemoveOptions" Hidden="true" />
+      <Method Name="RemoveSearchScopes" Hidden="true" />
+      <Method Name="RemoveStatusBarItems" Hidden="true" />
+      <Method Name="SaveOptions" Hidden="true" />
+      <Method Name="SetStatusInfo" Hidden="true" />
+      <Method Name="ShowCommands" Hidden="true" />
+      <Method Name="TextExtension" Hidden="true" />
+      <Method Name="UpdateContextMenu" Hidden="true" />
+      <Method Name="UpdateSyntaxHighlightingItem" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>Lc8EMAQAAIJTJACiBECAkCAIAEAiAARAQ0UCEKFgIAg=</HashCode>
+      <FileName>Extensions\Text\TextExtension.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Editor.Text.TextDocumentHelper">
+    <Position X="3.25" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAgAAAAAAAAAAAAAAAAAAAAAAAABAAAQ=</HashCode>
+      <FileName>Extensions\Text\TextDocumentHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DigitalRune.Editor.Text.ITextService">
+    <Position X="0.5" Y="1.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAACAAAAAAAAAAAAAAAAAAAAAAAAAABAAAg=</HashCode>
+      <FileName>Extensions\Text\ITextService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

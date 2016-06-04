@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dr="http://schemas.digitalrune.com/windows"
+                    xmlns:local="clr-namespace:DigitalRune.Editor.Errors">
+
+    <DataTemplate DataType="{x:Type local:ErrorsViewModel}">
+        <dr:DockTabItem Title="{Binding DisplayName}"
+                        DockHeight="{Binding DockHeight}"
+                        DockWidth="{Binding DockWidth}"
+                        Icon="{Binding Icon}"
+                        ToolTip="{Binding DockToolTip}">
+            <dr:DockTabItem.ContextMenu>
+                <ContextMenu ItemsSource="{Binding DockContextMenu}" UsesItemContainerTemplate="True" />
+            </dr:DockTabItem.ContextMenu>
+            <local:ErrorsView />
+        </dr:DockTabItem>
+    </DataTemplate>
+
+</ResourceDictionary>

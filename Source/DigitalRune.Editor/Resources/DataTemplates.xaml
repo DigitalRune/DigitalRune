@@ -1,0 +1,157 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dr="http://schemas.digitalrune.com/windows"
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    xmlns:local="clr-namespace:DigitalRune.Editor">
+
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+
+    <!--  Docking data templates  -->
+
+    <DataTemplate DataType="{x:Type local:EditorDockTabPaneViewModel}">
+        <dr:DockTabPane DockHeight="{Binding DockHeight}"
+                        DockWidth="{Binding DockWidth}"
+                        ItemsSource="{Binding Items}"
+                        SelectedItem="{Binding SelectedItem}" />
+    </DataTemplate>
+
+
+    <!--  Command item data templates  -->
+
+    <ItemContainerTemplate DataType="{x:Type local:MenuItemViewModel}">
+        <MenuItem Command="{Binding CommandItem.Command, Mode=OneWay}"
+                  CommandParameter="{Binding CommandItem.CommandParameter, Mode=OneWay}"
+                  Header="{Binding CommandItem.Text, Mode=OneWay}"
+                  Icon="{Binding CommandItem.Icon, Converter={x:Static local:MenuIconConverter.Instance}, Mode=OneWay}"
+                  InputGestureText="{Binding CommandItem, Converter={x:Static local:CommandItemToKeyGestureStringConverter.Instance}, Mode=OneWay}"
+                  IsCheckable="{Binding CommandItem.IsCheckable, Mode=OneWay}"
+                  IsChecked="{Binding CommandItem.IsChecked, Mode=OneWay}"
+                  ItemsSource="{Binding Submenu, Mode=OneWay}"
+                  UsesItemContainerTemplate="True"
+                  Visibility="{Binding IsVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <i:Interaction.Behaviors>
+                <dr:InvalidateOnCommandParameterChangedBehavior />
+            </i:Interaction.Behaviors>
+        </MenuItem>
+    </ItemContainerTemplate>
+
+    <ItemContainerTemplate DataType="{x:Type local:MenuSeparatorViewModel}">
+        <!--  Note that the WPF does not automatically apply the correct style for the separator!  -->
+        <Separator Style="{DynamicResource {x:Static MenuItem.SeparatorStyleKey}}" Visibility="{Binding IsVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
+    </ItemContainerTemplate>
+
+    <!--
+        Style of the toolbar text (DataContext = ICommandItem):
+        The text is collapsed by default. It is set to visible if either AlwaysShowText is true or
+        the Icon is null. If both icon and text are shown a small margin is set between the icon
+        and the text. The margin is removed if only the text is visible.
+    -->
+    <Style x:Key="ToolBarTextStyle" TargetType="{x:Type TextBlock}">
+        <!--
+            When a TextBlock is added manually inside a Button, it does NOT correctly inherit the
+            foreground brush! Changes applied in content template triggers are NOT forwarded to
+            the TextBlock. => Set an explicit binding for the Foreground!
+        -->
+        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ContentPresenter}}, Path=(TextElement.Foreground)}" />
+
+        <Setter Property="Margin" Value="2,0,0,0" />
+        <Setter Property="Visibility" Value="Collapsed" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding AlwaysShowText, Mode=OneWay}" Value="True">
+                <Setter Property="Visibility" Value="Visible" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Icon, Mode=OneWay}" Value="{x:Null}">
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Visibility" Value="Visible" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <DataTemplate DataType="{x:Type local:ToolBarButtonViewModel}">
+        <Button Command="{Binding CommandItem.Command, Mode=OneWay}"
+                CommandParameter="{Binding CommandItem.CommandParameter, Mode=OneWay}"
+                ToolTip="{Binding CommandItem, Converter={x:Static local:CommandItemToToolTipConverter.Instance}, Mode=OneWay}"
+                Visibility="{Binding CommandItem.IsVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel DataContext="{Binding CommandItem}" Orientation="Horizontal">
+                <dr:Icon Width="16"
+                         Height="16"
+                         CollapseIfEmpty="True"
+                         Source="{Binding Icon, Mode=OneWay}" />
+                <TextBlock Style="{StaticResource ToolBarTextStyle}" Text="{Binding Text, Converter={x:Static local:LabelToTextConverter.Instance}, Mode=OneWay}" />
+            </StackPanel>
+        </Button>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type local:ToolBarCheckBoxViewModel}">
+        <CheckBox Command="{Binding CommandItem.Command, Mode=OneWay}"
+                  CommandParameter="{Binding CommandItem.CommandParameter, Mode=OneWay}"
+                  IsChecked="{Binding CommandItem.IsChecked, Mode=OneWay}"
+                  ToolTip="{Binding CommandItem, Converter={x:Static local:CommandItemToToolTipConverter.Instance}, Mode=OneWay}"
+                  Visibility="{Binding CommandItem.IsVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel DataContext="{Binding CommandItem}" Orientation="Horizontal">
+                <dr:Icon Width="16"
+                         Height="16"
+                         CollapseIfEmpty="True"
+                         Source="{Binding Icon, Mode=OneWay}" />
+                <TextBlock Style="{StaticResource ToolBarTextStyle}" Text="{Binding Text, Converter={x:Static local:LabelToTextConverter.Instance}, Mode=OneWay}" />
+            </StackPanel>
+        </CheckBox>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type local:ToolBarComboBoxViewModel}">
+        <ComboBox Width="{Binding Width}"
+                  ItemsSource="{Binding Items}"
+                  SelectedItem="{Binding SelectedItem}"
+                  ToolTip="{Binding CommandItem, Converter={x:Static local:CommandItemToToolTipConverter.Instance}, Mode=OneWay}"
+                  Visibility="{Binding CommandItem.IsVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type local:ToolBarDropDownButtonViewModel}">
+        <dr:ToolBarDropDownButton Width="{Binding Width}"
+                                  HorizontalContentAlignment="Left"
+                                  ToolTip="{Binding SelectedItem, Converter={x:Static local:CommandItemToToolTipConverter.Instance}, Mode=OneWay}"
+                                  Visibility="{Binding CommandItem.IsVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <dr:DropDownButton.DropDown>
+                <ContextMenu ItemsSource="{Binding Items}" UsesItemContainerTemplate="True" />
+            </dr:DropDownButton.DropDown>
+            <StackPanel HorizontalAlignment="Left"
+                        DataContext="{Binding SelectedItem}"
+                        Orientation="Horizontal">
+                <dr:Icon Width="16"
+                         Height="16"
+                         CollapseIfEmpty="True"
+                         Source="{Binding Icon, Mode=OneWay}" />
+                <TextBlock Style="{StaticResource ToolBarTextStyle}" Text="{Binding Text, Converter={x:Static local:LabelToTextConverter.Instance}, Mode=OneWay}" />
+            </StackPanel>
+        </dr:ToolBarDropDownButton>
+    </DataTemplate>
+
+
+    <DataTemplate DataType="{x:Type local:ToolBarSplitButtonViewModel}">
+        <dr:ToolBarSplitButton Width="{Binding Width}"
+                               HorizontalContentAlignment="Left"
+                               Command="{Binding SelectedItem.Command, Mode=OneWay}"
+                               CommandParameter="{Binding SelectedItem.CommandParameter, Mode=OneWay}"
+                               ToolTip="{Binding SelectedItem, Converter={x:Static local:CommandItemToToolTipConverter.Instance}, Mode=OneWay}"
+                               Visibility="{Binding CommandItem.IsVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <dr:ToolBarSplitButton.DropDown>
+                <ContextMenu ItemsSource="{Binding Items}" UsesItemContainerTemplate="True" />
+            </dr:ToolBarSplitButton.DropDown>
+            <StackPanel HorizontalAlignment="Left"
+                        DataContext="{Binding SelectedItem}"
+                        Orientation="Horizontal">
+                <dr:Icon Width="16"
+                         Height="16"
+                         CollapseIfEmpty="True"
+                         Source="{Binding Icon, Mode=OneWay}" />
+                <TextBlock Style="{StaticResource ToolBarTextStyle}" Text="{Binding Text, Converter={x:Static local:LabelToTextConverter.Instance}, Mode=OneWay}" />
+            </StackPanel>
+        </dr:ToolBarSplitButton>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type local:ToolBarSeparatorViewModel}">
+        <Separator Visibility="{Binding IsVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
+    </DataTemplate>
+
+</ResourceDictionary>

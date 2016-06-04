@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4A4E35A0-1EF5-47D3-B8C6-7193A4F4EAE4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.Game</RootNamespace>
+    <AssemblyName>DigitalRune.Game</AssemblyName>
+    <FileUpgradeFlags></FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation></UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <BaseIntermediateOutputPath>obj\Unity\Debug\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\Unity\Debug</OutputPath>
+    <DefineConstants>TRACE;DEBUG;UNITY</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Unity\Debug\DigitalRune.Game.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <BaseIntermediateOutputPath>obj\Unity\Release\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\Unity\Release</OutputPath>
+    <DefineConstants>TRACE;UNITY</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Unity\Release\DigitalRune.Game.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune\DigitalRune%28Unity%29.csproj">
+      <Project>{3CD3AB84-E372-4FFB-BCE4-EBE0BE3BD3D6}</Project>
+      <Name>DigitalRune%28Unity%29</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <Compile Include="GameObjects\DataStore.cs" />
+    <Compile Include="GameObjects\Events\GameEventCollection.cs" />
+    <Compile Include="GameObjects\Events\GameEventData{T}.cs" />
+    <Compile Include="GameObjects\Events\GameEventHandler.cs" />
+    <Compile Include="GameObjects\Events\GameEventMetadata{T}.cs" />
+    <Compile Include="GameObjects\Events\GameEvent{T}.cs" />
+    <Compile Include="GameObjects\Events\IGameEvent.cs" />
+    <Compile Include="GameObjects\Events\IGameEventData.cs" />
+    <Compile Include="GameObjects\Events\IGameEventMetadata.cs" />
+    <Compile Include="GameObjects\GameObject.cs" />
+    <Compile Include="GameObjects\GameObjectCollection.cs" />
+    <Compile Include="GameObjects\GameObjectManager.cs" />
+    <Compile Include="GameObjects\GameObject_Metadata.cs" />
+    <Compile Include="GameObjects\GameObject_PropertiesAndEvents.cs" />
+    <Compile Include="GameObjects\GamePropertyCategories.cs" />
+    <Compile Include="GameObjects\IGameObjectService.cs" />
+    <Compile Include="GameObjects\Properties\AnimatableGamePropertyData.cs" />
+    <Compile Include="GameObjects\Properties\GamePropertyChangeHandler.cs" />
+    <Compile Include="GameObjects\Properties\GamePropertyCollection.cs" />
+    <Compile Include="GameObjects\Properties\GamePropertyData{T}.cs" />
+    <Compile Include="GameObjects\Properties\GamePropertyEventArgs.cs" />
+    <Compile Include="GameObjects\Properties\GamePropertyEventArgs{T}.cs" />
+    <Compile Include="GameObjects\Properties\GamePropertyMetadata{T}.cs" />
+    <Compile Include="GameObjects\Properties\GameProperty{T}.cs" />
+    <Compile Include="GameObjects\Properties\IGameProperty.cs" />
+    <Compile Include="GameObjects\Properties\IGamePropertyData.cs" />
+    <Compile Include="GameObjects\Properties\IGamePropertyMetadata.cs" />
+    <Compile Include="NamespaceDoc.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Properties\AssemblyInfo.template" />
+    <Compile Include="States\NamespaceDoc.cs" />
+    <Compile Include="States\State.cs" />
+    <Compile Include="States\StateCollection.cs" />
+    <Compile Include="States\StateEventArgs.cs" />
+    <Compile Include="States\StateMachine.cs" />
+    <Compile Include="States\SubStatesCollection.cs" />
+    <Compile Include="States\Transition.cs" />
+    <Compile Include="States\TransitionCollection.cs" />
+    <Compile Include="Timing\Clocks\GameClockEventArgs.cs" />
+    <Compile Include="Timing\Clocks\HighPrecisionClock.cs" />
+    <Compile Include="Timing\Clocks\IGameClock.cs" />
+    <Compile Include="Timing\Clocks\ManualClock.cs" />
+    <Compile Include="Timing\Clocks\TickCountClock.cs" />
+    <Compile Include="Timing\NamespaceDoc.cs" />
+    <Compile Include="Timing\Timers\FixedStepTimer.cs" />
+    <Compile Include="Timing\Timers\GameTimerEventArgs.cs" />
+    <Compile Include="Timing\Timers\IGameTimer.cs" />
+    <Compile Include="Timing\Timers\VariableStepTimer.cs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:themes="clr-namespace:DigitalRune.Editor.Themes">
+
+    <DataTemplate DataType="{x:Type themes:ThemeOptionsPageViewModel}">
+        <themes:ThemeOptionsPageView />
+    </DataTemplate>
+
+</ResourceDictionary>

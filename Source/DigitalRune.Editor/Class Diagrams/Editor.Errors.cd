@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Editor                    Namespace: DigitalRune.Editor.Errors">
+    <Position X="0.5" Y="0.5" Height="0.469" Width="2.647" />
+  </Comment>
+  <Class Name="DigitalRune.Editor.Errors.ErrorExtension" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <Members>
+      <Field Name="_errorsViewModel" Hidden="true" />
+      <Field Name="_menuNodes" Hidden="true" />
+      <Field Name="_resourceDictionary" Hidden="true" />
+      <Field Name="_toolBarNodes" Hidden="true" />
+      <Method Name="AddCommands" Hidden="true" />
+      <Method Name="AddDataTemplates" Hidden="true" />
+      <Method Name="AddMenus" Hidden="true" />
+      <Method Name="AddToolBars" Hidden="true" />
+      <Method Name="ErrorExtension" Hidden="true" />
+      <Property Name="IErrorService.Errors" Hidden="true" />
+      <Method Name="IErrorService.Show" Hidden="true" />
+      <Field Name="Logger" Hidden="true" />
+      <Method Name="OnGetViewModel" Hidden="true" />
+      <Method Name="OnInitialize" Hidden="true" />
+      <Method Name="OnShutdown" Hidden="true" />
+      <Method Name="OnStartup" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="RemoveCommands" Hidden="true" />
+      <Method Name="RemoveDataTemplates" Hidden="true" />
+      <Method Name="RemoveMenus" Hidden="true" />
+      <Method Name="RemoveToolBars" Hidden="true" />
+      <Method Name="ShowErrors" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IMgAAAAAAAJAAAAgAQCAACgAAAACAIBAAgACACEAAAA=</HashCode>
+      <FileName>Extensions\Errors\ErrorExtension.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Editor.Errors.Error">
+    <Position X="2.75" Y="1.25" Width="2" />
+    <Members>
+      <Field Name="_column" Hidden="true" />
+      <Field Name="_description" Hidden="true" />
+      <Field Name="_goToLocationCommand" Hidden="true" />
+      <Field Name="_line" Hidden="true" />
+      <Field Name="_location" Hidden="true" />
+      <Field Name="_userData" Hidden="true" />
+      <Method Name="Error" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAIAEAAJRAAAAAACCACAAACAAAAAJAAA=</HashCode>
+      <FileName>Extensions\Errors\Error.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ErrorType" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="DigitalRune.Editor.Errors.IErrorService">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\Errors\IErrorService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Errors" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Enum Name="DigitalRune.Editor.Errors.ErrorType">
+    <Position X="5.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAABAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Extensions\Errors\ErrorType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

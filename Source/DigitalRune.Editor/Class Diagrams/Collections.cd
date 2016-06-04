@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Editor                                            Namespace: DigitalRune.Collections">
+    <Position X="0.5" Y="0.5" Height="0.458" Width="2.243" />
+  </Comment>
+  <Class Name="DigitalRune.Collections.MergeableNodeCollection&lt;T&gt;">
+    <Position X="4.25" Y="2.75" Width="3.5" />
+    <Members>
+      <Method Name="GetParent" Hidden="true" />
+      <Method Name="MergeableNodeCollection" Hidden="true" />
+      <Property Name="Parent" Hidden="true" />
+      <Method Name="SetParent" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAEAAAAQAAAA=</HashCode>
+      <FileName>Collections\MergeableNodeCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Collections.MergeAlgorithm&lt;T&gt;">
+    <Position X="4.75" Y="4.25" Width="2" />
+    <Members>
+      <Method Name="EnsureChildren" Hidden="true" />
+      <Method Name="FindTargetNode" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAIEAEAAAIAAAAAAgAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collections\MergeAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Collections.MergeableNode&lt;T&gt;">
+    <Position X="0.5" Y="1.25" Width="2.5" />
+    <Members>
+      <Field Name="_children" Hidden="true" />
+      <Method Name="GetChildren" Hidden="true" />
+      <Method Name="GetRelativeNodeInGroup" Hidden="true" />
+      <Method Name="MergeableNode" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Parent" Type="DigitalRune.Collections.MergeableNode&lt;T&gt;" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3" Y="1.424" />
+        <Point X="3.25" Y="1.424" />
+        <Point X="3.25" Y="1.712" />
+        <Point X="3" Y="1.712" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.318" Y="-0.024" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Next" Type="DigitalRune.Collections.MergeableNode&lt;T&gt;" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3" Y="2.578" />
+        <Point X="3.25" Y="2.578" />
+        <Point X="3.25" Y="2.866" />
+        <Point X="3" Y="2.866" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.3" Y="0.121" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Previous" Type="DigitalRune.Collections.MergeableNode&lt;T&gt;" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3" Y="1.943" />
+        <Point X="3.188" Y="1.943" />
+        <Point X="3.188" Y="2.289" />
+        <Point X="3" Y="2.289" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.328" Y="0.133" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="MergePoints" Type="DigitalRune.Collections.MergePoint">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-1.077" Y="0.435" Height="0.182" Width="1.024" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AoASAAAAAgAIAgAAAAAEQAABAgAAQBAABAAAAAAAAAA=</HashCode>
+      <FileName>Collections\MergeableNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Parent" />
+      <Property Name="Children" />
+      <Property Name="Next" />
+      <Property Name="Previous" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="MergePoints" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Collections.MergeException">
+    <Position X="7" Y="4.25" Width="1.5" />
+    <Members>
+      <Method Name="MergeException" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collections\MergeException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Collections.ChildCollection&lt;TParent, TChild&gt;">
+    <Position X="4.75" Y="1" Width="2.5" />
+    <Members>
+      <Method Name="ChildCollection" Hidden="true" />
+      <Method Name="ClearItems" Hidden="true" />
+      <Method Name="GetEnumerator" Hidden="true" />
+      <Method Name="GetParent" Hidden="true" />
+      <Method Name="InsertItem" Hidden="true" />
+      <Method Name="Move" Hidden="true" />
+      <Method Name="MoveItem" Hidden="true" />
+      <Method Name="RemoveItem" Hidden="true" />
+      <Method Name="SetItem" Hidden="true" />
+      <Method Name="SetParent" Hidden="true" />
+    </Members>
+    <TypeIdentifier />
+  </Class>
+  <Struct Name="DigitalRune.Collections.MergePoint">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <Members>
+      <Field Name="DefaultMergePoints" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="operator !=" Hidden="true" />
+      <Method Name="operator ==" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Operation" Type="DigitalRune.Collections.MergeOperation">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.068" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAACAAAAAAEYAAAAEAAAAAAiA=</HashCode>
+      <FileName>Collections\MergePoint.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Operation" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Enum Name="DigitalRune.Collections.MergeOperation">
+    <Position X="3" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAACAAgAAAAAABABAAAAAAAQQAAAAAAAAAAACA=</HashCode>
+      <FileName>Collections\MergeOperation.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

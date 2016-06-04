@@ -1,0 +1,80 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:algebra="clr-namespace:DigitalRune.Mathematics.Algebra;assembly=DigitalRune.Mathematics"
+                    xmlns:dr="http://schemas.digitalrune.com/windows"
+                    xmlns:geometry="clr-namespace:DigitalRune.Geometry;assembly=DigitalRune.Geometry"
+                    xmlns:local="clr-namespace:DigitalRune.Editor.Game"
+                    xmlns:xna="clr-namespace:Microsoft.Xna.Framework;assembly=MonoGame.Framework">
+
+    <DataTemplate DataType="{x:Type local:GameViewModel}">
+        <dr:DockTabItem Title="{Binding DisplayName}"
+                        DockHeight="{Binding DockHeight}"
+                        DockWidth="{Binding DockWidth}"
+                        Icon="{Binding Icon}"
+                        ToolTip="{Binding DockToolTip}">
+            <dr:DockTabItem.ContextMenu>
+                <ContextMenu ItemsSource="{Binding DockContextMenu}" UsesItemContainerTemplate="True" />
+            </dr:DockTabItem.ContextMenu>
+            <local:GameView />
+        </dr:DockTabItem>
+    </DataTemplate>
+
+    <!--  Data templates for the property grid in the Properties window.  -->
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type dr:PropertyGrid}, {x:Type xna:Vector2}}">
+        <local:Vector2Editor IsReadOnly="{Binding IsReadOnly}" Value="{Binding Value}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type dr:PropertyGrid}, {x:Type algebra:Vector2F}}">
+        <local:Vector2Editor IsReadOnly="{Binding IsReadOnly}" Value="{Binding Value}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type dr:PropertyGrid}, {x:Type algebra:Vector2D}}">
+        <local:Vector2Editor IsReadOnly="{Binding IsReadOnly}" Value="{Binding Value}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type dr:PropertyGrid}, {x:Type xna:Vector3}}">
+        <local:Vector3Editor IsReadOnly="{Binding IsReadOnly}" Value="{Binding Value}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type dr:PropertyGrid}, {x:Type algebra:Vector3F}}">
+        <local:Vector3Editor IsReadOnly="{Binding IsReadOnly}" Value="{Binding Value}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type dr:PropertyGrid}, {x:Type algebra:Vector3D}}">
+        <local:Vector3Editor IsReadOnly="{Binding IsReadOnly}" Value="{Binding Value}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type dr:PropertyGrid}, {x:Type xna:Vector4}}">
+        <local:Vector4Editor IsReadOnly="{Binding IsReadOnly}" Value="{Binding Value}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type dr:PropertyGrid}, {x:Type xna:Quaternion}}">
+        <local:Vector4Editor IsReadOnly="{Binding IsReadOnly}" Value="{Binding Value}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type dr:PropertyGrid}, {x:Type algebra:Vector4F}}">
+        <local:Vector4Editor IsReadOnly="{Binding IsReadOnly}" Value="{Binding Value}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type dr:PropertyGrid}, {x:Type algebra:Vector4D}}">
+        <local:Vector4Editor IsReadOnly="{Binding IsReadOnly}" Value="{Binding Value}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type dr:PropertyGrid}, {x:Type algebra:QuaternionF}}">
+        <local:Vector4Editor IsReadOnly="{Binding IsReadOnly}" Value="{Binding Value}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type dr:PropertyGrid}, {x:Type algebra:QuaternionD}}">
+        <local:Vector4Editor IsReadOnly="{Binding IsReadOnly}" Value="{Binding Value}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type dr:PropertyGrid}, {x:Type geometry:Pose}}">
+        <local:PoseEditor IsReadOnly="{Binding IsReadOnly}" Value="{Binding Value}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type dr:PropertyGrid}, {x:Type geometry:PoseD}}">
+        <local:PoseEditor IsReadOnly="{Binding IsReadOnly}" Value="{Binding Value}" />
+    </DataTemplate>
+
+</ResourceDictionary>

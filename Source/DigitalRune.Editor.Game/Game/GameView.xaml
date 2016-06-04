@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="DigitalRune.Editor.Game.GameView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:game="clr-namespace:DigitalRune.Editor.Game"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DataContext="{x:Static game:GameViewModel.DesignInstance}"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             x:ClassModifier="internal"
+             mc:Ignorable="d">
+    <Grid>
+        <game:GamePresentationTarget GraphicsScreens="{Binding GraphicsScreens}" />
+    </Grid>
+</UserControl>

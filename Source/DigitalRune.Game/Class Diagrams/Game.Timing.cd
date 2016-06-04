@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Game.Timing       Namespace: DigitalRune.Game.Timing">
+    <Position X="0.5" Y="0.5" Height="0.468" Width="2.491" />
+  </Comment>
+  <Class Name="DigitalRune.Game.Timing.ManualClock">
+    <Position X="2.5" Y="5.25" Width="1.75" />
+    <Members>
+      <Field Name="_eventArgs" Hidden="true" />
+      <Property Name="DeltaTime" Hidden="true" />
+      <Property Name="GameTime" Hidden="true" />
+      <Method Name="IGameClock.ResetDeltaTime" Hidden="true" />
+      <Property Name="IsRunning" Hidden="true" />
+      <Method Name="ManualClock" Hidden="true" />
+      <Property Name="MaxDeltaTime" Hidden="true" />
+      <Method Name="Reset" Hidden="true" />
+      <Method Name="Start" Hidden="true" />
+      <Method Name="Stop" Hidden="true" />
+      <Event Name="TimeChanged" Hidden="true" />
+      <Property Name="TotalTime" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAACAABAABAEAIQAAAAADAAAEAIAAAAAAAgAA=</HashCode>
+      <FileName>Timing\Clocks\ManualClock.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Game.Timing.VariableStepTimer">
+    <Position X="7.5" Y="5.25" Width="1.75" />
+    <Members>
+      <Field Name="_clock" Hidden="true" />
+      <Field Name="_eventArgs" Hidden="true" />
+      <Field Name="_maxDeltaTime" Hidden="true" />
+      <Field Name="_minDeltaTime" Hidden="true" />
+      <Property Name="AccumulatedTime" Hidden="true" />
+      <Property Name="Clock" Hidden="true" />
+      <Property Name="DeltaTime" Hidden="true" />
+      <Property Name="FrameCount" Hidden="true" />
+      <Event Name="Idle" Hidden="true" />
+      <Property Name="IdleTime" Hidden="true" />
+      <Property Name="IsRunning" Hidden="true" />
+      <Property Name="LostTime" Hidden="true" />
+      <Method Name="OnClockTimeChanged" Hidden="true" />
+      <Method Name="Reset" Hidden="true" />
+      <Property Name="Speed" Hidden="true" />
+      <Method Name="Start" Hidden="true" />
+      <Method Name="Stop" Hidden="true" />
+      <Property Name="Time" Hidden="true" />
+      <Event Name="TimeChanged" Hidden="true" />
+      <Method Name="UpdateEventArgs" Hidden="true" />
+      <Method Name="VariableStepTimer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAIAABBAACAFBAABAEQAQBABAACAwAAAIBAAAAAQgwA=</HashCode>
+      <FileName>Timing\Timers\VariableStepTimer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Game.Timing.FixedStepTimer">
+    <Position X="5.25" Y="5.25" Width="2" />
+    <Members>
+      <Field Name="_clock" Hidden="true" />
+      <Field Name="_eventArgs" Hidden="true" />
+      <Field Name="_maxNumberOfSteps" Hidden="true" />
+      <Field Name="_maxStepSize" Hidden="true" />
+      <Field Name="_stepSize" Hidden="true" />
+      <Property Name="AccumulatedTime" Hidden="true" />
+      <Property Name="Clock" Hidden="true" />
+      <Property Name="DeltaTime" Hidden="true" />
+      <Method Name="FixedStepTimer" Hidden="true" />
+      <Property Name="FrameCount" Hidden="true" />
+      <Event Name="Idle" Hidden="true" />
+      <Property Name="IdleTime" Hidden="true" />
+      <Property Name="IsRunning" Hidden="true" />
+      <Property Name="LostTime" Hidden="true" />
+      <Method Name="OnClockTimeChanged" Hidden="true" />
+      <Method Name="Reset" Hidden="true" />
+      <Property Name="Speed" Hidden="true" />
+      <Method Name="Start" Hidden="true" />
+      <Method Name="Stop" Hidden="true" />
+      <Property Name="Time" Hidden="true" />
+      <Event Name="TimeChanged" Hidden="true" />
+      <Method Name="UpdateEventArgs" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAIAABBAAKEBBAAFIAQAQBABAACAwAAAIDAAQAgAgwA=</HashCode>
+      <FileName>Timing\Timers\FixedStepTimer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Game.Timing.HighPrecisionClock">
+    <Position X="0.5" Y="5.25" Width="1.75" />
+    <Members>
+      <Field Name="_eventArgs" Hidden="true" />
+      <Field Name="_lastTime" Hidden="true" />
+      <Field Name="_totalTimeWatch" Hidden="true" />
+      <Property Name="DeltaTime" Hidden="true" />
+      <Property Name="GameTime" Hidden="true" />
+      <Method Name="HighPrecisionClock" Hidden="true" />
+      <Property Name="IsRunning" Hidden="true" />
+      <Property Name="MaxDeltaTime" Hidden="true" />
+      <Method Name="Reset" Hidden="true" />
+      <Method Name="ResetDeltaTime" Hidden="true" />
+      <Method Name="Start" Hidden="true" />
+      <Method Name="Stop" Hidden="true" />
+      <Event Name="TimeChanged" Hidden="true" />
+      <Property Name="TotalTime" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAACAABBABAEAJQAAAAACAAAEAIAAAAAAAgAA=</HashCode>
+      <FileName>Timing\Clocks\HighPrecisionClock.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Game.Timing.GameTimerEventArgs">
+    <Position X="7" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAABAAAAAAABAAAAAAAAABAAAAAAgQA=</HashCode>
+      <FileName>Timing\Timers\GameTimerEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.Timing.GameClockEventArgs">
+    <Position X="2.5" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAIAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Timing\Clocks\GameClockEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DigitalRune.Game.Timing.IGameTimer">
+    <Position X="5.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAACABBAABAAAAQAABAAAAAAAAIBAAAAAAgwA=</HashCode>
+      <FileName>Timing\Timers\IGameTimer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Clock" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="DigitalRune.Game.Timing.IGameClock">
+    <Position X="0.5" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAABAABAEAIQAAAAAAAAAEAIAAAAAAAgAA=</HashCode>
+      <FileName>Timing\Clocks\IGameClock.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

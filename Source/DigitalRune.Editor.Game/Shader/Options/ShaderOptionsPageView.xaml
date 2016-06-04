@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="DigitalRune.Editor.Shader.ShaderOptionsPageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:shader="clr-namespace:DigitalRune.Editor.Shader"
+             d:DataContext="{x:Static shader:ShaderOptionsPageViewModel.DesignInstance}"
+             d:DesignHeight="350"
+             d:DesignWidth="500"
+             x:ClassModifier="internal"
+             mc:Ignorable="d">
+    <StackPanel>
+        <TextBlock Margin="0,0,0,4">Compile effects with:</TextBlock>
+        <CheckBox Margin="0,0,0,4" IsChecked="{Binding IsFxcEnabled}">DirectX (fxc.exe)*</CheckBox>
+        <CheckBox Margin="0,0,0,4" IsChecked="{Binding IsMonoGameEnabled}">MonoGame</CheckBox>
+        <CheckBox Margin="0,0,0,4" IsChecked="{Binding IsXnaEnabled}">XNA**</CheckBox>
+        <TextBlock Margin="0,0,0,4" FontStyle="Italic">
+            * Requires Microsoft DirectX SDK (June 2010)
+            <LineBreak />
+            ** Requires Microsoft XNA Game Studio 4.0
+        </TextBlock>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Editor                    Namespace: DigitalRune.Editor.Search">
+    <Position X="0.5" Y="0.5" Height="0.469" Width="2.418" />
+  </Comment>
+  <Class Name="DigitalRune.Editor.Search.SearchExtension" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <Members>
+      <Field Name="_documentService" Hidden="true" />
+      <Field Name="_findAndReplaceViewModel" Hidden="true" />
+      <Field Name="_menuNodes" Hidden="true" />
+      <Field Name="_quickFindCommandBinding" Hidden="true" />
+      <Field Name="_quickFindCommandItem" Hidden="true" />
+      <Field Name="_recentFindPatterns" Hidden="true" />
+      <Field Name="_recentReplacePatterns" Hidden="true" />
+      <Field Name="_resourceDictionary" Hidden="true" />
+      <Field Name="_searchableIterator" Hidden="true" />
+      <Field Name="_searchResultIterator" Hidden="true" />
+      <Field Name="_toolBarNodes" Hidden="true" />
+      <Method Name="AddCommandBindings" Hidden="true" />
+      <Method Name="AddCommands" Hidden="true" />
+      <Method Name="AddDataTemplates" Hidden="true" />
+      <Method Name="AddMenus" Hidden="true" />
+      <Method Name="AddRecentEntry" Hidden="true" />
+      <Method Name="AddToolBars" Hidden="true" />
+      <Method Name="CanFind" Hidden="true" />
+      <Method Name="Find" Hidden="true" />
+      <Property Name="FindAndReplaceViewModel" Hidden="true" />
+      <Method Name="FindNext" Hidden="true" />
+      <Method Name="FindPrevious" Hidden="true" />
+      <Method Name="InitializeSearchService" Hidden="true" />
+      <Method Name="InvalidateCommands" Hidden="true" />
+      <Method Name="LoadSettings" Hidden="true" />
+      <Field Name="Logger" Hidden="true" />
+      <Field Name="MaxNumberOfCachedEntries" Hidden="true" />
+      <Method Name="OnActiveDocumentChanged" Hidden="true" />
+      <Method Name="OnEditorActivated" Hidden="true" />
+      <Method Name="OnGetViewModel" Hidden="true" />
+      <Method Name="OnInitialize" Hidden="true" />
+      <Method Name="OnQueryChanged" Hidden="true" />
+      <Method Name="OnShutdown" Hidden="true" />
+      <Method Name="OnStartup" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="PromptEndOfScopeReached" Hidden="true" />
+      <Property Name="Query" Hidden="true" />
+      <Property Name="RecentFindPatterns" Hidden="true" />
+      <Property Name="RecentReplacePatterns" Hidden="true" />
+      <Method Name="RemoveCommandBindings" Hidden="true" />
+      <Method Name="RemoveCommands" Hidden="true" />
+      <Method Name="RemoveDataTemplates" Hidden="true" />
+      <Method Name="RemoveMenus" Hidden="true" />
+      <Method Name="RemoveToolBars" Hidden="true" />
+      <Method Name="Replace" Hidden="true" />
+      <Method Name="ReplaceAll" Hidden="true" />
+      <Method Name="Reset" Hidden="true" />
+      <Method Name="SaveSettings" Hidden="true" />
+      <Method Name="SearchExtension" Hidden="true" />
+      <Property Name="SearchScopes" Hidden="true" />
+      <Method Name="ShowFindAndReplace" Hidden="true" />
+      <Method Name="ShowQuickFind" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>JMwgEAAACAJgBYIhIACQgCEAwAAKAIhICiQXACEAYCE=</HashCode>
+      <FileName>Extensions\Search\SearchExtension.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Editor.Search.SearchQuery">
+    <Position X="3.75" Y="3" Width="1.75" />
+    <Members>
+      <Field Name="_findPattern" Hidden="true" />
+      <Field Name="_isRelative" Hidden="true" />
+      <Field Name="_matchCase" Hidden="true" />
+      <Field Name="_matchWholeWorld" Hidden="true" />
+      <Field Name="_mode" Hidden="true" />
+      <Field Name="_replacePattern" Hidden="true" />
+      <Field Name="_scope" Hidden="true" />
+      <Field Name="_searchBackwards" Hidden="true" />
+      <Method Name="ConvertWildcardsToRegex" Hidden="true" />
+      <Method Name="TrimNewLine" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAIJAAAAAIAAgKAADkAAiAAAAABAAAAIAAAAAAAAEBA=</HashCode>
+      <FileName>Extensions\Search\SearchQuery.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Mode" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="DigitalRune.Editor.Search.ISearchable">
+    <Position X="5.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Extensions\Search\ISearchable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Editor.Search.ISearchResult">
+    <Position X="7.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Extensions\Search\ISearchResult.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Editor.Search.ISearchScope">
+    <Position X="3.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Extensions\Search\ISearchScope.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Editor.Search.ISearchService">
+    <Position X="0.5" Y="1.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAEAAAAAAAgACAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\Search\ISearchService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Query" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="SearchScopes" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Enum Name="DigitalRune.Editor.Search.SearchMode">
+    <Position X="6.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAgIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\Search\SearchMode.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

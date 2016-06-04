@@ -1,0 +1,41 @@
+
+#----------------------------- Global Properties ----------------------------#
+
+/outputDir:bin
+/intermediateDir:obj
+/platform:Windows
+/config:
+/profile:HiDef
+/compress:False
+
+#-------------------------------- References --------------------------------#
+
+/reference:..\DigitalRune.Mathematics.Content.Pipeline\bin\MonoGame\Windows\Release\DigitalRune.Mathematics.Content.Pipeline.dll
+/reference:..\DigitalRune.Geometry.Content.Pipeline\bin\MonoGame\Windows\Release\DigitalRune.Geometry.Content.Pipeline.dll
+/reference:..\DigitalRune.Animation.Content.Pipeline\bin\MonoGame\Windows\Release\DigitalRune.Animation.Content.Pipeline.dll
+/reference:..\DigitalRune.Graphics.Content.Pipeline\bin\MonoGame\Windows\Release\DigitalRune.Graphics.Content.Pipeline.dll
+/reference:..\DigitalRune.Game.UI.Content.Pipeline\bin\MonoGame\Windows\Release\DigitalRune.Game.UI.Content.Pipeline.dll
+
+#---------------------------------- Content ---------------------------------#
+
+#begin DigitalRune.Editor.Game/Effects/TextureViewer.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DigitalRune.Editor.Game/Effects/TextureViewer.fx
+
+#begin DigitalRune.Editor.Game/Fonts/DejaVuSans.bmp
+/importer:TextureImporter
+/processor:FontTextureProcessor
+/processorParam:FirstCharacter= 
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Color
+/build:DigitalRune.Editor.Game/Fonts/DejaVuSans.bmp
+
+#begin DigitalRune.Editor.Game/Models/Misc/GroundPlane/GroundPlane.x
+/importer:OpenAssetImporter
+/processor:DRModelProcessor
+/processorParam:CreateMissingModelDescription=True
+/processorParam:CreateMissingMaterialDefinition=True
+/build:DigitalRune.Editor.Game/Models/Misc/GroundPlane/GroundPlane.x
+

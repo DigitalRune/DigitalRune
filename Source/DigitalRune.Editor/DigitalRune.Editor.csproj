@@ -1,0 +1,656 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ED3E54ED-9F94-4777-B09B-2866FAE5B881}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.Editor</RootNamespace>
+    <AssemblyName>DigitalRune.Editor</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <StartupObject></StartupObject>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <FileUpgradeFlags></FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <Utf8Output>true</Utf8Output>
+    <ExpressionBlendVersion>4.0.20901.0</ExpressionBlendVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\DigitalRune.Editor.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>..\DigitalRune\DigitalRuneRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\DigitalRune.Editor.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Raido.ico</ApplicationIcon>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationUI" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Windows.Threading, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-XAML.2.2.5\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Windows.Interactivity" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune.CommandLine\DigitalRune.CommandLine.csproj">
+      <Project>{f53cce9a-27a5-46f6-bcd2-ee20e026f5dd}</Project>
+      <Name>DigitalRune.CommandLine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.ServiceLocation\DigitalRune.ServiceLocation%28PCL%29.csproj">
+      <Project>{4a84fcaf-bdd3-403e-a409-346d8b36564b}</Project>
+      <Name>DigitalRune.ServiceLocation%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Windows.Controls\DigitalRune.Windows.Controls.csproj">
+      <Project>{6c1a27b5-4e09-4b52-ac71-9489ec0353e8}</Project>
+      <Name>DigitalRune.Windows.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Windows.Docking\DigitalRune.Windows.Docking.csproj">
+      <Project>{b39d4f11-6c1f-4f4a-aea9-715832c501cd}</Project>
+      <Name>DigitalRune.Windows.Docking</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Windows.Framework\DigitalRune.Windows.Framework.csproj">
+      <Project>{E3AD7CE4-30A9-42FD-A7AF-B25DD8FC6FBD}</Project>
+      <Name>DigitalRune.Windows.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Windows.Themes\DigitalRune.Windows.Themes.csproj">
+      <Project>{8bad82e2-172d-4bb2-915f-bdd9f262ee1f}</Project>
+      <Name>DigitalRune.Windows.Themes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Windows\DigitalRune.Windows.csproj">
+      <Project>{a560721a-6665-4534-80b6-9da1f79b00dd}</Project>
+      <Name>DigitalRune.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune\DigitalRune.csproj">
+      <Project>{5A0E3C60-1CA9-49D5-84CA-308CB8E3A3B4}</Project>
+      <Name>DigitalRune</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ICSharpCode.AvalonEdit\ICSharpCode.AvalonEdit.csproj">
+      <Project>{6c55b776-26d4-4db3-a6ab-87e783b2f3d1}</Project>
+      <Name>ICSharpCode.AvalonEdit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <None Include="App.config" />
+    <None Include="Class Diagrams\Collections.cd" />
+    <None Include="Class Diagrams\Editor.About.cd" />
+    <None Include="Class Diagrams\Editor.Commands.cd" />
+    <None Include="Class Diagrams\Editor.Diagnostics.cd" />
+    <None Include="Class Diagrams\Editor.Documents.cd" />
+    <None Include="Class Diagrams\Editor.Errors.cd" />
+    <None Include="Class Diagrams\Editor.Layout.cd" />
+    <None Include="Class Diagrams\Editor.Options.cd" />
+    <None Include="Class Diagrams\Editor.Outlines.cd" />
+    <None Include="Class Diagrams\Editor.Output.cd" />
+    <None Include="Class Diagrams\Editor.Printing.cd" />
+    <None Include="Class Diagrams\Editor.Properties.cd" />
+    <None Include="Class Diagrams\Editor.QuickLaunch.cd" />
+    <None Include="Class Diagrams\Editor.Search.cd" />
+    <None Include="Class Diagrams\Editor.Status.cd" />
+    <None Include="Class Diagrams\Editor.Text.cd" />
+    <None Include="Class Diagrams\Editor.Themes.cd" />
+    <None Include="Class Diagrams\Editor.cd" />
+    <None Include="Class Diagrams\Editor_CommandItems.cd" />
+    <None Include="Class Diagrams\Editor_Converters.cd" />
+    <None Include="Class Diagrams\Editor_Misc.cd" />
+    <Compile Include="Collections\MergeAlgorithm.cs" />
+    <Compile Include="Collections\MergeException.cs" />
+    <Compile Include="Collections\MergeOperation.cs" />
+    <Compile Include="Collections\MergePoint.cs" />
+    <Compile Include="Collections\MergeableNode.cs" />
+    <Compile Include="Collections\MergeableNodeCollection.cs" />
+    <Compile Include="Command Items\CommandCategories.cs" />
+    <Compile Include="Command Items\CommandGroup.cs" />
+    <Compile Include="Command Items\CommandItem.cs" />
+    <Compile Include="Command Items\CommandItemCollection.cs" />
+    <Compile Include="Command Items\CommandItem{T}.cs" />
+    <Compile Include="Command Items\CommandSeparator.cs" />
+    <Compile Include="Command Items\DelegateCommandItem.cs" />
+    <Compile Include="Command Items\ICommandItem.cs" />
+    <Compile Include="Command Items\Menu Items\MenuItemViewModel.cs" />
+    <Compile Include="Command Items\Menu Items\MenuItemViewModelCollection.cs" />
+    <Compile Include="Command Items\Menu Items\MenuSeparatorViewModel.cs" />
+    <Compile Include="Command Items\MenuManager.cs" />
+    <Compile Include="Command Items\RoutedCommandItem.cs" />
+    <Compile Include="Command Items\ToolBar Items\ToolBarButtonViewModel.cs" />
+    <Compile Include="Command Items\ToolBar Items\ToolBarCheckBoxViewModel.cs" />
+    <Compile Include="Command Items\ToolBar Items\ToolBarComboBoxViewModel.cs" />
+    <Compile Include="Command Items\ToolBar Items\ToolBarDropDownButtonViewModel.cs" />
+    <Compile Include="Command Items\ToolBar Items\ToolBarItemViewModel.cs" />
+    <Compile Include="Command Items\ToolBar Items\ToolBarItemViewModelCollection.cs" />
+    <Compile Include="Command Items\ToolBar Items\ToolBarSeparatorViewModel.cs" />
+    <Compile Include="Command Items\ToolBar Items\ToolBarSplitButtonViewModel.cs" />
+    <Compile Include="Command Items\ToolBar Items\ToolBarViewModel.cs" />
+    <Compile Include="Command Items\ToolBar Items\ToolBarViewModelCollection.cs" />
+    <Compile Include="Command Items\ToolBarManager.cs" />
+    <Compile Include="Converters\CommandItemToKeyGestureStringConverter.cs" />
+    <Compile Include="Converters\CommandItemToToolTipConverter.cs" />
+    <Compile Include="Converters\FilterNaNConverter.cs" />
+    <Compile Include="Converters\KeyGestureToStringConverter.cs" />
+    <Compile Include="Converters\LabelToTextConverter.cs" />
+    <Compile Include="Converters\MenuIconConverter.cs" />
+    <Compile Include="Editor\EditorDockStrategy.cs" />
+    <Compile Include="Editor\EditorDockTabItemViewModel.cs" />
+    <Compile Include="Editor\EditorDockTabPaneViewModel.cs" />
+    <Compile Include="Editor\EditorException.cs" />
+    <Compile Include="Editor\EditorExtension.cs" />
+    <Compile Include="Editor\EditorExtensionCollection.cs" />
+    <Compile Include="Editor\EditorHelper.cs" />
+    <Compile Include="Editor\EditorViewLocator.cs" />
+    <Compile Include="Editor\EditorViewModel.cs" />
+    <Compile Include="Editor\EditorViewModel_CommandLine.cs" />
+    <Compile Include="Editor\EditorViewModel_Commands.cs" />
+    <Compile Include="Editor\EditorViewModel_IDockControl.cs" />
+    <Compile Include="Editor\EditorViewModel_InputBindings.cs" />
+    <Compile Include="Editor\EditorViewModel_ScreenConduction.cs" />
+    <Page Include="Editor\EditorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Editor\EditorWindow.xaml.cs">
+      <DependentUpon>EditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Editor\FocusMessage.cs" />
+    <Compile Include="Editor\IEditorService.cs" />
+    <Compile Include="Editor\ServiceNotFoundException.cs" />
+    <Compile Include="Extensions\About\AboutExtension.cs" />
+    <Compile Include="Extensions\About\AboutExtension_CommandLine.cs" />
+    <Compile Include="Extensions\About\AboutViewModel.cs" />
+    <Page Include="Extensions\About\AboutWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\About\AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\About\DesignTimeAboutService.cs" />
+    <Compile Include="Extensions\About\EditorExtensionDescription.cs" />
+    <Compile Include="Extensions\About\IAboutService.cs" />
+    <Compile Include="Extensions\Commands\CommandExtension.cs" />
+    <Compile Include="Extensions\Commands\CommandExtension_Persistence.cs" />
+    <Compile Include="Extensions\Commands\CommandExtension_QuickLaunch.cs" />
+    <Page Include="Extensions\Commands\ResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Extensions\Commands\ShortcutsOptionsPageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Commands\ShortcutsOptionsPageView.xaml.cs">
+      <DependentUpon>ShortcutsOptionsPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Commands\ShortcutsOptionsPageViewModel.cs" />
+    <Compile Include="Extensions\Commands\ToolBarsCommandItem.cs" />
+    <Compile Include="Extensions\Diagnostics\DiagnosticsExtension.cs" />
+    <Compile Include="Extensions\Documents\DesignTimeDocument.cs" />
+    <Compile Include="Extensions\Documents\Dialogs\ReloadFileDialogResult.cs" />
+    <Page Include="Extensions\Documents\Dialogs\ReloadFileView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Documents\Dialogs\ReloadFileView.xaml.cs">
+      <DependentUpon>ReloadFileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Documents\Dialogs\ReloadFileViewModel.cs" />
+    <Compile Include="Extensions\Documents\Dialogs\SaveChangesDialogResult.cs" />
+    <Page Include="Extensions\Documents\Dialogs\SaveChangesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Documents\Dialogs\SaveChangesView.xaml.cs">
+      <DependentUpon>SaveChangesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Documents\Dialogs\SaveChangesViewModel.cs" />
+    <Compile Include="Extensions\Documents\Document.cs" />
+    <Compile Include="Extensions\Documents\DocumentExtension.cs" />
+    <Compile Include="Extensions\Documents\DocumentExtension_CommandLine.cs" />
+    <Compile Include="Extensions\Documents\DocumentExtension_Commands.cs" />
+    <Compile Include="Extensions\Documents\DocumentExtension_ContextMenu.cs" />
+    <Compile Include="Extensions\Documents\DocumentExtension_DragDrop.cs" />
+    <Compile Include="Extensions\Documents\DocumentExtension_FileMonitoring.cs" />
+    <Compile Include="Extensions\Documents\DocumentExtension_LoadSave.cs" />
+    <Compile Include="Extensions\Documents\DocumentExtension_RecentFiles.cs" />
+    <Compile Include="Extensions\Documents\DocumentExtension_Search.cs" />
+    <Compile Include="Extensions\Documents\DocumentFactory.cs" />
+    <Compile Include="Extensions\Documents\DocumentHelper.cs" />
+    <Compile Include="Extensions\Documents\DocumentToNameConverter.cs" />
+    <Compile Include="Extensions\Documents\DocumentType.cs" />
+    <Compile Include="Extensions\Documents\DocumentViewModel.cs" />
+    <Compile Include="Extensions\Documents\File Monitoring\FileChangeRecord.cs" />
+    <Compile Include="Extensions\Documents\File Monitoring\FileWatcher.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Extensions\Documents\IDocumentService.cs" />
+    <Compile Include="Extensions\Documents\Items\FilePathMenuItemViewModel.cs" />
+    <Compile Include="Extensions\Documents\Items\NewDocumentItem.cs" />
+    <Compile Include="Extensions\Documents\Items\RecentDocumentsItem.cs" />
+    <Page Include="Extensions\Documents\ResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Documents\Search Scopes\CurrentDocumentSearchScope.cs" />
+    <Compile Include="Extensions\Documents\Search Scopes\OpenDocumentsSearchScope.cs" />
+    <Compile Include="Extensions\Errors\Error.cs" />
+    <Compile Include="Extensions\Errors\ErrorExtension.cs" />
+    <Compile Include="Extensions\Errors\ErrorIconConverter.cs" />
+    <Compile Include="Extensions\Errors\ErrorType.cs" />
+    <Page Include="Extensions\Errors\ErrorsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Errors\ErrorsView.xaml.cs">
+      <DependentUpon>ErrorsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Errors\ErrorsViewModel.cs" />
+    <Compile Include="Extensions\Errors\IErrorService.cs" />
+    <Page Include="Extensions\Errors\ResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Layout\LayoutExtension.cs" />
+    <Compile Include="Extensions\Layout\LayoutExtension_CommandLine.cs" />
+    <Compile Include="Extensions\Layout\LayoutExtension_Layouts.cs" />
+    <Compile Include="Extensions\Layout\ManageLayoutsViewModel.cs" />
+    <Page Include="Extensions\Layout\ManageLayoutsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="Extensions\Layout\ManageLayoutsWindow.xaml.cs">
+      <DependentUpon>ManageLayoutsWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Extensions\Layout\ResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Extensions\Layout\SaveLayoutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="Extensions\Layout\SaveLayoutView.xaml.cs">
+      <DependentUpon>SaveLayoutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Layout\SaveLayoutViewModel.cs" />
+    <Compile Include="Extensions\Layout\WindowLayout.cs" />
+    <Page Include="Extensions\Layout\WindowLayoutCaptionBarView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Layout\WindowLayoutCaptionBarView.xaml.cs">
+      <DependentUpon>WindowLayoutCaptionBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Layout\WindowLayoutCaptionBarViewModel.cs" />
+    <Compile Include="Extensions\Layout\WindowLayoutItem.cs" />
+    <Compile Include="Extensions\Options\DesignTimeOptionsPageViewModel.cs" />
+    <Compile Include="Extensions\Options\IOptionsService.cs" />
+    <Compile Include="Extensions\Options\OptionsExtension.cs" />
+    <Compile Include="Extensions\Options\OptionsExtension_QuickLaunch.cs" />
+    <Compile Include="Extensions\Options\OptionsGroupViewModel.cs" />
+    <Compile Include="Extensions\Options\OptionsMergeAlgorithm.cs" />
+    <Compile Include="Extensions\Options\OptionsPageViewModel.cs" />
+    <Compile Include="Extensions\Options\OptionsViewModel.cs" />
+    <Page Include="Extensions\Options\OptionsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Options\OptionsWindow.xaml.cs">
+      <DependentUpon>OptionsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Outline\IOutlineService.cs" />
+    <Compile Include="Extensions\Outline\Outline.cs" />
+    <Compile Include="Extensions\Outline\OutlineExtension.cs" />
+    <Compile Include="Extensions\Outline\OutlineHelper.cs" />
+    <Compile Include="Extensions\Outline\OutlineItem.cs" />
+    <Compile Include="Extensions\Outline\OutlineItemCollection.cs" />
+    <Page Include="Extensions\Outline\OutlineView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Outline\OutlineView.xaml.cs">
+      <DependentUpon>OutlineView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Outline\OutlineViewModel.cs" />
+    <Page Include="Extensions\Outline\ResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Output\IOutputService.cs" />
+    <Compile Include="Extensions\Output\NLog\INLogTarget.cs" />
+    <Compile Include="Extensions\Output\NLog\NLogMessageEventArgs.cs" />
+    <Compile Include="Extensions\Output\NLog\NLogTarget.cs" />
+    <Compile Include="Extensions\Output\OutputExtension.cs" />
+    <Page Include="Extensions\Output\OutputView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Output\OutputView.xaml.cs">
+      <DependentUpon>OutputView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Output\OutputViewModel.cs" />
+    <Page Include="Extensions\Output\ResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Printing\IPrintDocumentProvider.cs" />
+    <Compile Include="Extensions\Printing\PrintExtension.cs" />
+    <Compile Include="Extensions\Printing\PrintPreviewViewModel.cs" />
+    <Page Include="Extensions\Printing\PrintPreviewWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Printing\PrintPreviewWindow.xaml.cs">
+      <DependentUpon>PrintPreviewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Properties\IPropertiesService.cs" />
+    <Compile Include="Extensions\Properties\PropertiesExtension.cs" />
+    <Page Include="Extensions\Properties\PropertiesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Properties\PropertiesView.xaml.cs">
+      <DependentUpon>PropertiesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Properties\PropertiesViewModel.cs" />
+    <Page Include="Extensions\Properties\ResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\QuickLaunch\IQuickLaunchService.cs" />
+    <Compile Include="Extensions\QuickLaunch\QuickLaunchExtension.cs" />
+    <Compile Include="Extensions\QuickLaunch\QuickLaunchItem.cs" />
+    <Page Include="Extensions\QuickLaunch\QuickLaunchItemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\QuickLaunch\QuickLaunchItemView.xaml.cs">
+      <DependentUpon>QuickLaunchItemView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Extensions\QuickLaunch\QuickLaunchView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\QuickLaunch\QuickLaunchView.xaml.cs">
+      <DependentUpon>QuickLaunchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\QuickLaunch\QuickLaunchViewModel.cs" />
+    <Page Include="Extensions\QuickLaunch\ResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Extensions\Search\FindAndReplaceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="Extensions\Search\FindAndReplaceView.xaml.cs">
+      <DependentUpon>FindAndReplaceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Search\FindAndReplaceViewModel.cs" />
+    <Compile Include="Extensions\Search\ISearchResult.cs" />
+    <Compile Include="Extensions\Search\ISearchScope.cs" />
+    <Compile Include="Extensions\Search\ISearchService.cs" />
+    <Compile Include="Extensions\Search\ISearchable.cs" />
+    <Compile Include="Extensions\Search\QuickFindBehavior.cs" />
+    <Compile Include="Extensions\Search\QuickFindCommandItem.cs" />
+    <Page Include="Extensions\Search\ResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="Extensions\Search\SearchExtension.cs" />
+    <Compile Include="Extensions\Search\SearchExtension_ISearchService.cs" />
+    <Compile Include="Extensions\Search\SearchMode.cs" />
+    <Compile Include="Extensions\Search\SearchQuery.cs" />
+    <Compile Include="Extensions\Search\SearchScopeCollection.cs" />
+    <Compile Include="Extensions\Search\SearchSettings.cs" />
+    <Compile Include="Extensions\Search\ToolBarQuickFindViewModel.cs" />
+    <Compile Include="Extensions\Status\IStatusService.cs" />
+    <Page Include="Extensions\Status\ResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Status\StatusConductor.cs" />
+    <Compile Include="Extensions\Status\StatusExtension.cs" />
+    <Page Include="Extensions\Status\StatusView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Status\StatusView.xaml.cs">
+      <DependentUpon>StatusView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Status\StatusViewModel.cs" />
+    <Page Include="Extensions\Status\TotalMemoryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Status\TotalMemoryView.xaml.cs">
+      <DependentUpon>TotalMemoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Status\TotalMemoryViewModel.cs" />
+    <Compile Include="Extensions\Text\DefaultFoldingStrategy.cs" />
+    <Page Include="Extensions\Text\GoTo\GoToLineView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Text\GoTo\GoToLineView.xaml.cs">
+      <DependentUpon>GoToLineView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Text\GoTo\GoToLineViewModel.cs" />
+    <Compile Include="Extensions\Text\Highlighting\HighlightingManager.cs" />
+    <Compile Include="Extensions\Text\Highlighting\ThemeAwareHighlightingDefinition.cs" />
+    <Compile Include="Extensions\Text\ITextService.cs" />
+    <Compile Include="Extensions\Text\LegalInfo.cs" />
+    <Page Include="Extensions\Text\Options\TextEditorOptionsPageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Text\Options\TextEditorOptionsPageView.xaml.cs">
+      <DependentUpon>TextEditorOptionsPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Text\Options\TextEditorOptionsPageViewModel.cs" />
+    <Page Include="Extensions\Text\ResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Text\Search\CurrentSelectionSearchScope.cs" />
+    <Compile Include="Extensions\Text\Search\SearchResult.cs" />
+    <Compile Include="Extensions\Text\Search\SearchResultMarker.cs" />
+    <Compile Include="Extensions\Text\Search\SearchableTextSegment.cs" />
+    <Compile Include="Extensions\Text\SelectedWordMarker.cs" />
+    <Page Include="Extensions\Text\Status\TextEditorStatusView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Text\Status\TextEditorStatusView.xaml.cs">
+      <DependentUpon>TextEditorStatusView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Text\Status\TextEditorStatusViewModel.cs" />
+    <Compile Include="Extensions\Text\SyntaxHighlightingItem.cs" />
+    <Compile Include="Extensions\Text\TextDocument.cs" />
+    <Compile Include="Extensions\Text\TextDocumentFactory.cs" />
+    <Compile Include="Extensions\Text\TextDocumentHelper.cs" />
+    <Page Include="Extensions\Text\TextDocumentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Text\TextDocumentView.xaml.cs">
+      <DependentUpon>TextDocumentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Text\TextDocumentViewModel.cs" />
+    <Compile Include="Extensions\Text\TextDocument_Search.cs" />
+    <Compile Include="Extensions\Text\TextExtension.cs" />
+    <Compile Include="Extensions\Text\TextExtension_Commands.cs" />
+    <Compile Include="Extensions\Text\TextExtension_ContextMenu.cs" />
+    <Compile Include="Extensions\Text\TextExtension_Options.cs" />
+    <Compile Include="Extensions\Text\TextIntelliSense.cs" />
+    <Compile Include="Extensions\Themes\IThemeService.cs" />
+    <Page Include="Extensions\Themes\ResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Themes\ThemeCommandItem.cs" />
+    <Compile Include="Extensions\Themes\ThemeExtension.cs" />
+    <Compile Include="Extensions\Themes\ThemeMessage.cs" />
+    <Page Include="Extensions\Themes\ThemeOptionsPageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Extensions\Themes\ThemeOptionsPageView.xaml.cs">
+      <DependentUpon>ThemeOptionsPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Themes\ThemeOptionsPageViewModel.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Page Include="Misc\Exception Handling\ExceptionControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Misc\Exception Handling\ExceptionControl.xaml.cs">
+      <DependentUpon>ExceptionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Misc\Exception Handling\ExceptionHelper.cs" />
+    <Compile Include="Misc\ExitCode.cs" />
+    <Compile Include="Misc\ProcessRunner.cs" />
+    <Compile Include="Misc\SingleInstanceApplication.cs" />
+    <Compile Include="Misc\TempDirectoryHelper.cs" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="Properties\AssemblyInfo.template" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Page Include="Resources\DataTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Resource Include="Resources\Raido.ico" />
+    <Content Include="XSHD\**\*.xshd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="DigitalRune.Editor.Layout.WindowLayoutCaptionBarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             xmlns:editor="clr-namespace:DigitalRune.Editor"
+             xmlns:local="clr-namespace:DigitalRune.Editor.Layout"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Margin="5,0,0,0"
+             d:DataContext="{d:DesignInstance local:WindowLayoutCaptionBarViewModel, IsDesignTimeCreatable=True}"
+             x:ClassModifier="internal"
+             mc:Ignorable="d">
+
+    <!--
+        IMPORTANT: Do not add a TextBlock as content, instead set the text directly as content.
+        Otherwise the Foreground brush is not correctly inherited. (For additional information see
+        ToolBarTextStyle in Resources\DataTemplates.xaml.)
+    -->
+    <dr:ToolBarDropDownButton HorizontalContentAlignment="Left"
+                              Content="{Binding SelectedItem.Text, Converter={x:Static editor:LabelToTextConverter.Instance}, Mode=OneWay}"
+                              ToolTip="{Binding SelectedItem, Converter={x:Static editor:CommandItemToToolTipConverter.Instance}, Mode=OneWay}">
+        <dr:ToolBarDropDownButton.DropDown>
+            <!--  WPF-Bug!? If we do not set DataContext to itself than it is null and data binding does not work.  -->
+            <ContextMenu DataContext="{Binding}"
+                         ItemsSource="{Binding Items}"
+                         UsesItemContainerTemplate="True" />
+        </dr:ToolBarDropDownButton.DropDown>
+    </dr:ToolBarDropDownButton>
+
+</UserControl>

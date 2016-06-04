@@ -1,0 +1,464 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4D9E590D-DECA-42EF-BA13-73F8D4ED1EB2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.Editor.Game</RootNamespace>
+    <AssemblyName>DigitalRune.Editor.Game</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>
+    </DocumentationFile>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\DigitalRune\DigitalRuneRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="AssimpNet, Version=3.3.1.0, Culture=neutral, PublicKeyToken=0d51b391f59f42a6, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Build" />
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="SharpDX">
+      <HintPath>..\MonoGame\ThirdParty\Dependencies\SharpDX\Windows\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct2D1">
+      <HintPath>..\MonoGame\ThirdParty\Dependencies\SharpDX\Windows\SharpDX.Direct2D1.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Windows.Threading, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-XAML.2.2.5\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune.Animation.Content.Pipeline\DigitalRune.Animation.Content.Pipeline%28MG,Win%29.csproj">
+      <Project>{461af538-60c1-4bdc-a1b8-60c2750e5bc3}</Project>
+      <Name>DigitalRune.Animation.Content.Pipeline%28MG,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Animation\DigitalRune.Animation%28PCL%29.csproj">
+      <Project>{fca3d67b-a19a-4398-a126-171e5e1217f1}</Project>
+      <Name>DigitalRune.Animation%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Editor\DigitalRune.Editor.csproj">
+      <Project>{ED3E54ED-9F94-4777-B09B-2866FAE5B881}</Project>
+      <Name>DigitalRune.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Game.UI.Content.Pipeline\DigitalRune.Game.UI.Content.Pipeline%28MG,Win%29.csproj">
+      <Project>{9ab1d52a-7ff5-407b-9920-65dabac6c573}</Project>
+      <Name>DigitalRune.Game.UI.Content.Pipeline%28MG,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Game\DigitalRune.Game%28PCL%29.csproj">
+      <Project>{8D76487A-0B6F-4517-85B0-2762AE1B4E1A}</Project>
+      <Name>DigitalRune.Game%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Geometry.Content.Pipeline\DigitalRune.Geometry.Content.Pipeline%28MG,Win%29.csproj">
+      <Project>{b7ad9a5b-2dd8-48fe-8e00-65430309d170}</Project>
+      <Name>DigitalRune.Geometry.Content.Pipeline%28MG,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Geometry\DigitalRune.Geometry%28PCL%29.csproj">
+      <Project>{8a8fe6d4-0906-4fc3-847c-31387dfdcb2c}</Project>
+      <Name>DigitalRune.Geometry%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Graphics.Content.Pipeline\DigitalRune.Graphics.Content.Pipeline%28MG,Win%29.csproj">
+      <Project>{686e45de-6daf-4bf0-affc-7a51bf7d98ca}</Project>
+      <Name>DigitalRune.Graphics.Content.Pipeline%28MG,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Graphics\DigitalRune.Graphics%28MG,Win%29.csproj">
+      <Project>{5926E2B5-50AD-433D-91F5-DD947F26D8FD}</Project>
+      <Name>DigitalRune.Graphics%28MG,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Mathematics.Content.Pipeline\DigitalRune.Mathematics.Content.Pipeline%28MG,Win%29.csproj">
+      <Project>{3ae1d04a-662d-4411-bb81-95c8655ac05e}</Project>
+      <Name>DigitalRune.Mathematics.Content.Pipeline%28MG,Win%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Mathematics\DigitalRune.Mathematics%28PCL%29.csproj">
+      <Project>{a5833de3-70a9-4258-966f-77456d6c7900}</Project>
+      <Name>DigitalRune.Mathematics%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Particles\DigitalRune.Particles%28PCL%29.csproj">
+      <Project>{156169b7-af63-478c-90cb-f6652b867e4f}</Project>
+      <Name>DigitalRune.Particles%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.ServiceLocation\DigitalRune.ServiceLocation%28PCL%29.csproj">
+      <Project>{4A84FCAF-BDD3-403E-A409-346D8B36564B}</Project>
+      <Name>DigitalRune.ServiceLocation%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Windows.Controls\DigitalRune.Windows.Controls.csproj">
+      <Project>{6c1a27b5-4e09-4b52-ac71-9489ec0353e8}</Project>
+      <Name>DigitalRune.Windows.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Windows.Docking\DigitalRune.Windows.Docking.csproj">
+      <Project>{b39d4f11-6c1f-4f4a-aea9-715832c501cd}</Project>
+      <Name>DigitalRune.Windows.Docking</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Windows.Framework\DigitalRune.Windows.Framework.csproj">
+      <Project>{e3ad7ce4-30a9-42fd-a7af-b25dd8fc6fbd}</Project>
+      <Name>DigitalRune.Windows.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Windows.Themes\DigitalRune.Windows.Themes.csproj">
+      <Project>{8BAD82E2-172D-4BB2-915F-BDD9F262EE1F}</Project>
+      <Name>DigitalRune.Windows.Themes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Windows\DigitalRune.Windows.csproj">
+      <Project>{a560721a-6665-4534-80b6-9da1f79b00dd}</Project>
+      <Name>DigitalRune.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune\DigitalRune.csproj">
+      <Project>{5a0e3c60-1ca9-49d5-84ca-308cb8e3a3b4}</Project>
+      <Name>DigitalRune</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ICSharpCode.AvalonEdit\ICSharpCode.AvalonEdit.csproj">
+      <Project>{6c55b776-26d4-4db3-a6ab-87e783b2f3d1}</Project>
+      <Name>ICSharpCode.AvalonEdit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MonoGame\MonoGame.Framework.Content.Pipeline\MonoGame.Framework.Content.Pipeline.Windows.csproj">
+      <Project>{B950DE10-AC5D-4BD9-B817-51247C4A732D}</Project>
+      <Name>MonoGame.Framework.Content.Pipeline.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MonoGame\MonoGame.Framework\MonoGame.Framework.Windows.csproj">
+      <Project>{7de47032-a904-4c29-bd22-2d235e8d91ba}</Project>
+      <Name>MonoGame.Framework.Windows</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\DigitalRune.Graphics\Content\DataFormat.cs">
+      <Link>Content\DataFormat.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\DdsHelper.cs">
+      <Link>Content\DdsHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\FourCC.cs">
+      <Link>Content\FourCC.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\HalfHelper.cs">
+      <Link>Content\HalfHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\Image.cs">
+      <Link>Content\Image.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\ImageAccessor.cs">
+      <Link>Content\ImageAccessor.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\ImageCollection.cs">
+      <Link>Content\ImageCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\MarshalHelper.cs">
+      <Link>Content\MarshalHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\Texture.cs">
+      <Link>Content\Texture.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\TextureDescription.cs">
+      <Link>Content\TextureDescription.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\TextureDimension.cs">
+      <Link>Content\TextureDimension.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\TextureHelper.cs">
+      <Link>Content\TextureHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\TextureHelper_DirectXTex.cs">
+      <Link>Content\TextureHelper_DirectXTex.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\TextureHelper_Resize.cs">
+      <Link>Content\TextureHelper_Resize.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\TextureHelper_Squish.cs">
+      <Link>Content\TextureHelper_Squish.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\TgaHelper.cs">
+      <Link>Content\TgaHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\VertexElement.cs">
+      <Link>Content\VertexElement.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\VertexElementSemantic.cs">
+      <Link>Content\VertexElementSemantic.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\WicHelper.cs">
+      <Link>Content\WicHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\DigitalRune.Graphics\Content\XnaHelper.cs">
+      <Link>Content\XnaHelper.cs</Link>
+    </Compile>
+    <Compile Include="Game\ContentPipeline\GameModelProcessor.cs" />
+    <Compile Include="Game\ContentPipeline\GameContentBuilder.cs" />
+    <Compile Include="Game\ContentPipeline\GameContentBuildLogger.cs" />
+    <Compile Include="Game\Graphics\DebugGraphicsScreen.cs" />
+    <Compile Include="Game\GameExtension.cs" />
+    <Compile Include="Game\GameHelper.cs" />
+    <Compile Include="Game\GraphicsDeviceManager.cs" />
+    <Compile Include="Game\GameView.xaml.cs">
+      <DependentUpon>GameView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Game\GameViewModel.cs" />
+    <Compile Include="Game\Graphics\DeferredGraphicsScreen\CustomSceneQuery.cs" />
+    <Compile Include="Game\Graphics\DeferredGraphicsScreen\DeferredGraphicsDebugMode.cs" />
+    <Compile Include="Game\Graphics\DeferredGraphicsScreen\DeferredGraphicsScreen.cs" />
+    <Compile Include="Game\Graphics\DeferredGraphicsScreen\GBufferRenderer.cs" />
+    <Compile Include="Game\Graphics\DeferredGraphicsScreen\LightBufferRenderer.cs" />
+    <Compile Include="Game\Graphics\DeferredGraphicsScreen\PreprocessingSceneQuery.cs" />
+    <Compile Include="Game\Inspector\Vector2Editor.xaml.cs">
+      <DependentUpon>Vector2Editor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Game\Inspector\PoseEditor.xaml.cs">
+      <DependentUpon>PoseEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Game\Inspector\Vector4Editor.xaml.cs">
+      <DependentUpon>Vector4Editor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Game\Inspector\Vector3Editor.xaml.cs">
+      <DependentUpon>Vector3Editor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Game\Interactivity\KeyboardNavigationBehavior.cs" />
+    <Compile Include="Game\Interactivity\MouseLookBehavior.cs" />
+    <Compile Include="Game\Interactivity\TurntableBehavior.cs" />
+    <Compile Include="Game\Interactivity\ArcballBehavior.cs" />
+    <Compile Include="Game\Interactivity\CameraFieldOfViewBehavior.cs" />
+    <Compile Include="Game\Interactivity\MouseZoomBehavior.cs" />
+    <Compile Include="Game\MonoGameService.cs" />
+    <Compile Include="Game\TriangleGraphicsScreen.cs" />
+    <Compile Include="Game\GamePresentationTarget.cs" />
+    <Compile Include="Game\XnaColorValueConverter.cs" />
+    <Compile Include="Models\AnimationPropertyViewModel.cs" />
+    <Compile Include="Models\CameraMode.cs" />
+    <Compile Include="Models\GraphicsEngine.cs" />
+    <Compile Include="Models\ModelDocumentState.cs" />
+    <Compile Include="Models\ModelDocument_Inspector.cs" />
+    <Compile Include="Models\ModelDocument_Validation.cs" />
+    <Compile Include="Models\ModelDocument_Outliner.cs" />
+    <Compile Include="Models\ModelDocument.cs" />
+    <Compile Include="Models\ModelDocumentFactory.cs" />
+    <Compile Include="Models\ModelDocumentView.xaml.cs">
+      <DependentUpon>ModelDocumentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelDocumentViewModel.cs" />
+    <Compile Include="Game\Graphics\BasicGraphicsScreen.cs" />
+    <Compile Include="Models\ModelsExtension.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Shader\ShaderExtension_Nvidia.cs" />
+    <Compile Include="Shader\IntelliSense\CgIntelliSense.cs" />
+    <Compile Include="Shader\IntelliSense\CompletionData\ConstantCompletionData.cs" />
+    <Compile Include="Shader\IntelliSense\CompletionData\FunctionCompletionData.cs" />
+    <Compile Include="Shader\IntelliSense\CompletionData\GuessCompletionData.cs" />
+    <Compile Include="Shader\IntelliSense\CompletionData\KeywordCompletionData.cs" />
+    <Compile Include="Shader\IntelliSense\CompletionData\MacroCompletionData.cs" />
+    <Compile Include="Shader\IntelliSense\CompletionData\NamedCompletionData.cs" />
+    <Compile Include="Shader\IntelliSense\CompletionData\StateCompletionData.cs" />
+    <Compile Include="Shader\IntelliSense\CompletionData\TypeCompletionData.cs" />
+    <Compile Include="Shader\IntelliSense\CompletionData\VariableCompletionData.cs" />
+    <Compile Include="Shader\IntelliSense\HlslIntelliSense.cs" />
+    <Compile Include="Shader\IntelliSense\ShaderIntelliSense.cs" />
+    <Compile Include="Shader\IntelliSense\ShaderIntelliSense_Interaction.cs" />
+    <Compile Include="Shader\IntelliSense\ShaderParser.cs" />
+    <Compile Include="Shader\IntelliSense\ShaderRegion.cs" />
+    <Compile Include="Shader\Options\ShaderOptionsPageView.xaml.cs">
+      <DependentUpon>ShaderOptionsPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Shader\Options\ShaderOptionsPageViewModel.cs" />
+    <Compile Include="Shader\ShaderDocumentFactory.cs" />
+    <Compile Include="Shader\ShaderExtension_FXC.cs" />
+    <Compile Include="Shader\ShaderExtension_MonoGame.cs" />
+    <Compile Include="Shader\ShaderExtension_XNA.cs" />
+    <Compile Include="Shader\ShaderExtension.cs" />
+    <Compile Include="Shader\Tools\BuildLogger.cs" />
+    <Compile Include="Shader\Tools\Fxc.cs" />
+    <Compile Include="Shader\Tools\ShaderPerf.cs" />
+    <Compile Include="Shader\Tools\XnaContentBuilder.cs" />
+    <Compile Include="Textures\ColorChannels.cs" />
+    <Compile Include="Textures\TextureDocument.cs" />
+    <Compile Include="Textures\TextureGraphicsScreen.cs" />
+    <Compile Include="Textures\TextureDocumentFactory.cs" />
+    <Compile Include="Textures\TextureHelper.cs" />
+    <Compile Include="Textures\TextureDocumentView.xaml.cs">
+      <DependentUpon>TextureDocumentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Textures\TextureDocumentViewModel.cs" />
+    <Compile Include="Textures\TexturesExtension.cs" />
+    <Compile Include="Textures\TexturePresentationTarget.cs" />
+    <None Include="app.config" />
+    <None Include="Class Diagrams\Editor.Models.cd" />
+    <None Include="Class Diagrams\Editor.Shader.cd" />
+    <None Include="Class Diagrams\Editor.Textures.cd" />
+    <None Include="Class Diagrams\Editor.Game.cd" />
+    <None Include="Class Diagrams\Editor.Colors.cd" />
+    <None Include="packages.config" />
+    <Compile Include="Colors\ColorExtension.cs" />
+    <Compile Include="Colors\ColorView.xaml.cs">
+      <DependentUpon>ColorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Colors\ColorViewModel.cs" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Page Include="Colors\ColorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Colors\ResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Game\Inspector\Vector2Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Game\Inspector\PoseEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Game\Inspector\Vector4Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Game\Inspector\Vector3Editor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Game\ResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Game\GameView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Models\ResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Models\ModelDocumentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Properties\AssemblyInfo.template" />
+    <Page Include="Shader\Options\ShaderOptionsPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Shader\ResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Textures\ResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Textures\TextureDocumentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\DigitalRune\CustomDictionary.xml">
+      <Link>CustomDictionary.xml</Link>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\MonoGame\ThirdParty\Dependencies\assimp\Assimp64.dll">
+      <Link>Assimp64.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\MonoGame\ThirdParty\Dependencies\assimp\AssimpNet.dll">
+      <Link>AssimpNet.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\MonoGame\ThirdParty\Dependencies\MojoShader\Windows\libmojoshader_64.dll">
+      <Link>libmojoshader_64.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\MonoGame\ThirdParty\Dependencies\NVTT\Windows\x64\nvtt.dll">
+      <Link>nvtt.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\MonoGame\ThirdParty\Dependencies\FreeImage.NET\Windows\FreeImage.dll">
+      <Link>FreeImage.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\MonoGame\ThirdParty\Dependencies\PVRTexLibNET\PVRTexLibNET.dll">
+      <Link>PVRTexLibNET.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\MonoGame\ThirdParty\Dependencies\PVRTexLibNET\Windows\x64\PVRTexLibWrapper.dll">
+      <Link>PVRTexLibWrapper.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

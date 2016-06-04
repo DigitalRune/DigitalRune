@@ -1,0 +1,135 @@
+﻿<Window x:Class="DigitalRune.Editor.About.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:about="clr-namespace:DigitalRune.Editor.About"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:dr="http://schemas.digitalrune.com/windows"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Width="460"
+        Height="360"
+        MinWidth="460"
+        MinHeight="360"
+        ResizeMode="CanResize"
+        d:DataContext="{x:Static about:AboutViewModel.DesignInstance}"
+        dr:WindowsHelper.CanMaximize="False"
+        dr:WindowsHelper.CanMinimize="False"
+        dr:WindowsHelper.ShowIcon="False"
+        x:ClassModifier="internal"
+        mc:Ignorable="d">
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style BasedOn="{StaticResource {x:Type Window}}" TargetType="about:AboutWindow" />
+            <dr:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Margin="11">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1*" MinHeight="80" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1*" MinHeight="80" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,11">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <dr:MultiFrameImage Width="48"
+                                Height="48"
+                                Margin="0 0 11 0"
+                                Source="{Binding AboutService.Icon, Mode=OneTime}"
+                                Visibility="{Binding AboutService.Icon, Converter={StaticResource NullToVisibilityConverter}, Mode=OneTime}" />
+
+            <StackPanel Grid.Column="1" Orientation="Vertical">
+                <TextBlock FontWeight="Bold" Text="{Binding AboutService.ApplicationName, Mode=OneTime}" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Version " />
+                    <TextBlock Text="{Binding AboutService.Version, Mode=OneTime}" />
+                </StackPanel>
+                <TextBlock Text="{Binding AboutService.Copyright, Mode=OneTime}" TextWrapping="Wrap" />
+                <ContentPresenter Content="{Binding AboutService.Information, Mode=OneTime}" />
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0">Installed extensions:</TextBlock>
+            <ListBox Name="ExtensionListBox"
+                     Grid.Row="1"
+                     IsSynchronizedWithCurrentItem="True"
+                     ItemsSource="{Binding AboutService.ExtensionDescriptions, Mode=OneTime}"
+                     SelectedIndex="0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name, Mode=OneTime}" />
+                            <TextBlock Text=" " />
+                            <TextBlock Text="{Binding Version, Mode=OneTime}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+        <GridSplitter Grid.Row="2"
+                      Height="5"
+                      Margin="0,0,0,6"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Center"
+                      Background="Transparent"
+                      IsTabStop="False" />
+
+        <Grid Grid.Row="3"
+              Margin="0,0,0,11"
+              DataContext="{Binding AboutService.ExtensionDescriptions, Mode=OneTime}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0">Extension details:</TextBlock>
+            <Grid Grid.Row="1">
+                <TextBox IsReadOnly="True"
+                         Padding="45,0,0,0"
+                         Text="{Binding Description, Mode=OneTime}"
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto" />
+                <Border Margin="1"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Stretch"
+                        Background="Transparent">
+                    <dr:Icon Width="32"
+                             Height="32"
+                             Margin="5"
+                             VerticalAlignment="Top"
+                             Source="{Binding Icon, Mode=OneTime}" />
+                </Border>
+            </Grid>
+        </Grid>
+
+        <StackPanel Grid.Row="4"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+            <Button Width="80"
+                    Margin="0,0,7,0"
+                    HorizontalAlignment="Center"
+                    Command="{Binding CloseAboutDialogCommand}"
+                    IsCancel="True"
+                    IsDefault="True">
+                OK
+            </Button>
+            <Button Width="80"
+                    HorizontalAlignment="Center"
+                    Command="{Binding CopyToClipboardCommand}">
+                _Copy Info
+            </Button>
+        </StackPanel>
+    </Grid>
+
+</Window>

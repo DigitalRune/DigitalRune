@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Game.Input      Namespace: DigitalRune.Game.Input">
+    <Position X="3.75" Y="0.5" Height="0.489" Width="2.676" />
+  </Comment>
+  <Comment CommentText="Assembly: Microsoft.Xna.Framework       Namespace: Microsoft.Xna.Framework.Input">
+    <Position X="0.5" Y="0.5" Height="0.489" Width="2.676" />
+  </Comment>
+  <Class Name="DigitalRune.Game.Input.InputManager" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="8.5" Width="2.25" />
+    <Members>
+      <Field Name="_accelerometerValue" Hidden="true" />
+      <Field Name="_areGamePadsHandled" Hidden="true" />
+      <Field Name="_enableMouseCentering" Hidden="true" />
+      <Field Name="_gamePadButtons" Hidden="true" />
+      <Field Name="_gamerServicesEnabled" Hidden="true" />
+      <Field Name="_gestures" Hidden="true" />
+      <Field Name="_isAccelerometerInitialized" Hidden="true" />
+      <Field Name="_keys" Hidden="true" />
+      <Field Name="_lastGamePadButtons" Hidden="true" />
+      <Field Name="_lastKey" Hidden="true" />
+      <Field Name="_lastMouseButton" Hidden="true" />
+      <Field Name="_logicalPlayers" Hidden="true" />
+      <Field Name="_modifierKeys" Hidden="true" />
+      <Field Name="_mouseButtons" Hidden="true" />
+      <Field Name="_newGamePadStates" Hidden="true" />
+      <Field Name="_newKeyboardState" Hidden="true" />
+      <Field Name="_newMouseState" Hidden="true" />
+      <Field Name="_pressedKeys" Hidden="true" />
+      <Field Name="_pressedKeysAsReadOnly" Hidden="true" />
+      <Field Name="_previousGamePadStates" Hidden="true" />
+      <Field Name="_previousKeyboardState" Hidden="true" />
+      <Field Name="_previousMouseState" Hidden="true" />
+      <Field Name="_settings" Hidden="true" />
+      <Field Name="_touchCollection" Hidden="true" />
+      <Property Name="AccelerometerValue" Hidden="true" />
+      <Field Name="AnalogButtons" Hidden="true" />
+      <Property Name="Commands" Hidden="true" />
+      <Field Name="DefaultGamePadState" Hidden="true" />
+      <Property Name="EnableMouseCentering" Hidden="true" />
+      <Property Name="Gestures" Hidden="true" />
+      <Method Name="GetGamePadState" Hidden="true" />
+      <Method Name="GetKeyState" Hidden="true" />
+      <Method Name="GetLogicalPlayer" Hidden="true" />
+      <Method Name="GetPreviousGamePadState" Hidden="true" />
+      <Method Name="InputManager" Hidden="true" />
+      <Property Name="IsAccelerometerActive" Hidden="true" />
+      <Property Name="IsAccelerometerHandled" Hidden="true" />
+      <Method Name="IsDoubleClick" Hidden="true" />
+      <Method Name="IsDown" Hidden="true" />
+      <Method Name="IsGamePadHandled" Hidden="true" />
+      <Property Name="IsKeyboardHandled" Hidden="true" />
+      <Property Name="IsMouseOrTouchHandled" Hidden="true" />
+      <Method Name="IsPressed" Hidden="true" />
+      <Method Name="IsReleased" Hidden="true" />
+      <Method Name="IsUp" Hidden="true" />
+      <Property Name="KeyboardState" Hidden="true" />
+      <Field Name="LeftThumbstickButtons" Hidden="true" />
+      <Property Name="MaxNumberOfPlayers" Hidden="true" />
+      <Property Name="ModifierKeys" Hidden="true" />
+      <Property Name="MousePosition" Hidden="true" />
+      <Property Name="MousePositionDelta" Hidden="true" />
+      <Property Name="MousePositionDeltaRaw" Hidden="true" />
+      <Property Name="MousePositionRaw" Hidden="true" />
+      <Property Name="MouseState" Hidden="true" />
+      <Property Name="MouseWheelDelta" Hidden="true" />
+      <Property Name="PressedKeys" Hidden="true" />
+      <Property Name="PreviousKeyboardState" Hidden="true" />
+      <Property Name="PreviousMouseState" Hidden="true" />
+      <Field Name="RightThumbstickButtons" Hidden="true" />
+      <Method Name="SetAllHandled" Hidden="true" />
+      <Method Name="SetGamePadHandled" Hidden="true" />
+      <Method Name="SetLogicalPlayer" Hidden="true" />
+      <Property Name="Settings" Hidden="true" />
+      <Field Name="ThumbstickButtons" Hidden="true" />
+      <Property Name="TouchCollection" Hidden="true" />
+      <Field Name="Triggers" Hidden="true" />
+      <Method Name="UpdateAccelerometer" Hidden="true" />
+      <Method Name="UpdateGamePads" Hidden="true" />
+      <Method Name="UpdateKeyboard" Hidden="true" />
+      <Method Name="UpdateMouse" Hidden="true" />
+      <Method Name="UpdateTouch" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Game.Input.InputManager.LastButtonInfo&lt;T&gt;" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>InputManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Game.Input.InputManager.LastMouseButtonInfo&lt;T&gt;" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>InputManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>oG4RAkEoAyLCkAAK8QFCEBAAGAMAgwxAsIEBNRIDKxw=</HashCode>
+      <FileName>InputManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Game.Input.InputSettings">
+    <Position X="7.5" Y="1" Width="2" />
+    <Members>
+      <Method Name="InputSettings" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QAAAABAAAAAAgAAAAAgAAAAAAABBAAAAQAAAAACAAAA=</HashCode>
+      <FileName>InputSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Microsoft.Xna.Framework.Input.GamePadState" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+  </Struct>
+  <Struct Name="Microsoft.Xna.Framework.Input.KeyboardState" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Struct>
+  <Struct Name="Microsoft.Xna.Framework.Input.MouseState" Collapsed="true">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+  </Struct>
+  <Interface Name="DigitalRune.Game.Input.IInputService">
+    <Position X="3.75" Y="1.25" Width="2.75" />
+    <AssociationLine Name="KeyboardState" Type="Microsoft.Xna.Framework.Input.KeyboardState" FixedFromPoint="true">
+      <Path>
+        <Point X="3.75" Y="2.216" />
+        <Point X="2" Y="2.216" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>gCAAAgAoAQICgAAKMQFCEAAAAAMAAQBAsIEAABACCRg=</HashCode>
+      <FileName>IInputService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Settings" />
+      <Property Name="MouseState" />
+      <Property Name="PreviousMouseState" />
+      <Property Name="KeyboardState" />
+      <Property Name="PreviousKeyboardState" />
+    </ShowAsAssociation>
+  </Interface>
+  <Enum Name="DigitalRune.Game.Input.MouseButtons">
+    <Position X="7.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAABAAAAAAAAAAAAAACACQAAAAAAA=</HashCode>
+      <FileName>MouseButtons.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DigitalRune.Game.Input.ModifierKeys">
+    <Position X="7.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAFAAIAAAgBAAAAQAAAAAAAQAAAIJAAAAEAAAA=</HashCode>
+      <FileName>ModifierKeys.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DigitalRune.Game.Input.LogicalPlayerIndex">
+    <Position X="7.5" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAgAAAgAAIA=</HashCode>
+      <FileName>LogicalPlayerIndex.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

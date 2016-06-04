@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Editor                    Namespace: DigitalRune.Editor.Status">
+    <Position X="0.5" Y="0.5" Height="0.469" Width="2.418" />
+  </Comment>
+  <Class Name="DigitalRune.Editor.Status.StatusExtension" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <Members>
+      <Field Name="_resourceDictionary" Hidden="true" />
+      <Field Name="_statusConductor" Hidden="true" />
+      <Field Name="_totalMemory" Hidden="true" />
+      <Method Name="AddDataTemplates" Hidden="true" />
+      <Method Name="AddStatusBarItems" Hidden="true" />
+      <Method Name="OnGetViewModel" Hidden="true" />
+      <Method Name="OnInitialize" Hidden="true" />
+      <Method Name="OnShutdown" Hidden="true" />
+      <Method Name="OnStartup" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="RemoveDataTemplates" Hidden="true" />
+      <Method Name="RemoveStatusBarItems" Hidden="true" />
+      <Method Name="Show" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>KMgSAAAAAAAAAAAgAEAAACAAAAAGAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\Status\StatusExtension.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Editor.Status.StatusViewModel" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="1.5" Width="2.5" />
+    <Members>
+      <Field Name="_cancellationTokenSource" Hidden="true" />
+      <Field Name="_isCompleted" Hidden="true" />
+      <Field Name="_message" Hidden="true" />
+      <Field Name="_progress" Hidden="true" />
+      <Field Name="_showProgress" Hidden="true" />
+      <Field Name="_subject" Hidden="true" />
+      <Method Name="CanCancel" Hidden="true" />
+      <Method Name="Cancel" Hidden="true" />
+      <Method Name="CheckAccess" Hidden="true" />
+      <Field Name="DefaultDuration" Hidden="true" />
+      <Method Name="IProgress&lt;double&gt;.Report" Hidden="true" />
+      <Method Name="IProgress&lt;int&gt;.Report" Hidden="true" />
+      <Field Name="Logger" Hidden="true" />
+      <Method Name="OnActivated" Hidden="true" />
+      <Method Name="OnDeactivated" Hidden="true" />
+      <Method Name="Report" Hidden="true" />
+      <Method Name="ResetTaskbar" Hidden="true" />
+      <Method Name="StatusViewModel" Hidden="true" />
+      <Method Name="UpdateCommands" Hidden="true" />
+      <Method Name="UpdateTaskbar" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>yAgEAICAQEMQIAAAAAAAAACAICEIBBAEEMAAIACABAQ=</HashCode>
+      <FileName>Extensions\Status\StatusViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="DigitalRune.Editor.Status.IStatusService">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\Status\IStatusService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

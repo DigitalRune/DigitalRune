@@ -1,0 +1,2142 @@
+<?xml version="1.0"?>
+<!-- Syntax definition for HLSL and DirectX Effect Files by Martin Garstenauer, DigitalRune GmbH. -->
+
+<SyntaxDefinition name="HLSL" extensions = ".fx;.fxh;.hlsl" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+    <Color name="Comment" foreground="Green" exampleText="// comment" />
+    <Color name="String" foreground="DarkRed" exampleText="string text = &quot;Hello, World!&quot;"/>
+    <Color name="Char" foreground="DarkRed" exampleText="char linefeed = '\n';"/>
+    <Color name="Punctuation" exampleText="a(b.c);" />
+    <Color name="MethodCall" foreground="MidnightBlue" fontWeight="bold" exampleText="float3 v = mul(p, m);"/>
+    <Color name="NumberLiteral" foreground="DarkRed" exampleText="3.1415f"/>
+    <Color name="Literals" foreground="Blue"/>
+    
+    <Color name="Preprocessor" foreground="Blue" exampleText="#error Message" />
+    <Color name="LocalIncludeFile" foreground="DarkRed" exampleText="#include &quot;common.fxh&quot;"/>
+    <Color name="GlobalIncludeFile" foreground="DarkRed" exampleText="#include &lt;common.fxh&gt;"/>
+    <Color name="Macros" foreground="Black" fontWeight="bold" exampleText="__LINE__"/>
+    
+    <Color name="Assembler" foreground="Blue"/>
+    <Color name="DataTypes" foreground="Blue"/>
+    <Color name="ShaderType" foreground="Blue"/>
+    <Color name="ShaderModels" foreground="Blue"/>
+    <Color name="ShaderFragment" foreground="Blue"/>
+    
+    <Color name="StorageClass" foreground="Blue"/>
+    <Color name="InterpolationModifiers" foreground="Blue"/>
+    <Color name="TypeModifiers" foreground="Blue"/>
+    <Color name="SamplerTypes" foreground="Blue"/>
+    <Color name="StateBlock" foreground="Blue"/>
+    <Color name="TextureTypes" foreground="Blue"/>
+    <Color name="UserDefinedTypes" foreground="Blue"/>
+    <Color name="SelectionStatements" foreground="Blue"/>
+    <Color name="StatementModifiers" foreground="Blue"/>
+    <Color name="IterationStatements" foreground="Blue"/>
+    <Color name="JumpStatements" foreground="Blue"/>
+    <Color name="FunctionStorageClass" foreground="Blue"/>
+    <Color name="InputModifiers" foreground="Blue"/>
+    <Color name="GeometryShaderAttributes" foreground="Blue"/>
+    <Color name="PrimitiveType" foreground="Blue"/>
+    <Color name="StreamOutputObjectTypes" foreground="Blue"/>
+    <Color name="IntrinsicFunctions" foreground="Blue"/>
+    <Color name="TextureMethods" foreground="Blue"/>
+    
+    <Color name="Technique" foreground="BlueViolet"/>
+    <Color name="Pass" foreground="BlueViolet"/>
+    <Color name="TechniqueName" foreground="MidnightBlue"/>
+    <Color name="PassName" foreground="MidnightBlue"/>
+    
+    <Color name="SetStateGroup" foreground="Blue"/>
+    <Color name="LightStates" foreground="DarkCyan"/>
+    <Color name="LightValues" foreground="Brown"/>
+    <Color name="MaterialStates" foreground="DarkCyan"/>
+    <Color name="PixelPipeRenderStates" foreground="DarkCyan"/>
+    <Color name="VertexPipeRenderStates" foreground="DarkCyan"/>
+    <Color name="SamplerStates" foreground="DarkCyan"/>
+    <Color name="ShaderConstantStates" foreground="DarkCyan"/>
+    <Color name="TextureStates" foreground="DarkCyan"/>
+    <Color name="TransformStates" foreground="DarkCyan"/>
+    <Color name="BlendStates10" foreground="DarkCyan"/>
+    <Color name="DepthAndStencilStates10" foreground="DarkCyan"/>
+    <Color name="RasterizerStates10" foreground="DarkCyan"/>
+    <Color name="StateValues" foreground="Brown"/>
+    <Color name="AdditionalStateValues10" foreground="Brown"/>
+    <Color name="Semantics" foreground="Gray" fontWeight="bold"/>
+    
+    <RuleSet name="CharactersAndEscapeCharacters">
+        <Span begin="\\" end="." />
+    </RuleSet>
+    
+    
+    <RuleSet name="PreprocessorSet">
+        <Span>
+            <!-- preprocessor directives that allow other spans -->
+            <Begin>
+                (define|undef|include|if|ifdef|ifndef|elif|else|endif|line)\b
+            </Begin>
+            <RuleSet>
+                <Span color="LocalIncludeFile">
+                    <Begin>"</Begin>
+                    <End>"</End>
+                </Span>
+                <Span color="GlobalIncludeFile">
+                    <Begin>&lt;</Begin>
+                    <End>&gt;</End>
+                </Span>
+                <Span color="Comment" ruleSet="CommentMarkerSet">
+                    <Begin>//</Begin>
+                </Span>
+            </RuleSet>
+        </Span>
+        <Span>
+            <!-- preprocessor directives that don't allow other spans -->
+            <Begin>
+                error\b
+            </Begin>
+        </Span>
+    </RuleSet>
+    
+    
+    <RuleSet name="CommentMarkerSet">
+        <Keywords fontWeight="bold" foreground="DarkRed">
+            <Word>TODO</Word>
+            <Word>FIXME</Word>
+        </Keywords>
+        <Keywords fontWeight="bold" foreground="DarkRed">
+            <Word>HACK</Word>
+            <Word>UNDONE</Word>
+        </Keywords>
+    </RuleSet>
+    
+    
+    <!-- Rules shared between default rule set, AssemblerSet, and TechniquesAndPassesSet. -->
+    <RuleSet name="CommonSet">
+        <Rule color="Punctuation">
+            [?,.;()\[\]{}+\-/%*&lt;&gt;^=~!|&amp;]+
+        </Rule>
+        
+        <Span color="Preprocessor" ruleSet="PreprocessorSet">
+            <Begin>\#</Begin>
+        </Span>
+        
+        <Span color="Comment" ruleSet="CommentMarkerSet">
+            <Begin>//</Begin>
+        </Span>
+        
+        <Span color="Comment" ruleSet="CommentMarkerSet" multiline="true">
+            <Begin>/\*</Begin>
+            <End>\*/</End>
+        </Span>
+        
+        <Span color="String" ruleSet="CharactersAndEscapeCharacters">
+            <Begin>"</Begin>
+            <End>"</End>
+        </Span>
+        
+        <Span color="Char" ruleSet="CharactersAndEscapeCharacters">
+            <Begin>'</Begin>
+            <End>'</End>
+        </Span>
+        
+        <Rule color="NumberLiteral">
+            (?i)                                            # Ignore case
+            \b0x[0-9A-F]+(lu|ul|l|u)?                       # Hex number
+            |(\b\d+(\.\d+)?|\.\d+)([e][+-]?\d+)?(h|f|d|l)?  # Decimal number
+            |\b\d+(?!\.)(lu|ul|l|u|h|f|d)?                  # Integer number
+        </Rule>
+        
+        <Keywords color="Macros">
+            <Word>__LINE__</Word>
+            <Word>__FILE__</Word>
+        </Keywords>
+        
+        <Keywords color="ShaderModels">
+            <Word>vs_1_1</Word>
+            <Word>vs_2_0</Word>
+            <Word>vs_2_sw</Word>
+            <Word>vs_2_x</Word>
+            <Word>vs_3_0</Word>
+            <Word>vs_3_sw</Word>
+            <Word>vs_4_0</Word>
+            <Word>ps_1_1</Word>
+            <Word>ps_1_2</Word>
+            <Word>ps_1_3</Word>
+            <Word>ps_1_4</Word>
+            <Word>ps_2_0</Word>
+            <Word>ps_2_sw</Word>
+            <Word>ps_2_x</Word>
+            <Word>ps_3_0</Word>
+            <Word>ps_3_sw</Word>
+            <Word>ps_4_0</Word>
+            <Word>ps_4_1</Word>
+            <Word>gs_4_0</Word>
+            <Word>gs_4_1</Word>
+            <Word>fx_4_0</Word>
+            <Word>fx_4_1</Word>
+        </Keywords>
+    </RuleSet>
+    
+    
+    <!-- Keywords shared between the default rule set and TechniquesAndPassesSet. -->
+    <RuleSet name="NonAssemblerSet">
+        
+        <!-- Mark previous rule-->
+        <!--
+    <Rule color="MethodCall">
+      \b
+      [\d\w_]+  # an identifier
+      (?=\s*\() # followed by (
+    </Rule>
+    -->
+        
+        <Keywords color="Literals">
+            <Word>true</Word>
+            <Word>false</Word>
+            <Word>NULL</Word>
+        </Keywords>
+        
+        <Keywords color="DataTypes">
+            <Word>bool</Word>
+            <Word>bool1</Word>
+            <Word>bool2</Word>
+            <Word>bool3</Word>
+            <Word>bool4</Word>
+            <Word>bool1x1</Word>
+            <Word>bool1x2</Word>
+            <Word>bool1x3</Word>
+            <Word>bool1x4</Word>
+            <Word>bool2x1</Word>
+            <Word>bool2x2</Word>
+            <Word>bool2x3</Word>
+            <Word>bool2x4</Word>
+            <Word>bool3x1</Word>
+            <Word>bool3x2</Word>
+            <Word>bool3x3</Word>
+            <Word>bool3x4</Word>
+            <Word>bool4x1</Word>
+            <Word>bool4x2</Word>
+            <Word>bool4x3</Word>
+            <Word>bool4x4</Word>
+            
+            <Word>int</Word>
+            <Word>int1</Word>
+            <Word>int2</Word>
+            <Word>int3</Word>
+            <Word>int4</Word>
+            <Word>int1x1</Word>
+            <Word>int1x2</Word>
+            <Word>int1x3</Word>
+            <Word>int1x4</Word>
+            <Word>int2x1</Word>
+            <Word>int2x2</Word>
+            <Word>int2x3</Word>
+            <Word>int2x4</Word>
+            <Word>int3x1</Word>
+            <Word>int3x2</Word>
+            <Word>int3x3</Word>
+            <Word>int3x4</Word>
+            <Word>int4x1</Word>
+            <Word>int4x2</Word>
+            <Word>int4x3</Word>
+            <Word>int4x4</Word>
+            
+            <Word>uint</Word>
+            <Word>uint1</Word>
+            <Word>uint2</Word>
+            <Word>uint3</Word>
+            <Word>uint4</Word>
+            <Word>uint1x1</Word>
+            <Word>uint1x2</Word>
+            <Word>uint1x3</Word>
+            <Word>uint1x4</Word>
+            <Word>uint2x1</Word>
+            <Word>uint2x2</Word>
+            <Word>uint2x3</Word>
+            <Word>uint2x4</Word>
+            <Word>uint3x1</Word>
+            <Word>uint3x2</Word>
+            <Word>uint3x3</Word>
+            <Word>uint3x4</Word>
+            <Word>uint4x1</Word>
+            <Word>uint4x2</Word>
+            <Word>uint4x3</Word>
+            <Word>uint4x4</Word>
+            
+            <Word>half</Word>
+            <Word>half1</Word>
+            <Word>half2</Word>
+            <Word>half3</Word>
+            <Word>half4</Word>
+            <Word>half1x1</Word>
+            <Word>half1x2</Word>
+            <Word>half1x3</Word>
+            <Word>half1x4</Word>
+            <Word>half2x1</Word>
+            <Word>half2x2</Word>
+            <Word>half2x3</Word>
+            <Word>half2x4</Word>
+            <Word>half3x1</Word>
+            <Word>half3x2</Word>
+            <Word>half3x3</Word>
+            <Word>half3x4</Word>
+            <Word>half4x1</Word>
+            <Word>half4x2</Word>
+            <Word>half4x3</Word>
+            <Word>half4x4</Word>
+            
+            <Word>float</Word>
+            <Word>float1</Word>
+            <Word>float2</Word>
+            <Word>float3</Word>
+            <Word>float4</Word>
+            <Word>float1x1</Word>
+            <Word>float1x2</Word>
+            <Word>float1x3</Word>
+            <Word>float1x4</Word>
+            <Word>float2x1</Word>
+            <Word>float2x2</Word>
+            <Word>float2x3</Word>
+            <Word>float2x4</Word>
+            <Word>float3x1</Word>
+            <Word>float3x2</Word>
+            <Word>float3x3</Word>
+            <Word>float3x4</Word>
+            <Word>float4x1</Word>
+            <Word>float4x2</Word>
+            <Word>float4x3</Word>
+            <Word>float4x4</Word>
+            
+            <Word>double</Word>
+            <Word>double1</Word>
+            <Word>double2</Word>
+            <Word>double3</Word>
+            <Word>double4</Word>
+            <Word>double1x1</Word>
+            <Word>double1x2</Word>
+            <Word>double1x3</Word>
+            <Word>double1x4</Word>
+            <Word>double2x1</Word>
+            <Word>double2x2</Word>
+            <Word>double2x3</Word>
+            <Word>double2x4</Word>
+            <Word>double3x1</Word>
+            <Word>double3x2</Word>
+            <Word>double3x3</Word>
+            <Word>double3x4</Word>
+            <Word>double4x1</Word>
+            <Word>double4x2</Word>
+            <Word>double4x3</Word>
+            <Word>double4x4</Word>
+            
+            <Word>vector</Word>
+            <Word>matrix</Word>
+            <Word>string</Word>
+        </Keywords>
+        
+        <Keywords color="ShaderType">
+            <Word>VertexShader</Word>
+            <Word>GeometryShader</Word>
+            <Word>PixelShader</Word>
+            <Word>compile</Word>
+        </Keywords>
+    </RuleSet>
+    
+    
+    <RuleSet name="AssemblerSet">
+        <Import ruleSet="CommonSet"/>
+        
+        <Keywords color="Assembler">
+            <Word>abs</Word>
+            <Word>abs_x2</Word>
+            <Word>abs_x4</Word>
+            <Word>abs_x8</Word>
+            <Word>abs_d2</Word>
+            <Word>abs_d4</Word>
+            <Word>abs_d8</Word>
+            <Word>abs_pp</Word>
+            <Word>abs_sat</Word>
+            <Word>add</Word>
+            <Word>add_x2</Word>
+            <Word>add_x4</Word>
+            <Word>add_x8</Word>
+            <Word>add_d2</Word>
+            <Word>add_d4</Word>
+            <Word>add_d8</Word>
+            <Word>add_pp</Word>
+            <Word>add_sat</Word>
+            <Word>break</Word>
+            <Word>break_gt</Word>
+            <Word>break_lt</Word>
+            <Word>break_ge</Word>
+            <Word>break_le</Word>
+            <Word>break_eq</Word>
+            <Word>break_ne</Word>
+            <Word>breakp</Word>
+            <Word>call</Word>
+            <Word>callnz</Word>
+            <Word>cmp</Word>
+            <Word>cmp_x2</Word>
+            <Word>cmp_x4</Word>
+            <Word>cmp_x8</Word>
+            <Word>cmp_d2</Word>
+            <Word>cmp_d4</Word>
+            <Word>cmp_d8</Word>
+            <Word>cmp_pp</Word>
+            <Word>cmp_sat</Word>
+            <Word>cnd</Word>
+            <Word>cnd_x2</Word>
+            <Word>cnd_x4</Word>
+            <Word>cnd_x8</Word>
+            <Word>cnd_d2</Word>
+            <Word>cnd_d4</Word>
+            <Word>cnd_d8</Word>
+            <Word>cnd_pp</Word>
+            <Word>cnd_sat</Word>
+            <Word>crs</Word>
+            <Word>crs_x2</Word>
+            <Word>crs_x4</Word>
+            <Word>crs_x8</Word>
+            <Word>crs_d2</Word>
+            <Word>crs_d4</Word>
+            <Word>crs_d8</Word>
+            <Word>crs_pp</Word>
+            <Word>crs_sat</Word>
+            <Word>dcl</Word>
+            <Word>dcl_pp</Word>
+            <Word>dcl_2d</Word>
+            <Word>dcl_cube</Word>
+            <Word>dcl_volume</Word>
+            <Word>dcl_position</Word>
+            <Word>dcl_position0</Word>
+            <Word>dcl_position1</Word>
+            <Word>dcl_position2</Word>
+            <Word>dcl_position3</Word>
+            <Word>dcl_position4</Word>
+            <Word>dcl_position5</Word>
+            <Word>dcl_position6</Word>
+            <Word>dcl_position7</Word>
+            <Word>dcl_blendweight</Word>
+            <Word>dcl_blendweight0</Word>
+            <Word>dcl_blendweight1</Word>
+            <Word>dcl_blendweight2</Word>
+            <Word>dcl_blendweight3</Word>
+            <Word>dcl_blendweight4</Word>
+            <Word>dcl_blendweight5</Word>
+            <Word>dcl_blendweight6</Word>
+            <Word>dcl_blendweight7</Word>
+            <Word>dcl_blendindices</Word>
+            <Word>dcl_blendindices0</Word>
+            <Word>dcl_blendindices1</Word>
+            <Word>dcl_blendindices2</Word>
+            <Word>dcl_blendindices3</Word>
+            <Word>dcl_blendindices4</Word>
+            <Word>dcl_blendindices5</Word>
+            <Word>dcl_blendindices6</Word>
+            <Word>dcl_blendindices7</Word>
+            <Word>dcl_normal</Word>
+            <Word>dcl_normal0</Word>
+            <Word>dcl_normal1</Word>
+            <Word>dcl_normal2</Word>
+            <Word>dcl_normal3</Word>
+            <Word>dcl_normal4</Word>
+            <Word>dcl_normal5</Word>
+            <Word>dcl_normal6</Word>
+            <Word>dcl_normal7</Word>
+            <Word>dcl_psize</Word>
+            <Word>dcl_psize0</Word>
+            <Word>dcl_psize1</Word>
+            <Word>dcl_psize2</Word>
+            <Word>dcl_psize3</Word>
+            <Word>dcl_psize4</Word>
+            <Word>dcl_psize5</Word>
+            <Word>dcl_psize6</Word>
+            <Word>dcl_psize7</Word>
+            <Word>dcl_texcoord</Word>
+            <Word>dcl_texcoord0</Word>
+            <Word>dcl_texcoord1</Word>
+            <Word>dcl_texcoord2</Word>
+            <Word>dcl_texcoord3</Word>
+            <Word>dcl_texcoord4</Word>
+            <Word>dcl_texcoord5</Word>
+            <Word>dcl_texcoord6</Word>
+            <Word>dcl_texcoord7</Word>
+            <Word>dcl_texcoord0_centroid</Word>
+            <Word>dcl_texcoord1_centroid</Word>
+            <Word>dcl_texcoord2_centroid</Word>
+            <Word>dcl_texcoord3_centroid</Word>
+            <Word>dcl_texcoord4_centroid</Word>
+            <Word>dcl_texcoord5_centroid</Word>
+            <Word>dcl_texcoord6_centroid</Word>
+            <Word>dcl_texcoord7_centroid</Word>
+            <Word>dcl_texcoord0_pp</Word>
+            <Word>dcl_texcoord1_pp</Word>
+            <Word>dcl_texcoord2_pp</Word>
+            <Word>dcl_texcoord3_pp</Word>
+            <Word>dcl_texcoord4_pp</Word>
+            <Word>dcl_texcoord5_pp</Word>
+            <Word>dcl_texcoord6_pp</Word>
+            <Word>dcl_texcoord7_pp</Word>
+            <Word>dcl_tangent</Word>
+            <Word>dcl_tangent0</Word>
+            <Word>dcl_tangent1</Word>
+            <Word>dcl_tangent2</Word>
+            <Word>dcl_tangent3</Word>
+            <Word>dcl_tangent4</Word>
+            <Word>dcl_tangent5</Word>
+            <Word>dcl_tangent6</Word>
+            <Word>dcl_tangent7</Word>
+            <Word>dcl_binormal</Word>
+            <Word>dcl_binormal0</Word>
+            <Word>dcl_binormal1</Word>
+            <Word>dcl_binormal2</Word>
+            <Word>dcl_binormal3</Word>
+            <Word>dcl_binormal4</Word>
+            <Word>dcl_binormal5</Word>
+            <Word>dcl_binormal6</Word>
+            <Word>dcl_binormal7</Word>
+            <Word>dcl_tessfactor</Word>
+            <Word>dcl_tessfactor0</Word>
+            <Word>dcl_tessfactor1</Word>
+            <Word>dcl_tessfactor2</Word>
+            <Word>dcl_tessfactor3</Word>
+            <Word>dcl_tessfactor4</Word>
+            <Word>dcl_tessfactor5</Word>
+            <Word>dcl_tessfactor6</Word>
+            <Word>dcl_tessfactor7</Word>
+            <Word>dcl_positiont</Word>
+            <Word>dcl_positiont0</Word>
+            <Word>dcl_positiont1</Word>
+            <Word>dcl_positiont2</Word>
+            <Word>dcl_positiont3</Word>
+            <Word>dcl_positiont4</Word>
+            <Word>dcl_positiont5</Word>
+            <Word>dcl_positiont6</Word>
+            <Word>dcl_positiont7</Word>
+            <Word>dcl_color</Word>
+            <Word>dcl_color0</Word>
+            <Word>dcl_color1</Word>
+            <Word>dcl_color2</Word>
+            <Word>dcl_color3</Word>
+            <Word>dcl_color4</Word>
+            <Word>dcl_color5</Word>
+            <Word>dcl_color6</Word>
+            <Word>dcl_color7</Word>
+            <Word>dcl_fog</Word>
+            <Word>dcl_fog0</Word>
+            <Word>dcl_fog1</Word>
+            <Word>dcl_fog2</Word>
+            <Word>dcl_fog3</Word>
+            <Word>dcl_fog4</Word>
+            <Word>dcl_fog5</Word>
+            <Word>dcl_fog6</Word>
+            <Word>dcl_fog7</Word>
+            <Word>dcl_depth</Word>
+            <Word>dcl_depth0</Word>
+            <Word>dcl_depth1</Word>
+            <Word>dcl_depth2</Word>
+            <Word>dcl_depth3</Word>
+            <Word>dcl_depth4</Word>
+            <Word>dcl_depth5</Word>
+            <Word>dcl_depth6</Word>
+            <Word>dcl_depth7</Word>
+            <Word>dcl_sample</Word>
+            <Word>dcl_sample0</Word>
+            <Word>dcl_sample1</Word>
+            <Word>dcl_sample2</Word>
+            <Word>dcl_sample3</Word>
+            <Word>dcl_sample4</Word>
+            <Word>dcl_sample5</Word>
+            <Word>dcl_sample6</Word>
+            <Word>dcl_sample7</Word>
+            <Word>dcl_constantBuffer</Word>
+            <Word>dcl_globalFlags</Word>
+            <Word>dcl_immediateConstantBuffer</Word>
+            <Word>dcl_indexableTemp</Word>
+            <Word>dcl_indexRange</Word>
+            <Word>dcl_input</Word>
+            <Word>dcl_input_sv</Word>
+            <Word>dcl_maxOutputVertexCount</Word>
+            <Word>dcl_output</Word>
+            <Word>dcl_output_sgv</Word>
+            <Word>dcl_output_siv</Word>
+            <Word>dcl_outputToplogy</Word>
+            <Word>dcl_resource</Word>
+            <Word>dcl_sampler</Word>
+            <Word>dcl_temps</Word>
+            <Word>def</Word>
+            <Word>def_pp</Word>
+            <Word>defb</Word>
+            <Word>defi</Word>
+            <Word>dp2add</Word>
+            <Word>dp2add_x2</Word>
+            <Word>dp2add_x4</Word>
+            <Word>dp2add_x8</Word>
+            <Word>dp2add_d2</Word>
+            <Word>dp2add_d4</Word>
+            <Word>dp2add_d8</Word>
+            <Word>dp2add_pp</Word>
+            <Word>dp2add_sat</Word>
+            <Word>dp3</Word>
+            <Word>dp3_x2</Word>
+            <Word>dp3_x4</Word>
+            <Word>dp3_x8</Word>
+            <Word>dp3_d2</Word>
+            <Word>dp3_d4</Word>
+            <Word>dp3_d8</Word>
+            <Word>dp3_pp</Word>
+            <Word>dp3_sat</Word>
+            <Word>dp4</Word>
+            <Word>dp4_x2</Word>
+            <Word>dp4_x4</Word>
+            <Word>dp4_x8</Word>
+            <Word>dp4_d2</Word>
+            <Word>dp4_d4</Word>
+            <Word>dp4_d8</Word>
+            <Word>dp4_pp</Word>
+            <Word>dp4_sat</Word>
+            <Word>dsx</Word>
+            <Word>dsx_x2</Word>
+            <Word>dsx_x4</Word>
+            <Word>dsx_x8</Word>
+            <Word>dsx_d2</Word>
+            <Word>dsx_d4</Word>
+            <Word>dsx_d8</Word>
+            <Word>dsx_pp</Word>
+            <Word>dsx_sat</Word>
+            <Word>dsy</Word>
+            <Word>dsy_x2</Word>
+            <Word>dsy_x4</Word>
+            <Word>dsy_x8</Word>
+            <Word>dsy_d2</Word>
+            <Word>dsy_d4</Word>
+            <Word>dsy_d8</Word>
+            <Word>dsy_pp</Word>
+            <Word>dsy_sat</Word>
+            <Word>dst</Word>
+            <Word>dst_sat</Word>
+            <Word>else</Word>
+            <Word>endif</Word>
+            <Word>endloop</Word>
+            <Word>endrep</Word>
+            <Word>exp</Word>
+            <Word>exp_x2</Word>
+            <Word>exp_x4</Word>
+            <Word>exp_x8</Word>
+            <Word>exp_d2</Word>
+            <Word>exp_d4</Word>
+            <Word>exp_d8</Word>
+            <Word>exp_pp</Word>
+            <Word>exp_sat</Word>
+            <Word>expp</Word>
+            <Word>expp_sat</Word>
+            <Word>frc</Word>
+            <Word>frc_x2</Word>
+            <Word>frc_x4</Word>
+            <Word>frc_x8</Word>
+            <Word>frc_d2</Word>
+            <Word>frc_d4</Word>
+            <Word>frc_d8</Word>
+            <Word>frc_pp</Word>
+            <Word>if</Word>
+            <Word>if_gt</Word>
+            <Word>if_lt</Word>
+            <Word>if_ge</Word>
+            <Word>if_le</Word>
+            <Word>if_eq</Word>
+            <Word>if_ne</Word>
+            <Word>label</Word>
+            <Word>lit</Word>
+            <Word>lit_sat</Word>
+            <Word>log</Word>
+            <Word>log_x2</Word>
+            <Word>log_x4</Word>
+            <Word>log_x8</Word>
+            <Word>log_d2</Word>
+            <Word>log_d4</Word>
+            <Word>log_d8</Word>
+            <Word>log_pp</Word>
+            <Word>log_sat</Word>
+            <Word>logp</Word>
+            <Word>logp_sat</Word>
+            <Word>loop</Word>
+            <Word>lrp</Word>
+            <Word>lrp_x2</Word>
+            <Word>lrp_x4</Word>
+            <Word>lrp_x8</Word>
+            <Word>lrp_d2</Word>
+            <Word>lrp_d4</Word>
+            <Word>lrp_d8</Word>
+            <Word>lrp_pp</Word>
+            <Word>lrp_sat</Word>
+            <Word>m3x2</Word>
+            <Word>m3x2_x2</Word>
+            <Word>m3x2_x4</Word>
+            <Word>m3x2_x8</Word>
+            <Word>m3x2_d2</Word>
+            <Word>m3x2_d4</Word>
+            <Word>m3x2_d8</Word>
+            <Word>m3x2_pp</Word>
+            <Word>m3x2_sat</Word>
+            <Word>m3x3</Word>
+            <Word>m3x3_x2</Word>
+            <Word>m3x3_x4</Word>
+            <Word>m3x3_x8</Word>
+            <Word>m3x3_d2</Word>
+            <Word>m3x3_d4</Word>
+            <Word>m3x3_d8</Word>
+            <Word>m3x3_pp</Word>
+            <Word>m3x3_sat</Word>
+            <Word>m3x4</Word>
+            <Word>m3x4_x2</Word>
+            <Word>m3x4_x4</Word>
+            <Word>m3x4_x8</Word>
+            <Word>m3x4_d2</Word>
+            <Word>m3x4_d4</Word>
+            <Word>m3x4_d8</Word>
+            <Word>m3x4_pp</Word>
+            <Word>m3x4_sat</Word>
+            <Word>m4x3</Word>
+            <Word>m4x3_x2</Word>
+            <Word>m4x3_x4</Word>
+            <Word>m4x3_x8</Word>
+            <Word>m4x3_d2</Word>
+            <Word>m4x3_d4</Word>
+            <Word>m4x3_d8</Word>
+            <Word>m4x3_pp</Word>
+            <Word>m4x3_sat</Word>
+            <Word>m4x4</Word>
+            <Word>m4x4_x2</Word>
+            <Word>m4x4_x4</Word>
+            <Word>m4x4_x8</Word>
+            <Word>m4x4_d2</Word>
+            <Word>m4x4_d4</Word>
+            <Word>m4x4_d8</Word>
+            <Word>m4x4_pp</Word>
+            <Word>m4x4_sat</Word>
+            <Word>mad</Word>
+            <Word>mad_x2</Word>
+            <Word>mad_x4</Word>
+            <Word>mad_x8</Word>
+            <Word>mad_d2</Word>
+            <Word>mad_d4</Word>
+            <Word>mad_d8</Word>
+            <Word>mad_pp</Word>
+            <Word>mad_sat</Word>
+            <Word>max</Word>
+            <Word>max_x2</Word>
+            <Word>max_x4</Word>
+            <Word>max_x8</Word>
+            <Word>max_d2</Word>
+            <Word>max_d4</Word>
+            <Word>max_d8</Word>
+            <Word>max_pp</Word>
+            <Word>max_sat</Word>
+            <Word>min</Word>
+            <Word>min_x2</Word>
+            <Word>min_x4</Word>
+            <Word>min_x8</Word>
+            <Word>min_d2</Word>
+            <Word>min_d4</Word>
+            <Word>min_d8</Word>
+            <Word>min_pp</Word>
+            <Word>min_sat</Word>
+            <Word>mov</Word>
+            <Word>mov_x2</Word>
+            <Word>mov_x4</Word>
+            <Word>mov_x8</Word>
+            <Word>mov_d2</Word>
+            <Word>mov_d4</Word>
+            <Word>mov_d8</Word>
+            <Word>mov_pp</Word>
+            <Word>mov_sat</Word>
+            <Word>mova</Word>
+            <Word>mul</Word>
+            <Word>mul_x2</Word>
+            <Word>mul_x4</Word>
+            <Word>mul_x8</Word>
+            <Word>mul_d2</Word>
+            <Word>mul_d4</Word>
+            <Word>mul_d8</Word>
+            <Word>mul_pp</Word>
+            <Word>mul_sat</Word>
+            <Word>nop</Word>
+            <Word>nrm</Word>
+            <Word>nrm_x2</Word>
+            <Word>nrm_x4</Word>
+            <Word>nrm_x8</Word>
+            <Word>nrm_d2</Word>
+            <Word>nrm_d4</Word>
+            <Word>nrm_d8</Word>
+            <Word>nrm_pp</Word>
+            <Word>nrm_sat</Word>
+            <Word>pow</Word>
+            <Word>pow_x2</Word>
+            <Word>pow_x4</Word>
+            <Word>pow_x8</Word>
+            <Word>pow_d2</Word>
+            <Word>pow_d4</Word>
+            <Word>pow_d8</Word>
+            <Word>pow_pp</Word>
+            <Word>pow_sat</Word>
+            <Word>rcp</Word>
+            <Word>rcp_x2</Word>
+            <Word>rcp_x4</Word>
+            <Word>rcp_x8</Word>
+            <Word>rcp_d2</Word>
+            <Word>rcp_d4</Word>
+            <Word>rcp_d8</Word>
+            <Word>rcp_pp</Word>
+            <Word>rcp_sat</Word>
+            <Word>rep</Word>
+            <Word>ret</Word>
+            <Word>rsq</Word>
+            <Word>rsq_x2</Word>
+            <Word>rsq_x4</Word>
+            <Word>rsq_x8</Word>
+            <Word>rsq_d2</Word>
+            <Word>rsq_d4</Word>
+            <Word>rsq_d8</Word>
+            <Word>rsq_pp</Word>
+            <Word>rsq_sat</Word>
+            <Word>setp_gt</Word>
+            <Word>setp_lt</Word>
+            <Word>setp_ge</Word>
+            <Word>setp_le</Word>
+            <Word>setp_eq</Word>
+            <Word>setp_ne</Word>
+            <Word>sge</Word>
+            <Word>sgn</Word>
+            <Word>sincos</Word>
+            <Word>sincos_x2</Word>
+            <Word>sincos_x4</Word>
+            <Word>sincos_x8</Word>
+            <Word>sincos_d2</Word>
+            <Word>sincos_d4</Word>
+            <Word>sincos_d8</Word>
+            <Word>sincos_pp</Word>
+            <Word>slt</Word>
+            <Word>sub</Word>
+            <Word>sub_x2</Word>
+            <Word>sub_x4</Word>
+            <Word>sub_x8</Word>
+            <Word>sub_d2</Word>
+            <Word>sub_d4</Word>
+            <Word>sub_d8</Word>
+            <Word>sub_pp</Word>
+            <Word>sub_sat</Word>
+            <Word>tex</Word>
+            <Word>tex_x2</Word>
+            <Word>tex_x4</Word>
+            <Word>tex_x8</Word>
+            <Word>tex_d2</Word>
+            <Word>tex_d4</Word>
+            <Word>tex_d8</Word>
+            <Word>tex_pp</Word>
+            <Word>texbem</Word>
+            <Word>texbem_x2</Word>
+            <Word>texbem_x4</Word>
+            <Word>texbem_x8</Word>
+            <Word>texbem_d2</Word>
+            <Word>texbem_d4</Word>
+            <Word>texbem_d8</Word>
+            <Word>texbem_pp</Word>
+            <Word>texbeml</Word>
+            <Word>texbeml_x2</Word>
+            <Word>texbeml_x4</Word>
+            <Word>texbeml_x8</Word>
+            <Word>texbeml_d2</Word>
+            <Word>texbeml_d4</Word>
+            <Word>texbeml_d8</Word>
+            <Word>texbeml_pp</Word>
+            <Word>texcoord</Word>
+            <Word>texcrd</Word>
+            <Word>texcrd_x2</Word>
+            <Word>texcrd_x4</Word>
+            <Word>texcrd_x8</Word>
+            <Word>texcrd_d2</Word>
+            <Word>texcrd_d4</Word>
+            <Word>texcrd_d8</Word>
+            <Word>texcrd_pp</Word>
+            <Word>texdepth</Word>
+            <Word>texdepth_x2</Word>
+            <Word>texdepth_x4</Word>
+            <Word>texdepth_x8</Word>
+            <Word>texdepth_d2</Word>
+            <Word>texdepth_d4</Word>
+            <Word>texdepth_d8</Word>
+            <Word>texdepth_pp</Word>
+            <Word>texdp3</Word>
+            <Word>texdp3_x2</Word>
+            <Word>texdp3_x4</Word>
+            <Word>texdp3_x8</Word>
+            <Word>texdp3_d2</Word>
+            <Word>texdp3_d4</Word>
+            <Word>texdp3_d8</Word>
+            <Word>texdp3_pp</Word>
+            <Word>texdp3tex</Word>
+            <Word>texdp3tex_x2</Word>
+            <Word>texdp3tex_x4</Word>
+            <Word>texdp3tex_x8</Word>
+            <Word>texdp3tex_d2</Word>
+            <Word>texdp3tex_d4</Word>
+            <Word>texdp3tex_d8</Word>
+            <Word>texdp3tex_pp</Word>
+            <Word>texkill</Word>
+            <Word>texld</Word>
+            <Word>texld_x2</Word>
+            <Word>texld_x4</Word>
+            <Word>texld_x8</Word>
+            <Word>texld_d2</Word>
+            <Word>texld_d4</Word>
+            <Word>texld_d8</Word>
+            <Word>texld_pp</Word>
+            <Word>texldb</Word>
+            <Word>texldb_x2</Word>
+            <Word>texldb_x4</Word>
+            <Word>texldb_x8</Word>
+            <Word>texldb_d2</Word>
+            <Word>texldb_d4</Word>
+            <Word>texldb_d8</Word>
+            <Word>texldb_pp</Word>
+            <Word>texldd</Word>
+            <Word>texldd_x2</Word>
+            <Word>texldd_x4</Word>
+            <Word>texldd_x8</Word>
+            <Word>texldd_d2</Word>
+            <Word>texldd_d4</Word>
+            <Word>texldd_d8</Word>
+            <Word>texldd_pp</Word>
+            <Word>texldd</Word>
+            <Word>texldd_x2</Word>
+            <Word>texldd_x4</Word>
+            <Word>texldd_x8</Word>
+            <Word>texldd_d2</Word>
+            <Word>texldd_d4</Word>
+            <Word>texldd_d8</Word>
+            <Word>texldd_pp</Word>
+            <Word>texldp</Word>
+            <Word>texldp_x2</Word>
+            <Word>texldp_x4</Word>
+            <Word>texldp_x8</Word>
+            <Word>texldp_d2</Word>
+            <Word>texldp_d4</Word>
+            <Word>texldp_d8</Word>
+            <Word>texldp_pp</Word>
+            <Word>texm3x2depth</Word>
+            <Word>texm3x2depth_x2</Word>
+            <Word>texm3x2depth_x4</Word>
+            <Word>texm3x2depth_x8</Word>
+            <Word>texm3x2depth_d2</Word>
+            <Word>texm3x2depth_d4</Word>
+            <Word>texm3x2depth_d8</Word>
+            <Word>texm3x2depth_pp</Word>
+            <Word>texm3x2pad</Word>
+            <Word>texm3x2pad_x2</Word>
+            <Word>texm3x2pad_x4</Word>
+            <Word>texm3x2pad_x8</Word>
+            <Word>texm3x2pad_d2</Word>
+            <Word>texm3x2pad_d4</Word>
+            <Word>texm3x2pad_d8</Word>
+            <Word>texm3x2pad_pp</Word>
+            <Word>texm3x2tex</Word>
+            <Word>texm3x2tex_x2</Word>
+            <Word>texm3x2tex_x4</Word>
+            <Word>texm3x2tex_x8</Word>
+            <Word>texm3x2tex_d2</Word>
+            <Word>texm3x2tex_d4</Word>
+            <Word>texm3x2tex_d8</Word>
+            <Word>texm3x2tex_pp</Word>
+            <Word>texm3x3</Word>
+            <Word>texm3x3_x2</Word>
+            <Word>texm3x3_x4</Word>
+            <Word>texm3x3_x8</Word>
+            <Word>texm3x3_d2</Word>
+            <Word>texm3x3_d4</Word>
+            <Word>texm3x3_d8</Word>
+            <Word>texm3x3_pp</Word>
+            <Word>texm3x3pad</Word>
+            <Word>texm3x3pad_x2</Word>
+            <Word>texm3x3pad_x4</Word>
+            <Word>texm3x3pad_x8</Word>
+            <Word>texm3x3pad_d2</Word>
+            <Word>texm3x3pad_d4</Word>
+            <Word>texm3x3pad_d8</Word>
+            <Word>texm3x3pad_pp</Word>
+            <Word>texm3x3spec</Word>
+            <Word>texm3x3spec_x2</Word>
+            <Word>texm3x3spec_x4</Word>
+            <Word>texm3x3spec_x8</Word>
+            <Word>texm3x3spec_d2</Word>
+            <Word>texm3x3spec_d4</Word>
+            <Word>texm3x3spec_d8</Word>
+            <Word>texm3x3spec_pp</Word>
+            <Word>texm3x3tex</Word>
+            <Word>texm3x3tex_x2</Word>
+            <Word>texm3x3tex_x4</Word>
+            <Word>texm3x3tex_x8</Word>
+            <Word>texm3x3tex_d2</Word>
+            <Word>texm3x3tex_d4</Word>
+            <Word>texm3x3tex_d8</Word>
+            <Word>texm3x3tex_pp</Word>
+            <Word>texm3x3vspec</Word>
+            <Word>texm3x3vspec_x2</Word>
+            <Word>texm3x3vspec_x4</Word>
+            <Word>texm3x3vspec_x8</Word>
+            <Word>texm3x3vspec_d2</Word>
+            <Word>texm3x3vspec_d4</Word>
+            <Word>texm3x3vspec_d8</Word>
+            <Word>texm3x3vspec_pp</Word>
+            <Word>texreg2ar</Word>
+            <Word>texreg2ar_x2</Word>
+            <Word>texreg2ar_x4</Word>
+            <Word>texreg2ar_x8</Word>
+            <Word>texreg2ar_d2</Word>
+            <Word>texreg2ar_d4</Word>
+            <Word>texreg2ar_d8</Word>
+            <Word>texreg2ar_pp</Word>
+            <Word>texreg2gb</Word>
+            <Word>texreg2gb_x2</Word>
+            <Word>texreg2gb_x4</Word>
+            <Word>texreg2gb_x8</Word>
+            <Word>texreg2gb_d2</Word>
+            <Word>texreg2gb_d4</Word>
+            <Word>texreg2gb_d8</Word>
+            <Word>texreg2gb_pp</Word>
+            <Word>texreg2rgb</Word>
+            <Word>texreg2rgb_x2</Word>
+            <Word>texreg2rgb_x4</Word>
+            <Word>texreg2rgb_x8</Word>
+            <Word>texreg2rgb_d2</Word>
+            <Word>texreg2rgb_d4</Word>
+            <Word>texreg2rgb_d8</Word>
+            <Word>texreg2rgb_pp</Word>
+            <Word>vs</Word>
+        </Keywords>
+    </RuleSet>
+    
+    
+    <RuleSet name="TechniquesAndPassesSet">
+        <Import ruleSet="CommonSet"/>
+        <Import ruleSet="NonAssemblerSet"/>
+        
+        <Span ruleSet="TechniquesAndPassesSet" multiline="true">
+            <Begin color="Pass">
+                \b(pass|Pass)\b
+            </Begin>
+            <End>}</End>
+        </Span>
+        
+        <Span ruleSet="TechniquesAndPassesSet" multiline="true">
+            <Begin color="StateBlock">
+                \b(sampler_state|stateblock_state)\b
+            </Begin>
+            <End>}</End>
+        </Span>
+        
+        <Span ruleSet="AssemblerSet" multiline="true">
+            <Begin color="Assembler">\basm\b</Begin>
+            <End>}</End>
+        </Span>
+        
+        <Rule color="TechniqueName">
+            (?&lt;=\b(technique|Technique|technique10)\s*)
+            [\d\w_]+
+        </Rule>
+        
+        <Rule color="PassName">
+            (?&lt;=\b(pass|Pass)\s*)
+            [\d\w_]+
+        </Rule>
+        
+        <!--
+        Some effect files (mainly CgFX files) sometimes use array initializers for effect states, e.g. "ColorMask = { 1, 1, 1, 1 };"
+        But we assume that a '}' closes the current pass.
+        To ignore such initializers, we add the following rule.
+      -->
+        <Span ruleSet="TechniquesAndPassesSet" multiline="true">
+            <Begin>=\s*{</Begin>
+            <End>}</End>
+        </Span>
+        
+        <Keywords color="SetStateGroup">
+            <Word>SetVertexShader</Word>
+            <Word>SetGeometryShader</Word>
+            <Word>SetPixelShader</Word>
+            <Word>SetBlendState</Word>
+            <Word>SetDepthStencilState</Word>
+            <Word>SetRasterizerState</Word>
+            <Word>CompileShader</Word>
+        </Keywords>
+        
+        <Keywords color="LightStates">
+            <Word>LightAmbient</Word>
+            <Word>LightAttenuation0</Word>
+            <Word>LightAttenuation1</Word>
+            <Word>LightAttenuation2</Word>
+            <Word>LightDiffuse</Word>
+            <Word>LightDirection</Word>
+            <Word>LightEnable</Word>
+            <Word>LightFalloff</Word>
+            <Word>LightPhi</Word>
+            <Word>LightPosition</Word>
+            <Word>LightRange</Word>
+            <Word>LightSpecular</Word>
+            <Word>LightTheta</Word>
+            <Word>LightType</Word>
+        </Keywords>
+        
+        <Keywords color="LightValues">
+            <Word>POINT</Word>
+            <Word>Point</Word>
+            <Word>point</Word>
+            <Word>SPOT</Word>
+            <Word>Spot</Word>
+            <Word>spot</Word>
+            <Word>DIRECTIONAL</Word>
+            <Word>Directional</Word>
+            <Word>directional</Word>
+        </Keywords>
+        
+        <Keywords color="MaterialStates">
+            <Word>MaterialAmbient</Word>
+            <Word>MaterialDiffuse</Word>
+            <Word>MaterialEmissive</Word>
+            <Word>MaterialPower</Word>
+            <Word>MaterialSpecular</Word>
+        </Keywords>
+        
+        <Keywords color="PixelPipeRenderStates">
+            <Word>AlphaBlendEnable</Word>
+            <Word>AlphaFunc</Word>
+            <Word>AlphaRef</Word>
+            <Word>AlphaTestEnable</Word>
+            <Word>BlendOp</Word>
+            <Word>ColorWriteEnable</Word>
+            <Word>DepthBias</Word>
+            <Word>DestBlend</Word>
+            <Word>DitherEnable</Word>
+            <Word>FillMode</Word>
+            <Word>LastPixel</Word>
+            <Word>ShadeMode</Word>
+            <Word>SlopeScaleDepthBias</Word>
+            <Word>SrcBlend</Word>
+            <Word>StencilEnable</Word>
+            <Word>StencilFail</Word>
+            <Word>StencilFunc</Word>
+            <Word>StencilMask</Word>
+            <Word>StencilPass</Word>
+            <Word>StencilRef</Word>
+            <Word>StencilWriteMask</Word>
+            <Word>StencilZFail</Word>
+            <Word>TextureFactor</Word>
+            <Word>Wrap0</Word>
+            <Word>Wrap1</Word>
+            <Word>Wrap2</Word>
+            <Word>Wrap3</Word>
+            <Word>Wrap4</Word>
+            <Word>Wrap5</Word>
+            <Word>Wrap6</Word>
+            <Word>Wrap7</Word>
+            <Word>Wrap8</Word>
+            <Word>Wrap9</Word>
+            <Word>Wrap10</Word>
+            <Word>Wrap11</Word>
+            <Word>Wrap12</Word>
+            <Word>Wrap13</Word>
+            <Word>Wrap14</Word>
+            <Word>Wrap15</Word>
+            <Word>ZEnable</Word>
+            <Word>ZFunc</Word>
+            <Word>ZWriteEnable</Word>
+        </Keywords>
+        
+        <Keywords color="VertexPipeRenderStates">
+            <Word>Ambient</Word>
+            <Word>AmbientMaterialSource</Word>
+            <Word>Clipping</Word>
+            <Word>ClipPlaneEnable</Word>
+            <Word>ColorVertex</Word>
+            <Word>CullMode</Word>
+            <Word>DiffuseMaterialSource</Word>
+            <Word>EmissiveMaterialSource</Word>
+            <Word>FogColor</Word>
+            <Word>FogDensity</Word>
+            <Word>FogEnable</Word>
+            <Word>FogEnd</Word>
+            <Word>FogStart</Word>
+            <Word>FogTableMode</Word>
+            <Word>FogVertexMode</Word>
+            <Word>IndexedVertexBlendEnable</Word>
+            <Word>Lighting</Word>
+            <Word>LocalViewer</Word>
+            <Word>MultiSampleAntialias</Word>
+            <Word>MultiSampleMask</Word>
+            <Word>NormalizeNormals</Word>
+            <Word>PatchSegments</Word>
+            <Word>PointScale_A</Word>
+            <Word>PointScale_B</Word>
+            <Word>PointScale_C</Word>
+            <Word>PointScaleEnable</Word>
+            <Word>PointSize</Word>
+            <Word>PointSize_Min</Word>
+            <Word>PointSize_Max</Word>
+            <Word>PointSpriteEnable</Word>
+            <Word>RangeFogEnable</Word>
+            <Word>SpecularEnable</Word>
+            <Word>SpecularMaterialSource</Word>
+            <Word>TweenFactor</Word>
+            <Word>VertexBlend</Word>
+        </Keywords>
+        
+        <Keywords color="SamplerStates">
+            <Word>AddressU</Word>
+            <Word>AddressV</Word>
+            <Word>AddressW</Word>
+            <Word>BorderColor</Word>
+            <Word>Filter</Word>
+            <Word>MagFilter</Word>
+            <Word>MinFilter</Word>
+            <Word>MipFilter</Word>
+            <Word>MaxAnisotropy</Word>
+            <Word>MaxMipLevel</Word>
+            <Word>MaxLOD</Word>
+            <Word>MinLOD</Word>
+            <Word>MipMapLodBias</Word>
+            <Word>MipLODBias</Word>
+            <Word>ComparisonFunc</Word>
+            <Word>ComparisonFilter</Word>
+            <Word>SRGBTexture</Word>
+        </Keywords>
+        
+        <Keywords color="ShaderConstantStates">
+            <Word>PixelShaderConstant</Word>
+            <Word>PixelShaderConstant1</Word>
+            <Word>PixelShaderConstant2</Word>
+            <Word>PixelShaderConstant3</Word>
+            <Word>PixelShaderConstant4</Word>
+            <Word>PixelShaderConstantB</Word>
+            <Word>PixelShaderConstantI</Word>
+            <Word>PixelShaderConstantF</Word>
+            <Word>VertexShaderConstant</Word>
+            <Word>VertexShaderConstant1</Word>
+            <Word>VertexShaderConstant2</Word>
+            <Word>VertexShaderConstant3</Word>
+            <Word>VertexShaderConstant4</Word>
+            <Word>VertexShaderConstantB</Word>
+            <Word>VertexShaderConstantI</Word>
+            <Word>VertexShaderConstantF</Word>
+        </Keywords>
+        
+        <Keywords color="TextureStates">
+            <Word>Texture</Word>
+            <Word>AlphaOp</Word>
+            <Word>AlphaArg0</Word>
+            <Word>AlphaArg1</Word>
+            <Word>AlphaArg2</Word>
+            <Word>ColorArg0</Word>
+            <Word>ColorArg1</Word>
+            <Word>ColorArg2</Word>
+            <Word>ColorOp</Word>
+            <Word>BumpEnvLScale</Word>
+            <Word>BumpEnvLOffset</Word>
+            <Word>BumpEnvMat00</Word>
+            <Word>BumpEnvMat01</Word>
+            <Word>BumpEnvMat10</Word>
+            <Word>BumpEnvMat11</Word>
+            <Word>ResultArg</Word>
+            <Word>TexCoordIndex</Word>
+            <Word>TextureTransformFlags</Word>
+        </Keywords>
+        
+        <Keywords color="TransformStates">
+            <Word>ProjectionTransform</Word>
+            <Word>TextureTransform</Word>
+            <Word>ViewTransform</Word>
+            <Word>WorldTransform</Word>
+        </Keywords>
+        
+        <Keywords color="BlendStates10">
+            <Word>AlphaToCoverageEnable</Word>
+            <Word>BlendEnable</Word>
+            <Word>SrcBlend</Word>
+            <Word>DestBlend</Word>
+            <Word>BlendOp</Word>
+            <Word>SrcBlendAlpha</Word>
+            <Word>DestBlendAlpha</Word>
+            <Word>BlendOpAlpha</Word>
+            <Word>RenderTargetWriteMask</Word>
+        </Keywords>
+        
+        <Keywords color="DepthAndStencilStates10">
+            <Word>DepthEnable</Word>
+            <Word>DepthWriteMask</Word>
+            <Word>DepthFunc</Word>
+            <Word>StencilEnable</Word>
+            <Word>StencilReadMask</Word>
+            <Word>StencilWriteMask</Word>
+            <Word>FrontFaceStencilFail</Word>
+            <Word>FrontFaceStencilZFail</Word>
+            <Word>FrontFaceStencilPass</Word>
+            <Word>FrontFaceStencilFunc</Word>
+            <Word>BackFaceStencilFail</Word>
+            <Word>BackFaceStencilZFail</Word>
+            <Word>BackFaceStencilPass</Word>
+            <Word>BackFaceStencilFunc</Word>
+        </Keywords>
+        
+        <Keywords color="RasterizerStates10">
+            <Word>FillMode</Word>
+            <Word>CullMode</Word>
+            <Word>FrontCounterClockwise</Word>
+            <Word>DepthBias</Word>
+            <Word>DepthBiasClamp</Word>
+            <Word>SlopeScaledDepthBias</Word>
+            <Word>ZClipeEable</Word>
+            <Word>ScissorEnable</Word>
+            <Word>MultisampleEnable</Word>
+            <Word>AntialiasedLineEnable</Word>
+        </Keywords>
+        
+        <Keywords color="StateValues">
+            <Word>0WEIGHTS</Word>
+            <Word>0Weights</Word>
+            <Word>0weights</Word>
+            <Word>1WEIGHTS</Word>
+            <Word>2Weights</Word>
+            <Word>2weights</Word>
+            <Word>2WEIGHTS</Word>
+            <Word>2Weights</Word>
+            <Word>2weights</Word>
+            <Word>3WEIGHTS</Word>
+            <Word>3Weights</Word>
+            <Word>3weights</Word>
+            <Word>ADD</Word>
+            <Word>Add</Word>
+            <Word>add</Word>
+            <Word>ADDSIGNED</Word>
+            <Word>AddSigned</Word>
+            <Word>addsigned</Word>
+            <Word>ADDSIGNED2X</Word>
+            <Word>AddSigned2x</Word>
+            <Word>AddSigned2X</Word>
+            <Word>addsigned2x</Word>
+            <Word>ADDSMOOTH</Word>
+            <Word>AddSmooth</Word>
+            <Word>addsmooth</Word>
+            <Word>ALPHA</Word>
+            <Word>Alpha</Word>
+            <Word>alpha</Word>
+            <Word>ALPHAREPLICATE</Word>
+            <Word>AlphaReplicate</Word>
+            <Word>alphareplicate</Word>
+            <Word>ALWAYS</Word>
+            <Word>Always</Word>
+            <Word>always</Word>
+            <Word>ANISOTROPIC</Word>
+            <Word>Anisotropic</Word>
+            <Word>anisotropic</Word>
+            <Word>BLENDCURRENTALPHA</Word>
+            <Word>BlendCurrentAlpha</Word>
+            <Word>blendcurrentalpha</Word>
+            <Word>BLENDDIFFUSEALPHA</Word>
+            <Word>BlendDiffuseAlpha</Word>
+            <Word>blenddiffusealpha</Word>
+            <Word>BLENDFACTOR</Word>
+            <Word>BlendFactor</Word>
+            <Word>blendfactor</Word>
+            <Word>BLENDFACTORALPHA</Word>
+            <Word>BlendFactorAlpha</Word>
+            <Word>blendfactoralpha</Word>
+            <Word>BLENDTEXTUREALPHA</Word>
+            <Word>BlendTextureAlpha</Word>
+            <Word>blendtexturealpha</Word>
+            <Word>BLENDTEXTUREALPHAPM</Word>
+            <Word>BlendTextureAlphaPM</Word>
+            <Word>BlendTextureAlphaPm</Word>
+            <Word>blendtexturealphapm</Word>
+            <Word>BLUE</Word>
+            <Word>Blue</Word>
+            <Word>blue</Word>
+            <Word>BORDER</Word>
+            <Word>Border</Word>
+            <Word>border</Word>
+            <Word>BOTHINVSRCALPHA</Word>
+            <Word>BothInvSrcAlpha</Word>
+            <Word>bothinvsrcalpha</Word>
+            <Word>BOTHSRCALPHA</Word>
+            <Word>BothSrcAlpha</Word>
+            <Word>bothsrcalpha</Word>
+            <Word>BUMPENVMAP</Word>
+            <Word>BumpEnvMap</Word>
+            <Word>bumpenvmap</Word>
+            <Word>BUMPENVMAPLUMINANCE</Word>
+            <Word>BumpEnvMapLuminance</Word>
+            <Word>bumpenvmapluminance</Word>
+            <Word>CCW</Word>
+            <Word>Ccw</Word>
+            <Word>ccw</Word>
+            <Word>CLAMP</Word>
+            <Word>Clamp</Word>
+            <Word>clamp</Word>
+            <Word>CLIPPLANE0</Word>
+            <Word>ClipPlane0</Word>
+            <Word>Clipplane0</Word>
+            <Word>clipplane0</Word>
+            <Word>CLIPPLANE1</Word>
+            <Word>ClipPlane1</Word>
+            <Word>Clipplane1</Word>
+            <Word>clipplane1</Word>
+            <Word>CLIPPLANE2</Word>
+            <Word>ClipPlane2</Word>
+            <Word>Clipplane2</Word>
+            <Word>clipplane2</Word>
+            <Word>CLIPPLANE3</Word>
+            <Word>ClipPlane3</Word>
+            <Word>Clipplane3</Word>
+            <Word>clipplane3</Word>
+            <Word>CLIPPLANE4</Word>
+            <Word>ClipPlane4</Word>
+            <Word>Clipplane4</Word>
+            <Word>clipplane4</Word>
+            <Word>CLIPPLANE5</Word>
+            <Word>ClipPlane5</Word>
+            <Word>Clipplane5</Word>
+            <Word>clipplane5</Word>
+            <Word>COLOR</Word>
+            <Word>Color</Word>
+            <Word>color</Word>
+            <Word>COLOR1</Word>
+            <Word>Color1</Word>
+            <Word>color1</Word>
+            <Word>COMPLEMENT</Word>
+            <Word>Complement</Word>
+            <Word>complement</Word>
+            <Word>CONSTANT</Word>
+            <Word>Constant</Word>
+            <Word>constant</Word>
+            <Word>CONVOLUTIONMONO</Word>
+            <Word>ConvolutionMono</Word>
+            <Word>convolutionmono</Word>
+            <Word>COORD0</Word>
+            <Word>Coord0</Word>
+            <Word>coord0</Word>
+            <Word>COORD1</Word>
+            <Word>Coord1</Word>
+            <Word>coord1</Word>
+            <Word>COORD2</Word>
+            <Word>Coord2</Word>
+            <Word>coord2</Word>
+            <Word>COORD3</Word>
+            <Word>Coord3</Word>
+            <Word>coord3</Word>
+            <Word>COUNT1</Word>
+            <Word>Count1</Word>
+            <Word>count1</Word>
+            <Word>COUNT2</Word>
+            <Word>Count2</Word>
+            <Word>count2</Word>
+            <Word>COUNT3</Word>
+            <Word>Count3</Word>
+            <Word>count3</Word>
+            <Word>COUNT4</Word>
+            <Word>Count4</Word>
+            <Word>count4</Word>
+            <Word>CURRENT</Word>
+            <Word>Current</Word>
+            <Word>current</Word>
+            <Word>CW</Word>
+            <Word>Cw</Word>
+            <Word>cw</Word>
+            <Word>DECR</Word>
+            <Word>Decr</Word>
+            <Word>decr</Word>
+            <Word>DECRSAT</Word>
+            <Word>DecrSat</Word>
+            <Word>decrsat</Word>
+            <Word>DESTALPHA</Word>
+            <Word>DestAlpha</Word>
+            <Word>destalpha</Word>
+            <Word>DESTCOLOR</Word>
+            <Word>DestColor</Word>
+            <Word>destcolor</Word>
+            <Word>DIFFUSE</Word>
+            <Word>Diffuse</Word>
+            <Word>diffuse</Word>
+            <Word>DISABLE</Word>
+            <Word>Disable</Word>
+            <Word>disable</Word>
+            <Word>DOTPRODUCT3</Word>
+            <Word>DotProduct3</Word>
+            <Word>dotproduct3</Word>
+            <Word>EQUAL</Word>
+            <Word>Equal</Word>
+            <Word>equal</Word>
+            <Word>EXP</Word>
+            <Word>Exp</Word>
+            <Word>exp</Word>
+            <Word>EXP2</Word>
+            <Word>Exp2</Word>
+            <Word>exp2</Word>
+            <Word>FALSE</Word>
+            <Word>False</Word>
+            <Word>false</Word>
+            <Word>FLAT</Word>
+            <Word>Flat</Word>
+            <Word>flat</Word>
+            <Word>GAUSSIANQUAD</Word>
+            <Word>GaussianQuad</Word>
+            <Word>gaussianquad</Word>
+            <Word>GOURAUD</Word>
+            <Word>Gouraud</Word>
+            <Word>gouraud</Word>
+            <Word>GREATER</Word>
+            <Word>Greater</Word>
+            <Word>greater</Word>
+            <Word>GREATEREQUAL</Word>
+            <Word>GreaterEqual</Word>
+            <Word>greaterequal</Word>
+            <Word>GREEN</Word>
+            <Word>Green</Word>
+            <Word>green</Word>
+            <Word>INCR</Word>
+            <Word>Incr</Word>
+            <Word>incr</Word>
+            <Word>INCRSAT</Word>
+            <Word>IncrSat</Word>
+            <Word>incrsat</Word>
+            <Word>INVBLENDFACTOR</Word>
+            <Word>InvBlendFactor</Word>
+            <Word>invblendfactor</Word>
+            <Word>INVDESTALPHA</Word>
+            <Word>InvDestAlpha</Word>
+            <Word>invdestalpha</Word>
+            <Word>INVDESTCOLOR</Word>
+            <Word>InvDestColor</Word>
+            <Word>invdestcolor</Word>
+            <Word>INVERT</Word>
+            <Word>Invert</Word>
+            <Word>invert</Word>
+            <Word>INVSRCALPHA</Word>
+            <Word>InvSrcAlpha</Word>
+            <Word>invsrcalpha</Word>
+            <Word>INVSRCCOLOR</Word>
+            <Word>InvSrcColor</Word>
+            <Word>invsrccolor</Word>
+            <Word>INVSRCCOLOR2</Word>
+            <Word>InvsrcColor2</Word>
+            <Word>invsrccolor2</Word>
+            <Word>KEEP</Word>
+            <Word>Keep</Word>
+            <Word>keep</Word>
+            <Word>LERP</Word>
+            <Word>Lerp</Word>
+            <Word>lerp</Word>
+            <Word>LESS</Word>
+            <Word>Less</Word>
+            <Word>less</Word>
+            <Word>LESSEQUAL</Word>
+            <Word>LessEqual</Word>
+            <Word>lessequal</Word>
+            <Word>LINEAR</Word>
+            <Word>Linear</Word>
+            <Word>linear</Word>
+            <Word>MATERIAL</Word>
+            <Word>Material</Word>
+            <Word>material</Word>
+            <Word>MAX</Word>
+            <Word>Max</Word>
+            <Word>max</Word>
+            <Word>MIN</Word>
+            <Word>Min</Word>
+            <Word>min</Word>
+            <Word>MIRROR</Word>
+            <Word>Mirror</Word>
+            <Word>mirror</Word>
+            <Word>MIRRORONCE</Word>
+            <Word>MirrorOnce</Word>
+            <Word>mirroronce</Word>
+            <Word>MODULATE</Word>
+            <Word>Modulate</Word>
+            <Word>modulate</Word>
+            <Word>MODULATE2X</Word>
+            <Word>Modulate2X</Word>
+            <Word>Modulate2x</Word>
+            <Word>modulate2x</Word>
+            <Word>MODULATE4X</Word>
+            <Word>Modulate4X</Word>
+            <Word>Modulate4x</Word>
+            <Word>modulate4x</Word>
+            <Word>MODULATEALPHA_ADDCOLOR</Word>
+            <Word>ModulateAlpha_AddColor</Word>
+            <Word>modulatealpha_addcolor</Word>
+            <Word>MODULATECOLOR_ADDALPHA</Word>
+            <Word>ModulateColor_Addalpha</Word>
+            <Word>modulatecolor_addalpha</Word>
+            <Word>MODULATEINVALPHA_ADDCOLOR</Word>
+            <Word>ModulateInvAlpha_AddColor</Word>
+            <Word>modulateinvalpha_addcolor</Word>
+            <Word>MODULATEINVCOLOR_ADDALPHA</Word>
+            <Word>ModulateInvColor_AddAlpha</Word>
+            <Word>modulateinvcolor_addalpha</Word>
+            <Word>MULTIPLYADD</Word>
+            <Word>MultiplyAdd</Word>
+            <Word>multiplyadd</Word>
+            <Word>NEVER</Word>
+            <Word>Never</Word>
+            <Word>never</Word>
+            <Word>NONE</Word>
+            <Word>None</Word>
+            <Word>none</Word>
+            <Word>NOTEQUAL</Word>
+            <Word>NotEqual</Word>
+            <Word>notequal</Word>
+            <Word>ONE</Word>
+            <Word>One</Word>
+            <Word>one</Word>
+            <Word>PHONG</Word>
+            <Word>Phong</Word>
+            <Word>phong</Word>
+            <Word>POINT</Word>
+            <Word>Point</Word>
+            <Word>point</Word>
+            <Word>PREMODULATE</Word>
+            <Word>PreModulate</Word>
+            <Word>Premodulate</Word>
+            <Word>premodulate</Word>
+            <Word>PROJECTED</Word>
+            <Word>Projected</Word>
+            <Word>projected</Word>
+            <Word>PROJECTION</Word>
+            <Word>Projection</Word>
+            <Word>projection</Word>
+            <Word>PYRAMIDALQUAD</Word>
+            <Word>PyramidalQuad</Word>
+            <Word>pyramidalquad</Word>
+            <Word>RED</Word>
+            <Word>Red</Word>
+            <Word>red</Word>
+            <Word>REPLACE</Word>
+            <Word>Replace</Word>
+            <Word>replace</Word>
+            <Word>REVSUBTRACT</Word>
+            <Word>RevSubtract</Word>
+            <Word>revsubtract</Word>
+            <Word>SELECTARG1</Word>
+            <Word>SelectArg1</Word>
+            <Word>selectarg1</Word>
+            <Word>SELECTARG2</Word>
+            <Word>SelectArg2</Word>
+            <Word>selectarg2</Word>
+            <Word>SELECTMASK</Word>
+            <Word>SelectMask</Word>
+            <Word>selectmask</Word>
+            <Word>SOLID</Word>
+            <Word>Solid</Word>
+            <Word>solid</Word>
+            <Word>SPECULAR</Word>
+            <Word>Specular</Word>
+            <Word>specular</Word>
+            <Word>SRCALPHA</Word>
+            <Word>SrcAlpha</Word>
+            <Word>srcalpha</Word>
+            <Word>SRCALPHASAT</Word>
+            <Word>SrcAlphaSat</Word>
+            <Word>srcalphasat</Word>
+            <Word>SRCCOLOR</Word>
+            <Word>SrcColor</Word>
+            <Word>srccolor</Word>
+            <Word>SRCCOLOR2</Word>
+            <Word>SrcColor2</Word>
+            <Word>srccolor2</Word>
+            <Word>SUBTRACT</Word>
+            <Word>Subtract</Word>
+            <Word>subtract</Word>
+            <Word>TEMP</Word>
+            <Word>Temp</Word>
+            <Word>temp</Word>
+            <Word>TEXTURE0</Word>
+            <Word>Texture0</Word>
+            <Word>texture0</Word>
+            <Word>TEXTURE1</Word>
+            <Word>Texture1</Word>
+            <Word>texture1</Word>
+            <Word>TEXTURE2</Word>
+            <Word>Texture2</Word>
+            <Word>texture2</Word>
+            <Word>TEXTURE3</Word>
+            <Word>Texture3</Word>
+            <Word>texture3</Word>
+            <Word>TEXTURE4</Word>
+            <Word>Texture4</Word>
+            <Word>texture4</Word>
+            <Word>TEXTURE5</Word>
+            <Word>Texture5</Word>
+            <Word>texture5</Word>
+            <Word>TEXTURE6</Word>
+            <Word>Texture6</Word>
+            <Word>texture6</Word>
+            <Word>TEXTURE7</Word>
+            <Word>Texture7</Word>
+            <Word>texture7</Word>
+            <Word>TFACTOR</Word>
+            <Word>TFactor</Word>
+            <Word>Tfactor</Word>
+            <Word>tfactor</Word>
+            <Word>TRUE</Word>
+            <Word>True</Word>
+            <Word>true</Word>
+            <Word>TWEENING</Word>
+            <Word>Tweening</Word>
+            <Word>tweening</Word>
+            <Word>U</Word>
+            <Word>u</Word>
+            <Word>USEW</Word>
+            <Word>UseW</Word>
+            <Word>usew</Word>
+            <Word>V</Word>
+            <Word>v</Word>
+            <Word>W</Word>
+            <Word>w</Word>
+            <Word>WIREFRAME</Word>
+            <Word>Wireframe</Word>
+            <Word>WireFrame</Word>
+            <Word>wireframe</Word>
+            <Word>WRAP</Word>
+            <Word>Wrap</Word>
+            <Word>wrap</Word>
+            <Word>ZERO</Word>
+            <Word>Zero</Word>
+            <Word>zero</Word>
+        </Keywords>
+        
+        <Keywords color="AdditionalStateValues10">
+            <Word>REV_SUBTRACT</Word>
+            <Word>Rev_Subtract</Word>
+            <Word>rev_subtract</Word>
+            <Word>SRC_COLOR</Word>
+            <Word>Src_Color</Word>
+            <Word>src_color</Word>
+            <Word>INV_SRC_COLOR</Word>
+            <Word>Inv_Src_Color</Word>
+            <Word>inv_src_color</Word>
+            <Word>SRC_ALPHA</Word>
+            <Word>Src_Alpha</Word>
+            <Word>src_alpha</Word>
+            <Word>INV_SRC_ALPHA</Word>
+            <Word>Inv_Src_Alpha</Word>
+            <Word>inv_src_alpha</Word>
+            <Word>DEST_ALPHA</Word>
+            <Word>Dest_Alpha</Word>
+            <Word>dest_alpha</Word>
+            <Word>INV_DEST_ALPHA</Word>
+            <Word>Inv_Dest_Alpha</Word>
+            <Word>inv_dest_alpha</Word>
+            <Word>DEST_COLOR</Word>
+            <Word>Dest_Color</Word>
+            <Word>dest_color</Word>
+            <Word>INV_DEST_COLOR</Word>
+            <Word>Inv_Dest_Color</Word>
+            <Word>inv_dest_color</Word>
+            <Word>SRC_ALPHA_SAT</Word>
+            <Word>Src_Alpha_Sat</Word>
+            <Word>src_alpha_sat</Word>
+            <Word>BLEND_FACTOR</Word>
+            <Word>Blend_Factor</Word>
+            <Word>blend_factor</Word>
+            <Word>INV_BLEND_FACTOR</Word>
+            <Word>Inv_Blend_Factor</Word>
+            <Word>inv_blend_factor</Word>
+            <Word>SRC1_COLOR</Word>
+            <Word>Src1_Color</Word>
+            <Word>src1_color</Word>
+            <Word>INV_SRC1_COLOR</Word>
+            <Word>Inv_Src1_Color</Word>
+            <Word>inv_src1_color</Word>
+            <Word>SRC1_ALPHA</Word>
+            <Word>Src1_Alpha</Word>
+            <Word>src1_alpha</Word>
+            <Word>INV_SRC1_ALPHA</Word>
+            <Word>Inv_Src1_Alpha</Word>
+            <Word>inv_src1_alpha</Word>
+            
+            <Word>ALL</Word>
+            <Word>All</Word>
+            <Word>all</Word>
+            <Word>LESS_EQUAL</Word>
+            <Word>Less_Equal</Word>
+            <Word>less_equal</Word>
+            <Word>NOT_EQUAL</Word>
+            <Word>Not_Equal</Word>
+            <Word>not_equal</Word>
+            <Word>GREATER_EQUAL</Word>
+            <Word>Greater_Equal</Word>
+            <Word>greater_equal</Word>
+            
+            <Word>INCR_SAT</Word>
+            <Word>Incr_Sat</Word>
+            <Word>incr_sat</Word>
+            <Word>DECR_SAT</Word>
+            <Word>Decr_Sat</Word>
+            <Word>decr_sat</Word>
+            
+            <Word>FRONT</Word>
+            <Word>Front</Word>
+            <Word>front</Word>
+            <Word>BACK</Word>
+            <Word>Back</Word>
+            <Word>back</Word>
+            
+            <Word>MIRROR_ONCE</Word>
+            <Word>Mirror_Once</Word>
+            <Word>mirror_once</Word>
+            
+            <Word>MAX_ANISOTROPY</Word>
+            <Word>Max_Anisotropy</Word>
+            <Word>max_anisotropy</Word>
+            
+            <Word>MIN_MAG_MIP_POINT</Word>
+            <Word>Min_Mag_Mip_Point</Word>
+            <Word>min_mag_mip_point</Word>
+            <Word>MIN_MAG_POINT_MIP_LINEAR</Word>
+            <Word>Min_Mag_Point_Mip_Linear</Word>
+            <Word>min_mag_point_mip_linear</Word>
+            <Word>MIN_POINT_MAG_LINEAR_MIP_POINT</Word>
+            <Word>Min_Point_Mag_Linear_Mip_Point</Word>
+            <Word>min_point_mag_linear_mip_point</Word>
+            <Word>MIN_POINT_MAG_MIP_LINEAR</Word>
+            <Word>Min_Point_Mag_Mip_Linear</Word>
+            <Word>min_point_mag_mip_linear</Word>
+            <Word>MIN_LINEAR_MAG_MIP_POINT</Word>
+            <Word>Min_Linear_Mag_Mip_Point</Word>
+            <Word>min_linear_mag_mip_point</Word>
+            <Word>MIN_LINEAR_MAG_POINT_MIP_LINEAR</Word>
+            <Word>Min_Linear_Mag_Point_Mip_Linear</Word>
+            <Word>min_linear_mag_point_mip_linear</Word>
+            <Word>MIN_MAG_LINEAR_MIP_POINT</Word>
+            <Word>Min_Mag_Linear_Mip_Point</Word>
+            <Word>min_mag_linear_mip_point</Word>
+            <Word>MIN_MAG_MIP_LINEAR</Word>
+            <Word>Min_Mag_Mip_Linear</Word>
+            <Word>min_mag_mip_linear</Word>
+            <Word>COMPARISON_MIN_MAG_MIP_POINT</Word>
+            <Word>Comparison_Min_Mag_Mip_Point</Word>
+            <Word>comparison_min_mag_mip_point</Word>
+            <Word>COMPARISON_MIN_MAG_POINT_MIP_LINEAR</Word>
+            <Word>Comparison_Min_Mag_Point_Mip_Linear</Word>
+            <Word>comparison_min_mag_point_mip_linear</Word>
+            <Word>COMPARISON_MIN_POINT_MAG_LINEAR_MIP_POINT</Word>
+            <Word>Comparison_Min_Point_Mag_Linear_Mip_Point</Word>
+            <Word>comparison_min_point_mag_linear_mip_point</Word>
+            <Word>COMPARISON_MIN_POINT_MAG_MIP_LINEAR</Word>
+            <Word>Comparison_Min_Point_Mag_Mip_Linear</Word>
+            <Word>comparison_min_point_mag_mip_linear</Word>
+            <Word>COMPARISON_MIN_LINEAR_MAG_MIP_POINT</Word>
+            <Word>Comparison_Min_Linear_Mag_Mip_Point</Word>
+            <Word>comparison_min_linear_mag_mip_point</Word>
+            <Word>COMPARISON_MIN_LINEAR_MAG_POINT_MIP_LINEAR</Word>
+            <Word>Comparison_Min_Linear_Mag_Point_Mip_Linear</Word>
+            <Word>comparison_min_linear_mag_point_mip_linear</Word>
+            <Word>COMPARISON_MIN_MAG_LINEAR_MIP_POINT</Word>
+            <Word>Comparison_Min_Mag_Linear_Mip_Point</Word>
+            <Word>comparison_min_mag_linear_mip_point</Word>
+            <Word>COMPARISON_MIN_MAG_MIP_LINEAR</Word>
+            <Word>Comparison_Min_Mag_Mip_Linear</Word>
+            <Word>comparison_min_mag_mip_linear</Word>
+            <Word>COMPARISON_ANISOTROPIC</Word>
+            <Word>Comparison_Anisotropic</Word>
+            <Word>comparison_anisotropic</Word>
+        </Keywords>
+    </RuleSet>
+    
+    
+    <!-- This is the main ruleset. -->
+    <RuleSet>
+        <Import ruleSet="CommonSet"/>
+        <Import ruleSet="NonAssemblerSet"/>
+        
+        <Span ruleSet="TechniquesAndPassesSet" multiline="true">
+            <Begin color="Technique">
+                \b(technique|Technique|technique10)\b
+            </Begin>
+            <End>}</End>
+        </Span>
+        
+        <Span ruleSet="TechniquesAndPassesSet" multiline="true">
+            <Begin color="StateBlock">
+                \b(sampler_state|SamplerState|SamplerComparisonState|stateblock_state|BlendState|DepthStencilState|RasterizerState)\b
+            </Begin>
+            <End>}</End>
+        </Span>
+        
+        <Span ruleSet="AssemblerSet" multiline="true">
+            <Begin color="Assembler">\basm\b</Begin>
+            <End>}</End>
+        </Span>
+        
+        <Rule color="Semantics">
+            (?&lt;=:\s*)          # : followed by whitespace
+            (SV_[\dA-Za-z_]+      # a system value semantic (SV_Position, SV_ClipDistance0, ...)
+            |[A-Z_]+[\dA-Z_]*)    # an upper-case semantic (POSITION, TEXCOORD0, ...)
+        </Rule>
+        
+        <Keywords color="StorageClass">
+            <Word>const</Word>
+            <Word>extern</Word>
+            <Word>nointerpolation</Word>
+            <Word>register</Word>
+            <Word>shared</Word>
+            <Word>static</Word>
+            <Word>uniform</Word>
+            <Word>volatile</Word>
+        </Keywords>
+        
+        <Keywords color="InterpolationModifiers">
+            <Word>_linear</Word>
+            <Word>_centroid</Word>
+            <Word>_nointerpolation</Word>
+            <Word>_noperspective</Word>
+        </Keywords>
+        
+        <Keywords color="TypeModifiers">
+            <Word>row_major</Word>
+            <Word>column_major</Word>
+            <Word>snorm</Word>
+            <Word>unorm</Word>
+        </Keywords>
+        
+        <Keywords color="DataTypes">
+            <Word>void</Word>
+            <Word>Buffer</Word>
+            <Word>struct</Word>
+            <Word>cbuffer</Word>
+            <Word>tbuffer</Word>
+            <Word>vertexfragment</Word>
+            <Word>pixelfragment</Word>
+        </Keywords>
+        
+        <Keywords color="SamplerTypes">
+            <Word>sampler</Word>
+            <Word>sampler1D</Word>
+            <Word>sampler2D</Word>
+            <Word>sampler3D</Word>
+            <Word>samplerCUBE</Word>
+            <Word>sampler_state</Word>
+            <Word>SamplerState</Word>
+            <Word>SamplerComparisonState</Word>
+        </Keywords>
+        
+        <Keywords color="StateBlock">
+            <Word>STATEBLOCK</Word>
+            <Word>StateBlock</Word>
+            <Word>stateblock</Word>
+            <Word>stateblock_state</Word>
+        </Keywords>
+        
+        <Keywords color="TextureTypes">
+            <Word>texture</Word>
+            <Word>Texture1D</Word>
+            <Word>texture1D</Word>
+            <Word>texture1d</Word>
+            <Word>Texture1DArray</Word>
+            <Word>texture1DArray</Word>
+            <Word>Texture1dArray</Word>
+            <Word>texture1darray</Word>
+            <Word>Texture2D</Word>
+            <Word>texture2D</Word>
+            <Word>texture2d</Word>
+            <Word>Texture2DArray</Word>
+            <Word>texture2DArray</Word>
+            <Word>Texture2dArray</Word>
+            <Word>texture2darray</Word>
+            <Word>Texture2DMS</Word>
+            <Word>texture2DMS</Word>
+            <Word>Texture2dMs</Word>
+            <Word>texture2dms</Word>
+            <Word>Texture2DMSArray</Word>
+            <Word>texture2DMSArray</Word>
+            <Word>Texture2dMsArray</Word>
+            <Word>texture2DMsArray</Word>
+            <Word>texture2dmsarray</Word>
+            <Word>Texture3D</Word>
+            <Word>texture3D</Word>
+            <Word>texture3d</Word>
+            <Word>TextureCUBE</Word>
+            <Word>textureCUBE</Word>
+            <Word>TextureCube</Word>
+            <Word>textureCube</Word>
+            <Word>texturecube</Word>
+        </Keywords>
+        
+        <Keywords color="UserDefinedTypes">
+            <Word>typedef</Word>
+        </Keywords>
+        
+        <Keywords color="SelectionStatements">
+            <Word>else</Word>
+            <Word>if</Word>
+            <Word>switch</Word>
+            <Word>case</Word>
+            <Word>default</Word>
+        </Keywords>
+        
+        <Keywords color="StatementModifiers">
+            <Word>unroll</Word>
+            <Word>loop</Word>
+            <Word>branch</Word>
+            <Word>flatten</Word>
+        </Keywords>
+        
+        <Keywords color="IterationStatements">
+            <Word>do</Word>
+            <Word>for</Word>
+            <Word>while</Word>
+        </Keywords>
+        
+        <Keywords color="JumpStatements">
+            <Word>break</Word>
+            <Word>continue</Word>
+            <Word>discard</Word>
+            <Word>stop</Word>
+            <Word>return</Word>
+        </Keywords>
+        
+        <Keywords color="FunctionStorageClass">
+            <Word>inline</Word>
+            <Word>target</Word>
+        </Keywords>
+        
+        <Keywords color="InputModifiers">
+            <Word>in</Word>
+            <Word>inout</Word>
+            <Word>out</Word>
+        </Keywords>
+        
+        <Keywords color="GeometryShaderAttributes">
+            <Word>maxvertexcount</Word>
+        </Keywords>
+        
+        <Keywords color="PrimitiveType">
+            <Word>point</Word>
+            <Word>line</Word>
+            <Word>triangle</Word>
+            <Word>lineadj</Word>
+            <Word>triangleadj</Word>
+        </Keywords>
+        
+        <Keywords color="StreamOutputObjectTypes">
+            <Word>PointStream</Word>
+            <Word>LineStream</Word>
+            <Word>TriangleStream</Word>
+        </Keywords>
+        
+        <Keywords color="IntrinsicFunctions">
+            <Word>Append</Word>
+            <Word>RestartStrip</Word>
+            <Word>abs</Word>
+            <Word>acos</Word>
+            <Word>all</Word>
+            <Word>any</Word>
+            <Word>asfloat</Word>
+            <Word>asin</Word>
+            <Word>asint</Word>
+            <Word>asuint</Word>
+            <Word>atan</Word>
+            <Word>atan2</Word>
+            <Word>ceil</Word>
+            <Word>clamp</Word>
+            <Word>clip</Word>
+            <Word>cos</Word>
+            <Word>cosh</Word>
+            <Word>cross</Word>
+            <Word>D3DCOLORtoUBYTE4</Word>
+            <Word>ddx</Word>
+            <Word>ddy</Word>
+            <Word>degrees</Word>
+            <Word>determinant</Word>
+            <Word>distance</Word>
+            <Word>dot</Word>
+            <Word>exp</Word>
+            <Word>exp2</Word>
+            <Word>faceforward</Word>
+            <Word>floor</Word>
+            <Word>fmod</Word>
+            <Word>frac</Word>
+            <Word>frexp</Word>
+            <Word>fwidth</Word>
+            <Word>GetRenderTargetSampleCount</Word>
+            <Word>GetRenderTargetSamplePosition</Word>
+            <Word>isfinite</Word>
+            <Word>isinf</Word>
+            <Word>isnan</Word>
+            <Word>ldexp</Word>
+            <Word>length</Word>
+            <Word>lerp</Word>
+            <Word>lit</Word>
+            <Word>log</Word>
+            <Word>log10</Word>
+            <Word>log2</Word>
+            <Word>max</Word>
+            <Word>min</Word>
+            <Word>modf</Word>
+            <Word>mul</Word>
+            <Word>noise</Word>
+            <Word>normalize</Word>
+            <Word>pow</Word>
+            <Word>radians</Word>
+            <Word>reflect</Word>
+            <Word>refract</Word>
+            <Word>round</Word>
+            <Word>rsqrt</Word>
+            <Word>saturate</Word>
+            <Word>sign</Word>
+            <Word>sin</Word>
+            <Word>sincos</Word>
+            <Word>sinh</Word>
+            <Word>smoothstep</Word>
+            <Word>sqrt</Word>
+            <Word>step</Word>
+            <Word>tan</Word>
+            <Word>tanh</Word>
+            <Word>tex1D</Word>
+            <Word>tex1Dbias</Word>
+            <Word>tex1Dgrad</Word>
+            <Word>tex1Dlod</Word>
+            <Word>tex1Dproj</Word>
+            <Word>tex2D</Word>
+            <Word>tex2Dbias</Word>
+            <Word>tex2Dgrad</Word>
+            <Word>tex2Dlod</Word>
+            <Word>tex2Dproj</Word>
+            <Word>tex3D</Word>
+            <Word>tex3Dbias</Word>
+            <Word>tex3Dgrad</Word>
+            <Word>tex3Dlod</Word>
+            <Word>tex3Dproj</Word>
+            <Word>texCUBE</Word>
+            <Word>texCUBEbias</Word>
+            <Word>texCUBEgrad</Word>
+            <Word>texCUBElod</Word>
+            <Word>texCUBEproj</Word>
+            <Word>transpose</Word>
+            <Word>trunc</Word>
+        </Keywords>
+        
+        <Keywords color="TextureMethods">
+            <Word>CalculateLevelOfDetail</Word>
+            <Word>CalculateLevelOfDetailUnclamped</Word>
+            <Word>Gather</Word>
+            <Word>GetDimensions</Word>
+            <Word>GetSamplePosition</Word>
+            <Word>Load</Word>
+            <Word>Sample</Word>
+            <Word>SampleBias</Word>
+            <Word>SampleCmp</Word>
+            <Word>SampleCmpLevelZero</Word>
+            <Word>SampleGrad</Word>
+            <Word>SampleLevel</Word>
+        </Keywords>
+        
+        <Keywords color="ShaderFragment">
+            <Word>compile_fragment</Word>
+        </Keywords>
+    </RuleSet>
+</SyntaxDefinition>

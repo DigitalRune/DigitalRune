@@ -1,0 +1,42 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dr="http://schemas.digitalrune.com/windows"
+                    xmlns:editor="clr-namespace:DigitalRune.Editor"
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    xmlns:local="clr-namespace:DigitalRune.Editor.Documents">
+
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+
+    <ItemContainerTemplate DataType="{x:Type local:FilePathMenuItemViewModel}">
+        <MenuItem MaxWidth="400"
+                  Command="{Binding CommandItem.Command, Mode=OneWay}"
+                  CommandParameter="{Binding CommandItem.CommandParameter, Mode=OneWay}"
+                  Icon="{Binding CommandItem.Icon, Converter={x:Static editor:MenuIconConverter.Instance}, Mode=OneWay}"
+                  InputGestureText="{Binding CommandItem, Converter={x:Static editor:CommandItemToKeyGestureStringConverter.Instance}, Mode=OneWay}"
+                  IsCheckable="{Binding CommandItem.IsCheckable, Mode=OneWay}"
+                  IsChecked="{Binding CommandItem.IsChecked, Mode=OneWay}"
+                  ItemsSource="{Binding Submenu, Mode=OneWay}"
+                  UsesItemContainerTemplate="True"
+                  Visibility="{Binding IsVisible, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <i:Interaction.Behaviors>
+                <dr:InvalidateOnCommandParameterChangedBehavior />
+            </i:Interaction.Behaviors>
+            <MenuItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0"
+                               Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ContentPresenter}}, Path=(TextElement.Foreground)}"
+                               Text="{Binding Prefix, Mode=OneWay}" />
+                    <dr:PathTextBlock Grid.Column="1"
+                                      Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ContentPresenter}}, Path=(TextElement.Foreground)}"
+                                      Text="{Binding CommandItem.Text, Mode=OneWay}" />
+                </Grid>
+            </MenuItem.Header>
+        </MenuItem>
+    </ItemContainerTemplate>
+
+</ResourceDictionary>

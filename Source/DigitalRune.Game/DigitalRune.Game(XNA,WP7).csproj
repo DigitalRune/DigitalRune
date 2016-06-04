@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{8C669665-0CBD-4C80-BE8E-3558D3CC87F1}</ProjectGuid>
+    <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">Windows Phone</Platform>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.Game</RootNamespace>
+    <AssemblyName>DigitalRune.Game</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaCrossPlatformGroupID>96dc8eeb-7e17-414d-ab25-842c9b0d5a8f</XnaCrossPlatformGroupID>
+    <XnaOutputType>Library</XnaOutputType>
+    <XnaRefreshLevel>1</XnaRefreshLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Windows Phone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <BaseIntermediateOutputPath>obj\XNA\WindowsPhone\Debug\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\XNA\WindowsPhone\Debug</OutputPath>
+    <DefineConstants>TRACE;DEBUG;WINDOWS_PHONE;WP7</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <XnaCompressContent>false</XnaCompressContent>
+    <DocumentationFile>bin\XNA\WindowsPhone\Debug\DigitalRune.Game.xml</DocumentationFile>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Windows Phone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <BaseIntermediateOutputPath>obj\XNA\WindowsPhone\Release\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\XNA\WindowsPhone\Release</OutputPath>
+    <DefineConstants>TRACE;WINDOWS_PHONE;WP7</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <XnaCompressContent>false</XnaCompressContent>
+    <DocumentationFile>bin\XNA\WindowsPhone\Release\DigitalRune.Game.xml</DocumentationFile>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
+  <!--
+      To modify your build process, add your task inside one of the targets below and uncomment it. 
+      Other similar extension points exist, see Microsoft.Common.targets.
+      <Target Name="BeforeBuild">
+      </Target>
+      <Target Name="AfterBuild">
+      </Target>
+    -->
+  <ItemGroup>
+    <Reference Include="Microsoft.Phone, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="System">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="mscorlib">
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune\DigitalRune%28XNA,WP7%29.csproj">
+      <Project>{7EBE622E-1560-4D20-8DFB-641745E3EE68}</Project>
+      <Name>DigitalRune%28XNA,WP7%29</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GameObjects\DataStore.cs" />
+    <Compile Include="GameObjects\Events\GameEventCollection.cs" />
+    <Compile Include="GameObjects\Events\GameEventData{T}.cs" />
+    <Compile Include="GameObjects\Events\GameEventHandler.cs" />
+    <Compile Include="GameObjects\Events\GameEventMetadata{T}.cs" />
+    <Compile Include="GameObjects\Events\GameEvent{T}.cs" />
+    <Compile Include="GameObjects\Events\IGameEvent.cs" />
+    <Compile Include="GameObjects\Events\IGameEventData.cs" />
+    <Compile Include="GameObjects\Events\IGameEventMetadata.cs" />
+    <Compile Include="GameObjects\GameObject.cs" />
+    <Compile Include="GameObjects\GameObjectCollection.cs" />
+    <Compile Include="GameObjects\GameObjectManager.cs" />
+    <Compile Include="GameObjects\GameObject_Metadata.cs" />
+    <Compile Include="GameObjects\GameObject_PropertiesAndEvents.cs" />
+    <Compile Include="GameObjects\GamePropertyCategories.cs" />
+    <Compile Include="GameObjects\IGameObjectService.cs" />
+    <Compile Include="GameObjects\Properties\AnimatableGamePropertyData.cs" />
+    <Compile Include="GameObjects\Properties\GamePropertyChangeHandler.cs" />
+    <Compile Include="GameObjects\Properties\GamePropertyCollection.cs" />
+    <Compile Include="GameObjects\Properties\GamePropertyData{T}.cs" />
+    <Compile Include="GameObjects\Properties\GamePropertyEventArgs.cs" />
+    <Compile Include="GameObjects\Properties\GamePropertyEventArgs{T}.cs" />
+    <Compile Include="GameObjects\Properties\GamePropertyMetadata{T}.cs" />
+    <Compile Include="GameObjects\Properties\GameProperty{T}.cs" />
+    <Compile Include="GameObjects\Properties\IGameProperty.cs" />
+    <Compile Include="GameObjects\Properties\IGamePropertyData.cs" />
+    <Compile Include="GameObjects\Properties\IGamePropertyMetadata.cs" />
+    <Compile Include="NamespaceDoc.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Properties\AssemblyInfo.template" />
+    <Compile Include="States\NamespaceDoc.cs" />
+    <Compile Include="States\State.cs" />
+    <Compile Include="States\StateCollection.cs" />
+    <Compile Include="States\StateEventArgs.cs" />
+    <Compile Include="States\StateMachine.cs" />
+    <Compile Include="States\SubStatesCollection.cs" />
+    <Compile Include="States\Transition.cs" />
+    <Compile Include="States\TransitionCollection.cs" />
+    <Compile Include="Timing\Clocks\GameClockEventArgs.cs" />
+    <Compile Include="Timing\Clocks\HighPrecisionClock.cs" />
+    <Compile Include="Timing\Clocks\IGameClock.cs" />
+    <Compile Include="Timing\Clocks\ManualClock.cs" />
+    <Compile Include="Timing\Clocks\TickCountClock.cs" />
+    <Compile Include="Timing\NamespaceDoc.cs" />
+    <Compile Include="Timing\Timers\FixedStepTimer.cs" />
+    <Compile Include="Timing\Timers\GameTimerEventArgs.cs" />
+    <Compile Include="Timing\Timers\IGameTimer.cs" />
+    <Compile Include="Timing\Timers\VariableStepTimer.cs" />
+  </ItemGroup>
+</Project>

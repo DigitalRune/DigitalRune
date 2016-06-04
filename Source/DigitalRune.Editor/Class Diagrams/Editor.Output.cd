@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Editor                    Namespace: DigitalRune.Editor.Output">
+    <Position X="0.5" Y="0.5" Height="0.469" Width="2.418" />
+  </Comment>
+  <Class Name="DigitalRune.Editor.Output.NLogMessageEventArgs">
+    <Position X="4" Y="1.25" Width="2" />
+    <Members>
+      <Method Name="NLogMessageEventArgs" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Extensions\Output\NLog\NLogMessageEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.Output.OutputExtension">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <Members>
+      <Field Name="_menuNodes" Hidden="true" />
+      <Field Name="_output" Hidden="true" />
+      <Field Name="_resourceDictionary" Hidden="true" />
+      <Field Name="_toolBarNodes" Hidden="true" />
+      <Method Name="AddCommands" Hidden="true" />
+      <Method Name="AddDataTemplates" Hidden="true" />
+      <Method Name="AddMenus" Hidden="true" />
+      <Method Name="AddToolBars" Hidden="true" />
+      <Method Name="OnGetViewModel" Hidden="true" />
+      <Method Name="OnInitialize" Hidden="true" />
+      <Method Name="OnShutdown" Hidden="true" />
+      <Method Name="OnStartup" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="RemoveCommands" Hidden="true" />
+      <Method Name="RemoveDataTemplates" Hidden="true" />
+      <Method Name="RemoveMenus" Hidden="true" />
+      <Method Name="RemoveToolBars" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IMgAAAAAAABAAAAgAACAACAAABACAIBAAgACACEAAAA=</HashCode>
+      <FileName>Extensions\Output\OutputExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DigitalRune.Editor.Output.INLogTarget">
+    <Position X="2.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Extensions\Output\NLog\INLogTarget.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Editor.Output.IOutputService">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAAAEAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Extensions\Output\IOutputService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

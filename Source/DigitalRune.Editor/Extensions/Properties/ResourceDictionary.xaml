@@ -1,0 +1,41 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dr="http://schemas.digitalrune.com/windows"
+                    xmlns:local="clr-namespace:DigitalRune.Editor.Properties"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <DataTemplate DataType="{x:Type local:PropertiesViewModel}">
+        <dr:DockTabItem Title="{Binding DisplayName}"
+                        DockHeight="{Binding DockHeight}"
+                        DockWidth="{Binding DockWidth}"
+                        Icon="{Binding Icon}"
+                        ToolTip="{Binding DockToolTip}">
+            <dr:DockTabItem.ContextMenu>
+                <ContextMenu ItemsSource="{Binding DockContextMenu}" UsesItemContainerTemplate="True" />
+            </dr:DockTabItem.ContextMenu>
+            <local:PropertiesView />
+        </dr:DockTabItem>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type dr:PropertyGrid}, TextBlock}">
+        <TextBlock Text="{Binding Value}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type dr:PropertyGrid}, OpenLink}">
+        <dr:PathTextBlock Command="Open"
+                          CommandParameter="{Binding Value}"
+                          Text="{Binding Value}"
+                          ToolTip="{Binding Value}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{ComponentResourceKey {x:Type dr:PropertyGrid}, {x:Type sys:Object}}">
+        <dr:PathTextBlock Command="BrowseForward"
+                          CommandParameter="{Binding}"
+                          Text="{Binding Value}">
+            <dr:PathTextBlock.ToolTip>
+                <TextBlock Text="{Binding Value}" />
+            </dr:PathTextBlock.ToolTip>
+        </dr:PathTextBlock>
+    </DataTemplate>
+
+</ResourceDictionary>

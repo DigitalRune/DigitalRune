@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Helper classes                                               Assembly: DigitalRune.Editor                    Namespace: DigitalRune.Editor">
+    <Position X="0.5" Y="0.5" Height="0.636" Width="1.972" />
+  </Comment>
+  <Class Name="DigitalRune.Editor.ExceptionHelper">
+    <Position X="0.5" Y="1.5" Width="2.25" />
+    <Members>
+      <Method Name="CreateWindow" Hidden="true" />
+      <Field Name="Logger" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAIAAAQAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Misc\Exception Handling\ExceptionHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.SingleInstanceApplication">
+    <Position X="0.5" Y="3" Width="2.5" />
+    <Members>
+      <Field Name="_callback" Hidden="true" />
+      <Field Name="_channel" Hidden="true" />
+      <Field Name="_channelName" Hidden="true" />
+      <Field Name="_commandLineArgs" Hidden="true" />
+      <Field Name="_isFirstInstance" Hidden="true" />
+      <Field Name="_singleInstanceMutex" Hidden="true" />
+      <Method Name="ActivateFirstInstance" Hidden="true" />
+      <Method Name="ActivateFirstInstanceCallback" Hidden="true" />
+      <Field Name="ChannelNameSuffix" Hidden="true" />
+      <Method Name="CreateRemoteService" Hidden="true" />
+      <Field Name="Delimiter" Hidden="true" />
+      <Method Name="GetCommandLineArgs" Hidden="true" />
+      <Field Name="IpcProtocol" Hidden="true" />
+      <Field Name="RemoteServiceName" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Editor.SingleInstanceApplication.IpcRemoteService" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Misc\SingleInstanceApplication.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>CEAAEAAAEAAAARAAIAAAAAAAEIAAQAEQAARAAEIAAAA=</HashCode>
+      <FileName>Misc\SingleInstanceApplication.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.ProcessRunner" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="1.5" Width="2.75" />
+    <Members>
+      <Field Name="_errorComplete" Hidden="true" />
+      <Field Name="_outputComplete" Hidden="true" />
+      <Field Name="_process" Hidden="true" />
+      <Field Name="_standardError" Hidden="true" />
+      <Field Name="_standardOutput" Hidden="true" />
+      <Method Name="~ProcessRunner" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="OnErrorDataReceived" Hidden="true" />
+      <Method Name="OnOutputDataReceived" Hidden="true" />
+      <Method Name="OnProcessExited" Hidden="true" />
+      <Method Name="ProcessRunner" Hidden="true" />
+      <Method Name="ThrowIfDisposed" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAAAAgAAAGAAgAAgAAIA0hAAAJAoAgAAAAGgAAQQAAA=</HashCode>
+      <FileName>Misc\ProcessRunner.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

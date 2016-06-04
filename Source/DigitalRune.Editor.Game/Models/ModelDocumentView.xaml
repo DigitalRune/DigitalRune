@@ -1,0 +1,146 @@
+﻿<UserControl x:Class="DigitalRune.Editor.Models.ModelDocumentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             xmlns:game="clr-namespace:DigitalRune.Editor.Game"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:DigitalRune.Editor.Models"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:themes="clr-namespace:DigitalRune.Windows.Themes;assembly=DigitalRune.Windows.Themes"
+             UseLayoutRounding="True"
+             d:DataContext="{d:DesignInstance local:ModelDocumentViewModel, IsDesignTimeCreatable=False}"
+             d:DesignHeight="300"
+             d:DesignWidth="600"
+             x:ClassModifier="internal"
+             mc:Ignorable="d">
+    <UserControl.InputBindings>
+        <KeyBinding Key="Home" Command="{Binding ResetCameraCommand}" />
+    </UserControl.InputBindings>
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1">
+            <game:GamePresentationTarget x:Name="TextureViewer"
+                                         Focusable="True"
+                                         GraphicsScreens="{Binding GraphicsScreens}">
+                <i:Interaction.Behaviors>
+                    <game:CameraFieldOfViewBehavior CameraNode="{Binding CameraNode}" />
+                    <game:ArcballBehavior CameraNode="{Binding CameraNode}"
+                                          CameraTarget="{Binding ModelCenter}"
+                                          IsEnabled="{Binding CameraMode, Converter={x:Static dr:EnumToBooleanConverter.Instance}, ConverterParameter={x:Static local:CameraMode.Arcball}}" />
+                    <game:TurntableBehavior CameraNode="{Binding CameraNode}"
+                                            CameraTarget="{Binding ModelCenter}"
+                                            IsEnabled="{Binding CameraMode, Converter={x:Static dr:EnumToBooleanConverter.Instance}, ConverterParameter={x:Static local:CameraMode.Turntable}}" />
+                    <game:MouseZoomBehavior CameraNode="{Binding CameraNode}"
+                                            CameraTarget="{Binding ModelCenter}"
+                                            MinDistance="{Binding ZoomMinDistance}"
+                                            Speed="{Binding ZoomSpeed}" />
+                    <game:KeyboardNavigationBehavior CameraNode="{Binding CameraNode}"
+                                                     IsEnabled="{Binding CameraMode, Converter={x:Static dr:EnumToBooleanConverter.Instance}, ConverterParameter={x:Static local:CameraMode.Fly}}"
+                                                     Speed="{Binding MoveSpeed}" />
+                    <game:MouseLookBehavior CameraNode="{Binding CameraNode}" IsEnabled="{Binding CameraMode, Converter={x:Static dr:EnumToBooleanConverter.Instance}, ConverterParameter={x:Static local:CameraMode.Fly}}" />
+                </i:Interaction.Behaviors>
+            </game:GamePresentationTarget>
+        </Grid>
+
+        <!--  Define tool bar after document content because it should not be the default tab stop.  -->
+        <ToolBarTray Grid.Row="0" IsLocked="True">
+            <ToolBar KeyboardNavigation.TabNavigation="Continue">
+                <Button Command="{Binding ResetCameraCommand}" ToolTip="Reset the position and orientation of the camera. (Home)">
+                    <dr:Icon Source="{x:Static themes:MultiColorGlyphs.Home}" />
+                </Button>
+                <ComboBox Width="80"
+                          IsEditable="False"
+                          ItemsSource="{Binding CameraMode, Converter={x:Static dr:EnumToArrayConverter.Instance}}"
+                          SelectedValue="{Binding CameraMode}">
+                    <ComboBox.ToolTip>
+                        <TextBlock>
+                            <Run FontWeight="Bold">General</Run>
+                            <LineBreak />
+                            Use mouse wheel to zoom.
+                            <LineBreak />
+                            Hold Shift to move/zoom faster.
+                            <LineBreak />
+                            Hold Control to move/zoom slower.
+                            <LineBreak />
+                            <LineBreak />
+                            <Run FontWeight="Bold">Fly</Run>
+                            <LineBreak />
+                            Use WASD+RF to move.
+                            <LineBreak />
+                            Use left mouse button and mouse to look around.
+                            <LineBreak />
+                            <LineBreak />
+                            <Run FontWeight="Bold">Arcball, Turntable</Run>
+                            <LineBreak />
+                            Use left mouse button and mouse to rotate.
+                        </TextBlock>
+                    </ComboBox.ToolTip>
+                </ComboBox>
+                <ComboBox Width="90"
+                          IsEditable="False"
+                          IsEnabled="{Binding CanChangeGraphicsEngine}"
+                          ItemsSource="{Binding GraphicsEngine, Converter={x:Static dr:EnumToArrayConverter.Instance}}"
+                          SelectedValue="{Binding GraphicsEngine}">
+                    <ComboBox.ToolTip>
+                        <TextBlock>
+                            <Run FontWeight="Bold">MonoGame</Run>
+                            <LineBreak />
+                            Use only the MonoGame Model class to load and render the model. Do not
+                            use DigitalRune Graphics features for the model.
+                            <LineBreak />
+                            <LineBreak />
+                            <Run FontWeight="Bold">DigitalRune</Run>
+                            <LineBreak />
+                            Use the DigitalRune Graphics ModelNode class to load and render the model.
+                            <LineBreak />
+                            <LineBreak />
+                            <Run FontStyle="Italic">The model is reloaded if this setting is changed.</Run>
+                        </TextBlock>
+                    </ComboBox.ToolTip>
+                </ComboBox>
+                <Separator />
+                <CheckBox IsChecked="{Binding ShowGroundPlane}" ToolTip="Show a ground plane.">
+                    <dr:Icon Source="{x:Static themes:MultiColorGlyphs.Grid}" />
+                </CheckBox>
+                <CheckBox IsChecked="{Binding ShowBoundingShapes}" ToolTip="Show bounding shapes.">
+                    <dr:Icon Source="{x:Static themes:MultiColorGlyphs.Aabb}" />
+                </CheckBox>
+                <CheckBox IsChecked="{Binding ShowSkeleton}"
+                          IsEnabled="{Binding HasSkeleton}"
+                          ToolTip="Show skeleton."
+                          Visibility="{Binding Document.UseDigitalRuneGraphics, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <dr:Icon Source="{x:Static themes:MultiColorGlyphs.Skeleton}" />
+                </CheckBox>
+                <Separator Visibility="{Binding Document.UseDigitalRuneGraphics, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <CheckBox IsChecked="{Binding UseDeferredLighting}"
+                          ToolTip="Use deferred lighting instead of forward rendering."
+                          Visibility="{Binding Document.UseDigitalRuneGraphics, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Deferred Lighting
+                </CheckBox>
+                <Separator Visibility="{Binding Document.UseDigitalRuneGraphics, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <CheckBox IsChecked="{Binding ShowIntermediateRenderTargets}"
+                          IsEnabled="{Binding UseDeferredLighting}"
+                          ToolTip="Visualize intermediate render targets of the deferred lighting render pipeline."
+                          Visibility="{Binding Document.UseDigitalRuneGraphics, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Render Targets
+                </CheckBox>
+                <Separator Visibility="{Binding Document.UseDigitalRuneGraphics, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <!--<Button Command="Properties" ToolTip="Open the Properties window.">Properties</Button>-->
+                <Button Command="{Binding RecreatedModelAndMaterialDescriptionCommand}"
+                        ToolTip="Create model description and material definition files."
+                        Visibility="{Binding Document.UseDigitalRuneGraphics, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Recreate DRMDL/DRMAT
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+    </Grid>
+</UserControl>

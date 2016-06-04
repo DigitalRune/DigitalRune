@@ -1,0 +1,236 @@
+﻿<UserControl x:Class="DigitalRune.Editor.Errors.ErrorsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:DigitalRune.Editor.Errors"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:themes="clr-namespace:DigitalRune.Windows.Themes;assembly=DigitalRune.Windows.Themes"
+             d:DataContext="{x:Static local:ErrorsViewModel.DesignInstance}"
+             d:DesignHeight="200"
+             d:DesignWidth="600"
+             x:ClassModifier="internal"
+             mc:Ignorable="d">
+    <UserControl.Resources />
+
+    <DockPanel LastChildFill="True">
+        <ToolBarTray DockPanel.Dock="Top" IsLocked="True">
+            <ToolBar>
+                <CheckBox IsChecked="{Binding ShowErrors}">
+                    <StackPanel Orientation="Horizontal">
+                        <dr:Icon Width="16"
+                                 Height="16"
+                                 Margin="0,0,5,0"
+                                 Source="{x:Static themes:MultiColorGlyphs.MessageError}" />
+                        <TextBlock Text="{Binding NumberOfErrors}" />
+                    </StackPanel>
+                </CheckBox>
+                <Separator />
+                <CheckBox IsChecked="{Binding ShowWarnings}">
+                    <StackPanel Orientation="Horizontal">
+                        <dr:Icon Width="16"
+                                 Height="16"
+                                 Margin="0,0,5,0"
+                                 Source="{x:Static themes:MultiColorGlyphs.MessageWarning}" />
+                        <TextBlock Text="{Binding NumberOfWarnings}" />
+                    </StackPanel>
+                </CheckBox>
+                <Separator />
+                <CheckBox IsChecked="{Binding ShowMessages}">
+                    <StackPanel Orientation="Horizontal">
+                        <dr:Icon Width="16"
+                                 Height="16"
+                                 Margin="0,0,5,0"
+                                 Source="{x:Static themes:MultiColorGlyphs.MessageInformation}" />
+                        <TextBlock Text="{Binding NumberOfMessages}" />
+                    </StackPanel>
+                </CheckBox>
+            </ToolBar>
+        </ToolBarTray>
+        <DataGrid AutoGenerateColumns="False"
+                  Background="Transparent"
+                  BorderThickness="0"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserReorderColumns="True"
+                  CanUserResizeColumns="True"
+                  CanUserResizeRows="False"
+                  CanUserSortColumns="True"
+                  GridLinesVisibility="None"
+                  HeadersVisibility="Column"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding Items}"
+                  SelectedItem="{Binding SelectedItem}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewMouseDoubleClick">
+                    <dr:EventToCommand Command="{Binding PreviewMouseDoubleClickCommand}" PassEventArgsToCommand="True" />
+                </i:EventTrigger>
+                <i:EventTrigger EventName="PreviewKeyDown">
+                    <dr:EventToCommand Command="{Binding PreviewKeyDownCommand}" PassEventArgsToCommand="True" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn SortMemberPath="ErrorType">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="{x:Type local:Error}">
+                            <dr:Icon x:Name="ItemTypeIcon"
+                                     Width="16"
+                                     Height="16"
+                                     Source="{x:Static themes:MultiColorGlyphs.MessageError}" />
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding ErrorType}" Value="{x:Static local:ErrorType.Warning}">
+                                    <Setter TargetName="ItemTypeIcon" Property="Source" Value="{x:Static themes:MultiColorGlyphs.MessageWarning}" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ErrorType}" Value="{x:Static local:ErrorType.Message}">
+                                    <Setter TargetName="ItemTypeIcon" Property="Source" Value="{x:Static themes:MultiColorGlyphs.MessageInformation}" />
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Width="*"
+                                    Binding="{Binding Description}"
+                                    Header="Description" />
+                <DataGridTextColumn Width="SizeToCells"
+                                    MinWidth="80"
+                                    Binding="{Binding Location}"
+                                    Header="Location" />
+                <DataGridTextColumn Width="30"
+                                    Binding="{Binding Line}"
+                                    Header="Line" />
+                <DataGridTextColumn Width="30"
+                                    Binding="{Binding Column}"
+                                    Header="Column" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+
+</UserControl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

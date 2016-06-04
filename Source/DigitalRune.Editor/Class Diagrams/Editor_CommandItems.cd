@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Command items                                                              Assembly: DigitalRune.Editor                    Namespace: DigitalRune.Editor">
+    <Position X="0.5" Y="0.5" Height="0.646" Width="1.991" />
+  </Comment>
+  <Class Name="DigitalRune.Editor.DelegateCommandItem" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="7.25" Width="2.25" />
+    <Members>
+      <Method Name="DelegateCommandItem" Hidden="true" />
+      <Property Name="InputGestures" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Command Items\DelegateCommandItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.CommandSeparator" BaseTypeListCollapsed="true">
+    <Position X="5" Y="4" Width="1.75" />
+    <Members>
+      <Method Name="CommandSeparator" Hidden="true" />
+      <Method Name="CreateMenuItem" Hidden="true" />
+      <Method Name="CreateToolBarItem" Hidden="true" />
+      <Property Name="ICommandItem.AlwaysShowText" Hidden="true" />
+      <Property Name="ICommandItem.Category" Hidden="true" />
+      <Property Name="ICommandItem.Command" Hidden="true" />
+      <Property Name="ICommandItem.CommandParameter" Hidden="true" />
+      <Property Name="ICommandItem.Icon" Hidden="true" />
+      <Property Name="ICommandItem.InputGestures" Hidden="true" />
+      <Property Name="ICommandItem.IsCheckable" Hidden="true" />
+      <Property Name="ICommandItem.IsChecked" Hidden="true" />
+      <Property Name="ICommandItem.IsVisible" Hidden="true" />
+      <Property Name="ICommandItem.Text" Hidden="true" />
+      <Property Name="ICommandItem.ToolTip" Hidden="true" />
+      <Property Name="Name" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAABQgAJAAggAIEAAABAAGACA=</HashCode>
+      <FileName>Command Items\CommandSeparator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Editor.CommandGroup" BaseTypeListCollapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <Members>
+      <Field Name="_alwaysShowText" Hidden="true" />
+      <Field Name="_isVisible" Hidden="true" />
+      <Field Name="_text" Hidden="true" />
+      <Field Name="_toolTip" Hidden="true" />
+      <Property Name="AlwaysShowText" Hidden="true" />
+      <Property Name="Category" Hidden="true" />
+      <Property Name="Command" Hidden="true" />
+      <Method Name="CommandGroup" Hidden="true" />
+      <Property Name="CommandParameter" Hidden="true" />
+      <Method Name="CreateMenuItem" Hidden="true" />
+      <Method Name="CreateToolBarItem" Hidden="true" />
+      <Property Name="Icon" Hidden="true" />
+      <Property Name="InputGestures" Hidden="true" />
+      <Property Name="IsCheckable" Hidden="true" />
+      <Property Name="IsChecked" Hidden="true" />
+      <Property Name="Name" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAEAIAAAAABAwAARAAAEMIAAAALAEACCA=</HashCode>
+      <FileName>Command Items\CommandGroup.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Editor.CommandItem">
+    <Position X="2.75" Y="1.75" Width="1.75" />
+    <Members>
+      <Field Name="_alwaysShowText" Hidden="true" />
+      <Field Name="_category" Hidden="true" />
+      <Field Name="_commandParameter" Hidden="true" />
+      <Field Name="_icon" Hidden="true" />
+      <Field Name="_inputGestures" Hidden="true" />
+      <Field Name="_isCheckable" Hidden="true" />
+      <Field Name="_isChecked" Hidden="true" />
+      <Field Name="_isVisible" Hidden="true" />
+      <Field Name="_text" Hidden="true" />
+      <Field Name="_toolTip" Hidden="true" />
+      <Property Name="CommandAsICommand" Hidden="true" />
+      <Method Name="CommandItem" Hidden="true" />
+      <Method Name="CreateMenuItem" Hidden="true" />
+      <Method Name="CreateToolBarItem" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAFAIAIAAABAwAAVAAAEOKAAAALAUAiCA=</HashCode>
+      <FileName>Command Items\CommandItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Editor.CommandItem&lt;T&gt;">
+    <Position X="2.75" Y="5.5" Width="1.75" />
+    <Members>
+      <Property Name="CommandAsICommand" Hidden="true" />
+      <Method Name="CommandItem" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command Items\CommandItem{T}.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.RoutedCommandItem">
+    <Position X="1.25" Y="7.25" Width="2.25" />
+    <Members>
+      <Method Name="RoutedCommandItem" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command Items\RoutedCommandItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.CommandCategories">
+    <Position X="7.25" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAIAAAAAAFAAACQAAACAAgAAA=</HashCode>
+      <FileName>Command Items\CommandCategories.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.MenuItemViewModel">
+    <Position X="0.5" Y="9" Width="2.25" />
+    <Members>
+      <Field Name="_isVisible" Hidden="true" />
+      <Field Name="_submenu" Hidden="true" />
+      <Method Name="MenuItemViewModel" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEgAQAAAAAAAAAAAACAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Command Items\Menu Items\MenuItemViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Submenu" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Editor.MenuSeparatorViewModel">
+    <Position X="0.5" Y="10.75" Width="2.25" />
+    <Members>
+      <Method Name="MenuSeparatorViewModel" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command Items\Menu Items\MenuSeparatorViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.ToolBarButtonViewModel">
+    <Position X="3.75" Y="11.75" Width="2" />
+    <Members>
+      <Method Name="ToolBarButtonViewModel" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command Items\ToolBar Items\ToolBarButtonViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.ToolBarCheckBoxViewModel">
+    <Position X="6" Y="11.75" Width="2.25" />
+    <Members>
+      <Method Name="ToolBarCheckBoxViewModel" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command Items\ToolBar Items\ToolBarCheckBoxViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.ToolBarSeparatorViewModel">
+    <Position X="8.5" Y="11.75" Width="2.25" />
+    <Members>
+      <Field Name="_isVisible" Hidden="true" />
+      <Method Name="ToolBarSeparatorViewModel" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Command Items\ToolBar Items\ToolBarSeparatorViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.ToolBarItemViewModel">
+    <Position X="6.25" Y="9" Width="1.75" />
+    <Members>
+      <Method Name="ToolBarItemViewModel" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command Items\ToolBar Items\ToolBarItemViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.ToolBarViewModel">
+    <Position X="3.75" Y="9" Width="1.75" />
+    <Members>
+      <Field Name="_band" Hidden="true" />
+      <Field Name="_bandIndex" Hidden="true" />
+      <Field Name="_isVisible" Hidden="true" />
+      <Method Name="OnCommandGroupPropertyChanged" Hidden="true" />
+      <Method Name="OnItemsChanged" Hidden="true" />
+      <Method Name="RaiseActualIsVisibleChanged" Hidden="true" />
+      <Method Name="ToolBarViewModel" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Items" Type="DigitalRune.Editor.ToolBarItemViewModel">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.079" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>CABAAAAAAAAAmAAAAAAACAAAAAAAAAQgABEAIAAAgAA=</HashCode>
+      <FileName>Command Items\ToolBar Items\ToolBarViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Items" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Editor.MenuManager">
+    <Position X="6.5" Y="6.5" Width="1.5" />
+    <Members>
+      <Field Name="_coerceVisibilityAction" Hidden="true" />
+      <Field Name="_coerceVisibilityOperation" Hidden="true" />
+      <Method Name="CoerceVisibility" Hidden="true" />
+      <Method Name="CollectCommandItems" Hidden="true" />
+      <Method Name="CreateMenuItems" Hidden="true" />
+      <Method Name="IWeakEventListener.ReceiveWeakEvent" Hidden="true" />
+      <Method Name="MenuManager" Hidden="true" />
+      <Method Name="MergeNodes" Hidden="true" />
+      <Method Name="RemoveEmptyGroups" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQgAAAAIAAAAACAAAAAAQACABAICBIAQAAAAAAAAAA=</HashCode>
+      <FileName>Command Items\MenuManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DigitalRune.Editor.ToolBarManager">
+    <Position X="8.5" Y="6.5" Width="1.5" />
+    <Members>
+      <Field Name="_coerceVisibilityAction" Hidden="true" />
+      <Field Name="_coerceVisibilityOperation" Hidden="true" />
+      <Method Name="CoerceVisibility" Hidden="true" />
+      <Method Name="CollectCommandItems" Hidden="true" />
+      <Method Name="CreateToolBarItems" Hidden="true" />
+      <Method Name="CreateToolBars" Hidden="true" />
+      <Method Name="IWeakEventListener.ReceiveWeakEvent" Hidden="true" />
+      <Method Name="MergeNodes" Hidden="true" />
+      <Method Name="RemoveEmptyGroups" Hidden="true" />
+      <Method Name="ToolBarManager" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQgAAAAIAAABACAAAAAAQQCAAAACBIAQAAABAAAAAA=</HashCode>
+      <FileName>Command Items\ToolBarManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DigitalRune.Editor.MenuItemViewModelCollection" Collapsed="true">
+    <Position X="0.5" Y="12" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command Items\Menu Items\MenuItemViewModelCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.ToolBarComboBoxViewModel">
+    <Position X="11" Y="11.75" Width="2.25" />
+    <Members>
+      <Field Name="_items" Hidden="true" />
+      <Field Name="_selectedItem" Hidden="true" />
+      <Field Name="_width" Hidden="true" />
+      <Method Name="ToolBarComboBoxViewModel" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAACAAAAAAAAEAAARAAAAAAABAAAAAQAAA=</HashCode>
+      <FileName>Command Items\ToolBar Items\ToolBarComboBoxViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.ToolBarItemViewModelCollection" Collapsed="true">
+    <Position X="8.75" Y="10" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command Items\ToolBar Items\ToolBarItemViewModelCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.ToolBarViewModelCollection" Collapsed="true">
+    <Position X="8.75" Y="9" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command Items\ToolBar Items\ToolBarViewModelCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DigitalRune.Editor.ICommandItem">
+    <Position X="0.5" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAEAIAAAAABAgAARAAAEEAAAAADAEACAA=</HashCode>
+      <FileName>Command Items\ICommandItem.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

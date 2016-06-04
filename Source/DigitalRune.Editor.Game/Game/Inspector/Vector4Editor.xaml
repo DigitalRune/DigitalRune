@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="DigitalRune.Editor.Game.Vector4Editor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:Name="This"
+             d:DesignHeight="60"
+             d:DesignWidth="300"
+             x:ClassModifier="internal"
+             mc:Ignorable="d">
+    <Grid x:Name="Grid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="13" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="13" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="13" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="13" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0"
+                Margin="0,0,0,1"
+                Background="#FFA84B39"
+                CornerRadius="3,0,0,3" />
+        <TextBlock Grid.Column="0"
+                   Margin="3,2,0,0"
+                   FontWeight="SemiBold"
+                   Foreground="White"
+                   Text="X" />
+        <dr:NumericUpDown Grid.Column="1"
+                          Margin="0,0,1,1"
+                          Value="{Binding Path=X, ElementName=This, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
+
+        <Border Grid.Column="2"
+                Margin="0,0,0,1"
+                Background="#FF54A854"
+                CornerRadius="3,0,0,3" />
+        <TextBlock Grid.Column="2"
+                   Margin="3,2,0,0"
+                   FontWeight="SemiBold"
+                   Foreground="White"
+                   Text="Y" />
+        <dr:NumericUpDown Grid.Column="3"
+                          Margin="0,0,1,1"
+                          Value="{Binding Path=Y, ElementName=This, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
+
+        <Border Grid.Column="4"
+                Margin="0,0,0,1"
+                Background="#FF398AA8"
+                CornerRadius="3,0,0,3" />
+        <TextBlock Grid.Column="4"
+                   Margin="3,2,0,0"
+                   FontWeight="SemiBold"
+                   Foreground="White"
+                   Text="Z" />
+        <dr:NumericUpDown Grid.Column="5"
+                          Margin="0,0,0,1"
+                          Value="{Binding Path=Z, ElementName=This, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
+
+        <Border Grid.Column="6"
+                Margin="0,0,0,1"
+                Background="#FF808080"
+                CornerRadius="3,0,0,3" />
+        <TextBlock Grid.Column="6"
+                   Margin="1,2,0,0"
+                   FontWeight="SemiBold"
+                   Foreground="White"
+                   Text="W" />
+        <dr:NumericUpDown Grid.Column="7"
+                          Margin="0,0,0,1"
+                          Value="{Binding Path=W, ElementName=This, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
+
+    </Grid>
+</UserControl>

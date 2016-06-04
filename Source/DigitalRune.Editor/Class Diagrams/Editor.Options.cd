@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Editor                    Namespace: DigitalRune.Editor.Options">
+    <Position X="0.5" Y="0.5" Height="0.469" Width="2.418" />
+  </Comment>
+  <Class Name="DigitalRune.Editor.Options.OptionsExtension" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <Members>
+      <Field Name="_menuNodes" Hidden="true" />
+      <Field Name="_optionsViewModel" Hidden="true" />
+      <Field Name="_windowService" Hidden="true" />
+      <Method Name="AddCommands" Hidden="true" />
+      <Method Name="AddMenus" Hidden="true" />
+      <Method Name="AddQuickLaunchItems" Hidden="true" />
+      <Method Name="GetTitle" Hidden="true" />
+      <Field Name="Logger" Hidden="true" />
+      <Method Name="OnEditorActivated" Hidden="true" />
+      <Method Name="OnGetViewModel" Hidden="true" />
+      <Method Name="OnInitialize" Hidden="true" />
+      <Method Name="OnShutdown" Hidden="true" />
+      <Method Name="OnStartup" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Property Name="Options" Hidden="true" />
+      <Property Name="OptionsNodeCollections" Hidden="true" />
+      <Method Name="RemoveCommands" Hidden="true" />
+      <Method Name="RemoveMenus" Hidden="true" />
+      <Method Name="RemoveQuickLaunchItems" Hidden="true" />
+      <Method Name="Show" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IogAAAAAQAJBAAAgAADAAAAAAAIGAAAAAIACACFAQAA=</HashCode>
+      <FileName>Extensions\Options\OptionsExtension.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Editor.Options.OptionsGroupViewModel">
+    <Position X="3" Y="3.5" Width="2" />
+    <Members>
+      <Method Name="OptionsGroupViewModel" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\Options\OptionsGroupViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.Options.OptionsPageViewModel">
+    <Position X="3" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_isExpanded" Hidden="true" />
+      <Method Name="Apply" Hidden="true" />
+      <Property Name="INamedObject.Name" Hidden="true" />
+      <Method Name="OptionsPageViewModel" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAABAAAAIAAAAAAAAAAAAAAAAAAAQAABAAAAA=</HashCode>
+      <FileName>Extensions\Options\OptionsPageViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="DigitalRune.Editor.Options.IOptionsService">
+    <Position X="0.5" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\Options\IOptionsService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

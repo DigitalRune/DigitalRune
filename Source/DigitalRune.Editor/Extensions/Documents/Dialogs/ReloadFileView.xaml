@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="DigitalRune.Editor.Documents.ReloadFileView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:documents="clr-namespace:DigitalRune.Editor.Documents"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:themes="clr-namespace:DigitalRune.Windows.Themes;assembly=DigitalRune.Windows.Themes"
+             d:DataContext="{d:DesignInstance documents:ReloadFileViewModel, IsDesignTimeCreatable=True}"
+             x:ClassModifier="internal"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <StackPanel Margin="11">
+        <StackPanel Orientation="Horizontal">
+            <dr:Icon Width="40"
+                     Height="40"
+                     Margin="0,0,11,0"
+                     VerticalAlignment="Top"
+                     Source="{x:Static themes:MultiColorGlyphs.MessageWarning}" />
+            <StackPanel>
+                <TextBlock Name="FileName"
+                           Margin="0,0,0,11"
+                           Text="{Binding Path=FileName, StringFormat=\&quot;\{0\}\&quot;}" />
+                <TextBlock Name="FileModifiedMessage"
+                           Margin="0,0,0,11"
+                           Visibility="{Binding Path=IsFileModified, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    This file has been modified outside of the editor.
+                    <LineBreak />
+                    Do you want to reload it and lose the changes made in the editor?
+                </TextBlock>
+                <TextBlock Name="FileUnmodifiedMessage"
+                           Margin="0,0,0,11"
+                           Visibility="{Binding Path=IsFileModified, Converter={x:Static dr:InvertedBooleanToVisibilityConverter.Instance}}">
+                    This file has been modified outside of the editor.
+                    <LineBreak />
+                    Do you want to reload it?
+                </TextBlock>
+
+                <!--  Buttons  -->
+                <StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                    <Button Name="YesButton"
+                            MinWidth="75"
+                            Margin="0,0,7,0"
+                            Command="{Binding YesCommand}"
+                            IsDefault="{Binding Converter={x:Static dr:InvertBooleanConverter.Instance}, Path=IsFileModified}">
+                        _Yes
+                    </Button>
+                    <Button Name="YesToAllButton"
+                            MinWidth="75"
+                            Margin="0,0,7,0"
+                            Command="{Binding YesToAllCommand}">
+                        Yes to _All
+                    </Button>
+                    <Button Name="NoButton"
+                            MinWidth="75"
+                            Margin="0,0,7,0"
+                            Command="{Binding NoCommand}"
+                            IsCancel="True">
+                        _No
+                    </Button>
+                    <Button Name="NoToAllButton"
+                            MinWidth="75"
+                            Command="{Binding NoToAllCommand}">
+                        No to A_ll
+                    </Button>
+                </StackPanel>
+
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

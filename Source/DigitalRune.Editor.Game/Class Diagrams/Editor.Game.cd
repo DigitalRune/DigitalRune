@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Editor.Game                    Namespace: DigitalRune.Editor.Game">
+    <Position X="0.5" Y="0.5" Height="0.469" Width="2.47" />
+  </Comment>
+  <Class Name="DigitalRune.Editor.Game.GamePresentationTarget" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="0.5" Width="2.5" />
+    <Members>
+      <Method Name="GamePresentationTarget" Hidden="true" />
+      <Property Name="GraphicsScreens" Hidden="true" />
+      <Field Name="GraphicsScreensProperty" Hidden="true" />
+      <Property Name="LastSize" Hidden="true" />
+      <Method Name="OnGraphicsScreensChanged" Hidden="true" />
+      <Method Name="OnLoaded" Hidden="true" />
+      <Method Name="OnUnloaded" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAQAAAAAAAAQCAAAAAAAABAAAAAIA=</HashCode>
+      <FileName>Game\GamePresentationTarget.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.Game.XnaColorValueConverter" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="3" Width="2" />
+    <Members>
+      <Field Name="_instance" Hidden="true" />
+      <Method Name="Convert" Hidden="true" />
+      <Method Name="ConvertBack" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAIAAAAAAAAgAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Game\XnaColorValueConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Editor.Game.GameExtension">
+    <Position X="0.5" Y="1.25" Width="1.75" />
+    <Members>
+      <Field Name="_animationManager" Hidden="true" />
+      <Field Name="_clock" Hidden="true" />
+      <Field Name="_contentManager" Hidden="true" />
+      <Field Name="_graphicsManager" Hidden="true" />
+      <Field Name="_idle" Hidden="true" />
+      <Field Name="_resourceDictionary" Hidden="true" />
+      <Field Name="_timer" Hidden="true" />
+      <Field Name="_toolBarNodes" Hidden="true" />
+      <Method Name="AddCommands" Hidden="true" />
+      <Method Name="AddDataTemplates" Hidden="true" />
+      <Method Name="AddGameLoop" Hidden="true" />
+      <Method Name="AddGraphicsService" Hidden="true" />
+      <Method Name="AddToolBars" Hidden="true" />
+      <Method Name="GameLoop" Hidden="true" />
+      <Field Name="Logger" Hidden="true" />
+      <Method Name="OnApplicationIdle" Hidden="true" />
+      <Method Name="OnCompositionTargetRendering" Hidden="true" />
+      <Method Name="OnGetViewModel" Hidden="true" />
+      <Method Name="OnInitialize" Hidden="true" />
+      <Method Name="OnShutdown" Hidden="true" />
+      <Method Name="OnStartup" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="RemoveCommands" Hidden="true" />
+      <Method Name="RemoveDataTemplates" Hidden="true" />
+      <Method Name="RemoveGameLoop" Hidden="true" />
+      <Method Name="RemoveGraphicsService" Hidden="true" />
+      <Method Name="RemoveToolBars" Hidden="true" />
+      <Method Name="ShowView3D" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>YcgAAAIAAALgBAAxAQCgICAAAAACQIBgAhAAIBAAAAA=</HashCode>
+      <FileName>Game\GameExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.Game.GameContentBuilder">
+    <Position X="0.5" Y="4.5" Width="2.5" />
+    <Members>
+      <Field Name="_logger" Hidden="true" />
+      <Method Name="GameContentBuilder" Hidden="true" />
+      <Field Name="SupportedModelFileExtensions" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAwAAAAAAAAAAAAAAAAAIIAggAAAAAAAACAAAAA=</HashCode>
+      <FileName>Game\ContentPipeline\GameContentBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.Game.CameraFieldOfViewBehavior">
+    <Position X="3.5" Y="2" Width="2.5" />
+    <Members>
+      <Field Name="CameraNodeProperty" Hidden="true" />
+      <Field Name="IsEnabledProperty" Hidden="true" />
+      <Method Name="OnAttached" Hidden="true" />
+      <Method Name="OnCameraNodeChanged" Hidden="true" />
+      <Method Name="OnDetaching" Hidden="true" />
+      <Method Name="OnSizeChanged" Hidden="true" />
+      <Method Name="UpdateFieldOfView" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAFAABAAAAAAEAAAAAAAAAAAAIIAAAAgAEAAA=</HashCode>
+      <FileName>Game\Interactivity\CameraFieldOfViewBehavior.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.Game.KeyboardNavigationBehavior">
+    <Position X="3.5" Y="3.75" Width="2.5" />
+    <Members>
+      <Field Name="_gameExtension" Hidden="true" />
+      <Field Name="_gameTimer" Hidden="true" />
+      <Field Name="CameraNodeProperty" Hidden="true" />
+      <Field Name="IsEnabledProperty" Hidden="true" />
+      <Method Name="OnAttached" Hidden="true" />
+      <Method Name="OnDetaching" Hidden="true" />
+      <Method Name="OnFocusChanged" Hidden="true" />
+      <Method Name="OnIsEnabledChanged" Hidden="true" />
+      <Method Name="OnKeyDown" Hidden="true" />
+      <Method Name="OnMouseDown" Hidden="true" />
+      <Method Name="OnTick" Hidden="true" />
+      <Field Name="SpeedProperty" Hidden="true" />
+      <Method Name="UpdateTimer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAQAEAAFAAAAAQAgAEAAAABgAIACAAAJAAAAAAEAEA=</HashCode>
+      <FileName>Game\Interactivity\KeyboardNavigationBehavior.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.Game.MouseLookBehavior">
+    <Position X="3.5" Y="5.5" Width="2.5" />
+    <Members>
+      <Field Name="_cameraNode" Hidden="true" />
+      <Field Name="_lastMousePosition" Hidden="true" />
+      <Field Name="_originalOrientation" Hidden="true" />
+      <Method Name="BeginLooking" Hidden="true" />
+      <Field Name="CameraNodeProperty" Hidden="true" />
+      <Method Name="EndLooking" Hidden="true" />
+      <Method Name="GetYawPitch" Hidden="true" />
+      <Field Name="IsEnabledProperty" Hidden="true" />
+      <Method Name="OnAttached" Hidden="true" />
+      <Method Name="OnDetaching" Hidden="true" />
+      <Method Name="OnKeyDown" Hidden="true" />
+      <Method Name="OnLostMouseCapture" Hidden="true" />
+      <Method Name="OnMouseDown" Hidden="true" />
+      <Method Name="OnMouseMove" Hidden="true" />
+      <Method Name="OnMouseUp" Hidden="true" />
+      <Field Name="SpeedProperty" Hidden="true" />
+      <Method Name="UpdateOrientation" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAEAAEAAFAAACQAAgAEAgAAhABJAAAIAIAAAAAIGAAA=</HashCode>
+      <FileName>Game\Interactivity\MouseLookBehavior.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.Game.ArcballBehavior">
+    <Position X="3.5" Y="7.25" Width="2.5" />
+    <Members>
+      <Field Name="_cameraNode" Hidden="true" />
+      <Field Name="_originalTransform" Hidden="true" />
+      <Field Name="_originalViewMatrix" Hidden="true" />
+      <Field Name="_startVector" Hidden="true" />
+      <Field Name="_transform" Hidden="true" />
+      <Method Name="BeginOrbit" Hidden="true" />
+      <Field Name="CameraNodeProperty" Hidden="true" />
+      <Field Name="CameraTargetProperty" Hidden="true" />
+      <Method Name="EndOrbit" Hidden="true" />
+      <Field Name="IsEnabledProperty" Hidden="true" />
+      <Method Name="MapToSphere" Hidden="true" />
+      <Method Name="OnAttached" Hidden="true" />
+      <Method Name="OnCameraTargetChanged" Hidden="true" />
+      <Method Name="OnDetaching" Hidden="true" />
+      <Method Name="OnKeyDown" Hidden="true" />
+      <Method Name="OnLostMouseCapture" Hidden="true" />
+      <Method Name="OnMouseDown" Hidden="true" />
+      <Method Name="OnMouseMove" Hidden="true" />
+      <Method Name="OnMouseUp" Hidden="true" />
+      <Method Name="UpdateCamera" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAFCAABAAQAQEAAAAAABJACASQIAAAAAKGAQI=</HashCode>
+      <FileName>Game\Interactivity\ArcballBehavior.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.Game.MouseZoomBehavior">
+    <Position X="3.5" Y="9" Width="2.5" />
+    <Members>
+      <Field Name="CameraNodeProperty" Hidden="true" />
+      <Field Name="CameraTargetProperty" Hidden="true" />
+      <Field Name="IsEnabledProperty" Hidden="true" />
+      <Field Name="MaxDistanceProperty" Hidden="true" />
+      <Field Name="MinDistanceProperty" Hidden="true" />
+      <Method Name="OnAttached" Hidden="true" />
+      <Method Name="OnDetaching" Hidden="true" />
+      <Method Name="OnMouseWheel" Hidden="true" />
+      <Field Name="SpeedProperty" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAEEAFIAABACAgAEAAAABAAIAAAAAIAAAAAAEAQE=</HashCode>
+      <FileName>Game\Interactivity\MouseZoomBehavior.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.Game.GameHelper">
+    <Position X="6.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game\GameHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Samples.DeferredGraphicsScreen" BaseTypeListCollapsed="true">
+    <Position X="9" Y="0.5" Width="2.75" />
+    <Members>
+      <Field Name="_billboardRenderer" Hidden="true" />
+      <Field Name="_cloudMapRenderer" Hidden="true" />
+      <Field Name="_decalRenderer" Hidden="true" />
+      <Field Name="_fogRenderer" Hidden="true" />
+      <Field Name="_internalDebugRenderer" Hidden="true" />
+      <Field Name="_lensFlareRenderer" Hidden="true" />
+      <Field Name="_opaqueMeshSceneRenderer" Hidden="true" />
+      <Field Name="_planarReflectionRenderer" Hidden="true" />
+      <Field Name="_rebuildZBufferRenderer" Hidden="true" />
+      <Field Name="_skyRenderer" Hidden="true" />
+      <Field Name="_terrainClipmapRenderer" Hidden="true" />
+      <Field Name="_waterWavesRenderer" Hidden="true" />
+      <Method Name="DeferredGraphicsScreen" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="IsCameraUnderwater" Hidden="true" />
+      <Method Name="OnRender" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Method Name="RecycleShadowMaps" Hidden="true" />
+      <Method Name="RenderScene" Hidden="true" />
+      <Field Name="SpriteBatch" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQIAggMQCAQABCIgAAAgDAoAAARIQAYRIASIAMDIAQ=</HashCode>
+      <FileName>Game\Graphics\DeferredGraphicsScreen\DeferredGraphicsScreen.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_gBufferRenderer" />
+      <Property Name="LightBufferRenderer" />
+      <Property Name="DebugMode" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Samples.GBufferRenderer">
+    <Position X="9" Y="5.25" Width="1.5" />
+    <Members>
+      <Field Name="_clearGBufferRenderer" Hidden="true" />
+      <Field Name="_decalRenderer" Hidden="true" />
+      <Field Name="_downsampleFilter" Hidden="true" />
+      <Field Name="_renderTargetBindings" Hidden="true" />
+      <Field Name="_sceneNodeRenderer" Hidden="true" />
+      <Method Name="GBufferRenderer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAACAEAAAAQAgAAAAAAAAAAAAAAAAAAABAAEAAAAAA=</HashCode>
+      <FileName>Game\Graphics\DeferredGraphicsScreen\GBufferRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Samples.LightBufferRenderer" BaseTypeListCollapsed="true">
+    <Position X="10.75" Y="5.25" Width="2" />
+    <Members>
+      <Field Name="_ambientOcclusionType" Hidden="true" />
+      <Field Name="_copyFilter" Hidden="true" />
+      <Field Name="_disposed" Hidden="true" />
+      <Field Name="_graphicsService" Hidden="true" />
+      <Field Name="_renderTargetBindings" Hidden="true" />
+      <Field Name="_ssaoDownsampleFactor" Hidden="true" />
+      <Field Name="_ssaoFilter" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="LightBufferRenderer" Hidden="true" />
+      <Method Name="Render" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAKAAAACJEAgAAAAgAAAAAAAAAAAAAABAAAEAAAAg=</HashCode>
+      <FileName>Game\Graphics\DeferredGraphicsScreen\LightBufferRenderer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AmbientOcclusionType" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Samples.Graphics.PreprocessingSceneQuery" BaseTypeListCollapsed="true">
+    <Position X="12" Y="0.5" Width="2" />
+    <Members>
+      <Method Name="PreprocessingSceneQuery" Hidden="true" />
+      <Method Name="Reset" Hidden="true" />
+      <Method Name="Set" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAICAIAAAgABAAAAAAIAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Game\Graphics\DeferredGraphicsScreen\PreprocessingSceneQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Editor.Game.BasicGraphicsScreen">
+    <Position X="6.5" Y="0.5" Width="1.75" />
+    <Members>
+      <Field Name="_billboardRenderer" Hidden="true" />
+      <Field Name="_meshRenderer" Hidden="true" />
+      <Method Name="BasicGraphicsScreen" Hidden="true" />
+      <Method Name="OnRender" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAIAAAJAgAIIEAAAA=</HashCode>
+      <FileName>Game\Graphics\BasicGraphicsScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.Game.DebugGraphicsScreen" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="2.75" Width="1.75" />
+    <Members>
+      <Field Name="_gameExtension" Hidden="true" />
+      <Field Name="_internalDebugRenderer" Hidden="true" />
+      <Field Name="_isDisposed" Hidden="true" />
+      <Field Name="_numberOfDraws" Hidden="true" />
+      <Field Name="_numberOfUpdates" Hidden="true" />
+      <Field Name="_spriteBatch" Hidden="true" />
+      <Field Name="_stopwatch" Hidden="true" />
+      <Field Name="_stringBuilder" Hidden="true" />
+      <Field Name="_textWidth" Hidden="true" />
+      <Field Name="_whiteTexture" Hidden="true" />
+      <Method Name="~DebugGraphicsScreen" Hidden="true" />
+      <Field Name="ActionSafeAreaColor" Hidden="true" />
+      <Method Name="DebugGraphicsScreen" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="DrawTitleSafeArea" Hidden="true" />
+      <Field Name="InvisibleAreaColor" Hidden="true" />
+      <Method Name="OnGameLogicUpdating" Hidden="true" />
+      <Method Name="OnRender" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAQEAAAACAIAgACAABEAACAgAAAJAAAIIEDIAEAAAA=</HashCode>
+      <FileName>Game\Graphics\DebugGraphicsScreen.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Samples.CustomSceneQuery" BaseTypeListCollapsed="true">
+    <Position X="14.25" Y="0.5" Width="1.75" />
+    <Members>
+      <Method Name="AddNode" Hidden="true" />
+      <Method Name="AddNodeEx" Hidden="true" />
+      <Method Name="AddSubtree" Hidden="true" />
+      <Method Name="CustomSceneQuery" Hidden="true" />
+      <Method Name="Reset" Hidden="true" />
+      <Method Name="Set" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAABAAAAAIIAgCAAAQABAAAAAAAAQAIABA=</HashCode>
+      <FileName>Game\Graphics\DeferredGraphicsScreen\CustomSceneQuery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Enum Name="Samples.DeferredGraphicsDebugMode">
+    <Position X="13" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Game\Graphics\DeferredGraphicsScreen\DeferredGraphicsDebugMode.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Samples.AmbientOcclusionType">
+    <Position X="10.75" Y="7" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Game\Graphics\DeferredGraphicsScreen\LightBufferRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

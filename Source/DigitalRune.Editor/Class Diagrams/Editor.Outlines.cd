@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Editor                    Namespace: DigitalRune.Editor.Outlines">
+    <Position X="0.5" Y="0.5" Height="0.469" Width="2.647" />
+  </Comment>
+  <Class Name="DigitalRune.Editor.Outlines.Outline">
+    <Position X="3" Y="1.25" Width="1.5" />
+    <AssociationLine Name="RootItems" Type="DigitalRune.Editor.Outlines.OutlineItem" FixedFromPoint="true">
+      <Path>
+        <Point X="4.5" Y="1.5" />
+        <Point X="5.75" Y="1.5" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="SelectedItems" Type="DigitalRune.Editor.Outlines.OutlineItem" FixedFromPoint="true">
+      <Path>
+        <Point X="4.5" Y="1.938" />
+        <Point X="5.75" Y="1.938" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\Outline\Outline.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="RootItems" />
+      <Property Name="SelectedItems" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Editor.Outlines.OutlineExtension" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <Members>
+      <Field Name="_menuNodes" Hidden="true" />
+      <Field Name="_outlineViewModel" Hidden="true" />
+      <Field Name="_resourceDictionary" Hidden="true" />
+      <Field Name="_toolBarNodes" Hidden="true" />
+      <Method Name="AddCommands" Hidden="true" />
+      <Method Name="AddDataTemplates" Hidden="true" />
+      <Method Name="AddMenus" Hidden="true" />
+      <Method Name="AddToolBars" Hidden="true" />
+      <Property Name="IOutlineService.Outline" Hidden="true" />
+      <Property Name="IOutlineService.OutlineViewModel" Hidden="true" />
+      <Field Name="Logger" Hidden="true" />
+      <Method Name="OnGetViewModel" Hidden="true" />
+      <Method Name="OnInitialize" Hidden="true" />
+      <Method Name="OnShutdown" Hidden="true" />
+      <Method Name="OnStartup" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="OutlineExtension" Hidden="true" />
+      <Method Name="RemoveCommands" Hidden="true" />
+      <Method Name="RemoveDataTemplates" Hidden="true" />
+      <Method Name="RemoveMenus" Hidden="true" />
+      <Method Name="RemoveToolBars" Hidden="true" />
+      <Method Name="ShowOutline" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IMgAAABABAJAAAAgAACAACAAAABCAIBAAgACACEAAAA=</HashCode>
+      <FileName>Extensions\Outline\OutlineExtension.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DigitalRune.Editor.Outlines.OutlineHelper">
+    <Position X="2.75" Y="2.75" Width="2.5" />
+    <Members>
+      <Field Name="GetChildrenCallback" Hidden="true" />
+      <Field Name="GetParentCallback" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AIACAAQAAAAICAAAAAAAAAAAAAAAQBAABAAAAAAAAAE=</HashCode>
+      <FileName>Extensions\Outline\OutlineHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.Outlines.OutlineItem">
+    <Position X="5.75" Y="1.25" Width="1.5" />
+    <Members>
+      <Field Name="_children" Hidden="true" />
+      <Field Name="_icon" Hidden="true" />
+      <Field Name="_isExpanded" Hidden="true" />
+      <Field Name="_isSelected" Hidden="true" />
+      <Field Name="_parent" Hidden="true" />
+      <Field Name="_text" Hidden="true" />
+      <Field Name="_toolTip" Hidden="true" />
+      <Field Name="_userData" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAQAQAAAAAAEAIAAAAUQAiQAAAAAACIAAAACAEIACA=</HashCode>
+      <FileName>Extensions\Outline\OutlineItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DigitalRune.Editor.Outlines.IOutlineService">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Extensions\Outline\IOutlineService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Outline" />
+    </ShowAsAssociation>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

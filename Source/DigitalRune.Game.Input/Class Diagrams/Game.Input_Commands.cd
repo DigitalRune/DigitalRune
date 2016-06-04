@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Input Commands                                Assembly: DigitalRune.Game.Input      Namespace: DigitalRune.Game.Input">
+    <Position X="0.5" Y="0.5" Height="0.645" Width="2.395" />
+  </Comment>
+  <Class Name="DigitalRune.Game.Input.InputMapping">
+    <Position X="4.25" Y="3.75" Width="2" />
+    <AssociationLine Name="PressType" Type="DigitalRune.Game.Input.PressType">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.068" Y="0.05" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAQAACAgAMAAAAAAAQAACAAAGgCAAAAA=</HashCode>
+      <FileName>Commands\InputMapping.cs</FileName>
+      <NewMemberFileName>Commands\DefaultInputCommand.cs</NewMemberFileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PressType" />
+      <Property Name="Axis" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Game.Input.ConfigurableInputCommand" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="3.75" Width="2.25" />
+    <Members>
+      <Field Name="_logicalPlayerIndex" Hidden="true" />
+      <Field Name="_name" Hidden="true" />
+      <Field Name="_sensitivity" Hidden="true" />
+      <Method Name="ConfigurableInputCommand" Hidden="true" />
+      <Method Name="HandleAxis" Hidden="true" />
+      <Method Name="HandleButtons" Hidden="true" />
+      <Method Name="HandleKeys" Hidden="true" />
+      <Method Name="HandleMapping" Hidden="true" />
+      <Method Name="HandleMouseButtons" Hidden="true" />
+    </Members>
+    <AssociationLine Name="PrimaryMapping" Type="DigitalRune.Game.Input.InputMapping">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.079" Y="0.039" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="SecondaryMapping" Type="DigitalRune.Game.Input.InputMapping">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.048" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>QAYAKAAAAAAgBIwAQAIAACQAAAAABACIAAggAAAAAAA=</HashCode>
+      <FileName>Commands\ConfigurableInputCommand.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PrimaryMapping" />
+      <Property Name="SecondaryMapping" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="DigitalRune.Game.Input.IInputService" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>gCAAAgAoAQICgAAKMQFCEAAAAAMAAQBAsIEAABACCRg=</HashCode>
+      <FileName>IInputService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Commands" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Interface Name="DigitalRune.Game.Input.IInputCommand">
+    <Position X="0.5" Y="1.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAgAAAAAAA=</HashCode>
+      <FileName>Commands\IInputCommand.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DigitalRune.Game.Input.DeviceAxis">
+    <Position X="7.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAgAAIAAAAAAAAAAAAAAAAAIAAAAAEsAA=</HashCode>
+      <FileName>Commands\DeviceAxis.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DigitalRune.Game.Input.PressType">
+    <Position X="7.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAABAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Commands\PressType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

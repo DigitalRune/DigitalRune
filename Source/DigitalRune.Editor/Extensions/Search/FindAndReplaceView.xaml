@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="DigitalRune.Editor.Search.FindAndReplaceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:search="clr-namespace:DigitalRune.Editor.Search"
+             Margin="5"
+             d:DataContext="{x:Static search:FindAndReplaceViewModel.DesignInstance}"
+             x:ClassModifier="internal"
+             mc:Ignorable="d">
+    <UserControl.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding CancelCommand}" />
+    </UserControl.InputBindings>
+    <StackPanel>
+        <Label Padding="0,0,0,3" Target="{Binding ElementName=FindPatternComboBox}">Fi_nd what:</Label>
+        <ComboBox x:Name="FindPatternComboBox"
+                  Margin="0,0,0,7"
+                  IsEditable="True"
+                  IsTextSearchCaseSensitive="True"
+                  ItemsSource="{Binding RecentFindPatterns}"
+                  Text="{Binding Query.FindPattern}" />
+        <Label Padding="0,0,0,3" Target="{Binding ElementName=ReplacePatternComboBox}">Re_place with:</Label>
+        <ComboBox x:Name="ReplacePatternComboBox"
+                  Margin="0,0,0,7"
+                  IsEditable="True"
+                  IsTextSearchCaseSensitive="True"
+                  ItemsSource="{Binding RecentReplacePatterns}"
+                  Text="{Binding Query.ReplacePattern}" />
+        <Label Padding="0,0,0,3" Target="{Binding ElementName=SearchScopesComboBox}">_Look in:</Label>
+        <ComboBox x:Name="SearchScopesComboBox"
+                  Margin="0,0,0,11"
+                  IsEditable="False"
+                  ItemsSource="{Binding SearchScopes}"
+                  SelectedIndex="0"
+                  SelectedItem="{Binding Query.Scope}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Expander Margin="0,0,0,11"
+                  Header="Find options"
+                  IsExpanded="True">
+            <StackPanel Margin="7,7,7,0">
+                <CheckBox Margin="0,0,0,4" IsChecked="{Binding Query.MatchCase}">Match _case</CheckBox>
+                <CheckBox Margin="0,0,0,4" IsChecked="{Binding Query.MatchWholeWord}">Match _whole word</CheckBox>
+                <CheckBox Margin="0,0,0,5" IsChecked="{Binding UseRegexOrWildcards}">U_se:</CheckBox>
+                <ComboBox Margin="18,0,0,0"
+                          IsEnabled="{Binding UseRegexOrWildcards}"
+                          SelectedValue="{Binding RegexOrWildcards}"
+                          SelectedValuePath="Tag">
+                    <TextBlock Tag="Regex" Text="Regular expressions" />
+                    <TextBlock Tag="Wildcards" Text="Wildcards" />
+                </ComboBox>
+            </StackPanel>
+        </Expander>
+
+        <Grid HorizontalAlignment="Right">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="0"
+                    Grid.Column="0"
+                    MinWidth="90"
+                    Margin="0,0,7,7"
+                    Command="{Binding FindPreviousCommand}">
+                Find previous
+            </Button>
+            <Button Grid.Row="0"
+                    Grid.Column="1"
+                    MinWidth="90"
+                    Margin="0,0,0,7"
+                    Command="{Binding ReplaceCommand}">
+                _Replace
+            </Button>
+            <Button Grid.Row="1"
+                    Grid.Column="0"
+                    MinWidth="90"
+                    Margin="0,0,7,0"
+                    Command="{Binding FindNextCommand}">
+                _Find next
+            </Button>
+            <Button Grid.Row="1"
+                    Grid.Column="1"
+                    MinWidth="90"
+                    Command="{Binding ReplaceAllCommand}">
+                Replace _all
+            </Button>
+        </Grid>
+
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Editor                    Namespace: DigitalRune.Editor.Documents">
+    <Position X="0.5" Y="0.5" Height="0.469" Width="2.616" />
+  </Comment>
+  <Class Name="DigitalRune.Editor.Documents.Document">
+    <Position X="4.25" Y="2.75" Width="1.75" />
+    <Members>
+      <Field Name="_documentExtension" Hidden="true" />
+      <Field Name="_fileDialogFilter" Hidden="true" />
+      <Field Name="_fileDialogFilterIndex" Hidden="true" />
+      <Field Name="_isModified" Hidden="true" />
+      <Field Name="_lastUntitledNumbers" Hidden="true" />
+      <Field Name="_untitledName" Hidden="true" />
+      <Field Name="_uri" Hidden="true" />
+      <Field Name="_viewModels" Hidden="true" />
+      <Method Name="CreateViewModel" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="Document" Hidden="true" />
+      <Property Name="DocumentExtension" Hidden="true" />
+      <Method Name="GetUntitledName" Hidden="true" />
+      <Method Name="Load" Hidden="true" />
+      <Method Name="RegisterViewModel" Hidden="true" />
+      <Method Name="Save" Hidden="true" />
+      <Method Name="ThrowIfDisposed" Hidden="true" />
+      <Method Name="UnregisterViewModel" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EAAEoNAAFCAAgCQBwAAQCJACQCAJAQAECBAAACAAQAA=</HashCode>
+      <FileName>Extensions\Documents\Document.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DocumentService" />
+      <Property Name="DocumentType" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="ViewModels" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Editor.Documents.DocumentExtension" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="5.75" Width="2.25" />
+    <Members>
+      <Field Name="_activeDocument" Hidden="true" />
+      <Field Name="_applyingFileChanges" Hidden="true" />
+      <Field Name="_contextMenuNodes" Hidden="true" />
+      <Field Name="_currentDocumentSearchScope" Hidden="true" />
+      <Field Name="_documents" Hidden="true" />
+      <Field Name="_fileArgument" Hidden="true" />
+      <Field Name="_fileChangeRecords" Hidden="true" />
+      <Field Name="_fileWatchers" Hidden="true" />
+      <Field Name="_inDrop" Hidden="true" />
+      <Field Name="_menuManager" Hidden="true" />
+      <Field Name="_menuNodes" Hidden="true" />
+      <Field Name="_numberOfRecentFiles" Hidden="true" />
+      <Field Name="_openCommandBinding" Hidden="true" />
+      <Field Name="_openDocumentsSearchScope" Hidden="true" />
+      <Field Name="_openFileDialog" Hidden="true" />
+      <Field Name="_recentFiles" Hidden="true" />
+      <Field Name="_resourceDictionary" Hidden="true" />
+      <Field Name="_saveFileDialog" Hidden="true" />
+      <Field Name="_searchService" Hidden="true" />
+      <Field Name="_statusService" Hidden="true" />
+      <Field Name="_suppressUpdateCommandItems" Hidden="true" />
+      <Field Name="_toolBarNodes" Hidden="true" />
+      <Field Name="_windowService" Hidden="true" />
+      <Property Name="ActiveDocument" Hidden="true" />
+      <Event Name="ActiveDocumentChanged" Hidden="true" />
+      <Method Name="AddCommandBindings" Hidden="true" />
+      <Method Name="AddCommandLineArguments" Hidden="true" />
+      <Method Name="AddCommands" Hidden="true" />
+      <Method Name="AddContextMenu" Hidden="true" />
+      <Method Name="AddDataTemplates" Hidden="true" />
+      <Method Name="AddMenus" Hidden="true" />
+      <Method Name="AddSearchScopes" Hidden="true" />
+      <Method Name="AddToolBars" Hidden="true" />
+      <Method Name="AddView" Hidden="true" />
+      <Method Name="ApplyFileChange" Hidden="true" />
+      <Method Name="CanCloseAllButActiveDocument" Hidden="true" />
+      <Method Name="CanCloseAllDocumentsAndWindows" Hidden="true" />
+      <Method Name="CanCloseAsync" Hidden="true" />
+      <Method Name="CanOpen" Hidden="true" />
+      <Method Name="CanOpenContainingFolder" Hidden="true" />
+      <Method Name="CanReload" Hidden="true" />
+      <Method Name="CanSave" Hidden="true" />
+      <Method Name="CanSaveAll" Hidden="true" />
+      <Method Name="Close" Hidden="true" />
+      <Method Name="CloseAllAsync" Hidden="true" />
+      <Method Name="CloseAllButActiveAsync" Hidden="true" />
+      <Method Name="CloseAllDocumentsAndWindowsAsync" Hidden="true" />
+      <Method Name="CloseAllDocumentsButAsync" Hidden="true" />
+      <Method Name="CopyUri" Hidden="true" />
+      <Field Name="DefaultNumberOfRecentFiles" Hidden="true" />
+      <Method Name="DocumentExtension" Hidden="true" />
+      <Property Name="Documents" Hidden="true" />
+      <Property Name="Factories" Hidden="true" />
+      <Method Name="HasActiveDocument" Hidden="true" />
+      <Method Name="IsDocumentFocused" Hidden="true" />
+      <Method Name="IsFileSupported" Hidden="true" />
+      <Method Name="LoadRecentFiles" Hidden="true" />
+      <Field Name="Logger" Hidden="true" />
+      <Method Name="New" Hidden="true" />
+      <Property Name="NumberOfRecentFiles" Hidden="true" />
+      <Method Name="OnActiveDockTabItemChanged" Hidden="true" />
+      <Method Name="OnActiveDocumentChanged" Hidden="true" />
+      <Method Name="OnActiveDocumentPropertyChanged" Hidden="true" />
+      <Method Name="OnDragEnter" Hidden="true" />
+      <Method Name="OnDrop" Hidden="true" />
+      <Method Name="OnEditorActivated" Hidden="true" />
+      <Method Name="OnEditorDeactivated" Hidden="true" />
+      <Method Name="OnEditorUIInvalidated" Hidden="true" />
+      <Method Name="OnEditorWindowActivated" Hidden="true" />
+      <Method Name="OnFileChanged" Hidden="true" />
+      <Method Name="OnGetViewModel" Hidden="true" />
+      <Method Name="OnInitialize" Hidden="true" />
+      <Method Name="OnShutdown" Hidden="true" />
+      <Method Name="OnStartup" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="Open" Hidden="true" />
+      <Method Name="OpenAsync" Hidden="true" />
+      <Method Name="OpenContainingFolder" Hidden="true" />
+      <Property Name="OpenFileDialog" Hidden="true" />
+      <Method Name="PromptSaveChanges" Hidden="true" />
+      <Property Name="RecentFiles" Hidden="true" />
+      <Method Name="RegisterDocument" Hidden="true" />
+      <Method Name="Reload" Hidden="true" />
+      <Method Name="RememberRecentFile" Hidden="true" />
+      <Method Name="RemoveCommandBindings" Hidden="true" />
+      <Method Name="RemoveCommandLineArguments" Hidden="true" />
+      <Method Name="RemoveCommands" Hidden="true" />
+      <Method Name="RemoveContextMenu" Hidden="true" />
+      <Method Name="RemoveDataTemplates" Hidden="true" />
+      <Method Name="RemoveMenus" Hidden="true" />
+      <Method Name="RemoveSearchScopes" Hidden="true" />
+      <Method Name="RemoveToolBars" Hidden="true" />
+      <Method Name="ResumeFileWatcher" Hidden="true" />
+      <Method Name="Save" Hidden="true" />
+      <Method Name="SaveActiveDocument" Hidden="true" />
+      <Method Name="SaveAll" Hidden="true" />
+      <Method Name="SaveAllAsync" Hidden="true" />
+      <Method Name="SaveAs" Hidden="true" />
+      <Property Name="SaveFileDialog" Hidden="true" />
+      <Method Name="SaveRecentFiles" Hidden="true" />
+      <Method Name="ShowDocument" Hidden="true" />
+      <Method Name="StartFileWatcher" Hidden="true" />
+      <Method Name="StopFileWatcher" Hidden="true" />
+      <Method Name="SuspendFileWatcher" Hidden="true" />
+      <Method Name="UnregisterDocument" Hidden="true" />
+      <Method Name="UpdateCommands" Hidden="true" />
+      <Method Name="UpdateContextMenu" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Enum Name="DigitalRune.Editor.Documents.DocumentExtension.ReloadFileChoice" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Extensions\Documents\DocumentExtension_FileMonitoring.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>oc8hEMBAgP9hKCshkgSgRisORdESgJDCWhUSYS2IQgA=</HashCode>
+      <FileName>Extensions\Documents\DocumentExtension.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Editor.Documents.DocumentHelper">
+    <Position X="4.25" Y="6.75" Width="1.5" />
+    <Members>
+      <Method Name="AppendFileExtensions" Hidden="true" />
+      <Method Name="GetCreatableDocumentTypes" Hidden="true" />
+      <Method Name="GetDisplayName" Hidden="true" />
+      <Method Name="GetDocumentType" Hidden="true" />
+      <Method Name="GetFilterString" Hidden="true" />
+      <Method Name="GetOrderedDocuments" Hidden="true" />
+      <Method Name="IsSupported" Hidden="true" />
+      <Method Name="Rotate" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAIAAAACAAEAAABAAAQAAAAECEAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Extensions\Documents\DocumentHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.Documents.DocumentToNameConverter" BaseTypeListCollapsed="true">
+    <Position X="7" Y="6.25" Width="2.25" />
+    <Members>
+      <Field Name="_instance" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAIAAAAAAAAgAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\Documents\DocumentToNameConverter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Instance" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Editor.Documents.DocumentType" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="1" Width="1.5" />
+    <Members>
+      <Method Name="DocumentType" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CAgAAAAAAAAAAAAEIAABAAQAAAIAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Extensions\Documents\DocumentType.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Factory" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Editor.Documents.DocumentViewModel" BaseTypeListCollapsed="true">
+    <Position X="7.25" Y="3.75" Width="2" />
+    <Members>
+      <Method Name="CanCloseAsync" Hidden="true" />
+      <Method Name="DocumentViewModel" Hidden="true" />
+      <Field Name="Logger" Hidden="true" />
+      <Method Name="OnActivated" Hidden="true" />
+      <Method Name="OnDeactivated" Hidden="true" />
+      <Method Name="OnDocumentPropertyChanged" Hidden="true" />
+      <Method Name="UpdateProperties" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIQAAAAAAQAAAAAAgAABAACAIAAAAAAAAA=</HashCode>
+      <FileName>Extensions\Documents\DocumentViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Document" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Editor.Documents.DocumentFactory">
+    <Position X="4.25" Y="0.5" Width="1.75" />
+    <Members>
+      <Method Name="Create" Hidden="true" />
+      <Method Name="DocumentFactory" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAEAAAAAAAAAAQAACAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\Documents\DocumentFactory.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="DocumentTypes" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="DigitalRune.Editor.Documents.IDocumentService">
+    <Position X="0.5" Y="1.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAEIAAAAAAICABkAAAAAAAAUAAAAACAAAAIASAAAA=</HashCode>
+      <FileName>Extensions\Documents\IDocumentService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ActiveDocument" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Documents" />
+      <Property Name="Factories" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

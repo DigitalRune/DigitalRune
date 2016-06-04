@@ -1,0 +1,95 @@
+﻿<Window x:Class="DigitalRune.Editor.Options.OptionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:dr="http://schemas.digitalrune.com/windows"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:options="clr-namespace:DigitalRune.Editor.Options"
+        Title="{Binding DisplayName}"
+        Width="749"
+        Height="442"
+        MinWidth="749"
+        MinHeight="442"
+        ResizeMode="CanResize"
+        d:DataContext="{x:Static options:OptionsViewModel.DesignInstance}"
+        dr:WindowsHelper.CanMaximize="False"
+        dr:WindowsHelper.CanMinimize="False"
+        dr:WindowsHelper.ShowIcon="False"
+        x:ClassModifier="internal"
+        mc:Ignorable="d">
+    <Window.Resources>
+        <Style BasedOn="{StaticResource {x:Type Window}}" TargetType="options:OptionsWindow" />
+    </Window.Resources>
+
+    <Grid Margin="11">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,11">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" MinWidth="200" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TreeView Name="TreeView" ItemsSource="{Binding OptionsNodes}">
+                <TreeView.ItemContainerStyle>
+                    <Style BasedOn="{StaticResource {x:Type TreeViewItem}}" TargetType="{x:Type TreeViewItem}">
+                        <Style.Setters>
+                            <Setter Property="IsExpanded" Value="{Binding Content.IsExpanded, Mode=TwoWay}" />
+                            <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay}" />
+                        </Style.Setters>
+                    </Style>
+                </TreeView.ItemContainerStyle>
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                        <TextBlock Text="{Binding Content.DisplayName}" />
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+                <i:Interaction.Behaviors>
+                    <dr:TreeViewItemSelectionBehavior SelectedItem="{Binding SelectedNode}" />
+                </i:Interaction.Behaviors>
+            </TreeView>
+
+            <GridSplitter Grid.Column="1"
+                          Width="5"
+                          Margin="0,0,6,0"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Stretch"
+                          Background="Transparent"
+                          IsTabStop="False" />
+
+            <!--  Note: If the ContentControl size is changed, update the comments in IOptionsPage.  -->
+            <ContentControl Name="OptionsContentControl"
+                            Grid.Column="2"
+                            Content="{Binding ActiveItem}"
+                            IsTabStop="False" />
+        </Grid>
+
+        <StackPanel Grid.Row="1">
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Width="75"
+                        Margin="0,0,7,0"
+                        HorizontalAlignment="Center"
+                        Command="{Binding OkCommand}"
+                        IsDefault="True">
+                    OK
+                </Button>
+                <Button Width="75"
+                        Margin="0,0,7,0"
+                        HorizontalAlignment="Center"
+                        Command="{Binding ApplyCommand}">
+                    _Apply
+                </Button>
+                <Button Width="75"
+                        HorizontalAlignment="Center"
+                        Command="{Binding CancelCommand}"
+                        IsCancel="True">
+                    Cancel
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

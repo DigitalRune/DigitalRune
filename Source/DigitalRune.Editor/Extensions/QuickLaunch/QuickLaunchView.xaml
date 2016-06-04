@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="DigitalRune.Editor.QuickLaunch.QuickLaunchView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ql="clr-namespace:DigitalRune.Editor.QuickLaunch"
+             xmlns:themes="clr-namespace:DigitalRune.Windows.Themes;assembly=DigitalRune.Windows.Themes"
+             Width="200"
+             Margin="5,0,0,0"
+             IsTabStop="False"
+             d:DataContext="{x:Static ql:QuickLaunchViewModel.DesignInstance}"
+             x:ClassModifier="internal"
+             mc:Ignorable="d">
+    <Grid>
+        <dr:CommandTextBox x:Name="CommandTextBox"
+                           Command="{Binding FindCommand}"
+                           SelectAllOnFocus="True"
+                           Text="{Binding Query, UpdateSourceTrigger=PropertyChanged}"
+                           Watermark="Quick Launch (Ctrl+Q)">
+            <dr:CommandTextBox.ButtonContent>
+                <dr:Icon Width="16"
+                         Height="16"
+                         Source="{x:Static themes:MultiColorGlyphs.Find2}" />
+            </dr:CommandTextBox.ButtonContent>
+        </dr:CommandTextBox>
+
+        <!--
+            Note: Popup needs to be fixed size, otherwise there can be exceptions when
+            the scrolling the ListBox up/down in code and virtualization is enabled.
+        -->
+        <Popup x:Name="ResultsPopup"
+               Width="400"
+               MaxHeight="486"
+               AllowsTransparency="True"
+               IsOpen="{Binding ShowResults}"
+               PlacementTarget="{Binding ElementName=CommandTextBox, Mode=OneTime}"
+               SnapsToDevicePixels="True"
+               StaysOpen="False">
+            <ListBox x:Name="ResultsListBox"
+                     ItemsSource="{Binding Results}"
+                     PreviewMouseLeftButtonDown="ListBox_PreviewMouseLeftButtonDown"
+                     PreviewMouseLeftButtonUp="ListBox_PreviewMouseLeftButtonUp"
+                     PreviewMouseMove="ListBox_PreviewMouseMove"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     SelectedItem="{Binding SelectedResult, Mode=TwoWay}"
+                     Style="{DynamicResource {x:Static dr:AutoCompleteBehavior.AutoCompleteListBoxStyleKey}}"
+                     VirtualizingStackPanel.IsVirtualizing="True">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <ql:QuickLaunchItemView />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Popup>
+    </Grid>
+</UserControl>

@@ -1,0 +1,182 @@
+﻿<UserControl x:Class="DigitalRune.Editor.Textures.TextureDocumentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:DigitalRune.Editor.Textures"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:themes="clr-namespace:DigitalRune.Windows.Themes;assembly=DigitalRune.Windows.Themes"
+             UseLayoutRounding="True"
+             d:DataContext="{d:DesignInstance local:TextureDocumentViewModel, IsDesignTimeCreatable=False}"
+             d:DesignHeight="300"
+             d:DesignWidth="600"
+             x:ClassModifier="internal"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <TextBlock x:Key="RgbToolTip">
+            Enable/disable color channel.
+            <LineBreak />
+            Hold Shift to toggle R, G and B together.
+        </TextBlock>
+        <Style x:Key="ColorChannelTextBlock"
+               BasedOn="{StaticResource {x:Type TextBlock}}"
+               TargetType="{x:Type TextBlock}">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="{DynamicResource Control.Disabled.Foreground}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="RedChannelTextBlock"
+               BasedOn="{StaticResource ColorChannelTextBlock}"
+               TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="Red" />
+            <Setter Property="Text" Value="R" />
+        </Style>
+        <Style x:Key="GreenChannelTextBlock"
+               BasedOn="{StaticResource ColorChannelTextBlock}"
+               TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="Green" />
+            <Setter Property="Text" Value="G" />
+        </Style>
+        <Style x:Key="BlueChannelTextBlock"
+               BasedOn="{StaticResource ColorChannelTextBlock}"
+               TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="Blue" />
+            <Setter Property="Text" Value="B" />
+        </Style>
+        <Style x:Key="AlphaChannelTextBlock"
+               BasedOn="{StaticResource ColorChannelTextBlock}"
+               TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Text" Value="A" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1">
+            <!--
+                ScrollViewer must not be focusable. The TextureViewer needs to be focusable
+                for routed commands to work.
+            -->
+            <ScrollViewer CanContentScroll="True"
+                          Focusable="False"
+                          HorizontalScrollBarVisibility="Visible"
+                          VerticalScrollBarVisibility="Visible"
+                          PanningMode="Both">
+                <local:TexturePresentationTarget x:Name="TextureViewer"
+                                                 EnableAlphaChannel="{Binding EnableAlphaChannel}"
+                                                 EnableBlueChannel="{Binding EnableBlueChannel}"
+                                                 EnableGreenChannel="{Binding EnableGreenChannel}"
+                                                 EnableRedChannel="{Binding EnableRedChannel}"
+                                                 Focusable="True"
+                                                 IsPremultiplied="{Binding IsPremultiplied}"
+                                                 KeyboardNavigation.TabIndex="0"
+                                                 MipLevel="{Binding MipLevel}"
+                                                 Texture2D="{Binding Document.Texture2D}"
+                                                 Zoom="{Binding Zoom}">
+                    <i:Interaction.Behaviors>
+                        <dr:MousePanBehavior />
+                        <dr:FocusOnMouseDownBehavior />
+                    </i:Interaction.Behaviors>
+                    <local:TexturePresentationTarget.InputBindings>
+                        <KeyBinding Key="Home"
+                                    Command="Zoom"
+                                    CommandParameter="100.0" />
+                        <KeyBinding Key="PageUp"
+                                    Command="{Binding ChangeMipLevelCommand}"
+                                    CommandParameter="-1" />
+                        <KeyBinding Key="PageDown"
+                                    Command="{Binding ChangeMipLevelCommand}"
+                                    CommandParameter="1" />
+                    </local:TexturePresentationTarget.InputBindings>
+                </local:TexturePresentationTarget>
+            </ScrollViewer>
+            <TextBlock Margin="11"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Foreground="White"
+                       IsHitTestVisible="False"
+                       Text="{Binding Zoom, StringFormat=\{0:P\}}">
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="1"
+                                      Opacity="1"
+                                      ShadowDepth="1" />
+                </TextBlock.Effect>
+            </TextBlock>
+        </Grid>
+
+        <!--  Define tool bar after document content because it should not be the default tab stop.  -->
+        <ToolBarTray Grid.Row="0"
+                     DockPanel.Dock="Top"
+                     IsLocked="True">
+            <i:Interaction.Behaviors>
+                <dr:ToggleGroupBehavior />
+            </i:Interaction.Behaviors>
+            <ToolBar KeyboardNavigation.TabNavigation="Continue">
+                <Button Command="IncreaseZoom" CommandTarget="{Binding ElementName=TextureViewer, Mode=OneWay}">
+                    <dr:Icon Width="16"
+                             Height="16"
+                             Source="{x:Static themes:MultiColorGlyphs.ZoomIn}" />
+                </Button>
+                <Button Command="DecreaseZoom" CommandTarget="{Binding ElementName=TextureViewer, Mode=OneWay}">
+                    <dr:Icon Width="16"
+                             Height="16"
+                             Source="{x:Static themes:MultiColorGlyphs.ZoomOut}" />
+                </Button>
+                <Button Command="Zoom"
+                        CommandParameter="100.0"
+                        CommandTarget="{Binding ElementName=TextureViewer, Mode=OneWay}">
+                    100%
+                </Button>
+                <Button Command="{x:Static local:TexturePresentationTarget.FitScreen}" CommandTarget="{Binding ElementName=TextureViewer, Mode=OneWay}">Fit Screen</Button>
+                <Button Command="{x:Static local:TexturePresentationTarget.FillScreen}" CommandTarget="{Binding ElementName=TextureViewer, Mode=OneWay}">Fill Screen</Button>
+                <Separator />
+                <ToggleButton IsChecked="{Binding EnableRedChannel}"
+                              IsEnabled="{Binding IsRedChannelSupported}"
+                              ToolTip="{StaticResource RgbToolTip}"
+                              dr:ToggleGroupBehavior.Id="RGBA">
+                    <Border MinWidth="16" MinHeight="16">
+                        <TextBlock Style="{StaticResource RedChannelTextBlock}" />
+                    </Border>
+                </ToggleButton>
+                <ToggleButton IsChecked="{Binding EnableGreenChannel}"
+                              IsEnabled="{Binding IsGreenChannelSupported}"
+                              ToolTip="{StaticResource RgbToolTip}"
+                              dr:ToggleGroupBehavior.Id="RGBA">
+                    <Border MinWidth="16" MinHeight="16">
+                        <TextBlock Style="{StaticResource GreenChannelTextBlock}" />
+                    </Border>
+                </ToggleButton>
+                <ToggleButton IsChecked="{Binding EnableBlueChannel}"
+                              IsEnabled="{Binding IsBlueChannelSupported}"
+                              ToolTip="{StaticResource RgbToolTip}"
+                              dr:ToggleGroupBehavior.Id="RGBA">
+                    <Border MinWidth="16" MinHeight="16">
+                        <TextBlock Style="{StaticResource BlueChannelTextBlock}" />
+                    </Border>
+                </ToggleButton>
+                <ToggleButton IsChecked="{Binding EnableAlphaChannel}"
+                              IsEnabled="{Binding IsAlphaChannelSupported}"
+                              ToolTip="{StaticResource RgbToolTip}"
+                              dr:ToggleGroupBehavior.Id="RGBA">
+                    <Border MinWidth="16" MinHeight="16">
+                        <TextBlock Style="{StaticResource AlphaChannelTextBlock}" />
+                    </Border>
+                </ToggleButton>
+                <ComboBox Width="125"
+                          ItemsSource="{Binding AlphaBlendTypes}"
+                          SelectedIndex="{Binding AlphaBlendTypeIndex}" />
+                <ComboBox Width="100" ItemsSource="{Binding MipLevelNames}" SelectedIndex="{Binding MipLevel}" />
+            </ToolBar>
+        </ToolBarTray>
+    </Grid>
+</UserControl>

@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0C6E5565-0167-4734-9C81-D144A5312B72}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.Game.Input</RootNamespace>
+    <AssemblyName>DigitalRune.Game.Input</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <BaseIntermediateOutputPath>obj\WindowsUniversal\Debug\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\WindowsUniversal\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP;MONOGAME;USE_DIGITALRUNE_MATHEMATICS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\WindowsUniversal\Debug\DigitalRune.Game.Input.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <BaseIntermediateOutputPath>obj\WindowsUniversal\Release\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\WindowsUniversal\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;MONOGAME;USE_DIGITALRUNE_MATHEMATICS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\WindowsUniversal\Release\DigitalRune.Game.Input.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune.Mathematics\DigitalRune.Mathematics%28UWP%29.csproj">
+      <Project>{29d8637e-450b-4c0d-962f-baa851282185}</Project>
+      <Name>DigitalRune.Mathematics%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune\DigitalRune%28UWP%29.csproj">
+      <Project>{86ad1576-a1fd-4b7e-ac9d-83d118967c81}</Project>
+      <Name>DigitalRune%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MonoGame\MonoGame.Framework\MonoGame.Framework.WindowsUAP.csproj">
+      <Project>{09c41a48-7bf3-4a46-9eb8-ce95b4c27ca9}</Project>
+      <Name>MonoGame.Framework.WindowsUAP</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\ConfigurableInputCommand.cs" />
+    <Compile Include="Commands\DeviceAxis.cs" />
+    <Compile Include="Commands\IInputCommand.cs" />
+    <Compile Include="Commands\InputCommandCollection.cs" />
+    <Compile Include="Commands\InputMapping.cs" />
+    <Compile Include="Commands\PressType.cs" />
+    <None Include="DigitalRune.Game.Input%28UWP%29.project.json" />
+    <Compile Include="IInputService.cs" />
+    <Compile Include="InputManager.cs" />
+    <Compile Include="InputManager_Accelerometer.cs" />
+    <Compile Include="InputManager_Gamepad.cs" />
+    <Compile Include="InputManager_Keyboard.cs" />
+    <Compile Include="InputManager_Mouse.cs" />
+    <Compile Include="InputManager_Touch.cs" />
+    <Compile Include="InputSettings.cs" />
+    <Compile Include="LogicalPlayerIndex.cs" />
+    <Compile Include="ModifierKeys.cs" />
+    <Compile Include="MouseButtons.cs" />
+    <Compile Include="NamespaceDoc.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Properties\AssemblyInfo.template" />
+    <Content Include="Properties\DigitalRune.Game.Input.rd.xml" />
+  </ItemGroup>
+</Project>

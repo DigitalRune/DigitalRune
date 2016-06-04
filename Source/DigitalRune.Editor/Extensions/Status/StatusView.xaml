@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="DigitalRune.Editor.Status.StatusView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             xmlns:editor="clr-namespace:DigitalRune.Editor"
+             xmlns:local="clr-namespace:DigitalRune.Editor.Status"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DataContext="{d:DesignInstance local:StatusViewModel, IsDesignTimeCreatable=True}"
+             x:ClassModifier="internal"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <ProgressBar Grid.Column="0"
+                     Width="120"
+                     Margin="0,0,10,0"
+                     IsIndeterminate="{Binding Progress, Converter={x:Static dr:IsNaNConverter.Instance}}"
+                     Maximum="1"
+                     Visibility="{Binding ShowProgress, Converter={StaticResource BooleanToVisibilityConverter}}"
+                     Value="{Binding Progress, Converter={x:Static editor:FilterNaNConverter.Instance}}" />
+        <Button Grid.Column="1"
+                MinWidth="64"
+                Margin="0,0,10,0"
+                Command="{Binding CancelCommand}"
+                Padding="0"
+                Visibility="{Binding CanBeCanceled, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TextBlock>Cancel</TextBlock>
+        </Button>
+        <TextBlock Grid.Column="2" Text="{Binding Message}" />
+    </Grid>
+</UserControl>

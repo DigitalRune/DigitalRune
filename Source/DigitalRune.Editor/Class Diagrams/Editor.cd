@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Editor                    Namespace: DigitalRune.Editor">
+    <Position X="0.5" Y="0.5" Height="0.49" Width="2.753" />
+  </Comment>
+  <Class Name="DigitalRune.Editor.ServiceNotFoundException">
+    <Position X="6.25" Y="2.5" Width="2.25" />
+    <Members>
+      <Method Name="ServiceNotFoundException" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Editor\ServiceNotFoundException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.EditorDockTabItemViewModel" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="6.25" Width="2.25" />
+    <Members>
+      <Field Name="_autoHideHeight" Hidden="true" />
+      <Field Name="_autoHideWidth" Hidden="true" />
+      <Field Name="_dockContextMenu" Hidden="true" />
+      <Field Name="_dockHeight" Hidden="true" />
+      <Field Name="_dockId" Hidden="true" />
+      <Field Name="_dockState" Hidden="true" />
+      <Field Name="_dockToolTip" Hidden="true" />
+      <Field Name="_dockWidth" Hidden="true" />
+      <Field Name="_icon" Hidden="true" />
+      <Field Name="_isPersistent" Hidden="true" />
+      <Field Name="_lastActivation" Hidden="true" />
+      <Field Name="_lastDockState" Hidden="true" />
+      <Field Name="Logger" Hidden="true" />
+      <Method Name="OnActivated" Hidden="true" />
+      <Method Name="OnDeactivated" Hidden="true" />
+      <Method Name="OnPropertyChanged" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AABQUiAAAIIQAEFAIAwiAQQABAEAAACAAIAEQgEAAIA=</HashCode>
+      <FileName>Editor\EditorDockTabItemViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Editor.EditorException">
+    <Position X="6.5" Y="1.25" Width="1.75" />
+    <Members>
+      <Method Name="EditorException" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Editor\EditorException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.EditorExtension">
+    <Position X="4.25" Y="1.25" Width="1.5" />
+    <Members>
+      <Field Name="_initialized" Hidden="true" />
+      <Method Name="EditorExtension" Hidden="true" />
+      <Method Name="GetViewModel" Hidden="true" />
+      <Method Name="Initialize" Hidden="true" />
+      <Field Name="Logger" Hidden="true" />
+      <Method Name="Shutdown" Hidden="true" />
+      <Method Name="Startup" Hidden="true" />
+      <Method Name="Uninitialize" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IIgAAAAAECIAAQAkQAAAAQAAAAACKAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Editor\EditorExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.EditorHelper">
+    <Position X="7.25" Y="4.5" Width="2" />
+    <Members>
+      <Method Name="AddRange" Hidden="true" />
+      <Method Name="AsEnumerable" Hidden="true" />
+      <Method Name="AsStringCollection" Hidden="true" />
+      <Method Name="FilterAccessKeys" Hidden="true" />
+      <Method Name="GetDefaultApplicationName" Hidden="true" />
+      <Method Name="GetExecutableName" Hidden="true" />
+      <Field Name="Logger" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ADAAIABAAAIAQAAQQAAIQAAAABAIAAAAAAYAhAAEEAQ=</HashCode>
+      <FileName>Editor\EditorHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Editor.EditorViewModel" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="9.5" Width="2.75" />
+    <Members>
+      <Field Name="_activeDockTabItem" Hidden="true" />
+      <Field Name="_activeDockTabPane" Hidden="true" />
+      <Field Name="_applicationIcon" Hidden="true" />
+      <Field Name="_applicationName" Hidden="true" />
+      <Field Name="_commandBindings" Hidden="true" />
+      <Field Name="_commandItemInputBindings" Hidden="true" />
+      <Field Name="_contextMenuManager" Hidden="true" />
+      <Field Name="_dockControl" Hidden="true" />
+      <Field Name="_dockStrategy" Hidden="true" />
+      <Field Name="_exitCode" Hidden="true" />
+      <Field Name="_helpArgument" Hidden="true" />
+      <Field Name="_inputBindings" Hidden="true" />
+      <Field Name="_isInitialized" Hidden="true" />
+      <Field Name="_isLocked" Hidden="true" />
+      <Field Name="_resourceDictionary" Hidden="true" />
+      <Field Name="_rootPane" Hidden="true" />
+      <Field Name="_subtitle" Hidden="true" />
+      <Field Name="_window" Hidden="true" />
+      <Method Name="ActivateItem" Hidden="true" />
+      <Property Name="ActiveDockTabItem" Hidden="true" />
+      <Event Name="ActiveDockTabItemChanged" Hidden="true" />
+      <Property Name="ActiveDockTabPane" Hidden="true" />
+      <Method Name="AddCommandBindings" Hidden="true" />
+      <Method Name="AddInputBindings" Hidden="true" />
+      <Property Name="ApplicationName" Hidden="true" />
+      <Property Name="AutoHideBottom" Hidden="true" />
+      <Property Name="AutoHideLeft" Hidden="true" />
+      <Property Name="AutoHideRight" Hidden="true" />
+      <Property Name="AutoHideTop" Hidden="true" />
+      <Method Name="CanCloseAsync" Hidden="true" />
+      <Property Name="CaptionBarItemsRight" Hidden="true" />
+      <Property Name="CommandLineParser" Hidden="true" />
+      <Property Name="CommandLineResult" Hidden="true" />
+      <Method Name="DeactivateItemAsync" Hidden="true" />
+      <Property Name="DesignInstance" Hidden="true" />
+      <Property Name="DockContextMenu" Hidden="true" />
+      <Property Name="DockContextMenuNodeCollections" Hidden="true" />
+      <Property Name="DockControl" Hidden="true" />
+      <Property Name="DockStrategy" Hidden="true" />
+      <Method Name="EditorViewModel" Hidden="true" />
+      <Method Name="Exit" Hidden="true" />
+      <Property Name="ExitCode" Hidden="true" />
+      <Property Name="Extensions" Hidden="true" />
+      <Property Name="FloatWindows" Hidden="true" />
+      <Method Name="GetItems" Hidden="true" />
+      <Method Name="IConductor.ActivateItemAsync" Hidden="true" />
+      <Property Name="IConductor.ActiveItems" Hidden="true" />
+      <Property Name="IConductor.Items" Hidden="true" />
+      <Method Name="InitializeCommandItems" Hidden="true" />
+      <Method Name="InitializeCommandLineParser" Hidden="true" />
+      <Method Name="InvalidateUI" Hidden="true" />
+      <Property Name="IsLocked" Hidden="true" />
+      <Property Name="IsShuttingDown" Hidden="true" />
+      <Property Name="Items" Hidden="true" />
+      <Event Name="LayoutChanged" Hidden="true" />
+      <Method Name="LoadLayout" Hidden="true" />
+      <Field Name="Logger" Hidden="true" />
+      <Property Name="Menu" Hidden="true" />
+      <Field Name="MenuManager" Hidden="true" />
+      <Property Name="MenuNodeCollections" Hidden="true" />
+      <Method Name="OnActivated" Hidden="true" />
+      <Method Name="OnAutoHideOverlaysChanged" Hidden="true" />
+      <Method Name="OnDeactivated" Hidden="true" />
+      <Method Name="OnFloatWindowsChanged" Hidden="true" />
+      <Method Name="OnLayoutChanged" Hidden="true" />
+      <Property Name="OrderedExtensions" Hidden="true" />
+      <Method Name="ParseCommandLineArguments" Hidden="true" />
+      <Method Name="RemoveCommandBindings" Hidden="true" />
+      <Method Name="RemoveInputBindings" Hidden="true" />
+      <Property Name="RootPane" Hidden="true" />
+      <Method Name="SaveLayout" Hidden="true" />
+      <Property Name="Services" Hidden="true" />
+      <Property Name="StatusBarItemsCenter" Hidden="true" />
+      <Property Name="StatusBarItemsLeft" Hidden="true" />
+      <Property Name="StatusBarItemsRight" Hidden="true" />
+      <Property Name="Subtitle" Hidden="true" />
+      <Property Name="ToolBarContextMenu" Hidden="true" />
+      <Field Name="ToolBarManager" Hidden="true" />
+      <Property Name="ToolBarNodeCollections" Hidden="true" />
+      <Property Name="ToolBars" Hidden="true" />
+      <Event Name="UIInvalidated" Hidden="true" />
+      <Method Name="UpdateInputAndCommandBindings" Hidden="true" />
+      <Method Name="UpdateTitle" Hidden="true" />
+      <Property Name="Window" Hidden="true" />
+      <Event Name="WindowActivated" Hidden="true" />
+      <Property Name="WindowActivationCommand" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gEGQGABUEyIUDaYISMaFkQtIWgArZwJAeYiQLQggJIg=</HashCode>
+      <FileName>Editor\EditorViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Extensions" />
+      <Property Name="Items" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Editor.EditorWindow" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="4.25" Width="1.5" />
+    <Members>
+      <Field Name="_editorViewModel" Hidden="true" />
+      <Field Name="_focusMessageSubscription" Hidden="true" />
+      <Field Name="_menuOrToolBarClicked" Hidden="true" />
+      <Method Name="AddToolBars" Hidden="true" />
+      <Field Name="BooleanToVisibilityConverter" Hidden="true" />
+      <Method Name="ClearToolBars" Hidden="true" />
+      <Method Name="EditorWindow" Hidden="true" />
+      <Method Name="FilterMessage" Hidden="true" />
+      <Method Name="FindFocusableElement" Hidden="true" />
+      <Method Name="Focus" Hidden="true" />
+      <Method Name="GetSelfOrVisualAncestor" Hidden="true" />
+      <Method Name="HitTestCallback" Hidden="true" />
+      <Method Name="MenuOrToolBarClicked" Hidden="true" />
+      <Method Name="OnDataContextChanged" Hidden="true" />
+      <Method Name="OnLoaded" Hidden="true" />
+      <Method Name="OnPreviewCanExecute" Hidden="true" />
+      <Method Name="OnPreviewExecuted" Hidden="true" />
+      <Method Name="OnPreviewMenuGotKeyboardFocus" Hidden="true" />
+      <Method Name="OnPreviewToolBarTrayGotKeyboardFocus" Hidden="true" />
+      <Method Name="OnSourceInitialized" Hidden="true" />
+      <Method Name="OnUIInvalidated" Hidden="true" />
+      <Method Name="OnUnloaded" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ECAAAARAAQARIBAQwAQAAoAAAREAAIAAAAAAAgQAAAA=</HashCode>
+      <FileName>Editor\EditorWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="DigitalRune.Editor.IEditorService">
+    <Position X="0.5" Y="1.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>gEAAEAAEAAAEDAAAQAKEgAMIAgALAAAAYAgAKAggAAA=</HashCode>
+      <FileName>Editor\IEditorService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Extensions" />
+      <Property Name="Items" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

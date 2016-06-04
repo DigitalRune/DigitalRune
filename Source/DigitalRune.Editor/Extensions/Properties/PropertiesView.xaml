@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="DigitalRune.Editor.Properties.PropertiesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dr="http://schemas.digitalrune.com/windows"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:DigitalRune.Editor.Properties"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:themes="clr-namespace:DigitalRune.Windows.Themes;assembly=DigitalRune.Windows.Themes"
+             d:DataContext="{x:Static local:PropertiesViewModel.DesignInstance}"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             x:ClassModifier="internal"
+             mc:Ignorable="d">
+    <UserControl.Resources />
+
+    <i:Interaction.Behaviors>
+        <dr:RoutedToDelegateCommandBehavior DelegateCommand="{Binding InspectCommand}" RoutedCommand="BrowseForward" />
+        <dr:RoutedToDelegateCommandBehavior DelegateCommand="{Binding BackCommand}" RoutedCommand="BrowseBack" />
+        <dr:RoutedToDelegateCommandBehavior DelegateCommand="{Binding CopyValueCommand}" RoutedCommand="Copy" />
+    </i:Interaction.Behaviors>
+
+    <DockPanel LastChildFill="True">
+        <ToolBarTray DockPanel.Dock="Top" IsLocked="True">
+            <ToolBar>
+                <Button Command="BrowseBack"
+                        CommandTarget="{Binding ElementName=PropertyGrid}"
+                        IsTabStop="False">
+                    <dr:Icon Width="16"
+                             Height="16"
+                             Source="{x:Static themes:MultiColorGlyphs.ArrowLeft}" />
+                </Button>
+                <!--  Forward button  -->
+                <!--<Button IsTabStop="False">
+                    <dr:Icon Width="16"
+                             Height="16"
+                             Source="{dr:PackedBitmap /DigitalRune.Editor;component/Resources/Images/Icons.png, 160 64 32 32}" />
+                </Button>-->
+                <!--  Up button  -->
+                <!--<Button Command="{Binding BackCommand}" IsTabStop="False">
+                    <dr:Icon Width="16"
+                             Height="16"
+                             Source="{dr:PackedBitmap /DigitalRune.Editor;component/Resources/Images/Icons.png, 480 64 32 32}" />
+                </Button>-->
+                <Button Command="{Binding RefreshCommand}" IsTabStop="False">
+                    <dr:Icon Width="16"
+                             Height="16"
+                             Source="{x:Static themes:MultiColorGlyphs.Refresh}" />
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+
+        <dr:PropertyGrid x:Name="PropertyGrid"
+                         Delay="0"
+                         PropertySource="{Binding PropertySource}"
+                         SelectedProperty="{Binding SelectedProperty, Mode=TwoWay}">
+            <dr:PropertyGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Command="{Binding RefreshCommand}" Header="Refresh">
+                        <MenuItem.Icon>
+                            <dr:Icon Width="16"
+                                     Height="16"
+                                     Source="{x:Static themes:MultiColorGlyphs.Refresh}" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Command="dr:PropertyGridCommands.ResetProperty" Header="Reset property" />
+                    <MenuItem Command="{Binding CopyValueCommand}" Header="Copy value" />
+                    <!--<MenuItem Command="{Binding InspectCommand}" Header="Inspect property">
+                        <MenuItem.Icon>
+                            <dr:Icon Width="16"
+                                     Height="16"
+                                     Source="{dr:PackedBitmap /DigitalRune.Editor;component/Resources/Images/Icons.png, 192 32 32 32}" />
+                        </MenuItem.Icon>
+                    </MenuItem>-->
+                    <MenuItem Command="{Binding BackCommand}" Header="Go back to parent object">
+                        <MenuItem.Icon>
+                            <dr:Icon Width="16"
+                                     Height="16"
+                                     Source="{x:Static themes:MultiColorGlyphs.ArrowLeft}" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </ContextMenu>
+            </dr:PropertyGrid.ContextMenu>
+            <i:Interaction.Behaviors>
+                <dr:MousePanBehavior />
+            </i:Interaction.Behaviors>
+        </dr:PropertyGrid>
+
+    </DockPanel>
+</UserControl>

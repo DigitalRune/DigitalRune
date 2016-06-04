@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8D76487A-0B6F-4517-85B0-2762AE1B4E1A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.Game</RootNamespace>
+    <AssemblyName>DigitalRune.Game</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile328</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <BaseIntermediateOutputPath>obj\.NETPortable\Debug\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\.NETPortable\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;PORTABLE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\.NETPortable\Debug\DigitalRune.Game.xml</DocumentationFile>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <BaseIntermediateOutputPath>obj\.NETPortable\Release\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\.NETPortable\Release\</OutputPath>
+    <DefineConstants>TRACE;PORTABLE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\.NETPortable\Release\DigitalRune.Game.xml</DocumentationFile>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune\DigitalRune%28PCL%29.csproj">
+      <Project>{05D82E85-901A-42CE-8D0A-DAF8B7F0168B}</Project>
+      <Name>DigitalRune(PCL)</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Class Diagrams\Game %28GameObjects%29.cd" />
+    <None Include="Class Diagrams\Game.States.cd" />
+    <None Include="Class Diagrams\Game.Timing.cd" />
+    <Compile Include="GameObjects\DataStore.cs" />
+    <Compile Include="GameObjects\Events\GameEventCollection.cs" />
+    <Compile Include="GameObjects\Events\GameEventData{T}.cs" />
+    <Compile Include="GameObjects\Events\GameEventHandler.cs" />
+    <Compile Include="GameObjects\Events\GameEventMetadata{T}.cs" />
+    <Compile Include="GameObjects\Events\GameEvent{T}.cs" />
+    <Compile Include="GameObjects\Events\IGameEvent.cs" />
+    <Compile Include="GameObjects\Events\IGameEventData.cs" />
+    <Compile Include="GameObjects\Events\IGameEventMetadata.cs" />
+    <Compile Include="GameObjects\GameObject.cs" />
+    <Compile Include="GameObjects\GameObjectCollection.cs" />
+    <Compile Include="GameObjects\GameObjectManager.cs" />
+    <Compile Include="GameObjects\GameObject_Metadata.cs" />
+    <Compile Include="GameObjects\GameObject_PropertiesAndEvents.cs" />
+    <Compile Include="GameObjects\GamePropertyCategories.cs" />
+    <Compile Include="GameObjects\IGameObjectService.cs" />
+    <Compile Include="GameObjects\Properties\AnimatableGamePropertyData.cs" />
+    <Compile Include="GameObjects\Properties\GamePropertyChangeHandler.cs" />
+    <Compile Include="GameObjects\Properties\GamePropertyCollection.cs" />
+    <Compile Include="GameObjects\Properties\GamePropertyData{T}.cs" />
+    <Compile Include="GameObjects\Properties\GamePropertyEventArgs.cs" />
+    <Compile Include="GameObjects\Properties\GamePropertyEventArgs{T}.cs" />
+    <Compile Include="GameObjects\Properties\GamePropertyMetadata{T}.cs" />
+    <Compile Include="GameObjects\Properties\GameProperty{T}.cs" />
+    <Compile Include="GameObjects\Properties\IGameProperty.cs" />
+    <Compile Include="GameObjects\Properties\IGamePropertyData.cs" />
+    <Compile Include="GameObjects\Properties\IGamePropertyMetadata.cs" />
+    <Compile Include="NamespaceDoc.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Properties\AssemblyInfo.template" />
+    <Compile Include="States\NamespaceDoc.cs" />
+    <Compile Include="States\State.cs" />
+    <Compile Include="States\StateCollection.cs" />
+    <Compile Include="States\StateEventArgs.cs" />
+    <Compile Include="States\StateMachine.cs" />
+    <Compile Include="States\SubStatesCollection.cs" />
+    <Compile Include="States\Transition.cs" />
+    <Compile Include="States\TransitionCollection.cs" />
+    <Compile Include="Timing\Clocks\GameClockEventArgs.cs" />
+    <Compile Include="Timing\Clocks\HighPrecisionClock.cs" />
+    <Compile Include="Timing\Clocks\IGameClock.cs" />
+    <Compile Include="Timing\Clocks\ManualClock.cs" />
+    <Compile Include="Timing\Clocks\TickCountClock.cs" />
+    <Compile Include="Timing\NamespaceDoc.cs" />
+    <Compile Include="Timing\Timers\FixedStepTimer.cs" />
+    <Compile Include="Timing\Timers\GameTimerEventArgs.cs" />
+    <Compile Include="Timing\Timers\IGameTimer.cs" />
+    <Compile Include="Timing\Timers\VariableStepTimer.cs" />
+  </ItemGroup>
+</Project>

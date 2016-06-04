@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Editor                    Namespace: DigitalRune.Editor.About">
+    <Position X="0.5" Y="0.5" Height="0.469" Width="2.418" />
+  </Comment>
+  <Class Name="DigitalRune.Editor.About.AboutExtension" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <Members>
+      <Field Name="_aboutArgument" Hidden="true" />
+      <Field Name="_menuNodes" Hidden="true" />
+      <Field Name="_versionArgument" Hidden="true" />
+      <Field Name="_windowService" Hidden="true" />
+      <Method Name="AboutExtension" Hidden="true" />
+      <Method Name="AddCommandLineArguments" Hidden="true" />
+      <Method Name="AddCommands" Hidden="true" />
+      <Method Name="AddMenus" Hidden="true" />
+      <Property Name="ApplicationName" Hidden="true" />
+      <Method Name="CopyInformationToClipboard" Hidden="true" />
+      <Property Name="Copyright" Hidden="true" />
+      <Property Name="ExtensionDescriptions" Hidden="true" />
+      <Method Name="GetInformation" Hidden="true" />
+      <Property Name="Information" Hidden="true" />
+      <Property Name="InformationAsString" Hidden="true" />
+      <Field Name="Logger" Hidden="true" />
+      <Method Name="OnGetViewModel" Hidden="true" />
+      <Method Name="OnInitialize" Hidden="true" />
+      <Method Name="OnShutdown" Hidden="true" />
+      <Method Name="OnStartup" Hidden="true" />
+      <Method Name="OnUninitialize" Hidden="true" />
+      <Method Name="ParseCommandLineArguments" Hidden="true" />
+      <Method Name="RemoveCommandLineArguments" Hidden="true" />
+      <Method Name="RemoveCommands" Hidden="true" />
+      <Method Name="RemoveMenus" Hidden="true" />
+      <Method Name="Show" Hidden="true" />
+      <Property Name="Version" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IIgCEAABAANFAAAgAAGAQQAAAAAnAAAAAAACACEAgAA=</HashCode>
+      <FileName>Extensions\About\AboutExtension.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Editor.About.EditorExtensionDescription">
+    <Position X="4.25" Y="1.5" Width="1.75" />
+    <Members>
+      <Method Name="EditorExtensionDescription" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Extensions\About\EditorExtensionDescription.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DigitalRune.Editor.About.IAboutService">
+    <Position X="0.5" Y="1.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IAAAEAABAAEEAAAAAAAAAAAAAAAFAAAAAAAAAAEAgAA=</HashCode>
+      <FileName>Extensions\About\IAboutService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ExtensionDescriptions" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

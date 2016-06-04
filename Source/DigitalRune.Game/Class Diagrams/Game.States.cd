@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Game         Namespace: DigitalRune.Game.States">
+    <Position X="0.5" Y="0.5" Height="0.51" Width="2.283" />
+  </Comment>
+  <Class Name="DigitalRune.Game.States.State">
+    <Position X="6" Y="1.25" Width="1.5" />
+    <Members>
+      <Field Name="_lastId" Hidden="true" />
+      <Field Name="_name" Hidden="true" />
+      <Field Name="_parallelSubStates" Hidden="true" />
+      <Method Name="Contains" Hidden="true" />
+      <Method Name="EnterState" Hidden="true" />
+      <Method Name="ExitState" Hidden="true" />
+      <Method Name="OnParallelSubStatesChanged" Hidden="true" />
+      <Method Name="OnTransitionsChanged" Hidden="true" />
+      <Method Name="State" Hidden="true" />
+      <Method Name="UpdateState" Hidden="true" />
+      <Method Name="UpdateTransitions" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Owner" Type="DigitalRune.Game.States.StateCollection" FixedFromPoint="true">
+      <Path>
+        <Point X="6" Y="1.925" />
+        <Point X="4.75" Y="1.925" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.204" Y="0.008" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BAQAIACgAAAAAAAAEAAEAAQQAAAUAAAAoIIADIEQAAA=</HashCode>
+      <FileName>States\State.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Owner" />
+      <Property Name="Transitions" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Game.States.Transition">
+    <Position X="8.75" Y="2.5" Width="2" />
+    <Members>
+      <Field Name="_fired" Hidden="true" />
+      <Field Name="_restDelay" Hidden="true" />
+      <Field Name="_sourceState" Hidden="true" />
+      <Method Name="SourceStateEntered" Hidden="true" />
+      <Method Name="Update" Hidden="true" />
+    </Members>
+    <AssociationLine Name="SourceState" Type="DigitalRune.Game.States.State" FixedFromPoint="true">
+      <Path>
+        <Point X="8.75" Y="3.688" />
+        <Point X="7.5" Y="3.688" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="TargetState" Type="DigitalRune.Game.States.State" FixedFromPoint="true">
+      <Path>
+        <Point X="8.75" Y="4.062" />
+        <Point X="7.5" Y="4.062" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAQAAAAAAEAAABAIAAAAAAQAAAAMAAAAABAAAEMAAAQ=</HashCode>
+      <FileName>States\Transition.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SourceState" />
+      <Property Name="TargetState" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Game.States.StateCollection">
+    <Position X="2.75" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_activeState" Hidden="true" />
+      <Field Name="_finalState" Hidden="true" />
+      <Field Name="_initialState" Hidden="true" />
+      <Field Name="_lastActiveState" Hidden="true" />
+      <Method Name="ClearItems" Hidden="true" />
+      <Method Name="ContainsRecursive" Hidden="true" />
+      <Field Name="DictionaryCreationThreshold" Hidden="true" />
+      <Method Name="EnterState" Hidden="true" />
+      <Method Name="ExitState" Hidden="true" />
+      <Method Name="GetChild" Hidden="true" />
+      <Method Name="GetCollection" Hidden="true" />
+      <Method Name="GetEnumerator" Hidden="true" />
+      <Method Name="InsertItem" Hidden="true" />
+      <Property Name="LastActiveState" Hidden="true" />
+      <Method Name="RemoveItem" Hidden="true" />
+      <Method Name="SetItem" Hidden="true" />
+      <Method Name="StateCollection" Hidden="true" />
+      <Method Name="UpdateState" Hidden="true" />
+      <Method Name="UpdateTransitions" Hidden="true" />
+    </Members>
+    <AssociationLine Name="InitialState" Type="DigitalRune.Game.States.State" FixedFromPoint="true">
+      <Path>
+        <Point X="4.75" Y="1.572" />
+        <Point X="6" Y="1.572" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.11" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="FinalState" Type="DigitalRune.Game.States.State" FixedToPoint="true">
+      <Path>
+        <Point X="4.75" Y="2.133" />
+        <Point X="6" Y="2.133" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.104" Y="0.018" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="ActiveState" Type="DigitalRune.Game.States.State" FixedFromPoint="true">
+      <Path>
+        <Point X="4.75" Y="1.812" />
+        <Point X="6" Y="1.812" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.089" Y="0.039" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Owner" Type="DigitalRune.Game.States.State" FixedFromPoint="true">
+      <Path>
+        <Point X="4.75" Y="2.625" />
+        <Point X="6" Y="2.625" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AIAABADgAAAABBAAAAIAAAAQQAAAUQAEEAIABFQCBAA=</HashCode>
+      <FileName>States\StateCollection.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="InitialState" />
+      <Property Name="FinalState" />
+      <Property Name="ActiveState" />
+      <Property Name="Owner" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Game.States.StateMachine">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <Members>
+      <Field Name="StateEventArgs" Hidden="true" />
+      <Method Name="StateMachine" Hidden="true" />
+    </Members>
+    <AssociationLine Name="States" Type="DigitalRune.Game.States.StateCollection">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.058" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>States\StateMachine.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="States" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Game.States.TransitionCollection">
+    <Position X="8.75" Y="0.75" Width="2" />
+    <Members>
+      <Method Name="TransitionCollection" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>States\TransitionCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.States.StateEventArgs">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <Members>
+      <Field Name="Empty" Hidden="true" />
+      <Method Name="StateEventArgs" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>States\StateEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
