@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Geometry&#xD;&#xA;Namespace: DigitalRune.Geometry.Collisions">
+    <Position X="0.5" Y="0.5" Height="0.406" Width="2.746" />
+  </Comment>
+  <Class Name="DigitalRune.Geometry.Collisions.CollisionDetection" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="1.25" Width="2.5" />
+    <Members>
+      <Field Name="_collisionFilter" Hidden="true" />
+      <Field Name="_collisionFilterChangedEvent" Hidden="true" />
+      <Field Name="_contactPositionTolerance" Hidden="true" />
+      <Field Name="_epsilon" Hidden="true" />
+      <Method Name="CollisionDetection" Hidden="true" />
+      <Event Name="CollisionFilterChanged" Hidden="true" />
+      <Method Name="OnCollisionFilterChanged" Hidden="true" />
+    </Members>
+    <AssociationLine Name="AlgorithmMatrix" Type="DigitalRune.Geometry.Collisions.CollisionAlgorithmMatrix">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.068" Y="0.05" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="CollisionFilter" Type="DigitalRune.Geometry.Partitioning.IPairFilter&lt;T&gt;">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.09" Y="-0.203" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>CASAQACAAACAAAAAAgQAAAEAACEQAAQCAAAAAgjIAAA=</HashCode>
+      <FileName>Collisions\CollisionDetection.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AlgorithmMatrix" />
+      <Property Name="CollisionFilter" />
+      <Property Name="ContactFilter" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.CollisionDomain">
+    <Position X="0.5" Y="5.25" Width="2.25" />
+    <Members>
+      <Field Name="_algorithmMatrix" Hidden="true" />
+      <Field Name="_algorithmMatrixVersion" Hidden="true" />
+      <Field Name="_collisionObject" Hidden="true" />
+      <Field Name="_deltaTime" Hidden="true" />
+      <Field Name="_narrowPhaseMethod" Hidden="true" />
+      <Field Name="_rayCache" Hidden="true" />
+      <Field Name="_tempRayCache" Hidden="true" />
+      <Method Name="AddToContactSets" Hidden="true" />
+      <Property Name="AlgorithmMatrix" Hidden="true" />
+      <Method Name="AreCollisionObjectsModified" Hidden="true" />
+      <Method Name="CanCollide" Hidden="true" />
+      <Method Name="CollisionDomain" Hidden="true" />
+      <Method Name="HaveAabbContact" Hidden="true" />
+      <Method Name="HaveRayAabbContact" Hidden="true" />
+      <Property Name="InternalBroadPhase" Hidden="true" />
+      <Method Name="NarrowPhase" Hidden="true" />
+      <Method Name="OnCollisionFilterChanged" Hidden="true" />
+      <Method Name="OnCollisionObjectsChanged" Hidden="true" />
+      <Method Name="OnCollisionObjectsChangedValidation" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+      <Method Name="ValidateGeometricObjectPose" Hidden="true" />
+      <Method Name="ValidateGeometricObjectShape" Hidden="true" />
+      <Method Name="ValidatePose" Hidden="true" />
+      <Method Name="ValidateShape" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Geometry.Collisions.CollisionDomain.GetContactsWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Collisions\CollisionDomain.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Collisions.CollisionDomain.GetContactObjectsWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Collisions\CollisionDomain.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <AssociationLine Name="CollisionDetection" Type="DigitalRune.Geometry.Collisions.CollisionDetection" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.469" Y="5.25" />
+        <Point X="2.469" Y="3.222" />
+        <Point X="2.75" Y="3.222" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ContactSets" Type="DigitalRune.Geometry.Collisions.ContactSetCollection">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.074" Y="0.371" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>soQAAAAAEhCUAAAFAAQwAAEAYAEFQEQCACAAAABKgAg=</HashCode>
+      <FileName>Collisions\CollisionDomain.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CollisionDetection" />
+      <Property Name="ContactSets" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.CollisionObject" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="5.75" Width="1.5" />
+    <Members>
+      <Field Name="_domain" Hidden="true" />
+      <Field Name="_geometricObject" Hidden="true" />
+      <Field Name="_shape" Hidden="true" />
+      <Field Name="_shapeType" Hidden="true" />
+      <Field Name="_type" Hidden="true" />
+      <Property Name="Changed" Hidden="true" />
+      <Method Name="CollisionObject" Hidden="true" />
+      <Field Name="ContactSets" Hidden="true" />
+      <Property Name="IsRay" Hidden="true" />
+      <Property Name="IsRayThatStopsAtFirstHit" Hidden="true" />
+      <Method Name="OnPoseChanged" Hidden="true" />
+      <Method Name="OnShapeChanged" Hidden="true" />
+      <Method Name="ResetInternal" Hidden="true" />
+      <Method Name="SetInternal" Hidden="true" />
+      <Field Name="ShapeTypeChanged" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Enum Name="DigitalRune.Geometry.Collisions.CollisionObject.ShapeType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Collisions\CollisionObject.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <AssociationLine Name="Domain" Type="DigitalRune.Geometry.Collisions.CollisionDomain" FixedFromPoint="true">
+      <Path>
+        <Point X="3.75" Y="6.15" />
+        <Point X="2.75" Y="6.15" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.164" Y="0.103" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAA4ACAAAAgIQFBAAAAACAAgEgACCAAUIAAAAAgAA=</HashCode>
+      <FileName>Collisions\CollisionObject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Domain" />
+      <Property Name="Type" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Contact">
+    <Position X="6" Y="8.75" Width="1.75" />
+    <Members>
+      <Field Name="_featureA" Hidden="true" />
+      <Field Name="_featureB" Hidden="true" />
+      <Field Name="_normal" Hidden="true" />
+      <Method Name="Contact" Hidden="true" />
+      <Field Name="Pool" Hidden="true" />
+      <Method Name="Reset" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAABAAkAAAQCAAKAABIDEIABEAAIAAIAAA=</HashCode>
+      <FileName>Collisions\Contact.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.ContactSet">
+    <Position X="3.75" Y="8.75" Width="1.75" />
+    <Members>
+      <Field Name="_contacts" Hidden="true" />
+      <Field Name="_preferredNormal" Hidden="true" />
+      <Field Name="CanCollide" Hidden="true" />
+      <Field Name="CollisionAlgorithm" Hidden="true" />
+      <Method Name="ContactSet" Hidden="true" />
+      <Field Name="Empty" Hidden="true" />
+      <Method Name="EnsureList" Hidden="true" />
+      <Method Name="ICollection.CopyTo" Hidden="true" />
+      <Property Name="ICollection.IsSynchronized" Hidden="true" />
+      <Property Name="ICollection.SyncRoot" Hidden="true" />
+      <Property Name="ICollection&lt;Contact&gt;.IsReadOnly" Hidden="true" />
+      <Method Name="IEnumerable.GetEnumerator" Hidden="true" />
+      <Method Name="IEnumerable&lt;Contact&gt;.GetEnumerator" Hidden="true" />
+      <Property Name="IsPerturbationTestAllowed" Hidden="true" />
+      <Property Name="IsPreferredNormalAvailable" Hidden="true" />
+      <Property Name="IsValid" Hidden="true" />
+      <Field Name="NextA" Hidden="true" />
+      <Field Name="NextB" Hidden="true" />
+      <Field Name="Pool" Hidden="true" />
+      <Property Name="PreferredNormal" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <AssociationLine Name="ObjectB" Type="DigitalRune.Geometry.Collisions.CollisionObject">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.765" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AEIAAFAACKAUBDIECAqQDgQAQIFACEAEDgAAAABQIAI=</HashCode>
+      <FileName>Collisions\ContactSet.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ObjectA" />
+      <Property Name="ObjectB" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.CollisionAlgorithmMatrix">
+    <Position X="6.5" Y="1.25" Width="2" />
+    <Members>
+      <Field Name="_matrix" Hidden="true" />
+      <Field Name="_newEntries" Hidden="true" />
+      <Field Name="_newEntryLock" Hidden="true" />
+      <Field Name="_version" Hidden="true" />
+      <Method Name="CollisionAlgorithmMatrix" Hidden="true" />
+      <Method Name="Optimize" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAgAEAAAAIAAACAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Collisions\CollisionAlgorithmMatrix.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.ContactReducer">
+    <Position X="6.5" Y="4.5" Width="1.5" />
+    <Members>
+      <Method Name="Reduce" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collisions\ContactReducer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.CollisionFilter" BaseTypeListCollapsed="true">
+    <Position X="9" Y="4.75" Width="1.75" />
+    <Members>
+      <Field Name="_disabledPairs" Hidden="true" />
+      <Field Name="_groupFlags" Hidden="true" />
+      <Field Name="_groupPairFlags" Hidden="true" />
+      <Method Name="CollisionFilter" Hidden="true" />
+      <Method Name="ResetInternal" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>UAAAAAAAAQAABgBABIAAAAAAABEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collisions\CollisionFilter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.ContactSetCollection">
+    <Position X="0.5" Y="8.75" Width="2.5" />
+    <Members>
+      <Field Name="_count" Hidden="true" />
+      <Field Name="_freeList" Hidden="true" />
+      <Field Name="_ownedByDomain" Hidden="true" />
+      <Field Name="_slots" Hidden="true" />
+      <Field Name="_table" Hidden="true" />
+      <Field Name="_touchedSlots" Hidden="true" />
+      <Field Name="_used" Hidden="true" />
+      <Field Name="_version" Hidden="true" />
+      <Method Name="AddOrMarkAsUsed" Hidden="true" />
+      <Method Name="AddToLinkedLists" Hidden="true" />
+      <Method Name="ClearLinkedLists" Hidden="true" />
+      <Method Name="ContactSetCollection" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="GetSlotIndex" Hidden="true" />
+      <Property Name="ICollection&lt;ContactSet&gt;.IsReadOnly" Hidden="true" />
+      <Method Name="IEnumerable.GetEnumerator" Hidden="true" />
+      <Method Name="IEnumerable&lt;ContactSet&gt;.GetEnumerator" Hidden="true" />
+      <Method Name="Initialize" Hidden="true" />
+      <Property Name="InternalCount" Hidden="true" />
+      <Method Name="RemoveFromLinkedLists" Hidden="true" />
+      <Method Name="RemoveUnused" Hidden="true" />
+      <Method Name="Resize" Hidden="true" />
+      <Property Name="this" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+      <Method Name="Unlink" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Geometry.Collisions.ContactSetCollection.ContactSetCollectionView" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Collisions\ContactSetCollection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Struct Name="DigitalRune.Geometry.Collisions.ContactSetCollection.Slot" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Collisions\ContactSetCollection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Struct Name="DigitalRune.Geometry.Collisions.ContactSetCollection.Enumerator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Collisions\ContactSetCollection.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Struct>
+      <Class Name="DigitalRune.Geometry.Collisions.ContactSetCollection.GetContactsWork0" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Collisions\ContactSetCollection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Collisions.ContactSetCollection.GetContactsWork1" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Collisions\ContactSetCollection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAIAAiAACAAAoxAECAAQBAYAAAAACIYUAgCFAAFQIAI=</HashCode>
+      <FileName>Collisions\ContactSetCollection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.ContactHelper">
+    <Position X="8.5" Y="8.75" Width="2.25" />
+    <Members>
+      <Method Name="ReduceClosestPoints" Hidden="true" />
+      <Method Name="ReduceRayHits" Hidden="true" />
+      <Method Name="RemoveSeparatedContacts" Hidden="true" />
+      <Method Name="TestWithPerturbations" Hidden="true" />
+      <Method Name="TryMergeWithNearestContact" Hidden="true" />
+      <Method Name="UpdateContact" Hidden="true" />
+      <Method Name="UpdateContacts" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAQQACICAAAAAIAAAAAAAAAEAFAQAEAAAAAAAAAAA=</HashCode>
+      <FileName>Collisions\ContactHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DigitalRune.Geometry.Collisions.IContactFilter">
+    <Position X="6.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collisions\IContactFilter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Geometry.Partitioning.IPairFilter&lt;T&gt;">
+    <Position X="9" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Partitioning\IPairFilter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Geometry.Collisions.ICollisionFilter">
+    <Position X="9" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collisions\ICollisionFilter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DigitalRune.Geometry.Collisions.CollisionQueryType">
+    <Position X="0.5" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAQAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collisions\CollisionQueryType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DigitalRune.Geometry.Collisions.CollisionObjectType">
+    <Position X="6" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collisions\CollisionObjectType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

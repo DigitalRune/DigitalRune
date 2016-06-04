@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Geometry&#xD;&#xA;Namespace: DigitalRune.Geometry.Collisions.Algorithms">
+    <Position X="0.5" Y="0.5" Height="0.406" Width="3.387" />
+  </Comment>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.Gjk" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collisions\Algorithms\Gjk\Gjk.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.TriangleMeshAlgorithm">
+    <Position X="5.5" Y="9.75" Width="2.25" />
+    <Members>
+      <Field Name="_triangleTriangleAlgorithm" Hidden="true" />
+      <Method Name="AddTriangleContacts" Hidden="true" />
+      <Method Name="AddTriangleTriangleContacts" Hidden="true" />
+      <Field Name="ClosestPointCallbacks" Hidden="true" />
+      <Method Name="ComputeCollision" Hidden="true" />
+      <Method Name="GetNeighborNormal" Hidden="true" />
+      <Method Name="GetTimeOfImpact" Hidden="true" />
+      <Method Name="TriangleMeshAlgorithm" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Geometry.Collisions.Algorithms.TriangleMeshAlgorithm.ClosestPointCallback" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Collisions\Algorithms\TriangleMeshShapes\TriangleMeshAlgorithm_ClosestPoints.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAQAAAAAAAAMAAggAAAAAAAAAAAAgAAAE=</HashCode>
+      <FileName>Collisions\Algorithms\TriangleMeshShapes\TriangleMeshAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.RayBoxAlgorithm" Collapsed="true">
+    <Position X="5.5" Y="7.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Collisions\Algorithms\RayBoxAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.BoxBoxAlgorithm" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AEIAAAIAAAAAAAAAAAAAAABAAAAAAAAAAAIAAAAAAgA=</HashCode>
+      <FileName>Collisions\Algorithms\BoxBoxAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.TransformedShapeAlgorithm" Collapsed="true">
+    <Position X="0.5" Y="11.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Collisions\Algorithms\TransformedShapeAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.BoxSphereAlgorithm" Collapsed="true">
+    <Position X="2.75" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collisions\Algorithms\BoxSphereAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.CollisionAlgorithm">
+    <Position X="4.25" Y="0.5" Width="1.75" />
+    <Members>
+      <Method Name="CheckResult" Hidden="true" />
+      <Method Name="CollisionAlgorithm" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CAAAQAIAABAAAAAAAAACAAAAAAEAAAAAAAAAAAjAAAA=</HashCode>
+      <FileName>Collisions\Algorithms\CollisionAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.CombinedCollisionAlgorithm" Collapsed="true">
+    <Position X="5.5" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAQAAAAgAAAAAAgAAAA=</HashCode>
+      <FileName>Collisions\Algorithms\CombinedCollisionAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.CompositeShapeAlgorithm" Collapsed="true">
+    <Position X="8.25" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAACAAQAAAAAAAAAAIAAgAAAA=</HashCode>
+      <FileName>Collisions\Algorithms\CompositeShapes\CompositeShapeAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.HeightFieldAlgorithm">
+    <Position X="2.75" Y="4.5" Width="2" />
+    <Members>
+      <Field Name="_computeContactsMethod" Hidden="true" />
+      <Method Name="ComputeCollision" Hidden="true" />
+      <Method Name="ComputeCollisionFast" Hidden="true" />
+      <Method Name="GetHeight" Hidden="true" />
+      <Method Name="GetTimeOfImpact" Hidden="true" />
+      <Method Name="GuessClosestPair" Hidden="true" />
+      <Method Name="HeightFieldAlgorithm" Hidden="true" />
+      <Method Name="RemoveBadContacts" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAIBIAAAAAAAAAAAAABAAAAAAAAAAAAhAAgAAAE=</HashCode>
+      <FileName>Collisions\Algorithms\HeightField\HeightFieldAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.LineAlgorithm" Collapsed="true">
+    <Position X="5.5" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAJAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collisions\Algorithms\LineAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.MinkowskiPortalRefinement" Collapsed="true">
+    <Position X="8.25" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAgAAAAAAAAAAAAgIAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Collisions\Algorithms\MinkowskiPortalRefinement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.NoCollisionAlgorithm" Collapsed="true">
+    <Position X="0.5" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Collisions\Algorithms\NoCollisionAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.PlaneConvexAlgorithm" Collapsed="true">
+    <Position X="8.25" Y="6" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAgAAAA=</HashCode>
+      <FileName>Collisions\Algorithms\PlaneConvexAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.PlaneRayAlgorithm" Collapsed="true">
+    <Position X="0.5" Y="7.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collisions\Algorithms\PlaneRayAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.PlaneSphereAlgorithm" Collapsed="true">
+    <Position X="2.75" Y="7.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Collisions\Algorithms\PlaneSphereAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.RayConvexAlgorithm" Collapsed="true">
+    <Position X="8.25" Y="7.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Collisions\Algorithms\RayConvexAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.RaySphereAlgorithm" Collapsed="true">
+    <Position X="5.5" Y="8.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collisions\Algorithms\RaySphereAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.RayTriangleAlgorithm" Collapsed="true">
+    <Position X="8.25" Y="8.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAACACAAAA=</HashCode>
+      <FileName>Collisions\Algorithms\RayTriangleAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.SphereSphereAlgorithm" Collapsed="true">
+    <Position X="2.75" Y="9.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collisions\Algorithms\SphereSphereAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.RayCompositeAlgorithm" Collapsed="true">
+    <Position X="0.5" Y="8.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAgAAAg=</HashCode>
+      <FileName>Collisions\Algorithms\CompositeShapes\RayCompositeAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.RayHeightFieldAlgorithm" Collapsed="true">
+    <Position X="2.75" Y="8.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEIABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Collisions\Algorithms\HeightField\RayHeightFieldAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.RayTriangleMeshAlgorithm" Collapsed="true">
+    <Position X="0.5" Y="9.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIABAAAAACAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Collisions\Algorithms\TriangleMeshShapes\RayTriangleMeshAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.PlaneBoxAlgorithm" Collapsed="true">
+    <Position X="5.5" Y="6" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIABAAEAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Collisions\Algorithms\PlaneBoxAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.InfiniteShapeAlgorithm" Collapsed="true">
+    <Position X="2.75" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Collisions\Algorithms\InfiniteShapeAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Collisions.Algorithms.TriangleTriangleAlgorithm" Collapsed="true">
+    <Position X="8.25" Y="9.75" Width="2" />
+    <Members>
+      <Method Name="ClipPlanarTriangles" Hidden="true" />
+      <Method Name="ComputeCollision" Hidden="true" />
+      <Method Name="GetConfiguration" Hidden="true" />
+      <Method Name="GetContact" Hidden="true" />
+      <Method Name="GetEdgeEdgeContact" Hidden="true" />
+      <Method Name="GetEdgeLineSegment" Hidden="true" />
+      <Method Name="TestEdgeEdgeAxis" Hidden="true" />
+      <Method Name="TestPlanarEdgeEdge" Hidden="true" />
+      <Method Name="TriangleTriangleAlgorithm" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Struct Name="DigitalRune.Geometry.Collisions.Algorithms.TriangleTriangleAlgorithm.Configuration" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Collisions\Algorithms\TriangleTriangleAlgorithm.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAMAAAAAAAAAAEAAAAAAAAEAAAAAhAAAAACAAAA=</HashCode>
+      <FileName>Collisions\Algorithms\TriangleTriangleAlgorithm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

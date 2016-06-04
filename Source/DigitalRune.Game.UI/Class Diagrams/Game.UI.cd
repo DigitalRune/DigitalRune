@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Game.UI    Namespace: DigitalRune.Game.UI">
+    <Position X="0.5" Y="0.5" Height="0.521" Width="2.336" />
+  </Comment>
+  <Comment CommentText="Assembly: DigitalRune.Game.UI    Namespace: DigitalRune.Game.UI.Controls">
+    <Position X="10.25" Y="0.5" Height="0.521" Width="2.596" />
+  </Comment>
+  <Class Name="DigitalRune.Game.UI.UIManager">
+    <Position X="0.5" Y="3.25" Width="2" />
+    <Members>
+      <Field Name="_keyMap" Hidden="true" />
+      <Field Name="_sortedScreens" Hidden="true" />
+      <Property Name="Cursor" Hidden="true" />
+      <Property Name="GameForm" Hidden="true" />
+      <Property Name="InputService" Hidden="true" />
+      <Property Name="KeyMap" Hidden="true" />
+      <Method Name="OnGameWindowOrientationChanged" Hidden="true" />
+      <Property Name="Screens" Hidden="true" />
+      <Method Name="UIManager" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Game.UI.UIManager.UIScreenComparer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>UIManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAAEAASAAAAAAAAAAAAAAAAEAAAgIBIAAAAAAAAA=</HashCode>
+      <FileName>UIManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Game.UI.KeyMap">
+    <Position X="3.5" Y="2.25" Width="2.5" />
+    <Members>
+      <Field Name="_autoKeyMap" Hidden="true" />
+      <Field Name="_englishKeyMap" Hidden="true" />
+      <Field Name="_englishKeyMapGermanChatPad" Hidden="true" />
+      <Field Name="_germanKeyMap" Hidden="true" />
+      <Field Name="_map" Hidden="true" />
+      <Method Name="GetKeyboardLayout" Hidden="true" />
+      <Method Name="KeyMap" Hidden="true" />
+      <Method Name="LoadEmbeddedResource" Hidden="true" />
+      <Method Name="MapVirtualKeyEx" Hidden="true" />
+      <Method Name="ToUnicodeEx" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAABwJAIAAAAIAAQCACAAAAAAAAACBAABEAAAAAAAIA=</HashCode>
+      <FileName>KeyMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.UIException">
+    <Position X="5.5" Y="8.25" Width="1.5" />
+    <Members>
+      <Method Name="UIException" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UIException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.UIScreen" Collapsed="true">
+    <Position X="10.25" Y="1.5" Width="1.5" />
+    <Members>
+      <Property Name="UIService" Hidden="true" />
+    </Members>
+    <AssociationLine Name="FocusManager" Type="DigitalRune.Game.UI.FocusManager" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.25" Y="1.875" />
+        <Point X="7.406" Y="1.875" />
+        <Point X="7.406" Y="2.25" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ToolTipManager" Type="DigitalRune.Game.UI.ToolTipManager">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.081" Y="-0.286" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAJBAEQAAgAZwJIAAGEBAIAoEAACCABAECAoAUAgCA=</HashCode>
+      <FileName>Controls\UIScreen.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="UIService" />
+      <Property Name="FocusManager" />
+      <Property Name="ToolTipManager" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Game.UI.FocusManager">
+    <Position X="6.25" Y="2.25" Width="1.5" />
+    <Members>
+      <Field Name="_focusableControls" Hidden="true" />
+      <Method Name="FocusManager" Hidden="true" />
+      <Method Name="GetDistance" Hidden="true" />
+      <Method Name="GetFocusableControls" Hidden="true" />
+      <Property Name="InputService" Hidden="true" />
+      <Field Name="LastFocusedControlPropertyId" Hidden="true" />
+      <Method Name="MoveFocus" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ICAAAABAAACAAAAABAAAAAQAAAAMACgIAAAAQAAAAAA=</HashCode>
+      <FileName>FocusManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.ToolTipManager">
+    <Position X="8" Y="2.25" Width="2" />
+    <Members>
+      <Field Name="_control" Hidden="true" />
+      <Field Name="_noMouseMoveDuration" Hidden="true" />
+      <Method Name="OnScreenInputProcessed" Hidden="true" />
+      <Method Name="ToolTipManager" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AABAAIGAAAABAAAABAGAAAAAAggAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>ToolTipManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.LayoutSerializer">
+    <Position X="5.5" Y="5.75" Width="1.75" />
+    <Members>
+      <Field Name="_assemblies" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="LoadProperties" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>EAAAhAAAAACABAABAAAAAAIAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Seralization\LayoutSerializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.UIHelper">
+    <Position X="7.5" Y="5.75" Width="2.5" />
+    <Members>
+      <Field Name="GetChildren" Hidden="true" />
+      <Field Name="GetParent" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AIACAAAAAAAIAAAAAAAAAAAAAAAAQBAABAAAAAQAAAE=</HashCode>
+      <FileName>UIHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="DigitalRune.Game.UI.RectangleF" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="5.25" Width="2" />
+    <Members>
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="operator !=" Hidden="true" />
+      <Method Name="operator ==" Hidden="true" />
+      <Method Name="RectangleF" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAgAAEgAIUAEAAAAAIAIAgCACAAQAQYqA=</HashCode>
+      <FileName>RectangleF.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Interface Name="DigitalRune.Game.UI.IUIService">
+    <Position X="0.5" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAQAAAAAAAAAAAAAAAAEAAAAIAIAAAAAAAAA=</HashCode>
+      <FileName>UIService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="KeyMap" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Screens" />
+    </ShowAsCollectionAssociation>
+  </Interface>
+  <Enum Name="DigitalRune.Game.UI.VerticalAlignment">
+    <Position X="3" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAIAAAAAAAQAAAIAAA=</HashCode>
+      <FileName>VerticalAlignment.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DigitalRune.Game.UI.HorizontalAlignment">
+    <Position X="3" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACACQAAAIAAA=</HashCode>
+      <FileName>HorizontalAlignment.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="DigitalRune.Game.UI.Orientation">
+    <Position X="3" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Orientation.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

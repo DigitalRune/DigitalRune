@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A08ABEE3-0DCC-4BD8-84A6-0E3E331ABCD8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.Game.UI</RootNamespace>
+    <AssemblyName>DigitalRune.Game.UI</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <BaseIntermediateOutputPath>obj\WindowsUniversal\Debug\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\WindowsUniversal\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP;MONOGAME</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\WindowsUniversal\Debug\DigitalRune.Game.UI.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <BaseIntermediateOutputPath>obj\WindowsUniversal\Release\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\WindowsUniversal\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;MONOGAME</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\WindowsUniversal\Release\DigitalRune.Game.UI.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune.Game.Input\DigitalRune.Game.Input%28UWP%29.csproj">
+      <Project>{0c6e5565-0167-4734-9c81-d144a5312b72}</Project>
+      <Name>DigitalRune.Game.Input%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Game\DigitalRune.Game%28UWP%29.csproj">
+      <Project>{f250c667-6307-48f7-ba24-5fe215068249}</Project>
+      <Name>DigitalRune.Game%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Mathematics\DigitalRune.Mathematics%28UWP%29.csproj">
+      <Project>{29d8637e-450b-4c0d-962f-baa851282185}</Project>
+      <Name>DigitalRune.Mathematics%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune\DigitalRune%28UWP%29.csproj">
+      <Project>{86ad1576-a1fd-4b7e-ac9d-83d118967c81}</Project>
+      <Name>DigitalRune%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MonoGame\MonoGame.Framework\MonoGame.Framework.WindowsUAP.csproj">
+      <Project>{09c41a48-7bf3-4a46-9eb8-ce95b4c27ca9}</Project>
+      <Name>MonoGame.Framework.WindowsUAP</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Consoles\ConsoleCommand.cs" />
+    <Compile Include="Consoles\ConsoleCommandEventArgs.cs" />
+    <Compile Include="Consoles\ConsoleCommandException.cs" />
+    <Compile Include="Consoles\ConsoleCommandInterpreter.cs" />
+    <Compile Include="Consoles\IConsole.cs" />
+    <Compile Include="Consoles\NamespaceDoc.cs" />
+    <Compile Include="Content Pipeline\NamespaceDoc.cs" />
+    <Compile Include="Content Pipeline\ThemeReader.cs" />
+    <Compile Include="Controls\Console.cs" />
+    <Compile Include="Controls\ContentControls\Buttons\Button.cs" />
+    <Compile Include="Controls\ContentControls\Buttons\ButtonBase.cs" />
+    <Compile Include="Controls\ContentControls\Buttons\CheckBox.cs" />
+    <Compile Include="Controls\ContentControls\Buttons\ClickMode.cs" />
+    <Compile Include="Controls\ContentControls\Buttons\DropDownButton\DropDown.cs" />
+    <Compile Include="Controls\ContentControls\Buttons\DropDownButton\DropDownButton.cs" />
+    <Compile Include="Controls\ContentControls\Buttons\DropDownButton\DropDownItem.cs" />
+    <Compile Include="Controls\ContentControls\Buttons\RadioButton.cs" />
+    <Compile Include="Controls\ContentControls\Buttons\ToggleButton.cs" />
+    <Compile Include="Controls\ContentControls\ContentControl.cs" />
+    <Compile Include="Controls\ContentControls\GroupBox.cs" />
+    <Compile Include="Controls\ContentControls\ScrollBarVisibility.cs" />
+    <Compile Include="Controls\ContentControls\ScrollViewer.cs" />
+    <Compile Include="Controls\ContentControls\TabControl\TabControl.cs" />
+    <Compile Include="Controls\ContentControls\TabControl\TabItem.cs" />
+    <Compile Include="Controls\ContentControls\Window.cs" />
+    <Compile Include="Controls\Image.cs" />
+    <Compile Include="Controls\InputContext.cs" />
+    <Compile Include="Controls\InputEventArgs.cs" />
+    <Compile Include="Controls\Menus\ContextMenu.cs" />
+    <Compile Include="Controls\Menus\MenuItem.cs" />
+    <Compile Include="Controls\NamespaceDoc.cs" />
+    <Compile Include="Controls\Panels\Canvas.cs" />
+    <Compile Include="Controls\Panels\Panel.cs" />
+    <Compile Include="Controls\Panels\StackPanel.cs" />
+    <Compile Include="Controls\RangeControls\ProgressBar.cs" />
+    <Compile Include="Controls\RangeControls\RangeBase.cs" />
+    <Compile Include="Controls\RangeControls\ScrollBar.cs" />
+    <Compile Include="Controls\RangeControls\Slider.cs" />
+    <Compile Include="Controls\RangeControls\Thumb.cs" />
+    <Compile Include="Controls\TextBlock.cs" />
+    <Compile Include="Controls\TextBox.cs" />
+    <Compile Include="Controls\TextBox_Commands.cs" />
+    <Compile Include="Controls\TextBox_Layout.cs" />
+    <Compile Include="Controls\UIControl.cs" />
+    <Compile Include="Controls\UIControl_Layout.cs" />
+    <Compile Include="Controls\UIControl_Templates.cs" />
+    <Compile Include="Controls\UIPropertyOptions.cs" />
+    <Compile Include="Controls\UIRenderContext.cs" />
+    <Compile Include="Controls\UIScreen.cs" />
+    <Compile Include="Controls\VisualChildCollection.cs" />
+    <None Include="DigitalRune.Game.UI%28UWP%29.project.json" />
+    <Compile Include="FocusManager.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="HorizontalAlignment.cs" />
+    <Compile Include="KeyMap.cs" />
+    <Compile Include="NamespaceDoc.cs" />
+    <Compile Include="Orientation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Properties\AssemblyInfo.template" />
+    <Content Include="Properties\DigitalRune.Game.UI.rd.xml" />
+    <Compile Include="RectangleF.cs" />
+    <Compile Include="Rendering\IUIRenderer.cs" />
+    <Compile Include="Rendering\NamespaceDoc.cs" />
+    <Compile Include="Rendering\RenderTransform.cs" />
+    <Compile Include="Rendering\Themes\Theme.cs" />
+    <Compile Include="Rendering\Themes\ThemeAttribute.cs" />
+    <Compile Include="Rendering\Themes\ThemeCursor.cs" />
+    <Compile Include="Rendering\Themes\ThemeFont.cs" />
+    <Compile Include="Rendering\Themes\ThemeHelper.cs" />
+    <Compile Include="Rendering\Themes\ThemeImage.cs" />
+    <Compile Include="Rendering\Themes\ThemeState.cs" />
+    <Compile Include="Rendering\Themes\ThemeStyle.cs" />
+    <Compile Include="Rendering\Themes\ThemeTexture.cs" />
+    <Compile Include="Rendering\Themes\TileMode.cs" />
+    <Compile Include="Rendering\UIRenderer.cs" />
+    <Compile Include="Rendering\UIRenderer_Render.cs" />
+    <EmbeddedResource Include="Resources\EnglishKeyMap.xml" />
+    <EmbeddedResource Include="Resources\EnglishKeyMapGermanChatPad.xml" />
+    <EmbeddedResource Include="Resources\GermanKeyMap.xml" />
+    <Compile Include="Seralization\LayoutSerializer.cs" />
+    <Compile Include="Stretch.cs" />
+    <Compile Include="StretchDirection.cs" />
+    <Compile Include="ToolTipManager.cs" />
+    <Compile Include="UIException.cs" />
+    <Compile Include="UIHelper.cs" />
+    <Compile Include="UIManager.cs" />
+    <Compile Include="UIScreenCollection.cs" />
+    <Compile Include="UIService.cs" />
+    <Compile Include="VerticalAlignment.cs" />
+  </ItemGroup>
+</Project>

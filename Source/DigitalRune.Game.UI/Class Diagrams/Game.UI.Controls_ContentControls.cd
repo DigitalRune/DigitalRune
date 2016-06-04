@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="ContentControls                             Assembly: DigitalRune.Game.UI    Namespace: DigitalRune.Game.UI.Controls">
+    <Position X="0.5" Y="0.5" Height="0.636" Width="2.596" />
+  </Comment>
+  <Class Name="DigitalRune.Game.UI.Controls.UIControl" Collapsed="true">
+    <Position X="3.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>gGRp06ag/TNhMgShrMEwiOo2FaARoLmNDPJwKC06+Dw=</HashCode>
+      <FileName>Controls\UIControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.Window">
+    <Position X="2.5" Y="4.25" Width="1.75" />
+    <Members>
+      <Field Name="_caption" Hidden="true" />
+      <Field Name="_closeButton" Hidden="true" />
+      <Field Name="_icon" Hidden="true" />
+      <Field Name="_isDragging" Hidden="true" />
+      <Field Name="_isResizing" Hidden="true" />
+      <Field Name="_mouseStartPosition" Hidden="true" />
+      <Field Name="_originalHeight" Hidden="true" />
+      <Field Name="_originalWidth" Hidden="true" />
+      <Field Name="_originalX" Hidden="true" />
+      <Field Name="_originalY" Hidden="true" />
+      <Field Name="_resizeDirection" Hidden="true" />
+      <Field Name="_setSpecialCursor" Hidden="true" />
+      <Field Name="_startPosition" Hidden="true" />
+      <Field Name="_startSize" Hidden="true" />
+      <Method Name="BackupBounds" Hidden="true" />
+      <Field Name="CanDragPropertyId" Hidden="true" />
+      <Field Name="CanResizePropertyId" Hidden="true" />
+      <Field Name="CloseButtonStylePropertyId" Hidden="true" />
+      <Field Name="ClosedEventId" Hidden="true" />
+      <Field Name="ClosingEventId" Hidden="true" />
+      <Method Name="ContinueResizeAndDrag" Hidden="true" />
+      <Field Name="DialogResultPropertyId" Hidden="true" />
+      <Field Name="HideOnClosePropertyId" Hidden="true" />
+      <Field Name="IconPropertyId" Hidden="true" />
+      <Field Name="IconSourceRectanglePropertyId" Hidden="true" />
+      <Field Name="IconStylePropertyId" Hidden="true" />
+      <Field Name="IsActivePropertyId" Hidden="true" />
+      <Field Name="IsModalPropertyId" Hidden="true" />
+      <Method Name="OnCloseButtonClick" Hidden="true" />
+      <Method Name="OnHandleInput" Hidden="true" />
+      <Method Name="OnLoad" Hidden="true" />
+      <Method Name="OnUnload" Hidden="true" />
+      <Field Name="ResizeBorderPropertyId" Hidden="true" />
+      <Method Name="RestoreBounds" Hidden="true" />
+      <Method Name="StartResizeAndDrag" Hidden="true" />
+      <Field Name="TitlePropertyId" Hidden="true" />
+      <Field Name="TitleTextBlockStylePropertyId" Hidden="true" />
+      <Property Name="VisualState" Hidden="true" />
+      <Method Name="Window" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Enum Name="DigitalRune.Game.UI.Controls.Window.ResizeDirection" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controls\ContentControls\Window.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>EABCASCAytAFYkxAFQEQACIiTBAEAAzAAADAAAGQoEA=</HashCode>
+      <FileName>Controls\ContentControls\Window.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.TabControl">
+    <Position X="6.75" Y="4.25" Width="1.75" />
+    <Members>
+      <Field Name="_itemsPanel" Hidden="true" />
+      <Method Name="OnHandleInput" Hidden="true" />
+      <Method Name="OnItemsChanged" Hidden="true" />
+      <Method Name="OnLoad" Hidden="true" />
+      <Method Name="OnUnload" Hidden="true" />
+      <Field Name="SelectedIndexPropertyId" Hidden="true" />
+      <Method Name="TabControl" Hidden="true" />
+      <Field Name="TabItemPanelStylePropertyId" Hidden="true" />
+      <Method Name="UpdateContent" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAKMAAAAAAAAADAAAAAAAAAJAIRAAQAAA=</HashCode>
+      <FileName>Controls\ContentControls\TabControl\TabControl.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Items" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.TabItem">
+    <Position X="9.75" Y="4.25" Width="1.5" />
+    <Members>
+      <Field Name="_tabPage" Hidden="true" />
+      <Field Name="IsSelectedPropertyId" Hidden="true" />
+      <Method Name="OnHandleInput" Hidden="true" />
+      <Method Name="TabItem" Hidden="true" />
+      <Property Name="VisualState" Hidden="true" />
+    </Members>
+    <AssociationLine Name="TabPage" Type="DigitalRune.Game.UI.Controls.UIControl" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.688" Y="4.25" />
+        <Point X="10.688" Y="0.938" />
+        <Point X="5.25" Y="0.938" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ACABAAAAAAAAMAAAAAAAAAAAACAAAAgAAAAAAAAAAAI=</HashCode>
+      <FileName>Controls\ContentControls\TabControl\TabItem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TabPage" />
+      <Property Name="TabControl" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.ContentControl">
+    <Position X="3.5" Y="1.5" Width="1.75" />
+    <Members>
+      <Field Name="_content" Hidden="true" />
+      <Field Name="ClipContentPropertyId" Hidden="true" />
+      <Method Name="ContentControl" Hidden="true" />
+      <Field Name="ContentStylePropertyId" Hidden="true" />
+      <Method Name="HitTest" Hidden="true" />
+      <Method Name="OnArrange" Hidden="true" />
+      <Method Name="OnMeasure" Hidden="true" />
+      <Method Name="OnTemplateChanged" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Content" Type="DigitalRune.Game.UI.Controls.UIControl" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.25" Y="1.784" />
+        <Point X="5.562" Y="1.784" />
+        <Point X="5.562" Y="1.125" />
+        <Point X="5.25" Y="1.125" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.398" Y="-0.483" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAgBAAAABAAAAAAAAACEAgAAAAEAAACAAEgA=</HashCode>
+      <FileName>Controls\ContentControls\ContentControl.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Content" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.GroupBox">
+    <Position X="0.5" Y="4.25" Width="1.75" />
+    <Members>
+      <Field Name="_titleTextBlock" Hidden="true" />
+      <Method Name="GroupBox" Hidden="true" />
+      <Method Name="OnLoad" Hidden="true" />
+      <Method Name="OnUnload" Hidden="true" />
+      <Field Name="TitlePropertyId" Hidden="true" />
+      <Field Name="TitleTextBlockStylePropertyId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgBAAAEAAAAAAAAAiAAAAAAAABAAAAAAQAAA=</HashCode>
+      <FileName>Controls\ContentControls\GroupBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.ScrollViewer">
+    <Position X="4.5" Y="4.25" Width="2" />
+    <Members>
+      <Field Name="_contentBounds" Hidden="true" />
+      <Field Name="_flickScrollVelocityFactor" Hidden="true" />
+      <Field Name="_horizontalScrollBar" Hidden="true" />
+      <Field Name="_maxScrollVelocity" Hidden="true" />
+      <Field Name="_minScrollVelocity" Hidden="true" />
+      <Field Name="_scrollDamping" Hidden="true" />
+      <Field Name="_scrollThreshold" Hidden="true" />
+      <Field Name="_springConstant" Hidden="true" />
+      <Field Name="_springDamping" Hidden="true" />
+      <Field Name="_springLength" Hidden="true" />
+      <Field Name="_verticalScrollBar" Hidden="true" />
+      <Method Name="BringIntoView" Hidden="true" />
+      <Method Name="BringIntoViewHorizontal" Hidden="true" />
+      <Method Name="BringIntoViewVertical" Hidden="true" />
+      <Method Name="CalculateViewport" Hidden="true" />
+      <Property Name="ContentBounds" Hidden="true" />
+      <Field Name="HorizontalOffsetPropertyId" Hidden="true" />
+      <Field Name="HorizontalScrollBarStylePropertyId" Hidden="true" />
+      <Field Name="HorizontalScrollBarVisibilityPropertyId" Hidden="true" />
+      <Method Name="IsInActiveWindow" Hidden="true" />
+      <Method Name="OnArrange" Hidden="true" />
+      <Method Name="OnHandleInput" Hidden="true" />
+      <Method Name="OnLoad" Hidden="true" />
+      <Method Name="OnMeasure" Hidden="true" />
+      <Method Name="OnUnload" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Method Name="ScrollViewer" Hidden="true" />
+      <Field Name="VerticalOffsetPropertyId" Hidden="true" />
+      <Field Name="VerticalScrollBarStylePropertyId" Hidden="true" />
+      <Field Name="VerticalScrollBarVisibilityPropertyId" Hidden="true" />
+    </Members>
+    <AssociationLine Name="HorizontalScrollBarVisibility" Type="DigitalRune.Game.UI.Controls.ScrollBarVisibility">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.058" Y="0.04" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>CAkACgAAEARBIQAAAQEAAIGCCAEYtAqGAEIACGEZEEA=</HashCode>
+      <FileName>Controls\ContentControls\ScrollViewer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="HorizontalScrollBarVisibility" />
+      <Property Name="VerticalScrollBarVisibility" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.ContextMenu">
+    <Position X="11.5" Y="4.25" Width="1.75" />
+    <Members>
+      <Field Name="_panel" Hidden="true" />
+      <Method Name="ContextMenu" Hidden="true" />
+      <Field Name="IsOpenPropertyId" Hidden="true" />
+      <Field Name="OffsetPropertyId" Hidden="true" />
+      <Method Name="OnHandleInput" Hidden="true" />
+      <Method Name="OnItemsChanged" Hidden="true" />
+      <Method Name="OnLoad" Hidden="true" />
+      <Method Name="OnMenuItemClick" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Items" Type="DigitalRune.Game.UI.Controls.UIControl" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.5" Y="4.25" />
+        <Point X="12.5" Y="0.625" />
+        <Point X="5.25" Y="0.625" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAAAAAiAAAAAKAAAAAAAAAACAgAQAIAAABAAAACAgAA=</HashCode>
+      <FileName>Controls\Menus\ContextMenu.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Items" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Enum Name="DigitalRune.Game.UI.Controls.ScrollBarVisibility">
+    <Position X="8.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAIAAAAACAEAAA=</HashCode>
+      <FileName>Controls\ContentControls\ScrollBarVisibility.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Game.UI    Namespace: DigitalRune.Game.UI.Rendering">
+    <Position X="0.5" Y="0.5" Height="0.459" Width="2.711" />
+  </Comment>
+  <Class Name="DigitalRune.Game.UI.Controls.UIScreen" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEJBAEQAAgAZwJIAAGEDAIAoEAACAABAECAoAUAgCA=</HashCode>
+      <FileName>Controls\UIScreen.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Renderer" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Rendering.Theme">
+    <Position X="4.5" Y="6" Width="1.5" />
+    <Members>
+      <Method Name="Theme" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Cursors" Type="DigitalRune.Game.UI.Rendering.ThemeCursor">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.743" Y="0.215" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Fonts" Type="DigitalRune.Game.UI.Rendering.ThemeFont">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.609" Y="0.216" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Textures" Type="DigitalRune.Game.UI.Rendering.ThemeTexture">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.775" Y="0.216" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAgAAAABAAAAAAAAAAIAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Rendering\Themes\Theme.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Cursors" />
+      <Property Name="Fonts" />
+      <Property Name="Textures" />
+      <Property Name="Styles" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Rendering.ThemeAttribute" BaseTypeListCollapsed="true">
+    <Position X="10.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Rendering\Themes\ThemeAttribute.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Rendering.ThemeCursor" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAQAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Rendering\Themes\ThemeCursor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Rendering.ThemeFont" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Rendering\Themes\ThemeFont.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Rendering.ThemeImage">
+    <Position X="10.5" Y="8" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAgAAAAAAAAkEAAAAQAAAAABAEAAAIAgAAAAAA=</HashCode>
+      <FileName>Rendering\Themes\ThemeImage.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TileMode" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Rendering.ThemeState" BaseTypeListCollapsed="true">
+    <Position X="8" Y="8" Width="1.5" />
+    <Members>
+      <Method Name="ThemeState" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAECAAAAAAAAAAAAAAAAQAEAAAABAAAAAgAAAAAAA=</HashCode>
+      <FileName>Rendering\Themes\ThemeState.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Images" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.231" Collapsed="true" />
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Rendering.ThemeStyle" BaseTypeListCollapsed="true">
+    <Position X="8" Y="6" Width="1.5" />
+    <Members>
+      <Method Name="ThemeStyle" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Inherits" Type="DigitalRune.Game.UI.Rendering.ThemeStyle">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.763" Y="0.1" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Attributes" Type="DigitalRune.Game.UI.Rendering.ThemeAttribute">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.038" Y="0.084" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="States" Type="DigitalRune.Game.UI.Rendering.ThemeState">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.695" Y="0.215" Height="0.182" Width="0.672" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQQAAAAAAIAAAAABAAAAAA=</HashCode>
+      <FileName>Rendering\Themes\ThemeStyle.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Inherits" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Attributes" />
+      <Property Name="States" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Rendering.ThemeHelper">
+    <Position X="0.5" Y="6" Width="2" />
+    <Members>
+      <Field Name="ListSeparators" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAgAAEAAAAAAAAAQAAAAAKAAAAAAAAAAAIAACAAAAAA=</HashCode>
+      <FileName>Rendering\Themes\ThemeHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Rendering.UIRenderer">
+    <Position X="4" Y="1.5" Width="2.25" />
+    <Members>
+      <Field Name="_batchIsActive" Hidden="true" />
+      <Field Name="_caretTimer" Hidden="true" />
+      <Field Name="_defaultCursor" Hidden="true" />
+      <Field Name="_defaultFont" Hidden="true" />
+      <Field Name="_defaultTexture" Hidden="true" />
+      <Field Name="_lastCaretPosition" Hidden="true" />
+      <Field Name="_renderUIControl" Hidden="true" />
+      <Field Name="_templates" Hidden="true" />
+      <Field Name="_whiteTexture" Hidden="true" />
+      <Method Name="BeginBatch" Hidden="true" />
+      <Field Name="CaretBlinkTime" Hidden="true" />
+      <Method Name="ClipX" Hidden="true" />
+      <Method Name="ClipY" Hidden="true" />
+      <Field Name="CullNoneWithScissors" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="EndBatch" Hidden="true" />
+      <Method Name="GetActualBoundsRounded" Hidden="true" />
+      <Method Name="GetAttribute" Hidden="true" />
+      <Method Name="GetBackground" Hidden="true" />
+      <Method Name="GetContentBoundsRounded" Hidden="true" />
+      <Method Name="GetCursor" Hidden="true" />
+      <Method Name="GetFont" Hidden="true" />
+      <Method Name="GetForeground" Hidden="true" />
+      <Method Name="GetOpacity" Hidden="true" />
+      <Method Name="GetRenderCallback" Hidden="true" />
+      <Method Name="GetState" Hidden="true" />
+      <Property Name="GraphicsDevice" Hidden="true" />
+      <Method Name="InitializeDefaultCursor" Hidden="true" />
+      <Method Name="InitializeDefaultFont" Hidden="true" />
+      <Method Name="InitializeDefaultTexture" Hidden="true" />
+      <Method Name="InitializeRendering" Hidden="true" />
+      <Method Name="IsCaretVisible" Hidden="true" />
+      <Method Name="Render" Hidden="true" />
+      <Method Name="RenderConsole" Hidden="true" />
+      <Method Name="RenderContentControl" Hidden="true" />
+      <Method Name="RenderImageControl" Hidden="true" />
+      <Method Name="RenderProgressBar" Hidden="true" />
+      <Method Name="RenderSlider" Hidden="true" />
+      <Method Name="RenderStretchedImage" Hidden="true" />
+      <Method Name="RenderTextBlock" Hidden="true" />
+      <Method Name="RenderTextBox" Hidden="true" />
+      <Method Name="RenderTileX" Hidden="true" />
+      <Method Name="RenderTileXY" Hidden="true" />
+      <Method Name="RenderTileY" Hidden="true" />
+      <Method Name="RenderUIControl" Hidden="true" />
+      <Method Name="SetState" Hidden="true" />
+      <Property Name="SpriteBatch" Hidden="true" />
+      <Field Name="StateId" Hidden="true" />
+      <Property Name="Templates" Hidden="true" />
+      <Method Name="UIRenderer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ABggFGICyGEABCBQOUAiIFEAJAgiCAIEQBAVgQAABoA=</HashCode>
+      <FileName>Rendering\UIRenderer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Theme" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Rendering.ThemeTexture">
+    <Position X="6.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAQAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Rendering\Themes\ThemeTexture.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Struct Name="DigitalRune.Game.UI.Rendering.RenderTransform">
+    <Position X="6.5" Y="0.75" Width="2.25" />
+    <Members>
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="InternalDraw" Hidden="true" />
+      <Method Name="operator !=" Hidden="true" />
+      <Method Name="operator ==" Hidden="true" />
+      <Method Name="RenderTransform" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEAAAAQAABIADoAHoAYBAAQAAAAAAIAAAEAAAAkAAig=</HashCode>
+      <FileName>Rendering\RenderTransform.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Interface Name="DigitalRune.Game.UI.Rendering.IUIRenderer">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACgEAAACAAAAAAAAAAAAgAAAIAQBAUAAAAAAA=</HashCode>
+      <FileName>Rendering\IUIRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DigitalRune.Game.UI.Rendering.TileMode">
+    <Position X="8" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAABAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Rendering\Themes\TileMode.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

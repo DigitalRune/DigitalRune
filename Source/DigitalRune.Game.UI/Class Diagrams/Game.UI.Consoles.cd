@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Game.UI    Namespace: DigitalRune.Game.UI.Consoles">
+    <Position X="3.5" Y="0.5" Height="0.459" Width="2.711" />
+  </Comment>
+  <Comment CommentText="Assembly: DigitalRune.Game.UI    Namespace: DigitalRune.Game.UI.Controls">
+    <Position X="0.5" Y="0.5" Height="0.459" Width="2.576" />
+  </Comment>
+  <Class Name="DigitalRune.Game.UI.Consoles.ConsoleCommand" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="5.75" Width="2.25" />
+    <Members>
+      <Field Name="_execute" Hidden="true" />
+      <Method Name="ConsoleCommand" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAQAAACAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Consoles\ConsoleCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Consoles.ConsoleCommandEventArgs">
+    <Position X="6.25" Y="1.5" Width="2.5" />
+    <Members>
+      <Method Name="ConsoleCommandEventArgs" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Consoles\ConsoleCommandEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Consoles.ConsoleCommandException">
+    <Position X="6.25" Y="3.25" Width="2.5" />
+    <Members>
+      <Method Name="ConsoleCommandException" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAABAAAAAAAAAEAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Consoles\ConsoleCommandException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Consoles.ConsoleCommandInterpreter">
+    <Position X="3.5" Y="4.25" Width="2.25" />
+    <Members>
+      <Method Name="Clear" Hidden="true" />
+      <Method Name="CollectGarbage" Hidden="true" />
+      <Method Name="ConsoleCommandInterpreter" Hidden="true" />
+      <Method Name="Interpret" Hidden="true" />
+      <Method Name="ParseCommand" Hidden="true" />
+      <Method Name="WriteCommandHelp" Hidden="true" />
+      <Method Name="WriteHelp" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Console" Type="DigitalRune.Game.UI.Consoles.IConsole">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.89" Y="0.133" Height="0.182" Width="0.805" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Commands" Type="DigitalRune.Game.UI.Consoles.ConsoleCommand" FixedToPoint="true">
+      <Path>
+        <Point X="5.375" Y="5.118" />
+        <Point X="5.375" Y="5.75" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.029" Y="0.37" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AACAAgAAAAAAAFAAgAAAAAAAAAAAAAAAAAAAAIBAAAA=</HashCode>
+      <FileName>Consoles\ConsoleCommandInterpreter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Console" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Commands" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.Console" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.5" Width="2.25" />
+    <Members>
+      <Field Name="_caretIndex" Hidden="true" />
+      <Field Name="_charWidth" Hidden="true" />
+      <Field Name="_chatPadGreenIsActive" Hidden="true" />
+      <Field Name="_chatPadOrangeIsActive" Hidden="true" />
+      <Field Name="_historyIndex" Hidden="true" />
+      <Field Name="_numberOfColumns" Hidden="true" />
+      <Field Name="_numberOfLines" Hidden="true" />
+      <Field Name="_prompt" Hidden="true" />
+      <Field Name="_verticalScrollBar" Hidden="true" />
+      <Field Name="_wrappedLines" Hidden="true" />
+      <Method Name="Clear" Hidden="true" />
+      <Event Name="CommandEntered" Hidden="true" />
+      <Method Name="ComputeStartWrappedLine" Hidden="true" />
+      <Method Name="Console" Hidden="true" />
+      <Property Name="History" Hidden="true" />
+      <Method Name="HistoryDown" Hidden="true" />
+      <Method Name="HistoryUp" Hidden="true" />
+      <Method Name="LimitText" Hidden="true" />
+      <Field Name="LineOffsetPropertyId" Hidden="true" />
+      <Field Name="MaxLinesPropertyId" Hidden="true" />
+      <Method Name="OnArrange" Hidden="true" />
+      <Method Name="OnCoerceLineOffset" Hidden="true" />
+      <Method Name="OnCommandEntered" Hidden="true" />
+      <Method Name="OnHandleInput" Hidden="true" />
+      <Method Name="OnLoad" Hidden="true" />
+      <Method Name="OnRender" Hidden="true" />
+      <Method Name="OnUnload" Hidden="true" />
+      <Method Name="PageDown" Hidden="true" />
+      <Method Name="PageUp" Hidden="true" />
+      <Method Name="ParseCommand" Hidden="true" />
+      <Field Name="VerticalScrollBarStylePropertyId" Hidden="true" />
+      <Method Name="WrapLines" Hidden="true" />
+      <Method Name="WriteLine" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gsAIEAADRBCAIBIIBAAAAGACCBAIIAAJAAISKIRQUIE=</HashCode>
+      <FileName>Controls\Console.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="DigitalRune.Game.UI.Consoles.IConsole">
+    <Position X="3.5" Y="1.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACABAAAAAIAAAAACAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Consoles\IConsole.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

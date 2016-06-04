@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6DC951E8-DF9B-4ACA-8B13-A43845A5CCF9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.Geometry.Tests</RootNamespace>
+    <AssemblyName>DigitalRune.Geometry.Tests</AssemblyName>
+    <FileUpgradeFlags></FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation></UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune.Geometry\DigitalRune.Geometry%28PCL%29.csproj">
+      <Project>{8A8FE6D4-0906-4FC3-847C-31387DFDCB2C}</Project>
+      <Name>DigitalRune.Geometry%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune.Mathematics\DigitalRune.Mathematics%28PCL%29.csproj">
+      <Project>{A5833DE3-70A9-4258-966F-77456D6C7900}</Project>
+      <Name>DigitalRune.Mathematics%28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune\DigitalRune.csproj">
+      <Project>{5A0E3C60-1CA9-49D5-84CA-308CB8E3A3B4}</Project>
+      <Name>DigitalRune</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MonoGame\MonoGame.Framework\MonoGame.Framework.Windows.csproj">
+      <Project>{7de47032-a904-4c29-bd22-2d235e8d91ba}</Project>
+      <Name>MonoGame.Framework.Windows</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <Compile Include="Collisions\Algorithms\BoxBoxAlgorithmTest.cs" />
+    <Compile Include="Collisions\Algorithms\BoxRayAlgorithmTest.cs" />
+    <Compile Include="Collisions\Algorithms\BoxSphereAlgorithmTest.cs" />
+    <Compile Include="Collisions\Algorithms\CCD\CcdTest.cs" />
+    <Compile Include="Collisions\Algorithms\CollisionAlgorithmTest.cs" />
+    <Compile Include="Collisions\Algorithms\CombinedCollisionAlgorithmTest.cs" />
+    <Compile Include="Collisions\Algorithms\CompositeShapeAlgorithmTest.cs" />
+    <Compile Include="Collisions\Algorithms\GjkTest.cs" />
+    <Compile Include="Collisions\Algorithms\LineQueriesTest.cs" />
+    <Compile Include="Collisions\Algorithms\MinkowskiPortalRefinementTest.cs" />
+    <Compile Include="Collisions\Algorithms\NoCollisionAlgorithmTest.cs" />
+    <Compile Include="Collisions\Algorithms\PlaneAlgorithmTest.cs" />
+    <Compile Include="Collisions\Algorithms\PlanePointAlgorithmTest.cs" />
+    <Compile Include="Collisions\Algorithms\PlaneRayAlgorithmTest.cs" />
+    <Compile Include="Collisions\Algorithms\RayAlgorithmTest.cs" />
+    <Compile Include="Collisions\Algorithms\RaySphereAlgorithmTest.cs" />
+    <Compile Include="Collisions\Algorithms\RayTriangleAlgorithmTest.cs" />
+    <Compile Include="Collisions\Algorithms\SpherePlaneAlgorithmTest.cs" />
+    <Compile Include="Collisions\Algorithms\SphereSphereAlgorithmTest.cs" />
+    <Compile Include="Collisions\Algorithms\TransformShapeAlgorithmTest.cs" />
+    <Compile Include="Collisions\Algorithms\TriangleMeshAlgorithmTest.cs" />
+    <Compile Include="Collisions\Algorithms\TriangleTriangleAlgorithmTest.cs" />
+    <Compile Include="Collisions\CollisionAlgorithmMatrixTest.cs" />
+    <Compile Include="Collisions\CollisionDetectionBroadPhaseTest.cs" />
+    <Compile Include="Collisions\CollisionDetectionTest.cs" />
+    <Compile Include="Collisions\CollisionDomainTest.cs" />
+    <Compile Include="Collisions\CollisionFilterTest.cs" />
+    <Compile Include="Collisions\CollisionObjectCollectionTest.cs" />
+    <Compile Include="Collisions\CollisionObjectTest.cs" />
+    <Compile Include="Collisions\ContactHelperTest.cs" />
+    <Compile Include="Collisions\ContactSetCollectionTest.cs" />
+    <Compile Include="Collisions\ContactSetTest.cs" />
+    <Compile Include="Collisions\ContactTest.cs" />
+    <Compile Include="DirectionalLookupTableTest.cs" />
+    <Compile Include="GeometricObjectTest.cs" />
+    <Compile Include="GeometryExceptionTest.cs" />
+    <Compile Include="GeometryHelperTest.cs" />
+    <Compile Include="Meshes\ConvexHullTest.cs" />
+    <Compile Include="Meshes\DcelTest.cs" />
+    <Compile Include="Meshes\SupportMappingSamplerTest.cs" />
+    <Compile Include="Meshes\TriangleMeshTest.cs" />
+    <Compile Include="Meshes\VertexAdjacencyTest.cs" />
+    <Compile Include="Partitioning\AabbTreeTest.cs" />
+    <Compile Include="Partitioning\AdaptiveAabbTreeTest.cs" />
+    <Compile Include="Partitioning\CompressedAabbTreeTest.cs" />
+    <Compile Include="Partitioning\DualPartitionTest.cs" />
+    <Compile Include="Partitioning\DynamicAabbTreeTest.cs" />
+    <Compile Include="Partitioning\SpatialPartitionTest.cs" />
+    <Compile Include="Partitioning\SweepAndPruneSpaceTest.cs" />
+    <Compile Include="PoseDTest.cs" />
+    <Compile Include="PoseTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shapes\AabbTest.cs" />
+    <Compile Include="Shapes\BoxShapeTest.cs" />
+    <Compile Include="Shapes\CapsuleShapeTest.cs" />
+    <Compile Include="Shapes\CircleShapeTest.cs" />
+    <Compile Include="Shapes\CompositeShapeTest.cs" />
+    <Compile Include="Shapes\ConeShapeTest.cs" />
+    <Compile Include="Shapes\ConvexHullOfPointsTest.cs" />
+    <Compile Include="Shapes\ConvexHullOfShapesTest.cs" />
+    <Compile Include="Shapes\ConvexPolyhedronTest.cs" />
+    <Compile Include="Shapes\CylinderShapeTest.cs" />
+    <Compile Include="Shapes\EmptyShapeTest.cs" />
+    <Compile Include="Shapes\HeightFieldTest.cs" />
+    <Compile Include="Shapes\LineSegmentShapeTest.cs" />
+    <Compile Include="Shapes\LineSegmentTest.cs" />
+    <Compile Include="Shapes\LineShapeTest.cs" />
+    <Compile Include="Shapes\LineTest.cs" />
+    <Compile Include="Shapes\MinkowskiDifferenceShapeTest.cs" />
+    <Compile Include="Shapes\MinkowskiSumShapeTest.cs" />
+    <Compile Include="Shapes\OrthographicViewVolumeTest.cs" />
+    <Compile Include="Shapes\PerspectiveViewVolumeTest.cs" />
+    <Compile Include="Shapes\PlaneShapeTest.cs" />
+    <Compile Include="Shapes\PlaneTest.cs" />
+    <Compile Include="Shapes\PointTest.cs" />
+    <Compile Include="Shapes\RayShapeTest.cs" />
+    <Compile Include="Shapes\RayTest.cs" />
+    <Compile Include="Shapes\RectangleShapeTest.cs" />
+    <Compile Include="Shapes\SphereShapeTest.cs" />
+    <Compile Include="Shapes\TransformShapeTest.cs" />
+    <Compile Include="Shapes\TriangleMeshShapeTest.cs" />
+    <Compile Include="Shapes\TriangleShapeTest.cs" />
+    <Compile Include="Shapes\TriangleTest.cs" />
+    <Compile Include="Shapes\VolumeTest.cs" />
+    <Compile Include="TestGeometricObjectTest.cs" />
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

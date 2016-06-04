@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{17373892-D9F2-4F6F-A7AC-31457FEA60AE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DigitalRune.Geometry</RootNamespace>
+    <AssemblyName>DigitalRune.Geometry</AssemblyName>
+    <FileUpgradeFlags></FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation></UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <BaseIntermediateOutputPath>obj\Unity\Debug\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\Unity\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;POOL_ENUMERABLES;UNITY</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <DocumentationFile>bin\Unity\Debug\DigitalRune.Geometry.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <BaseIntermediateOutputPath>obj\Unity\Release\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\</IntermediateOutputPath>
+    <OutputPath>bin\Unity\Release\</OutputPath>
+    <DefineConstants>TRACE;POOL_ENUMERABLES;UNITY</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Unity\Release\DigitalRune.Geometry.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalRune.Mathematics\DigitalRune.Mathematics%28Unity%29.csproj">
+      <Project>{F881B626-2C84-4B2C-AB32-A16273BCD408}</Project>
+      <Name>DigitalRune.Mathematics%28Unity%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalRune\DigitalRune%28Unity%29.csproj">
+      <Project>{3CD3AB84-E372-4FFB-BCE4-EBE0BE3BD3D6}</Project>
+      <Name>DigitalRune%28Unity%29</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <Compile Include="Collisions\Algorithms\BoxBoxAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\BoxSphereAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\CCD\CcdHelper.cs" />
+    <Compile Include="Collisions\Algorithms\CCD\CcdHelper_CAFull.cs" />
+    <Compile Include="Collisions\Algorithms\CCD\CcdHelper_CALinear.cs" />
+    <Compile Include="Collisions\Algorithms\CCD\CcdHelper_LinearConvexCast.cs" />
+    <Compile Include="Collisions\Algorithms\CollisionAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\CombinedCollisionAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\CompositeShapes\CompositeShapeAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\CompositeShapes\CompositeShapeAlgorithm_ClosestPoints.cs" />
+    <Compile Include="Collisions\Algorithms\CompositeShapes\RayCompositeAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\Gjk\Gjk.cs" />
+    <Compile Include="Collisions\Algorithms\Gjk\GjkSimplexSolver.cs" />
+    <Compile Include="Collisions\Algorithms\HeightField\HeightFieldAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\HeightField\HeightFieldAlgorithm_Fast.cs" />
+    <Compile Include="Collisions\Algorithms\HeightField\RayHeightFieldAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\InfiniteShapeAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\LineAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\MinkowskiPortalRefinement.cs" />
+    <Compile Include="Collisions\Algorithms\NamespaceDoc.cs" />
+    <Compile Include="Collisions\Algorithms\NoCollisionAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\PlaneBoxAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\PlaneConvexAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\PlanePointAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\PlaneRayAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\PlaneSphereAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\RayBoxAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\RayConvexAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\RaySphereAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\RayTriangleAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\SphereSphereAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\TetrahedronAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\TransformedShapeAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\TriangleMeshShapes\RayTriangleMeshAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\TriangleMeshShapes\TriangleMeshAlgorithm.cs" />
+    <Compile Include="Collisions\Algorithms\TriangleMeshShapes\TriangleMeshAlgorithm_ClosestPoints.cs" />
+    <Compile Include="Collisions\Algorithms\TriangleMeshShapes\TriangleMeshAlgorithm_TriangleVsTriangle.cs" />
+    <Compile Include="Collisions\Algorithms\TriangleTriangleAlgorithm.cs" />
+    <Compile Include="Collisions\CollisionAlgorithmMatrix.cs" />
+    <Compile Include="Collisions\CollisionDetection.cs" />
+    <Compile Include="Collisions\CollisionDetectionBroadPhase.cs" />
+    <Compile Include="Collisions\CollisionDomain.cs" />
+    <Compile Include="Collisions\CollisionFilter.cs" />
+    <Compile Include="Collisions\CollisionObject.cs" />
+    <Compile Include="Collisions\CollisionObjectCollection.cs" />
+    <Compile Include="Collisions\CollisionObjectType.cs" />
+    <Compile Include="Collisions\CollisionQueryType.cs" />
+    <Compile Include="Collisions\Contact.cs" />
+    <Compile Include="Collisions\ContactHelper.cs" />
+    <Compile Include="Collisions\ContactReducer.cs" />
+    <Compile Include="Collisions\ContactSet.cs" />
+    <Compile Include="Collisions\ContactSetCollection.cs" />
+    <Compile Include="Collisions\ContinuousCollisionDetectionMode.cs" />
+    <Compile Include="Collisions\ICollisionFilter.cs" />
+    <Compile Include="Collisions\IContactFilter.cs" />
+    <Compile Include="Collisions\NamespaceDoc.cs" />
+    <Compile Include="DirectionalLookupTableF.cs" />
+    <Compile Include="GeometricObject.cs" />
+    <Compile Include="GeometryException.cs" />
+    <Compile Include="GeometryHelper.cs" />
+    <Compile Include="GeometryHelper_Boxes.cs" />
+    <Compile Include="GeometryHelper_Capsules.cs" />
+    <Compile Include="GeometryHelper_Casts.cs" />
+    <Compile Include="GeometryHelper_Lines.cs" />
+    <Compile Include="GeometryHelper_Meshes.cs" />
+    <Compile Include="GeometryHelper_Planes.cs" />
+    <Compile Include="GeometryHelper_Spheres.cs" />
+    <Compile Include="GeometryHelper_SupportMapping.cs" />
+    <Compile Include="GeometryHelper_TriangleTriangle.cs" />
+    <Compile Include="GeometryHelper_Triangles.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="IGeometricObject.cs" />
+    <Compile Include="Meshes\Convex Decomposition\CDIsland.cs" />
+    <Compile Include="Meshes\Convex Decomposition\CDIslandLink.cs" />
+    <Compile Include="Meshes\Convex Decomposition\CDTriangle.cs" />
+    <Compile Include="Meshes\Convex Decomposition\ConvexDecomposition.cs" />
+    <Compile Include="Meshes\ConvexHullBuilder.cs" />
+    <Compile Include="Meshes\Dcel\DcelEdge.cs" />
+    <Compile Include="Meshes\Dcel\DcelFace.cs" />
+    <Compile Include="Meshes\Dcel\DcelMesh.cs" />
+    <Compile Include="Meshes\Dcel\DcelMesh_Collinearity.cs" />
+    <Compile Include="Meshes\Dcel\DcelMesh_Convex.cs" />
+    <Compile Include="Meshes\Dcel\DcelMesh_IsXxx.cs" />
+    <Compile Include="Meshes\Dcel\DcelMesh_Operations.cs" />
+    <Compile Include="Meshes\Dcel\DcelMesh_Traversal.cs" />
+    <Compile Include="Meshes\Dcel\DcelMesh_TriangleMesh.cs" />
+    <Compile Include="Meshes\Dcel\DcelVertex.cs" />
+    <Compile Include="Meshes\ITriangleMesh.cs" />
+    <Compile Include="Meshes\NamespaceDoc.cs" />
+    <Compile Include="Meshes\TriangleMesh.cs" />
+    <Compile Include="Meshes\Triangulator.cs" />
+    <Compile Include="Meshes\VertexAdjacency.cs" />
+    <Compile Include="NamespaceDoc.cs" />
+    <Compile Include="Partitioning\BVH\AabbTreeBuilder.cs" />
+    <Compile Include="Partitioning\BVH\AabbTreeHelper.cs" />
+    <Compile Include="Partitioning\BVH\Adaptive BVH\AdaptiveAabbTree.cs" />
+    <Compile Include="Partitioning\BVH\Adaptive BVH\AdaptiveAabbTree_Build.cs" />
+    <Compile Include="Partitioning\BVH\Adaptive BVH\AdaptiveAabbTree_Node.cs" />
+    <Compile Include="Partitioning\BVH\Adaptive BVH\AdaptiveAabbTree_Queries.cs" />
+    <Compile Include="Partitioning\BVH\Adaptive BVH\AdaptiveAabbTree_Queries_Pooled.cs" />
+    <Compile Include="Partitioning\BVH\Adaptive BVH\AdaptiveAabbTree_TreeVsTree.cs" />
+    <Compile Include="Partitioning\BVH\Adaptive BVH\AdaptiveAabbTree_TreeVsTree_Pooled.cs" />
+    <Compile Include="Partitioning\BVH\Compressed BVH\CompressedAabbTree.cs" />
+    <Compile Include="Partitioning\BVH\Compressed BVH\CompressedAabbTree_Build.cs" />
+    <Compile Include="Partitioning\BVH\Compressed BVH\CompressedAabbTree_Node.cs" />
+    <Compile Include="Partitioning\BVH\Compressed BVH\CompressedAabbTree_Queries.cs" />
+    <Compile Include="Partitioning\BVH\Compressed BVH\CompressedAabbTree_Queries_Pooled.cs" />
+    <Compile Include="Partitioning\BVH\Compressed BVH\CompressedAabbTree_TreeVsTree.cs" />
+    <Compile Include="Partitioning\BVH\Compressed BVH\CompressedAabbTree_TreeVsTree_Pooled.cs" />
+    <Compile Include="Partitioning\BVH\Dynamic BVH\DynamicAabbTree.cs" />
+    <Compile Include="Partitioning\BVH\Dynamic BVH\DynamicAabbTree_Build.cs" />
+    <Compile Include="Partitioning\BVH\Dynamic BVH\DynamicAabbTree_Node.cs" />
+    <Compile Include="Partitioning\BVH\Dynamic BVH\DynamicAabbTree_Queries.cs" />
+    <Compile Include="Partitioning\BVH\Dynamic BVH\DynamicAabbTree_Queries_Pooled.cs" />
+    <Compile Include="Partitioning\BVH\Dynamic BVH\DynamicAabbTree_TreeVsTree.cs" />
+    <Compile Include="Partitioning\BVH\Dynamic BVH\DynamicAabbTree_TreeVsTree_Pooled.cs" />
+    <Compile Include="Partitioning\BVH\IAabbTreeNode.cs" />
+    <Compile Include="Partitioning\BVH\Static BVH\AabbTree.cs" />
+    <Compile Include="Partitioning\BVH\Static BVH\AabbTree_Build.cs" />
+    <Compile Include="Partitioning\BVH\Static BVH\AabbTree_Node.cs" />
+    <Compile Include="Partitioning\BVH\Static BVH\AabbTree_Queries.cs" />
+    <Compile Include="Partitioning\BVH\Static BVH\AabbTree_Queries_Pooled.cs" />
+    <Compile Include="Partitioning\BVH\Static BVH\AabbTree_TreeVsTree.cs" />
+    <Compile Include="Partitioning\BVH\Static BVH\AabbTree_TreeVsTree_Pooled.cs" />
+    <Compile Include="Partitioning\BasePartition.cs" />
+    <Compile Include="Partitioning\BasePartition_Queries.cs" />
+    <Compile Include="Partitioning\BasePartition_Queries_Pooled.cs" />
+    <Compile Include="Partitioning\ClosestPointCallbackWrapper.cs" />
+    <Compile Include="Partitioning\DebugSpatialPartition.cs" />
+    <Compile Include="Partitioning\DelegatePairFilter.cs" />
+    <Compile Include="Partitioning\Dual Partition\DualPartition.cs" />
+    <Compile Include="Partitioning\Dual Partition\DualPartition_Queries.cs" />
+    <Compile Include="Partitioning\Dual Partition\DualPartition_TreeVsTree.cs" />
+    <Compile Include="Partitioning\IPairFilter.cs" />
+    <Compile Include="Partitioning\ISpatialPartition.cs" />
+    <Compile Include="Partitioning\ISupportBroadPhase.cs" />
+    <Compile Include="Partitioning\ISupportClosestPointQueries.cs" />
+    <Compile Include="Partitioning\ISupportFrustumCulling.cs" />
+    <Compile Include="Partitioning\NamespaceDoc.cs" />
+    <Compile Include="Partitioning\Octree.cs" />
+    <Compile Include="Partitioning\SAP\SweepAndPruneSpace.cs" />
+    <Compile Include="Partitioning\SAP\SweepAndPruneSpace_NestedTypes.cs" />
+    <Compile Include="Partitioning\SAP\SweepAndPruneSpace_Queries.cs" />
+    <Compile Include="Pose.cs" />
+    <Compile Include="PoseD.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Properties\AssemblyInfo.template" />
+    <Compile Include="ResourcePools.cs" />
+    <Compile Include="ResourcePools{T}.cs" />
+    <Compile Include="Shapes\Aabb.cs" />
+    <Compile Include="Shapes\BoxShape.cs" />
+    <Compile Include="Shapes\CapsuleShape.cs" />
+    <Compile Include="Shapes\CircleShape.cs" />
+    <Compile Include="Shapes\CompositeShape.cs" />
+    <Compile Include="Shapes\ConeShape.cs" />
+    <Compile Include="Shapes\ConvexHullOfPoints.cs" />
+    <Compile Include="Shapes\ConvexHullOfShapes.cs" />
+    <Compile Include="Shapes\ConvexPolyhedron.cs" />
+    <Compile Include="Shapes\ConvexShape.cs" />
+    <Compile Include="Shapes\CylinderShape.cs" />
+    <Compile Include="Shapes\EmptyShape.cs" />
+    <Compile Include="Shapes\HeightField.cs" />
+    <Compile Include="Shapes\InfiniteShape.cs" />
+    <Compile Include="Shapes\Line.cs" />
+    <Compile Include="Shapes\LineSegment.cs" />
+    <Compile Include="Shapes\LineSegmentShape.cs" />
+    <Compile Include="Shapes\LineShape.cs" />
+    <Compile Include="Shapes\MinkowskiDifferenceShape.cs" />
+    <Compile Include="Shapes\MinkowskiSumShape.cs" />
+    <Compile Include="Shapes\NamespaceDoc.cs" />
+    <Compile Include="Shapes\OrthographicViewVolume.cs" />
+    <Compile Include="Shapes\PerspectiveViewVolume.cs" />
+    <Compile Include="Shapes\Plane.cs" />
+    <Compile Include="Shapes\PlaneShape.cs" />
+    <Compile Include="Shapes\PointShape.cs" />
+    <Compile Include="Shapes\Ray.cs" />
+    <Compile Include="Shapes\RayShape.cs" />
+    <Compile Include="Shapes\RectangleShape.cs" />
+    <Compile Include="Shapes\ScaledConvexShape.cs" />
+    <Compile Include="Shapes\Shape.cs" />
+    <Compile Include="Shapes\ShapeChangedEventArgs.cs" />
+    <Compile Include="Shapes\SphereShape.cs" />
+    <Compile Include="Shapes\TestMinkowskiSumShape.cs" />
+    <Compile Include="Shapes\TransformedShape.cs" />
+    <Compile Include="Shapes\Triangle.cs" />
+    <Compile Include="Shapes\TriangleMeshShape.cs" />
+    <Compile Include="Shapes\TriangleShape.cs" />
+    <Compile Include="Shapes\ViewVolume.cs" />
+    <Compile Include="TestGeometricObject.cs" />
+  </ItemGroup>
+</Project>

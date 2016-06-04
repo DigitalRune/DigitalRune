@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Geometry&#xD;&#xA;Namespace: DigitalRune.Geometry.Meshes">
+    <Position X="0.5" Y="0.5" Height="0.406" Width="2.512" />
+  </Comment>
+  <Class Name="DigitalRune.Geometry.Meshes.DcelEdge">
+    <Position X="6.25" Y="3" Width="1.5" />
+    <Members>
+      <Property Name="InternalTag" Hidden="true" />
+      <Property Name="Length" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Origin" Type="DigitalRune.Geometry.Meshes.DcelVertex">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.151" Y="0.206" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Twin" Type="DigitalRune.Geometry.Meshes.DcelEdge" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.25" Y="3.097" />
+        <Point X="6" Y="3.097" />
+        <Point X="6" Y="3.291" />
+        <Point X="6.25" Y="3.291" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.279" Y="0.047" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Face" Type="DigitalRune.Geometry.Meshes.DcelFace">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.213" Y="0.227" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Next" Type="DigitalRune.Geometry.Meshes.DcelEdge" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.75" Y="3.437" />
+        <Point X="8" Y="3.437" />
+        <Point X="8" Y="3.631" />
+        <Point X="7.75" Y="3.631" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.394" Y="0.038" Height="0.16" Width="0.5" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Previous" Type="DigitalRune.Geometry.Meshes.DcelEdge" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7.75" Y="3.097" />
+        <Point X="7.969" Y="3.097" />
+        <Point X="7.969" Y="3.291" />
+        <Point X="7.75" Y="3.291" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.328" Y="-0.002" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>CgAAAAAAAAAgAgACAAAABABAAAAAAAAAAAAAAAgIAAA=</HashCode>
+      <FileName>Meshes\Dcel\DcelEdge.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Origin" />
+      <Property Name="Twin" />
+      <Property Name="Face" />
+      <Property Name="Next" />
+      <Property Name="Previous" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Meshes.TriangleMesh" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="3.25" Width="1.75" />
+    <Members>
+      <Method Name="ComputeNormalsUsingAngleLimit" Hidden="true" />
+      <Method Name="GetAbsoluteTransform" Hidden="true" />
+      <Method Name="TriangleMesh" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Geometry.Meshes.TriangleMesh.Vertex" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Meshes\TriangleMesh.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>IAIAgQAAAEEgAAAAAAIAAAQAAAAAAEAAEAABAAAAABA=</HashCode>
+      <FileName>Meshes\TriangleMesh.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Geometry.Meshes.DcelFace">
+    <Position X="6.25" Y="0.75" Width="1.5" />
+    <Members>
+      <Method Name="DcelFace" Hidden="true" />
+      <Property Name="InternalTag" Hidden="true" />
+      <Property Name="Normal" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Boundary" Type="DigitalRune.Geometry.Meshes.DcelEdge">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.859" Y="0.435" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Holes" Type="DigitalRune.Geometry.Meshes.DcelEdge">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.058" Y="0.383" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAgAAAIAAAAAAAAAAAIAAAAAAAAAAAIBAA=</HashCode>
+      <FileName>Meshes\Dcel\DcelFace.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Boundary" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Holes" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Meshes.DcelMesh">
+    <Position X="2.75" Y="2.5" Width="2.25" />
+    <Members>
+      <Field Name="_dirty" Hidden="true" />
+      <Field Name="_edges" Hidden="true" />
+      <Field Name="_edgesReadOnly" Hidden="true" />
+      <Field Name="_faces" Hidden="true" />
+      <Field Name="_facesReadOnly" Hidden="true" />
+      <Field Name="_vertices" Hidden="true" />
+      <Field Name="_verticesReadOnly" Hidden="true" />
+      <Method Name="AddUntaggedEdgeToStack" Hidden="true" />
+      <Method Name="AddUntaggedEdgeToStackInternal" Hidden="true" />
+      <Method Name="BuildLists" Hidden="true" />
+      <Method Name="EnsureEmptyList" Hidden="true" />
+      <Method Name="GetBestCutPlane" Hidden="true" />
+      <Method Name="GetCollinearity" Hidden="true" />
+      <Method Name="GetCutPosition" Hidden="true" />
+      <Method Name="IsTwoSidedPolygon" Hidden="true" />
+      <Method Name="MergeCoplanarFaces" Hidden="true" />
+      <Method Name="ResetInternalTags" Hidden="true" />
+      <Method Name="TagLinkedComponents" Hidden="true" />
+      <Method Name="TryLink" Hidden="true" />
+      <Method Name="UpdateCache" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Edges" Type="DigitalRune.Geometry.Meshes.DcelEdge">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.245" Y="0.05" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AIACgIgTAAABAAhAwChAAEAIAAAAQEAAEFiABQGSjBA=</HashCode>
+      <FileName>Meshes\Dcel\DcelMesh.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Vertex" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Edges" />
+      <Property Name="Faces" />
+      <Property Name="Vertices" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Meshes.DcelVertex">
+    <Position X="6.25" Y="5" Width="1.5" />
+    <Members>
+      <Method Name="DcelVertex" Hidden="true" />
+      <Property Name="InternalTag" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Edge" Type="DigitalRune.Geometry.Meshes.DcelEdge">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.588" Y="0.435" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAgAAAgAAAAAAAAAAAABAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Meshes\Dcel\DcelVertex.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Edge" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Meshes.ConvexDecomposition">
+    <Position X="9" Y="0.75" Width="1.75" />
+    <Members>
+      <Field Name="_allowedConcavity" Hidden="true" />
+      <Field Name="_cancel" Hidden="true" />
+      <Field Name="_decomposition" Hidden="true" />
+      <Field Name="_intermediateVertexLimit" Hidden="true" />
+      <Field Name="_islands" Hidden="true" />
+      <Field Name="_links" Hidden="true" />
+      <Field Name="_mesh" Hidden="true" />
+      <Field Name="_syncRoot" Hidden="true" />
+      <Field Name="_vertexLimit" Hidden="true" />
+      <Method Name="CreateCompositeShape" Hidden="true" />
+      <Method Name="CreateDualGraph" Hidden="true" />
+      <Method Name="DoWork" Hidden="true" />
+      <Method Name="MergeIslands" Hidden="true" />
+      <Method Name="OnProgressChanged" Hidden="true" />
+      <Method Name="ValidateInput" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAJAWDIgIADMEAhAFAgAAoAAQAAAAIAAEQAAQ=</HashCode>
+      <FileName>Meshes\Convex Decomposition\ConvexDecomposition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Meshes.Triangulator">
+    <Position X="9" Y="5" Width="2" />
+    <Members>
+      <Field Name="_indices" Hidden="true" />
+      <Field Name="_vertices" Hidden="true" />
+      <Method Name="GetAabb" Hidden="true" />
+      <Method Name="GetCounterClockwiseIndices" Hidden="true" />
+      <Method Name="GetSignedArea" Hidden="true" />
+      <Method Name="IsEar" Hidden="true" />
+      <Method Name="IsInside" Hidden="true" />
+      <Field Name="Pool" Hidden="true" />
+      <Method Name="Transform" Hidden="true" />
+      <Method Name="Triangulator" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAACAAQAAAAEQAAIBACMAAAAgABAAAAAA=</HashCode>
+      <FileName>Meshes\Triangulator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DigitalRune.Geometry.Meshes.ITriangleMesh">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Meshes\ITriangleMesh.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

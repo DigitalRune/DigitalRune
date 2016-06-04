@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Range Controls                                Assembly: DigitalRune.Game.UI    Namespace: DigitalRune.Game.UI.Controls">
+    <Position X="0.5" Y="0.5" Height="0.636" Width="2.596" />
+  </Comment>
+  <Class Name="DigitalRune.Game.UI.Controls.ProgressBar">
+    <Position X="2" Y="4.75" Width="2" />
+    <Members>
+      <Field Name="_forward" Hidden="true" />
+      <Field Name="IndeterminateCycleTimePropertyId" Hidden="true" />
+      <Field Name="IsIndeterminatePropertyId" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Method Name="ProgressBar" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAABAAAAAAAAAEBAAAAAACAAEAAAA=</HashCode>
+      <FileName>Controls\RangeControls\ProgressBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.Thumb">
+    <Position X="2.5" Y="2" Width="1.5" />
+    <Members>
+      <Field Name="_offset" Hidden="true" />
+      <Field Name="DragDeltaPropertyId" Hidden="true" />
+      <Field Name="IsDraggingPropertyId" Hidden="true" />
+      <Method Name="OnHandleInput" Hidden="true" />
+      <Method Name="Thumb" Hidden="true" />
+      <Property Name="VisualState" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAgAIAABAIAAAAAAABgAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\RangeControls\Thumb.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.RangeBase">
+    <Position X="4.5" Y="2" Width="1.5" />
+    <Members>
+      <Field Name="LargeChangePropertyId" Hidden="true" />
+      <Field Name="MaximumPropertyId" Hidden="true" />
+      <Field Name="MinimumPropertyId" Hidden="true" />
+      <Method Name="RangeBase" Hidden="true" />
+      <Field Name="SmallChangePropertyId" Hidden="true" />
+      <Field Name="ValuePropertyId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAAAAACACAAAAAAQQAACAAAAAIAACAAAAAAgAAAAIAA=</HashCode>
+      <FileName>Controls\RangeControls\RangeBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.ScrollBar">
+    <Position X="4.25" Y="4.75" Width="2" />
+    <Members>
+      <Field Name="_decrementButton" Hidden="true" />
+      <Field Name="_incrementButton" Hidden="true" />
+      <Field Name="_isPressed" Hidden="true" />
+      <Field Name="_thumb" Hidden="true" />
+      <Field Name="DecrementButtonStylePropertyId" Hidden="true" />
+      <Field Name="IncrementButtonStylePropertyId" Hidden="true" />
+      <Method Name="OnArrange" Hidden="true" />
+      <Method Name="OnDecrementButtonClick" Hidden="true" />
+      <Method Name="OnHandleInput" Hidden="true" />
+      <Method Name="OnIncrementButtonClick" Hidden="true" />
+      <Method Name="OnLoad" Hidden="true" />
+      <Method Name="OnUnload" Hidden="true" />
+      <Field Name="OrientationPropertyId" Hidden="true" />
+      <Method Name="ScrollBar" Hidden="true" />
+      <Field Name="ThumbStylePropertyId" Hidden="true" />
+      <Field Name="ViewportSizePropertyId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>KAAAAGIIAUAgIAAAAAIAAAACAAAAAAAAgAIAACASEBA=</HashCode>
+      <FileName>Controls\RangeControls\ScrollBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.Slider">
+    <Position X="6.5" Y="4.75" Width="1.5" />
+    <Members>
+      <Field Name="_isPressed" Hidden="true" />
+      <Field Name="_thumb" Hidden="true" />
+      <Method Name="OnArrange" Hidden="true" />
+      <Method Name="OnHandleInput" Hidden="true" />
+      <Method Name="OnLoad" Hidden="true" />
+      <Method Name="OnUnload" Hidden="true" />
+      <Method Name="Slider" Hidden="true" />
+      <Field Name="ThumbStylePropertyId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAEAAIAAAAAAAAAACAAAAAAAAAAAAACASEAA=</HashCode>
+      <FileName>Controls\RangeControls\Slider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.UIControl" Collapsed="true">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gERp06ag/TNhMgShrMEwiOo2FaARoLmJDPJwKC06+Cw=</HashCode>
+      <FileName>Controls\UIControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

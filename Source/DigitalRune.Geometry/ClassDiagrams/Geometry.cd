@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Geometry&#xD;&#xA;Namespace: DigitalRune.Geometry">
+    <Position X="0.5" Y="0.5" Height="0.406" Width="2.252" />
+  </Comment>
+  <Class Name="DigitalRune.Geometry.GeometryException">
+    <Position X="7.75" Y="6.25" Width="1.75" />
+    <Members>
+      <Field Name="_context" Hidden="true" />
+      <Method Name="GeometryException" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeometryException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.GeometricObject">
+    <Position X="0.5" Y="4" Width="1.75" />
+    <Members>
+      <Field Name="_aabb" Hidden="true" />
+      <Field Name="_aabbIsValid" Hidden="true" />
+      <Field Name="_pose" Hidden="true" />
+      <Field Name="_scale" Hidden="true" />
+      <Field Name="_shape" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="GeometricObject" Hidden="true" />
+      <Method Name="IGeometricObject.Clone" Hidden="true" />
+      <Method Name="OnShapeChanged" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEBgAAAAAAAEAEAAICMAAAAAIMAACAAEAAACAAADA=</HashCode>
+      <FileName>GeometricObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Geometry.GeometryHelper">
+    <Position X="7.75" Y="1.25" Width="3" />
+    <Members>
+      <Method Name="AdjustClosestPoints" Hidden="true" />
+      <Method Name="ccw_tri_tri_intersection_2d" Hidden="true" />
+      <Method Name="CHECK_MIN_MAX" Hidden="true" />
+      <Method Name="ComputeCovarianceMatrixFromPoints" Hidden="true" />
+      <Method Name="ComputeCovarianceMatrixFromSurface" Hidden="true" />
+      <Method Name="ComputeWelzlSphere" Hidden="true" />
+      <Method Name="coplanar_tri_tri3d" Hidden="true" />
+      <Method Name="CreateIcosahedron" Hidden="true" />
+      <Method Name="GeometryHelper" Hidden="true" />
+      <Method Name="GetContact" Hidden="true" />
+      <Method Name="GetDistanceLowerBoundSquared" Hidden="true" />
+      <Method Name="GetDistanceSquared" Hidden="true" />
+      <Method Name="GetLineParameter" Hidden="true" />
+      <Method Name="GetLineParameters" Hidden="true" />
+      <Method Name="GetOutcode" Hidden="true" />
+      <Method Name="GetSignedTetrahedronVolume" Hidden="true" />
+      <Method Name="GetSupportPoint" Hidden="true" />
+      <Method Name="HaveContactFast" Hidden="true" />
+      <Method Name="INTERSECTION_TEST_EDGE" Hidden="true" />
+      <Method Name="INTERSECTION_TEST_VERTEX" Hidden="true" />
+      <Method Name="ORIENT_2D" Hidden="true" />
+      <Method Name="SampleConvexShape" Hidden="true" />
+      <Method Name="ToCartesianCoordinates" Hidden="true" />
+      <Method Name="ToSphericalCoordinates" Hidden="true" />
+      <Method Name="TRI_TRI_3D" Hidden="true" />
+      <Method Name="tri_tri_overlap_test_2d" Hidden="true" />
+      <Method Name="TryToMakeIdentityMatrix" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Struct Name="DigitalRune.Geometry.GeometryHelper.WeldVertex" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>GeometryHelper_Meshes.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Class Name="DigitalRune.Geometry.GeometryHelper.Sensor" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>GeometryHelper_SupportMapping.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.GeometryHelper.SensorTriangle" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>GeometryHelper_SupportMapping.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.GeometryHelper.PointCollector" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>GeometryHelper_SupportMapping.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>pAEBAqRQIACABBICCAECCARDBMEACQgAgRAIYADKgAE=</HashCode>
+      <FileName>GeometryHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="DigitalRune.Geometry.Pose">
+    <Position X="3" Y="1.25" Width="2" />
+    <Members>
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="Pose" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CAQAAEAAgQAEJAAkoAoBAAYABAAAAIDAQEAAAEAAEiA=</HashCode>
+      <FileName>Pose.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Struct Name="DigitalRune.Geometry.PoseD">
+    <Position X="5.25" Y="1.25" Width="2" />
+    <Members>
+      <Method Name="Equals" Hidden="true" />
+      <Method Name="GetHashCode" Hidden="true" />
+      <Method Name="PoseD" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>CAQAAEAAAQAEBAAkoAoBAAQABIAAAIDAYEAAAEACEiA=</HashCode>
+      <FileName>PoseD.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Interface Name="DigitalRune.Geometry.IGeometricObject">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAEAAIAIAAAAAAEAAAAAAAAACAAABA=</HashCode>
+      <FileName>IGeometricObject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Pose" />
+    </ShowAsAssociation>
+  </Interface>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Game.UI    Namespace: DigitalRune.Game.UI.Controls">
+    <Position X="0.5" Y="0.5" Height="0.521" Width="2.596" />
+  </Comment>
+  <Class Name="DigitalRune.Game.UI.Controls.UIScreen">
+    <Position X="0.5" Y="1.5" Width="2" />
+    <Members>
+      <Field Name="_drawOrder" Hidden="true" />
+      <Field Name="_focusManager" Hidden="true" />
+      <Field Name="_inputContext" Hidden="true" />
+      <Field Name="_renderContext" Hidden="true" />
+      <Property Name="IDrawable.DrawOrder" Hidden="true" />
+      <Event Name="IDrawable.DrawOrderChanged" Hidden="true" />
+      <Property Name="IDrawable.Visible" Hidden="true" />
+      <Event Name="IDrawable.VisibleChanged" Hidden="true" />
+      <Field Name="MouseWheelScrollDeltaPropertyId" Hidden="true" />
+      <Field Name="MouseWheelScrollLinesPropertyId" Hidden="true" />
+      <Method Name="OnChildrenChanged" Hidden="true" />
+      <Method Name="OnDrawOrderChanged" Hidden="true" />
+      <Method Name="OnHandleInput" Hidden="true" />
+      <Method Name="OnMeasure" Hidden="true" />
+      <Method Name="OnRender" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Method Name="OnVisibleChanged" Hidden="true" />
+      <Field Name="ToolTipDelayPropertyId" Hidden="true" />
+      <Field Name="ToolTipOffsetPropertyId" Hidden="true" />
+      <Method Name="UIScreen" Hidden="true" />
+      <Property Name="UIService" Hidden="true" />
+      <Event Name="VisibleChanged" Hidden="true" />
+      <Event Name="ZIndexChanged" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAEJBAEQAAgAZwJIAAGEDAIAoEAACAABAECAoAUAgCA=</HashCode>
+      <FileName>Controls\UIScreen.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Renderer" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Children" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.UIControl">
+    <Position X="3.75" Y="0.5" Width="2.25" />
+    <Members>
+      <Field Name="_eventsPerType" Hidden="true" />
+      <Field Name="_hasRenderTransform" Hidden="true" />
+      <Field Name="_inputEventArgs" Hidden="true" />
+      <Field Name="_isArrangeInProgress" Hidden="true" />
+      <Field Name="_isMeasureInProgress" Hidden="true" />
+      <Field Name="_lastArrangePosition" Hidden="true" />
+      <Field Name="_lastArrangeSize" Hidden="true" />
+      <Field Name="_lastMeasureConstraintSize" Hidden="true" />
+      <Field Name="_propertiesPerType" Hidden="true" />
+      <Field Name="_screen" Hidden="true" />
+      <Field Name="_style" Hidden="true" />
+      <Field Name="_uiPropertyOptions" Hidden="true" />
+      <Field Name="_visualChildrenCopy" Hidden="true" />
+      <Method Name="ApplyTemplate" Hidden="true" />
+      <Field Name="AutoUnfocusPropertyId" Hidden="true" />
+      <Field Name="BackgroundPropertyId" Hidden="true" />
+      <Method Name="CleanState" Hidden="true" />
+      <Method Name="ClearIsMouseOver" Hidden="true" />
+      <Field Name="FocusablePropertyId" Hidden="true" />
+      <Field Name="FocusWhenMouseOverPropertyId" Hidden="true" />
+      <Field Name="FontPropertyId" Hidden="true" />
+      <Field Name="ForegroundPropertyId" Hidden="true" />
+      <Method Name="GetFocusedChild" Hidden="true" />
+      <Method Name="HandleInput" Hidden="true" />
+      <Field Name="HeightPropertyId" Hidden="true" />
+      <Field Name="HorizontalAlignmentPropertyId" Hidden="true" />
+      <Field Name="IsEnabledPropertyId" Hidden="true" />
+      <Field Name="IsFocusedPropertyId" Hidden="true" />
+      <Field Name="IsFocusScopePropertyId" Hidden="true" />
+      <Field Name="IsMouseOverPropertyId" Hidden="true" />
+      <Field Name="IsVisiblePropertyId" Hidden="true" />
+      <Field Name="MarginPropertyId" Hidden="true" />
+      <Field Name="MaxHeightPropertyId" Hidden="true" />
+      <Field Name="MaxWidthPropertyId" Hidden="true" />
+      <Field Name="MinHeightPropertyId" Hidden="true" />
+      <Field Name="MinWidthPropertyId" Hidden="true" />
+      <Method Name="OnIsEnabledChanged" Hidden="true" />
+      <Method Name="OnIsVisibleChanged" Hidden="true" />
+      <Method Name="OnLoad" Hidden="true" />
+      <Method Name="OnPropertyChanged" Hidden="true" />
+      <Method Name="OnUnload" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Field Name="OpacityPropertyId" Hidden="true" />
+      <Field Name="PaddingPropertyId" Hidden="true" />
+      <Property Name="RendererInfo" Hidden="true" />
+      <Field Name="RenderRotationPropertyId" Hidden="true" />
+      <Field Name="RenderScalePropertyId" Hidden="true" />
+      <Field Name="RenderTransformOriginPropertyId" Hidden="true" />
+      <Field Name="RenderTranslationPropertyId" Hidden="true" />
+      <Property Name="Tag" Hidden="true" />
+      <Field Name="ToolTipPropertyId" Hidden="true" />
+      <Method Name="UIControl" Hidden="true" />
+      <Method Name="UpdateVisualChildrenCopy" Hidden="true" />
+      <Field Name="VerticalAlignmentPropertyId" Hidden="true" />
+      <Field Name="WidthPropertyId" Hidden="true" />
+      <Field Name="XPropertyId" Hidden="true" />
+      <Field Name="YPropertyId" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Interface Name="DigitalRune.Game.UI.Controls.UIControl.IUIProperty" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controls\UIControl_Templates.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Interface>
+      <Class Name="DigitalRune.Game.UI.Controls.UIControl.UIProperty&lt;T&gt;" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controls\UIControl_Templates.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Interface Name="DigitalRune.Game.UI.Controls.UIControl.IUIEvent" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controls\UIControl_Templates.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Interface>
+      <Class Name="DigitalRune.Game.UI.Controls.UIControl.UIEvent&lt;T&gt;" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controls\UIControl_Templates.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>gGRp06ag/TNhMgShrMEwiOo2FaARoLmNDPJwKC06+Dw=</HashCode>
+      <FileName>Controls\UIControl.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Screen" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.InputContext">
+    <Position X="6.75" Y="4.25" Width="2.25" />
+    <Members>
+      <Method Name="InputContext" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAIIAAAAAAAgABAIAAAAAAAAAAABAAIAAAAAACAAA=</HashCode>
+      <FileName>Controls\InputContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.InputEventArgs">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\InputEventArgs.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Context" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.UIRenderContext">
+    <Position X="7.25" Y="7.25" Width="1.5" />
+    <Members>
+      <Method Name="UIRenderContext" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAEAAAAAABAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\UIRenderContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DigitalRune.Game.UI.Rendering.IUIRenderer" Collapsed="true">
+    <Position X="0.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACgEAAACAAAAAAAAAAAAgAAAIAQBAUAAAAAAA=</HashCode>
+      <FileName>Rendering\IUIRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="DigitalRune.Game.UI.Controls.UIPropertyOptions">
+    <Position X="6.5" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAQEAAAA=</HashCode>
+      <FileName>Controls\UIPropertyOptions.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

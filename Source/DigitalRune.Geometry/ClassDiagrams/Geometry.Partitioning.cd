@@ -1,0 +1,505 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Assembly: DigitalRune.Geometry&#xD;&#xA;Namespace: DigitalRune.Geometry.Partitioning">
+    <Position X="0.5" Y="0.5" Height="0.406" Width="2.969" />
+  </Comment>
+  <Class Name="DigitalRune.Geometry.Partitioning.SweepAndPruneSpace&lt;T&gt;">
+    <Position X="8.5" Y="12.25" Width="2" />
+    <Members>
+      <Field Name="_broadPhase" Hidden="true" />
+      <Field Name="_edges" Hidden="true" />
+      <Field Name="_itemInfos" Hidden="true" />
+      <Method Name="AddItem" Hidden="true" />
+      <Method Name="AreOverlapping" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="GetOverlaps" Hidden="true" />
+      <Property Name="ISupportBroadPhase&lt;T&gt;.BroadPhase" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Method Name="RemoveItem" Hidden="true" />
+      <Method Name="SortMaxEdgeDown" Hidden="true" />
+      <Method Name="SortMaxEdgeUp" Hidden="true" />
+      <Method Name="SortMinEdgeDown" Hidden="true" />
+      <Method Name="SortMinEdgeUp" Hidden="true" />
+      <Method Name="SweepAndPruneSpace" Hidden="true" />
+      <Method Name="UpdateAabb" Hidden="true" />
+      <Method Name="UpdateItem" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Geometry.Partitioning.SweepAndPruneSpace&lt;T&gt;.GetOverlapsWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\SAP\SweepAndPruneSpace_Queries.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAgIAAQIBBAAAAAgQAIAgAEAAAEQAEAACA=</HashCode>
+      <FileName>Partitioning\SAP\SweepAndPruneSpace.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Geometry.Partitioning.AabbTree&lt;T&gt;">
+    <Position X="0.5" Y="12.25" Width="1.75" />
+    <Members>
+      <Field Name="_height" Hidden="true" />
+      <Field Name="_leaves" Hidden="true" />
+      <Field Name="_root" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="GetClosestPointCandidates" Hidden="true" />
+      <Method Name="GetClosestPointCandidatesImpl" Hidden="true" />
+      <Method Name="GetLeafNodes" Hidden="true" />
+      <Method Name="GetOverlaps" Hidden="true" />
+      <Method Name="GetOverlapsImpl" Hidden="true" />
+      <Method Name="GetOverlapsStackBased" Hidden="true" />
+      <Method Name="GetOverlapsStackless" Hidden="true" />
+      <Method Name="HaveAabbContact" Hidden="true" />
+      <Method Name="IsABiggerThanB" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Field Name="Stacks" Hidden="true" />
+      <Method Name="UpdateAabb" Hidden="true" />
+      <Method Name="UpdateSelfOverlaps" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Geometry.Partitioning.AabbTree&lt;T&gt;.Node" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Static BVH\AabbTree_Node.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.AabbTree&lt;T&gt;.GetOverlapsWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Static BVH\AabbTree_Queries_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.AabbTree&lt;T&gt;.GetLeafNodesWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Static BVH\AabbTree_Queries_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.AabbTree&lt;T&gt;.GetOverlapsWithRayWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Static BVH\AabbTree_Queries_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.AabbTree&lt;T&gt;.GetOverlapsWithPartitionWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Static BVH\AabbTree_TreeVsTree_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.AabbTree&lt;T&gt;.GetOverlapsWithTreeWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Static BVH\AabbTree_TreeVsTree_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.AabbTree&lt;T&gt;.GetOverlapsWithTransformedPartitionWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Static BVH\AabbTree_TreeVsTree_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.AabbTree&lt;T&gt;.GetOverlapsWithTransformedTreeWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Static BVH\AabbTree_TreeVsTree_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAASCQAAAQAAQCIAAAhAAIAAQAAAAEAAEgQCA=</HashCode>
+      <FileName>Partitioning\BVH\Static BVH\AabbTree.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Geometry.Partitioning.DelegatePairFilter&lt;T&gt;">
+    <Position X="5.5" Y="1.25" Width="1.75" />
+    <Members>
+      <Field Name="_filterCallback" Hidden="true" />
+      <Method Name="DelegatePairFilter" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAABEAAAAQAAAAAABQAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Partitioning\DelegatePairFilter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Geometry.Partitioning.CompressedAabbTree">
+    <Position X="0.5" Y="7.25" Width="2.75" />
+    <Members>
+      <Field Name="_aabb" Hidden="true" />
+      <Field Name="_bottomUpBuildThreshold" Hidden="true" />
+      <Field Name="_dequantizationFactor" Hidden="true" />
+      <Field Name="_filter" Hidden="true" />
+      <Field Name="_getAabbForItem" Hidden="true" />
+      <Field Name="_items" Hidden="true" />
+      <Field Name="_nodes" Hidden="true" />
+      <Field Name="_numberOfItems" Hidden="true" />
+      <Field Name="_quantizationFactor" Hidden="true" />
+      <Field Name="_selfOverlaps" Hidden="true" />
+      <Field Name="_state" Hidden="true" />
+      <Field Name="_syncRoot" Hidden="true" />
+      <Field Name="_updateInProgress" Hidden="true" />
+      <Field Name="AabbMargin" Hidden="true" />
+      <Method Name="Build" Hidden="true" />
+      <Method Name="CompressedAabbTree" Hidden="true" />
+      <Method Name="CompressTree" Hidden="true" />
+      <Method Name="ComputeAabbs" Hidden="true" />
+      <Method Name="FilterSelfOverlap" Hidden="true" />
+      <Method Name="GetAabb" Hidden="true" />
+      <Method Name="GetClosestPointCandidatesImpl" Hidden="true" />
+      <Method Name="GetLeafNodes" Hidden="true" />
+      <Method Name="GetOverlapsImpl" Hidden="true" />
+      <Property Name="ICollection&lt;int&gt;.IsReadOnly" Hidden="true" />
+      <Method Name="IEnumerable.GetEnumerator" Hidden="true" />
+      <Method Name="InvalidateTree" Hidden="true" />
+      <Method Name="ISpatialPartition&lt;int&gt;.Clone" Hidden="true" />
+      <Method Name="OnFilterChanged" Hidden="true" />
+      <Method Name="Refit" Hidden="true" />
+      <Method Name="SetAabb" Hidden="true" />
+      <Method Name="SetQuantizationValues" Hidden="true" />
+      <Method Name="UpdateSelfOverlaps" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Enum Name="DigitalRune.Geometry.Partitioning.CompressedAabbTree.State" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Compressed AABB Tree\CompressedAabbTree.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Struct Name="DigitalRune.Geometry.Partitioning.CompressedAabbTree.Node" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Compressed AABB Tree\CompressedAabbTree_Node.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Class Name="DigitalRune.Geometry.Partitioning.CompressedAabbTree.GetOverlapsWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Compressed BVH\CompressedAabbTree_Queries_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.CompressedAabbTree.GetLeafNodesWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Compressed BVH\CompressedAabbTree_Queries_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.CompressedAabbTree.GetOverlapsWithItemWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Compressed BVH\CompressedAabbTree_Queries_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.CompressedAabbTree.GetOverlapsWithRayWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Compressed BVH\CompressedAabbTree_Queries_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.CompressedAabbTree.GetOverlapsWithPartitionWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Compressed BVH\CompressedAabbTree_TreeVsTree_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.CompressedAabbTree.GetOverlapsWithTransformedPartitionWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Compressed BVH\CompressedAabbTree_TreeVsTree_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAYAAhsEAUwAAFF0AQBCDAwAABAMgIwGQAAATABwIBA=</HashCode>
+      <FileName>Partitioning\BVH\Compressed BVH\CompressedAabbTree.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Geometry.Partitioning.DynamicAabbTree&lt;T&gt;">
+    <Position X="4.5" Y="12.25" Width="1.75" />
+    <Members>
+      <Field Name="_enableMotionPrediction" Hidden="true" />
+      <Field Name="_leaves" Hidden="true" />
+      <Field Name="_motionPrediction" Hidden="true" />
+      <Field Name="_numberOfNodesToOptimize" Hidden="true" />
+      <Field Name="_optimizationPath" Hidden="true" />
+      <Field Name="_optimizationPerFrame" Hidden="true" />
+      <Field Name="_relativeMargin" Hidden="true" />
+      <Field Name="_root" Hidden="true" />
+      <Method Name="Classify" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="DynamicAabbTree" Hidden="true" />
+      <Method Name="GetClosestPointCandidates" Hidden="true" />
+      <Method Name="GetClosestPointCandidatesImpl" Hidden="true" />
+      <Method Name="GetLeafNodes" Hidden="true" />
+      <Method Name="GetNode" Hidden="true" />
+      <Method Name="GetOverlaps" Hidden="true" />
+      <Method Name="GetOverlapsImpl" Hidden="true" />
+      <Method Name="HaveAabbContact" Hidden="true" />
+      <Method Name="Invalidate" Hidden="true" />
+      <Method Name="IsABiggerThanB" Hidden="true" />
+      <Field Name="Nodes" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Method Name="Optimize" Hidden="true" />
+      <Method Name="UpdateAabb" Hidden="true" />
+      <Method Name="UpdateSelfOverlaps" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Geometry.Partitioning.DynamicAabbTree&lt;T&gt;.GetOverlapsWithLeafWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Dynamic BVH\DynamicAabbTree_Queries_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.DynamicAabbTree&lt;T&gt;.GetOverlapsWithTransformedPartitionWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Dynamic BVH\DynamicAabbTree_TreeVsTree_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.DynamicAabbTree&lt;T&gt;.GetOverlapsWithItemWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Dynamic BVH\DynamicAabbTree_Queries_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.DynamicAabbTree&lt;T&gt;.GetOverlapsWithTreeWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Dynamic BVH\DynamicAabbTree_TreeVsTree_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.DynamicAabbTree&lt;T&gt;.GetOverlapsWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Dynamic BVH\DynamicAabbTree_Queries_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.DynamicAabbTree&lt;T&gt;.GetLeafNodesWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Dynamic BVH\DynamicAabbTree_Queries_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.DynamicAabbTree&lt;T&gt;.GetOverlapsWithTransformedTreeWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Dynamic BVH\DynamicAabbTree_TreeVsTree_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.DynamicAabbTree&lt;T&gt;.GetOverlapsWithKDOPWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Dynamic BVH\DynamicAabbTree_Queries_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.DynamicAabbTree&lt;T&gt;.GetOverlapsWithRayWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Dynamic BVH\DynamicAabbTree_Queries_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.DynamicAabbTree&lt;T&gt;.Node" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Dynamic BVH\DynamicAabbTree_Node.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.DynamicAabbTree&lt;T&gt;.GetOverlapsWithPartitionWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Dynamic BVH\DynamicAabbTree_TreeVsTree_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAgwJAIEASASAAAQAAQCIAQAEkAIAAQAAAAEAAEggCg=</HashCode>
+      <FileName>Partitioning\BVH\Dynamic BVH\DynamicAabbTree.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Geometry.Partitioning.DualPartition&lt;T&gt;">
+    <Position X="6.5" Y="12.25" Width="1.75" />
+    <Members>
+      <Field Name="_broadPhase" Hidden="true" />
+      <Field Name="_currentStage" Hidden="true" />
+      <Field Name="_previousStage" Hidden="true" />
+      <Field Name="_stage0" Hidden="true" />
+      <Field Name="_stage1" Hidden="true" />
+      <Method Name="AddOrMarkAsUsed" Hidden="true" />
+      <Method Name="AddSelfOverlap" Hidden="true" />
+      <Method Name="AddSelfOverlaps" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="DualPartition" Hidden="true" />
+      <Property Name="DynamicPartition" Hidden="true" />
+      <Method Name="GetOverlaps" Hidden="true" />
+      <Property Name="ISupportBroadPhase&lt;T&gt;.BroadPhase" Hidden="true" />
+      <Method Name="OnEnableSelfOverlapsChanged" Hidden="true" />
+      <Method Name="OnFilterChanged" Hidden="true" />
+      <Method Name="OnGetAabbForItemChanged" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Property Name="StaticPartition" Hidden="true" />
+      <Method Name="UpdateAabb" Hidden="true" />
+      <Method Name="UpdateBroadPhase" Hidden="true" />
+      <Method Name="UpdateSelfOverlaps" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQAAAQAAACgKABQAAAAAAAAAIAJKAAAAAAEAAEiCDA=</HashCode>
+      <FileName>Partitioning\Dual Partition\DualPartition.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Geometry.Partitioning.BasePartition&lt;T&gt;">
+    <Position X="4.25" Y="7.25" Width="2.25" />
+    <Members>
+      <Field Name="_aabb" Hidden="true" />
+      <Field Name="_addedItems" Hidden="true" />
+      <Field Name="_filter" Hidden="true" />
+      <Field Name="_getAabbForItem" Hidden="true" />
+      <Field Name="_invalidateAll" Hidden="true" />
+      <Field Name="_invalidItems" Hidden="true" />
+      <Field Name="_isInvalid" Hidden="true" />
+      <Field Name="_items" Hidden="true" />
+      <Field Name="_needsRebuild" Hidden="true" />
+      <Field Name="_removedItems" Hidden="true" />
+      <Field Name="_selfOverlaps" Hidden="true" />
+      <Field Name="_syncRoot" Hidden="true" />
+      <Field Name="_updateInProgress" Hidden="true" />
+      <Method Name="BasePartition" Hidden="true" />
+      <Method Name="ClearSet" Hidden="true" />
+      <Field Name="Comparer" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="EnsureSet" Hidden="true" />
+      <Method Name="FilterSelfOverlap" Hidden="true" />
+      <Property Name="ICollection&lt;T&gt;.IsReadOnly" Hidden="true" />
+      <Method Name="IEnumerable.GetEnumerator" Hidden="true" />
+      <Method Name="IEnumerable&lt;T&gt;.GetEnumerator" Hidden="true" />
+      <Method Name="ISpatialPartition&lt;T&gt;.Clone" Hidden="true" />
+      <Property Name="Items" Hidden="true" />
+      <Method Name="OnEnableSelfOverlapsChanged" Hidden="true" />
+      <Method Name="OnFilterChanged" Hidden="true" />
+      <Method Name="OnGetAabbForItemChanged" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Property Name="SelfOverlaps" Hidden="true" />
+      <Method Name="UpdateAabb" Hidden="true" />
+      <Method Name="UpdateInternal" Hidden="true" />
+      <Method Name="ValidateItems" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Geometry.Partitioning.BasePartition&lt;T&gt;.GetOverlapsWithItemWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BasePartition_Queries_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.BasePartition&lt;T&gt;.GetOverlapsWithRayWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BasePartition_Queries_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.BasePartition&lt;T&gt;.GetOverlapsWithPartitionWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BasePartition_Queries_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.BasePartition&lt;T&gt;.GetOverlapsWithTransformedPartitionWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BasePartition_Queries_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>BAYgFAgFAAoACHBEAABEJAQAAhAIAIAEAAAMSAFQLTA=</HashCode>
+      <FileName>Partitioning\BasePartition.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DigitalRune.Geometry.Partitioning.AdaptiveAabbTree&lt;T&gt;">
+    <Position X="2.5" Y="12.25" Width="1.75" />
+    <Members>
+      <Field Name="_leaves" Hidden="true" />
+      <Field Name="_root" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="GetClosestPointCandidates" Hidden="true" />
+      <Method Name="GetClosestPointCandidatesImpl" Hidden="true" />
+      <Method Name="GetLeafNodes" Hidden="true" />
+      <Method Name="GetOverlaps" Hidden="true" />
+      <Method Name="GetOverlapsImpl" Hidden="true" />
+      <Method Name="HaveAabbContact" Hidden="true" />
+      <Method Name="IsABiggerThanB" Hidden="true" />
+      <Field Name="Nodes" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Method Name="UpdateAabb" Hidden="true" />
+      <Method Name="UpdateSelfOverlaps" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="DigitalRune.Geometry.Partitioning.AdaptiveAabbTree&lt;T&gt;.Node" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Adaptive BVH\AdaptiveAabbTree_Node.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.AdaptiveAabbTree&lt;T&gt;.GetOverlapsWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Adaptive BVH\AdaptiveAabbTree_Queries_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.AdaptiveAabbTree&lt;T&gt;.GetLeafNodesWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Adaptive BVH\AdaptiveAabbTree_Queries_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.AdaptiveAabbTree&lt;T&gt;.GetOverlapsWithRayWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Adaptive BVH\AdaptiveAabbTree_Queries_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.AdaptiveAabbTree&lt;T&gt;.GetOverlapsWithPartitionWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Adaptive BVH\AdaptiveAabbTree_TreeVsTree_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.AdaptiveAabbTree&lt;T&gt;.GetOverlapsWithTreeWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Adaptive BVH\AdaptiveAabbTree_TreeVsTree_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.AdaptiveAabbTree&lt;T&gt;.GetOverlapsWithTransformedPartitionWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Adaptive BVH\AdaptiveAabbTree_TreeVsTree_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="DigitalRune.Geometry.Partitioning.AdaptiveAabbTree&lt;T&gt;.GetOverlapsWithTransformedTreeWork" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Partitioning\BVH\Adaptive BVH\AdaptiveAabbTree_TreeVsTree_Pooled.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAgAAIAASAQAAAQAAQCIAAAAAAIAAQAAAAEAAEgACA=</HashCode>
+      <FileName>Partitioning\BVH\Adaptive BVH\AdaptiveAabbTree.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="DigitalRune.Geometry.Partitioning.ISpatialPartition&lt;T&gt;">
+    <Position X="0.75" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAEAAAAAAAUAAAAAAAAABAAAAAAAAAASAAAABA=</HashCode>
+      <FileName>Partitioning\ISpatialPartition.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Filter" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="DigitalRune.Geometry.Partitioning.IPairFilter&lt;T&gt;">
+    <Position X="3.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Partitioning\IPairFilter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Geometry.Partitioning.ISupportClosestPointQueries&lt;T&gt;">
+    <Position X="0.5" Y="4" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Partitioning\ISupportClosestPointQueries.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Geometry.Partitioning.ISupportBroadPhase&lt;T&gt;">
+    <Position X="0.5" Y="5.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Partitioning\ISupportBroadPhase.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DigitalRune.Geometry.Partitioning.ISupportFrustumCulling&lt;T&gt;">
+    <Position X="3.5" Y="4" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Partitioning\ISupportFrustumCulling.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

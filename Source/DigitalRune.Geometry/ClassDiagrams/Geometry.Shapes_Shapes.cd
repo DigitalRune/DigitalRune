@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="General shapes (without specialized convex shapes)&#xD;&#xA;Assembly: DigitalRune.Geometry&#xD;&#xA;Namespace: DigitalRune.Geometry.Shapes">
+    <Position X="0.5" Y="0.5" Height="0.552" Width="3.035" />
+  </Comment>
+  <Class Name="DigitalRune.Geometry.Shapes.CompositeShape">
+    <Position X="0.5" Y="6.75" Width="1.5" />
+    <Members>
+      <Field Name="_partition" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CompositeShape" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="GetAabb" Hidden="true" />
+      <Method Name="GetVolume" Hidden="true" />
+      <Property Name="InnerPoint" Hidden="true" />
+      <Method Name="OnChildrenChanged" Hidden="true" />
+      <Method Name="OnChildShapeChanged" Hidden="true" />
+      <Method Name="OnGetMesh" Hidden="true" />
+      <Method Name="SetPartition" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAEARAAAAEAAAEAAAAgAAISAAABAAABAAAACA=</HashCode>
+      <FileName>Shapes\CompositeShape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Shapes.EmptyShape">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <Members>
+      <Event Name="Changed" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="EmptyShape" Hidden="true" />
+      <Method Name="GetAabb" Hidden="true" />
+      <Method Name="GetVolume" Hidden="true" />
+      <Property Name="InnerPoint" Hidden="true" />
+      <Method Name="OnGetMesh" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAABAAAAAAAAAAICAAABAAABAAAACA=</HashCode>
+      <FileName>Shapes\EmptyShape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Shapes.PlaneShape">
+    <Position X="6.25" Y="4.5" Width="1.75" />
+    <Members>
+      <Field Name="_distanceFromOrigin" Hidden="true" />
+      <Field Name="_normal" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="GetAabb" Hidden="true" />
+      <Method Name="GetVolume" Hidden="true" />
+      <Property Name="InnerPoint" Hidden="true" />
+      <Method Name="OnGetMesh" Hidden="true" />
+      <Method Name="PlaneShape" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAABAAAAEAAEAAAAAAAAICAAABAAABgAAACA=</HashCode>
+      <FileName>Shapes\PlaneShape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Shapes.LineShape">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <Members>
+      <Field Name="_direction" Hidden="true" />
+      <Field Name="_pointOnLine" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="GetAabb" Hidden="true" />
+      <Method Name="GetVolume" Hidden="true" />
+      <Property Name="InnerPoint" Hidden="true" />
+      <Method Name="LineShape" Hidden="true" />
+      <Method Name="OnGetMesh" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAABAAAAEACAAABBAAAAICAAABAAIBAAAACA=</HashCode>
+      <FileName>Shapes\LineShape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Shapes.TriangleMeshShape">
+    <Position X="6.75" Y="6.75" Width="2" />
+    <Members>
+      <Field Name="_aabbLocal" Hidden="true" />
+      <Field Name="_mesh" Hidden="true" />
+      <Field Name="_partition" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="ComputeTriangleNeighbors" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="GetAabb" Hidden="true" />
+      <Method Name="GetVolume" Hidden="true" />
+      <Property Name="InnerPoint" Hidden="true" />
+      <Method Name="OnGetMesh" Hidden="true" />
+      <Method Name="SetMesh" Hidden="true" />
+      <Method Name="SetPartition" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+      <Method Name="TriangleMeshShape" Hidden="true" />
+      <Property Name="TriangleNeighbors" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Struct Name="DigitalRune.Geometry.Shapes.TriangleMeshShape.EdgeEntry" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Shapes\TriangleMeshShape.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>BACAAAAEAARAEAAEAIAAAgAQgAAISAAABQEABAAAECA=</HashCode>
+      <FileName>Shapes\TriangleMeshShape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Shapes.HeightField">
+    <Position X="4.25" Y="6.75" Width="2.25" />
+    <Members>
+      <Field Name="_array" Hidden="true" />
+      <Field Name="_depth" Hidden="true" />
+      <Field Name="_maxHeight" Hidden="true" />
+      <Field Name="_minHeight" Hidden="true" />
+      <Field Name="_numberOfSamplesX" Hidden="true" />
+      <Field Name="_numberOfSamplesZ" Hidden="true" />
+      <Field Name="_originX" Hidden="true" />
+      <Field Name="_originZ" Hidden="true" />
+      <Field Name="_samples" Hidden="true" />
+      <Field Name="_widthX" Hidden="true" />
+      <Field Name="_widthZ" Hidden="true" />
+      <Property Name="Array" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CopyArrayToSamples" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="GetAabb" Hidden="true" />
+      <Method Name="GetVolume" Hidden="true" />
+      <Method Name="HeightField" Hidden="true" />
+      <Property Name="InnerPoint" Hidden="true" />
+      <Method Name="OnChanged" Hidden="true" />
+      <Method Name="OnGetMesh" Hidden="true" />
+      <Method Name="ToString" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAQIAQAEAQBAPAAMRAAgAFRBAAAICAAgBAARBgIAACA=</HashCode>
+      <FileName>Shapes\HeightField.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Shapes.Shape">
+    <Position X="4.75" Y="0.5" Width="2.25" />
+    <Members>
+      <Event Name="_changed" Hidden="true" />
+      <Method Name="CreateInstance" Hidden="true" />
+      <Method Name="Shape" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Empty" Type="DigitalRune.Geometry.Shapes.EmptyShape" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.75" Y="2.037" />
+        <Point X="1" Y="2.037" />
+        <Point X="1" Y="4.5" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Infinite" Type="DigitalRune.Geometry.Shapes.InfiniteShape" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.75" Y="2.836" />
+        <Point X="2.75" Y="2.836" />
+        <Point X="2.75" Y="4.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAQBBAAAABAIAAAAAAAAIiAAABAAABEAAADA=</HashCode>
+      <FileName>Shapes\Shape.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Empty" />
+      <Field Name="Infinite" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Shapes.TransformedShape">
+    <Position X="2.25" Y="6.75" Width="1.75" />
+    <Members>
+      <Field Name="_child" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="GetAabb" Hidden="true" />
+      <Method Name="GetVolume" Hidden="true" />
+      <Property Name="InnerPoint" Hidden="true" />
+      <Method Name="OnChildPoseChanged" Hidden="true" />
+      <Method Name="OnChildShapeChanged" Hidden="true" />
+      <Method Name="OnGetMesh" Hidden="true" />
+      <Method Name="TransformedShape" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEABAAIAIAAAAAAAAAAAICAAABAAABgAAACA=</HashCode>
+      <FileName>Shapes\TransformedShape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Shapes.ConvexShape">
+    <Position X="8.25" Y="4.5" Width="2" />
+    <Members>
+      <Method Name="GetAabb" Hidden="true" />
+      <Method Name="GetSupportPoint" Hidden="true" />
+      <Method Name="GetSupportPointNormalized" Hidden="true" />
+      <Method Name="OnGetMesh" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAABAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Shapes\ConvexShape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Shapes.InfiniteShape">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <Members>
+      <Event Name="Changed" Hidden="true" />
+      <Method Name="CloneCore" Hidden="true" />
+      <Method Name="CreateInstanceCore" Hidden="true" />
+      <Method Name="GetAabb" Hidden="true" />
+      <Method Name="GetVolume" Hidden="true" />
+      <Method Name="InfiniteShape" Hidden="true" />
+      <Property Name="InnerPoint" Hidden="true" />
+      <Method Name="OnGetMesh" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAABAAAAAAAAAAICAAABAAABAAAACA=</HashCode>
+      <FileName>Shapes\InfiniteShape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Geometry.Shapes.ShapeChangedEventArgs">
+    <Position X="8" Y="0.5" Width="2" />
+    <Members>
+      <Field Name="Pool" Hidden="true" />
+      <Method Name="ShapeChangedEventArgs" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAABACEAAAAAACAAAAAA=</HashCode>
+      <FileName>Shapes\ShapeChangedEventArgs.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

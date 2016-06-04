@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Buttons                                             Assembly: DigitalRune.Game.UI    Namespace: DigitalRune.Game.UI.Controls">
+    <Position X="0.5" Y="0.5" Height="0.636" Width="2.596" />
+  </Comment>
+  <Class Name="DigitalRune.Game.UI.Controls.ContentControl" Collapsed="true">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="_content" Hidden="true" />
+      <Property Name="Content" Hidden="true" />
+      <Method Name="ContentControl" Hidden="true" />
+      <Method Name="OnArrange" Hidden="true" />
+      <Method Name="OnMeasure" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAgBAAAABAAAAAAAAACEAgAAAAEAAACAAEgA=</HashCode>
+      <FileName>Controls\ContentControls\ContentControl.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Content" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.ToggleButton">
+    <Position X="2.25" Y="4.75" Width="1.5" />
+    <Members>
+      <Field Name="IsCheckedPropertyId" Hidden="true" />
+      <Method Name="OnClick" Hidden="true" />
+      <Method Name="ToggleButton" Hidden="true" />
+      <Property Name="VisualState" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAACAAAAAAgAAAQAAAAAAAA=</HashCode>
+      <FileName>Controls\ContentControls\Buttons\ToggleButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.DropDown">
+    <Position X="9.75" Y="4.75" Width="1.75" />
+    <Members>
+      <Field Name="_itemsPanel" Hidden="true" />
+      <Field Name="_scrollViewer" Hidden="true" />
+      <Method Name="DropDown" Hidden="true" />
+      <Field Name="DropDownItemStylePropertyId" Hidden="true" />
+      <Method Name="OnDropDownItemClick" Hidden="true" />
+      <Method Name="OnHandleInput" Hidden="true" />
+      <Method Name="OnLoad" Hidden="true" />
+      <Field Name="TitleTextBlockStylePropertyId" Hidden="true" />
+      <Method Name="UpdatePosition" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAQAACAgAQAKCAAAAAAAAAiAAAAAAQAAAAABACAAAA=</HashCode>
+      <FileName>Controls\ContentControls\Buttons\DropDownButton\DropDown.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Owner" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.DropDownButton">
+    <Position X="5.75" Y="4.75" Width="2" />
+    <Members>
+      <Field Name="_dropDown" Hidden="true" />
+      <Field Name="_wasOpened" Hidden="true" />
+      <Method Name="CreateControl" Hidden="true" />
+      <Method Name="DropDownButton" Hidden="true" />
+      <Field Name="DropDownStylePropertyId" Hidden="true" />
+      <Field Name="MaxDropDownHeightPropertyId" Hidden="true" />
+      <Method Name="OnItemsChanged" Hidden="true" />
+      <Method Name="OnLoad" Hidden="true" />
+      <Method Name="OnSelectedIndexChanged" Hidden="true" />
+      <Method Name="OnUnload" Hidden="true" />
+      <Method Name="OnUpdate" Hidden="true" />
+      <Field Name="SelectedIndexPropertyId" Hidden="true" />
+      <Field Name="TitlePropertyId" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIABAACUAAAAAkAAACgACACAAAAJAIAIGQAAA=</HashCode>
+      <FileName>Controls\ContentControls\Buttons\DropDownButton\DropDownButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.DropDownItem">
+    <Position X="8" Y="4.75" Width="1.5" />
+    <Members>
+      <Method Name="DropDownItem" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\ContentControls\Buttons\DropDownButton\DropDownItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.Button">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <Members>
+      <Method Name="Button" Hidden="true" />
+      <Field Name="IsCancelPropertyId" Hidden="true" />
+      <Field Name="IsDefaultPropertyId" Hidden="true" />
+      <Field Name="IsRepeatButtonPropertyId" Hidden="true" />
+      <Method Name="OnHandleInput" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAABQAQAAAAIQAAAAAAAEAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Controls\ContentControls\Buttons\Button.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.ButtonBase">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <Members>
+      <Method Name="ButtonBase" Hidden="true" />
+      <Field Name="ClickEventId" Hidden="true" />
+      <Field Name="ClickModePropertyId" Hidden="true" />
+      <Method Name="HandlePressMode" Hidden="true" />
+      <Method Name="HandleReleaseMode" Hidden="true" />
+      <Field Name="IsClickedPropertyId" Hidden="true" />
+      <Field Name="IsDownPropertyId" Hidden="true" />
+      <Method Name="OnDisable" Hidden="true" />
+      <Method Name="OnHandleInput" Hidden="true" />
+      <Property Name="VisualState" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACEAAIADAAAAAAQACAAAAAAgIAAEIBAAAAgA=</HashCode>
+      <FileName>Controls\ContentControls\Buttons\ButtonBase.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ClickMode" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.CheckBox">
+    <Position X="1.5" Y="7" Width="1.5" />
+    <Members>
+      <Method Name="CheckBox" Hidden="true" />
+      <Method Name="OnToggle" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Controls\ContentControls\Buttons\CheckBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.RadioButton">
+    <Position X="3.25" Y="7" Width="1.5" />
+    <Members>
+      <Method Name="OnToggle" Hidden="true" />
+      <Method Name="RadioButton" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAE=</HashCode>
+      <FileName>Controls\ContentControls\Buttons\RadioButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DigitalRune.Game.UI.Controls.MenuItem">
+    <Position X="4" Y="4.75" Width="1.5" />
+    <Members>
+      <Method Name="MenuItem" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\Menus\MenuItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="DigitalRune.Game.UI.Controls.ClickMode">
+    <Position X="1" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAABAAAAA=</HashCode>
+      <FileName>Controls\ContentControls\Buttons\ClickMode.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
