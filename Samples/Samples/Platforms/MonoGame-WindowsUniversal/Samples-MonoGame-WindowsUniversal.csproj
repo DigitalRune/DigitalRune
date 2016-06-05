@@ -94,51 +94,6 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <ItemGroup>
-    <Reference Include="DigitalRune">
-      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.dll</HintPath>
-    </Reference>
-    <Reference Include="DigitalRune.Animation">
-      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.Animation.dll</HintPath>
-    </Reference>
-    <Reference Include="DigitalRune.Game">
-      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.Game.dll</HintPath>
-    </Reference>
-    <Reference Include="DigitalRune.Game.Input">
-      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.Game.Input.dll</HintPath>
-    </Reference>
-    <Reference Include="DigitalRune.Game.UI">
-      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.Game.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="DigitalRune.Geometry">
-      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.Geometry.dll</HintPath>
-    </Reference>
-    <Reference Include="DigitalRune.Graphics">
-      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.Graphics.dll</HintPath>
-    </Reference>
-    <Reference Include="DigitalRune.Mathematics">
-      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.Mathematics.dll</HintPath>
-    </Reference>
-    <Reference Include="DigitalRune.Particles">
-      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.Particles.dll</HintPath>
-    </Reference>
-    <Reference Include="DigitalRune.Physics">
-      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.Physics.dll</HintPath>
-    </Reference>
-    <Reference Include="DigitalRune.Physics.Specialized">
-      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.Physics.Specialized.dll</HintPath>
-    </Reference>
-    <Reference Include="DigitalRune.ServiceLocation">
-      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\DigitalRune.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Framework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=25ad73b7adb615af, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\References\MonoGame\WindowsUniversal\MonoGame.Framework.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -160,10 +115,6 @@
       <Link>Content\Content.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\..\..\Content\MonoGame\WindowsUniversal\DigitalRune.zip">
-      <Link>Content\DigitalRune.zip</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Page Include="GamePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -176,6 +127,10 @@
     </AppxManifest>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Properties\Default.rd.xml" />
+    <Content Include="..\..\..\..\Source\DigitalRune.Graphics.Content\bin\DigitalRune.zip">
+      <Link>Content\DigitalRune.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="..\..\README.TXT">
       <Link>README.TXT</Link>
     </None>
@@ -678,7 +633,6 @@
     <Compile Include="..\..\Samples\Graphics\DeferredRendering\29-ImageBasedLightingSample\ImageBasedLightingSample.cs">
       <Link>Samples\Graphics\DeferredRendering\29-ImageBasedLightingSample\ImageBasedLightingSample.cs</Link>
     </Compile>
-    <Folder Include="Samples\Graphics\DeferredRendering\30-BatchingSample\" />
     <Compile Include="..\..\Samples\Graphics\DeferredRendering\30-CathedralSample\CathedralSample.cs">
       <Link>Samples\Graphics\DeferredRendering\30-CathedralSample\CathedralSample.cs</Link>
     </Compile>
@@ -1274,5 +1228,62 @@
       <Link>Shared GameObjects\StaticSkyObject.cs</Link>
     </Compile>
     <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune.Animation\DigitalRune.Animation%28UWP%29.csproj">
+      <Project>{153c8ba8-c4c1-4204-949f-bde47f715e6c}</Project>
+      <Name>DigitalRune.Animation%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune.Game.Input\DigitalRune.Game.Input%28UWP%29.csproj">
+      <Project>{0c6e5565-0167-4734-9c81-d144a5312b72}</Project>
+      <Name>DigitalRune.Game.Input%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune.Game.UI\DigitalRune.Game.UI%28UWP%29.csproj">
+      <Project>{a08abee3-0dcc-4bd8-84a6-0e3e331abcd8}</Project>
+      <Name>DigitalRune.Game.UI%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune.Game\DigitalRune.Game%28UWP%29.csproj">
+      <Project>{f250c667-6307-48f7-ba24-5fe215068249}</Project>
+      <Name>DigitalRune.Game%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune.Geometry\DigitalRune.Geometry%28UWP%29.csproj">
+      <Project>{2b9c7ff5-953e-4e65-89ba-087791b32b11}</Project>
+      <Name>DigitalRune.Geometry%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune.Graphics\DigitalRune.Graphics%28UWP%29.csproj">
+      <Project>{019b4b5b-1b76-439d-9bb7-6a227fe59f6a}</Project>
+      <Name>DigitalRune.Graphics%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune.Mathematics\DigitalRune.Mathematics%28UWP%29.csproj">
+      <Project>{29d8637e-450b-4c0d-962f-baa851282185}</Project>
+      <Name>DigitalRune.Mathematics%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune.Particles\DigitalRune.Particles%28UWP%29.csproj">
+      <Project>{a1d07a6b-e89c-45e7-806b-6cc73f5f1904}</Project>
+      <Name>DigitalRune.Particles%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune.Physics.Specialized\DigitalRune.Physics.Specialized%28UWP%29.csproj">
+      <Project>{7dac6123-cee6-439c-8ce1-872e6c165cf8}</Project>
+      <Name>DigitalRune.Physics.Specialized%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune.Physics\DigitalRune.Physics%28UWP%29.csproj">
+      <Project>{e46c7b11-fe3c-4d89-8f90-15f8a4ab090f}</Project>
+      <Name>DigitalRune.Physics%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune.ServiceLocation\DigitalRune.ServiceLocation%28UWP%29.csproj">
+      <Project>{bbb251dd-f46c-4270-a115-d1b093436361}</Project>
+      <Name>DigitalRune.ServiceLocation%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\DigitalRune\DigitalRune%28UWP%29.csproj">
+      <Project>{86ad1576-a1fd-4b7e-ac9d-83d118967c81}</Project>
+      <Name>DigitalRune%28UWP%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Source\MonoGame\MonoGame.Framework\MonoGame.Framework.WindowsUAP.csproj">
+      <Project>{09c41a48-7bf3-4a46-9eb8-ce95b4c27ca9}</Project>
+      <Name>MonoGame.Framework.WindowsUAP</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Samples\Graphics\DeferredRendering\30-BatchingSample\" />
   </ItemGroup>
 </Project>
